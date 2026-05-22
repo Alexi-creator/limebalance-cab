@@ -1,3 +1,5 @@
+import { ApiError } from "@api/apiError"
+import { login } from "@api/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Alert,
@@ -11,16 +13,21 @@ import {
   TextInput,
   Title,
 } from "@mantine/core"
+import { useAuthStore } from "@store/authStore"
 import { IconBrandGoogle, IconBrandTelegram, IconMail } from "@tabler/icons-react"
+import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 import { z } from "zod"
 
 type AuthMethod = "select" | "email"
 
 function EmailForm({ onBack }: { onBack: () => void }) {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const setUser = useAuthStore((s) => s.setUser)
 
   const authSchema = z.object({
     email: z.email(t("auth.email_error")),
@@ -32,14 +39,26 @@ function EmailForm({ onBack }: { onBack: () => void }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
+    setError,
   } = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
   })
 
-  const onSubmit = (data: AuthFormValues) => {
-    console.log(data)
-  }
+  const { mutate, isPending } = useMutation({
+    mutationFn: login,
+    onSuccess: (user) => {
+      setUser(user)
+      navigate("/")
+    },
+    onError: (err) => {
+      const message =
+        err instanceof ApiError && err.status === 401 ? t("auth.invalid_credentials") : err.message
+      setError("root", { message })
+    },
+  })
+
+  const onSubmit = (data: AuthFormValues) => mutate(data)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +77,13 @@ function EmailForm({ onBack }: { onBack: () => void }) {
           {...register("password")}
         />
 
-        <Button type="submit" loading={isSubmitting}>
+        {errors.root && (
+          <Text c="red" size="sm">
+            {errors.root.message}
+          </Text>
+        )}
+
+        <Button type="submit" loading={isPending}>
           {t("auth.submit")}
         </Button>
 

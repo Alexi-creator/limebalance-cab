@@ -12,6 +12,7 @@
     "password_label": "Пароль",
     "password_placeholder": "••••••",
     "password_error": "Минимум 6 символов",
+    "invalid_credentials": "Неверный email или пароль",
     "submit": "Войти",
     "back": "Назад",
     "terms": "Нажимая «Войти», вы соглашаетесь с условиями использования"

@@ -12,6 +12,7 @@
     "password_label": "Password",
     "password_placeholder": "••••••",
     "password_error": "Minimum 6 characters",
+    "invalid_credentials": "Invalid email or password",
     "submit": "Sign In",
     "back": "Back",
     "terms": "By signing in, you agree to our terms of service"

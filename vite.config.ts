@@ -6,10 +6,13 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@components": resolve(__dirname, "src/components"),
-      "@pages": resolve(__dirname, "src/pages"),
-      "@constants": resolve(__dirname, "src/constants"),
+      "@api": resolve(__dirname, "src/api"),
       "@app-types": resolve(__dirname, "src/types"),
+      "@components": resolve(__dirname, "src/components"),
+      "@constants": resolve(__dirname, "src/constants"),
+      "@pages": resolve(__dirname, "src/pages"),
+      "@store": resolve(__dirname, "src/store"),
+      "@utils": resolve(__dirname, "src/utils"),
     },
   },
 })
