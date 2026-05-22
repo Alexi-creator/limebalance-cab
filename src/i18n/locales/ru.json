@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "title": "Вход",
+    "telegram_hint": "Если вы пользовались нашим Telegram-ботом — войдите через Telegram, чтобы сохранить историю расходов.",
+    "sign_in_telegram": "Войти через Telegram",
+    "sign_in_google": "Войти через Google",
+    "or": "или",
+    "sign_in_email": "Войти через email",
+    "email_label": "Email",
+    "email_placeholder": "you@example.com",
+    "email_error": "Некорректный email",
+    "password_label": "Пароль",
+    "password_placeholder": "••••••",
+    "password_error": "Минимум 6 символов",
+    "submit": "Войти",
+    "back": "Назад",
+    "terms": "Нажимая «Войти», вы соглашаетесь с условиями использования"
+  },
+  "nav": {
+    "home": "Главная",
+    "auth": "Авторизация"
+  },
+  "app": {
+    "name": "Cashflowy"
+  }
+}

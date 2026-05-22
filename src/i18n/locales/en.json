@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "title": "Sign In",
+    "telegram_hint": "If you've used our Telegram bot — sign in via Telegram to keep your expense history.",
+    "sign_in_telegram": "Sign in with Telegram",
+    "sign_in_google": "Sign in with Google",
+    "or": "or",
+    "sign_in_email": "Sign in with email",
+    "email_label": "Email",
+    "email_placeholder": "you@example.com",
+    "email_error": "Invalid email",
+    "password_label": "Password",
+    "password_placeholder": "••••••",
+    "password_error": "Minimum 6 characters",
+    "submit": "Sign In",
+    "back": "Back",
+    "terms": "By signing in, you agree to our terms of service"
+  },
+  "nav": {
+    "home": "Home",
+    "auth": "Auth"
+  },
+  "app": {
+    "name": "Cashflowy"
+  }
+}
