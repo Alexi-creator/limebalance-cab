@@ -1,4 +1,4 @@
-import type { User } from "@app-types/user"
+import type { User } from "@appTypes/user"
 import { create } from "zustand"
 
 interface AuthState {

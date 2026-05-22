@@ -1,4 +1,6 @@
 import { API_URLS } from "@constants/apiUrls"
+import { HttpStatus } from "@constants/httpStatus"
+import { RouteNames } from "@constants/routeNames"
 import { useAuthStore } from "@store/authStore"
 import type { RequestOptions } from "@utils/commonRequest"
 import { commonRequest } from "@utils/commonRequest"
@@ -15,14 +17,14 @@ async function refreshTokens(): Promise<boolean> {
 
 function redirectToLogin(): void {
   useAuthStore.getState().setUser(null)
-  window.location.href = "/auth"
+  window.location.href = RouteNames.Auth
 }
 
 export async function request<T>(url: string, options: RequestOptions<T> = {}): Promise<T> {
   try {
     return await commonRequest(url, options)
   } catch (err) {
-    if (err instanceof ApiError && err.status === 401) {
+    if (err instanceof ApiError && err.status === HttpStatus.UNAUTHORIZED) {
       const refreshed = await refreshTokens()
 
       if (refreshed) {

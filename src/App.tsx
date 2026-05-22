@@ -1,7 +1,7 @@
 import { Layout } from "@components/Layout"
 import { PublicLayout } from "@components/PublicLayout"
+import { appRoutes, publicRoutes } from "@settings/routesConfig"
 import { Route, Routes } from "react-router-dom"
-import { appRoutes, publicRoutes } from "./routes"
 
 function App() {
   return (

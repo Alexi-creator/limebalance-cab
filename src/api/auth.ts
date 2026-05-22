@@ -1,6 +1,6 @@
 import { ApiError } from "@api/apiError"
 import { request } from "@api/request"
-import type { User } from "@app-types/user"
+import type { User } from "@appTypes/user"
 import { API_URLS } from "@constants/apiUrls"
 
 export interface LoginPayload {

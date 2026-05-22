@@ -1,5 +1,7 @@
 import { ApiError } from "@api/apiError"
 import { login } from "@api/auth"
+import { HttpStatus } from "@constants/httpStatus"
+import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Alert,
@@ -49,11 +51,13 @@ function EmailForm({ onBack }: { onBack: () => void }) {
     mutationFn: login,
     onSuccess: (user) => {
       setUser(user)
-      navigate("/")
+      navigate(RouteNames.Home)
     },
     onError: (err) => {
       const message =
-        err instanceof ApiError && err.status === 401 ? t("auth.invalid_credentials") : err.message
+        err instanceof ApiError && err.status === HttpStatus.UNAUTHORIZED
+          ? t("auth.invalid_credentials")
+          : err.message
       setError("root", { message })
     },
   })

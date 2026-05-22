@@ -7,10 +7,11 @@ export default defineConfig({
   resolve: {
     alias: {
       "@api": resolve(__dirname, "src/api"),
-      "@app-types": resolve(__dirname, "src/types"),
+      "@appTypes": resolve(__dirname, "src/types"),
       "@components": resolve(__dirname, "src/components"),
       "@constants": resolve(__dirname, "src/constants"),
       "@pages": resolve(__dirname, "src/pages"),
+      "@settings": resolve(__dirname, "src/settings"),
       "@store": resolve(__dirname, "src/store"),
       "@utils": resolve(__dirname, "src/utils"),
     },

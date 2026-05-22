@@ -2,9 +2,9 @@ import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
 import { AppShell, Burger, Group, NavLink, Text } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
+import { appRoutes } from "@settings/routesConfig"
 import { useTranslation } from "react-i18next"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
-import { appRoutes } from "../../routes"
 
 export function Layout() {
   const [opened, { toggle }] = useDisclosure()

@@ -1,10 +1,11 @@
-import type { RouteConfig } from "@app-types/route"
+import type { RouteConfig } from "@appTypes/route"
+import { RouteNames } from "@constants/routeNames"
 import { AuthPage } from "@pages/AuthPage"
 import { HomePage } from "@pages/HomePage"
 
 export const appRoutes: RouteConfig[] = [
   {
-    path: "/",
+    path: RouteNames.Home,
     element: <HomePage />,
     label: "nav.home",
   },
@@ -12,7 +13,7 @@ export const appRoutes: RouteConfig[] = [
 
 export const publicRoutes: RouteConfig[] = [
   {
-    path: "/auth",
+    path: RouteNames.Auth,
     element: <AuthPage />,
     label: "nav.auth",
   },
