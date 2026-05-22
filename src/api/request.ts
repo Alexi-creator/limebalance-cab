@@ -1,4 +1,5 @@
 import { API_URLS } from "@constants/apiUrls"
+import { HttpMethods } from "@constants/httpMethods"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { useAuthStore } from "@store/authStore"
@@ -8,7 +9,7 @@ import { ApiError } from "./apiError"
 
 async function refreshTokens(): Promise<boolean> {
   try {
-    await commonRequest(API_URLS.auth.refresh, { method: "POST" })
+    await commonRequest(API_URLS.auth.refresh, { method: HttpMethods.POST })
     return true
   } catch {
     return false
