@@ -17,7 +17,7 @@ export async function commonRequest<T>(url: string, options: RequestOptions<T> =
   const response = await fetch(url, {
     method,
     credentials: options.credentials ?? "include",
-    headers: method === HttpMethods.GET ? {} : { "Content-Type": "application/json" },
+    headers: options.body ? { "Content-Type": "application/json" } : {},
     body: options.body,
     signal: options.fetchController?.signal,
   })

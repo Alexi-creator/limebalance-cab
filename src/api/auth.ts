@@ -9,11 +9,27 @@ export interface LoginPayload {
   password: string
 }
 
+export interface RegisterPayload {
+  email: string
+  password: string
+}
+
+export function register(payload: RegisterPayload): Promise<User> {
+  return commonRequest<User>(API_URLS.auth.register, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+  })
+}
+
 export function login(payload: LoginPayload): Promise<User> {
   return commonRequest<User>(API_URLS.auth.login, {
     method: HttpMethods.POST,
     body: JSON.stringify(payload),
   })
+}
+
+export function checkAuth(): Promise<User> {
+  return request<User>(API_URLS.auth.me, { skipRedirect: true })
 }
 
 export function getMe(): Promise<User> {

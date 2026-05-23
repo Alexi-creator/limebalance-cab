@@ -1,5 +1,5 @@
 import { ApiError } from "@api/apiError"
-import { login } from "@api/auth"
+import { register } from "@api/auth"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -30,34 +30,40 @@ function EmailForm({ onBack }: { onBack: () => void }) {
   const navigate = useNavigate()
   const setUser = useAuthStore((s) => s.setUser)
 
-  const authSchema = z.object({
-    email: z.email(t("auth.email_error")),
-    password: z.string().min(6, t("auth.password_error")),
-  })
+  const registerSchema = z
+    .object({
+      email: z.email(t("register.email_error")),
+      password: z.string().min(6, t("register.password_error")),
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: t("register.confirm_password_error"),
+      path: ["confirmPassword"],
+    })
 
-  type AuthFormValues = z.infer<typeof authSchema>
+  type RegisterFormValues = z.infer<typeof registerSchema>
 
   const {
-    register,
+    register: registerField,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<AuthFormValues>({
-    resolver: zodResolver(authSchema),
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
   })
 
   const [isPending, setIsPending] = useState(false)
 
-  const onSubmit = async (data: AuthFormValues) => {
+  const onSubmit = async ({ confirmPassword: _, ...payload }: RegisterFormValues) => {
     setIsPending(true)
     try {
-      const user = await login(data)
+      const user = await register(payload)
       setUser(user)
       navigate(RouteNames.Home)
     } catch (err) {
       const message =
-        err instanceof ApiError && err.status === HttpStatus.UNAUTHORIZED
-          ? t("auth.invalid_credentials")
+        err instanceof ApiError && err.status === HttpStatus.CONFLICT
+          ? t("register.email_taken")
           : (err as Error).message
       setError("root", { message })
     } finally {
@@ -69,17 +75,24 @@ function EmailForm({ onBack }: { onBack: () => void }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack>
         <TextInput
-          label={t("auth.email_label")}
-          placeholder={t("auth.email_placeholder")}
+          label={t("register.email_label")}
+          placeholder={t("register.email_placeholder")}
           error={errors.email?.message}
-          {...register("email")}
+          {...registerField("email")}
         />
 
         <PasswordInput
-          label={t("auth.password_label")}
-          placeholder={t("auth.password_placeholder")}
+          label={t("register.password_label")}
+          placeholder={t("register.password_placeholder")}
           error={errors.password?.message}
-          {...register("password")}
+          {...registerField("password")}
+        />
+
+        <PasswordInput
+          label={t("register.confirm_password_label")}
+          placeholder={t("register.confirm_password_placeholder")}
+          error={errors.confirmPassword?.message}
+          {...registerField("confirmPassword")}
         />
 
         {errors.root && (
@@ -89,18 +102,18 @@ function EmailForm({ onBack }: { onBack: () => void }) {
         )}
 
         <Button type="submit" loading={isPending}>
-          {t("auth.submit")}
+          {t("register.submit")}
         </Button>
 
         <Anchor component="button" type="button" size="sm" ta="center" onClick={onBack}>
-          {t("auth.back")}
+          {t("register.back")}
         </Anchor>
       </Stack>
     </form>
   )
 }
 
-export function AuthPage() {
+export function RegisterPage() {
   const { t } = useTranslation()
   const [method, setMethod] = useState<AuthMethod>("select")
 
@@ -109,13 +122,19 @@ export function AuthPage() {
       <Paper withBorder shadow="sm" p="xl" w="100%" maw={400} radius="md">
         <Stack>
           <Title order={2} ta="center">
-            {t("auth.title")}
+            {t("register.title")}
           </Title>
 
           {method === "select" && (
             <Stack>
               <Alert variant="light" color="blue" icon={<IconBrandTelegram size={16} />}>
-                <Text size="sm">{t("auth.telegram_hint")}</Text>
+                <Text size="sm">
+                  {t("register.telegram_hint_before")}{" "}
+                  <Anchor component={Link} to={RouteNames.Auth} size="sm" c="blue.9" fw={600}>
+                    {t("register.telegram_hint_link")}
+                  </Anchor>{" "}
+                  {t("register.telegram_hint_after")}
+                </Text>
               </Alert>
 
               <Button
@@ -123,7 +142,7 @@ export function AuthPage() {
                 leftSection={<IconBrandTelegram size={18} color="#2AABEE" />}
                 onClick={() => console.log("telegram")}
               >
-                {t("auth.sign_in_telegram")}
+                {t("register.sign_up_telegram")}
               </Button>
 
               <Button
@@ -131,17 +150,17 @@ export function AuthPage() {
                 leftSection={<IconBrandGoogle size={18} />}
                 onClick={() => console.log("google")}
               >
-                {t("auth.sign_in_google")}
+                {t("register.sign_up_google")}
               </Button>
 
-              <Divider label={t("auth.or")} labelPosition="center" />
+              <Divider label={t("register.or")} labelPosition="center" />
 
               <Button
                 variant="light"
                 leftSection={<IconMail size={18} />}
                 onClick={() => setMethod("email")}
               >
-                {t("auth.sign_in_email")}
+                {t("register.sign_up_email")}
               </Button>
             </Stack>
           )}
@@ -149,13 +168,13 @@ export function AuthPage() {
           {method === "email" && <EmailForm onBack={() => setMethod("select")} />}
 
           <Text size="xs" c="dimmed" ta="center">
-            {t("auth.terms")}
+            {t("register.terms")}
           </Text>
 
           <Text size="sm" ta="center">
-            {t("auth.no_account")}{" "}
-            <Anchor component={Link} to={RouteNames.Register}>
-              {t("auth.register_link")}
+            {t("register.has_account")}{" "}
+            <Anchor component={Link} to={RouteNames.Auth}>
+              {t("register.sign_in_link")}
             </Anchor>
           </Text>
         </Stack>

@@ -21,7 +21,10 @@ function redirectToLogin(): void {
   window.location.href = RouteNames.Auth
 }
 
-export async function request<T>(url: string, options: RequestOptions<T> = {}): Promise<T> {
+export async function request<T>(
+  url: string,
+  options: RequestOptions<T> & { skipRedirect?: boolean } = {},
+): Promise<T> {
   try {
     return await commonRequest(url, options)
   } catch (err) {
@@ -32,7 +35,9 @@ export async function request<T>(url: string, options: RequestOptions<T> = {}): 
         return commonRequest(url, options)
       }
 
-      redirectToLogin()
+      if (!options.skipRedirect) {
+        redirectToLogin()
+      }
     }
 
     throw err
