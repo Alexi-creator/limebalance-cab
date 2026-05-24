@@ -1,7 +1,7 @@
 {
   "auth": {
     "title": "Вход",
-    "telegram_hint": "Если вы пользовались нашим Telegram-ботом — войдите через Telegram, чтобы сохранить историю расходов.",
+    "telegram_hint": "Если вы пользовались нашим Telegram-ботом — войдите через Telegram, чтобы сохранить историю движения средств.",
     "sign_in_telegram": "Войти через Telegram",
     "sign_in_google": "Войти через Google",
     "or": "или",
@@ -21,6 +21,7 @@
   },
   "register": {
     "title": "Создать аккаунт",
+    "telegram_hint": "Уже пользовались нашим ботом? Войдите через Telegram — вся история движения средств сохранится. Email и пароль можно добавить позже в настройках.",
     "telegram_hint_before": "Уже пользовались нашим Telegram-ботом?",
     "telegram_hint_link": "Войдите через Telegram",
     "telegram_hint_after": "— email можно будет задать внутри приложения.",

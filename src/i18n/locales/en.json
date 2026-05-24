@@ -1,7 +1,7 @@
 {
   "auth": {
     "title": "Sign In",
-    "telegram_hint": "If you've used our Telegram bot — sign in via Telegram to keep your expense history.",
+    "telegram_hint": "If you've used our Telegram bot — sign in via Telegram to keep your full transaction history.",
     "sign_in_telegram": "Sign in with Telegram",
     "sign_in_google": "Sign in with Google",
     "or": "or",
@@ -21,6 +21,7 @@
   },
   "register": {
     "title": "Create Account",
+    "telegram_hint": "Already used our bot? Sign in via Telegram — your full transaction history will sync. You can add email and password later in settings.",
     "telegram_hint_before": "Already used our Telegram bot?",
     "telegram_hint_link": "Sign in via Telegram",
     "telegram_hint_after": "— you can set your email inside the app.",

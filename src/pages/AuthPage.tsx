@@ -106,7 +106,7 @@ function EmailForm({ onBack }: { onBack: () => void }) {
 }
 
 export function AuthPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [method, setMethod] = useState<AuthMethod>("select")
   const navigate = useNavigate()
   const setUser = useAuthStore((s) => s.setUser)
@@ -141,6 +141,7 @@ export function AuthPage() {
                       buttonSize="large"
                       cornerRadius={8}
                       showAvatar
+                      lang={i18n.language}
                     />
                   </Box>
                 </Stack>
