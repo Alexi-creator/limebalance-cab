@@ -1,51 +1,63 @@
+import { DashboardSidebar } from "@components/DashboardSidebar"
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
-import { AppShell, Burger, Group, NavLink, Text } from "@mantine/core"
+import {
+  ActionIcon,
+  AppShell,
+  Box,
+  Burger,
+  Button,
+  Group,
+  Indicator,
+  TextInput,
+} from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { appRoutes } from "@settings/routesConfig"
-import { useTranslation } from "react-i18next"
-import { Outlet, useLocation, useNavigate } from "react-router-dom"
+import { IconBell, IconPlus, IconSearch } from "@tabler/icons-react"
+import { Outlet } from "react-router-dom"
 
 export function Layout() {
   const [opened, { toggle }] = useDisclosure()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { t } = useTranslation()
 
   return (
     <AppShell
-      header={{ height: 60 }}
-      navbar={{ width: 220, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      header={{ height: 64 }}
+      navbar={{ width: 240, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
     >
       <AppShell.Header>
-        <Group h="100%" px="md" justify="space-between">
-          <Group>
-            <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Text fw={700} size="lg">
-              {t("app.name")}
-            </Text>
-          </Group>
-          <Group>
+        <Group h="100%" px="md" gap="md">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+
+          <TextInput
+            placeholder="Поиск по операциям, целям, тикерам…"
+            leftSection={<IconSearch size={14} />}
+            style={{ flex: 1, maxWidth: 360 }}
+            visibleFrom="sm"
+          />
+
+          <Group gap="xs" ml="auto">
             <LangSwitcher />
+            <Indicator color="lime" size={8} offset={6} processing>
+              <ActionIcon variant="default" size={36} aria-label="Уведомления">
+                <IconBell size={18} />
+              </ActionIcon>
+            </Indicator>
             <ThemeToggle />
+            <Button leftSection={<IconPlus size={14} />} size="sm">
+              Добавить
+            </Button>
           </Group>
         </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        {appRoutes.map(({ path, label }) => (
-          <NavLink
-            key={path}
-            label={t(label)}
-            active={location.pathname === path}
-            onClick={() => navigate(path)}
-          />
-        ))}
+        <DashboardSidebar />
       </AppShell.Navbar>
 
-      <AppShell.Main>
-        <Outlet />
+      <AppShell.Main bg="var(--mantine-color-default)">
+        <Box maw={1400} mx="auto" py="md">
+          <Outlet />
+        </Box>
       </AppShell.Main>
     </AppShell>
   )

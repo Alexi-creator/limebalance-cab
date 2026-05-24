@@ -1,7 +1,6 @@
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
 import { HttpStatus } from "@constants/httpStatus"
-import { RouteNames } from "@constants/routeNames"
 import { useAuthStore } from "@store/authStore"
 import type { RequestOptions } from "@utils/commonRequest"
 import { commonRequest } from "@utils/commonRequest"
@@ -18,7 +17,6 @@ async function refreshTokens(): Promise<boolean> {
 
 function redirectToLogin(): void {
   useAuthStore.getState().setUser(null)
-  window.location.href = RouteNames.Auth
 }
 
 export async function request<T>(

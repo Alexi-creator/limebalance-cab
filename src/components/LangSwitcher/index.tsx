@@ -17,7 +17,7 @@ export function LangSwitcher() {
 
   return (
     <Select
-      size="xs"
+      size="sm"
       w={110}
       value={i18n.language}
       onChange={handleChange}

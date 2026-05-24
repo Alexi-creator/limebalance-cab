@@ -1,15 +1,19 @@
 import type { RouteConfig } from "@appTypes/route"
 import { RouteNames } from "@constants/routeNames"
+import { AnalyticsPage } from "@pages/AnalyticsPage"
 import { AuthPage } from "@pages/AuthPage"
+import { GoalsPage } from "@pages/GoalsPage"
 import { HomePage } from "@pages/HomePage"
+import { InvestmentsPage } from "@pages/InvestmentsPage"
 import { RegisterPage } from "@pages/RegisterPage"
+import { TransactionsPage } from "@pages/TransactionsPage"
 
 export const appRoutes: RouteConfig[] = [
-  {
-    path: RouteNames.Home,
-    element: <HomePage />,
-    label: "nav.home",
-  },
+  { path: RouteNames.Home, element: <HomePage />, label: "nav.home" },
+  { path: RouteNames.Transactions, element: <TransactionsPage />, label: "nav.transactions" },
+  { path: RouteNames.Analytics, element: <AnalyticsPage />, label: "nav.analytics" },
+  { path: RouteNames.Goals, element: <GoalsPage />, label: "nav.goals" },
+  { path: RouteNames.Investments, element: <InvestmentsPage />, label: "nav.investments" },
 ]
 
 export const publicRoutes: RouteConfig[] = [
