@@ -1,6 +1,7 @@
 import { DashboardSidebar } from "@components/DashboardSidebar"
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
+import { useLoaderStore } from "@store/loaderStore"
 import {
   ActionIcon,
   AppShell,
@@ -9,6 +10,7 @@ import {
   Button,
   Group,
   Indicator,
+  LoadingOverlay,
   TextInput,
 } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
@@ -17,6 +19,7 @@ import { Outlet } from "react-router-dom"
 
 export function Layout() {
   const [opened, { toggle }] = useDisclosure()
+  const { isLoading } = useLoaderStore()
 
   return (
     <AppShell
@@ -54,7 +57,8 @@ export function Layout() {
         <DashboardSidebar />
       </AppShell.Navbar>
 
-      <AppShell.Main bg="var(--mantine-color-default)">
+      <AppShell.Main bg="var(--mantine-color-default)" style={{ position: "relative" }}>
+        <LoadingOverlay visible={isLoading} zIndex={10} />
         <Box maw={1400} mx="auto" py="md">
           <Outlet />
         </Box>
