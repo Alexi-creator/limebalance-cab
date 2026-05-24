@@ -1,7 +1,6 @@
 import { DashboardSidebar } from "@components/DashboardSidebar"
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
-import { useLoaderStore } from "@store/loaderStore"
 import {
   ActionIcon,
   AppShell,
@@ -14,6 +13,7 @@ import {
   TextInput,
 } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
+import { useLoaderStore } from "@store/loaderStore"
 import { IconBell, IconPlus, IconSearch } from "@tabler/icons-react"
 import { Outlet } from "react-router-dom"
 
