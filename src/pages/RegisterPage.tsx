@@ -1,5 +1,5 @@
 import { ApiError } from "@api/apiError"
-import { loginTelegram, register } from "@api/auth"
+import { loginGoogle, loginTelegram, register } from "@api/auth"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -16,8 +16,9 @@ import {
   TextInput,
   Title,
 } from "@mantine/core"
+import { GoogleLogin } from "@react-oauth/google"
 import { useAuthStore } from "@store/authStore"
-import { IconBrandGoogle, IconBrandTelegram, IconMail } from "@tabler/icons-react"
+import { IconBrandTelegram, IconMail } from "@tabler/icons-react"
 import type { TelegramAuthData } from "@telegram-auth/react"
 import { LoginButton } from "@telegram-auth/react"
 import { useState } from "react"
@@ -134,6 +135,16 @@ export function RegisterPage() {
     }
   }
 
+  const handleGoogleAuth = async (credential: string) => {
+    try {
+      const user = await loginGoogle(credential)
+      setUser(user)
+      navigate(RouteNames.Home)
+    } catch {
+      // stay on page
+    }
+  }
+
   return (
     <Stack align="center" justify="center" mih="calc(100vh - 60px)" px="md">
       <Paper withBorder shadow="sm" p="xl" w="100%" maw={400} radius="md">
@@ -160,13 +171,15 @@ export function RegisterPage() {
                 </Stack>
               </Alert>
 
-              <Button
-                variant="default"
-                leftSection={<IconBrandGoogle size={18} />}
-                onClick={() => console.log("google")}
-              >
-                {t("register.sign_up_google")}
-              </Button>
+              <Box style={{ display: "flex", justifyContent: "center" }}>
+                <GoogleLogin
+                  onSuccess={({ credential }) => credential && handleGoogleAuth(credential)}
+                  onError={() => {}}
+                  text="signup_with"
+
+                  width={320}
+                />
+              </Box>
 
               <Divider label={t("register.or")} labelPosition="center" />
 

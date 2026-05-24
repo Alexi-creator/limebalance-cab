@@ -47,3 +47,10 @@ export function loginTelegram(data: TelegramAuthData): Promise<User> {
     body: JSON.stringify(data),
   })
 }
+
+export function loginGoogle(credential: string): Promise<User> {
+  return commonRequest<User>(API_URLS.auth.google, {
+    method: HttpMethods.POST,
+    body: JSON.stringify({ credential }),
+  })
+}
