@@ -2,6 +2,7 @@ import { request } from "@api/request"
 import type { User } from "@appTypes/user"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
+import type { TelegramAuthData } from "@telegram-auth/react"
 import { commonRequest } from "@utils/commonRequest"
 
 export interface LoginPayload {
@@ -38,4 +39,11 @@ export function getMe(): Promise<User> {
 
 export async function logout(): Promise<void> {
   await request(API_URLS.auth.logout, { method: HttpMethods.POST })
+}
+
+export function loginTelegram(data: TelegramAuthData): Promise<User> {
+  return commonRequest<User>(API_URLS.auth.telegram, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(data),
+  })
 }

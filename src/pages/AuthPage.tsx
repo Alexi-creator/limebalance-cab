@@ -1,11 +1,12 @@
 import { ApiError } from "@api/apiError"
-import { login } from "@api/auth"
+import { login, loginTelegram } from "@api/auth"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Alert,
   Anchor,
+  Box,
   Button,
   Divider,
   Paper,
@@ -17,11 +18,15 @@ import {
 } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { IconBrandGoogle, IconBrandTelegram, IconMail } from "@tabler/icons-react"
+import type { TelegramAuthData } from "@telegram-auth/react"
+import { LoginButton } from "@telegram-auth/react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Link, useNavigate } from "react-router-dom"
 import { z } from "zod"
+
+const BOT_USERNAME = import.meta.env.VITE_TELEGRAM_BOT_USERNAME as string
 
 type AuthMethod = "select" | "email"
 
@@ -103,6 +108,18 @@ function EmailForm({ onBack }: { onBack: () => void }) {
 export function AuthPage() {
   const { t } = useTranslation()
   const [method, setMethod] = useState<AuthMethod>("select")
+  const navigate = useNavigate()
+  const setUser = useAuthStore((s) => s.setUser)
+
+  const handleTelegramAuth = async (data: TelegramAuthData) => {
+    try {
+      const user = await loginTelegram(data)
+      setUser(user)
+      navigate(RouteNames.Home)
+    } catch {
+      // stay on page
+    }
+  }
 
   return (
     <Stack align="center" justify="center" mih="calc(100vh - 60px)" px="md">
@@ -115,19 +132,23 @@ export function AuthPage() {
           {method === "select" && (
             <Stack>
               <Alert variant="light" color="blue" icon={<IconBrandTelegram size={16} />}>
-                <Text size="sm">{t("auth.telegram_hint")}</Text>
+                <Stack gap="sm">
+                  <Text size="sm">{t("auth.telegram_hint")}</Text>
+                  <Box style={{ display: "flex", justifyContent: "center" }}>
+                    <LoginButton
+                      botUsername={BOT_USERNAME}
+                      onAuthCallback={handleTelegramAuth}
+                      buttonSize="large"
+                      cornerRadius={8}
+                      showAvatar
+                    />
+                  </Box>
+                </Stack>
               </Alert>
 
               <Button
                 variant="default"
-                leftSection={<IconBrandTelegram size={18} color="#2AABEE" />}
-                onClick={() => console.log("telegram")}
-              >
-                {t("auth.sign_in_telegram")}
-              </Button>
-
-              <Button
-                variant="default"
+                fullWidth
                 leftSection={<IconBrandGoogle size={18} />}
                 onClick={() => console.log("google")}
               >
@@ -138,6 +159,7 @@ export function AuthPage() {
 
               <Button
                 variant="light"
+                fullWidth
                 leftSection={<IconMail size={18} />}
                 onClick={() => setMethod("email")}
               >

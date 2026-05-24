@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "ngrok": "ngrok http 5173"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -18,6 +19,7 @@
     "@mantine/hooks": "^9.2.1",
     "@tabler/icons-react": "^3.44.0",
     "@tanstack/react-query": "^5.100.11",
+    "@telegram-auth/react": "^1.0.4",
     "i18next": "^26.2.0",
     "mantine-datatable": "^9.2.2",
     "react": "^19.2.6",
