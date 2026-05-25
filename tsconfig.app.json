@@ -24,6 +24,7 @@
     "baseUrl": ".",
     "paths": {
       "@api/*": ["src/api/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@appTypes/*": ["src/types/*"],
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],

@@ -8,7 +8,7 @@ import { Button, Grid, Group, SimpleGrid, Skeleton, Stack, Text, Title } from "@
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { formatCurrency } from "@utils/formatCurrency"
-import { endOfMonth, startOfMonth } from "date-fns"
+import { endOfMonth, format, startOfMonth } from "date-fns"
 import { useTranslation } from "react-i18next"
 
 function getMonthRange() {
@@ -20,9 +20,10 @@ export function HomePage() {
   const { i18n } = useTranslation()
   const { from, to } = getMonthRange()
 
-  const { data: expenses, isLoading } = useQuery({
-    queryKey: ["expenses", "month", from.toISOString().slice(0, 7)],
+  const { data: expenses, isLoading, isFetching, refetch } = useQuery({
+    queryKey: ["expenses", "month", format(from, "yyyy-MM")],
     queryFn: () => getExpenses(from, to),
+    staleTime: 1 * 60 * 60 * 1000,
   })
 
   const totalExpenses = expenses?.reduce((sum, e) => sum + e.amount, 0) ?? 0
@@ -63,6 +64,8 @@ export function HomePage() {
             label="Расход за месяц"
             value={formattedExpenses}
             sub={`${expenses?.length ?? 0} операций`}
+            onRefresh={refetch}
+            isRefreshing={isFetching}
           />
         </Skeleton>
         <KpiCard label="Накоплено в мае" value="+90 480 ₽" sub="лучший месяц в году" trend={28.5} />
