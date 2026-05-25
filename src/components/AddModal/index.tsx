@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   ColorSwatch,
-  Divider,
   Group,
   Modal,
   Notification,
@@ -20,6 +19,7 @@ import {
   TextInput,
   Transition,
 } from "@mantine/core"
+import { DatePickerInput } from "@mantine/dates"
 import {
   IconArrowsLeftRight,
   IconChartLine,
@@ -27,7 +27,17 @@ import {
   IconCreditCard,
   IconTarget,
 } from "@tabler/icons-react"
-import { createContext, useContext, useEffect, useMemo, useState } from "react"
+import type { Locale } from "date-fns"
+import { enUS, ru } from "date-fns/locale"
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
+
+const dateFnsLocales: Record<string, Locale> = { ru, en: enUS }
+
+function useDateLocale() {
+  const { i18n } = useTranslation()
+  return dateFnsLocales[i18n.language] ?? enUS
+}
 
 type AddType = "transaction" | "goal" | "asset" | "transfer"
 
@@ -47,11 +57,11 @@ export function AddProvider({ children }: { children: React.ReactNode }) {
   const [lockType, setLockType] = useState(false)
   const [toast, setToast] = useState<{ title: string; detail?: string } | null>(null)
 
-  const openModal: Ctx["open"] = (t = "transaction", opts = {}) => {
+  const openModal: Ctx["open"] = useCallback((t = "transaction", opts = {}) => {
     setType(t)
     setLockType(!!opts.lockType)
     setOpen(true)
-  }
+  }, [])
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
@@ -62,7 +72,7 @@ export function AddProvider({ children }: { children: React.ReactNode }) {
     }
     window.addEventListener("keydown", h)
     return () => window.removeEventListener("keydown", h)
-  }, [])
+  }, [openModal])
 
   const onSubmit = (t: AddType, summary?: string) => {
     setOpen(false)
@@ -76,7 +86,7 @@ export function AddProvider({ children }: { children: React.ReactNode }) {
     setTimeout(() => setToast(null), 3200)
   }
 
-  const ctx = useMemo(() => ({ open: openModal }), [])
+  const ctx = useMemo(() => ({ open: openModal }), [openModal])
 
   return (
     <AddContext.Provider value={ctx}>
@@ -184,8 +194,9 @@ function TransactionForm({
   const [amount, setAmount] = useState<number | string>("")
   const [cat, setCat] = useState("Еда дома")
   const [acc, setAcc] = useState<string | null>("Тинькофф")
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
+  const [date, setDate] = useState<Date | null>(new Date())
   const [note, setNote] = useState("")
+  const locale = useDateLocale()
 
   const cats = {
     expense: [
@@ -264,7 +275,7 @@ function TransactionForm({
 
         <SimpleGrid cols={2}>
           <Select label="Счёт" data={ACCOUNTS} value={acc} onChange={setAcc} />
-          <TextInput label="Дата" type="date" value={date} onChange={(e) => setDate(e.currentTarget.value)} />
+          <DatePickerInput label="Дата" value={date} onChange={setDate} locale={locale} valueFormat="DD MMM YYYY" />
         </SimpleGrid>
 
         <Textarea
@@ -298,8 +309,9 @@ function GoalForm({
   const [name, setName] = useState("")
   const [target, setTarget] = useState<number | string>("")
   const [saved, setSaved] = useState<number | string>("")
-  const [date, setDate] = useState("")
+  const [date, setDate] = useState<Date | null>(null)
   const [color, setColor] = useState("lime")
+  const locale = useDateLocale()
 
   const colors = [
     { key: "lime", v: "var(--mantine-color-lime-4)" },
@@ -318,7 +330,7 @@ function GoalForm({
 
   const hint = useMemo(() => {
     if (!target || !date) return null
-    const months = Math.max(1, Math.ceil((+new Date(date) - Date.now()) / (1000 * 60 * 60 * 24 * 30)))
+    const months = Math.max(1, Math.ceil((+date - Date.now()) / (1000 * 60 * 60 * 24 * 30)))
     const per = Math.ceil((Number(target) - Number(saved || 0)) / months)
     return `Чтобы успеть, нужно откладывать ~${per.toLocaleString("ru-RU")} ₽/мес (${months} мес.)`
   }, [target, saved, date])
@@ -376,11 +388,13 @@ function GoalForm({
           />
         </SimpleGrid>
 
-        <TextInput
+        <DatePickerInput
           label="Дедлайн"
-          type="date"
           value={date}
-          onChange={(e) => setDate(e.currentTarget.value)}
+          onChange={setDate}
+          locale={locale}
+          valueFormat="DD MMM YYYY"
+          clearable
         />
 
         <Box>

@@ -1,3 +1,4 @@
+import { AccountAlert } from "@components/AccountAlert"
 import { AddProvider } from "@components/AddModal"
 import { DashboardSidebar } from "@components/DashboardSidebar"
 import { LangSwitcher } from "@components/LangSwitcher"
@@ -82,6 +83,7 @@ export function Layout() {
         <AppShell.Main bg="var(--mantine-color-default)" style={{ position: "relative" }}>
           <LoadingOverlay visible={isLoading} zIndex={10} />
           <Box maw={1400} mx="auto" py="md">
+            <AccountAlert />
             <Outlet />
           </Box>
         </AppShell.Main>
