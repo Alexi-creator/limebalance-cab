@@ -1,30 +1,74 @@
+import type { Expense, Income } from "@appTypes/expense"
 import { Box, Group, Paper, SegmentedControl, Stack, Text } from "@mantine/core"
+import { format, getDate, type Locale, subMonths } from "date-fns"
+import { enUS, ru } from "date-fns/locale"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 const accent = "var(--mantine-color-lime-4)"
 const neg = "var(--mantine-color-red-5)"
 
-const datasets: Record<string, { income: number[]; expense: number[]; labels: string[] }> = {
-  "1м": {
-    income: [42, 56, 38, 71, 64, 82, 75],
-    expense: [28, 30, 22, 40, 36, 48, 42],
-    labels: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
-  },
+const dateFnsLocales: Record<string, Locale> = { ru, en: enUS }
+
+function getMonthLabels(count: number, locale: Locale) {
+  const now = new Date()
+  return Array.from({ length: count }, (_, i) =>
+    format(subMonths(now, count - 1 - i), "MMM", { locale }),
+  )
+}
+
+const stubValues = {
   "6м": {
     income: [180, 196, 210, 218, 245, 280],
     expense: [120, 138, 140, 148, 160, 180],
-    labels: ["Дек", "Янв", "Фев", "Мар", "Апр", "Май"],
   },
   "1г": {
     income: [180, 196, 188, 210, 224, 232, 218, 245, 258, 242, 280, 310],
     expense: [120, 138, 128, 140, 156, 152, 148, 160, 172, 165, 180, 188],
-    labels: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
   },
 }
 
-export function CashflowChart() {
-  const [period, setPeriod] = useState("6м")
-  const d = datasets[period]
+function buildMonthDataset(expenses: Expense[], incomes: Income[]) {
+  const today = getDate(new Date())
+  const incomeByDay = new Array(today).fill(0)
+  const expenseByDay = new Array(today).fill(0)
+
+  incomes.forEach((t) => {
+    const day = getDate(new Date(t.createdAt)) - 1
+    if (day >= 0 && day < today) incomeByDay[day] += t.amount
+  })
+  expenses.forEach((t) => {
+    const day = getDate(new Date(t.createdAt)) - 1
+    if (day >= 0 && day < today) expenseByDay[day] += t.amount
+  })
+
+  const labels = Array.from({ length: today }, (_, i) =>
+    (i + 1) % 5 === 1 || i === today - 1 ? String(i + 1) : "",
+  )
+
+  return { income: incomeByDay, expense: expenseByDay, labels }
+}
+
+interface Props {
+  expenses?: Expense[]
+  incomes?: Income[]
+}
+
+export function CashflowChart({ expenses, incomes }: Props) {
+  const { i18n } = useTranslation()
+  const locale = dateFnsLocales[i18n.language] ?? enUS
+  const [period, setPeriod] = useState("1м")
+
+  const d =
+    period === "1м" && expenses != null && incomes != null
+      ? buildMonthDataset(expenses, incomes)
+      : {
+          ...(stubValues[period as keyof typeof stubValues] ?? stubValues["6м"]),
+          labels: getMonthLabels(
+            (stubValues[period as keyof typeof stubValues] ?? stubValues["6м"]).income.length,
+            locale,
+          ),
+        }
 
   const W = 640,
     H = 240,
@@ -107,7 +151,7 @@ export function CashflowChart() {
             strokeDasharray="3 3"
           />
           <path d={linePath(d.income)} stroke={accent} strokeWidth="2" fill="none" />
-          {d.income.map((v, i) => (
+          {d.income.map((v: number, i: number) => (
             <g key={d.labels[i]}>
               <circle
                 cx={x(i)}

@@ -1,4 +1,5 @@
 import { getExpenses } from "@api/expenses"
+import { getIncomes } from "@api/incomes"
 import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
 import { KpiCard } from "@components/KpiCard"
@@ -20,14 +21,33 @@ export function HomePage() {
   const { i18n } = useTranslation()
   const { from, to } = getMonthRange()
 
-  const { data: expenses, isLoading, isFetching, refetch } = useQuery({
+  const {
+    data: expenses,
+    isLoading: expensesLoading,
+    isFetching: expensesFetching,
+    refetch: refetchExpenses,
+  } = useQuery({
     queryKey: ["expenses", "month", format(from, "yyyy-MM")],
     queryFn: () => getExpenses(from, to),
     staleTime: 1 * 60 * 60 * 1000,
   })
 
+  const {
+    data: incomes,
+    isLoading: incomesLoading,
+    isFetching: incomesFetching,
+    refetch: refetchIncomes,
+  } = useQuery({
+    queryKey: ["incomes", "month", format(from, "yyyy-MM")],
+    queryFn: () => getIncomes(from, to),
+    staleTime: 1 * 60 * 60 * 1000,
+  })
+
   const totalExpenses = expenses?.reduce((sum, e) => sum + e.amount, 0) ?? 0
-  const formattedExpenses = isLoading ? "—" : formatCurrency(-totalExpenses, i18n.language)
+  const totalIncomes = incomes?.reduce((sum, i) => sum + i.amount, 0) ?? 0
+
+  const formattedExpenses = expensesLoading ? "—" : formatCurrency(-totalExpenses, i18n.language)
+  const formattedIncomes = incomesLoading ? "—" : formatCurrency(totalIncomes, i18n.language)
 
   return (
     <Stack gap="md">
@@ -58,14 +78,24 @@ export function HomePage() {
           trend={12.4}
           accent="var(--mantine-color-lime-4)"
         />
-        <KpiCard label="Доход за месяц" value="+218 800 ₽" sub="зарплата + фриланс" trend={4.2} />
-        <Skeleton visible={isLoading} radius="md">
+        <Skeleton visible={incomesLoading} radius="md">
+          <KpiCard
+            label="Доход за месяц"
+            value={formattedIncomes}
+            sub={`${incomes?.length ?? 0} операций`}
+            trend={8.2}
+            onRefresh={refetchIncomes}
+            isRefreshing={incomesFetching}
+          />
+        </Skeleton>
+        <Skeleton visible={expensesLoading} radius="md">
           <KpiCard
             label="Расход за месяц"
             value={formattedExpenses}
             sub={`${expenses?.length ?? 0} операций`}
-            onRefresh={refetch}
-            isRefreshing={isFetching}
+            trend={-3.7}
+            onRefresh={refetchExpenses}
+            isRefreshing={expensesFetching}
           />
         </Skeleton>
         <KpiCard label="Накоплено в мае" value="+90 480 ₽" sub="лучший месяц в году" trend={28.5} />
@@ -73,7 +103,7 @@ export function HomePage() {
 
       <Grid gap="md">
         <Grid.Col span={{ base: 12, lg: 8 }}>
-          <CashflowChart />
+          <CashflowChart expenses={expenses} incomes={incomes} />
         </Grid.Col>
         <Grid.Col span={{ base: 12, lg: 4 }}>
           <Stack gap="md">

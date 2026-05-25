@@ -10,3 +10,11 @@ export interface Expense {
   createdAt: string
   category: Category
 }
+
+export interface Income {
+  id: string
+  amount: number
+  description: string
+  createdAt: string
+  category: Category
+}
