@@ -1,12 +1,33 @@
+import { getExpenses } from "@api/expenses"
 import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
 import { KpiCard } from "@components/KpiCard"
 import { PortfolioSnippet } from "@components/PortfolioSnippet"
 import { RecentTransactions } from "@components/RecentTransactions"
-import { Button, Grid, Group, SimpleGrid, Stack, Text, Title } from "@mantine/core"
+import { Button, Grid, Group, SimpleGrid, Skeleton, Stack, Text, Title } from "@mantine/core"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
+import { useQuery } from "@tanstack/react-query"
+import { formatCurrency } from "@utils/formatCurrency"
+import { endOfMonth, startOfMonth } from "date-fns"
+import { useTranslation } from "react-i18next"
+
+function getMonthRange() {
+  const now = new Date()
+  return { from: startOfMonth(now), to: endOfMonth(now) }
+}
 
 export function HomePage() {
+  const { i18n } = useTranslation()
+  const { from, to } = getMonthRange()
+
+  const { data: expenses, isLoading } = useQuery({
+    queryKey: ["expenses", "month", from.toISOString().slice(0, 7)],
+    queryFn: () => getExpenses(from, to),
+  })
+
+  const totalExpenses = expenses?.reduce((sum, e) => sum + e.amount, 0) ?? 0
+  const formattedExpenses = isLoading ? "—" : formatCurrency(-totalExpenses, i18n.language)
+
   return (
     <Stack gap="md">
       <Group justify="space-between" align="flex-end" wrap="wrap">
@@ -37,7 +58,13 @@ export function HomePage() {
           accent="var(--mantine-color-lime-4)"
         />
         <KpiCard label="Доход за месяц" value="+218 800 ₽" sub="зарплата + фриланс" trend={4.2} />
-        <KpiCard label="Расход за месяц" value="-128 320 ₽" sub="из бюджета 150 000" trend={-3.1} />
+        <Skeleton visible={isLoading} radius="md">
+          <KpiCard
+            label="Расход за месяц"
+            value={formattedExpenses}
+            sub={`${expenses?.length ?? 0} операций`}
+          />
+        </Skeleton>
         <KpiCard label="Накоплено в мае" value="+90 480 ₽" sub="лучший месяц в году" trend={28.5} />
       </SimpleGrid>
 
