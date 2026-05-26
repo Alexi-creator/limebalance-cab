@@ -1,5 +1,6 @@
 import { request } from "@api/request"
 import type { User } from "@appTypes/user"
+import { userSchema } from "@appTypes/user"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
 import type { TelegramAuthData } from "@telegram-auth/react"
@@ -30,11 +31,11 @@ export function login(payload: LoginPayload): Promise<User> {
 }
 
 export function checkAuth(): Promise<User> {
-  return request<User>(API_URLS.auth.me, { skipRedirect: true })
+  return request<User>(API_URLS.auth.me, { skipRedirect: true, schema: userSchema })
 }
 
 export function getMe(): Promise<User> {
-  return request<User>(API_URLS.auth.me)
+  return request<User>(API_URLS.auth.me, { schema: userSchema })
 }
 
 export async function logout(): Promise<void> {

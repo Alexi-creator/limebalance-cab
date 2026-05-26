@@ -6,13 +6,18 @@ import type { RequestOptions } from "@utils/commonRequest"
 import { commonRequest } from "@utils/commonRequest"
 import { ApiError } from "./apiError"
 
+let pendingRefresh: Promise<boolean> | null = null
+
 async function refreshTokens(): Promise<boolean> {
-  try {
-    await commonRequest(API_URLS.auth.refresh, { method: HttpMethods.POST })
-    return true
-  } catch {
-    return false
+  if (!pendingRefresh) {
+    pendingRefresh = commonRequest(API_URLS.auth.refresh, { method: HttpMethods.POST })
+      .then(() => true)
+      .catch(() => false)
+      .finally(() => {
+        pendingRefresh = null
+      })
   }
+  return pendingRefresh
 }
 
 function redirectToLogin(): void {

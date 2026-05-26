@@ -1,5 +1,5 @@
 import { ApiError } from "@api/apiError"
-import { login, loginGoogle, loginTelegram } from "@api/auth"
+import { getMe, login, loginGoogle, loginTelegram } from "@api/auth"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -57,8 +57,8 @@ function EmailForm({ onBack }: { onBack: () => void }) {
   const onSubmit = async (data: AuthFormValues) => {
     setIsPending(true)
     try {
-      const user = await login(data)
-      setUser(user)
+      await login(data)
+      setUser(await getMe())
       navigate(RouteNames.Home)
     } catch (err) {
       const message =
@@ -114,8 +114,8 @@ export function AuthPage() {
 
   const handleTelegramAuth = async (data: TelegramAuthData) => {
     try {
-      const user = await loginTelegram(data)
-      setUser(user)
+      await loginTelegram(data)
+      setUser(await getMe())
       navigate(RouteNames.Home)
     } catch {
       // stay on page
@@ -124,8 +124,8 @@ export function AuthPage() {
 
   const handleGoogleAuth = async (credential: string) => {
     try {
-      const user = await loginGoogle(credential)
-      setUser(user)
+      await loginGoogle(credential)
+      setUser(await getMe())
       navigate(RouteNames.Home)
     } catch {
       // stay on page
