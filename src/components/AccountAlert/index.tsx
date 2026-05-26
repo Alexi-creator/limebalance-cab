@@ -3,12 +3,12 @@ import { useAuthStore } from "@store/authStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
 
 export function AccountAlert() {
-  // const user = useAuthStore((s) => s.user)
+  const user = useAuthStore((s) => s.user)
 
   // Stub condition: TG user without email/password
-  // const needsEmailSetup = !!(user?.telegramId && !user?.email)
+  const needsEmailSetup = !!(user?.telegramId && !user?.email)
 
-  // if (!needsEmailSetup) return null
+  if (!needsEmailSetup) return null
 
   return (
     <Alert

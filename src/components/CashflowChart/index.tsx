@@ -76,8 +76,9 @@ export function CashflowChart({ expenses, incomes }: Props) {
     PAD_R = 10,
     PAD_T = 10,
     PAD_B = 30
-  const max = Math.max(...d.income, ...d.expense) * 1.1
-  const x = (i: number) => PAD_L + i * ((W - PAD_L - PAD_R) / (d.income.length - 1))
+  const max = Math.max(...d.income, ...d.expense) * 1.1 || 1
+  const slots = Math.max(d.income.length - 1, 1)
+  const x = (i: number) => PAD_L + i * ((W - PAD_L - PAD_R) / slots)
   const y = (v: number) => H - PAD_B - (v / max) * (H - PAD_B - PAD_T)
   const linePath = (arr: number[]) =>
     arr.map((v, i) => `${i ? "L" : "M"} ${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(" ")
@@ -152,7 +153,8 @@ export function CashflowChart({ expenses, incomes }: Props) {
           />
           <path d={linePath(d.income)} stroke={accent} strokeWidth="2" fill="none" />
           {d.income.map((v: number, i: number) => (
-            <g key={d.labels[i]}>
+            // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length chart points, no reordering
+            <g key={i}>
               <circle
                 cx={x(i)}
                 cy={y(v)}
