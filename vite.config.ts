@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@api": resolve(__dirname, "src/api"),
+      "@i18n": resolve(__dirname, "src/i18n"),
       "@hooks": resolve(__dirname, "src/hooks"),
       "@appTypes": resolve(__dirname, "src/types"),
       "@components": resolve(__dirname, "src/components"),

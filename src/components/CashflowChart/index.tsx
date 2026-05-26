@@ -1,14 +1,13 @@
 import type { Expense, Income } from "@appTypes/expense"
+import { dateFnsLocales } from "@i18n/languages.ts"
 import { Box, Group, Paper, SegmentedControl, Stack, Text } from "@mantine/core"
 import { format, getDate, type Locale, subMonths } from "date-fns"
-import { enUS, ru } from "date-fns/locale"
+import { enUS } from "date-fns/locale"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 const accent = "var(--mantine-color-lime-4)"
 const neg = "var(--mantine-color-red-5)"
-
-const dateFnsLocales: Record<string, Locale> = { ru, en: enUS }
 
 function getMonthLabels(count: number, locale: Locale) {
   const now = new Date()

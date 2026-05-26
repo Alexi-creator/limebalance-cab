@@ -1,10 +1,8 @@
+import { languages } from "@i18n/languages.ts"
 import { Select } from "@mantine/core"
 import { useTranslation } from "react-i18next"
 
-const languages = [
-  { label: "English", value: "en" },
-  { label: "Русский", value: "ru" },
-]
+const languageOptions = Object.entries(languages).map(([value, { label }]) => ({ value, label }))
 
 export function LangSwitcher() {
   const { i18n } = useTranslation()
@@ -21,7 +19,7 @@ export function LangSwitcher() {
       w={110}
       value={i18n.language}
       onChange={handleChange}
-      data={languages}
+      data={languageOptions}
       allowDeselect={false}
       checkIconPosition="right"
     />
