@@ -1,11 +1,11 @@
 import { getExpenses } from "@api/expenses"
 import { getIncomes } from "@api/incomes"
+import { useAdd } from "@components/AddModal"
 import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
 import { KpiCard } from "@components/KpiCard"
 import { PortfolioSnippet } from "@components/PortfolioSnippet"
 import { RecentTransactions } from "@components/RecentTransactions"
-import { useAdd } from "@components/AddModal"
 import { Button, Grid, Group, SimpleGrid, Skeleton, Stack, Text, Title } from "@mantine/core"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
@@ -66,7 +66,11 @@ export function HomePage() {
           <Button variant="default" size="sm" leftSection={<IconDownload size={14} />}>
             Экспорт
           </Button>
-          <Button size="sm" leftSection={<IconPlus size={14} />} onClick={() => open("transaction", { lockType: true })}>
+          <Button
+            size="sm"
+            leftSection={<IconPlus size={14} />}
+            onClick={() => open("transaction", { lockType: true })}
+          >
             Новая операция
           </Button>
         </Group>

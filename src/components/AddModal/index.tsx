@@ -125,7 +125,10 @@ export function AddProvider({ children }: { children: React.ReactNode }) {
         )}
 
         {type === "transaction" && (
-          <TransactionForm onSubmit={(s) => onSubmit("transaction", s)} onCancel={() => setOpen(false)} />
+          <TransactionForm
+            onSubmit={(s) => onSubmit("transaction", s)}
+            onCancel={() => setOpen(false)}
+          />
         )}
         {type === "goal" && (
           <GoalForm onSubmit={(s) => onSubmit("goal", s)} onCancel={() => setOpen(false)} />
@@ -271,7 +274,13 @@ function TransactionForm({
 
         <SimpleGrid cols={2}>
           <Select label="Счёт" data={ACCOUNTS} value={acc} onChange={setAcc} />
-          <DatePickerInput label="Дата" value={date} onChange={setDate} locale={locale} valueFormat="DD MMM YYYY" />
+          <DatePickerInput
+            label="Дата"
+            value={date}
+            onChange={setDate}
+            locale={locale}
+            valueFormat="DD MMM YYYY"
+          />
         </SimpleGrid>
 
         <Textarea
@@ -294,13 +303,7 @@ function TransactionForm({
   )
 }
 
-function GoalForm({
-  onSubmit,
-  onCancel,
-}: {
-  onSubmit: (s: string) => void
-  onCancel: () => void
-}) {
+function GoalForm({ onSubmit, onCancel }: { onSubmit: (s: string) => void; onCancel: () => void }) {
   const [icon, setIcon] = useState("🎯")
   const [name, setName] = useState("")
   const [target, setTarget] = useState<number | string>("")
@@ -326,7 +329,10 @@ function GoalForm({
 
   const hint = useMemo(() => {
     if (!target || !date) return null
-    const months = Math.max(1, Math.ceil((new Date(date).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 30)))
+    const months = Math.max(
+      1,
+      Math.ceil((new Date(date).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 30)),
+    )
     const per = Math.ceil((Number(target) - Number(saved || 0)) / months)
     return `Чтобы успеть, нужно откладывать ~${per.toLocaleString("ru-RU")} ₽/мес (${months} мес.)`
   }, [target, saved, date])

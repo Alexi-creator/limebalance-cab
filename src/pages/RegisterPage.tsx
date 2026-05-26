@@ -176,7 +176,6 @@ export function RegisterPage() {
                   onSuccess={({ credential }) => credential && handleGoogleAuth(credential)}
                   onError={() => {}}
                   text="signup_with"
-
                   width={320}
                 />
               </Box>
