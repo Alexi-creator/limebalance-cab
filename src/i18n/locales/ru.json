@@ -53,5 +53,15 @@
   },
   "app": {
     "name": "Cashflowy"
+  },
+  "chart": {
+    "cashflow_title": "Денежный поток",
+    "cashflow_subtitle": "Доходы и расходы по периодам",
+    "period_1m": "1 мес",
+    "period_6m": "6 мес",
+    "period_1y": "1 год",
+    "income": "Доходы",
+    "expense": "Расходы",
+    "day": "День"
   }
 }

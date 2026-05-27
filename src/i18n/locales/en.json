@@ -53,5 +53,15 @@
   },
   "app": {
     "name": "Cashflowy"
+  },
+  "chart": {
+    "cashflow_title": "Cash Flow",
+    "cashflow_subtitle": "Income and expenses by period",
+    "period_1m": "1 mo",
+    "period_6m": "6 mo",
+    "period_1y": "1 yr",
+    "income": "Income",
+    "expense": "Expenses",
+    "day": "Day"
   }
 }

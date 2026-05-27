@@ -9,6 +9,7 @@ import {
   IconListDetails,
   IconLogout,
   IconSettings,
+  IconTags,
   IconTarget,
 } from "@tabler/icons-react"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -16,16 +17,16 @@ import { useLocation, useNavigate } from "react-router-dom"
 const navItems = [
   { to: RouteNames.Home, label: "Обзор", icon: IconHome },
   { to: RouteNames.Transactions, label: "Операции", icon: IconListDetails, badge: "324" },
+  { to: RouteNames.Categories, label: "Категории", icon: IconTags },
   { to: RouteNames.Analytics, label: "Аналитика", icon: IconChartHistogram },
   { to: RouteNames.Goals, label: "Цели", icon: IconTarget, badge: "4" },
   { to: RouteNames.Investments, label: "Инвестиции", icon: IconCoin },
 ]
 
 export function DashboardSidebar() {
-  const { pathname } = useLocation()
   const navigate = useNavigate()
-  const user = useAuthStore((s) => s.user)
-  const setUser = useAuthStore((s) => s.setUser)
+  const { pathname } = useLocation()
+  const { user, setUser } = useAuthStore()
 
   const handleLogout = async () => {
     await logout().catch(() => {})
@@ -41,16 +42,12 @@ export function DashboardSidebar() {
         <Box
           w={26}
           h={26}
-          style={{
-            borderRadius: 8,
-            background: "var(--mantine-color-lime-4)",
-            display: "grid",
-            placeItems: "center",
-            color: "#0a0d12",
-            fontFamily: "var(--mantine-font-family-monospace)",
-            fontWeight: 600,
-            fontSize: 14,
-          }}
+          bg="lime.4"
+          c="#0a0d12"
+          ff="monospace"
+          fw={600}
+          fz={14}
+          style={{ borderRadius: 8, display: "grid", placeItems: "center" }}
         >
           C
         </Box>
@@ -72,11 +69,17 @@ export function DashboardSidebar() {
 
       {navItems.map((item) => {
         const Icon = item.icon
+        const isActive = pathname === item.to
         return (
           <NavLink
             key={item.to}
             label={item.label}
-            leftSection={<Icon size={18} />}
+            leftSection={
+              <Icon
+                size={18}
+                style={{ color: isActive ? "var(--mantine-color-lime-4)" : undefined }}
+              />
+            }
             rightSection={
               item.badge ? (
                 <Text ff="monospace" size="xs" c="dimmed">
@@ -84,7 +87,7 @@ export function DashboardSidebar() {
                 </Text>
               ) : undefined
             }
-            active={pathname === item.to}
+            active={isActive}
             color="lime"
             variant="light"
             onClick={() => navigate(item.to)}
@@ -107,10 +110,10 @@ export function DashboardSidebar() {
       <NavLink
         label="Настройки"
         leftSection={<IconSettings size={18} />}
-        active={pathname === "/settings"}
+        active={pathname === RouteNames.Settings}
         color="lime"
         variant="light"
-        onClick={() => navigate("/settings")}
+        onClick={() => navigate(RouteNames.Settings)}
       />
 
       <Paper mt="auto" p="xs" withBorder>

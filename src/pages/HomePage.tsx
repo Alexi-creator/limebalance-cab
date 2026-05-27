@@ -1,5 +1,5 @@
-import { getExpenses } from "@api/expenses"
-import { getIncomes } from "@api/incomes"
+import { getExpenses, getExpensesSummary } from "@api/expenses"
+import { getIncomes, getIncomesSummary } from "@api/incomes"
 import { useAdd } from "@components/AddModal"
 import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
@@ -22,31 +22,46 @@ export function HomePage() {
   const { open } = useAdd()
   const { i18n } = useTranslation()
   const { from, to } = getMonthRange()
+  const currentMonth = format(from, "yyyy-MM")
 
   const {
-    data: expenses,
+    data: expensesSummary,
     isLoading: expensesLoading,
     isFetching: expensesFetching,
     refetch: refetchExpenses,
   } = useQuery({
-    queryKey: ["expenses", "month", format(from, "yyyy-MM")],
-    queryFn: () => getExpenses(from, to),
+    queryKey: ["expenses", "summary", 12],
+    queryFn: () => getExpensesSummary(12),
     staleTime: 1 * 60 * 60 * 1000,
   })
 
   const {
-    data: incomes,
+    data: incomesSummary,
     isLoading: incomesLoading,
     isFetching: incomesFetching,
     refetch: refetchIncomes,
   } = useQuery({
-    queryKey: ["incomes", "month", format(from, "yyyy-MM")],
+    queryKey: ["incomes", "summary", 12],
+    queryFn: () => getIncomesSummary(12),
+    staleTime: 1 * 60 * 60 * 1000,
+  })
+
+  const { data: expenses } = useQuery({
+    queryKey: ["expenses", "month", currentMonth],
+    queryFn: () => getExpenses(from, to),
+    staleTime: 1 * 60 * 60 * 1000,
+  })
+
+  const { data: incomes } = useQuery({
+    queryKey: ["incomes", "month", currentMonth],
     queryFn: () => getIncomes(from, to),
     staleTime: 1 * 60 * 60 * 1000,
   })
 
-  const totalExpenses = expenses?.reduce((sum, e) => sum + e.amount, 0) ?? 0
-  const totalIncomes = incomes?.reduce((sum, i) => sum + i.amount, 0) ?? 0
+  const currentMonthExpenses = expensesSummary?.byMonth.find((m) => m.month === currentMonth)
+  const currentMonthIncomes = incomesSummary?.byMonth.find((m) => m.month === currentMonth)
+  const totalExpenses = currentMonthExpenses ? parseFloat(currentMonthExpenses.total) : 0
+  const totalIncomes = currentMonthIncomes ? parseFloat(currentMonthIncomes.total) : 0
 
   const formattedExpenses = expensesLoading ? "—" : formatCurrency(-totalExpenses, i18n.language)
   const formattedIncomes = incomesLoading ? "—" : formatCurrency(totalIncomes, i18n.language)
@@ -88,7 +103,7 @@ export function HomePage() {
           <KpiCard
             label="Доход за месяц"
             value={formattedIncomes}
-            sub={`${incomes?.length ?? 0} операций`}
+            sub={currentMonthIncomes ? "за текущий месяц" : "нет данных"}
             trend={8.2}
             onRefresh={refetchIncomes}
             isRefreshing={incomesFetching}
@@ -98,7 +113,7 @@ export function HomePage() {
           <KpiCard
             label="Расход за месяц"
             value={formattedExpenses}
-            sub={`${expenses?.length ?? 0} операций`}
+            sub={currentMonthExpenses ? "за текущий месяц" : "нет данных"}
             trend={-3.7}
             onRefresh={refetchExpenses}
             isRefreshing={expensesFetching}
@@ -109,7 +124,12 @@ export function HomePage() {
 
       <Grid gap="md">
         <Grid.Col span={{ base: 12, lg: 8 }}>
-          <CashflowChart expenses={expenses} incomes={incomes} />
+          <CashflowChart
+            expensesSummary={expensesSummary}
+            incomesSummary={incomesSummary}
+            expenses={expenses}
+            incomes={incomes}
+          />
         </Grid.Col>
         <Grid.Col span={{ base: 12, lg: 4 }}>
           <Stack gap="md">

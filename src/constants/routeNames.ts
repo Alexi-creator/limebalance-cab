@@ -6,6 +6,8 @@ export const RouteNames = {
   Analytics: "/analytics",
   Goals: "/goals",
   Investments: "/investments",
+  Categories: "/categories",
+  Settings: "/settings",
 } as const
 
 export type RouteName = (typeof RouteNames)[keyof typeof RouteNames]

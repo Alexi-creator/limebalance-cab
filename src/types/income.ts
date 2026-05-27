@@ -1,7 +1,7 @@
 import { categorySchema } from "@appTypes/category"
 import { z } from "zod"
 
-export const expenseSchema = z.object({
+export const incomeSchema = z.object({
   id: z.string(),
   amount: z.coerce.number(),
   description: z.string(),
@@ -9,10 +9,10 @@ export const expenseSchema = z.object({
   category: categorySchema,
 })
 
-export const expensesSummarySchema = z.object({
+export const incomesSummarySchema = z.object({
   total: z.string(),
   byMonth: z.array(z.object({ month: z.string(), total: z.string() })),
 })
 
-export type Expense = z.infer<typeof expenseSchema>
-export type ExpensesSummary = z.infer<typeof expensesSummarySchema>
+export type Income = z.infer<typeof incomeSchema>
+export type IncomesSummary = z.infer<typeof incomesSummarySchema>
