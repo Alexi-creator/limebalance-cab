@@ -14,7 +14,7 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core"
-import { IconDotsVertical, IconDownload, IconPlus, IconSearch } from "@tabler/icons-react"
+import { IconDotsVertical, IconDownload, IconPlus, IconSearch, IconX } from "@tabler/icons-react"
 import { useMemo, useState } from "react"
 
 interface Tx {
@@ -122,12 +122,10 @@ const CAT_OPTS = [
   "Образование",
   "Накопления",
 ]
-const ACC_OPTS = ["Все", "Тинькофф", "Сбер", "Кэш"]
 
 export function TransactionsPage() {
   const [q, setQ] = useState("")
   const [cat, setCat] = useState<string | null>("Все")
-  const [acc, setAcc] = useState<string | null>("Все")
   const [tab, setTab] = useState("Все")
 
   const rows = useMemo(
@@ -136,10 +134,9 @@ export function TransactionsPage() {
         (r) =>
           (tab === "Все" || (tab === "Доходы" && r.pos) || (tab === "Расходы" && !r.pos)) &&
           (cat === "Все" || r.cat === cat) &&
-          (acc === "Все" || r.acc === acc) &&
           (!q || r.t.toLowerCase().includes(q.toLowerCase())),
       ),
-    [q, cat, acc, tab],
+    [q, cat, tab],
   )
 
   const totalIn = rows.filter((r) => r.pos).reduce((s, r) => s + r.a, 0)
@@ -192,15 +189,35 @@ export function TransactionsPage() {
             onChange={(e) => setQ(e.currentTarget.value)}
             style={{ flex: 1, minWidth: 220 }}
           />
-          <Select placeholder="Категория" data={CAT_OPTS} value={cat} onChange={setCat} w={180} />
-          <Select placeholder="Счёт" data={ACC_OPTS} value={acc} onChange={setAcc} w={140} />
+          <Select
+            label="Категория"
+            placeholder="Все"
+            data={CAT_OPTS}
+            value={cat}
+            onChange={setCat}
+            w={180}
+            styles={{
+              root: { position: "relative" },
+              label: {
+                position: "absolute",
+                top: -8,
+                left: 10,
+                zIndex: 1,
+                background: "var(--mantine-color-body)",
+                padding: "0 4px",
+                fontSize: 11,
+                lineHeight: 1,
+              },
+            }}
+          />
           <Button
-            variant="subtle"
+            variant="light"
+            color="red"
             size="sm"
+            leftSection={<IconX size={14} />}
             onClick={() => {
               setQ("")
               setCat("Все")
-              setAcc("Все")
               setTab("Все")
             }}
           >
@@ -208,77 +225,78 @@ export function TransactionsPage() {
           </Button>
         </Group>
 
-        <Table verticalSpacing="sm" striped highlightOnHover>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>Операция</Table.Th>
-              <Table.Th>Категория</Table.Th>
-              <Table.Th>Счёт</Table.Th>
-              <Table.Th>Дата</Table.Th>
-              <Table.Th ta="right">Сумма</Table.Th>
-              <Table.Th w={40} />
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {rows.map((r) => (
-              <Table.Tr key={r.id}>
-                <Table.Td>
-                  <Group gap="sm">
-                    <Box
-                      w={32}
-                      h={32}
-                      style={{
-                        borderRadius: 8,
-                        background: "var(--mantine-color-default-hover)",
-                        display: "grid",
-                        placeItems: "center",
-                        fontSize: 14,
-                      }}
-                    >
-                      {r.icon}
-                    </Box>
-                    <Text size="sm">{r.t}</Text>
-                  </Group>
-                </Table.Td>
-                <Table.Td>
-                  <Badge variant="default" size="sm">
-                    {r.cat}
-                  </Badge>
-                </Table.Td>
-                <Table.Td>
-                  <Text size="sm" c="dimmed">
-                    {r.acc}
-                  </Text>
-                </Table.Td>
-                <Table.Td>
-                  <Text size="sm" c="dimmed">
-                    {r.d}
-                  </Text>
-                </Table.Td>
-                <Table.Td ta="right">
-                  <Text ff="monospace" size="sm" fw={500} c={r.pos ? "green.5" : undefined}>
-                    {r.pos ? "+" : ""}
-                    {r.a.toLocaleString("ru-RU")} ₽
-                  </Text>
-                </Table.Td>
-                <Table.Td>
-                  <Tooltip label="Действия">
-                    <ActionIcon variant="subtle" size="sm" color="gray">
-                      <IconDotsVertical size={14} />
-                    </ActionIcon>
-                  </Tooltip>
-                </Table.Td>
-              </Table.Tr>
-            ))}
-            {rows.length === 0 && (
+        <Box style={{ overflowX: "auto" }}>
+          <Table verticalSpacing="sm" striped highlightOnHover style={{ minWidth: 760, tableLayout: "fixed" }}>
+            <Table.Thead>
               <Table.Tr>
-                <Table.Td colSpan={6} ta="center" py="xl">
-                  <Text c="dimmed">Ничего не найдено</Text>
-                </Table.Td>
+                <Table.Th>Операция</Table.Th>
+                <Table.Th w={140}>Категория</Table.Th>
+                <Table.Th w={130}>Дата</Table.Th>
+                <Table.Th w={130} ta="right">Сумма</Table.Th>
+                <Table.Th w={40} />
               </Table.Tr>
-            )}
-          </Table.Tbody>
-        </Table>
+            </Table.Thead>
+            <Table.Tbody>
+              {rows.map((r) => (
+                <Table.Tr key={r.id}>
+                  <Table.Td>
+                    <Group gap="sm" wrap="nowrap" style={{ overflow: "hidden" }}>
+                      <Box
+                        w={32}
+                        h={32}
+                        style={{
+                          borderRadius: 8,
+                          background: "var(--mantine-color-default-border)",
+                          display: "grid",
+                          placeItems: "center",
+                          fontSize: 14,
+                          flexShrink: 0,
+                        }}
+                      >
+                        {r.icon}
+                      </Box>
+                      <Tooltip label={r.t} position="top-start" openDelay={300}>
+                        <Text size="sm" truncate="end" style={{ minWidth: 0 }}>
+                          {r.t}
+                        </Text>
+                      </Tooltip>
+                    </Group>
+                  </Table.Td>
+                  <Table.Td>
+                    <Badge variant="default" size="sm">
+                      {r.cat}
+                    </Badge>
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="sm" c="dimmed">
+                      {r.d}
+                    </Text>
+                  </Table.Td>
+                  <Table.Td ta="right">
+                    <Text ff="monospace" size="sm" fw={500} c={r.pos ? "green.5" : undefined}>
+                      {r.pos ? "+" : ""}
+                      {r.a.toLocaleString("ru-RU")} ₽
+                    </Text>
+                  </Table.Td>
+                  <Table.Td>
+                    <Tooltip label="Действия">
+                      <ActionIcon variant="subtle" size="sm" color="gray">
+                        <IconDotsVertical size={14} />
+                      </ActionIcon>
+                    </Tooltip>
+                  </Table.Td>
+                </Table.Tr>
+              ))}
+              {rows.length === 0 && (
+                <Table.Tr>
+                  <Table.Td colSpan={5} ta="center" py="xl">
+                    <Text c="dimmed">Ничего не найдено</Text>
+                  </Table.Td>
+                </Table.Tr>
+              )}
+            </Table.Tbody>
+          </Table>
+        </Box>
       </Paper>
     </Stack>
   )
