@@ -1,6 +1,6 @@
 import { getExpenses, getExpensesSummary } from "@api/expenses"
 import { getIncomes, getIncomesSummary } from "@api/incomes"
-import { useAdd } from "@components/AddModal"
+import { AddModal } from "@components/AddModal"
 import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
 import { PortfolioSnippet } from "@components/PortfolioSnippet"
@@ -8,6 +8,7 @@ import { RecentTransactions } from "@components/RecentTransactions"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import { Button, Grid, Group, SimpleGrid, Skeleton, Stack, Text, Title } from "@mantine/core"
+import { useModalStore } from "@store/modalStore"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { KpiCard } from "@ui/KpiCard"
@@ -21,7 +22,7 @@ function getMonthRange() {
 }
 
 export function HomePage() {
-  const { open } = useAdd()
+  const { open } = useModalStore()
   const { i18n } = useTranslation()
   const { from, to } = getMonthRange()
   const currentMonth = format(from, "yyyy-MM")
@@ -86,7 +87,13 @@ export function HomePage() {
           <Button
             size="sm"
             leftSection={<IconPlus size={14} />}
-            onClick={() => open("transaction", { lockType: true })}
+            onClick={() =>
+              open({
+                size: "lg",
+                centered: true,
+                children: <AddModal type="transaction" lockType />,
+              })
+            }
           >
             Новая операция
           </Button>

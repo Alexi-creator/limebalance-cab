@@ -1,4 +1,6 @@
 import { AccountAlert } from "@components/AccountAlert"
+import { AddModal } from "@components/AddModal"
+import { useAddShortcut } from "@components/AddModal/useAddShortcut"
 import { DashboardSidebar } from "@components/DashboardSidebar"
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
@@ -46,47 +48,35 @@ const ADD_OPTIONS: SelectButtonOption[] = [
     icon: <IconCreditCard size={16} />,
     shortcut: <Kbd size="xs">⌘N</Kbd>,
     onClick: () =>
-      useModalStore.getState().open({
-        title: "Новая операция",
-        size: "lg",
-        centered: true,
-        children: <Text>Форма операции</Text>,
-      }),
+      useModalStore
+        .getState()
+        .open({ size: "lg", centered: true, children: <AddModal type="transaction" /> }),
   },
   {
     label: "Цель",
     description: "копилка",
     icon: <IconTarget size={16} />,
     onClick: () =>
-      useModalStore.getState().open({
-        title: "Новая цель",
-        size: "lg",
-        centered: true,
-        children: <Text>Форма цели</Text>,
-      }),
+      useModalStore
+        .getState()
+        .open({ size: "lg", centered: true, children: <AddModal type="goal" /> }),
   },
   {
     label: "Актив в портфель",
     description: "крипта",
     icon: <IconChartLine size={16} />,
     onClick: () =>
-      useModalStore.getState().open({
-        title: "Добавить актив",
-        size: "lg",
-        centered: true,
-        children: <Text>Форма актива</Text>,
-      }),
+      useModalStore
+        .getState()
+        .open({ size: "lg", centered: true, children: <AddModal type="asset" /> }),
   },
   {
     label: "Перевод между счетами",
     icon: <IconArrowsLeftRight size={16} />,
     onClick: () =>
-      useModalStore.getState().open({
-        title: "Перевод",
-        size: "lg",
-        centered: true,
-        children: <Text>Форма перевода</Text>,
-      }),
+      useModalStore
+        .getState()
+        .open({ size: "lg", centered: true, children: <AddModal type="transfer" /> }),
   },
 ]
 
@@ -96,6 +86,7 @@ export function Layout() {
   const { pathname } = useLocation()
   const pageLabel = PAGE_LABELS[pathname] ?? ""
   const { open } = useModalStore()
+  useAddShortcut()
 
   return (
     <AppShell
@@ -135,12 +126,7 @@ export function Layout() {
               label="Добавить"
               icon={<IconPlus size={14} />}
               onClick={() =>
-                open({
-                  title: "Новая операция",
-                  size: "lg",
-                  centered: true,
-                  children: <Text>Форма операции</Text>,
-                })
+                open({ size: "lg", centered: true, children: <AddModal type="transaction" /> })
               }
               options={ADD_OPTIONS}
               menuWidth={260}

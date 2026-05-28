@@ -35,11 +35,12 @@ function buildMonthDataset(expenses: Expense[], incomes: Income[], compact: bool
   const expenseByDay = new Array(today).fill(0)
 
   incomes.forEach((t) => {
-    const day = getDate(new Date(t.createdAt)) - 1
+    const day = getDate(t.date) - 1
     if (day >= 0 && day < today) incomeByDay[day] += t.amount
   })
+
   expenses.forEach((t) => {
-    const day = getDate(new Date(t.createdAt)) - 1
+    const day = getDate(t.date) - 1
     if (day >= 0 && day < today) expenseByDay[day] += t.amount
   })
 
@@ -56,13 +57,20 @@ function buildSummaryDataset(
   count: number,
   locale: Locale,
 ) {
-  const expSlice = expensesByMonth.slice(-count)
-  const incSlice = incomesByMonth.slice(-count)
+  const now = new Date()
+  const months = Array.from({ length: count }, (_, i) => {
+    const d = subMonths(now, count - 1 - i)
+    return format(d, "yyyy-MM")
+  })
+
+  const expMap = Object.fromEntries(expensesByMonth.map((m) => [m.month, parseFloat(m.total)]))
+  const incMap = Object.fromEntries(incomesByMonth.map((m) => [m.month, parseFloat(m.total)]))
+
   return {
-    income: incSlice.map((m) => parseFloat(m.total)),
-    expense: expSlice.map((m) => parseFloat(m.total)),
-    labels: expSlice.map((m) => {
-      const [year, month] = m.month.split("-").map(Number)
+    income: months.map((m) => incMap[m] ?? 0),
+    expense: months.map((m) => expMap[m] ?? 0),
+    labels: months.map((m) => {
+      const [year, month] = m.split("-").map(Number)
       return format(new Date(year, month - 1, 1), "MMM", { locale })
     }),
   }
@@ -110,9 +118,40 @@ export function CashflowChart({ expensesSummary, incomesSummary, expenses, incom
   const x = (i: number) => PAD_L + i * slotWidth
   const y = (v: number) => H - PAD_B - (v / max) * (H - PAD_B - PAD_T)
   const linePath = (arr: number[]) =>
-    arr.map((v, i) => `${i ? "L" : "M"} ${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(" ")
-  const areaPath = (arr: number[]) =>
-    `${linePath(arr)} L ${x(arr.length - 1).toFixed(1)} ${H - PAD_B} L ${x(0).toFixed(1)} ${H - PAD_B} Z`
+    arr
+      .map((v, i) => {
+        if (v === 0) return `M ${x(i).toFixed(1)} ${y(0).toFixed(1)}`
+        const prevZero = i === 0 || arr[i - 1] === 0
+        const nextZero = i === arr.length - 1 || arr[i + 1] === 0
+        if (prevZero && nextZero)
+          return `M ${x(i).toFixed(1)} ${(H - PAD_B).toFixed(1)} L ${x(i).toFixed(1)} ${y(v).toFixed(1)}`
+        if (prevZero) return `M ${x(i).toFixed(1)} ${y(v).toFixed(1)}`
+        return `L ${x(i).toFixed(1)} ${y(v).toFixed(1)}`
+      })
+      .join(" ")
+
+  const areaPath = (arr: number[]) => {
+    let path = ""
+    let segStart: number | null = null
+    arr.forEach((v, i) => {
+      if (v > 0) {
+        if (segStart === null) {
+          path += `M ${x(i).toFixed(1)} ${H - PAD_B} L ${x(i).toFixed(1)} ${y(v).toFixed(1)} `
+          segStart = i
+        } else {
+          path += `L ${x(i).toFixed(1)} ${y(v).toFixed(1)} `
+        }
+      } else if (segStart !== null) {
+        path += `L ${x(i - 1).toFixed(1)} ${H - PAD_B} Z `
+        segStart = null
+      }
+    })
+    if (segStart !== null) {
+      const last = arr.reduce((li, v, i) => (v > 0 ? i : li), 0)
+      path += `L ${x(last).toFixed(1)} ${H - PAD_B} Z`
+    }
+    return path
+  }
 
   const periodData = [
     { value: "1m", label: t("chart.period_1m") },

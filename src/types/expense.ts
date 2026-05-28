@@ -5,7 +5,8 @@ export const expenseSchema = z.object({
   id: z.string(),
   amount: z.coerce.number(),
   description: z.string(),
-  createdAt: z.string(),
+  date: z.coerce.date(),
+  createdAt: z.coerce.date(),
   category: categorySchema,
 })
 
