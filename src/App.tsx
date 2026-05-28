@@ -1,8 +1,9 @@
+import { GlobalModal } from "@components/GlobalModal"
 import { GuestRoute } from "@components/GuestRoute"
-import { Layout } from "@components/Layout"
 import { ProtectedRoute } from "@components/ProtectedRoute"
-import { PublicLayout } from "@components/PublicLayout"
 import { useAuthInit } from "@hooks/useAuthInit"
+import { Layout } from "@layout/Layout"
+import { PublicLayout } from "@layout/PublicLayout"
 import { LoadingOverlay } from "@mantine/core"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { appRoutes, publicRoutes } from "@settings/routesConfig"
@@ -19,6 +20,8 @@ function App() {
 
   return (
     <GoogleOAuthProvider key={i18n.language} clientId={GOOGLE_CLIENT_ID} locale={i18n.language}>
+      <GlobalModal />
+
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>

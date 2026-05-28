@@ -26,12 +26,14 @@
       "@api/*": ["src/api/*"],
       "@i18n/*": ["src/i18n/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@layout/*": ["src/layout/*"],
       "@appTypes/*": ["src/types/*"],
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
       "@pages/*": ["src/pages/*"],
       "@settings/*": ["src/settings/*"],
       "@store/*": ["src/store/*"],
+      "@ui/*": ["src/ui/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

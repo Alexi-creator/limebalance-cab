@@ -1,4 +1,3 @@
-import { KpiCard } from "@components/KpiCard"
 import {
   Badge,
   Box,
@@ -13,6 +12,7 @@ import {
   Title,
 } from "@mantine/core"
 import { IconDownload } from "@tabler/icons-react"
+import { KpiCard } from "@ui/KpiCard"
 import { useState } from "react"
 
 const accent = "var(--mantine-color-lime-4)"
