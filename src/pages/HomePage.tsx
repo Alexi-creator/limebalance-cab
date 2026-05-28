@@ -5,6 +5,8 @@ import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
 import { PortfolioSnippet } from "@components/PortfolioSnippet"
 import { RecentTransactions } from "@components/RecentTransactions"
+import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
+import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import { Button, Grid, Group, SimpleGrid, Skeleton, Stack, Text, Title } from "@mantine/core"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
@@ -30,9 +32,9 @@ export function HomePage() {
     isFetching: expensesFetching,
     refetch: refetchExpenses,
   } = useQuery({
-    queryKey: ["expenses", "summary", 12],
+    queryKey: expenseKeys.summary(12),
     queryFn: () => getExpensesSummary(12),
-    staleTime: 1 * 60 * 60 * 1000,
+    staleTime: EXPENSE_STALE_TIME,
   })
 
   const {
@@ -41,21 +43,21 @@ export function HomePage() {
     isFetching: incomesFetching,
     refetch: refetchIncomes,
   } = useQuery({
-    queryKey: ["incomes", "summary", 12],
+    queryKey: incomeKeys.summary(12),
     queryFn: () => getIncomesSummary(12),
-    staleTime: 1 * 60 * 60 * 1000,
+    staleTime: INCOME_STALE_TIME,
   })
 
   const { data: expenses } = useQuery({
-    queryKey: ["expenses", "month", currentMonth],
+    queryKey: expenseKeys.month(currentMonth),
     queryFn: () => getExpenses(from, to),
-    staleTime: 1 * 60 * 60 * 1000,
+    staleTime: EXPENSE_STALE_TIME,
   })
 
   const { data: incomes } = useQuery({
-    queryKey: ["incomes", "month", currentMonth],
+    queryKey: incomeKeys.month(currentMonth),
     queryFn: () => getIncomes(from, to),
-    staleTime: 1 * 60 * 60 * 1000,
+    staleTime: INCOME_STALE_TIME,
   })
 
   const currentMonthExpenses = expensesSummary?.byMonth.find((m) => m.month === currentMonth)
