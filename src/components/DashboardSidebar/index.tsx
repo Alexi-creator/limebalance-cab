@@ -1,8 +1,23 @@
 import { logout } from "@api/auth"
+import { LangSwitcher } from "@components/LangSwitcher"
+import { ThemeToggle } from "@components/ThemeToggle"
 import { RouteNames } from "@constants/routeNames"
-import { ActionIcon, Avatar, Box, Group, NavLink, Paper, Stack, Text, Tooltip } from "@mantine/core"
+import {
+  ActionIcon,
+  Avatar,
+  Box,
+  Divider,
+  Group,
+  Indicator,
+  NavLink,
+  Paper,
+  Stack,
+  Text,
+  Tooltip,
+} from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import {
+  IconBell,
   IconChartHistogram,
   IconCoin,
   IconHome,
@@ -11,23 +26,24 @@ import {
   IconSettings,
   IconTags,
   IconTarget,
+  IconX,
 } from "@tabler/icons-react"
 import { useLocation, useNavigate } from "react-router-dom"
 
 const navItems = [
   { to: RouteNames.Home, label: "Обзор", icon: IconHome },
-  { to: RouteNames.Transactions, label: "Операции", icon: IconListDetails, badge: "324" },
+  { to: RouteNames.Transactions, label: "Операции", icon: IconListDetails },
   { to: RouteNames.Categories, label: "Категории", icon: IconTags },
   { to: RouteNames.Analytics, label: "Аналитика", icon: IconChartHistogram },
-  { to: RouteNames.Goals, label: "Цели", icon: IconTarget, badge: "4" },
+  { to: RouteNames.Goals, label: "Цели", icon: IconTarget },
   { to: RouteNames.Investments, label: "Инвестиции", icon: IconCoin },
 ]
 
 interface Props {
-  onNavigate?: () => void
+  onClose?: () => void
 }
 
-export function DashboardSidebar({ onNavigate }: Props) {
+export function DashboardSidebar({ onClose }: Props) {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const { user, setUser } = useAuthStore()
@@ -42,20 +58,33 @@ export function DashboardSidebar({ onNavigate }: Props) {
 
   return (
     <Stack gap={4} h="100%">
-      <Group gap="xs" px="xs" py={4} mb="sm">
-        <Box
-          w={26}
-          h={26}
-          bg="lime.4"
-          c="#0a0d12"
-          ff="monospace"
-          fw={600}
-          fz={14}
-          style={{ borderRadius: 8, display: "grid", placeItems: "center" }}
+      <Group gap="xs" px="xs" py={4} mb="sm" justify="space-between">
+        <Group gap="xs">
+          <Box
+            w={26}
+            h={26}
+            bg="lime.4"
+            c="#0a0d12"
+            ff="monospace"
+            fw={600}
+            fz={14}
+            style={{ borderRadius: 8, display: "grid", placeItems: "center" }}
+          >
+            L
+          </Box>
+          <Text fw={600}>LimeBalance</Text>
+        </Group>
+
+        <ActionIcon
+          variant="subtle"
+          color="gray"
+          size="sm"
+          hiddenFrom="sm"
+          onClick={onClose}
+          aria-label="Закрыть меню"
         >
-          L
-        </Box>
-        <Text fw={600}>LimeBalance</Text>
+          <IconX size={16} />
+        </ActionIcon>
       </Group>
 
       <Text
@@ -84,17 +113,13 @@ export function DashboardSidebar({ onNavigate }: Props) {
                 style={{ color: isActive ? "var(--mantine-color-lime-4)" : undefined }}
               />
             }
-            rightSection={
-              item.badge ? (
-                <Text ff="monospace" size="xs" c="dimmed">
-                  {item.badge}
-                </Text>
-              ) : undefined
-            }
             active={isActive}
             color="lime"
             variant="light"
-            onClick={() => { navigate(item.to); onNavigate?.() }}
+            onClick={() => {
+              navigate(item.to)
+              onClose?.()
+            }}
           />
         )
       })}
@@ -117,8 +142,24 @@ export function DashboardSidebar({ onNavigate }: Props) {
         active={pathname === RouteNames.Settings}
         color="lime"
         variant="light"
-        onClick={() => { navigate(RouteNames.Settings); onNavigate?.() }}
+        onClick={() => {
+          navigate(RouteNames.Settings)
+          onClose?.()
+        }}
       />
+
+      <Box hiddenFrom="sm">
+        <Divider mb="xs" />
+        <Group px="xs" mb="xs" gap="xs">
+          <Indicator color="lime" size={8} offset={6} processing>
+            <ActionIcon variant="default" size={36} aria-label="Уведомления">
+              <IconBell size={18} />
+            </ActionIcon>
+          </Indicator>
+          <LangSwitcher />
+          <ThemeToggle />
+        </Group>
+      </Box>
 
       <Paper mt="auto" p="xs" withBorder>
         <Group gap="xs" wrap="nowrap">

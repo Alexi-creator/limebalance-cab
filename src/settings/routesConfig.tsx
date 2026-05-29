@@ -10,23 +10,21 @@ import { RegisterPage } from "@pages/RegisterPage"
 import { TransactionsPage } from "@pages/TransactionsPage"
 
 export const appRoutes: RouteConfig[] = [
-  { path: RouteNames.Home, element: <HomePage />, label: "nav.home" },
-  { path: RouteNames.Transactions, element: <TransactionsPage />, label: "nav.transactions" },
-  { path: RouteNames.Categories, element: <CategoriesPage />, label: "nav.categories" },
-  { path: RouteNames.Analytics, element: <AnalyticsPage />, label: "nav.analytics" },
-  { path: RouteNames.Goals, element: <GoalsPage />, label: "nav.goals" },
-  { path: RouteNames.Investments, element: <InvestmentsPage />, label: "nav.investments" },
+  { path: RouteNames.Home, element: <HomePage /> },
+  { path: RouteNames.Transactions, element: <TransactionsPage /> },
+  { path: RouteNames.Categories, element: <CategoriesPage /> },
+  { path: RouteNames.Analytics, element: <AnalyticsPage /> },
+  { path: RouteNames.Goals, element: <GoalsPage /> },
+  { path: RouteNames.Investments, element: <InvestmentsPage /> },
 ]
 
 export const publicRoutes: RouteConfig[] = [
   {
     path: RouteNames.Auth,
     element: <AuthPage />,
-    label: "nav.auth",
   },
   {
     path: RouteNames.Register,
     element: <RegisterPage />,
-    label: "nav.register",
   },
 ]
