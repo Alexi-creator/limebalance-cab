@@ -143,7 +143,7 @@ export function TransactionsPage() {
   const totalOut = rows.filter((r) => !r.pos).reduce((s, r) => s + Math.abs(r.a), 0)
 
   return (
-    <Stack gap="md">
+    <Stack gap="md" style={{ height: "100%", overflow: "hidden" }}>
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
@@ -156,9 +156,7 @@ export function TransactionsPage() {
             <Text size="sm" c="green.5">
               +{totalIn.toLocaleString("ru-RU")} ₽
             </Text>
-            <Text size="sm" c="dimmed">
-              ·
-            </Text>
+            <Text size="sm" c="dimmed">·</Text>
             <Text size="sm" c="red.5">
               −{totalOut.toLocaleString("ru-RU")} ₽
             </Text>
@@ -174,12 +172,12 @@ export function TransactionsPage() {
         </Group>
       </Group>
 
-      <Paper>
+      <Paper style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column", minHeight: 0 }}>
         <Group
           p="md"
           gap="sm"
           wrap="wrap"
-          style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
+          style={{ borderBottom: "1px solid var(--mantine-color-default-border)", flexShrink: 0 }}
         >
           <SegmentedControl value={tab} onChange={setTab} data={["Все", "Доходы", "Расходы"]} />
           <TextInput
@@ -225,7 +223,7 @@ export function TransactionsPage() {
           </Button>
         </Group>
 
-        <Box style={{ overflowX: "auto" }}>
+        <Box style={{ flex: 1, overflow: "auto", minHeight: 0 }}>
           <Table verticalSpacing="sm" striped highlightOnHover style={{ minWidth: 760, tableLayout: "fixed" }}>
             <Table.Thead>
               <Table.Tr>

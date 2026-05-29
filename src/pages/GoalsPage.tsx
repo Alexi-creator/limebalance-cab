@@ -218,7 +218,7 @@ export function GoalsPage() {
               Добавить цель
             </Text>
             <Text size="xs" c="dimmed" ta="center" maw={240}>
-              Подушка, отпуск, машина, ипотека — Cashflowy подскажет ритм
+              Подушка, отпуск, машина, ипотека — LimeBalance подскажет ритм
             </Text>
           </Stack>
         </Paper>

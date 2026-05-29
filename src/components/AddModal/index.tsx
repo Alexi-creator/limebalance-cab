@@ -19,7 +19,7 @@ const TITLES: Record<AddType, string> = {
 
 const SUBS: Record<AddType, string> = {
   transaction: "Доход или расход — учтётся в аналитике сразу",
-  goal: "Cashflowy подскажет, сколько откладывать",
+  goal: "LimeBalance подскажет, сколько откладывать",
   asset: "Добавьте позицию в портфель",
   transfer: "Перенос средств между вашими счетами",
 }

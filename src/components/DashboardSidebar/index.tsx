@@ -49,9 +49,9 @@ export function DashboardSidebar() {
           fz={14}
           style={{ borderRadius: 8, display: "grid", placeItems: "center" }}
         >
-          C
+          L
         </Box>
-        <Text fw={600}>Cashflowy</Text>
+        <Text fw={600}>LimeBalance</Text>
       </Group>
 
       <Text

@@ -8,7 +8,6 @@ import { RouteNames } from "@constants/routeNames"
 import {
   ActionIcon,
   AppShell,
-  Box,
   Burger,
   Group,
   Indicator,
@@ -94,6 +93,7 @@ export function Layout() {
       header={{ height: 64 }}
       navbar={{ width: 240, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
+      style={{ height: "100dvh" }}
     >
       <AppShell.Header>
         <Group h="100%" px="md" gap="md">
@@ -116,12 +116,15 @@ export function Layout() {
 
           <Group gap="xs" ml="auto">
             <LangSwitcher />
+
             <Indicator color="lime" size={8} offset={6} processing>
               <ActionIcon variant="default" size={36} aria-label="Уведомления">
                 <IconBell size={18} />
               </ActionIcon>
             </Indicator>
+
             <ThemeToggle />
+
             <SelectButton
               label="Добавить"
               icon={<IconPlus size={14} />}
@@ -139,12 +142,24 @@ export function Layout() {
         <DashboardSidebar />
       </AppShell.Navbar>
 
-      <AppShell.Main bg="var(--mantine-color-default)" style={{ position: "relative" }}>
+      <AppShell.Main
+        bg="var(--mantine-color-default)"
+        style={{
+          position: "fixed",
+          top: "var(--app-shell-header-height, 64px)",
+          left: "var(--app-shell-navbar-width, 0px)",
+          right: 0,
+          bottom: 0,
+          minHeight: 0,
+          overflowY: "auto",
+          padding: "var(--mantine-spacing-md)",
+        }}
+      >
         <LoadingOverlay visible={isLoading} zIndex={10} />
-        <Box maw={1400} mx="auto" py="md">
-          <AccountAlert />
-          <Outlet />
-        </Box>
+
+        <AccountAlert />
+
+        <Outlet />
       </AppShell.Main>
     </AppShell>
   )

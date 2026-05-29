@@ -52,7 +52,7 @@
     "auth": "Auth"
   },
   "app": {
-    "name": "Cashflowy"
+    "name": "LimeBalance"
   },
   "chart": {
     "cashflow_title": "Cash Flow",
