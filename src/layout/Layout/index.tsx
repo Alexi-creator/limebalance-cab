@@ -87,6 +87,10 @@ export function Layout() {
   const { open } = useModalStore()
   useAddShortcut()
 
+  // Routes where the page fills the container height (no outer scroll, inner components scroll themselves)
+  const FILL_HEIGHT_ROUTES = new Set<string>([RouteNames.Transactions])
+  const isFillHeight = FILL_HEIGHT_ROUTES.has(pathname)
+
   return (
     <AppShell
       layout="alt"
@@ -144,18 +148,18 @@ export function Layout() {
 
       <AppShell.Main
         bg="var(--mantine-color-default)"
+        className="main-fixed"
         style={{
           position: "fixed",
           top: "var(--app-shell-header-height, 64px)",
-          left: "var(--app-shell-navbar-width, 0px)",
           right: 0,
           bottom: 0,
           minHeight: 0,
-          overflowY: "auto",
+          overflowY: isFillHeight ? "hidden" : "auto",
           padding: "var(--mantine-spacing-md)",
         }}
       >
-        <LoadingOverlay visible={isLoading} zIndex={10} />
+        <LoadingOverlay visible={isLoading} />
 
         <AccountAlert />
 
