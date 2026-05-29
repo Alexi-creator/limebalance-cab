@@ -80,7 +80,7 @@ const ADD_OPTIONS: SelectButtonOption[] = [
 ]
 
 export function Layout() {
-  const [opened, { toggle }] = useDisclosure()
+  const [opened, { toggle, close }] = useDisclosure()
   const { isLoading } = useLoaderStore()
   const { pathname } = useLocation()
   const pageLabel = PAGE_LABELS[pathname] ?? ""
@@ -143,7 +143,7 @@ export function Layout() {
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <DashboardSidebar />
+        <DashboardSidebar onNavigate={close} />
       </AppShell.Navbar>
 
       <AppShell.Main

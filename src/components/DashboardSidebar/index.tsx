@@ -23,7 +23,11 @@ const navItems = [
   { to: RouteNames.Investments, label: "Инвестиции", icon: IconCoin },
 ]
 
-export function DashboardSidebar() {
+interface Props {
+  onNavigate?: () => void
+}
+
+export function DashboardSidebar({ onNavigate }: Props) {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const { user, setUser } = useAuthStore()
@@ -90,7 +94,7 @@ export function DashboardSidebar() {
             active={isActive}
             color="lime"
             variant="light"
-            onClick={() => navigate(item.to)}
+            onClick={() => { navigate(item.to); onNavigate?.() }}
           />
         )
       })}
@@ -113,7 +117,7 @@ export function DashboardSidebar() {
         active={pathname === RouteNames.Settings}
         color="lime"
         variant="light"
-        onClick={() => navigate(RouteNames.Settings)}
+        onClick={() => { navigate(RouteNames.Settings); onNavigate?.() }}
       />
 
       <Paper mt="auto" p="xs" withBorder>
