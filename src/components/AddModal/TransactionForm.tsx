@@ -39,10 +39,16 @@ const CATS = {
 } as const
 
 interface Props {
+  /** Вызывается после успешной валидации и отправки формы */
   onSubmit: () => void
+  /** Вызывается при нажатии кнопки «Отмена» */
   onCancel: () => void
 }
 
+/**
+ * Форма добавления финансовой операции — дохода или расхода.
+ * Позволяет выбрать тип, сумму, категорию, счёт, дату и добавить текстовую заметку.
+ */
 export function TransactionForm({ onSubmit, onCancel }: Props) {
   const [kind, setKind] = useState<"income" | "expense">("expense")
   const [amount, setAmount] = useState<number | string>("")

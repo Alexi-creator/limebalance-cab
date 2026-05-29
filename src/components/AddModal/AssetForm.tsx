@@ -5,10 +5,16 @@ const POPULAR = ["BTC", "ETH", "SOL", "TON", "USDT", "BNB", "XRP", "DOGE", "ADA"
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
 interface Props {
+  /** Вызывается после успешной валидации и отправки формы */
   onSubmit: () => void
+  /** Вызывается при нажатии кнопки «Отмена» */
   onCancel: () => void
 }
 
+/**
+ * Форма добавления крипто-актива в инвестиционный портфель.
+ * Позволяет ввести тикер (с быстрым выбором из топ-10), количество и среднюю цену покупки.
+ */
 export function AssetForm({ onSubmit, onCancel }: Props) {
   const [sym, setSym] = useState("")
   const [amount, setAmount] = useState<number | string>("")

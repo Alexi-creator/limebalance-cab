@@ -5,10 +5,16 @@ const ACCOUNTS = ["Тинькофф", "Сбер", "Альфа", "Кэш", "На�
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
 interface Props {
+  /** Вызывается после успешной валидации и отправки формы */
   onSubmit: () => void
+  /** Вызывается при нажатии кнопки «Отмена» */
   onCancel: () => void
 }
 
+/**
+ * Форма перевода средств между счетами пользователя.
+ * Блокирует отправку, если выбраны одинаковые счёт-источник и счёт-получатель.
+ */
 export function TransferForm({ onSubmit, onCancel }: Props) {
   const [from, setFrom] = useState<string | null>("Тинькофф")
   const [to, setTo] = useState<string | null>("Сбер")

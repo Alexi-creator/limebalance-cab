@@ -76,14 +76,34 @@ function buildSummaryDataset(
   }
 }
 
-interface Props {
+export interface CashflowChartProps {
+  /**
+   * Агрегированная сводка расходов для периодов 6m и 1y.
+   * `total` — суммарная сумма за период; `byMonth` — разбивка `{ month: "yyyy-MM", total: string }[]`
+   */
   expensesSummary?: ExpensesSummary
+  /**
+   * Агрегированная сводка доходов для периодов 6m и 1y.
+   * `total` — суммарная сумма за период; `byMonth` — разбивка `{ month: "yyyy-MM", total: string }[]`
+   */
   incomesSummary?: IncomesSummary
+  /**
+   * Список расходов текущего месяца для периода 1m.
+   * `{ id, amount: number, description, date: Date, category }`
+   */
   expenses?: Expense[]
+  /**
+   * Список доходов текущего месяца для периода 1m.
+   * `{ id, amount: number, description, date: Date, category }`
+   */
   incomes?: Income[]
 }
 
-export function CashflowChart({ expensesSummary, incomesSummary, expenses, incomes }: Props) {
+/**
+ * SVG-график денежного потока с переключением периода (1m / 6m / 1y).
+ * Отображает линии доходов (lime) и расходов (red) с интерактивным тултипом при наведении.
+ */
+export function CashflowChart({ expensesSummary, incomesSummary, expenses, incomes }: CashflowChartProps) {
   const { i18n, t } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const [period, setPeriod] = useState("1m")

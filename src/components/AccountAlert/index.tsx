@@ -2,6 +2,11 @@ import { Alert, Button, Group, Text } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
 
+/**
+ * Баннер-предупреждение для пользователей, вошедших через Telegram без привязанного email.
+ * Показывается только если `telegramId` установлен, а `email` отсутствует.
+ * Не принимает пропсов — читает состояние из `useAuthStore`.
+ */
 export function AccountAlert() {
   const user = useAuthStore((s) => s.user)
 

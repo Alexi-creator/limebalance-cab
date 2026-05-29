@@ -25,10 +25,17 @@ const SUBS: Record<AddType, string> = {
 }
 
 interface AddModalProps {
+  /** Начальный тип формы. По умолчанию `"transaction"` */
   type?: AddType
+  /** Если `true` — скрывает вкладки и не позволяет сменить тип формы */
   lockType?: boolean
 }
 
+/**
+ * Модальный контейнер для создания финансовых записей.
+ * Содержит вкладки для переключения между типами: операция, цель, актив, перевод.
+ * При `lockType=true` показывает только одну фиксированную форму без вкладок.
+ */
 export function AddModal({ type: initialType = "transaction", lockType = false }: AddModalProps) {
   const [type, setType] = useState<AddType>(initialType)
   const { close } = useModalStore()

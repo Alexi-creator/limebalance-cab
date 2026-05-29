@@ -4,6 +4,11 @@ import { AppShell, Group, Text } from "@mantine/core"
 import { useTranslation } from "react-i18next"
 import { Outlet } from "react-router-dom"
 
+/**
+ * Layout для публичных страниц (авторизация, регистрация).
+ * Показывает минималистичный хедер с названием приложения, переключателем языка и темы.
+ * Не принимает пропсов.
+ */
 export function PublicLayout() {
   const { t } = useTranslation()
 

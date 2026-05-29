@@ -55,10 +55,17 @@ const ADD_OPTIONS: SelectButtonOption[] = [
 ]
 
 interface Props {
+  /** Открыто ли мобильное меню (управляет состоянием `<Burger />`) */
   opened: boolean
+  /** Переключает состояние мобильного меню */
   onToggle: () => void
 }
 
+/**
+ * Верхняя панель приложения (AppShell.Header).
+ * Содержит бургер для мобильного меню, строку поиска, переключатель языка/темы,
+ * колокольчик уведомлений и кнопку «Добавить» с выпадающим меню типов записей.
+ */
 export function Header({ opened, onToggle }: Props) {
   const { open } = useModalStore()
 

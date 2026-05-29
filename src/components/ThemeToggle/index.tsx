@@ -1,6 +1,10 @@
 import { ActionIcon, useComputedColorScheme, useMantineColorScheme } from "@mantine/core"
 import { IconMoon, IconSun } from "@tabler/icons-react"
 
+/**
+ * Кнопка переключения цветовой схемы приложения (светлая / тёмная).
+ * Не принимает пропсов.
+ */
 export function ThemeToggle() {
   const { setColorScheme } = useMantineColorScheme()
   const computed = useComputedColorScheme("light")
