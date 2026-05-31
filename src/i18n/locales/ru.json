@@ -48,7 +48,16 @@
     "sign_in_link": "Войти"
   },
   "nav": {
-    "home": "Главная",
+    "home": "Обзор",
+    "transactions": "Операции",
+    "categories": "Категории",
+    "analytics": "Аналитика",
+    "goals": "Цели",
+    "investments": "Инвестиции",
+    "settings": "Настройки",
+    "menu": "Меню",
+    "account": "Аккаунт",
+    "logout": "Выйти",
     "auth": "Авторизация"
   },
   "app": {

@@ -1,19 +1,14 @@
 import { DashboardSidebar } from "@components/DashboardSidebar"
 import { AppShell } from "@mantine/core"
 
-interface Props {
-  /** Колбэк закрытия мобильного меню — пробрасывается в `DashboardSidebar` */
-  onClose: () => void
-}
-
 /**
  * Обёртка навигационной панели (AppShell.Navbar).
- * Рендерит `DashboardSidebar` внутри `AppShell.Navbar`.
+ * Рендерит `DashboardSidebar` внутри `AppShell.Navbar`. Не принимает пропсов.
  */
-export function NavBar({ onClose }: Props) {
+export function NavBar() {
   return (
     <AppShell.Navbar p="md">
-      <DashboardSidebar onClose={onClose} />
+      <DashboardSidebar />
     </AppShell.Navbar>
   )
 }

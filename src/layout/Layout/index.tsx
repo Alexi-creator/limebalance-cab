@@ -2,15 +2,16 @@ import { Header } from "@layout/Header"
 import { Main } from "@layout/Main"
 import { NavBar } from "@layout/NavBar"
 import { AppShell } from "@mantine/core"
-import { useDisclosure } from "@mantine/hooks"
+import { useSidebarStore } from "@store/sidebarStore"
+import type { ReactNode } from "react"
 
 /**
- * Корневой layout для авторизованного пользователя.
- * Собирает AppShell из Header, NavBar и Main и управляет состоянием мобильного сайдбара.
- * Не принимает пропсов.
+ * Обёртка над AppShell — единственный подписчик на состояние мобильного меню.
+ * При переключении перерисовывается только она, а `children` (Header/NavBar/Main)
+ * остаются ссылочно стабильными и не перерисовываются.
  */
-export function Layout() {
-  const [opened, { toggle, close }] = useDisclosure()
+function AppShellFrame({ children }: { children: ReactNode }) {
+  const opened = useSidebarStore((s) => s.opened)
 
   return (
     <AppShell
@@ -20,9 +21,23 @@ export function Layout() {
       padding="md"
       style={{ height: "100dvh" }}
     >
-      <Header opened={opened} onToggle={toggle} />
-      <NavBar onClose={close} />
-      <Main />
+      {children}
     </AppShell>
+  )
+}
+
+/**
+ * Корневой layout для авторизованного пользователя.
+ * Статичная композиция Header, NavBar и Main; состояние мобильного меню живёт
+ * в `sidebarStore`, поэтому сам Layout не перерисовывается при его переключении.
+ * Не принимает пропсов.
+ */
+export function Layout() {
+  return (
+    <AppShellFrame>
+      <Header />
+      <NavBar />
+      <Main />
+    </AppShellFrame>
   )
 }

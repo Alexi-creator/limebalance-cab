@@ -48,7 +48,16 @@
     "sign_in_link": "Sign in"
   },
   "nav": {
-    "home": "Home",
+    "home": "Overview",
+    "transactions": "Transactions",
+    "categories": "Categories",
+    "analytics": "Analytics",
+    "goals": "Goals",
+    "investments": "Investments",
+    "settings": "Settings",
+    "menu": "Menu",
+    "account": "Account",
+    "logout": "Sign out",
     "auth": "Auth"
   },
   "app": {

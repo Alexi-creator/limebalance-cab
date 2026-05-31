@@ -3,6 +3,7 @@ import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
 import { ActionIcon, AppShell, Box, Burger, Group, Indicator, Kbd, TextInput } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
+import { useSidebarStore } from "@store/sidebarStore"
 import {
   IconArrowsLeftRight,
   IconBell,
@@ -54,31 +55,25 @@ const ADD_OPTIONS: SelectButtonOption[] = [
   },
 ]
 
-interface Props {
-  /** Открыто ли мобильное меню (управляет состоянием `<Burger />`) */
-  opened: boolean
-  /** Переключает состояние мобильного меню */
-  onToggle: () => void
-}
-
 /**
  * Верхняя панель приложения (AppShell.Header).
  * Содержит бургер для мобильного меню, строку поиска, переключатель языка/темы,
  * колокольчик уведомлений и кнопку «Добавить» с выпадающим меню типов записей.
+ * Состояние мобильного меню берёт из `sidebarStore`. Не принимает пропсов.
  */
-export function Header({ opened, onToggle }: Props) {
+export function Header() {
   const { open } = useModalStore()
+  const opened = useSidebarStore((s) => s.opened)
+  const toggle = useSidebarStore((s) => s.toggle)
 
   return (
     <AppShell.Header>
       <Group h="100%" px="md" gap="md" wrap="nowrap">
-        <Burger opened={opened} onClick={onToggle} hiddenFrom="sm" size="sm" />
-        <Burger hiddenFrom="sm" size="sm" />
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 
         <TextInput
           placeholder="Поиск по операциям, целям, тикерам…"
           leftSection={<IconSearch size={14} />}
-          rightSection={<Kbd size="xs">⌘K</Kbd>}
           rightSectionWidth={48}
           style={{ flex: 1, maxWidth: 360 }}
         />
