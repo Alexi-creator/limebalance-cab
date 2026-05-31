@@ -3,6 +3,7 @@ import { RouteNames } from "@constants/routeNames"
 import { AppShell, Box, LoadingOverlay } from "@mantine/core"
 import { useLoaderStore } from "@store/loaderStore"
 import clsx from "clsx"
+import { Suspense } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 
 import classes from "./classes.module.css"
@@ -26,13 +27,15 @@ export function Main() {
 
       <AccountAlert />
 
-      {isFillHeight ? (
-        <Box style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
+      <Suspense fallback={<LoadingOverlay visible />}>
+        {isFillHeight ? (
+          <Box style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
+            <Outlet />
+          </Box>
+        ) : (
           <Outlet />
-        </Box>
-      ) : (
-        <Outlet />
-      )}
+        )}
+      </Suspense>
     </AppShell.Main>
   )
 }

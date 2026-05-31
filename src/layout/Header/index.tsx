@@ -73,6 +73,7 @@ export function Header({ opened, onToggle }: Props) {
     <AppShell.Header>
       <Group h="100%" px="md" gap="md" wrap="nowrap">
         <Burger opened={opened} onClick={onToggle} hiddenFrom="sm" size="sm" />
+        <Burger hiddenFrom="sm" size="sm" />
 
         <TextInput
           placeholder="Поиск по операциям, целям, тикерам…"

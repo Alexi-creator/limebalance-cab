@@ -1,6 +1,7 @@
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
-import { AppShell, Group, Text } from "@mantine/core"
+import { AppShell, Group, LoadingOverlay, Text } from "@mantine/core"
+import { Suspense } from "react"
 import { useTranslation } from "react-i18next"
 import { Outlet } from "react-router-dom"
 
@@ -27,7 +28,9 @@ export function PublicLayout() {
       </AppShell.Header>
 
       <AppShell.Main>
-        <Outlet />
+        <Suspense fallback={<LoadingOverlay visible />}>
+          <Outlet />
+        </Suspense>
       </AppShell.Main>
     </AppShell>
   )
