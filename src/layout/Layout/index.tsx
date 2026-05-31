@@ -1,4 +1,3 @@
-import { useAddShortcut } from "@components/AddModal/useAddShortcut"
 import { Header } from "@layout/Header"
 import { Main } from "@layout/Main"
 import { NavBar } from "@layout/NavBar"
@@ -7,13 +6,11 @@ import { useDisclosure } from "@mantine/hooks"
 
 /**
  * Корневой layout для авторизованного пользователя.
- * Собирает AppShell из Header, NavBar и Main, управляет состоянием мобильного сайдбара
- * и регистрирует глобальный горячий клавиши (⌘N) через `useAddShortcut`.
+ * Собирает AppShell из Header, NavBar и Main и управляет состоянием мобильного сайдбара.
  * Не принимает пропсов.
  */
 export function Layout() {
   const [opened, { toggle, close }] = useDisclosure()
-  useAddShortcut()
 
   return (
     <AppShell

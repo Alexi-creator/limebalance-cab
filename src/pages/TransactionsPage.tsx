@@ -156,7 +156,9 @@ export function TransactionsPage() {
             <Text size="sm" c="green.5">
               +{totalIn.toLocaleString("ru-RU")} ₽
             </Text>
-            <Text size="sm" c="dimmed">·</Text>
+            <Text size="sm" c="dimmed">
+              ·
+            </Text>
             <Text size="sm" c="red.5">
               −{totalOut.toLocaleString("ru-RU")} ₽
             </Text>
@@ -172,7 +174,15 @@ export function TransactionsPage() {
         </Group>
       </Group>
 
-      <Paper style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column", minHeight: 0 }}>
+      <Paper
+        style={{
+          flex: 1,
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: 0,
+        }}
+      >
         <Group
           p="md"
           gap="sm"
@@ -224,13 +234,20 @@ export function TransactionsPage() {
         </Group>
 
         <Box style={{ flex: 1, overflow: "auto", minHeight: 0 }}>
-          <Table verticalSpacing="sm" striped highlightOnHover style={{ minWidth: 760, tableLayout: "fixed" }}>
+          <Table
+            verticalSpacing="sm"
+            striped
+            highlightOnHover
+            style={{ minWidth: 760, tableLayout: "fixed" }}
+          >
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Операция</Table.Th>
                 <Table.Th w={140}>Категория</Table.Th>
                 <Table.Th w={130}>Дата</Table.Th>
-                <Table.Th w={130} ta="right">Сумма</Table.Th>
+                <Table.Th w={130} ta="right">
+                  Сумма
+                </Table.Th>
                 <Table.Th w={40} />
               </Table.Tr>
             </Table.Thead>

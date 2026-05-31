@@ -103,7 +103,12 @@ export interface CashflowChartProps {
  * SVG-график денежного потока с переключением периода (1m / 6m / 1y).
  * Отображает линии доходов (lime) и расходов (red) с интерактивным тултипом при наведении.
  */
-export function CashflowChart({ expensesSummary, incomesSummary, expenses, incomes }: CashflowChartProps) {
+export function CashflowChart({
+  expensesSummary,
+  incomesSummary,
+  expenses,
+  incomes,
+}: CashflowChartProps) {
   const { i18n, t } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const [period, setPeriod] = useState("1m")
