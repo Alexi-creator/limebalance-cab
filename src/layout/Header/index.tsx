@@ -1,59 +1,12 @@
 import { AddModal } from "@components/AddModal"
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
-import { ActionIcon, AppShell, Box, Burger, Group, Indicator, Kbd, TextInput } from "@mantine/core"
+import { ActionIcon, AppShell, Box, Burger, Group, Indicator, TextInput } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 import { useSidebarStore } from "@store/sidebarStore"
-import {
-  IconArrowsLeftRight,
-  IconBell,
-  IconChartLine,
-  IconCreditCard,
-  IconPlus,
-  IconSearch,
-  IconTarget,
-} from "@tabler/icons-react"
-import type { SelectButtonOption } from "@ui/SelectButton"
+import { IconBell, IconPlus, IconSearch } from "@tabler/icons-react"
 import { SelectButton } from "@ui/SelectButton"
-
-const ADD_OPTIONS: SelectButtonOption[] = [
-  {
-    label: "Операция",
-    description: "доход / расход",
-    icon: <IconCreditCard size={16} />,
-    shortcut: <Kbd size="xs">⌘N</Kbd>,
-    onClick: () =>
-      useModalStore
-        .getState()
-        .open({ size: "lg", centered: true, children: <AddModal type="transaction" /> }),
-  },
-  {
-    label: "Цель",
-    description: "копилка",
-    icon: <IconTarget size={16} />,
-    onClick: () =>
-      useModalStore
-        .getState()
-        .open({ size: "lg", centered: true, children: <AddModal type="goal" /> }),
-  },
-  {
-    label: "Актив в портфель",
-    description: "крипта",
-    icon: <IconChartLine size={16} />,
-    onClick: () =>
-      useModalStore
-        .getState()
-        .open({ size: "lg", centered: true, children: <AddModal type="asset" /> }),
-  },
-  {
-    label: "Перевод между счетами",
-    icon: <IconArrowsLeftRight size={16} />,
-    onClick: () =>
-      useModalStore
-        .getState()
-        .open({ size: "lg", centered: true, children: <AddModal type="transfer" /> }),
-  },
-]
+import { ADD_OPTIONS } from "./config"
 
 /**
  * Верхняя панель приложения (AppShell.Header).
