@@ -11,14 +11,3 @@ body {
   height: 100%;
   overflow: hidden;
 }
-
-/* --app-shell-navbar-width stays 240px even when the navbar is collapsed on mobile,
-   so left is managed here instead of inline to support a media query override */
-.main-fixed {
-  left: 0;
-}
-@media (min-width: 48em) {
-  .main-fixed {
-    left: var(--app-shell-navbar-width, 240px);
-  }
-}

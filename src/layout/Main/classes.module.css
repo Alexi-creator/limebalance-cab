@@ -1,0 +1,16 @@
+.root {
+  background: var(--mantine-color-default);
+  position: fixed;
+  inset: 0;
+  top: var(--app-shell-header-height, 64px);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--mantine-spacing-md);
+
+  /* --app-shell-navbar-width stays 240px even when the navbar is collapsed on
+     mobile, so the offset is applied only from the navbar breakpoint up */
+  @media (min-width: 48em) {
+    left: var(--app-shell-navbar-width, 240px);
+  }
+}
