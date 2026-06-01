@@ -1,45 +1,30 @@
+import type { CreateExpensePayload } from "@api/expenses"
+import { createExpense, getExpenseCategories } from "@api/expenses"
+import { createIncome, getIncomeCategories } from "@api/incomes"
+import type { ExpensesSummary } from "@appTypes/expense"
+import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
+import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import {
   Box,
   Button,
   Group,
   NumberInput,
   SegmentedControl,
-  Select,
-  SimpleGrid,
   Stack,
   Text,
   Textarea,
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
-import { useState } from "react"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { localDayToApiDate } from "@utils/localDayToApiDate"
+import { format } from "date-fns"
+import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
-const ACCOUNTS = ["Тинькофф", "Сбер", "Альфа", "Кэш", "Накопительный"]
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
-const CATS = {
-  expense: [
-    { id: "Еда дома", ico: "🛒" },
-    { id: "Кафе", ico: "☕" },
-    { id: "Жильё", ico: "🏠" },
-    { id: "Транспорт", ico: "⛽" },
-    { id: "Развлечения", ico: "🎬" },
-    { id: "Подписки", ico: "📱" },
-    { id: "Здоровье", ico: "💪" },
-    { id: "Образование", ico: "📚" },
-    { id: "Накопления", ico: "🌱" },
-  ],
-  income: [
-    { id: "Зарплата", ico: "💼" },
-    { id: "Фриланс", ico: "💻" },
-    { id: "Подарок", ico: "🎁" },
-    { id: "Возврат", ico: "↩" },
-    { id: "Дивиденды", ico: "📊" },
-  ],
-} as const
-
 interface Props {
-  /** Вызывается после успешной валидации и отправки формы */
+  /** Вызывается после успешного создания операции */
   onSubmit: () => void
   /** Вызывается при нажатии кнопки «Отмена» */
   onCancel: () => void
@@ -47,25 +32,80 @@ interface Props {
 
 /**
  * Форма добавления финансовой операции — дохода или расхода.
- * Позволяет выбрать тип, сумму, категорию, счёт, дату и добавить текстовую заметку.
+ * Тянет категории нужного типа с бэкенда, отправляет POST с локальной датой пользователя
+ * и после успеха дописывает новую операцию прямо в кеш react-query (без рефетча).
  */
 export function TransactionForm({ onSubmit, onCancel }: Props) {
   const [kind, setKind] = useState<"income" | "expense">("expense")
   const [amount, setAmount] = useState<number | string>("")
-  const [cat, setCat] = useState("Еда дома")
-  const [acc, setAcc] = useState<string | null>("Тинькофф")
-  const [date, setDate] = useState<string | null>(new Date().toISOString())
+  const [categoryId, setCategoryId] = useState<string | null>(null)
+  const [day, setDay] = useState<string | null>(format(new Date(), "yyyy-MM-dd"))
   const [note, setNote] = useState("")
   const { i18n } = useTranslation()
+  const queryClient = useQueryClient()
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!amount) return
-    onSubmit()
-  }
+  const isExpense = kind === "expense"
+
+  const { data: categories } = useQuery({
+    queryKey: isExpense ? expenseKeys.categories : incomeKeys.categories,
+    queryFn: isExpense ? getExpenseCategories : getIncomeCategories,
+    staleTime: isExpense ? EXPENSE_STALE_TIME : INCOME_STALE_TIME,
+  })
+
+  // при смене типа/загрузке списка выбираем первую категорию, если текущей нет среди доступных
+  useEffect(() => {
+    if (categories?.length && !categories.some((c) => c.id === categoryId)) {
+      setCategoryId(categories[0].id)
+    }
+  }, [categories, categoryId])
+
+  const mutation = useMutation({
+    mutationFn: (payload: CreateExpensePayload) =>
+      isExpense ? createExpense(payload) : createIncome(payload),
+    onSuccess: (created) => {
+      const keys = isExpense ? expenseKeys : incomeKeys
+      const monthKey = format(created.date, "yyyy-MM")
+      const category = categories?.find((c) => c.id === created.categoryId) ?? {
+        id: created.categoryId,
+        name: "",
+      }
+      const item = { ...created, category }
+
+      // 1) кладём операцию в закешированный список за её месяц (если он есть в кеше)
+      queryClient.setQueryData<(typeof item)[]>(keys.month(monthKey), (old) =>
+        old ? [item, ...old] : old,
+      )
+
+      // 2) обновляем закешированные сводки: прибавляем сумму к месяцу и к итогу
+      queryClient.setQueriesData<ExpensesSummary>({ queryKey: [keys.all[0], "summary"] }, (old) => {
+        if (!old) return old
+        return {
+          total: (parseFloat(old.total) + created.amount).toFixed(2),
+          byMonth: old.byMonth.map((m) =>
+            m.month === monthKey
+              ? { ...m, total: (parseFloat(m.total) + created.amount).toFixed(2) }
+              : m,
+          ),
+        }
+      })
+
+      onSubmit()
+    },
+  })
 
   return (
-    <form onSubmit={submit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (!amount || !categoryId || !day) return
+        mutation.mutate({
+          categoryId,
+          amount: Number(amount),
+          description: note,
+          date: localDayToApiDate(day),
+        })
+      }}
+    >
       <Stack gap="md">
         <SegmentedControl
           fullWidth
@@ -95,33 +135,30 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
             Категория
           </Text>
           <Group gap={6}>
-            {CATS[kind].map((c) => (
+            {categories?.map((c) => (
               <Button
                 key={c.id}
                 type="button"
-                variant={cat === c.id ? "light" : "default"}
-                color={cat === c.id ? "lime" : "gray"}
+                variant={categoryId === c.id ? "light" : "default"}
+                color={categoryId === c.id ? "lime" : "gray"}
                 size="xs"
                 radius="sm"
-                leftSection={<span>{c.ico}</span>}
-                onClick={() => setCat(c.id)}
+                onClick={() => setCategoryId(c.id)}
               >
-                {c.id}
+                {c.name}
               </Button>
             ))}
           </Group>
         </Box>
 
-        <SimpleGrid cols={2}>
-          <Select label="Счёт" data={ACCOUNTS} value={acc} onChange={setAcc} />
-          <DatePickerInput
-            label="Дата"
-            value={date}
-            onChange={setDate}
-            locale={i18n.language}
-            valueFormat="DD MMM YYYY"
-          />
-        </SimpleGrid>
+        <DatePickerInput
+          label="Дата"
+          value={day}
+          onChange={setDay}
+          maxDate={format(new Date(), "yyyy-MM-dd")}
+          locale={i18n.language}
+          valueFormat="DD MMM YYYY"
+        />
 
         <Textarea
           label="Заметка"
@@ -133,10 +170,12 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
         />
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
-          <Button variant="default" onClick={onCancel}>
+          <Button variant="default" onClick={onCancel} disabled={mutation.isPending}>
             Отмена
           </Button>
-          <Button type="submit">Сохранить операцию</Button>
+          <Button type="submit" loading={mutation.isPending}>
+            Сохранить операцию
+          </Button>
         </Group>
       </Stack>
     </form>
