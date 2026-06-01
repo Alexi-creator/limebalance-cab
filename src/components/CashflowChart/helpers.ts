@@ -53,7 +53,9 @@ export function buildSummaryDataset(
   locale: Locale,
 ): ChartDataset {
   const now = new Date()
-  const months = Array.from({ length: count }, (_, i) => format(subMonths(now, count - 1 - i), "yyyy-MM"))
+  const months = Array.from({ length: count }, (_, i) =>
+    format(subMonths(now, count - 1 - i), "yyyy-MM"),
+  )
 
   const expMap = Object.fromEntries(expensesByMonth.map((m) => [m.month, parseFloat(m.total)]))
   const incMap = Object.fromEntries(incomesByMonth.map((m) => [m.month, parseFloat(m.total)]))

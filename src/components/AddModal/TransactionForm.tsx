@@ -2,8 +2,9 @@ import type { CreateExpensePayload } from "@api/expenses"
 import { createExpense, getExpenseCategories } from "@api/expenses"
 import { createIncome, getIncomeCategories } from "@api/incomes"
 import type { ExpensesSummary } from "@appTypes/expense"
-import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
-import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
+import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
+import { expenseKeys } from "@constants/queries/expenses"
+import { incomeKeys } from "@constants/queries/incomes"
 import {
   Box,
   Button,
@@ -49,7 +50,7 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
   const { data: categories } = useQuery({
     queryKey: isExpense ? expenseKeys.categories : incomeKeys.categories,
     queryFn: isExpense ? getExpenseCategories : getIncomeCategories,
-    staleTime: isExpense ? EXPENSE_STALE_TIME : INCOME_STALE_TIME,
+    staleTime: CATEGORY_STALE_TIME,
   })
 
   // при смене типа/загрузке списка выбираем первую категорию, если текущей нет среди доступных
