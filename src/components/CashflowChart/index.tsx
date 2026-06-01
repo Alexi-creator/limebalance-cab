@@ -3,7 +3,7 @@ import type { Income, IncomesSummary } from "@appTypes/income"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import { Box, Group, Paper, SegmentedControl, Stack, Text, useMantineTheme } from "@mantine/core"
 import { useMediaQuery } from "@mantine/hooks"
-import { format, getDate, type Locale, subMonths } from "date-fns"
+import { format, getDate, getDaysInMonth, type Locale, subMonths } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -30,22 +30,22 @@ const stubValues = {
 }
 
 function buildMonthDataset(expenses: Expense[], incomes: Income[], compact: boolean) {
-  const today = getDate(new Date())
-  const incomeByDay = new Array(today).fill(0)
-  const expenseByDay = new Array(today).fill(0)
+  const daysInMonth = getDaysInMonth(new Date())
+  const incomeByDay = new Array(daysInMonth).fill(0)
+  const expenseByDay = new Array(daysInMonth).fill(0)
 
   incomes.forEach((t) => {
     const day = getDate(t.date) - 1
-    if (day >= 0 && day < today) incomeByDay[day] += t.amount
+    if (day >= 0 && day < daysInMonth) incomeByDay[day] += t.amount
   })
 
   expenses.forEach((t) => {
     const day = getDate(t.date) - 1
-    if (day >= 0 && day < today) expenseByDay[day] += t.amount
+    if (day >= 0 && day < daysInMonth) expenseByDay[day] += t.amount
   })
 
-  const labels = Array.from({ length: today }, (_, i) =>
-    compact ? ((i + 1) % 5 === 1 || i === today - 1 ? String(i + 1) : "") : String(i + 1),
+  const labels = Array.from({ length: daysInMonth }, (_, i) =>
+    compact ? ((i + 1) % 5 === 1 || i === daysInMonth - 1 ? String(i + 1) : "") : String(i + 1),
   )
 
   return { income: incomeByDay, expense: expenseByDay, labels }
