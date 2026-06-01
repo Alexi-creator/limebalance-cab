@@ -1,7 +1,7 @@
 import { Stack, Tabs, Text } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 import { IconArrowsLeftRight, IconChartLine, IconCreditCard, IconTarget } from "@tabler/icons-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AssetForm } from "./AssetForm"
 import { GoalForm } from "./GoalForm"
 import { TransactionForm } from "./TransactionForm"
@@ -38,19 +38,25 @@ interface AddModalProps {
  */
 export function AddModal({ type: initialType = "transaction", lockType = false }: AddModalProps) {
   const [type, setType] = useState<AddType>(initialType)
-  const { close } = useModalStore()
+  const close = useModalStore((s) => s.close)
+  const setTitle = useModalStore((s) => s.setTitle)
 
-  return (
-    <Stack gap={0}>
-      <Stack gap={2} mb="md">
+  // заголовок модалки живёт в её шапке и обновляется при смене типа (вкладки)
+  useEffect(() => {
+    setTitle(
+      <Stack gap={2}>
         <Text fw={600} size="md">
           {TITLES[type]}
         </Text>
         <Text size="xs" c="dimmed">
           {SUBS[type]}
         </Text>
-      </Stack>
+      </Stack>,
+    )
+  }, [type, setTitle])
 
+  return (
+    <Stack gap={0}>
       {!lockType && (
         <Tabs value={type} onChange={(v) => setType(v as AddType)} mb="md">
           <Tabs.List>

@@ -1,5 +1,3 @@
-import type { Expense, ExpensesSummary } from "@appTypes/expense"
-import type { Income, IncomesSummary } from "@appTypes/income"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import { Box, Group, Paper, SegmentedControl, Stack, Text, useMantineTheme } from "@mantine/core"
 import { useMediaQuery } from "@mantine/hooks"
@@ -10,40 +8,21 @@ import { CashflowSvg } from "./CashflowSvg"
 import { ChartLegend } from "./ChartLegend"
 import { PERIODS } from "./config"
 import { selectDataset } from "./helpers"
-
-export interface CashflowChartProps {
-  /**
-   * Агрегированная сводка расходов для периодов 6m и 1y.
-   * `total` — суммарная сумма за период; `byMonth` — разбивка `{ month: "yyyy-MM", total: string }[]`
-   */
-  expensesSummary?: ExpensesSummary
-  /**
-   * Агрегированная сводка доходов для периодов 6m и 1y.
-   * `total` — суммарная сумма за период; `byMonth` — разбивка `{ month: "yyyy-MM", total: string }[]`
-   */
-  incomesSummary?: IncomesSummary
-  /** Список расходов текущего месяца для периода 1m. */
-  expenses?: Expense[]
-  /** Список доходов текущего месяца для периода 1m. */
-  incomes?: Income[]
-}
+import { useCashflowData } from "./useCashflowData"
 
 /**
  * График денежного потока с переключением периода (1m / 6m / 1y).
- * Выбирает набор данных под период и отдаёт отрисовку в `CashflowSvg`.
+ * Сам грузит данные, выбирает набор под период и отдаёт отрисовку в `CashflowSvg`.
  */
-export function CashflowChart({
-  expensesSummary,
-  incomesSummary,
-  expenses,
-  incomes,
-}: CashflowChartProps) {
+export function CashflowChart() {
   const { i18n, t } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const [period, setPeriod] = useState("1m")
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const theme = useMantineTheme()
   const isTabletOrAbove = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`)
+
+  const { expensesSummary, incomesSummary, expenses, incomes } = useCashflowData()
 
   const data = selectDataset({
     period,

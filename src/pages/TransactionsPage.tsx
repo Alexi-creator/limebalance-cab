@@ -4,7 +4,7 @@ import { TransactionsFilters } from "@components/transactions/TransactionsFilter
 import { TransactionsTable } from "@components/transactions/TransactionsTable"
 import { TRANSACTIONS_STALE_TIME, transactionKeys } from "@constants/queries/transactions"
 import { useUrlParams } from "@hooks/useUrlParams"
-import { Button, Group, Pagination, Paper, Stack, Text, Title } from "@mantine/core"
+import { Button, Group, Paper, Stack, Text, Title } from "@mantine/core"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 
@@ -28,7 +28,6 @@ export function TransactionsPage() {
 
   const items = data?.items ?? []
   const total = data?.total ?? 0
-  const totalPages = data?.totalPages ?? 1
 
   return (
     <Stack gap="md" style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
@@ -38,7 +37,7 @@ export function TransactionsPage() {
             Операции
           </Title>
           <Text size="sm" c="dimmed">
-            {total} операций
+            {items.length} / {total} операций
           </Text>
         </Stack>
         <Group gap="xs">
@@ -64,25 +63,12 @@ export function TransactionsPage() {
 
         <TransactionsTable
           transactions={items}
-          isLoading={isLoading}
+          total={total}
+          page={params.page}
+          onPageChange={(page) => setParams({ page })}
+          fetching={isLoading || isPlaceholderData}
           isError={isError}
-          isPlaceholder={isPlaceholderData}
         />
-
-        {totalPages > 1 && (
-          <Group
-            justify="center"
-            p="md"
-            style={{ borderTop: "1px solid var(--mantine-color-default-border)", flexShrink: 0 }}
-          >
-            <Pagination
-              total={totalPages}
-              value={params.page}
-              onChange={(page) => setParams({ page })}
-              size="sm"
-            />
-          </Group>
-        )}
       </Paper>
     </Stack>
   )

@@ -3,7 +3,7 @@ import { getIncomeCategories } from "@api/incomes"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
-import { Button, Group, SegmentedControl, Select, TextInput } from "@mantine/core"
+import { ActionIcon, Button, Group, SegmentedControl, Select, TextInput } from "@mantine/core"
 import { useDebouncedValue } from "@mantine/hooks"
 import { IconSearch, IconX } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
@@ -13,20 +13,6 @@ import { type TransactionsParams, TYPE_OPTIONS } from "../config"
 interface Props {
   params: TransactionsParams
   setParams: (updates: Partial<TransactionsParams>) => void
-}
-
-const SELECT_LABEL_STYLES = {
-  root: { position: "relative" as const },
-  label: {
-    position: "absolute" as const,
-    top: -8,
-    left: 10,
-    zIndex: 1,
-    background: "var(--mantine-color-body)",
-    padding: "0 4px",
-    fontSize: 11,
-    lineHeight: 1,
-  },
 }
 
 /**
@@ -93,8 +79,23 @@ export function TransactionsFilters({ params, setParams }: Props) {
       />
 
       <TextInput
+        label="Поиск"
         placeholder="Поиск операций"
         leftSection={<IconSearch size={14} />}
+        rightSection={
+          search ? (
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              size="sm"
+              onClick={() => setSearch("")}
+              aria-label="Очистить поиск"
+            >
+              <IconX size={14} />
+            </ActionIcon>
+          ) : null
+        }
+        rightSectionPointerEvents="auto"
         value={search}
         onChange={(e) => setSearch(e.currentTarget.value)}
         style={{ flex: 1, minWidth: 220 }}
@@ -109,7 +110,6 @@ export function TransactionsFilters({ params, setParams }: Props) {
         clearable
         searchable
         w={180}
-        styles={SELECT_LABEL_STYLES}
       />
 
       <Button
