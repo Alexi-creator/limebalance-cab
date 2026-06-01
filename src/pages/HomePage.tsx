@@ -1,17 +1,15 @@
 import { getExpenses, getExpensesSummary } from "@api/expenses"
 import { getIncomes, getIncomesSummary } from "@api/incomes"
-import { AddModal } from "@components/AddModal"
 import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
+import { HomeHeader } from "@components/homePage/HomeHeader"
+import { HomeKpis, type Kpi } from "@components/homePage/HomeKpis"
 import { PortfolioSnippet } from "@components/PortfolioSnippet"
 import { RecentTransactions } from "@components/RecentTransactions"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
-import { Button, Grid, Group, SimpleGrid, Skeleton, Stack, Text, Title } from "@mantine/core"
-import { useModalStore } from "@store/modalStore"
-import { IconDownload, IconPlus } from "@tabler/icons-react"
+import { Grid, Stack } from "@mantine/core"
 import { useQuery } from "@tanstack/react-query"
-import { KpiCard } from "@ui/KpiCard"
 import { formatCurrency } from "@utils/formatCurrency"
 import { endOfMonth, format, startOfMonth } from "date-fns"
 import { useTranslation } from "react-i18next"
@@ -22,7 +20,6 @@ function getMonthRange() {
 }
 
 export function HomePage() {
-  const { open } = useModalStore()
   const { i18n } = useTranslation()
   const { from, to } = getMonthRange()
   const currentMonth = format(from, "yyyy-MM")
@@ -66,70 +63,49 @@ export function HomePage() {
   const totalExpenses = currentMonthExpenses ? parseFloat(currentMonthExpenses.total) : 0
   const totalIncomes = currentMonthIncomes ? parseFloat(currentMonthIncomes.total) : 0
 
-  const formattedExpenses = expensesLoading ? "—" : formatCurrency(-totalExpenses, i18n.language)
-  const formattedIncomes = incomesLoading ? "—" : formatCurrency(totalIncomes, i18n.language)
+  const kpis: Kpi[] = [
+    {
+      key: "balance",
+      label: "Текущий баланс",
+      value: "284 540 ₽",
+      sub: "по всем счетам",
+      trend: 12.4,
+      accent: "var(--mantine-color-lime-4)",
+    },
+    {
+      key: "income",
+      label: "Доход за месяц",
+      value: incomesLoading ? "—" : formatCurrency(totalIncomes, i18n.language),
+      sub: currentMonthIncomes ? "за текущий месяц" : "нет данных",
+      trend: 8.2,
+      loading: incomesLoading,
+      onRefresh: refetchIncomes,
+      isRefreshing: incomesFetching,
+    },
+    {
+      key: "expense",
+      label: "Расход за месяц",
+      value: expensesLoading ? "—" : formatCurrency(-totalExpenses, i18n.language),
+      sub: currentMonthExpenses ? "за текущий месяц" : "нет данных",
+      trend: -3.7,
+      loading: expensesLoading,
+      onRefresh: refetchExpenses,
+      isRefreshing: expensesFetching,
+    },
+    {
+      key: "saved",
+      label: "Накоплено в мае",
+      value: "+90 480 ₽",
+      sub: "лучший месяц в году",
+      trend: 28.5,
+    },
+  ]
 
   return (
     <Stack gap="md">
-      <Group justify="space-between" align="flex-end" wrap="wrap">
-        <Stack gap={4}>
-          <Title order={2} size="h3">
-            Привет 👋
-          </Title>
-          <Text size="sm" c="dimmed">
-            Ваши финансы за этот месяц
-          </Text>
-        </Stack>
-        <Group gap="xs">
-          <Button variant="default" size="sm" leftSection={<IconDownload size={14} />}>
-            Экспорт
-          </Button>
-          <Button
-            size="sm"
-            leftSection={<IconPlus size={14} />}
-            onClick={() =>
-              open({
-                size: "lg",
-                centered: true,
-                children: <AddModal type="transaction" lockType />,
-              })
-            }
-          >
-            Новая операция
-          </Button>
-        </Group>
-      </Group>
+      <HomeHeader />
 
-      <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="md">
-        <KpiCard
-          label="Текущий баланс"
-          value="284 540 ₽"
-          sub="по всем счетам"
-          trend={12.4}
-          accent="var(--mantine-color-lime-4)"
-        />
-        <Skeleton visible={incomesLoading} radius="md">
-          <KpiCard
-            label="Доход за месяц"
-            value={formattedIncomes}
-            sub={currentMonthIncomes ? "за текущий месяц" : "нет данных"}
-            trend={8.2}
-            onRefresh={refetchIncomes}
-            isRefreshing={incomesFetching}
-          />
-        </Skeleton>
-        <Skeleton visible={expensesLoading} radius="md">
-          <KpiCard
-            label="Расход за месяц"
-            value={formattedExpenses}
-            sub={currentMonthExpenses ? "за текущий месяц" : "нет данных"}
-            trend={-3.7}
-            onRefresh={refetchExpenses}
-            isRefreshing={expensesFetching}
-          />
-        </Skeleton>
-        <KpiCard label="Накоплено в мае" value="+90 480 ₽" sub="лучший месяц в году" trend={28.5} />
-      </SimpleGrid>
+      <HomeKpis kpis={kpis} />
 
       <Grid gap="md">
         <Grid.Col span={{ base: 12, lg: 8 }}>
