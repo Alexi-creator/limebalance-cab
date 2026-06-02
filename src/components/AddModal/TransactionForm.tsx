@@ -1,10 +1,11 @@
-import type { CreateExpensePayload } from "@api/expenses"
-import { createExpense, getExpenseCategories } from "@api/expenses"
+import { type CreateExpensePayload, createExpense, getExpenseCategories } from "@api/expenses"
 import { createIncome, getIncomeCategories } from "@api/incomes"
 import type { ExpensesSummary } from "@appTypes/expense"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
+import { transactionKeys } from "@constants/queries/transactions"
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Box,
   Button,
@@ -19,10 +20,24 @@ import { DatePickerInput } from "@mantine/dates"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { localDayToApiDate } from "@utils/localDayToApiDate"
 import { format } from "date-fns"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
+import { z } from "zod"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
+
+const createSchema = z.object({
+  kind: z.enum(["income", "expense"]),
+  amount: z
+    .union([z.number(), z.literal("")])
+    .refine((v) => v !== "" && v > 0, "Введите сумму больше 0"),
+  categoryId: z.string().min(1, "Выберите категорию"),
+  day: z.union([z.string(), z.null()]).refine((v) => !!v && v.length > 0, "Укажите дату"),
+  description: z.string(),
+})
+
+type CreateFormValues = z.infer<typeof createSchema>
 
 interface Props {
   /** Вызывается после успешного создания операции */
@@ -32,19 +47,34 @@ interface Props {
 }
 
 /**
- * Форма добавления финансовой операции — дохода или расхода.
- * Тянет категории нужного типа с бэкенда, отправляет POST с локальной датой пользователя
- * и после успеха дописывает новую операцию прямо в кеш react-query (без рефетча).
+ * Форма добавления финансовой операции — дохода или расхода (react-hook-form + zod).
+ * Тянет категории нужного типа, отправляет POST с локальной датой и после успеха
+ * дописывает новую операцию прямо в кеш react-query (без рефетча).
  */
 export function TransactionForm({ onSubmit, onCancel }: Props) {
-  const [kind, setKind] = useState<"income" | "expense">("expense")
-  const [amount, setAmount] = useState<number | string>("")
-  const [categoryId, setCategoryId] = useState<string | null>(null)
-  const [day, setDay] = useState<string | null>(format(new Date(), "yyyy-MM-dd"))
-  const [note, setNote] = useState("")
   const { i18n } = useTranslation()
   const queryClient = useQueryClient()
 
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<CreateFormValues>({
+    resolver: zodResolver(createSchema),
+    defaultValues: {
+      kind: "expense",
+      amount: "",
+      categoryId: "",
+      day: format(new Date(), "yyyy-MM-dd"),
+      description: "",
+    },
+  })
+
+  const kind = watch("kind")
+  const categoryId = watch("categoryId")
   const isExpense = kind === "expense"
 
   const { data: categories } = useQuery({
@@ -56,9 +86,9 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
   // при смене типа/загрузке списка выбираем первую категорию, если текущей нет среди доступных
   useEffect(() => {
     if (categories?.length && !categories.some((c) => c.id === categoryId)) {
-      setCategoryId(categories[0].id)
+      setValue("categoryId", categories[0].id)
     }
-  }, [categories, categoryId])
+  }, [categories, categoryId, setValue])
 
   const mutation = useMutation({
     mutationFn: (payload: CreateExpensePayload) =>
@@ -90,45 +120,63 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
         }
       })
 
+      // объединённый список операций (страница «Операции») — рефетч с текущими фильтрами
+      queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+
       onSubmit()
     },
   })
 
+  const submit = handleSubmit((values) => {
+    mutation.mutate({
+      categoryId: values.categoryId,
+      amount: Number(values.amount),
+      description: values.description,
+      date: localDayToApiDate(values.day as string),
+    })
+  })
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        if (!amount || !categoryId || !day) return
-        mutation.mutate({
-          categoryId,
-          amount: Number(amount),
-          description: note,
-          date: localDayToApiDate(day),
-        })
-      }}
-    >
-      <Stack gap="md">
-        <SegmentedControl
-          fullWidth
-          value={kind}
-          onChange={(v) => setKind(v as "income" | "expense")}
-          data={[
-            { value: "expense", label: "− Расход" },
-            { value: "income", label: "+ Доход" },
-          ]}
+    <form onSubmit={submit} noValidate>
+      <Stack gap="lg">
+        <Controller
+          name="kind"
+          control={control}
+          render={({ field }) => (
+            <SegmentedControl
+              fullWidth
+              value={field.value}
+              onChange={(v) => {
+                field.onChange(v)
+                setValue("categoryId", "")
+              }}
+              data={[
+                { value: "expense", label: "− Расход" },
+                { value: "income", label: "+ Доход" },
+              ]}
+            />
+          )}
         />
 
-        <NumberInput
-          label="Сумма"
-          required
-          size="md"
-          autoFocus
-          value={amount}
-          onChange={setAmount}
-          min={0}
-          thousandSeparator=" "
-          suffix=" ₽"
-          styles={{ input: { fontFamily: "var(--mantine-font-family-monospace)", fontSize: 22 } }}
+        <Controller
+          name="amount"
+          control={control}
+          render={({ field }) => (
+            <NumberInput
+              {...field}
+              label="Сумма"
+              size="md"
+              autoFocus
+              hideControls
+              min={0}
+              thousandSeparator=" "
+              suffix=" ₽"
+              error={errors.amount?.message}
+              styles={{
+                input: { fontFamily: "var(--mantine-font-family-monospace)", fontSize: 22 },
+              }}
+            />
+          )}
         />
 
         <Box>
@@ -144,30 +192,41 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
                 color={categoryId === c.id ? "lime" : "gray"}
                 size="xs"
                 radius="sm"
-                onClick={() => setCategoryId(c.id)}
+                onClick={() => setValue("categoryId", c.id, { shouldValidate: true })}
               >
                 {c.name}
               </Button>
             ))}
           </Group>
+          {errors.categoryId && (
+            <Text size="xs" c="red.6" mt={6}>
+              {errors.categoryId.message}
+            </Text>
+          )}
         </Box>
 
-        <DatePickerInput
-          label="Дата"
-          value={day}
-          onChange={setDay}
-          maxDate={format(new Date(), "yyyy-MM-dd")}
-          locale={i18n.language}
-          valueFormat="DD MMM YYYY"
+        <Controller
+          name="day"
+          control={control}
+          render={({ field }) => (
+            <DatePickerInput
+              {...field}
+              label="Дата"
+              maxDate={format(new Date(), "yyyy-MM-dd")}
+              locale={i18n.language}
+              valueFormat="DD MMM YYYY"
+              error={errors.day?.message}
+            />
+          )}
         />
 
         <Textarea
+          {...register("description")}
           label="Заметка"
-          value={note}
-          onChange={(e) => setNote(e.currentTarget.value)}
           autosize
           minRows={1}
           maxRows={3}
+          error={errors.description?.message}
         />
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>

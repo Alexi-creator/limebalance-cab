@@ -1,4 +1,12 @@
-import { createTheme, NumberInput, PasswordInput, Select, Textarea, TextInput } from "@mantine/core"
+import {
+  createTheme,
+  Modal,
+  NumberInput,
+  PasswordInput,
+  Select,
+  Textarea,
+  TextInput,
+} from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 
 /** «Плавающий» лейбл: абсолютный, сидит на рамке инпута (показывается только при заданном `label`). */
@@ -6,7 +14,7 @@ const floatingLabel = {
   root: { position: "relative" as const },
   label: {
     position: "absolute" as const,
-    top: -8,
+    top: -6,
     left: 10,
     zIndex: 1,
     background: "var(--mantine-color-body)",
@@ -34,5 +42,9 @@ export const theme = createTheme({
     Textarea: Textarea.extend({ styles: floatingLabel }),
     Select: Select.extend({ styles: floatingLabel }),
     DatePickerInput: DatePickerInput.extend({ styles: floatingLabel }),
+    // запас сверху, чтобы «плавающий» лейбл первого поля не упирался в шапку модалки
+    Modal: Modal.extend({
+      styles: { body: { paddingTop: "calc(var(--mantine-spacing-md) + 6px)" } },
+    }),
   },
 })

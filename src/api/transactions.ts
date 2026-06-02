@@ -1,6 +1,8 @@
 import { request } from "@api/request"
+import type { TransactionType } from "@appTypes/transaction"
 import { transactionsResponseSchema } from "@appTypes/transaction"
 import { API_URLS } from "@constants/apiUrls"
+import { HttpMethods } from "@constants/httpMethods"
 
 export interface GetTransactionsParams {
   type?: "income" | "expense"
@@ -26,4 +28,32 @@ export function getTransactions(params: GetTransactionsParams) {
   return request(`${API_URLS.transactions.transactions}?${qs}`, {
     schema: transactionsResponseSchema,
   })
+}
+
+export interface UpdateTransactionPayload {
+  amount?: number
+  description?: string
+  /** ISO-таймстамп локального времени пользователя. */
+  date?: string
+}
+
+/** URL операции по типу: расход → /expenses/:id, доход → /incomes/:id. */
+function transactionUrl(type: TransactionType, id: string) {
+  const base = type === "expense" ? API_URLS.expenses.expenses : API_URLS.incomes.incomes
+  return `${base}/${id}`
+}
+
+export function updateTransaction(
+  type: TransactionType,
+  id: string,
+  payload: UpdateTransactionPayload,
+) {
+  return request(transactionUrl(type, id), {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+  })
+}
+
+export function deleteTransaction(type: TransactionType, id: string) {
+  return request(transactionUrl(type, id), { method: HttpMethods.DELETE })
 }

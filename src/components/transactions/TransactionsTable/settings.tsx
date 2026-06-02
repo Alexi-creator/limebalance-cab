@@ -1,17 +1,31 @@
 import type { Transaction } from "@appTypes/transaction"
-import { ActionIcon, Badge, Text, Tooltip } from "@mantine/core"
-import { IconDotsVertical } from "@tabler/icons-react"
+import { Badge, Text } from "@mantine/core"
+import { formatCurrency } from "@utils/formatCurrency"
 import { format, type Locale } from "date-fns"
 import type { DataTableColumn } from "mantine-datatable"
 import { formatTxAmount } from "../helpers"
+import { RowActions } from "./RowActions"
 
-/** Колонки таблицы операций. Формат даты/суммы зависит от локали и языка. */
+/**
+ * Колонки таблицы операций. Формат даты/суммы зависит от локали и языка.
+ * `pageTotal` — нетто текущей страницы, выводится в подвале колонки «Сумма».
+ */
 export function getTransactionColumns(
   locale: Locale,
   language: string,
+  pageTotal: number,
 ): DataTableColumn<Transaction>[] {
   return [
-    { accessor: "description", title: "Операция", ellipsis: true },
+    {
+      accessor: "description",
+      title: "Операция",
+      ellipsis: true,
+      footer: (
+        <Text size="xs" c="dimmed">
+          Итого:
+        </Text>
+      ),
+    },
     {
       accessor: "categoryName",
       title: "Категория",
@@ -47,18 +61,25 @@ export function getTransactionColumns(
           {formatTxAmount(t, language)}
         </Text>
       ),
+      footer: (
+        <Text
+          ff="monospace"
+          size="sm"
+          fw={600}
+          ta="right"
+          c={pageTotal > 0 ? "green.5" : pageTotal < 0 ? "red.5" : "dimmed"}
+        >
+          {pageTotal > 0 ? "+" : ""}
+          {formatCurrency(pageTotal, language)}
+        </Text>
+      ),
     },
     {
       accessor: "actions",
       title: "",
-      width: 50,
-      render: () => (
-        <Tooltip label="Действия">
-          <ActionIcon variant="subtle" size="sm" color="gray">
-            <IconDotsVertical size={14} />
-          </ActionIcon>
-        </Tooltip>
-      ),
+      width: 90,
+      textAlign: "center",
+      render: (t) => <RowActions transaction={t} />,
     },
   ]
 }

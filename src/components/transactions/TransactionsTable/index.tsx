@@ -3,7 +3,8 @@ import { dateFnsLocales } from "@i18n/languages.ts"
 import { enUS } from "date-fns/locale"
 import { DataTable } from "mantine-datatable"
 import { useTranslation } from "react-i18next"
-import { PAGE_LIMIT } from "../config"
+import { PAGE_SIZE_OPTIONS } from "../config"
+import { getNetTotal } from "../helpers"
 import { getTransactionColumns } from "./settings"
 
 interface Props {
@@ -12,6 +13,9 @@ interface Props {
   total: number
   page: number
   onPageChange: (page: number) => void
+  /** Текущий размер страницы и его смена (селектор 20/50/100). */
+  recordsPerPage: number
+  onRecordsPerPageChange: (limit: number) => void
   /** Идёт загрузка/смена страницы — показывается оверлей. */
   fetching: boolean
   isError: boolean
@@ -23,6 +27,8 @@ export function TransactionsTable({
   total,
   page,
   onPageChange,
+  recordsPerPage,
+  onRecordsPerPageChange,
   fetching,
   isError,
 }: Props) {
@@ -32,13 +38,17 @@ export function TransactionsTable({
   return (
     <DataTable<Transaction>
       records={isError ? [] : transactions}
-      columns={getTransactionColumns(locale, i18n.language)}
+      columns={getTransactionColumns(locale, i18n.language, getNetTotal(transactions))}
+      pinLastColumn
       idAccessor={(t) => `${t.type}-${t.id}`}
       fetching={fetching}
       page={page}
       onPageChange={onPageChange}
       totalRecords={total}
-      recordsPerPage={PAGE_LIMIT}
+      recordsPerPage={recordsPerPage}
+      recordsPerPageOptions={PAGE_SIZE_OPTIONS}
+      onRecordsPerPageChange={onRecordsPerPageChange}
+      recordsPerPageLabel="Строк на странице"
       noRecordsText={isError ? "Не удалось загрузить операции" : "Ничего не найдено"}
       striped
       highlightOnHover
