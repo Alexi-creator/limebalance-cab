@@ -4,6 +4,7 @@ import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
 import { ActionIcon, Button, Group, SegmentedControl, Select, TextInput } from "@mantine/core"
+import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue } from "@mantine/hooks"
 import { IconSearch, IconX } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
@@ -56,7 +57,14 @@ export function TransactionsFilters({ params, setParams }: Props) {
 
   const reset = () => {
     setSearch("")
-    setParams({ type: undefined, categoryId: undefined, search: undefined, page: 1 })
+    setParams({
+      type: undefined,
+      categoryId: undefined,
+      search: undefined,
+      from: undefined,
+      to: undefined,
+      page: 1,
+    })
   }
 
   return (
@@ -110,6 +118,20 @@ export function TransactionsFilters({ params, setParams }: Props) {
         clearable
         searchable
         w={180}
+      />
+
+      <DatePickerInput
+        type="range"
+        label="Период"
+        placeholder="Дата от — до"
+        valueFormat="DD MMM YYYY"
+        value={[params.from ?? null, params.to ?? null]}
+        onChange={([from, to]) =>
+          setParams({ from: from ?? undefined, to: to ?? undefined, page: 1 })
+        }
+        clearable
+        allowSingleDateInRange
+        w={240}
       />
 
       <Button

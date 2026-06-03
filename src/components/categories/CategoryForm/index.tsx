@@ -1,0 +1,174 @@
+import { createExpenseCategory, getExpenseCategories, updateExpenseCategory } from "@api/expenses"
+import { createIncomeCategory, getIncomeCategories, updateIncomeCategory } from "@api/incomes"
+import type { Category, CategoryPayload } from "@appTypes/category"
+import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
+import { expenseKeys } from "@constants/queries/expenses"
+import { incomeKeys } from "@constants/queries/incomes"
+import { transactionKeys } from "@constants/queries/transactions"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Group,
+  ScrollArea,
+  SegmentedControl,
+  SimpleGrid,
+  Stack,
+  Text,
+  TextInput,
+} from "@mantine/core"
+import { useModalStore } from "@store/modalStore"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMemo, useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { EMOJI_PALETTE } from "../config"
+
+const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
+
+const NAME_MAX = 32
+
+interface Props {
+  /** Передан — режим редактирования (PATCH); тип категории при этом сменить нельзя. */
+  category?: Category
+  /** Тип категории; в режиме создания — стартовое значение переключателя. */
+  defaultType: "expense" | "income"
+}
+
+/**
+ * Форма создания/редактирования категории (react-hook-form + zod). Валидирует непустое
+ * имя, длину и дубль среди категорий выбранного типа; после успеха инвалидирует список,
+ * статистику категорий и операции (на случай переименования).
+ */
+export function CategoryForm({ category, defaultType }: Props) {
+  const isEdit = !!category
+  const close = useModalStore((s) => s.close)
+  const queryClient = useQueryClient()
+
+  const [type, setType] = useState(defaultType)
+  const isExpense = type === "expense"
+
+  // существующие категории выбранного типа — для проверки на дубликат (берём из кеша)
+  const { data: existing } = useQuery({
+    queryKey: isExpense ? expenseKeys.categories : incomeKeys.categories,
+    queryFn: isExpense ? getExpenseCategories : getIncomeCategories,
+    staleTime: CATEGORY_STALE_TIME,
+  })
+
+  // дубликаты считаем без учёта регистра и пробелов, исключая саму редактируемую категорию
+  const schema = useMemo(() => {
+    const taken = new Set(
+      (existing ?? []).filter((c) => c.id !== category?.id).map((c) => c.name.trim().toLowerCase()),
+    )
+    return z.object({
+      name: z
+        .string()
+        .trim()
+        .min(1, "Введите название")
+        .max(NAME_MAX, `Не больше ${NAME_MAX} символов`)
+        .refine((v) => !taken.has(v.toLowerCase()), "Категория с таким названием уже есть"),
+      emoji: z.string(),
+    })
+  }, [existing, category?.id])
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: category?.name ?? "",
+      emoji: category?.emoji ?? "",
+    },
+  })
+
+  const name = watch("name")
+  const emoji = watch("emoji")
+
+  const mutation = useMutation({
+    mutationFn: (payload: CategoryPayload) => {
+      if (isEdit) {
+        return isExpense
+          ? updateExpenseCategory(category.id, payload)
+          : updateIncomeCategory(category.id, payload)
+      }
+      return isExpense ? createExpenseCategory(payload) : createIncomeCategory(payload)
+    },
+    onSuccess: () => {
+      const keys = isExpense ? expenseKeys : incomeKeys
+      queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
+      queryClient.invalidateQueries({ queryKey: keys.categories })
+      // имя/эмодзи категории видны в списке операций — обновим и его
+      queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+      close()
+    },
+  })
+
+  const onSubmit = handleSubmit((values) =>
+    mutation.mutate({ name: values.name.trim(), emoji: values.emoji || undefined }),
+  )
+
+  return (
+    <form onSubmit={onSubmit} noValidate>
+      <Stack gap="lg">
+        {!isEdit && (
+          <SegmentedControl
+            fullWidth
+            value={type}
+            onChange={(v) => setType(v as "expense" | "income")}
+            data={[
+              { value: "expense", label: "− Расход" },
+              { value: "income", label: "+ Доход" },
+            ]}
+          />
+        )}
+
+        <TextInput
+          {...register("name")}
+          label="Название"
+          autoFocus
+          placeholder={isExpense ? "Например, Продукты" : "Например, Зарплата"}
+          maxLength={NAME_MAX}
+          description={`${name.length}/${NAME_MAX}`}
+          error={errors.name?.message}
+        />
+
+        <Box>
+          <Text size="sm" fw={500} mb={6}>
+            Эмодзи
+          </Text>
+          <ScrollArea h={132} type="auto">
+            <SimpleGrid cols={8} spacing={6}>
+              {EMOJI_PALETTE.map((e) => (
+                <ActionIcon
+                  key={e}
+                  type="button"
+                  size="lg"
+                  radius="sm"
+                  variant={emoji === e ? "light" : "default"}
+                  color={emoji === e ? "lime" : "gray"}
+                  onClick={() => setValue("emoji", emoji === e ? "" : e)}
+                >
+                  <Text size="md">{e}</Text>
+                </ActionIcon>
+              ))}
+            </SimpleGrid>
+          </ScrollArea>
+        </Box>
+
+        <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
+          <Button variant="default" onClick={close} disabled={mutation.isPending}>
+            Отмена
+          </Button>
+          <Button type="submit" loading={mutation.isPending}>
+            {isEdit ? "Сохранить" : "Создать категорию"}
+          </Button>
+        </Group>
+      </Stack>
+    </form>
+  )
+}

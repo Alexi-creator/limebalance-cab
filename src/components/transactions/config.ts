@@ -21,6 +21,9 @@ export const transactionsParamsSchema = z.object({
   type: z.enum(["income", "expense"]).optional().catch(undefined),
   categoryId: z.string().optional().catch(undefined),
   search: z.string().optional().catch(undefined),
+  /** Диапазон дат операций, формат `YYYY-MM-DD`. */
+  from: z.string().optional().catch(undefined),
+  to: z.string().optional().catch(undefined),
   page: z.coerce.number().int().min(1).catch(1).default(1),
   limit: z.coerce
     .number()

@@ -32,9 +32,11 @@ export const API_URLS = {
   expenseCategories: {
     categories: `${API_URL}/expense-categories`,
     category: `${API_URL}/expense-categories/:id`,
+    stats: `${API_URL}/expense-categories/stats`,
   },
   incomeCategories: {
     categories: `${API_URL}/income-categories`,
     category: `${API_URL}/income-categories/:id`,
+    stats: `${API_URL}/income-categories/stats`,
   },
 }

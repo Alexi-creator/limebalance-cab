@@ -18,6 +18,8 @@ export function TransactionsPage() {
     type: params.type,
     categoryId: params.categoryId,
     search: params.search,
+    from: params.from,
+    to: params.to,
     page: params.page,
     limit: params.limit,
   }

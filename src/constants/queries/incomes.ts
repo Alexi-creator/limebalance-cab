@@ -3,6 +3,7 @@ export const incomeKeys = {
   summary: (months: number) => ["incomes", "summary", months] as const,
   month: (month: string) => ["incomes", "month", month] as const,
   categories: ["incomes", "categories"] as const,
+  categoriesStats: ["incomes", "categories", "stats"] as const,
 }
 
 export const INCOME_STALE_TIME = 60 * 60 * 1000

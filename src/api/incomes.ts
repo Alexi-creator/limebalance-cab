@@ -1,5 +1,5 @@
 import { request } from "@api/request"
-import { categorySchema } from "@appTypes/category"
+import { type CategoryPayload, categorySchema, categoryStatsSchema } from "@appTypes/category"
 import { createdIncomeSchema, incomeSchema, incomesSummarySchema } from "@appTypes/income"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
@@ -29,6 +29,40 @@ export function getIncomesSummary(months: 1 | 6 | 12) {
 
 export function getIncomeCategories() {
   return request(API_URLS.incomeCategories.categories, { schema: z.array(categorySchema) })
+}
+
+/** Категории доходов с суммой и числом операций; опционально за период `[from, to]`. */
+export function getIncomeCategoriesStats(from?: Date, to?: Date) {
+  const params = new URLSearchParams()
+  if (from) params.set("from", format(from, "yyyy-MM-dd"))
+  if (to) params.set("to", format(to, "yyyy-MM-dd"))
+
+  const query = params.size ? `?${params}` : ""
+  return request(`${API_URLS.incomeCategories.stats}${query}`, {
+    schema: z.array(categoryStatsSchema),
+  })
+}
+
+export function createIncomeCategory(payload: CategoryPayload) {
+  return request(API_URLS.incomeCategories.categories, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+    schema: categorySchema,
+  })
+}
+
+export function updateIncomeCategory(id: string, payload: CategoryPayload) {
+  return request(`${API_URLS.incomeCategories.categories}/${id}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+    schema: categorySchema,
+  })
+}
+
+export function deleteIncomeCategory(id: string) {
+  return request(`${API_URLS.incomeCategories.categories}/${id}`, {
+    method: HttpMethods.DELETE,
+  })
 }
 
 export function createIncome(payload: CreateIncomePayload) {
