@@ -1,5 +1,5 @@
 import { ApiError } from "@api/apiError"
-import { loginGoogle, loginTelegram, register } from "@api/auth"
+import { getMe, loginGoogle, loginTelegram, register } from "@api/auth"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -21,6 +21,7 @@ import { useAuthStore } from "@store/authStore"
 import { IconBrandTelegram, IconMail } from "@tabler/icons-react"
 import type { TelegramAuthData } from "@telegram-auth/react"
 import { LoginButton } from "@telegram-auth/react"
+import { getBrowserCurrency } from "@utils/getBrowserCurrency"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -39,7 +40,7 @@ function EmailForm({ onBack }: { onBack: () => void }) {
   const registerSchema = z
     .object({
       email: z.email(t("register.email_error")),
-      password: z.string().min(6, t("register.password_error")),
+      password: z.string().min(8, t("register.password_error")),
       confirmPassword: z.string(),
     })
     .refine((data) => data.password === data.confirmPassword, {
@@ -63,8 +64,9 @@ function EmailForm({ onBack }: { onBack: () => void }) {
   const onSubmit = async ({ confirmPassword: _, ...payload }: RegisterFormValues) => {
     setIsPending(true)
     try {
-      const user = await register(payload)
-      setUser(user)
+      await register({ ...payload, currency: getBrowserCurrency() })
+      // регистрация уже создаёт сессию; полные данные пользователя берём из /me
+      setUser(await getMe())
       navigate(RouteNames.Home)
     } catch (err) {
       const message =
@@ -127,8 +129,8 @@ export function RegisterPage() {
 
   const handleTelegramAuth = async (data: TelegramAuthData) => {
     try {
-      const user = await loginTelegram(data)
-      setUser(user)
+      await loginTelegram(data)
+      setUser(await getMe())
       navigate(RouteNames.Home)
     } catch {
       // stay on page
@@ -137,8 +139,8 @@ export function RegisterPage() {
 
   const handleGoogleAuth = async (credential: string) => {
     try {
-      const user = await loginGoogle(credential)
-      setUser(user)
+      await loginGoogle(credential)
+      setUser(await getMe())
       navigate(RouteNames.Home)
     } catch {
       // stay on page

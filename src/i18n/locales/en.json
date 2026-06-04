@@ -11,7 +11,7 @@
     "email_error": "Invalid email",
     "password_label": "Password",
     "password_placeholder": "••••••",
-    "password_error": "Minimum 6 characters",
+    "password_error": "Minimum 8 characters",
     "invalid_credentials": "Invalid email or password",
     "submit": "Sign In",
     "back": "Back",
@@ -36,7 +36,7 @@
     "email_error": "Invalid email",
     "password_label": "Password",
     "password_placeholder": "••••••",
-    "password_error": "Minimum 6 characters",
+    "password_error": "Minimum 8 characters",
     "confirm_password_label": "Confirm Password",
     "confirm_password_placeholder": "••••••",
     "confirm_password_error": "Passwords do not match",
@@ -59,6 +59,19 @@
     "account": "Account",
     "logout": "Sign out",
     "auth": "Auth"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and preferences",
+    "name_label": "Name",
+    "name_placeholder": "John Doe",
+    "currency_label": "Currency",
+    "currency_description": "Used to display amounts across the app",
+    "currency_placeholder": "Select a currency",
+    "currency_not_found": "Nothing found",
+    "save": "Save",
+    "saved": "Settings saved",
+    "error": "Failed to save settings"
   },
   "app": {
     "name": "LimeBalance"

@@ -14,17 +14,19 @@ export interface LoginPayload {
 export interface RegisterPayload {
   email: string
   password: string
+  currency?: string
 }
 
-export function register(payload: RegisterPayload): Promise<User> {
-  return commonRequest<User>(API_URLS.auth.register, {
+// данные пользователя после этих запросов берутся из getMe(), поэтому их ответ не используем
+export function register(payload: RegisterPayload): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.register, {
     method: HttpMethods.POST,
     body: JSON.stringify(payload),
   })
 }
 
-export function login(payload: LoginPayload): Promise<User> {
-  return commonRequest<User>(API_URLS.auth.login, {
+export function login(payload: LoginPayload): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.login, {
     method: HttpMethods.POST,
     body: JSON.stringify(payload),
   })
@@ -38,19 +40,33 @@ export function getMe(): Promise<User> {
   return request<User>(API_URLS.auth.me, { schema: userSchema })
 }
 
+export interface UpdateMePayload {
+  name?: string
+  /** ISO 4217 код валюты */
+  currency?: string
+}
+
+export function updateMe(payload: UpdateMePayload): Promise<User> {
+  return request<User>(API_URLS.auth.me, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+    schema: userSchema,
+  })
+}
+
 export async function logout(): Promise<void> {
   await request(API_URLS.auth.logout, { method: HttpMethods.POST })
 }
 
-export function loginTelegram(data: TelegramAuthData): Promise<User> {
-  return commonRequest<User>(API_URLS.auth.telegram, {
+export function loginTelegram(data: TelegramAuthData): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.telegram, {
     method: HttpMethods.POST,
     body: JSON.stringify(data),
   })
 }
 
-export function loginGoogle(credential: string): Promise<User> {
-  return commonRequest<User>(API_URLS.auth.google, {
+export function loginGoogle(credential: string): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.google, {
     method: HttpMethods.POST,
     body: JSON.stringify({ credential }),
   })

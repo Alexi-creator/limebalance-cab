@@ -38,7 +38,7 @@ function EmailForm({ onBack }: { onBack: () => void }) {
 
   const authSchema = z.object({
     email: z.email(t("auth.email_error")),
-    password: z.string().min(6, t("auth.password_error")),
+    password: z.string().min(8, t("auth.password_error")),
   })
 
   type AuthFormValues = z.infer<typeof authSchema>

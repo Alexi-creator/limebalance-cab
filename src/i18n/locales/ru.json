@@ -11,7 +11,7 @@
     "email_error": "Некорректный email",
     "password_label": "Пароль",
     "password_placeholder": "••••••",
-    "password_error": "Минимум 6 символов",
+    "password_error": "Минимум 8 символов",
     "invalid_credentials": "Неверный email или пароль",
     "submit": "Войти",
     "back": "Назад",
@@ -36,7 +36,7 @@
     "email_error": "Некорректный email",
     "password_label": "Пароль",
     "password_placeholder": "••••••",
-    "password_error": "Минимум 6 символов",
+    "password_error": "Минимум 8 символов",
     "confirm_password_label": "Подтвердите пароль",
     "confirm_password_placeholder": "••••••",
     "confirm_password_error": "Пароли не совпадают",
@@ -59,6 +59,19 @@
     "account": "Аккаунт",
     "logout": "Выйти",
     "auth": "Авторизация"
+  },
+  "settings": {
+    "title": "Настройки",
+    "subtitle": "Управление аккаунтом и предпочтениями",
+    "name_label": "Имя",
+    "name_placeholder": "Иван Иванов",
+    "currency_label": "Валюта",
+    "currency_description": "Используется для отображения сумм по всему приложению",
+    "currency_placeholder": "Выберите валюту",
+    "currency_not_found": "Ничего не найдено",
+    "save": "Сохранить",
+    "saved": "Настройки сохранены",
+    "error": "Не удалось сохранить настройки"
   },
   "app": {
     "name": "LimeBalance"

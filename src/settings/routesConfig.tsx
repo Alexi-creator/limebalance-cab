@@ -16,6 +16,9 @@ const GoalsPage = lazy(() => import("@pages/GoalsPage").then((m) => ({ default: 
 const InvestmentsPage = lazy(() =>
   import("@pages/InvestmentsPage").then((m) => ({ default: m.InvestmentsPage })),
 )
+const SettingsPage = lazy(() =>
+  import("@pages/SettingsPage").then((m) => ({ default: m.SettingsPage })),
+)
 const AuthPage = lazy(() => import("@pages/AuthPage").then((m) => ({ default: m.AuthPage })))
 const RegisterPage = lazy(() =>
   import("@pages/RegisterPage").then((m) => ({ default: m.RegisterPage })),
@@ -28,6 +31,7 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Analytics, element: <AnalyticsPage /> },
   { path: RouteNames.Goals, element: <GoalsPage /> },
   { path: RouteNames.Investments, element: <InvestmentsPage /> },
+  { path: RouteNames.Settings, element: <SettingsPage /> },
 ]
 
 export const publicRoutes: RouteConfig[] = [
