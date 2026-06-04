@@ -8,6 +8,7 @@ export const RouteNames = {
   Investments: "/investments",
   Categories: "/categories",
   Settings: "/settings",
+  SettingsSecurity: "/settings/security",
 } as const
 
 export type RouteName = (typeof RouteNames)[keyof typeof RouteNames]

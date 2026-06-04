@@ -56,6 +56,24 @@ export function updateMe(payload: UpdateMePayload): Promise<User> {
   })
 }
 
+export interface CredentialsPayload {
+  /** почта; передаётся только при первичной привязке, когда её ещё нет */
+  email?: string
+  /** новый пароль */
+  password: string
+  /** текущий пароль; требуется при смене пароля, когда почта уже привязана */
+  currentPassword?: string
+}
+
+// задать почту+пароль (если почты нет) или сменить пароль (если почта уже привязана)
+export function setCredentials(payload: CredentialsPayload): Promise<User> {
+  return request<User>(API_URLS.auth.credentials, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+    schema: userSchema,
+  })
+}
+
 export async function logout(): Promise<void> {
   await request(API_URLS.auth.logout, { method: HttpMethods.POST })
 }

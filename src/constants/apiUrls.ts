@@ -9,6 +9,7 @@ export const API_URLS = {
     refresh: `${API_URL}/auth/refresh`,
     logout: `${API_URL}/auth/logout`,
     me: `${API_URL}/auth/me`,
+    credentials: `${API_URL}/auth/me/credentials`,
     linkGoogle: `${API_URL}/auth/link/google`,
     linkTelegram: `${API_URL}/auth/link/telegram`,
   },

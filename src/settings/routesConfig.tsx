@@ -32,6 +32,7 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Goals, element: <GoalsPage /> },
   { path: RouteNames.Investments, element: <InvestmentsPage /> },
   { path: RouteNames.Settings, element: <SettingsPage /> },
+  { path: RouteNames.SettingsSecurity, element: <SettingsPage /> },
 ]
 
 export const publicRoutes: RouteConfig[] = [

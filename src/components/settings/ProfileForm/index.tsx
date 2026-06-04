@@ -8,9 +8,10 @@ import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 /**
- * Форма профиля пользователя: имя и валюта. Инит-значения берём из данных пользователя,
+ * Форма общих настроек: имя и валюта. Инит-значения берём из данных пользователя,
  * опции валют — уникальные коды из regionToCurrency с локализованным названием.
  * Сохраняем через PATCH /auth/me и обновляем пользователя в сторе ответом сервера.
+ * Почта и пароль вынесены в отдельную вкладку (SecurityForm).
  */
 export function ProfileForm() {
   const { t, i18n } = useTranslation()
