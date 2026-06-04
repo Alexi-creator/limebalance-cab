@@ -2,6 +2,7 @@ export const expenseKeys = {
   all: ["expenses"] as const,
   summary: (months: number) => ["expenses", "summary", months] as const,
   month: (month: string) => ["expenses", "month", month] as const,
+  range: (from: string, to: string) => ["expenses", "range", from, to] as const,
   categories: ["expenses", "categories"] as const,
   categoriesStats: ["expenses", "categories", "stats"] as const,
 }

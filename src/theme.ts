@@ -1,6 +1,7 @@
 import {
   createTheme,
   Modal,
+  Notification,
   NumberInput,
   PasswordInput,
   Select,
@@ -36,6 +37,17 @@ export const theme = createTheme({
     Paper: {
       defaultProps: { withBorder: true },
     },
+    // заливаем весь тост цветом (зелёный по умолчанию, красный для ошибок), текст — белый,
+    // иначе цвет красит лишь тонкую полоску слева и карточка сливается с фоном страницы
+    Notification: Notification.extend({
+      defaultProps: { color: "green" },
+      styles: {
+        root: { backgroundColor: "var(--notification-color)" },
+        title: { color: "var(--mantine-color-white)" },
+        description: { color: "var(--mantine-color-white)" },
+        closeButton: { color: "var(--mantine-color-white)" },
+      },
+    }),
     TextInput: TextInput.extend({ styles: floatingLabel }),
     PasswordInput: PasswordInput.extend({ styles: floatingLabel }),
     NumberInput: NumberInput.extend({ styles: floatingLabel }),

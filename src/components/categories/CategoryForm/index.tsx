@@ -18,6 +18,7 @@ import {
   Text,
   TextInput,
 } from "@mantine/core"
+import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
@@ -28,6 +29,13 @@ import { EMOJI_PALETTE } from "../config"
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
 const NAME_MAX = 32
+
+// из произвольного ввода/вставки оставляем ровно один графемный кластер (эмодзи могут
+// состоять из нескольких код-юнитов); берём последний — чтобы новый символ заменял старый
+function lastGrapheme(input: string): string {
+  const graphemes = [...new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(input)]
+  return graphemes.at(-1)?.segment ?? ""
+}
 
 interface Props {
   /** Передан — режим редактирования (PATCH); тип категории при этом сменить нельзя. */
@@ -86,8 +94,13 @@ export function CategoryForm({ category, defaultType }: Props) {
     },
   })
 
-  const name = watch("name")
   const emoji = watch("emoji")
+
+  // поле ручного ввода держим отдельно: пустое по умолчанию, чтобы был виден плейсхолдер
+  // «Свой»; при редактировании показываем текущий эмодзи, только если он не из палитры
+  const [custom, setCustom] = useState(
+    category?.emoji && !EMOJI_PALETTE.includes(category.emoji) ? category.emoji : "",
+  )
 
   const mutation = useMutation({
     mutationFn: (payload: CategoryPayload) => {
@@ -104,7 +117,14 @@ export function CategoryForm({ category, defaultType }: Props) {
       queryClient.invalidateQueries({ queryKey: keys.categories })
       // имя/эмодзи категории видны в списке операций — обновим и его
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+      notifications.show({
+        color: "green",
+        message: isEdit ? "Категория обновлена" : "Категория создана",
+      })
       close()
+    },
+    onError: () => {
+      notifications.show({ color: "red", message: "Не удалось сохранить категорию" })
     },
   })
 
@@ -133,14 +153,27 @@ export function CategoryForm({ category, defaultType }: Props) {
           autoFocus
           placeholder={isExpense ? "Например, Продукты" : "Например, Зарплата"}
           maxLength={NAME_MAX}
-          description={`${name.length}/${NAME_MAX}`}
           error={errors.name?.message}
         />
 
         <Box>
-          <Text size="sm" fw={500} mb={6}>
-            Эмодзи
-          </Text>
+          <Group justify="space-between" align="center" mb={6}>
+            <Text size="sm" fw={500}>
+              Эмодзи
+            </Text>
+            <TextInput
+              size="xs"
+              w={64}
+              placeholder="Свой"
+              value={custom}
+              onChange={(e) => {
+                const v = lastGrapheme(e.currentTarget.value)
+                setCustom(v)
+                setValue("emoji", v)
+              }}
+              styles={{ input: { textAlign: "center" } }}
+            />
+          </Group>
           <ScrollArea h={132} type="auto">
             <SimpleGrid cols={8} spacing={6}>
               {EMOJI_PALETTE.map((e) => (
@@ -151,7 +184,10 @@ export function CategoryForm({ category, defaultType }: Props) {
                   radius="sm"
                   variant={emoji === e ? "light" : "default"}
                   color={emoji === e ? "lime" : "gray"}
-                  onClick={() => setValue("emoji", emoji === e ? "" : e)}
+                  onClick={() => {
+                    setCustom("")
+                    setValue("emoji", emoji === e ? "" : e)
+                  }}
                 >
                   <Text size="md">{e}</Text>
                 </ActionIcon>

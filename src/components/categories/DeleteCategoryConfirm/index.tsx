@@ -5,6 +5,7 @@ import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
 import { Alert, Button, Group, Stack, Text } from "@mantine/core"
+import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -27,6 +28,7 @@ export function DeleteCategoryConfirm({ category, isExpense }: Props) {
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: keys.categories })
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+      notifications.show({ color: "green", message: "Категория удалена" })
       close()
     },
   })
@@ -36,8 +38,9 @@ export function DeleteCategoryConfirm({ category, isExpense }: Props) {
       <Text size="sm">Удалить категорию «{category.name}»? Действие необратимо.</Text>
 
       {category.count > 0 && (
-        <Alert variant="light" color="orange" icon={<IconAlertTriangle size={16} />} radius="md">
-          В категории {category.count} операций — удаление может затронуть их.
+        <Alert variant="light" color="red" icon={<IconAlertTriangle size={16} />} radius="md">
+          Вместе с категорией <b>безвозвратно</b> удалятся все её данные — {category.count} операций.
+          Это действие нельзя отменить.
         </Alert>
       )}
 

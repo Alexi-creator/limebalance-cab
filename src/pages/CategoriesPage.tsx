@@ -2,7 +2,7 @@ import { getExpenseCategoriesStats } from "@api/expenses"
 import { getIncomeCategoriesStats } from "@api/incomes"
 import type { CategoryStats } from "@appTypes/category"
 import { CategoryForm } from "@components/categories/CategoryForm"
-import { EMOJI_PALETTE } from "@components/categories/config"
+import { COLOR_PALETTE, EMOJI_PALETTE } from "@components/categories/config"
 import { DeleteCategoryConfirm } from "@components/categories/DeleteCategoryConfirm"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
@@ -27,19 +27,6 @@ import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 
 const GRID_COLS = { base: 1, sm: 2, lg: 3, xl: 4 }
-
-const COLOR_PALETTE = [
-  "var(--mantine-color-lime-4)",
-  "var(--mantine-color-green-5)",
-  "var(--mantine-color-yellow-5)",
-  "var(--mantine-color-red-5)",
-  "var(--mantine-color-blue-5)",
-  "var(--mantine-color-cyan-5)",
-  "var(--mantine-color-grape-5)",
-  "var(--mantine-color-orange-5)",
-  "var(--mantine-color-teal-5)",
-  "var(--mantine-color-pink-5)",
-]
 
 /** Статистика категории + готовые к показу icon/color (emoji — с бэка либо фолбэк из палитры). */
 interface DisplayCategory extends CategoryStats {

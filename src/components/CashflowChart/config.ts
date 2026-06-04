@@ -1,6 +1,8 @@
-/** Цвета линий: доход (lime) и расход (red). */
-export const ACCENT = "var(--mantine-color-lime-4)"
-export const NEG = "var(--mantine-color-red-5)"
+import { EXPENSE_COLOR, INCOME_COLOR } from "@constants/chartColors"
+
+/** Цвета линий: доход (зелёный) и расход (красный). */
+export const ACCENT = INCOME_COLOR
+export const NEG = EXPENSE_COLOR
 
 /** Геометрия SVG-области графика (viewBox и внутренние отступы). */
 export const CHART = {

@@ -1,3 +1,17 @@
+/** Палитра цветов категорий: назначается по индексу на карточках, в графиках и доната. */
+export const COLOR_PALETTE = [
+  "var(--mantine-color-lime-4)",
+  "var(--mantine-color-green-5)",
+  "var(--mantine-color-yellow-5)",
+  "var(--mantine-color-red-5)",
+  "var(--mantine-color-blue-5)",
+  "var(--mantine-color-cyan-5)",
+  "var(--mantine-color-grape-5)",
+  "var(--mantine-color-orange-5)",
+  "var(--mantine-color-teal-5)",
+  "var(--mantine-color-pink-5)",
+]
+
 /** Палитра эмодзи для выбора в форме категории и фолбэка на карточках. */
 export const EMOJI_PALETTE = [
   "🛒",
