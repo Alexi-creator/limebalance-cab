@@ -10,6 +10,8 @@ export interface CreateExpensePayload {
   categoryId: string
   amount: number
   description: string
+  /** Код валюты (ISO 4217), напр. «USD». */
+  currency: string
   /** ISO-таймстамп; если не передан — бэкенд проставит текущий момент. */
   date?: string
 }

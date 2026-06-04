@@ -1,7 +1,14 @@
+import { getExpenseCategories } from "@api/expenses"
+import { getIncomeCategories } from "@api/incomes"
 import type { Transaction } from "@appTypes/transaction"
+import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
+import { expenseKeys } from "@constants/queries/expenses"
+import { incomeKeys } from "@constants/queries/incomes"
 import { dateFnsLocales } from "@i18n/languages.ts"
+import { useQuery } from "@tanstack/react-query"
 import { enUS } from "date-fns/locale"
 import { DataTable } from "mantine-datatable"
+import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { PAGE_SIZE_OPTIONS } from "../config"
 import { getNetTotal } from "../helpers"
@@ -35,10 +42,35 @@ export function TransactionsTable({
   const { i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
 
+  // эмодзи категорий тянем из кеша (списки уже загружены) — id → эмодзи для колонки «Категория»
+  const { data: expenseCategories } = useQuery({
+    queryKey: expenseKeys.categories,
+    queryFn: getExpenseCategories,
+    staleTime: CATEGORY_STALE_TIME,
+  })
+  const { data: incomeCategories } = useQuery({
+    queryKey: incomeKeys.categories,
+    queryFn: getIncomeCategories,
+    staleTime: CATEGORY_STALE_TIME,
+  })
+
+  const emojiByCategoryId = useMemo(() => {
+    const map = new Map<string, string>()
+    for (const c of [...(expenseCategories ?? []), ...(incomeCategories ?? [])]) {
+      if (c.emoji) map.set(c.id, c.emoji)
+    }
+    return map
+  }, [expenseCategories, incomeCategories])
+
   return (
     <DataTable<Transaction>
       records={isError ? [] : transactions}
-      columns={getTransactionColumns(locale, i18n.language, getNetTotal(transactions))}
+      columns={getTransactionColumns(
+        locale,
+        i18n.language,
+        getNetTotal(transactions),
+        emojiByCategoryId,
+      )}
       pinLastColumn
       idAccessor={(t) => `${t.type}-${t.id}`}
       fetching={fetching}

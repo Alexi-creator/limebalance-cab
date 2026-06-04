@@ -1,5 +1,6 @@
 import type { Transaction } from "@appTypes/transaction"
-import { Badge, Text } from "@mantine/core"
+import { Center, Group, Text } from "@mantine/core"
+import { IconTag } from "@tabler/icons-react"
 import { formatCurrency } from "@utils/formatCurrency"
 import { format, type Locale } from "date-fns"
 import type { DataTableColumn } from "mantine-datatable"
@@ -9,11 +10,13 @@ import { RowActions } from "./RowActions"
 /**
  * Колонки таблицы операций. Формат даты/суммы зависит от локали и языка.
  * `pageTotal` — нетто текущей страницы, выводится в подвале колонки «Сумма».
+ * `emojiByCategoryId` — эмодзи категории по её id (берётся из загруженных списков категорий).
  */
 export function getTransactionColumns(
   locale: Locale,
   language: string,
   pageTotal: number,
+  emojiByCategoryId: Map<string, string>,
 ): DataTableColumn<Transaction>[] {
   return [
     {
@@ -29,17 +32,36 @@ export function getTransactionColumns(
     {
       accessor: "categoryName",
       title: "Категория",
-      width: 170,
-      render: (t) =>
-        t.categoryName ? (
-          <Badge variant="default" size="sm">
-            {t.categoryName}
-          </Badge>
-        ) : (
-          <Text size="xs" c="dimmed">
-            —
-          </Text>
-        ),
+      width: 190,
+      render: (t) => {
+        if (!t.categoryName)
+          return (
+            <Text size="xs" c="dimmed">
+              —
+            </Text>
+          )
+        const emoji = emojiByCategoryId.get(t.categoryId)
+        return (
+          <Group gap={8} wrap="nowrap" style={{ minWidth: 0 }}>
+            <Center
+              w={26}
+              h={26}
+              fz={14}
+              style={{
+                borderRadius: 8,
+                flexShrink: 0,
+                background: "var(--mantine-color-default-hover)",
+                border: "1px solid var(--mantine-color-default-border)",
+              }}
+            >
+              {emoji ?? <IconTag size={14} opacity={0.5} />}
+            </Center>
+            <Text size="sm" truncate>
+              {t.categoryName}
+            </Text>
+          </Group>
+        )
+      },
     },
     {
       accessor: "date",

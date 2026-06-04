@@ -33,6 +33,8 @@ export function getTransactions(params: GetTransactionsParams) {
 export interface UpdateTransactionPayload {
   amount?: number
   description?: string
+  /** Код валюты (ISO 4217), напр. «USD». */
+  currency?: string
   /** ISO-таймстамп локального времени пользователя. */
   date?: string
 }

@@ -9,6 +9,8 @@ export const transactionSchema = z.object({
   categoryId: z.string(),
   categoryName: z.string().nullable(),
   amount: z.coerce.number(),
+  /** Код валюты операции (ISO 4217); может отсутствовать у старых записей. */
+  currency: z.string().nullish(),
   description: z.string(),
   date: z.coerce.date(),
   type: transactionTypeSchema,

@@ -5,24 +5,30 @@ import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
+import { CURRENCY_CODES } from "@constants/regionToCurrency"
+import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
+  Anchor,
   Box,
   Button,
   Group,
   NumberInput,
   SegmentedControl,
+  Select,
   Stack,
   Text,
   Textarea,
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import { useAuthStore } from "@store/authStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { localDayToApiDate } from "@utils/localDayToApiDate"
 import { format } from "date-fns"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 import { z } from "zod"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
@@ -33,6 +39,7 @@ const createSchema = z.object({
     .union([z.number(), z.literal("")])
     .refine((v) => v !== "" && v > 0, "Введите сумму больше 0"),
   categoryId: z.string().min(1, "Выберите категорию"),
+  currency: z.string().min(1, "Выберите валюту"),
   day: z.union([z.string(), z.null()]).refine((v) => !!v && v.length > 0, "Укажите дату"),
   description: z.string(),
 })
@@ -54,6 +61,13 @@ interface Props {
 export function TransactionForm({ onSubmit, onCancel }: Props) {
   const { i18n } = useTranslation()
   const queryClient = useQueryClient()
+  const userCurrency = useAuthStore((s) => s.user?.currency)
+
+  // коды валют + локализованные названия (например «USD — доллар США»)
+  const currencyOptions = useMemo(() => {
+    const names = new Intl.DisplayNames(i18n.language, { type: "currency" })
+    return CURRENCY_CODES.map((code) => ({ value: code, label: `${code} — ${names.of(code)}` }))
+  }, [i18n.language])
 
   const {
     control,
@@ -68,6 +82,7 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
       kind: "expense",
       amount: "",
       categoryId: "",
+      currency: userCurrency ?? "",
       day: format(new Date(), "yyyy-MM-dd"),
       description: "",
     },
@@ -82,6 +97,9 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
     queryFn: isExpense ? getExpenseCategories : getIncomeCategories,
     staleTime: CATEGORY_STALE_TIME,
   })
+
+  // у текущего типа (расход/доход) нет ни одной категории — выбирать нечего
+  const noCategories = !!categories && categories.length === 0
 
   // при смене типа/загрузке списка выбираем первую категорию, если текущей нет среди доступных
   useEffect(() => {
@@ -131,6 +149,7 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
     mutation.mutate({
       categoryId: values.categoryId,
       amount: Number(values.amount),
+      currency: values.currency,
       description: values.description,
       date: localDayToApiDate(values.day as string),
     })
@@ -158,47 +177,78 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
           )}
         />
 
-        <Controller
-          name="amount"
-          control={control}
-          render={({ field }) => (
-            <NumberInput
-              {...field}
-              label="Сумма"
-              size="md"
-              autoFocus
-              hideControls
-              min={0}
-              thousandSeparator=" "
-              suffix=" ₽"
-              error={errors.amount?.message}
-              styles={{
-                input: { fontFamily: "var(--mantine-font-family-monospace)", fontSize: 22 },
-              }}
-            />
-          )}
-        />
+        <Group align="flex-start" gap="sm" wrap="nowrap">
+          <Controller
+            name="amount"
+            control={control}
+            render={({ field }) => (
+              <NumberInput
+                {...field}
+                label="Сумма"
+                size="md"
+                autoFocus
+                hideControls
+                min={0}
+                thousandSeparator=" "
+                error={errors.amount?.message}
+                style={{ flex: 1 }}
+                styles={{
+                  input: { fontFamily: "var(--mantine-font-family-monospace)", fontSize: 22 },
+                }}
+              />
+            )}
+          />
+
+          <Controller
+            name="currency"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                label="Валюта"
+                size="md"
+                w={140}
+                data={currencyOptions}
+                value={field.value || null}
+                onChange={(v) => field.onChange(v ?? "")}
+                searchable
+                allowDeselect={false}
+                nothingFoundMessage="Ничего не найдено"
+                error={errors.currency?.message}
+              />
+            )}
+          />
+        </Group>
 
         <Box>
           <Text size="xs" c="dimmed" tt="uppercase" mb={6}>
             Категория
           </Text>
-          <Group gap={6}>
-            {categories?.map((c) => (
-              <Button
-                key={c.id}
-                type="button"
-                variant={categoryId === c.id ? "light" : "default"}
-                color={categoryId === c.id ? "lime" : "gray"}
-                size="xs"
-                radius="sm"
-                onClick={() => setValue("categoryId", c.id, { shouldValidate: true })}
-              >
-                {c.name}
-              </Button>
-            ))}
-          </Group>
-          {errors.categoryId && (
+          {noCategories ? (
+            <Text size="sm" c="dimmed">
+              Нет ни одной {isExpense ? "категории расходов" : "категории доходов"}.{" "}
+              <Anchor component={Link} to={RouteNames.Categories}>
+                Добавьте группу
+              </Anchor>
+            </Text>
+          ) : (
+            <Group gap={6}>
+              {categories?.map((c) => (
+                <Button
+                  key={c.id}
+                  type="button"
+                  variant={categoryId === c.id ? "light" : "default"}
+                  color={categoryId === c.id ? "lime" : "gray"}
+                  size="xs"
+                  radius="sm"
+                  onClick={() => setValue("categoryId", c.id, { shouldValidate: true })}
+                >
+                  {c.name}
+                </Button>
+              ))}
+            </Group>
+          )}
+          {errors.categoryId && !noCategories && (
             <Text size="xs" c="red.6" mt={6}>
               {errors.categoryId.message}
             </Text>
@@ -233,7 +283,7 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
           <Button variant="default" onClick={onCancel} disabled={mutation.isPending}>
             Отмена
           </Button>
-          <Button type="submit" loading={mutation.isPending}>
+          <Button type="submit" loading={mutation.isPending} disabled={noCategories}>
             Сохранить операцию
           </Button>
         </Group>
