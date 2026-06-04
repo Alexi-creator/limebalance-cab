@@ -21,6 +21,7 @@ import { useAuthStore } from "@store/authStore"
 import { IconBrandTelegram, IconMail } from "@tabler/icons-react"
 import type { TelegramAuthData } from "@telegram-auth/react"
 import { LoginButton } from "@telegram-auth/react"
+import { syncTimezone } from "@utils/syncTimezone"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -58,7 +59,9 @@ function EmailForm({ onBack }: { onBack: () => void }) {
     setIsPending(true)
     try {
       await login(data)
-      setUser(await getMe())
+      const user = await getMe()
+      setUser(user)
+      syncTimezone(user)
       navigate(RouteNames.Home)
     } catch (err) {
       const message =
@@ -115,7 +118,9 @@ export function AuthPage() {
   const handleTelegramAuth = async (data: TelegramAuthData) => {
     try {
       await loginTelegram(data)
-      setUser(await getMe())
+      const user = await getMe()
+      setUser(user)
+      syncTimezone(user)
       navigate(RouteNames.Home)
     } catch {
       // stay on page
@@ -125,7 +130,9 @@ export function AuthPage() {
   const handleGoogleAuth = async (credential: string) => {
     try {
       await loginGoogle(credential)
-      setUser(await getMe())
+      const user = await getMe()
+      setUser(user)
+      syncTimezone(user)
       navigate(RouteNames.Home)
     } catch {
       // stay on page

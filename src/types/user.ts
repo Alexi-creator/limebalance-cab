@@ -7,6 +7,7 @@ export const userSchema = z.object({
   name: z.string().nullish(),
   // locale: z.string().default("en"),
   currency: z.string().nullish(),
+  timezone: z.string().nullish(),
   subscription: z.string().nullish(),
 })
 

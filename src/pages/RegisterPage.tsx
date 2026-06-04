@@ -22,6 +22,7 @@ import { IconBrandTelegram, IconMail } from "@tabler/icons-react"
 import type { TelegramAuthData } from "@telegram-auth/react"
 import { LoginButton } from "@telegram-auth/react"
 import { getBrowserCurrency } from "@utils/getBrowserCurrency"
+import { syncTimezone } from "@utils/syncTimezone"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -66,7 +67,9 @@ function EmailForm({ onBack }: { onBack: () => void }) {
     try {
       await register({ ...payload, currency: getBrowserCurrency() })
       // регистрация уже создаёт сессию; полные данные пользователя берём из /me
-      setUser(await getMe())
+      const user = await getMe()
+      setUser(user)
+      syncTimezone(user)
       navigate(RouteNames.Home)
     } catch (err) {
       const message =
@@ -130,7 +133,9 @@ export function RegisterPage() {
   const handleTelegramAuth = async (data: TelegramAuthData) => {
     try {
       await loginTelegram(data)
-      setUser(await getMe())
+      const user = await getMe()
+      setUser(user)
+      syncTimezone(user)
       navigate(RouteNames.Home)
     } catch {
       // stay on page
@@ -140,7 +145,9 @@ export function RegisterPage() {
   const handleGoogleAuth = async (credential: string) => {
     try {
       await loginGoogle(credential)
-      setUser(await getMe())
+      const user = await getMe()
+      setUser(user)
+      syncTimezone(user)
       navigate(RouteNames.Home)
     } catch {
       // stay on page

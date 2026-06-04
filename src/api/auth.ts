@@ -44,6 +44,8 @@ export interface UpdateMePayload {
   name?: string
   /** ISO 4217 код валюты */
   currency?: string
+  /** IANA-таймзона, напр. «Europe/Moscow» */
+  timezone?: string
 }
 
 export function updateMe(payload: UpdateMePayload): Promise<User> {

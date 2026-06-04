@@ -1,6 +1,7 @@
 import { ApiError } from "@api/apiError"
 import { checkAuth } from "@api/auth"
 import { useAuthStore } from "@store/authStore"
+import { syncTimezone } from "@utils/syncTimezone"
 import { useEffect, useRef } from "react"
 
 export function useAuthInit() {
@@ -15,6 +16,7 @@ export function useAuthInit() {
       try {
         const user = await checkAuth()
         setUser(user)
+        syncTimezone(user)
       } catch (err) {
         const isAuthError = err instanceof ApiError && err.status < 500
         if (isAuthError) setUser(null)
