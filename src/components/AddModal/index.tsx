@@ -29,6 +29,8 @@ interface AddModalProps {
   type?: AddType
   /** Если `true` — скрывает вкладки и не позволяет сменить тип формы */
   lockType?: boolean
+  /** Предзаполнение формы операции (например, при создании из карточки категории) */
+  transactionDefaults?: { kind?: "income" | "expense"; categoryId?: string }
 }
 
 /**
@@ -36,7 +38,11 @@ interface AddModalProps {
  * Содержит вкладки для переключения между типами: операция, цель, актив, перевод.
  * При `lockType=true` показывает только одну фиксированную форму без вкладок.
  */
-export function AddModal({ type: initialType = "transaction", lockType = false }: AddModalProps) {
+export function AddModal({
+  type: initialType = "transaction",
+  lockType = false,
+  transactionDefaults,
+}: AddModalProps) {
   const [type, setType] = useState<AddType>(initialType)
   const close = useModalStore((s) => s.close)
   const setTitle = useModalStore((s) => s.setTitle)
@@ -76,7 +82,14 @@ export function AddModal({ type: initialType = "transaction", lockType = false }
         </Tabs>
       )}
 
-      {type === "transaction" && <TransactionForm onSubmit={close} onCancel={close} />}
+      {type === "transaction" && (
+        <TransactionForm
+          onSubmit={close}
+          onCancel={close}
+          initialKind={transactionDefaults?.kind}
+          initialCategoryId={transactionDefaults?.categoryId}
+        />
+      )}
       {type === "goal" && <GoalForm onSubmit={close} onCancel={close} />}
       {type === "asset" && <AssetForm onSubmit={close} onCancel={close} />}
       {type === "transfer" && <TransferForm onSubmit={close} onCancel={close} />}

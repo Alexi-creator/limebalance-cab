@@ -1,8 +1,10 @@
+import { RouteNames } from "@constants/routeNames"
 import { ActionIcon, Box, Group, Paper, Progress, Stack, Text, Tooltip } from "@mantine/core"
-import { IconEdit, IconTrash } from "@tabler/icons-react"
+import { IconEdit, IconPlus, IconReceipt, IconTrash } from "@tabler/icons-react"
 import { formatCurrency } from "@utils/formatCurrency"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 import { baseAmount, pluralRu } from "../helpers"
 import type { DisplayCategory } from "../types"
 
@@ -13,10 +15,12 @@ interface Props {
   isExpense: boolean
   onEdit: () => void
   onDelete: () => void
+  /** Быстро создать операцию по этой категории */
+  onAdd: () => void
 }
 
 /** Карточка категории: иконка, имя, число операций, сумма и шкала доли от максимума. */
-export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete }: Props) {
+export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd }: Props) {
   const { i18n } = useTranslation()
   const language = i18n.language
   const [hovered, setHovered] = useState(false)
@@ -49,21 +53,38 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete }: Pro
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Group
-        gap={4}
-        pos="absolute"
-        top={8}
-        right={8}
-        style={{ opacity: hovered ? 1 : 0, transition: "opacity .15s" }}
-      >
-        <Tooltip label="Изменить">
-          <ActionIcon variant="subtle" size="sm" color="gray" onClick={onEdit}>
-            <IconEdit size={14} />
-          </ActionIcon>
-        </Tooltip>
-        <Tooltip label="Удалить">
-          <ActionIcon variant="subtle" size="sm" color="gray" onClick={onDelete}>
-            <IconTrash size={14} />
+      <Group gap={4} pos="absolute" top={8} right={8} wrap="nowrap">
+        {/* редактирование/удаление — только при наведении; добавление операции видно всегда */}
+        <Group
+          gap={4}
+          wrap="nowrap"
+          style={{ opacity: hovered ? 1 : 0, transition: "opacity .15s" }}
+        >
+          <Tooltip label="Операции по категории">
+            <ActionIcon
+              component={Link}
+              to={`${RouteNames.Transactions}?type=${isExpense ? "expense" : "income"}&categoryId=${cat.id}`}
+              variant="subtle"
+              size="sm"
+              color="gray"
+            >
+              <IconReceipt size={14} />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip label="Изменить">
+            <ActionIcon variant="subtle" size="sm" color="gray" onClick={onEdit}>
+              <IconEdit size={14} />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip label="Удалить">
+            <ActionIcon variant="subtle" size="sm" color="gray" onClick={onDelete}>
+              <IconTrash size={14} />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
+        <Tooltip label={isExpense ? "Добавить расход" : "Добавить доход"}>
+          <ActionIcon variant="light" size="sm" color="lime" onClick={onAdd}>
+            <IconPlus size={14} />
           </ActionIcon>
         </Tooltip>
       </Group>

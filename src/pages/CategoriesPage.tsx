@@ -1,6 +1,7 @@
 import { getExpenseCategoriesStats } from "@api/expenses"
 import { getIncomeCategoriesStats } from "@api/incomes"
 import type { CategoryStats } from "@appTypes/category"
+import { AddModal } from "@components/AddModal"
 import { CategoriesSummary } from "@components/categories/CategoriesSummary"
 import { CategoryCard } from "@components/categories/CategoryCard"
 import { CategoryForm } from "@components/categories/CategoryForm"
@@ -58,6 +59,16 @@ export function CategoriesPage() {
         </Stack>
       ),
       children: <CategoryForm category={category} defaultType={tab} />,
+    })
+
+  // быстрое создание операции по конкретной категории: тип берём из текущей вкладки
+  const openAddTransaction = (categoryId: string) =>
+    openModal({
+      size: "lg",
+      centered: true,
+      children: (
+        <AddModal type="transaction" lockType transactionDefaults={{ kind: tab, categoryId }} />
+      ),
     })
 
   const openDelete = (category: CategoryStats) =>
@@ -129,6 +140,7 @@ export function CategoriesPage() {
                 isExpense={isExpense}
                 onEdit={() => openForm(c)}
                 onDelete={() => openDelete(c)}
+                onAdd={() => openAddTransaction(c.id)}
               />
             ))}
           </SimpleGrid>

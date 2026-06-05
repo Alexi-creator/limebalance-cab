@@ -1,9 +1,11 @@
 import { updateMe } from "@api/auth"
+import { expenseKeys } from "@constants/queries/expenses"
+import { incomeKeys } from "@constants/queries/incomes"
 import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { Button, Group, Select, Stack, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -17,6 +19,7 @@ export function ProfileForm() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
+  const queryClient = useQueryClient()
 
   const initialName = user?.name ?? ""
   const initialCurrency = user?.currency ?? ""
@@ -27,6 +30,11 @@ export function ProfileForm() {
     mutationFn: () => updateMe({ name: name.trim(), currency }),
     onSuccess: (updated) => {
       setUser(updated)
+      // валюта влияет на пересчёт сумм в стате категорий — обновляем её при смене
+      if (currency !== initialCurrency) {
+        queryClient.invalidateQueries({ queryKey: expenseKeys.categoriesStats })
+        queryClient.invalidateQueries({ queryKey: incomeKeys.categoriesStats })
+      }
       notifications.show({ color: "green", message: t("settings.saved") })
     },
     onError: () => {

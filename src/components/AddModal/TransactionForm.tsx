@@ -52,6 +52,10 @@ interface Props {
   onSubmit: () => void
   /** Вызывается при нажатии кнопки «Отмена» */
   onCancel: () => void
+  /** Предвыбранный тип операции (например, при создании из карточки категории) */
+  initialKind?: "income" | "expense"
+  /** Предвыбранная категория — её id подставляется в форму */
+  initialCategoryId?: string
 }
 
 /**
@@ -59,7 +63,12 @@ interface Props {
  * Тянет категории нужного типа, отправляет POST с локальной датой и после успеха
  * дописывает новую операцию прямо в кеш react-query (без рефетча).
  */
-export function TransactionForm({ onSubmit, onCancel }: Props) {
+export function TransactionForm({
+  onSubmit,
+  onCancel,
+  initialKind,
+  initialCategoryId,
+}: Props) {
   const { i18n } = useTranslation()
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
@@ -74,9 +83,9 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
   } = useForm<CreateFormValues>({
     resolver: zodResolver(createSchema),
     defaultValues: {
-      kind: "expense",
+      kind: initialKind ?? "expense",
       amount: "",
-      categoryId: "",
+      categoryId: initialCategoryId ?? "",
       currency: userCurrency ?? "",
       day: format(new Date(), "yyyy-MM-dd"),
       description: "",
