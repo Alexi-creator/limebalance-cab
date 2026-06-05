@@ -21,6 +21,7 @@ import {
   Textarea,
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { localDayToApiDate } from "@utils/localDayToApiDate"
@@ -138,6 +139,10 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
       // статистика категорий устарела — пометим, чтобы перезапросилась при заходе на «Категории»
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
 
+      notifications.show({
+        color: "green",
+        message: isExpense ? "Расход добавлен" : "Доход добавлен",
+      })
       onSubmit()
     },
   })

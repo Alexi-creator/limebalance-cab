@@ -5,6 +5,7 @@ import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import { Button, Group, Paper, Stack, Text } from "@mantine/core"
+import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { format } from "date-fns"
@@ -31,6 +32,7 @@ export function DeleteTransactionConfirm({ transaction }: Props) {
       // статистика категорий устарела — перезапросится при заходе на «Категории»
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
+      notifications.show({ color: "green", message: "Операция удалена" })
       close()
     },
   })
