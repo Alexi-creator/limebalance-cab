@@ -20,6 +20,7 @@ export const TYPE_OPTIONS = [
 export const transactionsParamsSchema = z.object({
   type: z.enum(["income", "expense"]).optional().catch(undefined),
   categoryId: z.string().optional().catch(undefined),
+  currency: z.string().optional().catch(undefined),
   search: z.string().optional().catch(undefined),
   /** Диапазон дат операций, формат `YYYY-MM-DD`. */
   from: z.string().optional().catch(undefined),

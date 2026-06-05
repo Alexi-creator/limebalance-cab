@@ -24,6 +24,7 @@ export function TransactionsPage() {
   const apiParams = {
     type: params.type,
     categoryId: params.categoryId,
+    currency: params.currency,
     search: params.search,
     from: params.from,
     to: params.to,
@@ -95,6 +96,7 @@ export function TransactionsPage() {
                   Добавить операцию
                 </Button>
               </HoverCard.Target>
+
               <HoverCard.Dropdown>
                 <Text size="sm">
                   У вас нет ни одной категории.{" "}

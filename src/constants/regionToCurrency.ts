@@ -69,3 +69,6 @@ export const regionToCurrency: Record<string, string> = {
 
 /** Уникальные коды валют из карты, по алфавиту — список опций для выбора валюты в настройках. */
 export const CURRENCY_CODES = [...new Set(Object.values(regionToCurrency))].sort()
+
+/** Опции для Select валюты: значение и лейбл — просто код (`THB`), без расшифровки. */
+export const CURRENCY_OPTIONS = CURRENCY_CODES.map((code) => ({ value: code, label: code }))

@@ -1,7 +1,9 @@
 import { type UpdateTransactionPayload, updateTransaction } from "@api/transactions"
 import type { Transaction } from "@appTypes/transaction"
+import { expenseKeys } from "@constants/queries/expenses"
+import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
-import { CURRENCY_CODES } from "@constants/regionToCurrency"
+import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button, Group, NumberInput, Select, Stack, Textarea } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
@@ -10,9 +12,7 @@ import { useModalStore } from "@store/modalStore"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { localDayToApiDate } from "@utils/localDayToApiDate"
 import { format } from "date-fns"
-import { useMemo } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
 import { z } from "zod"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
@@ -37,16 +37,9 @@ interface Props {
  * Тип и категория не меняются. После успеха локально правит запись в кеше операций (без рефетча).
  */
 export function EditTransactionForm({ transaction }: Props) {
-  const { i18n } = useTranslation()
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
-
-  // коды валют + локализованные названия (например «USD — доллар США»)
-  const currencyOptions = useMemo(() => {
-    const names = new Intl.DisplayNames(i18n.language, { type: "currency" })
-    return CURRENCY_CODES.map((code) => ({ value: code, label: `${code} — ${names.of(code)}` }))
-  }, [i18n.language])
 
   const {
     control,
@@ -67,9 +60,11 @@ export function EditTransactionForm({ transaction }: Props) {
     mutationFn: (payload: UpdateTransactionPayload) =>
       updateTransaction(transaction.type, transaction.id, payload),
     onSuccess: () => {
-      // рефетч только списка операций (с текущими фильтрами) — чтобы строка пересортировалась
-      // после смены даты; категории/сводки не трогаем
+      // рефетч списка операций (с текущими фильтрами) — чтобы строка пересортировалась после смены даты
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+      // сумма/валюта могли поменяться — статистика категорий устарела
+      const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
+      queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       close()
     },
   })
@@ -112,7 +107,7 @@ export function EditTransactionForm({ transaction }: Props) {
                 {...field}
                 label="Валюта"
                 w={140}
-                data={currencyOptions}
+                data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
                 searchable

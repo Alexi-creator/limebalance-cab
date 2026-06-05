@@ -1,5 +1,7 @@
 import { deleteTransaction } from "@api/transactions"
 import type { Transaction } from "@appTypes/transaction"
+import { expenseKeys } from "@constants/queries/expenses"
+import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import { Button, Group, Paper, Stack, Text } from "@mantine/core"
@@ -24,8 +26,11 @@ export function DeleteTransactionConfirm({ transaction }: Props) {
   const mutation = useMutation({
     mutationFn: () => deleteTransaction(transaction.type, transaction.id),
     onSuccess: () => {
-      // только список операций (рефетч добивает страницу); категории не трогаем
+      // список операций (рефетч добивает страницу)
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+      // статистика категорий устарела — перезапросится при заходе на «Категории»
+      const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
+      queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       close()
     },
   })

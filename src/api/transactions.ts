@@ -7,6 +7,7 @@ import { HttpMethods } from "@constants/httpMethods"
 export interface GetTransactionsParams {
   type?: "income" | "expense"
   categoryId?: string
+  currency?: string
   search?: string
   from?: string
   to?: string
@@ -19,6 +20,7 @@ export function getTransactions(params: GetTransactionsParams) {
   const qs = new URLSearchParams()
   if (params.type) qs.set("type", params.type)
   if (params.categoryId) qs.set("categoryId", params.categoryId)
+  if (params.currency) qs.set("currency", params.currency)
   if (params.search) qs.set("search", params.search)
   if (params.from) qs.set("from", params.from)
   if (params.to) qs.set("to", params.to)

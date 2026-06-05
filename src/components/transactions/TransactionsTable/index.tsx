@@ -11,7 +11,6 @@ import { DataTable } from "mantine-datatable"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { PAGE_SIZE_OPTIONS } from "../config"
-import { getNetTotal } from "../helpers"
 import { getTransactionColumns } from "./settings"
 
 interface Props {
@@ -65,12 +64,7 @@ export function TransactionsTable({
   return (
     <DataTable<Transaction>
       records={isError ? [] : transactions}
-      columns={getTransactionColumns(
-        locale,
-        i18n.language,
-        getNetTotal(transactions),
-        emojiByCategoryId,
-      )}
+      columns={getTransactionColumns(locale, i18n.language, emojiByCategoryId)}
       pinLastColumn
       idAccessor={(t) => `${t.type}-${t.id}`}
       fetching={fetching}

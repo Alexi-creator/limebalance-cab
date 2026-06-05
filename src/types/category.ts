@@ -9,10 +9,24 @@ export const categorySchema = z.object({
 
 export type Category = z.infer<typeof categorySchema>
 
-/** Категория с агрегатами по операциям: `total` — сумма, `count` — число операций. */
-export const categoryStatsSchema = categorySchema.extend({
+/** Сумма операций категории в одной валюте. */
+export const categoryCurrencyTotalSchema = z.object({
+  currency: z.string(),
   total: z.coerce.number(),
   count: z.coerce.number(),
+})
+export type CategoryCurrencyTotal = z.infer<typeof categoryCurrencyTotalSchema>
+
+/**
+ * Категория с агрегатами по операциям. Операции могут быть в разных валютах:
+ * `totals` — разбивка по валютам, `approxTotal` — всё, приведённое к `baseCurrency`
+ * (null, если курсы недоступны или валюта неизвестна).
+ */
+export const categoryStatsSchema = categorySchema.extend({
+  count: z.coerce.number(),
+  totals: z.array(categoryCurrencyTotalSchema).default([]),
+  baseCurrency: z.string().nullish(),
+  approxTotal: z.coerce.number().nullish(),
 })
 
 export type CategoryStats = z.infer<typeof categoryStatsSchema>

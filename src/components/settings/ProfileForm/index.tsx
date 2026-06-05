@@ -1,20 +1,20 @@
 import { updateMe } from "@api/auth"
-import { CURRENCY_CODES } from "@constants/regionToCurrency"
+import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { Button, Group, Select, Stack, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { useMutation } from "@tanstack/react-query"
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 /**
  * Форма общих настроек: имя и валюта. Инит-значения берём из данных пользователя,
- * опции валют — уникальные коды из regionToCurrency с локализованным названием.
+ * опции валют — коды из regionToCurrency.
  * Сохраняем через PATCH /auth/me и обновляем пользователя в сторе ответом сервера.
  * Почта и пароль вынесены в отдельную вкладку (SecurityForm).
  */
 export function ProfileForm() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
 
@@ -22,12 +22,6 @@ export function ProfileForm() {
   const initialCurrency = user?.currency ?? ""
   const [name, setName] = useState(initialName)
   const [currency, setCurrency] = useState(initialCurrency)
-
-  // коды валют + локализованные названия (например «USD — доллар США»)
-  const options = useMemo(() => {
-    const names = new Intl.DisplayNames(i18n.language, { type: "currency" })
-    return CURRENCY_CODES.map((code) => ({ value: code, label: `${code} — ${names.of(code)}` }))
-  }, [i18n.language])
 
   const mutation = useMutation({
     mutationFn: () => updateMe({ name: name.trim(), currency }),
@@ -59,7 +53,7 @@ export function ProfileForm() {
         // встал бы на его место и наложился; поэтому рендерим подсказку под полем
         inputWrapperOrder={["label", "input", "description", "error"]}
         placeholder={t("settings.currency_placeholder")}
-        data={options}
+        data={CURRENCY_OPTIONS}
         value={currency || null}
         onChange={(v) => setCurrency(v ?? "")}
         searchable

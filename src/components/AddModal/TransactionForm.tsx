@@ -5,7 +5,7 @@ import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
-import { CURRENCY_CODES } from "@constants/regionToCurrency"
+import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
@@ -25,7 +25,7 @@ import { useAuthStore } from "@store/authStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { localDayToApiDate } from "@utils/localDayToApiDate"
 import { format } from "date-fns"
-import { useEffect, useMemo } from "react"
+import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
@@ -62,12 +62,6 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
   const { i18n } = useTranslation()
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
-
-  // коды валют + локализованные названия (например «USD — доллар США»)
-  const currencyOptions = useMemo(() => {
-    const names = new Intl.DisplayNames(i18n.language, { type: "currency" })
-    return CURRENCY_CODES.map((code) => ({ value: code, label: `${code} — ${names.of(code)}` }))
-  }, [i18n.language])
 
   const {
     control,
@@ -141,6 +135,9 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
       // объединённый список операций (страница «Операции») — рефетч с текущими фильтрами
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
 
+      // статистика категорий устарела — пометим, чтобы перезапросилась при заходе на «Категории»
+      queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
+
       onSubmit()
     },
   })
@@ -208,7 +205,7 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
                 label="Валюта"
                 size="md"
                 w={140}
-                data={currencyOptions}
+                data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
                 searchable
@@ -227,7 +224,11 @@ export function TransactionForm({ onSubmit, onCancel }: Props) {
           {noCategories ? (
             <Text size="sm" c="dimmed">
               Нет ни одной {isExpense ? "категории расходов" : "категории доходов"}.{" "}
-              <Anchor component={Link} to={RouteNames.Categories}>
+              <Anchor
+                component={Link}
+                to={`${RouteNames.Categories}?type=${kind}`}
+                onClick={onCancel}
+              >
                 Добавьте группу
               </Anchor>
             </Text>

@@ -3,6 +3,7 @@ import { getIncomeCategories } from "@api/incomes"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
+import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { ActionIcon, Button, Group, SegmentedControl, Select, TextInput } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue } from "@mantine/hooks"
@@ -60,6 +61,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
     setParams({
       type: undefined,
       categoryId: undefined,
+      currency: undefined,
       search: undefined,
       from: undefined,
       to: undefined,
@@ -118,6 +120,17 @@ export function TransactionsFilters({ params, setParams }: Props) {
         clearable
         searchable
         w={180}
+      />
+
+      <Select
+        label="Валюта"
+        placeholder="Все"
+        data={CURRENCY_OPTIONS}
+        value={params.currency ?? null}
+        onChange={(v) => setParams({ currency: v ?? undefined, page: 1 })}
+        clearable
+        searchable
+        w={120}
       />
 
       <DatePickerInput
