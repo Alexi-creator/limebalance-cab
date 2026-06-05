@@ -57,8 +57,9 @@ export function buildSummaryDataset(
     format(subMonths(now, count - 1 - i), "yyyy-MM"),
   )
 
-  const expMap = Object.fromEntries(expensesByMonth.map((m) => [m.month, parseFloat(m.total)]))
-  const incMap = Object.fromEntries(incomesByMonth.map((m) => [m.month, parseFloat(m.total)]))
+  // суммы месяцев приводим к базовой валюте пользователя (approxTotal); null → 0
+  const expMap = Object.fromEntries(expensesByMonth.map((m) => [m.month, m.approxTotal ?? 0]))
+  const incMap = Object.fromEntries(incomesByMonth.map((m) => [m.month, m.approxTotal ?? 0]))
 
   return {
     income: months.map((m) => incMap[m] ?? 0),

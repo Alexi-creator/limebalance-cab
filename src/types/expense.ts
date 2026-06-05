@@ -10,9 +10,30 @@ export const expenseSchema = z.object({
   category: categorySchema,
 })
 
+/** Сумма за период в одной валюте (валюты между собой не складываются). */
+export const summaryCurrencyTotalSchema = z.object({
+  currency: z.string(),
+  total: z.coerce.number(),
+  count: z.coerce.number(),
+})
+
+/** Месяц сводки: разбивка по валютам + прибл. сумма в базовой валюте. */
+export const monthSummarySchema = z.object({
+  month: z.string(),
+  totals: z.array(summaryCurrencyTotalSchema).default([]),
+  /** Прибл. сумма за месяц в базовой валюте; null, если курсы недоступны. */
+  approxTotal: z.coerce.number().nullable(),
+})
+
+/**
+ * Сводка трат за период. Операции могут быть в разных валютах: помесячно — `totals`
+ * (разбивка по валютам) и `approxTotal` (приведённое к `baseCurrency`); `total` —
+ * прибл. итог за весь период в базовой валюте.
+ */
 export const expensesSummarySchema = z.object({
-  total: z.string(),
-  byMonth: z.array(z.object({ month: z.string(), total: z.string() })),
+  baseCurrency: z.string(),
+  total: z.coerce.number().nullable(),
+  byMonth: z.array(monthSummarySchema),
 })
 
 /** Ответ POST /expenses: созданная строка без вложенной категории (только `categoryId`). */

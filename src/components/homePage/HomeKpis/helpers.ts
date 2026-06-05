@@ -27,12 +27,14 @@ export interface KpiMetric {
 
 interface BuildKpisParams {
   language: string
+  /** Базовая валюта пользователя — в ней показываем доход/расход (approxTotal). */
+  baseCurrency?: string
   income: KpiMetric
   expense: KpiMetric
 }
 
 /** Собирает массив KPI-карточек главной из статичных значений и метрик доход/расход. */
-export function buildKpis({ language, income, expense }: BuildKpisParams): Kpi[] {
+export function buildKpis({ language, baseCurrency, income, expense }: BuildKpisParams): Kpi[] {
   return [
     {
       key: "balance",
@@ -45,7 +47,7 @@ export function buildKpis({ language, income, expense }: BuildKpisParams): Kpi[]
     {
       key: "income",
       label: "Доход за месяц",
-      value: income.loading ? "—" : formatCurrency(income.total, language),
+      value: income.loading ? "—" : formatCurrency(income.total, language, baseCurrency),
       sub: income.hasData ? "за текущий месяц" : "нет данных",
       trend: 8.2,
       loading: income.loading,
@@ -55,7 +57,7 @@ export function buildKpis({ language, income, expense }: BuildKpisParams): Kpi[]
     {
       key: "expense",
       label: "Расход за месяц",
-      value: expense.loading ? "—" : formatCurrency(-expense.total, language),
+      value: expense.loading ? "—" : formatCurrency(-expense.total, language, baseCurrency),
       sub: expense.hasData ? "за текущий месяц" : "нет данных",
       trend: -3.7,
       loading: expense.loading,

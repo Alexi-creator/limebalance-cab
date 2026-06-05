@@ -29,9 +29,10 @@ export function DeleteTransactionConfirm({ transaction }: Props) {
     onSuccess: () => {
       // список операций (рефетч добивает страницу)
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      // статистика категорий устарела — перезапросится при заходе на «Категории»
+      // статистика категорий и сводки главной устарели
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
+      queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
       notifications.show({ color: "green", message: "Операция удалена" })
       close()
     },

@@ -62,9 +62,10 @@ export function EditTransactionForm({ transaction }: Props) {
     onSuccess: () => {
       // рефетч списка операций (с текущими фильтрами) — чтобы строка пересортировалась после смены даты
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      // сумма/валюта могли поменяться — статистика категорий устарела
+      // сумма/валюта могли поменяться — статистика категорий и сводки главной устарели
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
+      queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
       close()
     },
   })

@@ -1,6 +1,5 @@
 import { type CreateExpensePayload, createExpense, getExpenseCategories } from "@api/expenses"
 import { createIncome, getIncomeCategories } from "@api/incomes"
-import type { ExpensesSummary } from "@appTypes/expense"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
@@ -124,18 +123,9 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
         old ? [item, ...old] : old,
       )
 
-      // 2) обновляем закешированные сводки: прибавляем сумму к месяцу и к итогу
-      queryClient.setQueriesData<ExpensesSummary>({ queryKey: [keys.all[0], "summary"] }, (old) => {
-        if (!old) return old
-        return {
-          total: (parseFloat(old.total) + created.amount).toFixed(2),
-          byMonth: old.byMonth.map((m) =>
-            m.month === monthKey
-              ? { ...m, total: (parseFloat(m.total) + created.amount).toFixed(2) }
-              : m,
-          ),
-        }
-      })
+      // 2) сводки мультивалютны и приводят суммы к базовой валюте по курсам (это знает
+      // только бэкенд) — оптимистично пересчитать approxTotal нельзя, поэтому рефетчим
+      queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
 
       // объединённый список операций (страница «Операции») — рефетч с текущими фильтрами
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })

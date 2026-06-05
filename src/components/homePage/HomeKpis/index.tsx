@@ -32,18 +32,22 @@ export function HomeKpis() {
   const expenseMonth = expensesQuery.data?.byMonth.find((m) => m.month === currentMonth)
   const incomeMonth = incomesQuery.data?.byMonth.find((m) => m.month === currentMonth)
 
+  // базовая валюта пользователя — в ней приходят approxTotal/total сводки
+  const baseCurrency = incomesQuery.data?.baseCurrency ?? expensesQuery.data?.baseCurrency
+
   const kpis = buildKpis({
     language: i18n.language,
+    baseCurrency,
     income: {
-      total: incomeMonth ? parseFloat(incomeMonth.total) : 0,
-      hasData: Boolean(incomeMonth),
+      total: incomeMonth?.approxTotal ?? 0,
+      hasData: (incomeMonth?.totals.length ?? 0) > 0,
       loading: incomesQuery.isLoading,
       isFetching: incomesQuery.isFetching,
       refetch: incomesQuery.refetch,
     },
     expense: {
-      total: expenseMonth ? parseFloat(expenseMonth.total) : 0,
-      hasData: Boolean(expenseMonth),
+      total: expenseMonth?.approxTotal ?? 0,
+      hasData: (expenseMonth?.totals.length ?? 0) > 0,
       loading: expensesQuery.isLoading,
       isFetching: expensesQuery.isFetching,
       refetch: expensesQuery.refetch,

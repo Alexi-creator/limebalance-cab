@@ -36,9 +36,14 @@ export function BulkDeleteModal({ transactions, onSuccess }: Props) {
       ]),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      if (expenseIds.length)
+      if (expenseIds.length) {
         queryClient.invalidateQueries({ queryKey: expenseKeys.categoriesStats })
-      if (incomeIds.length) queryClient.invalidateQueries({ queryKey: incomeKeys.categoriesStats })
+        queryClient.invalidateQueries({ queryKey: [expenseKeys.all[0], "summary"] })
+      }
+      if (incomeIds.length) {
+        queryClient.invalidateQueries({ queryKey: incomeKeys.categoriesStats })
+        queryClient.invalidateQueries({ queryKey: [incomeKeys.all[0], "summary"] })
+      }
       notifications.show({ color: "green", message: `Удалено ${transactions.length} операций` })
       onSuccess()
       close()
