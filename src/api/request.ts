@@ -5,6 +5,7 @@ import { useAuthStore } from "@store/authStore"
 import type { RequestOptions } from "@utils/commonRequest"
 import { commonRequest } from "@utils/commonRequest"
 import { ApiError } from "./apiError"
+import { queryClient } from "./queryClient"
 
 let pendingRefresh: Promise<boolean> | null = null
 
@@ -22,6 +23,8 @@ async function refreshTokens(): Promise<boolean> {
 
 function redirectToLogin(): void {
   useAuthStore.getState().setUser(null)
+  // сессия протухла — выкидываем кеш, чтобы вход под другим аккаунтом не показал чужие данные
+  queryClient.clear()
 }
 
 export async function request<T>(

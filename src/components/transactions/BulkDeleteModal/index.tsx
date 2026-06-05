@@ -36,7 +36,8 @@ export function BulkDeleteModal({ transactions, onSuccess }: Props) {
       ]),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      if (expenseIds.length) queryClient.invalidateQueries({ queryKey: expenseKeys.categoriesStats })
+      if (expenseIds.length)
+        queryClient.invalidateQueries({ queryKey: expenseKeys.categoriesStats })
       if (incomeIds.length) queryClient.invalidateQueries({ queryKey: incomeKeys.categoriesStats })
       notifications.show({ color: "green", message: `Удалено ${transactions.length} операций` })
       onSuccess()
@@ -46,9 +47,7 @@ export function BulkDeleteModal({ transactions, onSuccess }: Props) {
 
   return (
     <Stack gap="md">
-      <Text size="sm">
-        Удалить {transactions.length} операций? Действие необратимо.
-      </Text>
+      <Text size="sm">Удалить {transactions.length} операций? Действие необратимо.</Text>
 
       <ScrollArea.Autosize
         mah={260}

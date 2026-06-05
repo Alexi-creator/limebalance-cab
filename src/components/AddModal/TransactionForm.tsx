@@ -63,12 +63,7 @@ interface Props {
  * Тянет категории нужного типа, отправляет POST с локальной датой и после успеха
  * дописывает новую операцию прямо в кеш react-query (без рефетча).
  */
-export function TransactionForm({
-  onSubmit,
-  onCancel,
-  initialKind,
-  initialCategoryId,
-}: Props) {
+export function TransactionForm({ onSubmit, onCancel, initialKind, initialCategoryId }: Props) {
   const { i18n } = useTranslation()
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)

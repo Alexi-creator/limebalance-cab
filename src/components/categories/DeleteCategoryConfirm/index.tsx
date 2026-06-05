@@ -39,8 +39,8 @@ export function DeleteCategoryConfirm({ category, isExpense }: Props) {
 
       {category.count > 0 && (
         <Alert variant="light" color="red" icon={<IconAlertTriangle size={16} />} radius="md">
-          Вместе с категорией <b>безвозвратно</b> удалятся все её данные — {category.count} операций.
-          Это действие нельзя отменить.
+          Вместе с категорией <b>безвозвратно</b> удалятся все её данные — {category.count}{" "}
+          операций. Это действие нельзя отменить.
         </Alert>
       )}
 

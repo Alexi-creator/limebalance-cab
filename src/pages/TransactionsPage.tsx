@@ -1,13 +1,13 @@
 import { getExpenseCategories } from "@api/expenses"
 import { getIncomeCategories } from "@api/incomes"
 import { getTransactions } from "@api/transactions"
+import type { Transaction } from "@appTypes/transaction"
 import { AddModal } from "@components/AddModal"
 import { BulkDeleteModal } from "@components/transactions/BulkDeleteModal"
 import { transactionsParamsSchema } from "@components/transactions/config"
 import { TransactionsFilters } from "@components/transactions/TransactionsFilters"
 import { TransactionsTable } from "@components/transactions/TransactionsTable"
 import { TransactionsToolbar } from "@components/transactions/TransactionsToolbar"
-import type { Transaction } from "@appTypes/transaction"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
@@ -76,10 +76,7 @@ export function TransactionsPage() {
         </Text>
       ),
       children: (
-        <BulkDeleteModal
-          transactions={selectedRecords}
-          onSuccess={() => setSelectedRecords([])}
-        />
+        <BulkDeleteModal transactions={selectedRecords} onSuccess={() => setSelectedRecords([])} />
       ),
     })
 
@@ -157,7 +154,10 @@ export function TransactionsPage() {
           transactions={items}
           total={total}
           page={params.page}
-          onPageChange={(page) => { setSelectedRecords([]); setParams({ page }) }}
+          onPageChange={(page) => {
+            setSelectedRecords([])
+            setParams({ page })
+          }}
           recordsPerPage={params.limit}
           onRecordsPerPageChange={(limit) => setParams({ limit, page: 1 })}
           fetching={isLoading || isPlaceholderData}
