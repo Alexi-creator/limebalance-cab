@@ -43,7 +43,9 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete }: Pro
   return (
     <Paper
       p="md"
+      pb="sm"
       pos="relative"
+      style={{ overflow: "hidden" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -112,7 +114,16 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete }: Pro
             {cat.totals.map((t) => formatCurrency(t.total, language, t.currency)).join(" · ")}
           </Text>
         )}
-        <Progress value={pct} size="xs" styles={{ section: { background: cat.color } }} />
+        <Progress
+          value={pct}
+          size={3}
+          pos="absolute"
+          bottom={0}
+          left={0}
+          right={0}
+          radius={0}
+          styles={{ section: { background: cat.color } }}
+        />
       </Stack>
     </Paper>
   )

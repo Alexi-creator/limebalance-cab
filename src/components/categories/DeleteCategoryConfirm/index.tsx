@@ -26,7 +26,7 @@ export function DeleteCategoryConfirm({ category, isExpense }: Props) {
     onSuccess: () => {
       const keys = isExpense ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
-      queryClient.invalidateQueries({ queryKey: keys.categories })
+      queryClient.invalidateQueries({ queryKey: keys.categories, exact: true })
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
       notifications.show({ color: "green", message: "Категория удалена" })
       close()
