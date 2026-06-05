@@ -1,11 +1,12 @@
 import { categorySchema } from "@appTypes/category"
+import { wallClockDate } from "@utils/wallClock"
 import { z } from "zod"
 
 export const expenseSchema = z.object({
   id: z.string(),
   amount: z.coerce.number(),
   description: z.string(),
-  date: z.coerce.date(),
+  date: wallClockDate(),
   createdAt: z.coerce.date(),
   category: categorySchema,
 })
@@ -41,7 +42,7 @@ export const createdExpenseSchema = z.object({
   id: z.string(),
   amount: z.coerce.number(),
   description: z.string(),
-  date: z.coerce.date(),
+  date: wallClockDate(),
   createdAt: z.coerce.date(),
   categoryId: z.string(),
 })

@@ -11,3 +11,16 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
+/*
+ * mantine-datatable закрепляет колонку с чекбоксами (position: sticky) и при
+ * горизонтальном скролле рисует у неё тень-градиент (псевдоэлемент :after) —
+ * она выглядит как лишний артефакт у первой колонки. Фон колонки непрозрачный,
+ * контент под неё не просвечивает, поэтому тень убираем. Тень закреплённой
+ * последней колонки (pinLastColumn) не трогаем.
+ */
+.mantine-datatable-header-selector-cell[data-shadow-visible]::after,
+.mantine-datatable-row-selector-cell[data-shadow-visible]::after,
+.mantine-datatable-footer-selector-placeholder-cell[data-shadow-visible]::after {
+  display: none;
+}

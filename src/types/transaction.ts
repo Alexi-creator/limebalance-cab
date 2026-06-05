@@ -1,3 +1,4 @@
+import { wallClockDate } from "@utils/wallClock"
 import { z } from "zod"
 
 export const transactionTypeSchema = z.enum(["income", "expense"])
@@ -12,7 +13,7 @@ export const transactionSchema = z.object({
   /** Код валюты операции (ISO 4217); может отсутствовать у старых записей. */
   currency: z.string().nullish(),
   description: z.string(),
-  date: z.coerce.date(),
+  date: wallClockDate(),
   type: transactionTypeSchema,
 })
 export type Transaction = z.infer<typeof transactionSchema>
