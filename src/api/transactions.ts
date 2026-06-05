@@ -61,3 +61,8 @@ export function updateTransaction(
 export function deleteTransaction(type: TransactionType, id: string) {
   return request(transactionUrl(type, id), { method: HttpMethods.DELETE })
 }
+
+export function deleteTransactionsBulk(type: TransactionType, ids: string[]) {
+  const url = type === "expense" ? API_URLS.expenses.expenses : API_URLS.incomes.incomes
+  return request(url, { method: HttpMethods.DELETE, body: JSON.stringify({ ids }) })
+}

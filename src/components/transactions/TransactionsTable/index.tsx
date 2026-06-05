@@ -25,6 +25,8 @@ interface Props {
   /** Идёт загрузка/смена страницы — показывается оверлей. */
   fetching: boolean
   isError: boolean
+  selectedRecords: Transaction[]
+  onSelectedRecordsChange: (records: Transaction[]) => void
 }
 
 /** Таблица операций на `mantine-datatable`: серверная пагинация, состояния загрузки/пусто. */
@@ -37,6 +39,8 @@ export function TransactionsTable({
   onRecordsPerPageChange,
   fetching,
   isError,
+  selectedRecords,
+  onSelectedRecordsChange,
 }: Props) {
   const { i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
@@ -65,6 +69,8 @@ export function TransactionsTable({
     <DataTable<Transaction>
       records={isError ? [] : transactions}
       columns={getTransactionColumns(locale, i18n.language, emojiByCategoryId)}
+      selectedRecords={selectedRecords}
+      onSelectedRecordsChange={onSelectedRecordsChange}
       pinLastColumn
       idAccessor={(t) => `${t.type}-${t.id}`}
       fetching={fetching}

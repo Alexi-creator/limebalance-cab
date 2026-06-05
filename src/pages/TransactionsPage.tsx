@@ -2,9 +2,12 @@ import { getExpenseCategories } from "@api/expenses"
 import { getIncomeCategories } from "@api/incomes"
 import { getTransactions } from "@api/transactions"
 import { AddModal } from "@components/AddModal"
+import { BulkDeleteModal } from "@components/transactions/BulkDeleteModal"
 import { transactionsParamsSchema } from "@components/transactions/config"
 import { TransactionsFilters } from "@components/transactions/TransactionsFilters"
 import { TransactionsTable } from "@components/transactions/TransactionsTable"
+import { TransactionsToolbar } from "@components/transactions/TransactionsToolbar"
+import type { Transaction } from "@appTypes/transaction"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
@@ -15,6 +18,7 @@ import { Anchor, Button, Group, HoverCard, Paper, Stack, Text, Title } from "@ma
 import { useModalStore } from "@store/modalStore"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 export function TransactionsPage() {
@@ -58,8 +62,26 @@ export function TransactionsPage() {
     expenseCategories.length === 0 &&
     incomeCategories.length === 0
 
+  const [selectedRecords, setSelectedRecords] = useState<Transaction[]>([])
+
   const openAddModal = () =>
     openModal({ size: "lg", centered: true, children: <AddModal type="transaction" lockType /> })
+
+  const openBulkDelete = () =>
+    openModal({
+      centered: true,
+      title: (
+        <Text fw={600} size="md">
+          Удалить выбранные операции?
+        </Text>
+      ),
+      children: (
+        <BulkDeleteModal
+          transactions={selectedRecords}
+          onSuccess={() => setSelectedRecords([])}
+        />
+      ),
+    })
 
   const items = data?.items ?? []
   const total = data?.total ?? 0
@@ -125,15 +147,23 @@ export function TransactionsPage() {
       >
         <TransactionsFilters params={params} setParams={setParams} />
 
+        <TransactionsToolbar
+          selectedCount={selectedRecords.length}
+          onClearSelection={() => setSelectedRecords([])}
+          onBulkDelete={openBulkDelete}
+        />
+
         <TransactionsTable
           transactions={items}
           total={total}
           page={params.page}
-          onPageChange={(page) => setParams({ page })}
+          onPageChange={(page) => { setSelectedRecords([]); setParams({ page }) }}
           recordsPerPage={params.limit}
           onRecordsPerPageChange={(limit) => setParams({ limit, page: 1 })}
           fetching={isLoading || isPlaceholderData}
           isError={isError}
+          selectedRecords={selectedRecords}
+          onSelectedRecordsChange={setSelectedRecords}
         />
       </Paper>
     </Stack>
