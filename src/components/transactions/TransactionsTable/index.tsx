@@ -1,6 +1,6 @@
 import { getExpenseCategories } from "@api/expenses"
 import { getIncomeCategories } from "@api/incomes"
-import type { Transaction } from "@appTypes/transaction"
+import type { Transaction, TransactionsSummary, TransactionType } from "@appTypes/transaction"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
@@ -27,6 +27,10 @@ interface Props {
   isError: boolean
   selectedRecords: Transaction[]
   onSelectedRecordsChange: (records: Transaction[]) => void
+  /** Итоги по выборке (в базовой валюте) — показываются в футере таблицы. */
+  summary?: TransactionsSummary
+  /** Активный фильтр типа — влияет на состав сумм в футере. */
+  type?: TransactionType
 }
 
 /** Таблица операций на `mantine-datatable`: серверная пагинация, состояния загрузки/пусто. */
@@ -41,6 +45,8 @@ export function TransactionsTable({
   isError,
   selectedRecords,
   onSelectedRecordsChange,
+  summary,
+  type,
 }: Props) {
   const { i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
@@ -68,7 +74,7 @@ export function TransactionsTable({
   return (
     <DataTable<Transaction>
       records={isError ? [] : transactions}
-      columns={getTransactionColumns(locale, i18n.language, emojiByCategoryId)}
+      columns={getTransactionColumns(locale, i18n.language, emojiByCategoryId, summary, type)}
       selectedRecords={selectedRecords}
       onSelectedRecordsChange={onSelectedRecordsChange}
       pinLastColumn

@@ -10,7 +10,6 @@ import { DatePickerInput } from "@mantine/dates"
 import { useAuthStore } from "@store/authStore"
 import { useModalStore } from "@store/modalStore"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { localDayToApiDate } from "@utils/localDayToApiDate"
 import { format } from "date-fns"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
@@ -75,7 +74,8 @@ export function EditTransactionForm({ transaction }: Props) {
       amount: Number(values.amount),
       currency: values.currency,
       description: values.description,
-      date: localDayToApiDate(values.day as string),
+      // date — выбранный день (YYYY-MM-DD); бэкенд хранит его в @db.Date без времени.
+      date: values.day as string,
     })
   })
 

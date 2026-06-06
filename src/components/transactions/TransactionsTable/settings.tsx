@@ -1,25 +1,49 @@
-import type { Transaction } from "@appTypes/transaction"
+import type { Transaction, TransactionsSummary, TransactionType } from "@appTypes/transaction"
 import { Center, Group, Text } from "@mantine/core"
 import { IconTag } from "@tabler/icons-react"
 import { format, type Locale } from "date-fns"
 import type { DataTableColumn } from "mantine-datatable"
 import { formatTxAmount } from "../helpers"
+import { TransactionsSummary as SummaryFooter } from "../TransactionsSummary"
 import { RowActions } from "./RowActions"
 
 /**
  * Колонки таблицы операций. Формат даты/суммы зависит от локали и языка.
  * `emojiByCategoryId` — эмодзи категории по её id (берётся из загруженных списков категорий).
+ * `summary` — итоги по выборке: если переданы, показываются в футере таблицы.
  */
 export function getTransactionColumns(
   locale: Locale,
   language: string,
   emojiByCategoryId: Map<string, string>,
+  summary?: TransactionsSummary,
+  type?: TransactionType,
 ): DataTableColumn<Transaction>[] {
   return [
     {
       accessor: "description",
       title: "Операция",
       ellipsis: true,
+      // ячейку футера поднимаем над соседними (z-index), иначе их непрозрачный фон
+      // перекрывает вылезающий вправо текст итогов
+      footerStyle: { position: "relative", zIndex: 1, overflow: "visible" },
+      // итоги выводим абсолютным слоем поверх пустых ячеек футера справа: нулевой по
+      // ширине якорь не распирает колонку «Операция», поэтому колонки не сдвигаются
+      footer: summary ? (
+        <div style={{ position: "relative", width: 0 }}>
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: "50%",
+              transform: "translateY(-50%)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <SummaryFooter summary={summary} type={type} />
+          </div>
+        </div>
+      ) : undefined,
     },
     {
       accessor: "categoryName",
@@ -71,7 +95,7 @@ export function getTransactionColumns(
       width: 150,
       textAlign: "right",
       render: (t) => (
-        <Text ff="monospace" size="sm" fw={500} c={t.type === "income" ? "green.5" : undefined}>
+        <Text ff="monospace" size="sm" fw={500} c={t.type === "income" ? "green.5" : "red.5"}>
           {formatTxAmount(t, language)}
         </Text>
       ),

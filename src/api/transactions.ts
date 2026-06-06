@@ -37,7 +37,7 @@ export interface UpdateTransactionPayload {
   description?: string
   /** Код валюты (ISO 4217), напр. «USD». */
   currency?: string
-  /** ISO-таймстамп локального времени пользователя. */
+  /** Дата операции в формате `YYYY-MM-DD` (бэкенд хранит её в @db.Date без времени). */
   date?: string
 }
 

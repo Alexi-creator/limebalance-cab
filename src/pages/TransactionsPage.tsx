@@ -82,6 +82,7 @@ export function TransactionsPage() {
 
   const items = data?.items ?? []
   const total = data?.total ?? 0
+  const summary = data?.summary
 
   return (
     <Stack gap="md" style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
@@ -164,6 +165,8 @@ export function TransactionsPage() {
           isError={isError}
           selectedRecords={selectedRecords}
           onSelectedRecordsChange={setSelectedRecords}
+          summary={total > 0 ? summary : undefined}
+          type={params.type}
         />
       </Paper>
     </Stack>

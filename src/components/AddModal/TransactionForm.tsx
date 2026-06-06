@@ -23,7 +23,6 @@ import { DatePickerInput } from "@mantine/dates"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { localDayToApiDate } from "@utils/localDayToApiDate"
 import { format } from "date-fns"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
@@ -147,7 +146,8 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
       amount: Number(values.amount),
       currency: values.currency,
       description: values.description,
-      date: localDayToApiDate(values.day as string),
+      // date — выбранный день (YYYY-MM-DD); бэкенд хранит его в @db.Date без времени.
+      date: values.day as string,
     })
   })
 

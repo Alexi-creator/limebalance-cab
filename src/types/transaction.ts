@@ -18,6 +18,18 @@ export const transactionSchema = z.object({
 })
 export type Transaction = z.infer<typeof transactionSchema>
 
+/**
+ * Денежный итог по всей выборке (с учётом фильтров, не только текущая страница),
+ * приведённый к базовой валюте пользователя. Суммы null, если курсы недоступны.
+ */
+export const transactionsSummarySchema = z.object({
+  baseCurrency: z.string(),
+  income: z.coerce.number().nullable(),
+  expense: z.coerce.number().nullable(),
+  net: z.coerce.number().nullable(),
+})
+export type TransactionsSummary = z.infer<typeof transactionsSummarySchema>
+
 /** Пагинированный ответ /transactions. */
 export const transactionsResponseSchema = z.object({
   items: z.array(transactionSchema),
@@ -25,5 +37,6 @@ export const transactionsResponseSchema = z.object({
   page: z.number(),
   limit: z.number(),
   totalPages: z.number(),
+  summary: transactionsSummarySchema,
 })
 export type TransactionsResponse = z.infer<typeof transactionsResponseSchema>
