@@ -13,12 +13,14 @@ const MIN_PASSWORD = 8
 /**
  * Форма почты и пароля.
  *
- * Если почта уже привязана (пришла с бэка) — поле почты заблокировано, а поля пароля
- * необязательны: заполняются только для смены пароля. Если почты нет (напр. вход через
- * Telegram) — почту можно задать, и тогда пароль обязателен.
+ * Если почта уже привязана (пришла с бэка) — поле почты заблокировано. Поля пароля
+ * необязательны: заполняются только для смены/задания пароля. Если почты нет (напр.
+ * вход через Telegram) — почту можно задать, и тогда пароль обязателен.
  *
- * В обоих случаях, когда пароль задаётся, он должен быть не короче 8 символов
- * и совпадать с подтверждением.
+ * «Текущий пароль» требуется только если пароль уже задан (`hasPassword`). У входивших
+ * через Google/Telegram пароля может не быть — тогда это первичная установка без текущего.
+ *
+ * Когда пароль задаётся, он должен быть не короче 8 символов и совпадать с подтверждением.
  */
 export function SecurityForm() {
   const { t } = useTranslation()
@@ -26,6 +28,8 @@ export function SecurityForm() {
   const setUser = useAuthStore((s) => s.setUser)
 
   const hasEmail = !!user?.email
+  // есть ли уже пароль; для старых ответов без поля считаем по наличию почты (прежнее поведение)
+  const hasPassword = user?.hasPassword ?? hasEmail
   const [email, setEmail] = useState("")
   const [currentPassword, setCurrentPassword] = useState("")
   const [password, setPassword] = useState("")
@@ -37,8 +41,8 @@ export function SecurityForm() {
   // при привязке почты пароль обязателен всегда; при смене — только если начали вводить
   const passwordTouched = password !== "" || confirm !== ""
   const passwordRequired = !hasEmail || passwordTouched
-  // текущий пароль нужен только при смене пароля (почта уже привязана)
-  const currentPasswordRequired = hasEmail && passwordTouched
+  // текущий пароль нужен только при смене уже заданного пароля
+  const currentPasswordRequired = hasPassword && passwordTouched
 
   // ошибки полей показываем только после ввода, чтобы не подсвечивать пустую форму
   const emailFieldError = !hasEmail && trimmedEmail !== "" && !emailValid
@@ -55,18 +59,22 @@ export function SecurityForm() {
   const mutation = useMutation({
     mutationFn: () =>
       setCredentials({
-        ...(hasEmail ? { currentPassword } : { email: trimmedEmail }),
+        // почту шлём только при первичной привязке; текущий пароль — только если он уже задан
+        ...(hasEmail ? {} : { email: trimmedEmail }),
+        ...(hasPassword ? { currentPassword } : {}),
         password,
       }),
     onSuccess: (updated) => {
       // Мержим, а не заменяем: ответ может прийти частичным и затереть имя/валюту.
       // Если задавали почту — фиксируем её принудительно (server-значение в приоритете,
       // но если ответ её не вернул, берём отправленную), чтобы hasEmail стал true
-      // и поле почты заблокировалось.
+      // и поле почты заблокировалось. Пароль только что задан → hasPassword: true,
+      // чтобы дальше форма требовала текущий пароль и показывала это поле.
       setUser({
         ...user,
         ...updated,
         ...(hasEmail ? {} : { email: updated?.email ?? trimmedEmail }),
+        hasPassword: true,
       })
       setEmail("")
       setCurrentPassword("")
@@ -103,7 +111,7 @@ export function SecurityForm() {
         />
       )}
 
-      {hasEmail && (
+      {hasPassword && (
         <PasswordInput
           label={t("settings.password_current_label")}
           placeholder={t("settings.password_current_placeholder")}
@@ -114,7 +122,7 @@ export function SecurityForm() {
 
       <PasswordInput
         label={t("settings.password_label")}
-        description={hasEmail ? undefined : t("settings.password_set_hint")}
+        description={hasPassword ? undefined : t("settings.password_set_hint")}
         inputWrapperOrder={["label", "input", "description", "error"]}
         placeholder={t("settings.password_placeholder")}
         value={password}

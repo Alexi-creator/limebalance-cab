@@ -9,6 +9,8 @@ export const userSchema = z.object({
   currency: z.string().nullish(),
   timezone: z.string().nullish(),
   subscription: z.string().nullish(),
+  /** Задан ли пароль. У входивших через Google/Telegram пароля может не быть. */
+  hasPassword: z.boolean().nullish(),
 })
 
 export type User = z.infer<typeof userSchema>
