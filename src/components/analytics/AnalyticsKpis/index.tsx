@@ -37,9 +37,7 @@ export function AnalyticsKpis({ metrics, periodLabel, baseCurrency }: Props) {
         value={`${metrics.saved >= 0 ? "+" : "−"}${money(Math.abs(metrics.saved))}`}
         sub={`${metrics.savingsRate}% от дохода`}
         trend={metrics.savedTrend}
-        accent={
-          metrics.saved >= 0 ? "var(--mantine-color-green-5)" : "var(--mantine-color-red-5)"
-        }
+        accent={metrics.saved >= 0 ? "var(--mantine-color-green-5)" : "var(--mantine-color-red-5)"}
       />
       <KpiCard
         label="Норма сбережений"

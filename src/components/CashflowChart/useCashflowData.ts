@@ -1,43 +1,45 @@
-import { getExpenses, getExpensesSummary } from "@api/expenses"
-import { getIncomes, getIncomesSummary } from "@api/incomes"
+import { getExpensesSummary, type SummaryParams } from "@api/expenses"
+import { getIncomesSummary } from "@api/incomes"
+import type { SummaryGranularity } from "@appTypes/expense"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import { useQuery } from "@tanstack/react-query"
-import { endOfMonth, format, startOfMonth } from "date-fns"
+import { endOfMonth, format, startOfMonth, subMonths } from "date-fns"
+
+/** Интервал и гранулярность сводки под выбранный период графика. */
+function periodToParams(period: string): SummaryParams {
+  const now = new Date()
+  if (period === "1m") {
+    // весь текущий месяц по дням: будущие дни бэк вернёт пустыми (рисуем 0)
+    return { from: startOfMonth(now), to: endOfMonth(now), granularity: "day" }
+  }
+  // 6m / 1y — помесячно за последние N месяцев включая текущий
+  const count = period === "1y" ? 12 : 6
+  return { from: startOfMonth(subMonths(now, count - 1)), to: now, granularity: "month" }
+}
 
 /**
- * Данные графика денежного потока: годовые сводки (для 6m/1y) и операции текущего
- * месяца (для 1m). Ключи общие с другими блоками главной — react-query дедуплицирует.
+ * Данные графика денежного потока за выбранный период из сводок `/summary`
+ * (уже в базовой валюте). 1m — по дням, 6m/1y — по месяцам. Ключи запросов общие
+ * с другими блоками главной (та же гранулярность) — react-query дедуплицирует.
  */
-export function useCashflowData() {
-  const now = new Date()
-  const from = startOfMonth(now)
-  const to = endOfMonth(now)
-  const currentMonth = format(from, "yyyy-MM")
+export function useCashflowData(period: string) {
+  const params = periodToParams(period)
+  const fromKey = format(params.from, "yyyy-MM-dd")
+  const toKey = format(params.to, "yyyy-MM-dd")
+  const granularity: SummaryGranularity = params.granularity
 
   const { data: expensesSummary } = useQuery({
-    queryKey: expenseKeys.summary(12),
-    queryFn: () => getExpensesSummary(12),
+    queryKey: expenseKeys.summary(fromKey, toKey, granularity),
+    queryFn: () => getExpensesSummary(params),
     staleTime: EXPENSE_STALE_TIME,
   })
 
   const { data: incomesSummary } = useQuery({
-    queryKey: incomeKeys.summary(12),
-    queryFn: () => getIncomesSummary(12),
+    queryKey: incomeKeys.summary(fromKey, toKey, granularity),
+    queryFn: () => getIncomesSummary(params),
     staleTime: INCOME_STALE_TIME,
   })
 
-  const { data: expenses } = useQuery({
-    queryKey: expenseKeys.month(currentMonth),
-    queryFn: () => getExpenses(from, to),
-    staleTime: EXPENSE_STALE_TIME,
-  })
-
-  const { data: incomes } = useQuery({
-    queryKey: incomeKeys.month(currentMonth),
-    queryFn: () => getIncomes(from, to),
-    staleTime: INCOME_STALE_TIME,
-  })
-
-  return { expensesSummary, incomesSummary, expenses, incomes }
+  return { expensesSummary, incomesSummary }
 }

@@ -1,3 +1,4 @@
+import { type SummaryParams, statsQuery, summaryQuery } from "@api/expenses"
 import { request } from "@api/request"
 import { type CategoryPayload, categorySchema, categoryStatsSchema } from "@appTypes/category"
 import { createdIncomeSchema, incomeSchema, incomesSummarySchema } from "@appTypes/income"
@@ -25,20 +26,28 @@ export function getIncomes(from?: Date, to?: Date) {
   return request(`${API_URLS.incomes.incomes}${query}`, { schema: z.array(incomeSchema) })
 }
 
-export function getIncomesSummary(months: 1 | 6 | 12) {
-  return request(`${API_URLS.incomes.summary}?months=${months}`, { schema: incomesSummarySchema })
+export function getIncomesSummary(params: SummaryParams) {
+  return request(`${API_URLS.incomes.summary}?${summaryQuery(params)}`, {
+    schema: incomesSummarySchema,
+  })
 }
 
 export function getIncomeCategories() {
   return request(API_URLS.incomeCategories.categories, { schema: z.array(categorySchema) })
 }
 
-/** Категории доходов с суммой и числом операций; опционально за период `[from, to]`. */
-export function getIncomeCategoriesStats(from?: Date, to?: Date) {
-  const params = new URLSearchParams()
-  if (from) params.set("from", format(from, "yyyy-MM-dd"))
-  if (to) params.set("to", format(to, "yyyy-MM-dd"))
-
+/**
+ * Категории доходов с суммой и числом операций; опционально за период `[from, to]`.
+ * Если переданы `compareFrom`/`compareTo`, в каждой категории появятся
+ * `previousApproxTotal`/`deltaApproxTotal` — сравнение с прошлым периодом.
+ */
+export function getIncomeCategoriesStats(
+  from?: Date,
+  to?: Date,
+  compareFrom?: Date,
+  compareTo?: Date,
+) {
+  const params = statsQuery(from, to, compareFrom, compareTo)
   const query = params.size ? `?${params}` : ""
   return request(`${API_URLS.incomeCategories.stats}${query}`, {
     schema: z.array(categoryStatsSchema),

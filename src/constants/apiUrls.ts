@@ -29,6 +29,7 @@ export const API_URLS = {
   },
   transactions: {
     transactions: `${API_URL}/transactions`,
+    balance: `${API_URL}/transactions/balance`,
   },
   expenseCategories: {
     categories: `${API_URL}/expense-categories`,

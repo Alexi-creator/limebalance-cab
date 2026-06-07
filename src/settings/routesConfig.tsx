@@ -33,6 +33,7 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Investments, element: <InvestmentsPage /> },
   { path: RouteNames.Settings, element: <SettingsPage /> },
   { path: RouteNames.SettingsSecurity, element: <SettingsPage /> },
+  { path: RouteNames.SettingsTelegram, element: <SettingsPage /> },
 ]
 
 export const publicRoutes: RouteConfig[] = [

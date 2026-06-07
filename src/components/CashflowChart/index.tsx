@@ -22,15 +22,12 @@ export function CashflowChart() {
   const theme = useMantineTheme()
   const isTabletOrAbove = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`)
 
-  const { expensesSummary, incomesSummary, expenses, incomes } = useCashflowData()
+  const { expensesSummary, incomesSummary } = useCashflowData(period)
 
   const data = selectDataset({
     period,
-    periodCount: period === "1y" ? 12 : 6,
     locale,
     compact: !isTabletOrAbove,
-    expenses,
-    incomes,
     expensesSummary,
     incomesSummary,
   })

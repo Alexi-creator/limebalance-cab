@@ -2,6 +2,7 @@ import { Stack } from "@mantine/core"
 import { SidebarBrand } from "./SidebarBrand"
 import { SidebarMobileExtras } from "./SidebarMobileExtras"
 import { SidebarNav } from "./SidebarNav"
+import { SidebarTelegram } from "./SidebarTelegram"
 import { SidebarUserCard } from "./SidebarUserCard"
 
 /**
@@ -16,6 +17,7 @@ export function DashboardSidebar() {
       <SidebarBrand />
       <SidebarNav />
       <SidebarMobileExtras />
+      <SidebarTelegram />
       <SidebarUserCard />
     </Stack>
   )

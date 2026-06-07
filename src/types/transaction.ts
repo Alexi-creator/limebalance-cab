@@ -30,6 +30,17 @@ export const transactionsSummarySchema = z.object({
 })
 export type TransactionsSummary = z.infer<typeof transactionsSummarySchema>
 
+/**
+ * Общий баланс пользователя. `balance` — в базовой валюте, `balanceUsd` — в USD.
+ * Любая из сумм null, если курсы недоступны (показываем «—»).
+ */
+export const balanceSchema = z.object({
+  baseCurrency: z.string(),
+  balanceUsd: z.coerce.number().nullable(),
+  balance: z.coerce.number().nullable(),
+})
+export type Balance = z.infer<typeof balanceSchema>
+
 /** Пагинированный ответ /transactions. */
 export const transactionsResponseSchema = z.object({
   items: z.array(transactionSchema),

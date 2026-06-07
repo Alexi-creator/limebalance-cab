@@ -1,4 +1,5 @@
 import { AccountAlert } from "@components/AccountAlert"
+import { TelegramConnectAlert } from "@components/TelegramConnectAlert"
 import { RouteNames } from "@constants/routeNames"
 import { AppShell, Box, LoadingOverlay } from "@mantine/core"
 import { useLoaderStore } from "@store/loaderStore"
@@ -26,6 +27,7 @@ export function Main() {
       <LoadingOverlay visible={isLoading} />
 
       <AccountAlert />
+      <TelegramConnectAlert />
 
       <Suspense fallback={<LoadingOverlay visible />}>
         {isFillHeight ? (

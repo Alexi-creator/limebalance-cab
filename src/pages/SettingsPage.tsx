@@ -1,20 +1,32 @@
 import { ProfileForm } from "@components/settings/ProfileForm"
 import { SecurityForm } from "@components/settings/SecurityForm"
+import { TelegramForm } from "@components/settings/TelegramForm"
 import { RouteNames } from "@constants/routeNames"
 import { Paper, Stack, Tabs, Text, Title } from "@mantine/core"
 import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 
+const TAB_ROUTE: Record<string, string> = {
+  general: RouteNames.Settings,
+  security: RouteNames.SettingsSecurity,
+  telegram: RouteNames.SettingsTelegram,
+}
+
 /**
  * Страница настроек с вкладками. Активная вкладка определяется по текущему пути —
- * у вкладки «Почта и пароль» свой роут (/settings/security), общие настройки на /settings.
+ * у «Почта и пароль» и «Telegram» свои роуты, общие настройки на /settings.
  */
 export function SettingsPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
-  const tab = pathname === RouteNames.SettingsSecurity ? "security" : "general"
+  const tab =
+    pathname === RouteNames.SettingsSecurity
+      ? "security"
+      : pathname === RouteNames.SettingsTelegram
+        ? "telegram"
+        : "general"
 
   return (
     <Stack gap="md">
@@ -29,18 +41,23 @@ export function SettingsPage() {
 
       <Tabs
         value={tab}
-        onChange={(v) =>
-          navigate(v === "security" ? RouteNames.SettingsSecurity : RouteNames.Settings)
-        }
+        onChange={(v) => navigate(TAB_ROUTE[v ?? "general"] ?? RouteNames.Settings)}
       >
         <Tabs.List mb="md">
           <Tabs.Tab value="general">{t("settings.tab_general")}</Tabs.Tab>
           <Tabs.Tab value="security">{t("settings.tab_security")}</Tabs.Tab>
+          <Tabs.Tab value="telegram">Telegram</Tabs.Tab>
         </Tabs.List>
       </Tabs>
 
       <Paper p="lg" maw={480}>
-        {tab === "security" ? <SecurityForm /> : <ProfileForm />}
+        {tab === "security" ? (
+          <SecurityForm />
+        ) : tab === "telegram" ? (
+          <TelegramForm />
+        ) : (
+          <ProfileForm />
+        )}
       </Paper>
     </Stack>
   )

@@ -1,8 +1,13 @@
 import { request } from "@api/request"
 import type { TransactionType } from "@appTypes/transaction"
-import { transactionsResponseSchema } from "@appTypes/transaction"
+import { balanceSchema, transactionsResponseSchema } from "@appTypes/transaction"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
+
+/** Общий баланс пользователя (база + USD), приведённый к курсам. */
+export function getBalance() {
+  return request(API_URLS.transactions.balance, { schema: balanceSchema })
+}
 
 export interface GetTransactionsParams {
   type?: "income" | "expense"

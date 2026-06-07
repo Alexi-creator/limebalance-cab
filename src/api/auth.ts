@@ -85,6 +85,18 @@ export function loginTelegram(data: TelegramAuthData): Promise<void> {
   })
 }
 
+/**
+ * Привязать Telegram к текущему (уже авторизованному) аккаунту — для тех, кто
+ * регистрировался в ЛК. Идёт через `request` (с авторизацией/refresh). Актуального
+ * пользователя после привязки берём из `getMe()`.
+ */
+export function linkTelegram(data: TelegramAuthData): Promise<void> {
+  return request(API_URLS.auth.linkTelegram, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(data),
+  })
+}
+
 export function loginGoogle(credential: string): Promise<void> {
   return commonRequest<void>(API_URLS.auth.google, {
     method: HttpMethods.POST,

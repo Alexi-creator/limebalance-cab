@@ -26,7 +26,7 @@ export function SidebarUserCard() {
   const displayName = user?.name || user?.email || "You"
 
   return (
-    <Paper mt="auto" p="xs" withBorder>
+    <Paper p="xs" withBorder>
       <Group gap="xs" wrap="nowrap">
         <Avatar size="sm" radius="xl" color="lime">
           {initials}

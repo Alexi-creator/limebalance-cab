@@ -1,5 +1,5 @@
-import { getExpenses, getExpensesSummary } from "@api/expenses"
-import { getIncomes, getIncomesSummary } from "@api/incomes"
+import { getExpenseCategoriesStats, getExpensesSummary } from "@api/expenses"
+import { getIncomesSummary } from "@api/incomes"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import { useQuery } from "@tanstack/react-query"
@@ -9,89 +9,88 @@ import { type AnalyticsPeriod, COMPARISON_LIMIT } from "./config"
 import {
   buildSeries,
   compareCategories,
-  computeMetricsFromSummary,
+  computeMetricsFromSummaries,
+  GRANULARITY,
   groupByCategory,
   periodToRange,
 } from "./helpers"
 
 const key = (d: Date) => format(d, "yyyy-MM-dd")
 
-// Помесячные сводки в базовой валюте (months=12) — общий ключ с главной/графиком,
-// поэтому react-query дедуплицирует запросы между страницами.
-const SUMMARY_MONTHS = 12
-
 /**
- * Данные страницы аналитики. KPI считаются из помесячных сводок `/summary`
- * (уже в базовой валюте), а временной ряд/разбивка по категориям/сравнение —
- * из списков операций за период. Ключи запросов общие — react-query дедуплицирует.
+ * Данные страницы аналитики. KPI и временной ряд — из сводок `/summary` (текущий и
+ * прошлый период, базовая валюта), пирог и сравнение по категориям — из `/stats`
+ * с параметрами сравнения. Ключи запросов общие — react-query дедуплицирует.
  */
 export function useAnalyticsData(period: AnalyticsPeriod) {
   const range = useMemo(() => periodToRange(period), [period])
   const { from, to, prevFrom, prevTo } = range
+  const granularity = GRANULARITY[period]
 
-  // KPI — из готовых сводок в базовой валюте (доход/расход помесячно)
-  const expSummaryQ = useQuery({
-    queryKey: expenseKeys.summary(SUMMARY_MONTHS),
-    queryFn: () => getExpensesSummary(SUMMARY_MONTHS),
-    staleTime: EXPENSE_STALE_TIME,
-  })
-  const incSummaryQ = useQuery({
-    queryKey: incomeKeys.summary(SUMMARY_MONTHS),
-    queryFn: () => getIncomesSummary(SUMMARY_MONTHS),
-    staleTime: INCOME_STALE_TIME,
-  })
-
+  // сводки текущего периода — KPI (total) + временной ряд (buckets)
   const expCurQ = useQuery({
-    queryKey: expenseKeys.range(key(from), key(to)),
-    queryFn: () => getExpenses(from, to),
+    queryKey: expenseKeys.summary(key(from), key(to), granularity),
+    queryFn: () => getExpensesSummary({ from, to, granularity }),
     staleTime: EXPENSE_STALE_TIME,
   })
   const incCurQ = useQuery({
-    queryKey: incomeKeys.range(key(from), key(to)),
-    queryFn: () => getIncomes(from, to),
+    queryKey: incomeKeys.summary(key(from), key(to), granularity),
+    queryFn: () => getIncomesSummary({ from, to, granularity }),
     staleTime: INCOME_STALE_TIME,
   })
-  // прошлые расходы нужны только для блока «Сравнение с прошлым периодом»
+
+  // сводки прошлого периода — только итоги (total) для трендов KPI
   const expPrevQ = useQuery({
-    queryKey: expenseKeys.range(key(prevFrom), key(prevTo)),
-    queryFn: () => getExpenses(prevFrom, prevTo),
+    queryKey: expenseKeys.summary(key(prevFrom), key(prevTo), granularity),
+    queryFn: () => getExpensesSummary({ from: prevFrom, to: prevTo, granularity }),
+    staleTime: EXPENSE_STALE_TIME,
+  })
+  const incPrevQ = useQuery({
+    queryKey: incomeKeys.summary(key(prevFrom), key(prevTo), granularity),
+    queryFn: () => getIncomesSummary({ from: prevFrom, to: prevTo, granularity }),
+    staleTime: INCOME_STALE_TIME,
+  })
+
+  // статистика категорий расходов с прошлым периодом — пирог (approxTotal) + сравнение (delta)
+  const expStatsQ = useQuery({
+    queryKey: expenseKeys.categoriesStatsRange(key(from), key(to), key(prevFrom), key(prevTo)),
+    queryFn: () => getExpenseCategoriesStats(from, to, prevFrom, prevTo),
     staleTime: EXPENSE_STALE_TIME,
   })
 
-  const expCur = expCurQ.data ?? []
-  const incCur = incCurQ.data ?? []
-  const expPrev = expPrevQ.data ?? []
-
-  const expSummary = expSummaryQ.data
-  const incSummary = incSummaryQ.data
+  const expStats = expStatsQ.data ?? []
 
   const derived = useMemo(
     () => ({
-      // KPI — из помесячных сводок в базовой валюте за месяцы периода
-      metrics: computeMetricsFromSummary(expSummary, incSummary, range),
-      series: buildSeries(expCur, incCur, range, period),
-      donut: groupByCategory(expCur),
-      comparison: compareCategories(expCur, expPrev, COMPARISON_LIMIT),
+      metrics: computeMetricsFromSummaries(
+        expCurQ.data,
+        incCurQ.data,
+        expPrevQ.data,
+        incPrevQ.data,
+      ),
+      series: buildSeries(expCurQ.data, incCurQ.data),
+      donut: groupByCategory(expStats),
+      comparison: compareCategories(expStats, COMPARISON_LIMIT),
     }),
-    [expSummary, incSummary, expCur, incCur, expPrev, range, period],
+    [expCurQ.data, incCurQ.data, expPrevQ.data, incPrevQ.data, expStats],
   )
 
   return {
     ...derived,
     range,
     // базовая валюта пользователя — для форматирования KPI
-    baseCurrency: expSummary?.baseCurrency ?? incSummary?.baseCurrency,
+    baseCurrency: expCurQ.data?.baseCurrency ?? incCurQ.data?.baseCurrency,
     isLoading:
-      expSummaryQ.isLoading ||
-      incSummaryQ.isLoading ||
       expCurQ.isLoading ||
       incCurQ.isLoading ||
-      expPrevQ.isLoading,
+      expPrevQ.isLoading ||
+      incPrevQ.isLoading ||
+      expStatsQ.isLoading,
     isError:
-      expSummaryQ.isError ||
-      incSummaryQ.isError ||
       expCurQ.isError ||
       incCurQ.isError ||
-      expPrevQ.isError,
+      expPrevQ.isError ||
+      incPrevQ.isError ||
+      expStatsQ.isError,
   }
 }

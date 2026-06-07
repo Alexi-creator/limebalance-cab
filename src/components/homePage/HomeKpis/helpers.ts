@@ -25,10 +25,22 @@ export interface KpiMetric {
   refetch: () => void
 }
 
+/** Общий баланс по всем счетам (из GET /transactions/balance). */
+export interface BalanceMetric {
+  /** Баланс в базовой валюте; null, если курсы недоступны — показываем «—». */
+  total: number | null
+  /** Тот же баланс в USD (для подписи под значением); null — если курсы недоступны. */
+  usd: number | null
+  /** Базовая валюта баланса (может отличаться от валюты сводок). */
+  baseCurrency?: string
+  loading: boolean
+}
+
 interface BuildKpisParams {
   language: string
   /** Базовая валюта пользователя — в ней показываем доход/расход (approxTotal). */
   baseCurrency?: string
+  balance: BalanceMetric
   income: KpiMetric
   expense: KpiMetric
 }
@@ -41,7 +53,13 @@ function colorBySign(value: string): string {
 }
 
 /** Собирает массив KPI-карточек главной из статичных значений и метрик доход/расход. */
-export function buildKpis({ language, baseCurrency, income, expense }: BuildKpisParams): Kpi[] {
+export function buildKpis({
+  language,
+  baseCurrency,
+  balance,
+  income,
+  expense,
+}: BuildKpisParams): Kpi[] {
   // накоплено за месяц = доход − расход (в базовой валюте)
   const savedLoading = income.loading || expense.loading
   const savedTotal = income.total - expense.total
@@ -49,14 +67,25 @@ export function buildKpis({ language, baseCurrency, income, expense }: BuildKpis
     ? "—"
     : `${savedTotal >= 0 ? "+" : "−"}${formatCurrency(Math.abs(savedTotal), language, baseCurrency)}`
 
+  // баланс приходит в своей базовой валюте; null (нет курсов) → «—»
+  const balanceValue =
+    balance.loading || balance.total == null
+      ? "—"
+      : formatCurrency(balance.total, language, balance.baseCurrency)
+  // под значением — эквивалент в USD; если курсы недоступны, оставляем подпись по умолчанию
+  const balanceSub =
+    !balance.loading && balance.usd != null
+      ? `≈ ${formatCurrency(balance.usd, language, "USD")}`
+      : "по всем счетам"
+
   return [
     {
       key: "balance",
       label: "Текущий баланс",
-      value: "284 540 ₽",
-      sub: "по всем счетам",
-      trend: 12.4,
-      accent: colorBySign("284 540 ₽"),
+      value: balanceValue,
+      sub: balanceSub,
+      accent: balance.total != null ? colorBySign(balanceValue) : undefined,
+      loading: balance.loading,
     },
     {
       key: "income",
@@ -64,7 +93,6 @@ export function buildKpis({ language, baseCurrency, income, expense }: BuildKpis
       value: income.loading ? "—" : formatCurrency(income.total, language, baseCurrency),
       sub: income.hasData ? "за текущий месяц" : "нет данных",
       accent: "var(--mantine-color-green-5)",
-      trend: 8.2,
       loading: income.loading,
       onRefresh: income.refetch,
       isRefreshing: income.isFetching,
@@ -75,7 +103,6 @@ export function buildKpis({ language, baseCurrency, income, expense }: BuildKpis
       value: expense.loading ? "—" : formatCurrency(-expense.total, language, baseCurrency),
       sub: expense.hasData ? "за текущий месяц" : "нет данных",
       accent: "var(--mantine-color-red-5)",
-      trend: -3.7,
       loading: expense.loading,
       onRefresh: expense.refetch,
       isRefreshing: expense.isFetching,

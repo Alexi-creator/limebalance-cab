@@ -1,14 +1,13 @@
-import type { Expense, ExpensesSummary } from "@appTypes/expense"
-import type { Income, IncomesSummary } from "@appTypes/income"
+import type { CategoryStats } from "@appTypes/category"
+import type { ExpensesSummary, SummaryGranularity } from "@appTypes/expense"
+import type { IncomesSummary } from "@appTypes/income"
 import { COLOR_PALETTE, EMOJI_PALETTE } from "@components/categories/config"
 import {
-  eachDayOfInterval,
-  eachMonthOfInterval,
-  eachWeekOfInterval,
   endOfMonth,
   endOfQuarter,
   endOfYear,
   format,
+  parseISO,
   startOfMonth,
   startOfQuarter,
   startOfWeek,
@@ -21,18 +20,16 @@ import {
 import { ru } from "date-fns/locale"
 import type { AnalyticsPeriod } from "./config"
 
-/** Любая операция (доход или расход) — нужны только сумма, дата и категория. */
-type Op = Expense | Income
-
 const WEEK_OPTS = { weekStartsOn: 1 as const }
 
-/** Гранулярность баров временного ряда под выбранный период. */
-type Granularity = "day" | "week" | "month"
-
-const GRANULARITY: Record<AnalyticsPeriod, Granularity> = {
+/**
+ * Гранулярность бакетов временного ряда под период (передаётся в `/summary`):
+ * неделя/месяц — по дням, квартал — по неделям, год — по месяцам.
+ */
+export const GRANULARITY: Record<AnalyticsPeriod, SummaryGranularity> = {
   week: "day",
-  month: "week",
-  quarter: "month",
+  month: "day",
+  quarter: "week",
   year: "month",
 }
 
@@ -86,9 +83,6 @@ export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): 
   }
 }
 
-/** Сумма операций. */
-const sum = (ops: Op[]) => ops.reduce((s, o) => s + o.amount, 0)
-
 /** Денежная сумма в формате страниц («1 234 ₽»). */
 export function formatRub(n: number): string {
   return `${Math.round(n).toLocaleString("ru-RU")} ₽`
@@ -111,7 +105,7 @@ export interface Metrics {
   rateTrend?: number
 }
 
-/** Метрики и тренды из сырых income/expense (в валюте операций; без конвертации). */
+/** Метрики и тренды из итогов дохода/расхода (в базовой валюте). */
 function metricsFrom(
   income: number,
   expense: number,
@@ -135,38 +129,22 @@ function metricsFrom(
   }
 }
 
-/** Сумма `approxTotal` (базовая валюта) по месяцам сводки, попадающим в `[from, to]`. */
-function sumMonthsInRange(byMonth: ExpensesSummary["byMonth"], from: Date, to: Date): number {
-  const fromKey = format(from, "yyyy-MM")
-  const toKey = format(to, "yyyy-MM")
-  return byMonth
-    .filter((m) => m.month >= fromKey && m.month <= toKey)
-    .reduce((s, m) => s + (m.approxTotal ?? 0), 0)
-}
-
 /**
- * KPI-метрики периода в базовой валюте — из помесячных сводок `/expenses|incomes/summary`.
- * Берём месяцы, попадающие в текущий и прошлый интервал периода. Гранулярность — месяц,
- * поэтому для недельного периода значения приблизительны (учитывается весь месяц).
+ * KPI-метрики периода в базовой валюте — из итогов `total` сводок `/summary` за
+ * текущий и прошлый интервалы (бэк уже привёл всё к базовой валюте). null → 0.
  */
-export function computeMetricsFromSummary(
-  expSummary: ExpensesSummary | undefined,
-  incSummary: IncomesSummary | undefined,
-  range: AnalyticsRange,
+export function computeMetricsFromSummaries(
+  expCur: ExpensesSummary | undefined,
+  incCur: IncomesSummary | undefined,
+  expPrev: ExpensesSummary | undefined,
+  incPrev: IncomesSummary | undefined,
 ): Metrics {
-  const exp = expSummary?.byMonth ?? []
-  const inc = incSummary?.byMonth ?? []
   return metricsFrom(
-    sumMonthsInRange(inc, range.from, range.to),
-    sumMonthsInRange(exp, range.from, range.to),
-    sumMonthsInRange(inc, range.prevFrom, range.prevTo),
-    sumMonthsInRange(exp, range.prevFrom, range.prevTo),
+    incCur?.total ?? 0,
+    expCur?.total ?? 0,
+    incPrev?.total ?? 0,
+    expPrev?.total ?? 0,
   )
-}
-
-/** KPI-метрики периода из сырых списков (в валюте операций; без конвертации). */
-export function computeMetrics(expCur: Op[], incCur: Op[], expPrev: Op[], incPrev: Op[]): Metrics {
-  return metricsFrom(sum(incCur), sum(expCur), sum(incPrev), sum(expPrev))
 }
 
 export interface SeriesPoint {
@@ -175,55 +153,41 @@ export interface SeriesPoint {
   expense: number
 }
 
-/** Ключ бакета операции под гранулярность. */
-function bucketKey(date: Date, g: Granularity): string {
-  if (g === "month") return format(date, "yyyy-MM")
-  if (g === "week") return format(startOfWeek(date, WEEK_OPTS), "yyyy-MM-dd")
-  return format(date, "yyyy-MM-dd")
+/** Подпись бакета под гранулярность. Для дней при длинном ряде подписи прореживаем. */
+function bucketLabel(
+  bucket: string,
+  granularity: SummaryGranularity,
+  index: number,
+  count: number,
+): string {
+  if (granularity === "month") {
+    const [year, month] = bucket.split("-").map(Number)
+    return format(new Date(year, month - 1, 1), "LLL", { locale: ru })
+  }
+  if (granularity === "week") return format(parseISO(bucket), "d.MM")
+  // day: при >14 точках подписываем каждую 5-ю и последнюю, иначе все
+  if (count > 14 && index % 5 !== 0 && index !== count - 1) return ""
+  return String(parseISO(bucket).getDate())
 }
 
-/** Подпись бакета для оси. */
-function bucketLabel(date: Date, g: Granularity): string {
-  if (g === "month") return format(date, "LLL", { locale: ru })
-  if (g === "week") return format(date, "d.MM")
-  return format(date, "EEEEEE", { locale: ru })
-}
-
-/** Временной ряд доходов/расходов по бакетам внутри `[from, to]`. */
+/**
+ * Временной ряд доходов/расходов из бакетов сводок: мерж по `bucket`, пустые бакеты
+ * (`approxTotal: null`) — как 0. Суммы в базовой валюте (`approxTotal`).
+ */
 export function buildSeries(
-  expCur: Op[],
-  incCur: Op[],
-  range: AnalyticsRange,
-  period: AnalyticsPeriod,
+  expSummary: ExpensesSummary | undefined,
+  incSummary: IncomesSummary | undefined,
 ): SeriesPoint[] {
-  const g = GRANULARITY[period]
-  const interval = { start: range.from, end: range.to }
-  const starts =
-    g === "month"
-      ? eachMonthOfInterval(interval)
-      : g === "week"
-        ? eachWeekOfInterval(interval, WEEK_OPTS)
-        : eachDayOfInterval(interval)
+  const granularity = expSummary?.granularity ?? incSummary?.granularity ?? "month"
+  const expMap = new Map((expSummary?.buckets ?? []).map((b) => [b.bucket, b.approxTotal ?? 0]))
+  const incMap = new Map((incSummary?.buckets ?? []).map((b) => [b.bucket, b.approxTotal ?? 0]))
+  const keys = [...new Set([...expMap.keys(), ...incMap.keys()])].sort()
 
-  const incomeByKey = new Map<string, number>()
-  const expenseByKey = new Map<string, number>()
-  for (const o of incCur) {
-    const k = bucketKey(o.date, g)
-    incomeByKey.set(k, (incomeByKey.get(k) ?? 0) + o.amount)
-  }
-  for (const o of expCur) {
-    const k = bucketKey(o.date, g)
-    expenseByKey.set(k, (expenseByKey.get(k) ?? 0) + o.amount)
-  }
-
-  return starts.map((start) => {
-    const k = bucketKey(start, g)
-    return {
-      label: bucketLabel(start, g),
-      income: incomeByKey.get(k) ?? 0,
-      expense: expenseByKey.get(k) ?? 0,
-    }
-  })
+  return keys.map((k, i) => ({
+    label: bucketLabel(k, granularity, i, keys.length),
+    income: incMap.get(k) ?? 0,
+    expense: expMap.get(k) ?? 0,
+  }))
 }
 
 export interface CategorySlice {
@@ -236,33 +200,32 @@ export interface CategorySlice {
   pct: number
 }
 
-/** Группировка расходов по категориям (для доната), отсортировано по убыванию суммы. */
-export function groupByCategory(ops: Op[]): CategorySlice[] {
-  const acc = new Map<
-    string,
-    { name: string; emoji?: string | null; total: number; count: number }
-  >()
-  for (const o of ops) {
-    const c = o.category
-    const cur = acc.get(c.id) ?? { name: c.name, emoji: c.emoji, total: 0, count: 0 }
-    cur.total += o.amount
-    cur.count += 1
-    acc.set(c.id, cur)
-  }
-
-  const total = sum(ops)
-  return [...acc.entries()]
-    .map(([id, v]) => ({ id, ...v }))
-    .sort((a, b) => b.total - a.total)
-    .map((v, i) => ({
-      id: v.id,
-      name: v.name,
-      icon: v.emoji || EMOJI_PALETTE[i % EMOJI_PALETTE.length],
-      color: COLOR_PALETTE[i % COLOR_PALETTE.length],
-      total: v.total,
-      count: v.count,
-      pct: total > 0 ? Math.round((v.total / total) * 100) : 0,
+/**
+ * Срезы пирога по категориям расходов из `/stats`: сумма категории — `approxTotal`
+ * (базовая валюта). Категории без суммы отбрасываем; сортируем по убыванию суммы.
+ */
+export function groupByCategory(stats: CategoryStats[]): CategorySlice[] {
+  const rows = stats
+    .map((s) => ({
+      id: s.id,
+      name: s.name,
+      emoji: s.emoji,
+      total: s.approxTotal ?? 0,
+      count: s.count,
     }))
+    .filter((r) => r.total > 0)
+    .sort((a, b) => b.total - a.total)
+
+  const total = rows.reduce((s, r) => s + r.total, 0)
+  return rows.map((v, i) => ({
+    id: v.id,
+    name: v.name,
+    icon: v.emoji || EMOJI_PALETTE[i % EMOJI_PALETTE.length],
+    color: COLOR_PALETTE[i % COLOR_PALETTE.length],
+    total: v.total,
+    count: v.count,
+    pct: total > 0 ? Math.round((v.total / total) * 100) : 0,
+  }))
 }
 
 export interface CategoryDelta {
@@ -274,21 +237,19 @@ export interface CategoryDelta {
   pct?: number
 }
 
-/** Сравнение расходов по категориям с прошлым периодом, по убыванию модуля изменения. */
-export function compareCategories(cur: Op[], prev: Op[], limit: number): CategoryDelta[] {
-  const totals = new Map<string, { name: string; cur: number; prev: number }>()
-  const add = (ops: Op[], key: "cur" | "prev") => {
-    for (const o of ops) {
-      const row = totals.get(o.category.id) ?? { name: o.category.name, cur: 0, prev: 0 }
-      row[key] += o.amount
-      totals.set(o.category.id, row)
-    }
-  }
-  add(cur, "cur")
-  add(prev, "prev")
-
-  return [...totals.entries()]
-    .map(([id, v]) => ({ id, name: v.name, cur: v.cur, prev: v.prev, delta: v.cur - v.prev }))
+/**
+ * Сравнение расходов по категориям с прошлым периодом из `/stats` (когда переданы
+ * `compareFrom`/`compareTo`): `approxTotal` — текущий, `previousApproxTotal` — прошлый,
+ * `deltaApproxTotal` — разница. По убыванию модуля изменения.
+ */
+export function compareCategories(stats: CategoryStats[], limit: number): CategoryDelta[] {
+  return stats
+    .map((s) => {
+      const cur = s.approxTotal ?? 0
+      const prev = s.previousApproxTotal ?? 0
+      const delta = s.deltaApproxTotal ?? cur - prev
+      return { id: s.id, name: s.name, cur, prev, delta }
+    })
     .filter((r) => r.delta !== 0)
     .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta))
     .slice(0, limit)

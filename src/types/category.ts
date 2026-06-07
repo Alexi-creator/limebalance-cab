@@ -27,6 +27,13 @@ export const categoryStatsSchema = categorySchema.extend({
   totals: z.array(categoryCurrencyTotalSchema).default([]),
   baseCurrency: z.string().nullish(),
   approxTotal: z.coerce.number().nullish(),
+  /**
+   * Сравнение с прошлым периодом — приходят, только если в запрос переданы
+   * `compareFrom`/`compareTo`. `previousApproxTotal` — сумма категории за прошлый
+   * период в базовой валюте, `deltaApproxTotal` — разница (текущий − прошлый).
+   */
+  previousApproxTotal: z.coerce.number().nullish(),
+  deltaApproxTotal: z.coerce.number().nullish(),
 })
 
 export type CategoryStats = z.infer<typeof categoryStatsSchema>
