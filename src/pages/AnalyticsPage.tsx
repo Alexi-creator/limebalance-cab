@@ -31,7 +31,8 @@ const PERIOD_SUB: Record<string, string> = {
 export function AnalyticsPage() {
   const [params, setParams] = useUrlParams(analyticsParamsSchema)
   const period = params.period
-  const { metrics, series, donut, comparison, range, isLoading, isError } = useAnalyticsData(period)
+  const { metrics, series, donut, comparison, range, baseCurrency, isLoading, isError } =
+    useAnalyticsData(period)
 
   const periodLabel = ANALYTICS_PERIODS.find((p) => p.value === period)?.label ?? ""
   const rangeLabel = `${format(range.from, "d MMM", { locale: ru })} – ${format(range.to, "d MMM yyyy", { locale: ru })}`
@@ -73,7 +74,11 @@ export function AnalyticsPage() {
         </Stack>
       ) : (
         <>
-          <AnalyticsKpis metrics={metrics} periodLabel={PERIOD_SUB[period]} />
+          <AnalyticsKpis
+            metrics={metrics}
+            periodLabel={PERIOD_SUB[period]}
+            baseCurrency={baseCurrency}
+          />
 
           <IncomeExpenseChart
             series={series}

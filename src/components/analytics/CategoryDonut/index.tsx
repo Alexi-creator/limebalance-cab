@@ -1,6 +1,5 @@
 import { Box, Group, Paper, Stack, Text } from "@mantine/core"
-import type { CategorySlice } from "../helpers"
-import { formatRub } from "../helpers"
+import { type CategorySlice, formatRub } from "../helpers"
 
 const R = 60
 const CX = 80

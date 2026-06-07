@@ -1,6 +1,5 @@
 import { Badge, Box, Group, Paper, Stack, Text } from "@mantine/core"
-import type { CategoryDelta } from "../helpers"
-import { formatRub } from "../helpers"
+import { type CategoryDelta, formatRub } from "../helpers"
 
 interface Props {
   rows: CategoryDelta[]
@@ -49,6 +48,7 @@ export function CategoryComparison({ rows, title, subtitle }: Props) {
                     </Badge>
                   )}
                 </Group>
+
                 <Group justify="space-between">
                   <Text ff="monospace" size="xs" c="dimmed">
                     {formatRub(c.prev)}

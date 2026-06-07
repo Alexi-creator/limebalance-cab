@@ -1,5 +1,5 @@
-import type { Expense } from "@appTypes/expense"
-import type { Income } from "@appTypes/income"
+import type { Expense, ExpensesSummary } from "@appTypes/expense"
+import type { Income, IncomesSummary } from "@appTypes/income"
 import { COLOR_PALETTE, EMOJI_PALETTE } from "@components/categories/config"
 import {
   eachDayOfInterval,
@@ -7,7 +7,6 @@ import {
   eachWeekOfInterval,
   endOfMonth,
   endOfQuarter,
-  endOfWeek,
   endOfYear,
   format,
   startOfMonth,
@@ -48,12 +47,13 @@ export interface AnalyticsRange {
 export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): AnalyticsRange {
   switch (period) {
     case "week": {
-      const from = startOfWeek(now, WEEK_OPTS)
+      // текущая неделя: с понедельника по сегодня включительно (не до будущего воскресенья)
       return {
-        from,
-        to: endOfWeek(now, WEEK_OPTS),
+        from: startOfWeek(now, WEEK_OPTS),
+        to: now,
+        // прошлая неделя за тот же отрезок (пн .. тот же день недели) — для честного сравнения
         prevFrom: startOfWeek(subWeeks(now, 1), WEEK_OPTS),
-        prevTo: endOfWeek(subWeeks(now, 1), WEEK_OPTS),
+        prevTo: subWeeks(now, 1),
       }
     }
     case "quarter": {
@@ -111,12 +111,13 @@ export interface Metrics {
   rateTrend?: number
 }
 
-/** KPI-метрики периода и их тренды к прошлому периоду. */
-export function computeMetrics(expCur: Op[], incCur: Op[], expPrev: Op[], incPrev: Op[]): Metrics {
-  const income = sum(incCur)
-  const expense = sum(expCur)
-  const prevIncome = sum(incPrev)
-  const prevExpense = sum(expPrev)
+/** Метрики и тренды из сырых income/expense (в валюте операций; без конвертации). */
+function metricsFrom(
+  income: number,
+  expense: number,
+  prevIncome: number,
+  prevExpense: number,
+): Metrics {
   const saved = income - expense
   const prevSaved = prevIncome - prevExpense
   const savingsRate = income > 0 ? Math.round((saved / income) * 100) : 0
@@ -132,6 +133,40 @@ export function computeMetrics(expCur: Op[], incCur: Op[], expPrev: Op[], incPre
     savedTrend: pctChange(saved, prevSaved),
     rateTrend: prevIncome > 0 ? savingsRate - prevRate : undefined,
   }
+}
+
+/** Сумма `approxTotal` (базовая валюта) по месяцам сводки, попадающим в `[from, to]`. */
+function sumMonthsInRange(byMonth: ExpensesSummary["byMonth"], from: Date, to: Date): number {
+  const fromKey = format(from, "yyyy-MM")
+  const toKey = format(to, "yyyy-MM")
+  return byMonth
+    .filter((m) => m.month >= fromKey && m.month <= toKey)
+    .reduce((s, m) => s + (m.approxTotal ?? 0), 0)
+}
+
+/**
+ * KPI-метрики периода в базовой валюте — из помесячных сводок `/expenses|incomes/summary`.
+ * Берём месяцы, попадающие в текущий и прошлый интервал периода. Гранулярность — месяц,
+ * поэтому для недельного периода значения приблизительны (учитывается весь месяц).
+ */
+export function computeMetricsFromSummary(
+  expSummary: ExpensesSummary | undefined,
+  incSummary: IncomesSummary | undefined,
+  range: AnalyticsRange,
+): Metrics {
+  const exp = expSummary?.byMonth ?? []
+  const inc = incSummary?.byMonth ?? []
+  return metricsFrom(
+    sumMonthsInRange(inc, range.from, range.to),
+    sumMonthsInRange(exp, range.from, range.to),
+    sumMonthsInRange(inc, range.prevFrom, range.prevTo),
+    sumMonthsInRange(exp, range.prevFrom, range.prevTo),
+  )
+}
+
+/** KPI-метрики периода из сырых списков (в валюте операций; без конвертации). */
+export function computeMetrics(expCur: Op[], incCur: Op[], expPrev: Op[], incPrev: Op[]): Metrics {
+  return metricsFrom(sum(incCur), sum(expCur), sum(incPrev), sum(expPrev))
 }
 
 export interface SeriesPoint {
