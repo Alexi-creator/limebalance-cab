@@ -1,7 +1,6 @@
 import { RouteNames } from "@constants/routeNames"
 import {
   IconChartHistogram,
-  IconCoin,
   IconHome,
   IconListDetails,
   IconSettings,
@@ -20,7 +19,8 @@ export const getNavGroups = (t: TFunction) => [
       { to: RouteNames.Categories, label: t("nav.categories"), icon: IconTags },
       { to: RouteNames.Analytics, label: t("nav.analytics"), icon: IconChartHistogram },
       { to: RouteNames.Goals, label: t("nav.goals"), icon: IconTarget },
-      { to: RouteNames.Investments, label: t("nav.investments"), icon: IconCoin },
+      // TODO(investments): временно скрыто, страница в разработке — вернуть пункт (+ IconCoin в импорт)
+      // { to: RouteNames.Investments, label: t("nav.investments"), icon: IconCoin },
     ],
   },
   {

@@ -13,9 +13,10 @@ const AnalyticsPage = lazy(() =>
   import("@pages/AnalyticsPage").then((m) => ({ default: m.AnalyticsPage })),
 )
 const GoalsPage = lazy(() => import("@pages/GoalsPage").then((m) => ({ default: m.GoalsPage })))
-const InvestmentsPage = lazy(() =>
-  import("@pages/InvestmentsPage").then((m) => ({ default: m.InvestmentsPage })),
-)
+// TODO(investments): временно скрыто, страница в разработке — вернуть импорт и роут ниже
+// const InvestmentsPage = lazy(() =>
+//   import("@pages/InvestmentsPage").then((m) => ({ default: m.InvestmentsPage })),
+// )
 const SettingsPage = lazy(() =>
   import("@pages/SettingsPage").then((m) => ({ default: m.SettingsPage })),
 )
@@ -30,7 +31,8 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Categories, element: <CategoriesPage /> },
   { path: RouteNames.Analytics, element: <AnalyticsPage /> },
   { path: RouteNames.Goals, element: <GoalsPage /> },
-  { path: RouteNames.Investments, element: <InvestmentsPage /> },
+  // TODO(investments): временно скрыто, страница в разработке — вернуть роут
+  // { path: RouteNames.Investments, element: <InvestmentsPage /> },
   { path: RouteNames.Settings, element: <SettingsPage /> },
   { path: RouteNames.SettingsSecurity, element: <SettingsPage /> },
   { path: RouteNames.SettingsTelegram, element: <SettingsPage /> },

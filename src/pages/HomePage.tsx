@@ -2,7 +2,8 @@ import { CashflowChart } from "@components/CashflowChart"
 import { GoalsSnippet } from "@components/GoalsSnippet"
 import { HomeHeader } from "@components/homePage/HomeHeader"
 import { HomeKpis } from "@components/homePage/HomeKpis"
-import { PortfolioSnippet } from "@components/PortfolioSnippet"
+// TODO(investments): временно скрыто, страница в разработке — вернуть импорт и виджет ниже
+// import { PortfolioSnippet } from "@components/PortfolioSnippet"
 import { RecentTransactions } from "@components/RecentTransactions"
 import { Grid, Stack } from "@mantine/core"
 
@@ -20,7 +21,8 @@ export function HomePage() {
         <Grid.Col span={{ base: 12, lg: 4 }}>
           <Stack gap="md">
             <GoalsSnippet />
-            <PortfolioSnippet />
+            {/* TODO(investments): временно скрыто, страница в разработке — вернуть виджет */}
+            {/* <PortfolioSnippet /> */}
           </Stack>
         </Grid.Col>
       </Grid>
