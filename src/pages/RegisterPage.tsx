@@ -21,7 +21,6 @@ import { useAuthStore } from "@store/authStore"
 import { IconBrandTelegram, IconMail } from "@tabler/icons-react"
 import type { TelegramAuthData } from "@telegram-auth/react"
 import { LoginButton } from "@telegram-auth/react"
-import { getBrowserCurrency } from "@utils/getBrowserCurrency"
 import { syncTimezone } from "@utils/syncTimezone"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -65,7 +64,7 @@ function EmailForm({ onBack }: { onBack: () => void }) {
   const onSubmit = async ({ confirmPassword: _, ...payload }: RegisterFormValues) => {
     setIsPending(true)
     try {
-      await register({ ...payload, currency: getBrowserCurrency() })
+      await register(payload)
       // регистрация уже создаёт сессию; полные данные пользователя берём из /me
       const user = await getMe()
       setUser(user)

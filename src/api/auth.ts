@@ -5,6 +5,7 @@ import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
 import type { TelegramAuthData } from "@telegram-auth/react"
 import { commonRequest } from "@utils/commonRequest"
+import { getBrowserTimezone } from "@utils/getBrowserTimezone"
 
 export interface LoginPayload {
   email: string
@@ -14,14 +15,15 @@ export interface LoginPayload {
 export interface RegisterPayload {
   email: string
   password: string
-  currency?: string
 }
 
+// при регистрации шлём таймзону браузера — бэк выводит из неё дефолтную валюту
+// (на повторных входах игнорируется; валюту фронт не считает и не шлёт)
 // данные пользователя после этих запросов берутся из getMe(), поэтому их ответ не используем
 export function register(payload: RegisterPayload): Promise<void> {
   return commonRequest<void>(API_URLS.auth.register, {
     method: HttpMethods.POST,
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ ...payload, timezone: getBrowserTimezone() }),
   })
 }
 
@@ -79,9 +81,10 @@ export async function logout(): Promise<void> {
 }
 
 export function loginTelegram(data: TelegramAuthData): Promise<void> {
+  // timezone — обычное поле рядом с данными виджета, не часть подписи Telegram
   return commonRequest<void>(API_URLS.auth.telegram, {
     method: HttpMethods.POST,
-    body: JSON.stringify(data),
+    body: JSON.stringify({ ...data, timezone: getBrowserTimezone() }),
   })
 }
 
@@ -100,6 +103,6 @@ export function linkTelegram(data: TelegramAuthData): Promise<void> {
 export function loginGoogle(credential: string): Promise<void> {
   return commonRequest<void>(API_URLS.auth.google, {
     method: HttpMethods.POST,
-    body: JSON.stringify({ credential }),
+    body: JSON.stringify({ credential, timezone: getBrowserTimezone() }),
   })
 }
