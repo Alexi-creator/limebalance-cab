@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    env_file: .env
+    environment:
+      # бэкенд крутится на хосте → проксируем /api туда, а не в localhost контейнера
+      - VITE_DEV_PROXY_TARGET=http://host.docker.internal:3000
+    extra_hosts:
+      # нужно на Linux-хостах; на Docker Desktop (Mac/Win) уже резолвится
+      - "host.docker.internal:host-gateway"

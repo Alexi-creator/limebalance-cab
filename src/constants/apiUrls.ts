@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000/api"
+import { getEnv } from "@constants/env"
+
+const API_URL = getEnv("VITE_API_URL") || "http://localhost:3000/api"
 
 export const API_URLS = {
   auth: {

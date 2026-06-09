@@ -1,6 +1,7 @@
 import { GlobalModal } from "@components/GlobalModal"
 import { GuestRoute } from "@components/GuestRoute"
 import { ProtectedRoute } from "@components/ProtectedRoute"
+import { getEnv } from "@constants/env"
 import { useAuthInit } from "@hooks/useAuthInit"
 import { Layout } from "@layout/Layout"
 import { PublicLayout } from "@layout/PublicLayout"
@@ -10,7 +11,7 @@ import { appRoutes, publicRoutes } from "@settings/routesConfig"
 import { useTranslation } from "react-i18next"
 import { Route, Routes } from "react-router-dom"
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID as string
+const GOOGLE_CLIENT_ID = getEnv("VITE_GOOGLE_CLIENT_ID")
 
 function App() {
   const { i18n } = useTranslation()

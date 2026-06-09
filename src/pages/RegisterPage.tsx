@@ -1,5 +1,6 @@
 import { ApiError } from "@api/apiError"
 import { getMe, loginGoogle, loginTelegram, register } from "@api/auth"
+import { getEnv } from "@constants/env"
 import { HttpStatus } from "@constants/httpStatus"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -28,7 +29,7 @@ import { useTranslation } from "react-i18next"
 import { Link, useNavigate } from "react-router-dom"
 import { z } from "zod"
 
-const BOT_USERNAME = import.meta.env.VITE_TELEGRAM_BOT_USERNAME as string
+const BOT_USERNAME = getEnv("VITE_TELEGRAM_BOT_USERNAME")
 
 type AuthMethod = "select" | "email"
 
