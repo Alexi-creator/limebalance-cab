@@ -19,6 +19,7 @@ export function CategoryComparison({ rows, title, subtitle }: Props) {
         <Text fw={600} size="sm">
           {title}
         </Text>
+
         <Text size="xs" c="dimmed">
           {subtitle}
         </Text>

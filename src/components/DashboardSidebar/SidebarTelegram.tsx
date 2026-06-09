@@ -48,6 +48,7 @@ export function SidebarTelegram() {
         >
           <IconBrandTelegram size={16} />
         </Box>
+
         <Box style={{ minWidth: 0, flex: 1 }}>
           <Text size="sm" fw={500} truncate>
             {linked ? "Открыть бота" : "Подключить Telegram"}
