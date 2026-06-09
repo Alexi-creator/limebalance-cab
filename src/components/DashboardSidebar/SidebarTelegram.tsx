@@ -15,12 +15,14 @@ export function SidebarTelegram() {
   const close = useSidebarStore((s) => s.close)
   const linked = !!user?.telegramId
 
-  // общие пропсы карточки-ссылки (визуал одинаков для обоих вариантов)
+  // общие пропсы карточки-ссылки (визуал одинаков для обоих вариантов).
+  // карточка рендерится как <a>, а Paper себя как ссылку не красит — задаём цвет текста
+  // явно, иначе вложенный <Text> унаследует сиреневый currentColor посещённого <a> из UA-стилей.
   const cardProps = {
     withBorder: true,
     p: "xs",
     mt: "auto",
-    style: { cursor: "pointer", textDecoration: "none" },
+    style: { cursor: "pointer", textDecoration: "none", color: "var(--mantine-color-text)" },
   } as const
 
   const content = (
