@@ -43,7 +43,7 @@ export function SidebarTelegram() {
             display: "grid",
             placeItems: "center",
             color: "var(--mantine-color-white)",
-            background: "#229ED9",
+            background: "var(--app-color-telegram)",
           }}
         >
           <IconBrandTelegram size={16} />

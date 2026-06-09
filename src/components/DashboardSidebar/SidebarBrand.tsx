@@ -13,7 +13,7 @@ export function SidebarBrand() {
           w={26}
           h={26}
           bg="lime.4"
-          c="#0a0d12"
+          c="var(--app-logo-ink)"
           ff="monospace"
           fw={600}
           fz={14}
