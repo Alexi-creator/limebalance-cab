@@ -1,6 +1,7 @@
 import { AddModal } from "@components/AddModal"
 import { useModalStore } from "@store/modalStore"
-import { IconArrowsLeftRight, IconChartLine, IconCreditCard, IconTarget } from "@tabler/icons-react"
+// TODO(asset): временно скрыто (форма в разработке) — вернуть IconChartLine и опцию «Актив» ниже
+import { IconCreditCard, IconTarget } from "@tabler/icons-react"
 import type { SelectButtonOption } from "@ui/SelectButton"
 import type { ComponentProps } from "react"
 
@@ -24,15 +25,11 @@ export const ADD_OPTIONS: SelectButtonOption[] = [
     icon: <IconTarget size={16} />,
     onClick: () => openAdd("goal"),
   },
-  {
-    label: "Актив в портфель",
-    description: "крипта",
-    icon: <IconChartLine size={16} />,
-    onClick: () => openAdd("asset"),
-  },
-  {
-    label: "Перевод между счетами",
-    icon: <IconArrowsLeftRight size={16} />,
-    onClick: () => openAdd("transfer"),
-  },
+  // TODO(asset): временно скрыто (форма в разработке) — вернуть опцию «Актив»
+  // {
+  //   label: "Актив в портфель",
+  //   description: "крипта",
+  //   icon: <IconChartLine size={16} />,
+  //   onClick: () => openAdd("asset"),
+  // },
 ]

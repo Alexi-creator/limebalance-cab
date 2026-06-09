@@ -1,11 +1,11 @@
 import { Stack, Tabs, Text } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
-import { IconArrowsLeftRight, IconChartLine, IconCreditCard, IconTarget } from "@tabler/icons-react"
+import { IconCreditCard, IconTarget } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
-import { AssetForm } from "./AssetForm"
+// TODO(asset): временно скрыто (форма в разработке) — вернуть импорт AssetForm и IconChartLine
+// import { AssetForm } from "./AssetForm"
 import { GoalForm } from "./GoalForm"
 import { TransactionForm } from "./TransactionForm"
-import { TransferForm } from "./TransferForm"
 import type { AddType } from "./types"
 
 export type { AddType }
@@ -14,14 +14,12 @@ const TITLES: Record<AddType, string> = {
   transaction: "Новая операция",
   goal: "Новая цель",
   asset: "Добавить актив",
-  transfer: "Перевод между счетами",
 }
 
 const SUBS: Record<AddType, string> = {
   transaction: "Доход или расход — учтётся в аналитике сразу",
   goal: "LimeBalance подскажет, сколько откладывать",
   asset: "Добавьте позицию в портфель",
-  transfer: "Перенос средств между вашими счетами",
 }
 
 interface AddModalProps {
@@ -35,7 +33,7 @@ interface AddModalProps {
 
 /**
  * Модальный контейнер для создания финансовых записей.
- * Содержит вкладки для переключения между типами: операция, цель, актив, перевод.
+ * Содержит вкладки для переключения между типами: операция, цель, актив.
  * При `lockType=true` показывает только одну фиксированную форму без вкладок.
  */
 export function AddModal({
@@ -72,12 +70,10 @@ export function AddModal({
             <Tabs.Tab value="goal" leftSection={<IconTarget size={14} />}>
               Цель
             </Tabs.Tab>
-            <Tabs.Tab value="asset" leftSection={<IconChartLine size={14} />}>
+            {/* TODO(asset): временно скрыто (форма в разработке) — вернуть таб (+ IconChartLine) */}
+            {/* <Tabs.Tab value="asset" leftSection={<IconChartLine size={14} />}>
               Актив
-            </Tabs.Tab>
-            <Tabs.Tab value="transfer" leftSection={<IconArrowsLeftRight size={14} />}>
-              Перевод
-            </Tabs.Tab>
+            </Tabs.Tab> */}
           </Tabs.List>
         </Tabs>
       )}
@@ -91,8 +87,8 @@ export function AddModal({
         />
       )}
       {type === "goal" && <GoalForm onSubmit={close} onCancel={close} />}
-      {type === "asset" && <AssetForm onSubmit={close} onCancel={close} />}
-      {type === "transfer" && <TransferForm onSubmit={close} onCancel={close} />}
+      {/* TODO(asset): временно скрыто (форма в разработке) — вернуть рендер AssetForm */}
+      {/* {type === "asset" && <AssetForm onSubmit={close} onCancel={close} />} */}
     </Stack>
   )
 }
