@@ -1,6 +1,8 @@
+import { RouteNames } from "@constants/routeNames"
 import { Alert, Button, Group, Text } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
+import { Link } from "react-router-dom"
 
 /**
  * Баннер-предупреждение для пользователей, вошедших через Telegram без привязанного email.
@@ -28,7 +30,13 @@ export function AccountAlert() {
           Вы вошли через Telegram. Добавьте email и пароль в настройках, чтобы не потерять доступ к
           аккаунту.
         </Text>
-        <Button size="xs" color="yellow" variant="filled">
+        <Button
+          component={Link}
+          to={RouteNames.SettingsSecurity}
+          size="xs"
+          color="yellow"
+          variant="filled"
+        >
           Перейти в настройки
         </Button>
       </Group>
