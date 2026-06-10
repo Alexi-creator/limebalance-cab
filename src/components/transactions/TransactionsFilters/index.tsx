@@ -9,7 +9,7 @@ import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue } from "@mantine/hooks"
 import { IconSearch, IconX } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { type TransactionsParams, TYPE_OPTIONS } from "../config"
 
 interface Props {
@@ -24,16 +24,15 @@ interface Props {
 export function TransactionsFilters({ params, setParams }: Props) {
   const [search, setSearch] = useState(params.search ?? "")
   const [debounced] = useDebouncedValue(search, 350)
-  const isFirstRun = useRef(true)
 
-  // дебаунс-поиск → URL; пропускаем первый прогон, чтобы не сбросить page из ссылки
+  // дебаунс-поиск → URL; пишем только при реальном изменении строки поиска.
+  // Сравнение с params.search обязательно: идентичность setParams меняется при
+  // каждом изменении URL (react-router пересоздаёт setSearchParams), и без этой
+  // проверки эффект перезапускался бы на смену страницы и сбрасывал page на 1.
   useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false
-      return
-    }
+    if (debounced === (params.search ?? "")) return
     setParams({ search: debounced || undefined, page: 1 })
-  }, [debounced, setParams])
+  }, [debounced, params.search, setParams])
 
   const { data: expenseCategories } = useQuery({
     queryKey: expenseKeys.categories,
