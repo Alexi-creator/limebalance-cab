@@ -83,11 +83,6 @@ export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): 
   }
 }
 
-/** Денежная сумма в формате страниц («1 234 ₽»). */
-export function formatRub(n: number): string {
-  return `${Math.round(n).toLocaleString("ru-RU")} ₽`
-}
-
 /** Изменение в процентах относительно прошлого периода; `undefined` если базы нет (нет badge). */
 function pctChange(cur: number, prev: number): number | undefined {
   if (prev === 0) return undefined

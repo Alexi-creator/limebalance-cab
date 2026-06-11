@@ -1,14 +1,20 @@
 import { Badge, Box, Group, Paper, Stack, Text } from "@mantine/core"
-import { type CategoryDelta, formatRub } from "../helpers"
+import { formatCurrency } from "@utils/formatCurrency"
+import { useTranslation } from "react-i18next"
+import type { CategoryDelta } from "../helpers"
 
 interface Props {
   rows: CategoryDelta[]
   title: string
   subtitle: string
+  /** Базовая валюта пользователя — в ней приходят суммы из сводок. */
+  baseCurrency?: string
 }
 
 /** Список категорий с наибольшим изменением расходов относительно прошлого периода. */
-export function CategoryComparison({ rows, title, subtitle }: Props) {
+export function CategoryComparison({ rows, title, subtitle, baseCurrency }: Props) {
+  const { i18n } = useTranslation()
+  const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
   return (
     <Paper>
       <Group
@@ -52,14 +58,14 @@ export function CategoryComparison({ rows, title, subtitle }: Props) {
 
                 <Group justify="space-between">
                   <Text ff="monospace" size="xs" c="dimmed">
-                    {formatRub(c.prev)}
+                    {money(c.prev)}
                   </Text>
                   <Text ff="monospace" size="xs" c={up ? "red.5" : "green.5"}>
                     {up ? "+" : "−"}
-                    {formatRub(Math.abs(c.delta))}
+                    {money(Math.abs(c.delta))}
                   </Text>
                   <Text ff="monospace" size="xs" c="dimmed">
-                    {formatRub(c.cur)}
+                    {money(c.cur)}
                   </Text>
                 </Group>
               </Box>

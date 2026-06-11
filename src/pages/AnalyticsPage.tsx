@@ -88,13 +88,19 @@ export function AnalyticsPage() {
 
           <Grid gap="md">
             <Grid.Col span={{ base: 12, md: 6 }}>
-              <CategoryDonut slices={donut} title="Расходы по категориям" subtitle={rangeLabel} />
+              <CategoryDonut
+                slices={donut}
+                title="Расходы по категориям"
+                subtitle={rangeLabel}
+                baseCurrency={baseCurrency}
+              />
             </Grid.Col>
             <Grid.Col span={{ base: 12, md: 6 }}>
               <CategoryComparison
                 rows={comparison}
                 title="Сравнение с прошлым периодом"
                 subtitle="Где изменились расходы"
+                baseCurrency={baseCurrency}
               />
             </Grid.Col>
           </Grid>

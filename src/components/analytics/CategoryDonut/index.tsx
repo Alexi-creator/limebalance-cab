@@ -1,5 +1,7 @@
 import { Box, Group, Paper, Stack, Text } from "@mantine/core"
-import { type CategorySlice, formatRub } from "../helpers"
+import { formatCurrency } from "@utils/formatCurrency"
+import { useTranslation } from "react-i18next"
+import type { CategorySlice } from "../helpers"
 
 const R = 60
 const CX = 80
@@ -10,10 +12,14 @@ interface Props {
   slices: CategorySlice[]
   title: string
   subtitle: string
+  /** Базовая валюта пользователя — в ней приходят суммы из сводок. */
+  baseCurrency?: string
 }
 
 /** Кольцевая диаграмма расходов по категориям с легендой. */
-export function CategoryDonut({ slices, title, subtitle }: Props) {
+export function CategoryDonut({ slices, title, subtitle, baseCurrency }: Props) {
+  const { i18n } = useTranslation()
+  const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
   const total = slices.reduce((s, c) => s + c.total, 0)
   let offset = 0
 
@@ -94,7 +100,7 @@ export function CategoryDonut({ slices, title, subtitle }: Props) {
                 </Group>
                 <Group gap="xs">
                   <Text ff="monospace" size="sm">
-                    {formatRub(c.total)}
+                    {money(c.total)}
                   </Text>
                   <Text ff="monospace" size="xs" c="dimmed" w={34} ta="right">
                     {c.pct}%
