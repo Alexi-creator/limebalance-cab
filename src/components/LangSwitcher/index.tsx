@@ -21,11 +21,12 @@ export function LangSwitcher() {
   return (
     <Select
       size="sm"
-      w={110}
+      w={150}
       value={i18n.language}
       onChange={handleChange}
       data={languageOptions}
       allowDeselect={false}
+      searchable
       checkIconPosition="right"
     />
   )
