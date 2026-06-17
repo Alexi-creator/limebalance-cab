@@ -2,6 +2,7 @@ import type { ButtonProps, MenuProps } from "@mantine/core"
 import { Button, Menu, Text } from "@mantine/core"
 import { IconChevronDown } from "@tabler/icons-react"
 import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 export interface SelectButtonOption {
   /** Название пункта меню */
@@ -46,6 +47,7 @@ export function SelectButton({
   menuWidth = 220,
   menuPosition = "bottom-end",
 }: SelectButtonProps) {
+  const { t } = useTranslation()
   return (
     <Button.Group>
       <Button leftSection={icon} size={size} onClick={onClick}>
@@ -54,7 +56,7 @@ export function SelectButton({
 
       <Menu position={menuPosition} width={menuWidth} shadow="md">
         <Menu.Target>
-          <Button size={size} px={8} aria-label="Выбрать действие">
+          <Button size={size} px={8} aria-label={t("common.select_action")}>
             <IconChevronDown size={12} />
           </Button>
         </Menu.Target>

@@ -9,6 +9,7 @@ import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useTranslation } from "react-i18next"
 
 interface Props {
   category: CategoryStats
@@ -17,6 +18,7 @@ interface Props {
 
 /** Подтверждение удаления категории. После успеха обновляет список, статистику и операции. */
 export function DeleteCategoryConfirm({ category, isExpense }: Props) {
+  const { t } = useTranslation()
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
 
@@ -28,34 +30,33 @@ export function DeleteCategoryConfirm({ category, isExpense }: Props) {
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: keys.categories, exact: true })
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      notifications.show({ color: "green", message: "Категория удалена" })
+      notifications.show({ color: "green", message: t("categories.delete_success") })
       close()
     },
   })
 
   return (
     <Stack gap="md">
-      <Text size="sm">Удалить категорию «{category.name}»? Действие необратимо.</Text>
+      <Text size="sm">{t("categories.delete_confirm", { name: category.name })}</Text>
 
       {category.count > 0 && (
         <Alert variant="light" color="red" icon={<IconAlertTriangle size={16} />} radius="md">
-          Вместе с категорией <b>безвозвратно</b> удалятся все её данные — {category.count}{" "}
-          операций. Это действие нельзя отменить.
+          {t("categories.delete_warning", { count: category.count })}
         </Alert>
       )}
 
       {mutation.isError && (
         <Alert variant="light" color="red" radius="md">
-          Не удалось удалить категорию
+          {t("categories.delete_error")}
         </Alert>
       )}
 
       <Group justify="flex-end">
         <Button variant="default" onClick={close} disabled={mutation.isPending}>
-          Отмена
+          {t("common.cancel")}
         </Button>
         <Button color="red" loading={mutation.isPending} onClick={() => mutation.mutate()}>
-          Удалить
+          {t("common.delete")}
         </Button>
       </Group>
     </Stack>

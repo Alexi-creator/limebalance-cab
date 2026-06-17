@@ -6,7 +6,8 @@ import { useModalStore } from "@store/modalStore"
 import { useSidebarStore } from "@store/sidebarStore"
 import { IconBell, IconPlus, IconSearch } from "@tabler/icons-react"
 import { SelectButton } from "@ui/SelectButton"
-import { ADD_OPTIONS } from "./config"
+import { useTranslation } from "react-i18next"
+import { getAddOptions } from "./config"
 
 /**
  * Верхняя панель приложения (AppShell.Header).
@@ -15,6 +16,7 @@ import { ADD_OPTIONS } from "./config"
  * Состояние мобильного меню берёт из `sidebarStore`. Не принимает пропсов.
  */
 export function Header() {
+  const { t } = useTranslation()
   const { open } = useModalStore()
   const opened = useSidebarStore((s) => s.opened)
   const toggle = useSidebarStore((s) => s.toggle)
@@ -25,7 +27,7 @@ export function Header() {
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 
         <TextInput
-          placeholder="Поиск по операциям, целям, тикерам…"
+          placeholder={t("header.search_placeholder")}
           leftSection={<IconSearch size={14} />}
           rightSectionWidth={48}
           style={{ flex: 1, maxWidth: 360 }}
@@ -38,7 +40,7 @@ export function Header() {
 
           <Box visibleFrom="sm">
             <Indicator color="lime" size={8} offset={6} processing>
-              <ActionIcon variant="default" size={36} aria-label="Уведомления">
+              <ActionIcon variant="default" size={36} aria-label={t("common.notifications")}>
                 <IconBell size={18} />
               </ActionIcon>
             </Indicator>
@@ -49,12 +51,12 @@ export function Header() {
           </Box>
 
           <SelectButton
-            label="Добавить"
+            label={t("header.add")}
             icon={<IconPlus size={14} />}
             onClick={() =>
               open({ size: "lg", centered: true, children: <AddModal type="transaction" /> })
             }
-            options={ADD_OPTIONS}
+            options={getAddOptions(t)}
             menuWidth={260}
           />
         </Group>

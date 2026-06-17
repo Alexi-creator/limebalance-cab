@@ -1,5 +1,6 @@
 import { Button, Group, Text } from "@mantine/core"
 import { IconTrash, IconX } from "@tabler/icons-react"
+import { useTranslation } from "react-i18next"
 
 interface Props {
   selectedCount: number
@@ -13,6 +14,7 @@ interface Props {
  * при выделении — счётчик и действия над выбранными.
  */
 export function TransactionsToolbar({ selectedCount, onClearSelection, onBulkDelete }: Props) {
+  const { t } = useTranslation()
   const hasSelection = selectedCount > 0
 
   return (
@@ -31,7 +33,7 @@ export function TransactionsToolbar({ selectedCount, onClearSelection, onBulkDel
         <>
           <Group gap="xs" wrap="nowrap">
             <Text size="sm" fw={500}>
-              Выбрано {selectedCount}
+              {t("transactions.toolbar_selected", { count: selectedCount })}
             </Text>
             <Button
               variant="subtle"
@@ -40,7 +42,7 @@ export function TransactionsToolbar({ selectedCount, onClearSelection, onBulkDel
               leftSection={<IconX size={14} />}
               onClick={onClearSelection}
             >
-              Сбросить
+              {t("common.reset")}
             </Button>
           </Group>
 
@@ -51,12 +53,12 @@ export function TransactionsToolbar({ selectedCount, onClearSelection, onBulkDel
             leftSection={<IconTrash size={14} />}
             onClick={onBulkDelete}
           >
-            Удалить {selectedCount}
+            {t("common.delete")} {selectedCount}
           </Button>
         </>
       ) : (
         <Text size="sm" c="dimmed">
-          Выберите строки для массовых действий
+          {t("transactions.toolbar_hint")}
         </Text>
       )}
     </Group>

@@ -32,18 +32,14 @@ import { z } from "zod"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
-const createSchema = z.object({
-  kind: z.enum(["income", "expense"]),
-  amount: z
-    .union([z.number(), z.literal("")])
-    .refine((v) => v !== "" && v > 0, "Введите сумму больше 0"),
-  categoryId: z.string().min(1, "Выберите категорию"),
-  currency: z.string().min(1, "Выберите валюту"),
-  day: z.union([z.string(), z.null()]).refine((v) => !!v && v.length > 0, "Укажите дату"),
-  description: z.string(),
-})
-
-type CreateFormValues = z.infer<typeof createSchema>
+type CreateFormValues = {
+  kind: "income" | "expense"
+  amount: number | ""
+  categoryId: string
+  currency: string
+  day: string | null
+  description: string
+}
 
 interface Props {
   /** Вызывается после успешного создания операции */
@@ -62,9 +58,22 @@ interface Props {
  * дописывает новую операцию прямо в кеш react-query (без рефетча).
  */
 export function TransactionForm({ onSubmit, onCancel, initialKind, initialCategoryId }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
+
+  const createSchema = z.object({
+    kind: z.enum(["income", "expense"]),
+    amount: z
+      .union([z.number(), z.literal("")])
+      .refine((v) => v !== "" && v > 0, t("form.amount_positive")),
+    categoryId: z.string().min(1, t("form.category_required")),
+    currency: z.string().min(1, t("form.currency_required")),
+    day: z
+      .union([z.string(), z.null()])
+      .refine((v) => !!v && v.length > 0, t("form.date_required")),
+    description: z.string(),
+  })
 
   const {
     control,
@@ -134,7 +143,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
 
       notifications.show({
         color: "green",
-        message: isExpense ? "Расход добавлен" : "Доход добавлен",
+        message: isExpense ? t("transactions.expense_added") : t("transactions.income_added"),
       })
       onSubmit()
     },
@@ -166,8 +175,8 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
                 setValue("categoryId", "")
               }}
               data={[
-                { value: "expense", label: "− Расход" },
-                { value: "income", label: "+ Доход" },
+                { value: "expense", label: t("common.type_expense") },
+                { value: "income", label: t("common.type_income") },
               ]}
             />
           )}
@@ -180,7 +189,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
             render={({ field }) => (
               <NumberInput
                 {...field}
-                label="Сумма"
+                label={t("common.amount")}
                 size="md"
                 autoFocus
                 hideControls
@@ -201,7 +210,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
             render={({ field }) => (
               <Select
                 {...field}
-                label="Валюта"
+                label={t("common.currency")}
                 size="md"
                 w={140}
                 data={CURRENCY_OPTIONS}
@@ -209,7 +218,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
                 onChange={(v) => field.onChange(v ?? "")}
                 searchable
                 allowDeselect={false}
-                nothingFoundMessage="Ничего не найдено"
+                nothingFoundMessage={t("common.nothing_found")}
                 error={errors.currency?.message}
               />
             )}
@@ -218,17 +227,19 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
 
         <Box>
           <Text size="xs" c="dimmed" tt="uppercase" mb={6}>
-            Категория
+            {t("common.category")}
           </Text>
           {noCategories ? (
             <Text size="sm" c="dimmed">
-              Нет ни одной {isExpense ? "категории расходов" : "категории доходов"}.{" "}
+              {isExpense
+                ? t("add_modal.no_categories_expense")
+                : t("add_modal.no_categories_income")}{" "}
               <Anchor
                 component={Link}
                 to={`${RouteNames.Categories}?type=${kind}`}
                 onClick={onCancel}
               >
-                Добавьте группу
+                {t("transactions.add_group_link")}
               </Anchor>
             </Text>
           ) : (
@@ -261,7 +272,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
           render={({ field }) => (
             <DatePickerInput
               {...field}
-              label="Дата"
+              label={t("common.date")}
               maxDate={format(new Date(), "yyyy-MM-dd")}
               locale={i18n.language}
               valueFormat="DD MMM YYYY"
@@ -272,7 +283,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
 
         <Textarea
           {...register("description")}
-          label="Заметка"
+          label={t("common.note")}
           autosize
           minRows={1}
           maxRows={3}
@@ -281,10 +292,10 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
           <Button variant="default" onClick={onCancel} disabled={mutation.isPending}>
-            Отмена
+            {t("common.cancel")}
           </Button>
           <Button type="submit" loading={mutation.isPending} disabled={noCategories}>
-            Сохранить операцию
+            {t("add_modal.save_transaction")}
           </Button>
         </Group>
       </Stack>

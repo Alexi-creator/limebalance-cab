@@ -1,7 +1,7 @@
 import { Box, Group, Paper, Stack, Text, Tooltip } from "@mantine/core"
 import { formatCurrency } from "@utils/formatCurrency"
 import { useTranslation } from "react-i18next"
-import { baseAmount, isApprox, pluralRu } from "../helpers"
+import { baseAmount, isApprox } from "../helpers"
 import type { DisplayCategory } from "../types"
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
  * долей по категориям. Суммы из разных валют приводятся к базовой, поэтому помечаются «≈».
  */
 export function CategoriesSummary({ list, isExpense }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const language = i18n.language
 
   const totalBase = list.reduce((s, c) => s + baseAmount(c), 0)
@@ -27,7 +27,7 @@ export function CategoriesSummary({ list, isExpense }: Props) {
       <Group justify="space-between" mb="md" wrap="wrap">
         <Stack gap={2}>
           <Text size="xs" c="dimmed">
-            {isExpense ? "Расход за всё время" : "Доход за всё время"}
+            {isExpense ? t("categories.summary_expense") : t("categories.summary_income")}
           </Text>
           <Text ff="monospace" fz={24} fw={500} c={isExpense ? "red.5" : "green.5"}>
             {approximate ? "≈ " : ""}
@@ -36,8 +36,10 @@ export function CategoriesSummary({ list, isExpense }: Props) {
           </Text>
         </Stack>
         <Text ff="monospace" size="xs" c="dimmed">
-          {totalCount} {pluralRu(totalCount, ["операция", "операции", "операций"])} в {list.length}{" "}
-          {pluralRu(list.length, ["категории", "категориях", "категориях"])}
+          {t("categories.summary_count", {
+            transactions: t("common.tx_count", { count: totalCount }),
+            categories: t("categories.cat_count", { count: list.length }),
+          })}
         </Text>
       </Group>
       <Box

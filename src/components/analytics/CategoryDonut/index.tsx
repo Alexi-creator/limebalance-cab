@@ -18,7 +18,7 @@ interface Props {
 
 /** Кольцевая диаграмма расходов по категориям с легендой. */
 export function CategoryDonut({ slices, title, subtitle, baseCurrency }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
   const total = slices.reduce((s, c) => s + c.total, 0)
   let offset = 0
@@ -39,7 +39,7 @@ export function CategoryDonut({ slices, title, subtitle, baseCurrency }: Props) 
       </Group>
       {slices.length === 0 ? (
         <Text c="dimmed" ta="center" p="xl">
-          Нет расходов за период
+          {t("analytics.donut_empty")}
         </Text>
       ) : (
         <Group p="md" gap="lg" wrap="wrap" align="center">
@@ -47,7 +47,7 @@ export function CategoryDonut({ slices, title, subtitle, baseCurrency }: Props) 
             width="160"
             height="160"
             viewBox="0 0 160 160"
-            aria-label="Диаграмма расходов по категориям"
+            aria-label={t("analytics.donut_aria")}
             role="img"
           >
             {slices.map((s) => {
@@ -88,7 +88,7 @@ export function CategoryDonut({ slices, title, subtitle, baseCurrency }: Props) 
               fill="var(--mantine-color-dimmed)"
               fontFamily="var(--mantine-font-family-monospace)"
             >
-              расход
+              {t("analytics.donut_center")}
             </text>
           </svg>
           <Stack gap={4} style={{ flex: 1, minWidth: 200 }}>

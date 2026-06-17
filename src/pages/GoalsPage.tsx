@@ -11,7 +11,10 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core"
+import { useAuthStore } from "@store/authStore"
 import { IconEdit, IconPlus, IconTrash } from "@tabler/icons-react"
+import { formatCurrency } from "@utils/formatCurrency"
+import { useTranslation } from "react-i18next"
 
 interface Goal {
   icon: string
@@ -23,46 +26,50 @@ interface Goal {
   perMonth: number
 }
 
-const goals: Goal[] = [
-  {
-    icon: "🌴",
-    name: "Отпуск на Бали",
-    target: 240000,
-    saved: 163200,
-    deadline: "Авг 2026",
-    color: "lime",
-    perMonth: 19200,
-  },
-  {
-    icon: "🛡️",
-    name: "Финансовая подушка",
-    target: 600000,
-    saved: 252000,
-    deadline: "Дек 2026",
-    color: "green",
-    perMonth: 50000,
-  },
-  {
-    icon: "💻",
-    name: "Новый ноутбук",
-    target: 180000,
-    saved: 162000,
-    deadline: "Июл 2026",
-    color: "yellow",
-    perMonth: 9000,
-  },
-  {
-    icon: "🏡",
-    name: "Первый взнос на ипотеку",
-    target: 2400000,
-    saved: 336000,
-    deadline: "2028",
-    color: "red",
-    perMonth: 70000,
-  },
-]
-
 export function GoalsPage() {
+  const { t, i18n } = useTranslation()
+  const userCurrency = useAuthStore((s) => s.user?.currency)
+  const money = (n: number) => formatCurrency(n, i18n.language, userCurrency)
+
+  const goals: Goal[] = [
+    {
+      icon: "🌴",
+      name: t("goals.page_mock.bali"),
+      target: 240000,
+      saved: 163200,
+      deadline: t("goals.page_mock.deadline1"),
+      color: "lime",
+      perMonth: 19200,
+    },
+    {
+      icon: "🛡️",
+      name: t("goals.page_mock.cushion"),
+      target: 600000,
+      saved: 252000,
+      deadline: t("goals.page_mock.deadline2"),
+      color: "green",
+      perMonth: 50000,
+    },
+    {
+      icon: "💻",
+      name: t("goals.page_mock.laptop"),
+      target: 180000,
+      saved: 162000,
+      deadline: t("goals.page_mock.deadline3"),
+      color: "yellow",
+      perMonth: 9000,
+    },
+    {
+      icon: "🏡",
+      name: t("goals.page_mock.mortgage"),
+      target: 2400000,
+      saved: 336000,
+      deadline: t("goals.page_mock.deadline4"),
+      color: "red",
+      perMonth: 70000,
+    },
+  ]
+
   const total = goals.reduce((s, g) => s + g.target, 0)
   const saved = goals.reduce((s, g) => s + g.saved, 0)
   const totalPct = Math.round((saved / total) * 100)
@@ -72,14 +79,15 @@ export function GoalsPage() {
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
-            Цели
+            {t("goals.title")}
           </Title>
           <Text size="sm" c="dimmed">
-            4 активных цели · {totalPct}% общего прогресса
+            {t("goals.active_count", { count: goals.length })} · {totalPct}%{" "}
+            {t("goals.total_progress")}
           </Text>
         </Stack>
         <Button size="sm" leftSection={<IconPlus size={14} />}>
-          Новая цель
+          {t("goals.new")}
         </Button>
       </Group>
 
@@ -87,22 +95,22 @@ export function GoalsPage() {
         <Group justify="space-between" align="center" wrap="wrap" gap="md">
           <Stack gap={4}>
             <Text size="xs" c="dimmed">
-              Накоплено всего
+              {t("goals.saved_total")}
             </Text>
             <Text ff="monospace" fz={32} fw={500} style={{ letterSpacing: "-0.02em" }}>
-              {saved.toLocaleString("ru-RU")} ₽{" "}
+              {money(saved)}{" "}
               <Text component="span" c="dimmed" fz={16}>
-                / {total.toLocaleString("ru-RU")} ₽
+                / {money(total)}
               </Text>
             </Text>
           </Stack>
           <Box style={{ flex: 1, minWidth: 240, maxWidth: 420 }}>
             <Group justify="space-between" mb={6}>
               <Text size="xs" c="dimmed">
-                {totalPct}% к финальной цели
+                {t("goals.to_final", { pct: totalPct })}
               </Text>
               <Text ff="monospace" size="xs" c="dimmed">
-                {(total - saved).toLocaleString("ru-RU")} ₽ осталось
+                {t("goals.left_amount", { amount: money(total - saved) })}
               </Text>
             </Group>
             <Progress
@@ -144,17 +152,17 @@ export function GoalsPage() {
                   <Stack gap={2}>
                     <Text fw={600}>{g.name}</Text>
                     <Text size="xs" c="dimmed">
-                      До {g.deadline}
+                      {t("goals.until", { deadline: g.deadline })}
                     </Text>
                   </Stack>
                 </Group>
                 <Group gap={4}>
-                  <Tooltip label="Изменить">
+                  <Tooltip label={t("common.change")}>
                     <ActionIcon variant="subtle" size="sm" color="gray">
                       <IconEdit size={14} />
                     </ActionIcon>
                   </Tooltip>
-                  <Tooltip label="Удалить">
+                  <Tooltip label={t("common.delete")}>
                     <ActionIcon variant="subtle" size="sm" color="gray">
                       <IconTrash size={14} />
                     </ActionIcon>
@@ -167,23 +175,26 @@ export function GoalsPage() {
                   {pct}%
                 </Text>
                 <Text ff="monospace" size="sm" c="dimmed">
-                  {g.saved.toLocaleString("ru-RU")} ₽ / {g.target.toLocaleString("ru-RU")} ₽
+                  {money(g.saved)} / {money(g.target)}
                 </Text>
               </Group>
               <Progress value={pct} color={g.color} size="md" mb="md" />
 
               <SimpleGrid cols={3} spacing="xs">
-                <Tiny label="Осталось" value={`${left.toLocaleString("ru-RU")} ₽`} />
-                <Tiny label="В месяц" value={`${g.perMonth.toLocaleString("ru-RU")} ₽`} />
-                <Tiny label="Месяцев" value={`${monthsLeft} мес`} />
+                <Tiny label={t("goals.tiny_left")} value={money(left)} />
+                <Tiny label={t("goals.tiny_per_month")} value={money(g.perMonth)} />
+                <Tiny
+                  label={t("goals.tiny_months")}
+                  value={t("goals.months_value", { count: monthsLeft })}
+                />
               </SimpleGrid>
 
               <Group mt="md" gap="xs" grow>
                 <Button variant="default" size="sm">
-                  + Внести
+                  {t("goals.deposit")}
                 </Button>
                 <Button variant="subtle" size="sm">
-                  История
+                  {t("goals.history")}
                 </Button>
               </Group>
             </Paper>
@@ -215,10 +226,10 @@ export function GoalsPage() {
               <IconPlus size={20} />
             </Box>
             <Text size="sm" fw={500}>
-              Добавить цель
+              {t("goals.add_title")}
             </Text>
             <Text size="xs" c="dimmed" ta="center" maw={240}>
-              Подушка, отпуск, машина, ипотека — LimeBalance подскажет ритм
+              {t("goals.add_subtitle")}
             </Text>
           </Stack>
         </Paper>

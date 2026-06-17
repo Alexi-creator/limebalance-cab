@@ -2,6 +2,7 @@ import { Stack, Tabs, Text } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 import { IconCreditCard, IconTarget } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 // TODO(asset): временно скрыто (форма в разработке) — вернуть импорт AssetForm и IconChartLine
 // import { AssetForm } from "./AssetForm"
 import { GoalForm } from "./GoalForm"
@@ -9,18 +10,6 @@ import { TransactionForm } from "./TransactionForm"
 import type { AddType } from "./types"
 
 export type { AddType }
-
-const TITLES: Record<AddType, string> = {
-  transaction: "Новая операция",
-  goal: "Новая цель",
-  asset: "Добавить актив",
-}
-
-const SUBS: Record<AddType, string> = {
-  transaction: "Доход или расход — учтётся в аналитике сразу",
-  goal: "LimeBalance подскажет, сколько откладывать",
-  asset: "Добавьте позицию в портфель",
-}
 
 interface AddModalProps {
   /** Начальный тип формы. По умолчанию `"transaction"` */
@@ -41,6 +30,7 @@ export function AddModal({
   lockType = false,
   transactionDefaults,
 }: AddModalProps) {
+  const { t } = useTranslation()
   const [type, setType] = useState<AddType>(initialType)
   const close = useModalStore((s) => s.close)
   const setTitle = useModalStore((s) => s.setTitle)
@@ -50,14 +40,14 @@ export function AddModal({
     setTitle(
       <Stack gap={2}>
         <Text fw={600} size="md">
-          {TITLES[type]}
+          {t(`add_modal.title_${type}`)}
         </Text>
         <Text size="xs" c="dimmed">
-          {SUBS[type]}
+          {t(`add_modal.sub_${type}`)}
         </Text>
       </Stack>,
     )
-  }, [type, setTitle])
+  }, [type, setTitle, t])
 
   return (
     <Stack gap={0}>
@@ -65,10 +55,10 @@ export function AddModal({
         <Tabs value={type} onChange={(v) => setType(v as AddType)} mb="md">
           <Tabs.List>
             <Tabs.Tab value="transaction" leftSection={<IconCreditCard size={14} />}>
-              Операция
+              {t("add_modal.tab_transaction")}
             </Tabs.Tab>
             <Tabs.Tab value="goal" leftSection={<IconTarget size={14} />}>
-              Цель
+              {t("add_modal.tab_goal")}
             </Tabs.Tab>
             {/* TODO(asset): временно скрыто (форма в разработке) — вернуть таб (+ IconChartLine) */}
             {/* <Tabs.Tab value="asset" leftSection={<IconChartLine size={14} />}>

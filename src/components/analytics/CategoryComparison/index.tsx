@@ -13,7 +13,7 @@ interface Props {
 
 /** Список категорий с наибольшим изменением расходов относительно прошлого периода. */
 export function CategoryComparison({ rows, title, subtitle, baseCurrency }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
   return (
     <Paper>
@@ -32,7 +32,7 @@ export function CategoryComparison({ rows, title, subtitle, baseCurrency }: Prop
       </Group>
       {rows.length === 0 ? (
         <Text c="dimmed" ta="center" p="xl">
-          Нет изменений за период
+          {t("analytics.comparison_empty")}
         </Text>
       ) : (
         <Stack gap={0} p="md">

@@ -19,7 +19,7 @@ interface Props {
 
 /** Подтверждение удаления операции с показом её данных. После успеха обновляет список и сводки. */
 export function DeleteTransactionConfirm({ transaction }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
@@ -33,14 +33,14 @@ export function DeleteTransactionConfirm({ transaction }: Props) {
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
-      notifications.show({ color: "green", message: "Операция удалена" })
+      notifications.show({ color: "green", message: t("transactions.delete_success") })
       close()
     },
   })
 
   return (
     <Stack gap="md">
-      <Text size="sm">Удалить операцию? Действие необратимо.</Text>
+      <Text size="sm">{t("transactions.delete_confirm")}</Text>
 
       <Paper withBorder p="sm" bg="var(--mantine-color-default)">
         <Group justify="space-between" wrap="nowrap" gap="sm">
@@ -65,10 +65,10 @@ export function DeleteTransactionConfirm({ transaction }: Props) {
 
       <Group justify="flex-end">
         <Button variant="default" onClick={close} disabled={mutation.isPending}>
-          Отмена
+          {t("common.cancel")}
         </Button>
         <Button color="red" loading={mutation.isPending} onClick={() => mutation.mutate()}>
-          Удалить
+          {t("common.delete")}
         </Button>
       </Group>
     </Stack>

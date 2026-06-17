@@ -1,4 +1,5 @@
 import { formatCurrency } from "@utils/formatCurrency"
+import type { TFunction } from "i18next"
 
 export interface Kpi {
   /** Стабильный ключ для списка. */
@@ -37,6 +38,7 @@ export interface BalanceMetric {
 }
 
 interface BuildKpisParams {
+  t: TFunction
   language: string
   /** Базовая валюта пользователя — в ней показываем доход/расход (approxTotal). */
   baseCurrency?: string
@@ -54,6 +56,7 @@ function colorBySign(value: string): string {
 
 /** Собирает массив KPI-карточек главной из статичных значений и метрик доход/расход. */
 export function buildKpis({
+  t,
   language,
   baseCurrency,
   balance,
@@ -76,12 +79,12 @@ export function buildKpis({
   const balanceSub =
     !balance.loading && balance.usd != null
       ? `≈ ${formatCurrency(balance.usd, language, "USD")}`
-      : "по всем счетам"
+      : t("home.kpi_balance_sub_all")
 
   return [
     {
       key: "balance",
-      label: "Текущий баланс",
+      label: t("home.kpi_balance"),
       value: balanceValue,
       sub: balanceSub,
       accent: balance.total != null ? colorBySign(balanceValue) : undefined,
@@ -89,9 +92,9 @@ export function buildKpis({
     },
     {
       key: "income",
-      label: "Доход за месяц",
+      label: t("home.kpi_income"),
       value: income.loading ? "—" : formatCurrency(income.total, language, baseCurrency),
-      sub: income.hasData ? "за текущий месяц" : "нет данных",
+      sub: income.hasData ? t("home.kpi_this_month") : t("home.kpi_no_data"),
       accent: "var(--mantine-color-green-5)",
       loading: income.loading,
       onRefresh: income.refetch,
@@ -99,9 +102,9 @@ export function buildKpis({
     },
     {
       key: "expense",
-      label: "Расход за месяц",
+      label: t("home.kpi_expense"),
       value: expense.loading ? "—" : formatCurrency(-expense.total, language, baseCurrency),
-      sub: expense.hasData ? "за текущий месяц" : "нет данных",
+      sub: expense.hasData ? t("home.kpi_this_month") : t("home.kpi_no_data"),
       accent: "var(--mantine-color-red-5)",
       loading: expense.loading,
       onRefresh: expense.refetch,
@@ -109,9 +112,9 @@ export function buildKpis({
     },
     {
       key: "saved",
-      label: "Накоплено за месяц",
+      label: t("home.kpi_saved"),
       value: savedValue,
-      sub: "доход − расход",
+      sub: t("home.kpi_saved_sub"),
       accent: savedLoading ? undefined : colorBySign(savedValue),
       loading: savedLoading,
     },

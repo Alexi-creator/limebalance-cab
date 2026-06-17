@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next"
  * Если привязан — показывает статус и прямую ссылку на бота.
  */
 export function TelegramForm() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
   const linked = !!user?.telegramId
@@ -27,10 +27,10 @@ export function TelegramForm() {
     },
     onSuccess: (updated) => {
       setUser(updated)
-      notifications.show({ color: "green", message: "Telegram привязан" })
+      notifications.show({ color: "green", message: t("telegram.linked_success") })
     },
     onError: () => {
-      notifications.show({ color: "red", message: "Не удалось привязать Telegram" })
+      notifications.show({ color: "red", message: t("telegram.link_error") })
     },
   })
 
@@ -42,9 +42,9 @@ export function TelegramForm() {
           color="teal"
           radius="md"
           icon={<IconCheck size={16} />}
-          title="Telegram привязан"
+          title={t("telegram.linked_title")}
         >
-          Ваш аккаунт связан с ботом — операции из Telegram попадают сюда автоматически.
+          {t("telegram.linked_text")}
         </Alert>
 
         <Button
@@ -57,7 +57,7 @@ export function TelegramForm() {
           rightSection={<IconExternalLink size={14} />}
           style={{ alignSelf: "flex-start" }}
         >
-          Открыть @{TELEGRAM_BOT_USERNAME}
+          {t("telegram.open_bot", { username: TELEGRAM_BOT_USERNAME })}
         </Button>
       </Stack>
     )
@@ -66,16 +66,15 @@ export function TelegramForm() {
   return (
     <Stack gap="lg">
       <Stack gap={4}>
-        <Text fw={500}>Подключите Telegram-бота</Text>
+        <Text fw={500}>{t("telegram.connect_title")}</Text>
         <Text size="sm" c="dimmed">
-          Добавляйте доходы и расходы прямо в Telegram — они синхронизируются с этим кабинетом.
-          Привяжите бота к аккаунту, чтобы он вас узнавал.
+          {t("telegram.connect_text")}
         </Text>
       </Stack>
 
       {mutation.isPending ? (
         <Text size="sm" c="dimmed">
-          Привязываем…
+          {t("telegram.linking")}
         </Text>
       ) : (
         <LoginButton
@@ -89,9 +88,9 @@ export function TelegramForm() {
       )}
 
       <Text size="xs" c="dimmed">
-        Не знаете бота?{" "}
+        {t("telegram.dont_know_bot")}{" "}
         <Anchor href={TELEGRAM_BOT_URL} target="_blank" rel="noopener noreferrer">
-          Открыть @{TELEGRAM_BOT_USERNAME}
+          {t("telegram.open_bot", { username: TELEGRAM_BOT_USERNAME })}
         </Anchor>
       </Text>
     </Stack>

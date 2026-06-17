@@ -2,6 +2,7 @@ import type { Transaction, TransactionsSummary, TransactionType } from "@appType
 import { Center, Group, Text } from "@mantine/core"
 import { IconTag } from "@tabler/icons-react"
 import { format, type Locale } from "date-fns"
+import type { TFunction } from "i18next"
 import type { DataTableColumn } from "mantine-datatable"
 import { formatTxAmount } from "../helpers"
 import { TransactionsSummary as SummaryFooter } from "../TransactionsSummary"
@@ -13,6 +14,7 @@ import { RowActions } from "./RowActions"
  * `summary` — итоги по выборке: если переданы, показываются в футере таблицы.
  */
 export function getTransactionColumns(
+  t: TFunction,
   locale: Locale,
   language: string,
   emojiByCategoryId: Map<string, string>,
@@ -22,7 +24,7 @@ export function getTransactionColumns(
   return [
     {
       accessor: "description",
-      title: "Операция",
+      title: t("transactions.col_operation"),
       ellipsis: true,
       // ячейку футера поднимаем над соседними (z-index), иначе их непрозрачный фон
       // перекрывает вылезающий вправо текст итогов
@@ -47,7 +49,7 @@ export function getTransactionColumns(
     },
     {
       accessor: "categoryName",
-      title: "Категория",
+      title: t("common.category"),
       width: 190,
       render: (t) => {
         if (!t.categoryName)
@@ -81,7 +83,7 @@ export function getTransactionColumns(
     },
     {
       accessor: "date",
-      title: "Дата",
+      title: t("transactions.col_date"),
       width: 130,
       render: (t) => (
         <Text size="sm" c="dimmed">
@@ -91,7 +93,7 @@ export function getTransactionColumns(
     },
     {
       accessor: "amount",
-      title: "Сумма",
+      title: t("transactions.col_amount"),
       width: 150,
       textAlign: "right",
       render: (t) => (

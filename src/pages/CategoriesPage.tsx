@@ -24,9 +24,11 @@ import {
 import { useModalStore } from "@store/modalStore"
 import { IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
+import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 
 export function CategoriesPage() {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const tab: "expense" | "income" = searchParams.get("type") === "income" ? "income" : "expense"
   const setTab = (value: "expense" | "income") =>
@@ -51,10 +53,10 @@ export function CategoriesPage() {
       title: (
         <Stack gap={2}>
           <Text fw={600} size="md">
-            {category ? "Изменить категорию" : "Новая категория"}
+            {category ? t("categories.form_edit_title") : t("categories.new")}
           </Text>
           <Text size="xs" c="dimmed">
-            Доход или расход — учтётся в аналитике
+            {t("categories.form_subtitle")}
           </Text>
         </Stack>
       ),
@@ -77,7 +79,7 @@ export function CategoriesPage() {
       centered: true,
       title: (
         <Text fw={600} size="md">
-          Удалить категорию?
+          {t("categories.delete_title")}
         </Text>
       ),
       children: <DeleteCategoryConfirm category={category} isExpense={isExpense} />,
@@ -88,10 +90,12 @@ export function CategoriesPage() {
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
-            Категории
+            {t("categories.title")}
           </Title>
           <Text size="sm" c="dimmed">
-            {list.length} {isExpense ? "категорий расходов" : "категорий доходов"}
+            {isExpense
+              ? t("categories.count_expense", { count: list.length })
+              : t("categories.count_income", { count: list.length })}
           </Text>
         </Stack>
         <Group gap="xs">
@@ -99,12 +103,12 @@ export function CategoriesPage() {
             value={tab}
             onChange={(v) => setTab(v as "expense" | "income")}
             data={[
-              { value: "expense", label: "Расходы" },
-              { value: "income", label: "Доходы" },
+              { value: "expense", label: t("common.expense_plural") },
+              { value: "income", label: t("common.income_plural") },
             ]}
           />
           <Button size="sm" leftSection={<IconPlus size={14} />} onClick={() => openForm()}>
-            Новая категория
+            {t("categories.new")}
           </Button>
         </Group>
       </Group>
@@ -112,7 +116,7 @@ export function CategoriesPage() {
       {isError ? (
         <Paper p="xl">
           <Text c="red.5" ta="center">
-            Не удалось загрузить категории
+            {t("categories.load_error")}
           </Text>
         </Paper>
       ) : isLoading ? (
@@ -125,7 +129,7 @@ export function CategoriesPage() {
       ) : list.length === 0 ? (
         <Paper p="xl">
           <Text c="dimmed" ta="center">
-            Категорий пока нет
+            {t("categories.empty")}
           </Text>
         </Paper>
       ) : (

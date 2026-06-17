@@ -5,7 +5,7 @@ import { formatCurrency } from "@utils/formatCurrency"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
-import { baseAmount, pluralRu } from "../helpers"
+import { baseAmount } from "../helpers"
 import type { DisplayCategory } from "../types"
 
 interface Props {
@@ -21,7 +21,7 @@ interface Props {
 
 /** Карточка категории: иконка, имя, число операций, сумма и шкала доли от максимума. */
 export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const language = i18n.language
   const [hovered, setHovered] = useState(false)
 
@@ -60,7 +60,7 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
           wrap="nowrap"
           style={{ opacity: hovered ? 1 : 0, transition: "opacity .15s" }}
         >
-          <Tooltip label="Операции по категории">
+          <Tooltip label={t("categories.tx_tooltip")}>
             <ActionIcon
               component={Link}
               to={`${RouteNames.Transactions}?type=${isExpense ? "expense" : "income"}&categoryId=${cat.id}`}
@@ -71,18 +71,18 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
               <IconReceipt size={14} />
             </ActionIcon>
           </Tooltip>
-          <Tooltip label="Изменить">
+          <Tooltip label={t("common.change")}>
             <ActionIcon variant="subtle" size="sm" color="gray" onClick={onEdit}>
               <IconEdit size={14} />
             </ActionIcon>
           </Tooltip>
-          <Tooltip label="Удалить">
+          <Tooltip label={t("common.delete")}>
             <ActionIcon variant="subtle" size="sm" color="gray" onClick={onDelete}>
               <IconTrash size={14} />
             </ActionIcon>
           </Tooltip>
         </Group>
-        <Tooltip label={isExpense ? "Добавить расход" : "Добавить доход"}>
+        <Tooltip label={isExpense ? t("categories.add_expense") : t("categories.add_income")}>
           <ActionIcon variant="light" size="sm" color="lime" onClick={onAdd}>
             <IconPlus size={14} />
           </ActionIcon>
@@ -110,7 +110,7 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
             {cat.name}
           </Text>
           <Text ff="monospace" size="xs" c="dimmed">
-            {cat.count} {pluralRu(cat.count, ["операция", "операции", "операций"])}
+            {t("common.tx_count", { count: cat.count })}
           </Text>
         </Stack>
       </Group>
@@ -118,7 +118,7 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
       <Stack gap={6} mt="md">
         <Group justify="space-between" align="baseline" wrap="nowrap">
           <Text size="xs" c="dimmed">
-            За всё время
+            {t("categories.all_time")}
           </Text>
           <Text
             ff="monospace"

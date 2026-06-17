@@ -48,7 +48,7 @@ export function TransactionsTable({
   summary,
   type,
 }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
 
   // эмодзи категорий тянем из кеша (списки уже загружены) — id → эмодзи для колонки «Категория»
@@ -74,7 +74,7 @@ export function TransactionsTable({
   return (
     <DataTable<Transaction>
       records={isError ? [] : transactions}
-      columns={getTransactionColumns(locale, i18n.language, emojiByCategoryId, summary, type)}
+      columns={getTransactionColumns(t, locale, i18n.language, emojiByCategoryId, summary, type)}
       selectedRecords={selectedRecords}
       onSelectedRecordsChange={onSelectedRecordsChange}
       pinLastColumn
@@ -86,8 +86,8 @@ export function TransactionsTable({
       recordsPerPage={recordsPerPage}
       recordsPerPageOptions={PAGE_SIZE_OPTIONS}
       onRecordsPerPageChange={onRecordsPerPageChange}
-      recordsPerPageLabel="Строк на странице"
-      noRecordsText={isError ? "Не удалось загрузить операции" : "Ничего не найдено"}
+      recordsPerPageLabel={t("transactions.records_per_page")}
+      noRecordsText={isError ? t("transactions.load_error") : t("common.nothing_found")}
       striped
       highlightOnHover
       verticalSpacing="sm"

@@ -3,6 +3,7 @@ import { Alert, Button, Group, Text } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { IconBrandTelegram } from "@tabler/icons-react"
 import { useReducer } from "react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 const DISMISS_KEY = "tg-connect-dismissed"
@@ -16,6 +17,7 @@ const dismissKeyFor = (id: string) => `${DISMISS_KEY}:${id}`
  * пользователя), чтобы не надоедать. Зеркало `AccountAlert` (тот — для TG-юзеров без почты).
  */
 export function TelegramConnectAlert() {
+  const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   // тик для перерисовки после закрытия; сам `dismissed` читаем из localStorage по текущему юзеру
   const [, bump] = useReducer((x: number) => x + 1, 0)
@@ -43,9 +45,7 @@ export function TelegramConnectAlert() {
       styles={{ message: { width: "100%" } }}
     >
       <Group justify="space-between" wrap="wrap" gap="xs">
-        <Text size="sm">
-          У нас есть Telegram-бот — добавляйте доходы и расходы прямо в чате, они появятся здесь.
-        </Text>
+        <Text size="sm">{t("alerts.telegram_connect_text")}</Text>
         <Button
           component={Link}
           to={RouteNames.SettingsTelegram}
@@ -53,7 +53,7 @@ export function TelegramConnectAlert() {
           variant="filled"
           leftSection={<IconBrandTelegram size={14} />}
         >
-          Подключить
+          {t("alerts.telegram_connect_button")}
         </Button>
       </Group>
     </Alert>

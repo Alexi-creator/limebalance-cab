@@ -4,6 +4,7 @@ import { Box, Group, Paper, Text } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { useSidebarStore } from "@store/sidebarStore"
 import { IconBrandTelegram } from "@tabler/icons-react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 /**
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom"
  * на бота; остальным — переход в настройки на привязку (мягкое продвижение бота).
  */
 export function SidebarTelegram() {
+  const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const close = useSidebarStore((s) => s.close)
   const linked = !!user?.telegramId
@@ -44,10 +46,10 @@ export function SidebarTelegram() {
 
       <Box style={{ minWidth: 0, flex: 1 }}>
         <Text size="sm" fw={500} truncate>
-          {linked ? "Открыть бота" : "Подключить Telegram"}
+          {linked ? t("sidebar.telegram_open") : t("sidebar.telegram_connect")}
         </Text>
         <Text size="xs" c="dimmed" truncate>
-          {linked ? "Учёт прямо в Telegram" : "Добавляйте операции в чате"}
+          {linked ? t("sidebar.telegram_open_desc") : t("sidebar.telegram_connect_desc")}
         </Text>
       </Box>
     </Group>
@@ -56,7 +58,13 @@ export function SidebarTelegram() {
   // привязан — открываем бота в Telegram (внешняя ссылка); нет — ведём в настройки на привязку.
   // рендерим двумя ветками, чтобы у полиморфного `component` Paper был конкретный тип, а не union.
   return linked ? (
-    <Paper {...cardProps} component="a" href={TELEGRAM_BOT_URL} target="_blank" rel="noopener noreferrer">
+    <Paper
+      {...cardProps}
+      component="a"
+      href={TELEGRAM_BOT_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {content}
     </Paper>
   ) : (

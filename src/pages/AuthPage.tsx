@@ -163,6 +163,9 @@ export function AuthPage() {
                       lang={i18n.language}
                     />
                   </Box>
+                  <Text size="xs" c="dimmed" ta="center">
+                    {t("auth.telegram_switch_hint")}
+                  </Text>
                 </Stack>
               </Alert>
 

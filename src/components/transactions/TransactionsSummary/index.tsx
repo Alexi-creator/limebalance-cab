@@ -16,7 +16,7 @@ interface Props {
  * «Итог» (net) показываем только без фильтра по типу — иначе он равен одной из сумм.
  */
 export function TransactionsSummary({ summary, type }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   // Итог по выборке в базовой валюте; "—", если курсы недоступны (бэк вернул null).
   const fmt = (v: number | null | undefined) =>
@@ -26,26 +26,21 @@ export function TransactionsSummary({ summary, type }: Props) {
     <Group gap="sm" wrap="nowrap">
       {type !== "income" && (
         <Text size="sm" c="red.6">
-          Расход: {fmt(summary.expense)}
+          {t("common.expense")}: {fmt(summary.expense)}
         </Text>
       )}
       {type !== "expense" && (
         <Text size="sm" c="teal.6">
-          Доход: {fmt(summary.income)}
+          {t("common.income")}: {fmt(summary.income)}
         </Text>
       )}
       {!type && (
         <Text size="sm" fw={600}>
-          Итог: {fmt(summary.net)}
+          {t("transactions.summary_total")}: {fmt(summary.net)}
         </Text>
       )}
 
-      <Tooltip
-        multiline
-        w={250}
-        withArrow
-        label="Суммы приведены к настроенной базовой валюте по текущему курсу. Сменить базовую валюту можно в настройках."
-      >
+      <Tooltip multiline w={250} withArrow label={t("transactions.summary_hint")}>
         <IconHelpCircle
           size={15}
           style={{ color: "var(--mantine-color-dimmed)", cursor: "help", flexShrink: 0 }}

@@ -23,6 +23,7 @@ import { useModalStore } from "@store/modalStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { z } from "zod"
 import { EMOJI_PALETTE } from "../config"
 
@@ -50,6 +51,7 @@ interface Props {
  * статистику категорий и операции (на случай переименования).
  */
 export function CategoryForm({ category, defaultType }: Props) {
+  const { t } = useTranslation()
   const isEdit = !!category
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
@@ -73,12 +75,12 @@ export function CategoryForm({ category, defaultType }: Props) {
       name: z
         .string()
         .trim()
-        .min(1, "Введите название")
-        .max(NAME_MAX, `Не больше ${NAME_MAX} символов`)
-        .refine((v) => !taken.has(v.toLowerCase()), "Категория с таким названием уже есть"),
+        .min(1, t("form.name_required"))
+        .max(NAME_MAX, t("form.name_too_long", { max: NAME_MAX }))
+        .refine((v) => !taken.has(v.toLowerCase()), t("categories.name_taken")),
       emoji: z.string(),
     })
-  }, [existing, category?.id])
+  }, [existing, category?.id, t])
 
   const {
     register,
@@ -119,12 +121,12 @@ export function CategoryForm({ category, defaultType }: Props) {
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
       notifications.show({
         color: "green",
-        message: isEdit ? "Категория обновлена" : "Категория создана",
+        message: isEdit ? t("categories.update_success") : t("categories.create_success"),
       })
       close()
     },
     onError: () => {
-      notifications.show({ color: "red", message: "Не удалось сохранить категорию" })
+      notifications.show({ color: "red", message: t("categories.save_error") })
     },
   })
 
@@ -141,17 +143,21 @@ export function CategoryForm({ category, defaultType }: Props) {
             value={type}
             onChange={(v) => setType(v as "expense" | "income")}
             data={[
-              { value: "expense", label: "− Расход" },
-              { value: "income", label: "+ Доход" },
+              { value: "expense", label: t("common.type_expense") },
+              { value: "income", label: t("common.type_income") },
             ]}
           />
         )}
 
         <TextInput
           {...register("name")}
-          label="Название"
+          label={t("categories.name_label")}
           autoFocus
-          placeholder={isExpense ? "Например, Продукты" : "Например, Зарплата"}
+          placeholder={
+            isExpense
+              ? t("categories.name_placeholder_expense")
+              : t("categories.name_placeholder_income")
+          }
           maxLength={NAME_MAX}
           error={errors.name?.message}
         />
@@ -159,12 +165,12 @@ export function CategoryForm({ category, defaultType }: Props) {
         <Box>
           <Group justify="space-between" align="center" mb={6}>
             <Text size="sm" fw={500}>
-              Эмодзи
+              {t("categories.emoji_label")}
             </Text>
             <TextInput
               size="xs"
               w={64}
-              placeholder="Свой"
+              placeholder={t("categories.emoji_custom")}
               value={custom}
               onChange={(e) => {
                 const v = lastGrapheme(e.currentTarget.value)
@@ -198,10 +204,10 @@ export function CategoryForm({ category, defaultType }: Props) {
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
           <Button variant="default" onClick={close} disabled={mutation.isPending}>
-            Отмена
+            {t("common.cancel")}
           </Button>
           <Button type="submit" loading={mutation.isPending}>
-            {isEdit ? "Сохранить" : "Создать категорию"}
+            {isEdit ? t("common.save") : t("categories.create")}
           </Button>
         </Group>
       </Stack>

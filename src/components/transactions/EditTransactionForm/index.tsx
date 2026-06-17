@@ -12,20 +12,17 @@ import { useModalStore } from "@store/modalStore"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { format } from "date-fns"
 import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { z } from "zod"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
-const editSchema = z.object({
-  amount: z
-    .union([z.number(), z.literal("")])
-    .refine((v) => v !== "" && v > 0, "Введите сумму больше 0"),
-  currency: z.string().min(1, "Выберите валюту"),
-  day: z.union([z.string(), z.null()]).refine((v) => !!v && v.length > 0, "Укажите дату"),
-  description: z.string(),
-})
-
-type EditFormValues = z.infer<typeof editSchema>
+type EditFormValues = {
+  amount: number | ""
+  currency: string
+  day: string | null
+  description: string
+}
 
 interface Props {
   transaction: Transaction
@@ -36,9 +33,21 @@ interface Props {
  * Тип и категория не меняются. После успеха локально правит запись в кеше операций (без рефетча).
  */
 export function EditTransactionForm({ transaction }: Props) {
+  const { t } = useTranslation()
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
+
+  const editSchema = z.object({
+    amount: z
+      .union([z.number(), z.literal("")])
+      .refine((v) => v !== "" && v > 0, t("form.amount_positive")),
+    currency: z.string().min(1, t("form.currency_required")),
+    day: z
+      .union([z.string(), z.null()])
+      .refine((v) => !!v && v.length > 0, t("form.date_required")),
+    description: z.string(),
+  })
 
   const {
     control,
@@ -89,7 +98,7 @@ export function EditTransactionForm({ transaction }: Props) {
             render={({ field }) => (
               <NumberInput
                 {...field}
-                label="Сумма"
+                label={t("common.amount")}
                 hideControls
                 min={0}
                 thousandSeparator=" "
@@ -106,14 +115,14 @@ export function EditTransactionForm({ transaction }: Props) {
             render={({ field }) => (
               <Select
                 {...field}
-                label="Валюта"
+                label={t("common.currency")}
                 w={140}
                 data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
                 searchable
                 allowDeselect={false}
-                nothingFoundMessage="Ничего не найдено"
+                nothingFoundMessage={t("common.nothing_found")}
                 error={errors.currency?.message}
               />
             )}
@@ -126,7 +135,7 @@ export function EditTransactionForm({ transaction }: Props) {
           render={({ field }) => (
             <DatePickerInput
               {...field}
-              label="Дата"
+              label={t("common.date")}
               maxDate={format(new Date(), "yyyy-MM-dd")}
               valueFormat="DD MMM YYYY"
               error={errors.day?.message}
@@ -136,7 +145,7 @@ export function EditTransactionForm({ transaction }: Props) {
 
         <Textarea
           {...register("description")}
-          label="Заметка"
+          label={t("common.note")}
           autosize
           minRows={1}
           maxRows={3}
@@ -145,10 +154,10 @@ export function EditTransactionForm({ transaction }: Props) {
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
           <Button variant="default" onClick={close} disabled={mutation.isPending}>
-            Отмена
+            {t("common.cancel")}
           </Button>
           <Button type="submit" loading={mutation.isPending}>
-            Сохранить
+            {t("common.save")}
           </Button>
         </Group>
       </Stack>

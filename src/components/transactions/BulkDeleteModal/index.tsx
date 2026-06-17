@@ -20,7 +20,7 @@ interface Props {
 }
 
 export function BulkDeleteModal({ transactions, onSuccess }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
@@ -44,7 +44,10 @@ export function BulkDeleteModal({ transactions, onSuccess }: Props) {
         queryClient.invalidateQueries({ queryKey: incomeKeys.categoriesStats })
         queryClient.invalidateQueries({ queryKey: [incomeKeys.all[0], "summary"] })
       }
-      notifications.show({ color: "green", message: `Удалено ${transactions.length} операций` })
+      notifications.show({
+        color: "green",
+        message: t("transactions.bulk_delete_success", { count: transactions.length }),
+      })
       onSuccess()
       close()
     },
@@ -52,7 +55,7 @@ export function BulkDeleteModal({ transactions, onSuccess }: Props) {
 
   return (
     <Stack gap="md">
-      <Text size="sm">Удалить {transactions.length} операций? Действие необратимо.</Text>
+      <Text size="sm">{t("transactions.bulk_delete_confirm", { count: transactions.length })}</Text>
 
       <ScrollArea.Autosize
         mah={260}
@@ -101,21 +104,21 @@ export function BulkDeleteModal({ transactions, onSuccess }: Props) {
       </ScrollArea.Autosize>
 
       <Alert variant="light" color="orange" icon={<IconAlertTriangle size={16} />} radius="md">
-        Удалённые операции невозможно восстановить.
+        {t("transactions.bulk_delete_warning")}
       </Alert>
 
       {mutation.isError && (
         <Alert variant="light" color="red" radius="md">
-          Не удалось удалить операции
+          {t("transactions.bulk_delete_error")}
         </Alert>
       )}
 
       <Group justify="flex-end">
         <Button variant="default" onClick={close} disabled={mutation.isPending}>
-          Отмена
+          {t("common.cancel")}
         </Button>
         <Button color="red" loading={mutation.isPending} onClick={() => mutation.mutate()}>
-          Удалить {transactions.length}
+          {t("common.delete")} {transactions.length}
         </Button>
       </Group>
     </Stack>

@@ -5,6 +5,7 @@ import { ANALYTICS_PERIODS, analyticsParamsSchema } from "@components/analytics/
 import { IncomeExpenseChart } from "@components/analytics/IncomeExpenseChart"
 import { useAnalyticsData } from "@components/analytics/useAnalyticsData"
 import { useUrlParams } from "@hooks/useUrlParams"
+import { dateFnsLocales } from "@i18n/languages.ts"
 import {
   Button,
   Grid,
@@ -18,41 +19,36 @@ import {
 } from "@mantine/core"
 import { IconDownload } from "@tabler/icons-react"
 import { format } from "date-fns"
-import { ru } from "date-fns/locale"
-
-/** Подпись периода для нижней строки KPI («за неделю»). */
-const PERIOD_SUB: Record<string, string> = {
-  week: "за неделю",
-  month: "за месяц",
-  quarter: "за квартал",
-  year: "за год",
-}
+import { enUS } from "date-fns/locale"
+import { useTranslation } from "react-i18next"
 
 export function AnalyticsPage() {
+  const { t, i18n } = useTranslation()
   const [params, setParams] = useUrlParams(analyticsParamsSchema)
   const period = params.period
   const { metrics, series, donut, comparison, range, baseCurrency, isLoading, isError } =
     useAnalyticsData(period)
 
-  const periodLabel = ANALYTICS_PERIODS.find((p) => p.value === period)?.label ?? ""
-  const rangeLabel = `${format(range.from, "d MMM", { locale: ru })} – ${format(range.to, "d MMM yyyy", { locale: ru })}`
+  const locale = dateFnsLocales[i18n.language] ?? enUS
+  const periodLabel = t(`analytics.period_${period}`)
+  const rangeLabel = `${format(range.from, "d MMM", { locale })} – ${format(range.to, "d MMM yyyy", { locale })}`
 
   return (
     <Stack gap="md">
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
-            Аналитика
+            {t("analytics.title")}
           </Title>
           <Text size="sm" c="dimmed">
-            Куда уходят деньги и как растут накопления
+            {t("analytics.subtitle")}
           </Text>
         </Stack>
         <Group gap="xs">
           <SegmentedControl
             value={period}
             onChange={(v) => setParams({ period: v as typeof period })}
-            data={ANALYTICS_PERIODS.map((p) => ({ value: p.value, label: p.label }))}
+            data={ANALYTICS_PERIODS.map((p) => ({ value: p, label: t(`analytics.period_${p}`) }))}
           />
           <Button variant="default" size="sm" leftSection={<IconDownload size={14} />} disabled>
             PDF
@@ -63,7 +59,7 @@ export function AnalyticsPage() {
       {isError ? (
         <Paper p="xl">
           <Text c="red.5" ta="center">
-            Не удалось загрузить аналитику
+            {t("analytics.load_error")}
           </Text>
         </Paper>
       ) : isLoading ? (
@@ -76,13 +72,13 @@ export function AnalyticsPage() {
         <>
           <AnalyticsKpis
             metrics={metrics}
-            periodLabel={PERIOD_SUB[period]}
+            periodLabel={t(`analytics.sub_${period}`)}
             baseCurrency={baseCurrency}
           />
 
           <IncomeExpenseChart
             series={series}
-            title="Доходы vs расходы"
+            title={t("analytics.income_vs_expense")}
             subtitle={periodLabel.toLowerCase()}
           />
 
@@ -90,7 +86,7 @@ export function AnalyticsPage() {
             <Grid.Col span={{ base: 12, md: 6 }}>
               <CategoryDonut
                 slices={donut}
-                title="Расходы по категориям"
+                title={t("analytics.expenses_by_category")}
                 subtitle={rangeLabel}
                 baseCurrency={baseCurrency}
               />
@@ -98,8 +94,8 @@ export function AnalyticsPage() {
             <Grid.Col span={{ base: 12, md: 6 }}>
               <CategoryComparison
                 rows={comparison}
-                title="Сравнение с прошлым периодом"
-                subtitle="Где изменились расходы"
+                title={t("analytics.comparison_title")}
+                subtitle={t("analytics.comparison_subtitle")}
                 baseCurrency={baseCurrency}
               />
             </Grid.Col>

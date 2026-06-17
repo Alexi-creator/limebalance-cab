@@ -1,12 +1,7 @@
 import { RouteNames } from "@constants/routeNames"
 import { Box, Button, Group, Paper, Progress, Stack, Text } from "@mantine/core"
+import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
-
-const goals = [
-  { icon: "🌴", name: "Отпуск Бали", pct: 68, color: "lime" as const },
-  { icon: "🛡️", name: "Подушка x6", pct: 42, color: "green" as const },
-  { icon: "💻", name: "Ноутбук", pct: 90, color: "yellow" as const },
-]
 
 /**
  * Виджет-сниппет финансовых целей для главного дашборда.
@@ -14,7 +9,14 @@ const goals = [
  * Не принимает пропсов — данные захардкожены (stub).
  */
 export function GoalsSnippet() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
+
+  const goals = [
+    { icon: "🌴", name: t("goals.mock.vacation"), pct: 68, color: "lime" as const },
+    { icon: "🛡️", name: t("goals.mock.cushion"), pct: 42, color: "green" as const },
+    { icon: "💻", name: t("goals.mock.laptop"), pct: 90, color: "yellow" as const },
+  ]
 
   return (
     <Paper>
@@ -24,10 +26,10 @@ export function GoalsSnippet() {
         style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
       >
         <Text fw={600} size="sm">
-          Цели
+          {t("goals.title")}
         </Text>
         <Button variant="subtle" size="xs" onClick={() => navigate(RouteNames.Goals)}>
-          Все →
+          {t("home.goals_all")}
         </Button>
       </Group>
       <Stack gap={0} px="md" pb="md" pt="xs">

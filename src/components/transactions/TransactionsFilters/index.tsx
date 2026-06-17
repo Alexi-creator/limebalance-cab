@@ -10,7 +10,8 @@ import { useDebouncedValue } from "@mantine/hooks"
 import { IconSearch, IconX } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
-import { type TransactionsParams, TYPE_OPTIONS } from "../config"
+import { useTranslation } from "react-i18next"
+import { getTypeOptions, type TransactionsParams } from "../config"
 
 interface Props {
   params: TransactionsParams
@@ -22,6 +23,7 @@ interface Props {
  * поиск — с дебаунсом; категории грузятся под выбранный тип (для `Все` — недоступны).
  */
 export function TransactionsFilters({ params, setParams }: Props) {
+  const { t } = useTranslation()
   const [search, setSearch] = useState(params.search ?? "")
   const [debounced] = useDebouncedValue(search, 350)
 
@@ -84,12 +86,12 @@ export function TransactionsFilters({ params, setParams }: Props) {
             page: 1,
           })
         }
-        data={TYPE_OPTIONS}
+        data={getTypeOptions(t)}
       />
 
       <TextInput
-        label="Поиск"
-        placeholder="Поиск операций"
+        label={t("common.search")}
+        placeholder={t("transactions.search_placeholder")}
         leftSection={<IconSearch size={14} />}
         rightSection={
           search ? (
@@ -98,7 +100,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
               color="gray"
               size="sm"
               onClick={() => setSearch("")}
-              aria-label="Очистить поиск"
+              aria-label={t("transactions.clear_search")}
             >
               <IconX size={14} />
             </ActionIcon>
@@ -111,8 +113,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
       />
 
       <Select
-        label="Категория"
-        placeholder="Все"
+        label={t("common.category")}
+        placeholder={t("common.all")}
         data={categoryOptions}
         value={params.categoryId ?? null}
         onChange={(v) => setParams({ categoryId: v ?? undefined, page: 1 })}
@@ -122,8 +124,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
       />
 
       <Select
-        label="Валюта"
-        placeholder="Все"
+        label={t("common.currency")}
+        placeholder={t("common.all")}
         data={CURRENCY_OPTIONS}
         value={params.currency ?? null}
         onChange={(v) => setParams({ currency: v ?? undefined, page: 1 })}
@@ -134,8 +136,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
 
       <DatePickerInput
         type="range"
-        label="Период"
-        placeholder="Дата от — до"
+        label={t("transactions.period")}
+        placeholder={t("transactions.date_range_placeholder")}
         valueFormat="DD MMM YYYY"
         value={[params.from ?? null, params.to ?? null]}
         onChange={([from, to]) =>
@@ -153,7 +155,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
         leftSection={<IconX size={14} />}
         onClick={reset}
       >
-        Сбросить
+        {t("common.reset")}
       </Button>
     </Group>
   )

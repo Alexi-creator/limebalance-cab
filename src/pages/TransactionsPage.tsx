@@ -19,9 +19,11 @@ import { useModalStore } from "@store/modalStore"
 import { IconDownload, IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 export function TransactionsPage() {
+  const { t } = useTranslation()
   const [params, setParams] = useUrlParams(transactionsParamsSchema)
   const openModal = useModalStore((s) => s.open)
 
@@ -72,7 +74,7 @@ export function TransactionsPage() {
       centered: true,
       title: (
         <Text fw={600} size="md">
-          Удалить выбранные операции?
+          {t("transactions.bulk_delete_title")}
         </Text>
       ),
       children: (
@@ -89,10 +91,10 @@ export function TransactionsPage() {
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
-            Операции
+            {t("transactions.title")}
           </Title>
           <Text size="sm" c="dimmed">
-            {items.length} / {total} операций
+            {t("transactions.count_label", { shown: items.length, count: total })}
           </Text>
         </Stack>
         <Group gap="xs">
@@ -113,22 +115,22 @@ export function TransactionsPage() {
                   onClick={(e) => e.preventDefault()}
                   style={{ cursor: "default" }}
                 >
-                  Добавить операцию
+                  {t("transactions.add")}
                 </Button>
               </HoverCard.Target>
 
               <HoverCard.Dropdown>
                 <Text size="sm">
-                  У вас нет ни одной категории.{" "}
+                  {t("transactions.no_categories")}{" "}
                   <Anchor component={Link} to={RouteNames.Categories}>
-                    Добавьте группу
+                    {t("transactions.add_group_link")}
                   </Anchor>
                 </Text>
               </HoverCard.Dropdown>
             </HoverCard>
           ) : (
             <Button size="sm" leftSection={<IconPlus size={14} />} onClick={openAddModal}>
-              Добавить операцию
+              {t("transactions.add")}
             </Button>
           )}
         </Group>

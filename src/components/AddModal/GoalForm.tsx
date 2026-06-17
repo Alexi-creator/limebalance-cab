@@ -12,6 +12,8 @@ import {
   TextInput,
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import { useAuthStore } from "@store/authStore"
+import { formatCurrency } from "@utils/formatCurrency"
 import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -45,7 +47,8 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
   const [saved, setSaved] = useState<number | string>("")
   const [date, setDate] = useState<string | null>(null)
   const [color, setColor] = useState("lime")
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const userCurrency = useAuthStore((s) => s.user?.currency)
 
   const hint = useMemo(() => {
     if (!target || !date) return null
@@ -54,8 +57,11 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
       Math.ceil((new Date(date).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 30)),
     )
     const per = Math.ceil((Number(target) - Number(saved || 0)) / months)
-    return `Чтобы успеть, нужно откладывать ~${per.toLocaleString("ru-RU")} ₽/мес (${months} мес.)`
-  }, [target, saved, date])
+    return t("goal_form.hint", {
+      amount: formatCurrency(per, i18n.language, userCurrency),
+      months,
+    })
+  }, [target, saved, date, t, i18n.language, userCurrency])
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -68,7 +74,7 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
       <Stack gap="md">
         <Box>
           <Text size="xs" c="dimmed" tt="uppercase" mb={6}>
-            Иконка
+            {t("goal_form.icon")}
           </Text>
           <Group gap={6}>
             {ICONS.map((i) => (
@@ -88,17 +94,17 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
         </Box>
 
         <TextInput
-          label="Название цели"
+          label={t("goal_form.name_label")}
           required
           autoFocus
-          placeholder="Например, Отпуск на Бали"
+          placeholder={t("goal_form.name_placeholder")}
           value={name}
           onChange={(e) => setName(e.currentTarget.value)}
         />
 
         <SimpleGrid cols={2}>
           <NumberInput
-            label="Сумма цели"
+            label={t("goal_form.target")}
             required
             value={target}
             onChange={setTarget}
@@ -107,7 +113,7 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
             suffix=" ₽"
           />
           <NumberInput
-            label="Уже накоплено"
+            label={t("goal_form.saved")}
             value={saved}
             onChange={setSaved}
             min={0}
@@ -117,7 +123,7 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
         </SimpleGrid>
 
         <DatePickerInput
-          label="Дедлайн"
+          label={t("goal_form.deadline")}
           value={date}
           onChange={setDate}
           locale={i18n.language}
@@ -127,7 +133,7 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
 
         <Box>
           <Text size="xs" c="dimmed" tt="uppercase" mb={6}>
-            Цвет
+            {t("goal_form.color")}
           </Text>
           <Group gap="xs">
             {COLORS.map((c) => (
@@ -156,9 +162,9 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
           <Button variant="default" onClick={onCancel}>
-            Отмена
+            {t("common.cancel")}
           </Button>
-          <Button type="submit">Создать цель</Button>
+          <Button type="submit">{t("goal_form.create")}</Button>
         </Group>
       </Stack>
     </form>

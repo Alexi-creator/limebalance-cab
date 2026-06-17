@@ -17,7 +17,7 @@ import { buildKpis } from "./helpers"
  * по тем же ключам), затем строит карточки через `buildKpis`.
  */
 export function HomeKpis() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const now = new Date()
   const from = startOfMonth(now)
   // весь месяц (to=конец месяца) — общий ключ/диапазон с графиком; будущие дни пустые
@@ -52,6 +52,7 @@ export function HomeKpis() {
   const baseCurrency = incomesQuery.data?.baseCurrency ?? expensesQuery.data?.baseCurrency
 
   const kpis = buildKpis({
+    t,
     language: i18n.language,
     baseCurrency,
     balance: {

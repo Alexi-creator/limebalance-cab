@@ -1,14 +1,9 @@
 import { z } from "zod"
 
 /** Периоды аналитики. Значение хранится в URL (`?period=`), порядок = порядок в переключателе. */
-export const ANALYTICS_PERIODS = [
-  { value: "week", label: "Неделя" },
-  { value: "month", label: "Месяц" },
-  { value: "quarter", label: "Квартал" },
-  { value: "year", label: "Год" },
-] as const
+export const ANALYTICS_PERIODS = ["week", "month", "quarter", "year"] as const
 
-export type AnalyticsPeriod = (typeof ANALYTICS_PERIODS)[number]["value"]
+export type AnalyticsPeriod = (typeof ANALYTICS_PERIODS)[number]
 
 /** Сколько строк сравнения показываем (топ по модулю изменения). */
 export const COMPARISON_LIMIT = 8

@@ -1,5 +1,6 @@
 import { EXPENSE_COLOR, INCOME_COLOR } from "@constants/chartColors"
 import { Box, Group, Paper, Stack, Text } from "@mantine/core"
+import { useTranslation } from "react-i18next"
 import type { SeriesPoint } from "../helpers"
 
 const W = 720
@@ -28,6 +29,7 @@ interface Props {
 
 /** Парные бары доходов (залитые) и расходов (контурные) по бакетам периода. */
 export function IncomeExpenseChart({ series, title, subtitle }: Props) {
+  const { t } = useTranslation()
   const max = niceMax(Math.max(1, ...series.flatMap((p) => [p.income, p.expense])))
   const slot = (W - LEFT - 10) / Math.max(series.length, 1)
   const barW = Math.min(14, slot * 0.32)
@@ -52,11 +54,11 @@ export function IncomeExpenseChart({ series, title, subtitle }: Props) {
         <Group gap="lg">
           <Group gap={6}>
             <Box w={10} h={10} style={{ background: INCOME_COLOR, borderRadius: 2 }} />
-            <Text size="xs">Доходы</Text>
+            <Text size="xs">{t("common.income_plural")}</Text>
           </Group>
           <Group gap={6}>
             <Box w={10} h={10} style={{ background: EXPENSE_COLOR, borderRadius: 2 }} />
-            <Text size="xs">Расходы</Text>
+            <Text size="xs">{t("common.expense_plural")}</Text>
           </Group>
         </Group>
       </Group>
@@ -65,9 +67,9 @@ export function IncomeExpenseChart({ series, title, subtitle }: Props) {
           viewBox={`0 0 ${W} ${H}`}
           style={{ width: "100%", height: 280, display: "block" }}
           role="img"
-          aria-label="График доходов и расходов по периодам"
+          aria-label={t("analytics.chart_aria")}
         >
-          <title>График доходов и расходов по периодам</title>
+          <title>{t("analytics.chart_aria")}</title>
           {[0, 0.25, 0.5, 0.75, 1].map((t) => {
             const yy = TOP + PLOT_H * t
             return (

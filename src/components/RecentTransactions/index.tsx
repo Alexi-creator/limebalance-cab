@@ -25,7 +25,7 @@ const RECENT_LIMIT = 7
  */
 export function RecentTransactions() {
   const navigate = useNavigate()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
 
   const { data, isLoading, isError } = useQuery({
@@ -65,14 +65,14 @@ export function RecentTransactions() {
       >
         <Stack gap={2}>
           <Text fw={600} size="sm">
-            Последние операции
+            {t("home.recent_title")}
           </Text>
           <Text size="xs" c="dimmed">
-            Последние {RECENT_LIMIT} операций
+            {t("home.recent_subtitle", { count: RECENT_LIMIT })}
           </Text>
         </Stack>
         <Button variant="subtle" size="xs" onClick={() => navigate(RouteNames.Transactions)}>
-          Показать все →
+          {t("home.recent_show_all")}
         </Button>
       </Group>
 
@@ -85,11 +85,11 @@ export function RecentTransactions() {
         </Stack>
       ) : isError ? (
         <Text c="red.5" ta="center" p="xl">
-          Не удалось загрузить операции
+          {t("transactions.load_error")}
         </Text>
       ) : items.length === 0 ? (
         <Text c="dimmed" ta="center" p="xl">
-          Пока нет операций
+          {t("home.recent_empty")}
         </Text>
       ) : (
         items.map((t, i) => (

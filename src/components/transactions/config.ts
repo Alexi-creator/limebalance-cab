@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next"
 import { z } from "zod"
 
 /** Размер страницы по умолчанию. */
@@ -7,10 +8,10 @@ export const PAGE_LIMIT = 20
 export const PAGE_SIZE_OPTIONS = [20, 50, 100]
 
 /** Опции переключателя типа (значение `all` = без фильтра по типу). */
-export const TYPE_OPTIONS = [
-  { value: "all", label: "Все" },
-  { value: "income", label: "Доходы" },
-  { value: "expense", label: "Расходы" },
+export const getTypeOptions = (t: TFunction) => [
+  { value: "all", label: t("common.all") },
+  { value: "income", label: t("common.income_plural") },
+  { value: "expense", label: t("common.expense_plural") },
 ]
 
 /**

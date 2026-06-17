@@ -1,9 +1,11 @@
 import { ActionIcon, Box, Group, Text } from "@mantine/core"
 import { useSidebarStore } from "@store/sidebarStore"
 import { IconX } from "@tabler/icons-react"
+import { useTranslation } from "react-i18next"
 
 /** Логотип приложения и кнопка закрытия мобильного меню. */
 export function SidebarBrand() {
+  const { t } = useTranslation()
   const close = useSidebarStore((s) => s.close)
 
   return (
@@ -30,7 +32,7 @@ export function SidebarBrand() {
         size="sm"
         hiddenFrom="sm"
         onClick={close}
-        aria-label="Закрыть меню"
+        aria-label={t("sidebar.close_menu")}
       >
         <IconX size={16} />
       </ActionIcon>

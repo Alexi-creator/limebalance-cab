@@ -2,6 +2,7 @@ import { RouteNames } from "@constants/routeNames"
 import { Alert, Button, Group, Text } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 /**
@@ -10,6 +11,7 @@ import { Link } from "react-router-dom"
  * Не принимает пропсов — читает состояние из `useAuthStore`.
  */
 export function AccountAlert() {
+  const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
 
   // Stub condition: TG user without email/password
@@ -26,10 +28,7 @@ export function AccountAlert() {
       styles={{ message: { width: "100%" } }}
     >
       <Group justify="space-between" wrap="wrap" gap="xs">
-        <Text size="sm">
-          Вы вошли через Telegram. Добавьте email и пароль в настройках, чтобы не потерять доступ к
-          аккаунту.
-        </Text>
+        <Text size="sm">{t("alerts.account_needs_email")}</Text>
         <Button
           component={Link}
           to={RouteNames.SettingsSecurity}
@@ -37,7 +36,7 @@ export function AccountAlert() {
           color="yellow"
           variant="filled"
         >
-          Перейти в настройки
+          {t("alerts.account_go_settings")}
         </Button>
       </Group>
     </Alert>
