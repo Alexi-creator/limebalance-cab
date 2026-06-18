@@ -84,6 +84,21 @@ The app starts on **http://localhost:5173**. In dev, requests to `/api` are prox
 | `npm run lint` | Lint the project with Biome. |
 | `npm run format` | Auto-format the codebase with Biome. |
 | `npm run ngrok` | Expose the dev server via ngrok (handy for testing Telegram auth). |
+| `npm run test:e2e` | Run the Playwright end-to-end tests. |
+| `npm run test:e2e:ui` | Run the E2E tests in interactive UI mode. |
+
+---
+
+## 🧪 Testing
+
+End-to-end tests are written with [Playwright](https://playwright.dev/) and live in [e2e/](e2e/). They run the real app in a browser **without a backend** — every `/api/**` request is mocked at the network layer (reusing the app's own stub data), so the suite is fast and deterministic.
+
+```bash
+npx playwright install chromium   # one-time: download the browser
+npm run test:e2e                  # run the suite (auto-starts the dev server)
+```
+
+See [e2e/README.md](e2e/README.md) for how the mocking and fixtures work.
 
 ---
 
