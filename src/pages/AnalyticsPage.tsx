@@ -26,10 +26,10 @@ export function AnalyticsPage() {
   const { t, i18n } = useTranslation()
   const [params, setParams] = useUrlParams(analyticsParamsSchema)
   const period = params.period
-  const { metrics, series, donut, comparison, range, baseCurrency, isLoading, isError } =
-    useAnalyticsData(period)
-
   const locale = dateFnsLocales[i18n.language] ?? enUS
+  const { metrics, series, donut, comparison, range, baseCurrency, isLoading, isError } =
+    useAnalyticsData(period, locale)
+
   const periodLabel = t(`analytics.period_${period}`)
   const rangeLabel = `${format(range.from, "d MMM", { locale })} – ${format(range.to, "d MMM yyyy", { locale })}`
 

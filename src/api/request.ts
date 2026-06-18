@@ -6,6 +6,7 @@ import type { RequestOptions } from "@utils/commonRequest"
 import { commonRequest } from "@utils/commonRequest"
 import { ApiError } from "./apiError"
 import { queryClient } from "./queryClient"
+import { getStub, STUBS_ENABLED } from "./stubs"
 
 let pendingRefresh: Promise<boolean> | null = null
 
@@ -31,6 +32,13 @@ export async function request<T>(
   url: string,
   options: RequestOptions<T> & { skipRedirect?: boolean } = {},
 ): Promise<T> {
+  if (STUBS_ENABLED) {
+    const stub = getStub(url, options.method ?? "GET")
+    if (stub !== undefined) {
+      return options.schema ? options.schema.parse(stub) : (stub as T)
+    }
+  }
+
   try {
     return await commonRequest(url, options)
   } catch (err) {

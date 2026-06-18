@@ -2,6 +2,7 @@ import type { CategoryStats } from "@appTypes/category"
 import type { ExpensesSummary, SummaryGranularity } from "@appTypes/expense"
 import type { IncomesSummary } from "@appTypes/income"
 import { COLOR_PALETTE, EMOJI_PALETTE } from "@components/categories/config"
+import type { Locale } from "date-fns"
 import {
   endOfMonth,
   endOfQuarter,
@@ -17,7 +18,7 @@ import {
   subWeeks,
   subYears,
 } from "date-fns"
-import { ru } from "date-fns/locale"
+import { enUS } from "date-fns/locale"
 import type { AnalyticsPeriod } from "./config"
 
 const WEEK_OPTS = { weekStartsOn: 1 as const }
@@ -154,10 +155,11 @@ function bucketLabel(
   granularity: SummaryGranularity,
   index: number,
   count: number,
+  locale: Locale,
 ): string {
   if (granularity === "month") {
     const [year, month] = bucket.split("-").map(Number)
-    return format(new Date(year, month - 1, 1), "LLL", { locale: ru })
+    return format(new Date(year, month - 1, 1), "LLL", { locale })
   }
   if (granularity === "week") return format(parseISO(bucket), "d.MM")
   // day: при >14 точках подписываем каждую 5-ю и последнюю, иначе все
@@ -172,6 +174,7 @@ function bucketLabel(
 export function buildSeries(
   expSummary: ExpensesSummary | undefined,
   incSummary: IncomesSummary | undefined,
+  locale: Locale = enUS,
 ): SeriesPoint[] {
   const granularity = expSummary?.granularity ?? incSummary?.granularity ?? "month"
   const expMap = new Map((expSummary?.buckets ?? []).map((b) => [b.bucket, b.approxTotal ?? 0]))
@@ -179,7 +182,7 @@ export function buildSeries(
   const keys = [...new Set([...expMap.keys(), ...incMap.keys()])].sort()
 
   return keys.map((k, i) => ({
-    label: bucketLabel(k, granularity, i, keys.length),
+    label: bucketLabel(k, granularity, i, keys.length, locale),
     income: incMap.get(k) ?? 0,
     expense: expMap.get(k) ?? 0,
   }))

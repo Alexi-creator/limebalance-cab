@@ -3,7 +3,9 @@ import { getIncomesSummary } from "@api/incomes"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import { useQuery } from "@tanstack/react-query"
+import type { Locale } from "date-fns"
 import { format } from "date-fns"
+import { enUS } from "date-fns/locale"
 import { useMemo } from "react"
 import { type AnalyticsPeriod, COMPARISON_LIMIT } from "./config"
 import {
@@ -22,7 +24,7 @@ const key = (d: Date) => format(d, "yyyy-MM-dd")
  * прошлый период, базовая валюта), пирог и сравнение по категориям — из `/stats`
  * с параметрами сравнения. Ключи запросов общие — react-query дедуплицирует.
  */
-export function useAnalyticsData(period: AnalyticsPeriod) {
+export function useAnalyticsData(period: AnalyticsPeriod, locale: Locale = enUS) {
   const range = useMemo(() => periodToRange(period), [period])
   const { from, to, prevFrom, prevTo } = range
   const granularity = GRANULARITY[period]
@@ -68,11 +70,11 @@ export function useAnalyticsData(period: AnalyticsPeriod) {
         expPrevQ.data,
         incPrevQ.data,
       ),
-      series: buildSeries(expCurQ.data, incCurQ.data),
+      series: buildSeries(expCurQ.data, incCurQ.data, locale),
       donut: groupByCategory(expStats),
       comparison: compareCategories(expStats, COMPARISON_LIMIT),
     }),
-    [expCurQ.data, incCurQ.data, expPrevQ.data, incPrevQ.data, expStats],
+    [expCurQ.data, incCurQ.data, expPrevQ.data, incPrevQ.data, expStats, locale],
   )
 
   return {
