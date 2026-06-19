@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 /**
- * Баннер-предупреждение для пользователей, вошедших через Telegram без привязанного email.
- * Показывается только если `telegramId` установлен, а `email` отсутствует.
- * Не принимает пропсов — читает состояние из `useAuthStore`.
+ * Warning banner for users who signed in via Telegram without a linked email.
+ * Shown only if `telegramId` is set and `email` is missing.
+ * Takes no props — reads state from `useAuthStore`.
  */
 export function AccountAlert() {
   const { t } = useTranslation()

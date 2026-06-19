@@ -4,7 +4,7 @@ import { ActionIcon, Box, Divider, Group, Indicator } from "@mantine/core"
 import { IconBell } from "@tabler/icons-react"
 import { useTranslation } from "react-i18next"
 
-/** Доп. блок только для мобильных: уведомления, переключатели языка и темы. */
+/** Mobile-only extras block: notifications, language and theme toggles. */
 export function SidebarMobileExtras() {
   const { t } = useTranslation()
   return (

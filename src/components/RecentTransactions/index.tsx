@@ -20,8 +20,8 @@ import { formatTxAmount } from "../transactions/helpers"
 const RECENT_LIMIT = 7
 
 /**
- * Виджет последних операций главного дашборда: последние 7 записей из /transactions
- * (уже отсортированы по дате убыв.). Строка — сумма + валюта + категория.
+ * Recent transactions widget on the home dashboard: the last 7 records from /transactions
+ * (already sorted by date desc.). A row is amount + currency + category.
  */
 export function RecentTransactions() {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ export function RecentTransactions() {
     staleTime: TRANSACTIONS_STALE_TIME,
   })
 
-  // эмодзи категорий тянем из кеша списков (заодно дедуплицируются с таблицей операций)
+  // we pull category emojis from the lists cache (also deduplicated with the transactions table)
   const { data: expenseCategories } = useQuery({
     queryKey: expenseKeys.categories,
     queryFn: getExpenseCategories,
@@ -79,7 +79,7 @@ export function RecentTransactions() {
       {isLoading ? (
         <Stack gap={0} p="md">
           {Array.from({ length: 4 }, (_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: статичные плейсхолдеры загрузки
+            // biome-ignore lint/suspicious/noArrayIndexKey: static loading placeholders
             <Skeleton key={i} h={40} my={6} radius="sm" />
           ))}
         </Stack>

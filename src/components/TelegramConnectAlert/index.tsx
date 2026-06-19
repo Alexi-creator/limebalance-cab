@@ -8,25 +8,25 @@ import { Link } from "react-router-dom"
 
 const DISMISS_KEY = "tg-connect-dismissed"
 
-/** Ключ закрытия баннера в разрезе пользователя — иначе закрытие у одного скрывает баннер у другого. */
+/** Per-user banner dismissal key — otherwise dismissing for one user hides the banner for another. */
 const dismissKeyFor = (id: string) => `${DISMISS_KEY}:${id}`
 
 /**
- * Баннер-продвижение Telegram-бота для тех, кто зарегался в ЛК и ещё не привязал бота
- * (`telegramId` пустой). Закрывается и запоминает это в localStorage (отдельно для каждого
- * пользователя), чтобы не надоедать. Зеркало `AccountAlert` (тот — для TG-юзеров без почты).
+ * Telegram bot promo banner for those who registered in the dashboard and have not linked the bot yet
+ * (`telegramId` empty). It can be dismissed and remembers that in localStorage (separately for each
+ * user) so it does not nag. Mirror of `AccountAlert` (which is for TG users without email).
  */
 export function TelegramConnectAlert() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
-  // тик для перерисовки после закрытия; сам `dismissed` читаем из localStorage по текущему юзеру
+  // tick to re-render after dismissal; `dismissed` itself is read from localStorage for the current user
   const [, bump] = useReducer((x: number) => x + 1, 0)
 
-  // идентификатор пользователя для скоупа ключа (id в схеме нет — берём почту/telegram)
+  // user identifier for scoping the key (there is no id in the schema — we use email/telegram)
   const userId = user?.email ?? user?.telegramId ?? null
   const dismissed = userId != null && localStorage.getItem(dismissKeyFor(userId)) === "1"
 
-  // показываем только залогиненным без привязанного Telegram и кто не закрыл баннер
+  // shown only to logged-in users without a linked Telegram who have not dismissed the banner
   if (!user || !userId || user.telegramId || dismissed) return null
 
   const dismiss = () => {

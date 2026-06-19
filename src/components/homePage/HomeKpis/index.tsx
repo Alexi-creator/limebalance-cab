@@ -12,15 +12,15 @@ import { useTranslation } from "react-i18next"
 import { buildKpis } from "./helpers"
 
 /**
- * Ряд KPI-карточек главной страницы. Тянет общий баланс (/transactions/balance) и
- * сводки доход/расход за текущий месяц (granularity=day — дедуплицируются с графиком
- * по тем же ключам), затем строит карточки через `buildKpis`.
+ * Row of KPI cards on the home page. Fetches the total balance (/transactions/balance) and
+ * income/expense summaries for the current month (granularity=day — deduplicated with the chart
+ * by the same keys), then builds the cards via `buildKpis`.
  */
 export function HomeKpis() {
   const { t, i18n } = useTranslation()
   const now = new Date()
   const from = startOfMonth(now)
-  // весь месяц (to=конец месяца) — общий ключ/диапазон с графиком; будущие дни пустые
+  // whole month (to=end of month) — shared key/range with the chart; future days are empty
   const to = endOfMonth(now)
   const fromKey = format(from, "yyyy-MM-dd")
   const toKey = format(to, "yyyy-MM-dd")
@@ -44,11 +44,11 @@ export function HomeKpis() {
     staleTime: INCOME_STALE_TIME,
   })
 
-  // есть ли в периоде хоть одна операция (для подписи «нет данных»)
+  // whether there is at least one transaction in the period (for the "no data" caption)
   const incomeHasData = (incomesQuery.data?.buckets ?? []).some((b) => b.totals.length > 0)
   const expenseHasData = (expensesQuery.data?.buckets ?? []).some((b) => b.totals.length > 0)
 
-  // базовая валюта пользователя — в ней приходят approxTotal/total сводки
+  // user's base currency — the summary approxTotal/total come in it
   const baseCurrency = incomesQuery.data?.baseCurrency ?? expensesQuery.data?.baseCurrency
 
   const kpis = buildKpis({

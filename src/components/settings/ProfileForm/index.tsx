@@ -10,10 +10,10 @@ import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 /**
- * Форма общих настроек: имя и валюта. Инит-значения берём из данных пользователя,
- * опции валют — коды из regionToCurrency.
- * Сохраняем через PATCH /auth/me и обновляем пользователя в сторе ответом сервера.
- * Почта и пароль вынесены в отдельную вкладку (SecurityForm).
+ * General settings form: name and currency. Initial values come from the user's data,
+ * currency options — codes from regionToCurrency.
+ * We save via PATCH /auth/me and update the user in the store with the server response.
+ * Email and password are moved to a separate tab (SecurityForm).
  */
 export function ProfileForm() {
   const { t } = useTranslation()
@@ -30,7 +30,7 @@ export function ProfileForm() {
     mutationFn: () => updateMe({ name: name.trim(), currency }),
     onSuccess: (updated) => {
       setUser(updated)
-      // валюта влияет на пересчёт сумм в стате категорий — обновляем её при смене
+      // currency affects amount recalculation in category stats — we update it on change
       if (currency !== initialCurrency) {
         queryClient.invalidateQueries({ queryKey: expenseKeys.categoriesStats })
         queryClient.invalidateQueries({ queryKey: incomeKeys.categoriesStats })
@@ -57,8 +57,8 @@ export function ProfileForm() {
       <Select
         label={t("settings.currency_label")}
         description={t("settings.currency_description")}
-        // лейбл в теме «плавающий» (absolute) и убран из потока — без переноса description
-        // встал бы на его место и наложился; поэтому рендерим подсказку под полем
+        // the label in the theme is "floating" (absolute) and removed from flow — without moving it the description
+        // would take its place and overlap; so we render the hint under the field
         inputWrapperOrder={["label", "input", "description", "error"]}
         placeholder={t("settings.currency_placeholder")}
         data={CURRENCY_OPTIONS}

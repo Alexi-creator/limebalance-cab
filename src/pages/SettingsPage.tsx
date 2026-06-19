@@ -13,8 +13,8 @@ const TAB_ROUTE: Record<string, string> = {
 }
 
 /**
- * Страница настроек с вкладками. Активная вкладка определяется по текущему пути —
- * у «Почта и пароль» и «Telegram» свои роуты, общие настройки на /settings.
+ * Settings page with tabs. The active tab is determined by the current path —
+ * "Email & password" and "Telegram" have their own routes, general settings are at /settings.
  */
 export function SettingsPage() {
   const { t } = useTranslation()

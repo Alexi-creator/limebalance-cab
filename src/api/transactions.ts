@@ -4,7 +4,7 @@ import { balanceSchema, transactionsResponseSchema } from "@appTypes/transaction
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
 
-/** Общий баланс пользователя (база + USD), приведённый к курсам. */
+/** User's total balance (base + USD), converted by exchange rates. */
 export function getBalance() {
   return request(API_URLS.transactions.balance, { schema: balanceSchema })
 }
@@ -20,7 +20,7 @@ export interface GetTransactionsParams {
   limit: number
 }
 
-/** Объединённый список операций с пагинацией и фильтрами. Пустые фильтры в query не уходят. */
+/** Combined transactions list with pagination and filters. Empty filters are not sent in the query. */
 export function getTransactions(params: GetTransactionsParams) {
   const qs = new URLSearchParams()
   if (params.type) qs.set("type", params.type)
@@ -40,13 +40,13 @@ export function getTransactions(params: GetTransactionsParams) {
 export interface UpdateTransactionPayload {
   amount?: number
   description?: string
-  /** Код валюты (ISO 4217), напр. «USD». */
+  /** Currency code (ISO 4217), e.g. "USD". */
   currency?: string
-  /** Дата операции в формате `YYYY-MM-DD` (бэкенд хранит её в @db.Date без времени). */
+  /** Transaction date in `YYYY-MM-DD` format (the backend stores it in @db.Date without time). */
   date?: string
 }
 
-/** URL операции по типу: расход → /expenses/:id, доход → /incomes/:id. */
+/** Transaction URL by type: expense → /expenses/:id, income → /incomes/:id. */
 function transactionUrl(type: TransactionType, id: string) {
   const base = type === "expense" ? API_URLS.expenses.expenses : API_URLS.incomes.incomes
   return `${base}/${id}`

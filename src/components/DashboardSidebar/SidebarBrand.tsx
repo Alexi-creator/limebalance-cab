@@ -3,7 +3,7 @@ import { useSidebarStore } from "@store/sidebarStore"
 import { IconX } from "@tabler/icons-react"
 import { useTranslation } from "react-i18next"
 
-/** Логотип приложения и кнопка закрытия мобильного меню. */
+/** App logo and the mobile menu close button. */
 export function SidebarBrand() {
   const { t } = useTranslation()
   const close = useSidebarStore((s) => s.close)

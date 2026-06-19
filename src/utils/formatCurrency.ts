@@ -4,8 +4,8 @@ const localeToCurrency: Record<string, string> = {
 }
 
 /**
- * Форматирует сумму как валюту. `currencyCode` — явный код (ISO 4217) для конкретной
- * операции; если не передан, берётся валюта по языку интерфейса (фолбэк USD).
+ * Formats an amount as currency. `currencyCode` — an explicit code (ISO 4217) for a specific
+ * transaction; if omitted, the currency is taken from the interface language (fallback USD).
  */
 export function formatCurrency(
   amount: number,

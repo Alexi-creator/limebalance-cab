@@ -11,8 +11,8 @@ import { selectDataset } from "./helpers"
 import { useCashflowData } from "./useCashflowData"
 
 /**
- * График денежного потока с переключением периода (1m / 6m / 1y).
- * Сам грузит данные, выбирает набор под период и отдаёт отрисовку в `CashflowSvg`.
+ * Cash flow chart with period switching (1m / 6m / 1y).
+ * Loads data itself, picks the dataset for the period, and delegates rendering to `CashflowSvg`.
  */
 export function CashflowChart() {
   const { i18n, t } = useTranslation()

@@ -10,8 +10,8 @@ interface Props {
 }
 
 /**
- * Сводка по категориям: сумма за всё время (в базовой валюте) и горизонтальная шкала
- * долей по категориям. Суммы из разных валют приводятся к базовой, поэтому помечаются «≈».
+ * Category summary: all-time total (in the base currency) and a horizontal bar
+ * of category shares. Amounts from different currencies are converted to the base, so they are marked with "≈".
  */
 export function CategoriesSummary({ list, isExpense }: Props) {
   const { t, i18n } = useTranslation()

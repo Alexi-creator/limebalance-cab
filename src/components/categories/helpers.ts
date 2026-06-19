@@ -3,19 +3,19 @@ import { COLOR_PALETTE, EMOJI_PALETTE } from "./config"
 import type { DisplayCategory } from "./types"
 
 /**
- * Сумма категории в базовой валюте — для сортировки, долей и шкал.
- * 0, если курсы недоступны (`approxTotal === null`): сравнивать разные валюты напрямую нельзя.
+ * Category total in the base currency — for sorting, shares, and bars.
+ * 0 if exchange rates are unavailable (`approxTotal === null`): different currencies cannot be compared directly.
  */
 export function baseAmount(cat: CategoryStats): number {
   return cat.approxTotal ?? 0
 }
 
-/** Сумма приблизительная: есть операции в валюте, отличной от базовой (была конвертация). */
+/** The total is approximate: there are transactions in a currency other than the base (a conversion happened). */
 export function isApprox(cat: CategoryStats): boolean {
   return cat.totals.some((t) => t.currency !== cat.baseCurrency)
 }
 
-/** Достраивает статистику: emoji с бэка (иначе фолбэк из палитры) и цвет по индексу. */
+/** Enriches the stats: emoji from the backend (otherwise a fallback from the palette) and color by index. */
 export function toDisplay(stat: CategoryStats, index: number): DisplayCategory {
   return {
     ...stat,

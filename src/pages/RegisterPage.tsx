@@ -66,7 +66,7 @@ function EmailForm({ onBack }: { onBack: () => void }) {
     setIsPending(true)
     try {
       await register(payload)
-      // регистрация уже создаёт сессию; полные данные пользователя берём из /me
+      // registration already creates a session; full user data is taken from /me
       const user = await getMe()
       setUser(user)
       syncTimezone(user)

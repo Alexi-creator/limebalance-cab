@@ -4,13 +4,13 @@ import { z } from "zod"
 export const transactionTypeSchema = z.enum(["income", "expense"])
 export type TransactionType = z.infer<typeof transactionTypeSchema>
 
-/** Одна транзакция из объединённого роута /transactions (категория — плоская). */
+/** A single transaction from the combined /transactions route (category is flat). */
 export const transactionSchema = z.object({
   id: z.string(),
   categoryId: z.string(),
   categoryName: z.string().nullable(),
   amount: z.coerce.number(),
-  /** Код валюты операции (ISO 4217); может отсутствовать у старых записей. */
+  /** Transaction currency code (ISO 4217); may be missing on old records. */
   currency: z.string().nullish(),
   description: z.string(),
   date: wallClockDate(),
@@ -19,8 +19,8 @@ export const transactionSchema = z.object({
 export type Transaction = z.infer<typeof transactionSchema>
 
 /**
- * Денежный итог по всей выборке (с учётом фильтров, не только текущая страница),
- * приведённый к базовой валюте пользователя. Суммы null, если курсы недоступны.
+ * Monetary total for the transactions on the current page (respecting filters),
+ * converted to the user's base currency. Amounts are null if exchange rates are unavailable.
  */
 export const transactionsSummarySchema = z.object({
   baseCurrency: z.string(),
@@ -31,8 +31,8 @@ export const transactionsSummarySchema = z.object({
 export type TransactionsSummary = z.infer<typeof transactionsSummarySchema>
 
 /**
- * Общий баланс пользователя. `balance` — в базовой валюте, `balanceUsd` — в USD.
- * Любая из сумм null, если курсы недоступны (показываем «—»).
+ * User's total balance. `balance` — in the base currency, `balanceUsd` — in USD.
+ * Either amount is null if exchange rates are unavailable (we show "—").
  */
 export const balanceSchema = z.object({
   baseCurrency: z.string(),
@@ -41,7 +41,7 @@ export const balanceSchema = z.object({
 })
 export type Balance = z.infer<typeof balanceSchema>
 
-/** Пагинированный ответ /transactions. */
+/** Paginated /transactions response. */
 export const transactionsResponseSchema = z.object({
   items: z.array(transactionSchema),
   total: z.number(),

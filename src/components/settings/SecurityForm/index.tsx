@@ -11,16 +11,16 @@ const emailSchema = z.email()
 const MIN_PASSWORD = 8
 
 /**
- * Форма почты и пароля.
+ * Email and password form.
  *
- * Если почта уже привязана (пришла с бэка) — поле почты заблокировано. Поля пароля
- * необязательны: заполняются только для смены/задания пароля. Если почты нет (напр.
- * вход через Telegram) — почту можно задать, и тогда пароль обязателен.
+ * If the email is already linked (came from the backend) — the email field is locked. Password fields
+ * are optional: filled only to change/set the password. If there is no email (e.g.
+ * login via Telegram) — the email can be set, and then the password is required.
  *
- * «Текущий пароль» требуется только если пароль уже задан (`hasPassword`). У входивших
- * через Google/Telegram пароля может не быть — тогда это первичная установка без текущего.
+ * "Current password" is required only if a password is already set (`hasPassword`). Users who signed in
+ * via Google/Telegram may not have one — then it is an initial setup without a current password.
  *
- * Когда пароль задаётся, он должен быть не короче 8 символов и совпадать с подтверждением.
+ * When a password is set, it must be at least 8 characters and match the confirmation.
  */
 export function SecurityForm() {
   const { t } = useTranslation()
@@ -28,7 +28,7 @@ export function SecurityForm() {
   const setUser = useAuthStore((s) => s.setUser)
 
   const hasEmail = !!user?.email
-  // есть ли уже пароль; для старых ответов без поля считаем по наличию почты (прежнее поведение)
+  // whether a password already exists; for old responses without the field, infer from email presence (previous behavior)
   const hasPassword = user?.hasPassword ?? hasEmail
   const [email, setEmail] = useState("")
   const [currentPassword, setCurrentPassword] = useState("")
@@ -38,13 +38,13 @@ export function SecurityForm() {
   const trimmedEmail = email.trim()
   const emailValid = emailSchema.safeParse(trimmedEmail).success
 
-  // при привязке почты пароль обязателен всегда; при смене — только если начали вводить
+  // when linking an email the password is always required; when changing — only if input has started
   const passwordTouched = password !== "" || confirm !== ""
   const passwordRequired = !hasEmail || passwordTouched
-  // текущий пароль нужен только при смене уже заданного пароля
+  // the current password is needed only when changing an already set password
   const currentPasswordRequired = hasPassword && passwordTouched
 
-  // ошибки полей показываем только после ввода, чтобы не подсвечивать пустую форму
+  // we show field errors only after input, so an empty form is not highlighted
   const emailFieldError = !hasEmail && trimmedEmail !== "" && !emailValid
   const passwordFieldError = passwordRequired && password !== "" && password.length < MIN_PASSWORD
   const confirmFieldError = passwordRequired && confirm !== "" && confirm !== password
@@ -52,24 +52,24 @@ export function SecurityForm() {
   const emailOk = hasEmail || emailValid
   const passwordOk = !passwordRequired || (password.length >= MIN_PASSWORD && confirm === password)
   const currentPasswordOk = !currentPasswordRequired || currentPassword !== ""
-  // есть что сохранять: либо задаём почту, либо меняем пароль
+  // there is something to save: either set the email or change the password
   const dirty = !hasEmail || passwordTouched
   const canSave = dirty && emailOk && passwordOk && currentPasswordOk
 
   const mutation = useMutation({
     mutationFn: () =>
       setCredentials({
-        // почту шлём только при первичной привязке; текущий пароль — только если он уже задан
+        // send the email only on initial linking; the current password — only if it is already set
         ...(hasEmail ? {} : { email: trimmedEmail }),
         ...(hasPassword ? { currentPassword } : {}),
         password,
       }),
     onSuccess: (updated) => {
-      // Мержим, а не заменяем: ответ может прийти частичным и затереть имя/валюту.
-      // Если задавали почту — фиксируем её принудительно (server-значение в приоритете,
-      // но если ответ её не вернул, берём отправленную), чтобы hasEmail стал true
-      // и поле почты заблокировалось. Пароль только что задан → hasPassword: true,
-      // чтобы дальше форма требовала текущий пароль и показывала это поле.
+      // Merge, do not replace: the response may be partial and wipe the name/currency.
+      // If we set the email — force it (the server value takes priority,
+      // but if the response did not return it, use the sent one) so hasEmail becomes true
+      // and the email field gets locked. The password was just set → hasPassword: true,
+      // so the form then requires the current password and shows that field.
       setUser({
         ...user,
         ...updated,

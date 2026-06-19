@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 
 /**
- * Виджет-сниппет финансовых целей для главного дашборда.
- * Показывает список целей с прогресс-барами и кнопку перехода на полную страницу целей.
- * Не принимает пропсов — данные захардкожены (stub).
+ * Financial goals snippet widget for the home dashboard.
+ * Shows a list of goals with progress bars and a button to go to the full goals page.
+ * Takes no props — data is hardcoded (stub).
  */
 export function GoalsSnippet() {
   const { t } = useTranslation()

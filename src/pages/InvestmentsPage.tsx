@@ -98,20 +98,20 @@ const WATCHLIST = [
 ]
 
 const ALERTS = [
-  { sym: "BTC", cond: "Когда цена ≥ $72 000", s: "active" as const, up: true, c: "green" as const },
-  { sym: "ETH", cond: "Когда цена ≤ $3 100", s: "active" as const, up: false, c: "red" as const },
+  { sym: "BTC", cond: "When the price ≥ $72 000", s: "active" as const, up: true, c: "green" as const },
+  { sym: "ETH", cond: "When the price ≤ $3 100", s: "active" as const, up: false, c: "red" as const },
   {
     sym: "SOL",
-    cond: "Изменение за 24ч > 10%",
+    cond: "24h change > 10%",
     s: "active" as const,
     up: true,
     c: "lime" as const,
   },
-  { sym: "TON", cond: "Цена пробила $6.00", s: "fired" as const, up: true, c: "gray" as const },
+  { sym: "TON", cond: "Price broke $6.00", s: "fired" as const, up: true, c: "gray" as const },
 ]
 
 export function InvestmentsPage() {
-  const [range, setRange] = useState("1М")
+  const [range, setRange] = useState("1M")
 
   const points = [28200, 28800, 27500, 29100, 30200, 31800, 31200, 32400, 33002]
   const W = 720,
@@ -129,18 +129,18 @@ export function InvestmentsPage() {
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
-            Инвестиции и крипта
+            Investments and crypto
           </Title>
           <Text size="sm" c="dimmed">
-            Портфель из 5 активов · обновлено только что
+            Portfolio of 5 assets · updated just now
           </Text>
         </Stack>
         <Group gap="xs">
           <Button variant="default" size="sm">
-            Подключить кошелёк
+            Connect wallet
           </Button>
           <Button size="sm" leftSection={<IconPlus size={14} />}>
-            Купить
+            Buy
           </Button>
         </Group>
       </Group>
@@ -156,7 +156,7 @@ export function InvestmentsPage() {
             >
               <Stack gap={2}>
                 <Text size="xs" c="dimmed">
-                  Стоимость портфеля
+                  Portfolio value
                 </Text>
                 <Group align="baseline" gap="xs">
                   <Text ff="monospace" fz={32} fw={500} style={{ letterSpacing: "-0.02em" }}>
@@ -174,7 +174,7 @@ export function InvestmentsPage() {
                 size="xs"
                 value={range}
                 onChange={setRange}
-                data={["24ч", "1Н", "1М", "3М", "1Г", "Всё"]}
+                data={["24h", "1W", "1M", "3M", "1Y", "All"]}
               />
             </Group>
             <Box p="md">
@@ -183,9 +183,9 @@ export function InvestmentsPage() {
                 preserveAspectRatio="none"
                 style={{ width: "100%", height: 220, display: "block" }}
                 role="img"
-                aria-label="График стоимости портфеля"
+                aria-label="Portfolio value chart"
               >
-                <title>График стоимости портфеля</title>
+                <title>Portfolio value chart</title>
                 <defs>
                   <linearGradient id="invG" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor={accent} stopOpacity="0.35" />
@@ -231,7 +231,7 @@ export function InvestmentsPage() {
               style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
             >
               <Text fw={600} size="sm">
-                Аллокация
+                Allocation
               </Text>
               <Badge color="blue" variant="light">
                 live
@@ -287,20 +287,20 @@ export function InvestmentsPage() {
           style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
         >
           <Text fw={600} size="sm">
-            Активы
+            Assets
           </Text>
           <Button variant="subtle" size="xs" leftSection={<IconFilter size={14} />}>
-            Фильтры
+            Filters
           </Button>
         </Group>
         <Table verticalSpacing="sm" highlightOnHover>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>Актив</Table.Th>
-              <Table.Th ta="right">Количество</Table.Th>
-              <Table.Th ta="right">Ср. цена</Table.Th>
-              <Table.Th ta="right">Стоимость</Table.Th>
-              <Table.Th ta="right">24ч</Table.Th>
+              <Table.Th>Asset</Table.Th>
+              <Table.Th ta="right">Quantity</Table.Th>
+              <Table.Th ta="right">Avg. price</Table.Th>
+              <Table.Th ta="right">Value</Table.Th>
+              <Table.Th ta="right">24h</Table.Th>
               <Table.Th ta="right">P/L</Table.Th>
               <Table.Th w={120} />
             </Table.Tr>
@@ -369,10 +369,10 @@ export function InvestmentsPage() {
                   <Table.Td>
                     <Group gap={4} justify="flex-end">
                       <Button variant="subtle" size="compact-xs">
-                        Купить
+                        Buy
                       </Button>
                       <Button variant="subtle" size="compact-xs">
-                        Продать
+                        Sell
                       </Button>
                     </Group>
                   </Table.Td>
@@ -391,10 +391,10 @@ export function InvestmentsPage() {
             style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
           >
             <Text fw={600} size="sm">
-              Список наблюдения
+              Watchlist
             </Text>
             <Button variant="subtle" size="xs" leftSection={<IconPlus size={14} />}>
-              Добавить
+              Add
             </Button>
           </Group>
           {WATCHLIST.map((w, i) => (
@@ -451,10 +451,10 @@ export function InvestmentsPage() {
             style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
           >
             <Text fw={600} size="sm">
-              Алерты
+              Alerts
             </Text>
             <Button variant="subtle" size="xs" leftSection={<IconPlus size={14} />}>
-              Новый
+              New
             </Button>
           </Group>
           <Stack gap={0} p="md" pt="xs">
@@ -482,7 +482,7 @@ export function InvestmentsPage() {
                     </Text>
                   </Text>
                   <Text size="xs" c={a.s === "active" ? "green.5" : "dimmed"}>
-                    {a.s === "active" ? "● активен" : "● сработал, выкл."}
+                    {a.s === "active" ? "● active" : "● fired, off"}
                   </Text>
                 </Stack>
                 <ActionIcon variant="subtle" size="sm" color="gray">

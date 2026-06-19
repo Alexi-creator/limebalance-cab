@@ -11,9 +11,9 @@ const items = [
 ]
 
 /**
- * Виджет-сниппет инвестиционного портфеля для главного дашборда.
- * Показывает общую стоимость, дневное изменение, цветную полосу распределения активов и легенду.
- * Не принимает пропсов — данные захардкожены (stub).
+ * Investment portfolio snippet widget for the home dashboard.
+ * Shows total value, daily change, a colored asset allocation bar, and a legend.
+ * Takes no props — data is hardcoded (stub).
  */
 export function PortfolioSnippet() {
   const navigate = useNavigate()
@@ -26,10 +26,10 @@ export function PortfolioSnippet() {
         style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
       >
         <Text fw={600} size="sm">
-          Портфель
+          Portfolio
         </Text>
         <Button variant="subtle" size="xs" onClick={() => navigate(RouteNames.Investments)}>
-          Открыть →
+          Open →
         </Button>
       </Group>
       <Stack p="md" gap="sm">
@@ -38,7 +38,7 @@ export function PortfolioSnippet() {
             $33 002
           </Text>
           <Text size="xs" c="green.5">
-            +$1 248 (+3.92%) сегодня
+            +$1 248 (+3.92%) today
           </Text>
         </Stack>
         <Box style={{ display: "flex", height: 8, borderRadius: 99, overflow: "hidden" }}>

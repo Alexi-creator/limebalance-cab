@@ -12,11 +12,11 @@ interface Props {
   slices: CategorySlice[]
   title: string
   subtitle: string
-  /** Базовая валюта пользователя — в ней приходят суммы из сводок. */
+  /** User's base currency — the amounts from the summaries come in it. */
   baseCurrency?: string
 }
 
-/** Кольцевая диаграмма расходов по категориям с легендой. */
+/** Donut chart of expenses by category with a legend. */
 export function CategoryDonut({ slices, title, subtitle, baseCurrency }: Props) {
   const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)

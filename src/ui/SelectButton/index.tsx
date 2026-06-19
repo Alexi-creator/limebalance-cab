@@ -5,38 +5,38 @@ import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 
 export interface SelectButtonOption {
-  /** Название пункта меню */
+  /** Menu item label */
   label: string
-  /** Краткое описание под названием */
+  /** Short description under the label */
   description?: string
-  /** Иконка слева от названия */
+  /** Icon to the left of the label */
   icon: ReactNode
-  /** Горячая клавиша, отображаемая справа */
+  /** Keyboard shortcut shown on the right */
   shortcut?: ReactNode
-  /** Действие при выборе пункта */
+  /** Action when the item is selected */
   onClick: () => void
 }
 
 interface SelectButtonProps {
-  /** Текст основной кнопки */
+  /** Main button text */
   label: string
-  /** Иконка слева от текста основной кнопки */
+  /** Icon to the left of the main button text */
   icon?: ReactNode
-  /** Размер кнопки (Mantine ButtonProps["size"]). По умолчанию `"sm"` */
+  /** Button size (Mantine ButtonProps["size"]). Defaults to `"sm"` */
   size?: ButtonProps["size"]
-  /** Действие при клике на основную кнопку */
+  /** Action when the main button is clicked */
   onClick: () => void
-  /** Список пунктов выпадающего меню */
+  /** List of dropdown menu items */
   options: SelectButtonOption[]
-  /** Ширина выпадающего меню. По умолчанию `220` */
+  /** Dropdown menu width. Defaults to `220` */
   menuWidth?: MenuProps["width"]
-  /** Позиция выпадающего меню. По умолчанию `"bottom-end"` */
+  /** Dropdown menu position. Defaults to `"bottom-end"` */
   menuPosition?: MenuProps["position"]
 }
 
 /**
- * Составная кнопка: основное действие + стрелка-дропдаун с выбором варианта.
- * Используется, например, в Header для кнопки «Добавить» с выбором типа записи.
+ * Composite button: main action + dropdown arrow for choosing a variant.
+ * Used, for example, in the Header for the "Add" button with a record-type choice.
  */
 export function SelectButton({
   label,

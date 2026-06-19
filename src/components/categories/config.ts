@@ -1,7 +1,7 @@
-/** Колонки сетки карточек категорий по брейкпоинтам. */
+/** Category card grid columns by breakpoint. */
 export const GRID_COLS = { base: 1, sm: 2, lg: 3, xl: 4 }
 
-/** Палитра цветов категорий: назначается по индексу на карточках, в графиках и доната. */
+/** Category color palette: assigned by index on cards, in charts, and the donut. */
 export const COLOR_PALETTE = [
   "var(--mantine-color-lime-4)",
   "var(--mantine-color-green-5)",
@@ -15,9 +15,9 @@ export const COLOR_PALETTE = [
   "var(--mantine-color-pink-5)",
 ]
 
-/** Палитра эмодзи для выбора в форме категории и фолбэка на карточках. */
+/** Emoji palette for selection in the category form and as a fallback on cards. */
 export const EMOJI_PALETTE = [
-  // Повседневные траты
+  // Everyday spending
   "🛒",
   "🍔",
   "🍕",
@@ -33,7 +33,7 @@ export const EMOJI_PALETTE = [
   "💈",
   "🧺",
   "🧻",
-  // Жильё и быт
+  // Housing and home
   "🏠",
   "🛋️",
   "💡",
@@ -42,7 +42,7 @@ export const EMOJI_PALETTE = [
   "🔥",
   "🧹",
   "🪴",
-  // Транспорт
+  // Transport
   "🚗",
   "⛽",
   "🚕",
@@ -51,7 +51,7 @@ export const EMOJI_PALETTE = [
   "🚲",
   "🅿️",
   "🛵",
-  // Здоровье и спорт
+  // Health and sports
   "💊",
   "💪",
   "🏥",
@@ -59,19 +59,19 @@ export const EMOJI_PALETTE = [
   "🧘",
   "🏋️",
   "⚽",
-  // Семья, дети, питомцы
+  // Family, kids, pets
   "👶",
   "🍼",
   "🧸",
   "🐾",
-  // Образование и работа
+  // Education and work
   "📚",
   "🎓",
   "💼",
   "💻",
   "🖥️",
   "🖊️",
-  // Развлечения и отдых
+  // Entertainment and leisure
   "🎬",
   "🎮",
   "🎵",
@@ -86,13 +86,13 @@ export const EMOJI_PALETTE = [
   "🏨",
   "🗺️",
   "🎢",
-  // Связь и подписки
+  // Communication and subscriptions
   "📱",
   "🌐",
   "📺",
   "📦",
   "🎁",
-  // Доходы
+  // Income
   "💰",
   "💵",
   "💸",
@@ -106,7 +106,7 @@ export const EMOJI_PALETTE = [
   "🤑",
   "💎",
   "🎉",
-  // Крипта и инвестиции
+  // Crypto and investments
   "₿",
   "Ξ",
   "🔗",
@@ -114,7 +114,7 @@ export const EMOJI_PALETTE = [
   "🐻",
   "🚀",
   "🌙",
-  // Прочее
+  // Other
   "🌱",
   "🛠️",
   "🔧",

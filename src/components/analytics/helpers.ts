@@ -24,8 +24,8 @@ import type { AnalyticsPeriod } from "./config"
 const WEEK_OPTS = { weekStartsOn: 1 as const }
 
 /**
- * Гранулярность бакетов временного ряда под период (передаётся в `/summary`):
- * неделя/месяц — по дням, квартал — по неделям, год — по месяцам.
+ * Time-series bucket granularity for the period (passed to `/summary`):
+ * week/month — by day, quarter — by week, year — by month.
  */
 export const GRANULARITY: Record<AnalyticsPeriod, SummaryGranularity> = {
   week: "day",
@@ -41,15 +41,15 @@ export interface AnalyticsRange {
   prevTo: Date
 }
 
-/** Текущий и предыдущий интервал для выбранного периода относительно `now`. */
+/** Current and previous interval for the selected period relative to `now`. */
 export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): AnalyticsRange {
   switch (period) {
     case "week": {
-      // текущая неделя: с понедельника по сегодня включительно (не до будущего воскресенья)
+      // current week: from Monday through today inclusive (not up to the upcoming Sunday)
       return {
         from: startOfWeek(now, WEEK_OPTS),
         to: now,
-        // прошлая неделя за тот же отрезок (пн .. тот же день недели) — для честного сравнения
+        // the previous week over the same span (Mon .. the same weekday) — for a fair comparison
         prevFrom: startOfWeek(subWeeks(now, 1), WEEK_OPTS),
         prevTo: subWeeks(now, 1),
       }
@@ -84,7 +84,7 @@ export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): 
   }
 }
 
-/** Изменение в процентах относительно прошлого периода; `undefined` если базы нет (нет badge). */
+/** Percentage change relative to the previous period; `undefined` if there is no baseline (no badge). */
 function pctChange(cur: number, prev: number): number | undefined {
   if (prev === 0) return undefined
   return Math.round(((cur - prev) / prev) * 100)
@@ -101,7 +101,7 @@ export interface Metrics {
   rateTrend?: number
 }
 
-/** Метрики и тренды из итогов дохода/расхода (в базовой валюте). */
+/** Metrics and trends from income/expense totals (in the base currency). */
 function metricsFrom(
   income: number,
   expense: number,
@@ -126,8 +126,8 @@ function metricsFrom(
 }
 
 /**
- * KPI-метрики периода в базовой валюте — из итогов `total` сводок `/summary` за
- * текущий и прошлый интервалы (бэк уже привёл всё к базовой валюте). null → 0.
+ * Period KPI metrics in the base currency — from the `total` totals of the `/summary` summaries for
+ * the current and previous intervals (the backend already converted everything to the base currency). null → 0.
  */
 export function computeMetricsFromSummaries(
   expCur: ExpensesSummary | undefined,
@@ -149,7 +149,7 @@ export interface SeriesPoint {
   expense: number
 }
 
-/** Подпись бакета под гранулярность. Для дней при длинном ряде подписи прореживаем. */
+/** Bucket label by granularity. For days in a long series we thin out the labels. */
 function bucketLabel(
   bucket: string,
   granularity: SummaryGranularity,
@@ -162,14 +162,14 @@ function bucketLabel(
     return format(new Date(year, month - 1, 1), "LLL", { locale })
   }
   if (granularity === "week") return format(parseISO(bucket), "d.MM")
-  // day: при >14 точках подписываем каждую 5-ю и последнюю, иначе все
+  // day: with >14 points we label every 5th and the last one, otherwise all
   if (count > 14 && index % 5 !== 0 && index !== count - 1) return ""
   return String(parseISO(bucket).getDate())
 }
 
 /**
- * Временной ряд доходов/расходов из бакетов сводок: мерж по `bucket`, пустые бакеты
- * (`approxTotal: null`) — как 0. Суммы в базовой валюте (`approxTotal`).
+ * Income/expense time series from summary buckets: merge by `bucket`, empty buckets
+ * (`approxTotal: null`) — as 0. Amounts in the base currency (`approxTotal`).
  */
 export function buildSeries(
   expSummary: ExpensesSummary | undefined,
@@ -199,8 +199,8 @@ export interface CategorySlice {
 }
 
 /**
- * Срезы пирога по категориям расходов из `/stats`: сумма категории — `approxTotal`
- * (базовая валюта). Категории без суммы отбрасываем; сортируем по убыванию суммы.
+ * Pie slices by expense category from `/stats`: a category's total is `approxTotal`
+ * (base currency). Categories without a total are dropped; we sort by descending total.
  */
 export function groupByCategory(stats: CategoryStats[]): CategorySlice[] {
   const rows = stats
@@ -236,9 +236,9 @@ export interface CategoryDelta {
 }
 
 /**
- * Сравнение расходов по категориям с прошлым периодом из `/stats` (когда переданы
- * `compareFrom`/`compareTo`): `approxTotal` — текущий, `previousApproxTotal` — прошлый,
- * `deltaApproxTotal` — разница. По убыванию модуля изменения.
+ * Expense comparison by category with the previous period from `/stats` (when passed
+ * `compareFrom`/`compareTo`): `approxTotal` — current, `previousApproxTotal` — previous,
+ * `deltaApproxTotal` — the difference. By descending absolute change.
  */
 export function compareCategories(stats: CategoryStats[], limit: number): CategoryDelta[] {
   return stats

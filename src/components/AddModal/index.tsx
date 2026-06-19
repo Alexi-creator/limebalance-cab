@@ -3,7 +3,7 @@ import { useModalStore } from "@store/modalStore"
 import { IconCreditCard, IconTarget } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-// TODO(asset): временно скрыто (форма в разработке) — вернуть импорт AssetForm и IconChartLine
+// TODO(asset): temporarily hidden (form under development) — restore the AssetForm import and IconChartLine
 // import { AssetForm } from "./AssetForm"
 import { GoalForm } from "./GoalForm"
 import { TransactionForm } from "./TransactionForm"
@@ -12,18 +12,18 @@ import type { AddType } from "./types"
 export type { AddType }
 
 interface AddModalProps {
-  /** Начальный тип формы. По умолчанию `"transaction"` */
+  /** Initial form type. Defaults to `"transaction"` */
   type?: AddType
-  /** Если `true` — скрывает вкладки и не позволяет сменить тип формы */
+  /** If `true` — hides the tabs and disallows changing the form type */
   lockType?: boolean
-  /** Предзаполнение формы операции (например, при создании из карточки категории) */
+  /** Prefill for the transaction form (e.g. when creating from a category card) */
   transactionDefaults?: { kind?: "income" | "expense"; categoryId?: string }
 }
 
 /**
- * Модальный контейнер для создания финансовых записей.
- * Содержит вкладки для переключения между типами: операция, цель, актив.
- * При `lockType=true` показывает только одну фиксированную форму без вкладок.
+ * Modal container for creating financial records.
+ * Contains tabs for switching between types: transaction, goal, asset.
+ * With `lockType=true` it shows only a single fixed form without tabs.
  */
 export function AddModal({
   type: initialType = "transaction",
@@ -35,7 +35,7 @@ export function AddModal({
   const close = useModalStore((s) => s.close)
   const setTitle = useModalStore((s) => s.setTitle)
 
-  // заголовок модалки живёт в её шапке и обновляется при смене типа (вкладки)
+  // the modal title lives in its header and updates on type change (tabs)
   useEffect(() => {
     setTitle(
       <Stack gap={2}>
@@ -60,9 +60,9 @@ export function AddModal({
             <Tabs.Tab value="goal" leftSection={<IconTarget size={14} />}>
               {t("add_modal.tab_goal")}
             </Tabs.Tab>
-            {/* TODO(asset): временно скрыто (форма в разработке) — вернуть таб (+ IconChartLine) */}
+            {/* TODO(asset): temporarily hidden (form under development) — restore the tab (+ IconChartLine) */}
             {/* <Tabs.Tab value="asset" leftSection={<IconChartLine size={14} />}>
-              Актив
+              Asset
             </Tabs.Tab> */}
           </Tabs.List>
         </Tabs>
@@ -77,7 +77,7 @@ export function AddModal({
         />
       )}
       {type === "goal" && <GoalForm onSubmit={close} onCancel={close} />}
-      {/* TODO(asset): временно скрыто (форма в разработке) — вернуть рендер AssetForm */}
+      {/* TODO(asset): temporarily hidden (form under development) — restore the AssetForm render */}
       {/* {type === "asset" && <AssetForm onSubmit={close} onCancel={close} />} */}
     </Stack>
   )

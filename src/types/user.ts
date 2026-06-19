@@ -9,7 +9,7 @@ export const userSchema = z.object({
   currency: z.string().nullish(),
   timezone: z.string().nullish(),
   subscription: z.string().nullish(),
-  /** Задан ли пароль. У входивших через Google/Telegram пароля может не быть. */
+  /** Whether a password is set. Users who signed in via Google/Telegram may not have one. */
   hasPassword: z.boolean().nullish(),
 })
 

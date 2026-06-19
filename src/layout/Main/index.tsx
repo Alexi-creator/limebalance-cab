@@ -12,10 +12,10 @@ import classes from "./classes.module.css"
 const FILL_HEIGHT_ROUTES = new Set<string>([RouteNames.Transactions])
 
 /**
- * Основная контентная область приложения (AppShell.Main).
- * Показывает глобальный LoadingOverlay, AccountAlert и рендерит дочерние маршруты через `<Outlet />`.
- * На странице транзакций отключает прокрутку (overflow: hidden) для таблицы с фиксированной высотой.
- * Не принимает пропсов.
+ * Main content area of the app (AppShell.Main).
+ * Shows the global LoadingOverlay, AccountAlert, and renders child routes via `<Outlet />`.
+ * On the transactions page it disables scrolling (overflow: hidden) for the fixed-height table.
+ * Takes no props.
  */
 export function Main() {
   const { pathname } = useLocation()

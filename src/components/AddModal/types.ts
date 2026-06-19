@@ -1,2 +1,2 @@
-// TODO(asset): "asset" временно скрыт в UI (форма в разработке) — таб/опция закомментированы
+// TODO(asset): "asset" is temporarily hidden in the UI (form under development) — the tab/option are commented out
 export type AddType = "transaction" | "goal" | "asset"

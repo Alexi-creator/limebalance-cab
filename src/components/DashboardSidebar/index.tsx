@@ -6,10 +6,10 @@ import { SidebarTelegram } from "./SidebarTelegram"
 import { SidebarUserCard } from "./SidebarUserCard"
 
 /**
- * Боковая панель навигации дашборда — тонкая оболочка-композиция.
- * Сама ни на что не подписана: каждый под-блок (бренд, навигация, мобильные доп-кнопки,
- * карточка пользователя) держит свои хуки локально, что ограничивает зону перерисовки.
- * Не принимает пропсов.
+ * Dashboard navigation sidebar — a thin composition shell.
+ * Subscribes to nothing itself: each sub-block (brand, navigation, mobile extras,
+ * user card) keeps its hooks locally, which limits the re-render area.
+ * Takes no props.
  */
 export function DashboardSidebar() {
   return (

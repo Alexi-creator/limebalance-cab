@@ -10,9 +10,9 @@ import { LoginButton } from "@telegram-auth/react"
 import { useTranslation } from "react-i18next"
 
 /**
- * Секция настроек «Telegram». Если аккаунт ещё не привязан (`telegramId` пустой) —
- * показывает виджет привязки (логин-кнопка Telegram → `linkTelegram` → обновляем `me`).
- * Если привязан — показывает статус и прямую ссылку на бота.
+ * "Telegram" settings section. If the account is not linked yet (`telegramId` empty) —
+ * shows the linking widget (Telegram login button → `linkTelegram` → we update `me`).
+ * If linked — shows the status and a direct link to the bot.
  */
 export function TelegramForm() {
   const { t, i18n } = useTranslation()

@@ -12,7 +12,7 @@ export function useUrlParams<T extends AnyZodObject>(
   const params = useMemo(() => {
     const raw = Object.fromEntries(searchParams.entries())
     const result = schema.safeParse(raw)
-    // safeParse с .catch()/.default() в схеме никогда не упадёт
+    // safeParse with .catch()/.default() in the schema never fails
     return result.success ? result.data : schema.parse({})
   }, [searchParams, schema])
 

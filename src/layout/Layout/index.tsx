@@ -6,9 +6,9 @@ import { useSidebarStore } from "@store/sidebarStore"
 import type { ReactNode } from "react"
 
 /**
- * Обёртка над AppShell — единственный подписчик на состояние мобильного меню.
- * При переключении перерисовывается только она, а `children` (Header/NavBar/Main)
- * остаются ссылочно стабильными и не перерисовываются.
+ * Wrapper around AppShell — the only subscriber to the mobile menu state.
+ * On toggle only it re-renders, while `children` (Header/NavBar/Main)
+ * stay referentially stable and do not re-render.
  */
 function AppShellFrame({ children }: { children: ReactNode }) {
   const opened = useSidebarStore((s) => s.opened)
@@ -27,10 +27,10 @@ function AppShellFrame({ children }: { children: ReactNode }) {
 }
 
 /**
- * Корневой layout для авторизованного пользователя.
- * Статичная композиция Header, NavBar и Main; состояние мобильного меню живёт
- * в `sidebarStore`, поэтому сам Layout не перерисовывается при его переключении.
- * Не принимает пропсов.
+ * Root layout for an authenticated user.
+ * Static composition of Header, NavBar, and Main; the mobile menu state lives
+ * in `sidebarStore`, so the Layout itself does not re-render when it toggles.
+ * Takes no props.
  */
 export function Layout() {
   return (

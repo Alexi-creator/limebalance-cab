@@ -19,7 +19,7 @@ interface Props {
   transaction: Transaction
 }
 
-/** Иконки-действия строки операции в ряд: открывают модалки редактирования / удаления. */
+/** Inline action icons for a transaction row: open the edit / delete modals. */
 export function RowActions({ transaction }: Props) {
   const { t } = useTranslation()
   const open = useModalStore((s) => s.open)

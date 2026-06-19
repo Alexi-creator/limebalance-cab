@@ -1,6 +1,6 @@
 import type { CategoryStats } from "@appTypes/category"
 
-/** Статистика категории + готовые к показу icon/color (emoji — с бэка либо фолбэк из палитры). */
+/** Category stats + display-ready icon/color (emoji — from the backend or a fallback from the palette). */
 export interface DisplayCategory extends CategoryStats {
   icon: string
   color: string

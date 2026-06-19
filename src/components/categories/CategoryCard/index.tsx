@@ -10,16 +10,16 @@ import type { DisplayCategory } from "../types"
 
 interface Props {
   cat: DisplayCategory
-  /** Максимальная сумма (в базовой валюте) среди категорий — для нормировки шкалы. */
+  /** Maximum total (in the base currency) among categories — for normalizing the bar. */
   maxSpent: number
   isExpense: boolean
   onEdit: () => void
   onDelete: () => void
-  /** Быстро создать операцию по этой категории */
+  /** Quickly create a transaction for this category */
   onAdd: () => void
 }
 
-/** Карточка категории: иконка, имя, число операций, сумма и шкала доли от максимума. */
+/** Category card: icon, name, transaction count, total, and a bar of the share of the maximum. */
 export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd }: Props) {
   const { t, i18n } = useTranslation()
   const language = i18n.language
@@ -31,7 +31,7 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
   const empty = cat.totals.length === 0
   const multiCurrency = cat.totals.length > 1
 
-  // основная сумма: одна валюта — точная; несколько — приведённая к базовой («≈»)
+  // main total: a single currency — exact; several — converted to the base ("≈")
   let headline: string
   if (empty) {
     headline = formatCurrency(0, language, cat.baseCurrency)
@@ -54,7 +54,7 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
       onMouseLeave={() => setHovered(false)}
     >
       <Group gap={4} pos="absolute" top={8} right={8} wrap="nowrap">
-        {/* редактирование/удаление — только при наведении; добавление операции видно всегда */}
+        {/* edit/delete — only on hover; adding a transaction is always visible */}
         <Group
           gap={4}
           wrap="nowrap"

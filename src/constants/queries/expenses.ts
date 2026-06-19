@@ -5,9 +5,9 @@ export const expenseKeys = {
   month: (month: string) => ["expenses", "month", month] as const,
   range: (from: string, to: string) => ["expenses", "range", from, to] as const,
   categories: ["expenses", "categories"] as const,
-  // префикс для инвалидации всех статистик категорий
+  // prefix for invalidating all category stats
   categoriesStats: ["expenses", "categories", "stats"] as const,
-  // ключ статистики за период (+ опц. прошлый период для сравнения)
+  // stats key for a period (+ optional previous period for comparison)
   categoriesStatsRange: (from: string, to: string, compareFrom?: string, compareTo?: string) =>
     ["expenses", "categories", "stats", from, to, compareFrom ?? null, compareTo ?? null] as const,
 }

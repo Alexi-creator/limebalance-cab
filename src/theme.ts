@@ -10,7 +10,7 @@ import {
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 
-/** «Плавающий» лейбл: абсолютный, сидит на рамке инпута (показывается только при заданном `label`). */
+/** "Floating" label: absolute, sits on the input border (shown only when `label` is set). */
 const floatingLabel = {
   root: { position: "relative" as const },
   label: {
@@ -37,8 +37,8 @@ export const theme = createTheme({
     Paper: {
       defaultProps: { withBorder: true },
     },
-    // заливаем весь тост цветом (зелёный по умолчанию, красный для ошибок), текст — белый,
-    // иначе цвет красит лишь тонкую полоску слева и карточка сливается с фоном страницы
+    // fill the whole toast with color (green by default, red for errors), text is white,
+    // otherwise the color only paints a thin strip on the left and the card blends into the page background
     Notification: Notification.extend({
       defaultProps: { color: "green" },
       styles: {
@@ -54,7 +54,7 @@ export const theme = createTheme({
     Textarea: Textarea.extend({ styles: floatingLabel }),
     Select: Select.extend({ styles: floatingLabel }),
     DatePickerInput: DatePickerInput.extend({ styles: floatingLabel }),
-    // запас сверху, чтобы «плавающий» лейбл первого поля не упирался в шапку модалки
+    // extra space on top so the first field's "floating" label does not bump into the modal header
     Modal: Modal.extend({
       styles: { body: { paddingTop: "calc(var(--mantine-spacing-md) + 6px)" } },
     }),

@@ -11,7 +11,7 @@ export const incomeSchema = z.object({
   category: categorySchema,
 })
 
-/** Сумма за период в одной валюте (валюты между собой не складываются). */
+/** Total for a period in a single currency (currencies are not summed together). */
 export const summaryCurrencyTotalSchema = z.object({
   currency: z.string(),
   total: z.coerce.number(),
@@ -19,21 +19,21 @@ export const summaryCurrencyTotalSchema = z.object({
 })
 
 /**
- * Бакет сводки: разбивка по валютам + прибл. сумма в базовой валюте. `bucket` —
- * метка интервала: `YYYY-MM-DD` для day/week (week = дата понедельника), `YYYY-MM`
- * для month. Пустые бакеты бэк возвращает с пустыми `totals` и `approxTotal` (рисуем 0).
+ * Summary bucket: breakdown by currency + approx. total in the base currency. `bucket` —
+ * interval label: `YYYY-MM-DD` for day/week (week = Monday's date), `YYYY-MM`
+ * for month. The backend returns empty buckets with empty `totals` and `approxTotal` (we draw 0).
  */
 export const bucketSummarySchema = z.object({
   bucket: z.string(),
   totals: z.array(summaryCurrencyTotalSchema).default([]),
-  /** Прибл. сумма за бакет в базовой валюте; null, если курсы недоступны. */
+  /** Approx. total for the bucket in the base currency; null if exchange rates are unavailable. */
   approxTotal: z.coerce.number().nullable(),
 })
 
 /**
- * Сводка доходов за период с разбивкой по бакетам выбранной гранулярности. Операции
- * могут быть в разных валютах: по бакетам — `totals` (разбивка по валютам) и
- * `approxTotal` (приведённое к `baseCurrency`); `total` — прибл. итог за весь период.
+ * Income summary for a period broken down into buckets of the chosen granularity. Transactions
+ * may be in different currencies: per bucket — `totals` (breakdown by currency) and
+ * `approxTotal` (converted to `baseCurrency`); `total` — approx. total for the whole period.
  */
 export const incomesSummarySchema = z.object({
   baseCurrency: z.string(),
@@ -42,7 +42,7 @@ export const incomesSummarySchema = z.object({
   buckets: z.array(bucketSummarySchema),
 })
 
-/** Ответ POST /incomes: созданная строка без вложенной категории (только `categoryId`). */
+/** POST /incomes response: the created row without a nested category (only `categoryId`). */
 export const createdIncomeSchema = z.object({
   id: z.string(),
   amount: z.coerce.number(),

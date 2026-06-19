@@ -2,37 +2,37 @@ import { formatCurrency } from "@utils/formatCurrency"
 import type { TFunction } from "i18next"
 
 export interface Kpi {
-  /** Стабильный ключ для списка. */
+  /** Stable key for the list. */
   key: string
   label: string
   value: string
   sub?: string
   trend?: number
   accent?: string
-  /** Показывает скелетон вместо карточки, пока грузятся данные. */
+  /** Shows a skeleton instead of the card while data is loading. */
   loading?: boolean
   onRefresh?: () => void
   isRefreshing?: boolean
 }
 
-/** Динамическая метрика (доход/расход за текущий месяц) для сборки KPI. */
+/** Dynamic metric (income/expense for the current month) for building KPIs. */
 export interface KpiMetric {
-  /** Сумма за текущий месяц. */
+  /** Total for the current month. */
   total: number
-  /** Есть ли запись за текущий месяц в сводке. */
+  /** Whether there is a record for the current month in the summary. */
   hasData: boolean
   loading: boolean
   isFetching: boolean
   refetch: () => void
 }
 
-/** Общий баланс по всем счетам (из GET /transactions/balance). */
+/** Total balance across all accounts (from GET /transactions/balance). */
 export interface BalanceMetric {
-  /** Баланс в базовой валюте; null, если курсы недоступны — показываем «—». */
+  /** Balance in the base currency; null if exchange rates are unavailable — we show "—". */
   total: number | null
-  /** Тот же баланс в USD (для подписи под значением); null — если курсы недоступны. */
+  /** The same balance in USD (for the caption under the value); null if exchange rates are unavailable. */
   usd: number | null
-  /** Базовая валюта баланса (может отличаться от валюты сводок). */
+  /** Base currency of the balance (may differ from the summaries' currency). */
   baseCurrency?: string
   loading: boolean
 }
@@ -40,21 +40,21 @@ export interface BalanceMetric {
 interface BuildKpisParams {
   t: TFunction
   language: string
-  /** Базовая валюта пользователя — в ней показываем доход/расход (approxTotal). */
+  /** User's base currency — we show income/expense in it (approxTotal). */
   baseCurrency?: string
   balance: BalanceMetric
   income: KpiMetric
   expense: KpiMetric
 }
 
-/** Цвет значения по знаку: отрицательное (ведущий «−»/«-») — красный, иначе зелёный. */
+/** Value color by sign: negative (leading "−"/"-") — red, otherwise green. */
 function colorBySign(value: string): string {
   const v = value.trimStart()
   const negative = v.startsWith("−") || v.startsWith("-")
   return negative ? "var(--mantine-color-red-5)" : "var(--mantine-color-green-5)"
 }
 
-/** Собирает массив KPI-карточек главной из статичных значений и метрик доход/расход. */
+/** Builds the home KPI card array from static values and income/expense metrics. */
 export function buildKpis({
   t,
   language,
@@ -63,19 +63,19 @@ export function buildKpis({
   income,
   expense,
 }: BuildKpisParams): Kpi[] {
-  // накоплено за месяц = доход − расход (в базовой валюте)
+  // saved for the month = income − expense (in the base currency)
   const savedLoading = income.loading || expense.loading
   const savedTotal = income.total - expense.total
   const savedValue = savedLoading
     ? "—"
     : `${savedTotal >= 0 ? "+" : "−"}${formatCurrency(Math.abs(savedTotal), language, baseCurrency)}`
 
-  // баланс приходит в своей базовой валюте; null (нет курсов) → «—»
+  // the balance comes in its own base currency; null (no rates) → "—"
   const balanceValue =
     balance.loading || balance.total == null
       ? "—"
       : formatCurrency(balance.total, language, balance.baseCurrency)
-  // под значением — эквивалент в USD; если курсы недоступны, оставляем подпись по умолчанию
+  // under the value — the USD equivalent; if rates are unavailable, keep the default caption
   const balanceSub =
     !balance.loading && balance.usd != null
       ? `≈ ${formatCurrency(balance.usd, language, "USD")}`

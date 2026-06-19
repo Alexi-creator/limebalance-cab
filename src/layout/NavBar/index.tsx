@@ -2,8 +2,8 @@ import { DashboardSidebar } from "@components/DashboardSidebar"
 import { AppShell } from "@mantine/core"
 
 /**
- * Обёртка навигационной панели (AppShell.Navbar).
- * Рендерит `DashboardSidebar` внутри `AppShell.Navbar`. Не принимает пропсов.
+ * Navigation bar wrapper (AppShell.Navbar).
+ * Renders `DashboardSidebar` inside `AppShell.Navbar`. Takes no props.
  */
 export function NavBar() {
   return (

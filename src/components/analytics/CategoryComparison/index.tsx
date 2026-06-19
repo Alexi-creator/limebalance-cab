@@ -7,11 +7,11 @@ interface Props {
   rows: CategoryDelta[]
   title: string
   subtitle: string
-  /** Базовая валюта пользователя — в ней приходят суммы из сводок. */
+  /** User's base currency — the amounts from the summaries come in it. */
   baseCurrency?: string
 }
 
-/** Список категорий с наибольшим изменением расходов относительно прошлого периода. */
+/** List of categories with the largest change in expenses relative to the previous period. */
 export function CategoryComparison({ rows, title, subtitle, baseCurrency }: Props) {
   const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)

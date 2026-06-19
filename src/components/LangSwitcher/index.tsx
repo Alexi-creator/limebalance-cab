@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next"
 const languageOptions = Object.entries(languages).map(([value, { label }]) => ({ value, label }))
 
 /**
- * Выпадающий селект для смены языка интерфейса.
- * При изменении обновляет i18n и сохраняет выбор в `localStorage`.
- * Не принимает пропсов.
+ * Dropdown select for changing the interface language.
+ * On change it updates i18n and saves the choice in `localStorage`.
+ * Takes no props.
  */
 export function LangSwitcher() {
   const { i18n } = useTranslation()

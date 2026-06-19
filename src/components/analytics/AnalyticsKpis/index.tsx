@@ -6,13 +6,13 @@ import type { Metrics } from "../helpers"
 
 interface Props {
   metrics: Metrics
-  /** Подпись периода в нижней строке карточки («за месяц»). */
+  /** Period caption in the card's bottom line ("for the month"). */
   periodLabel: string
-  /** Базовая валюта пользователя — в ней приходят суммы из сводок. */
+  /** User's base currency — the amounts from the summaries come in it. */
   baseCurrency?: string
 }
 
-/** Строка KPI: доходы, расходы, накопления и норма сбережений за период. */
+/** KPI row: income, expenses, savings, and savings rate for the period. */
 export function AnalyticsKpis({ metrics, periodLabel, baseCurrency }: Props) {
   const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)

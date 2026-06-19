@@ -19,18 +19,18 @@ interface Props {
 }
 
 /**
- * Панель фильтров таблицы операций. Пишет фильтры в URL (через `setParams`),
- * поиск — с дебаунсом; категории грузятся под выбранный тип (для `Все` — недоступны).
+ * Filter panel for the transactions table. Writes filters to the URL (via `setParams`),
+ * search — debounced; categories are loaded for the selected type (unavailable for "All").
  */
 export function TransactionsFilters({ params, setParams }: Props) {
   const { t } = useTranslation()
   const [search, setSearch] = useState(params.search ?? "")
   const [debounced] = useDebouncedValue(search, 350)
 
-  // дебаунс-поиск → URL; пишем только при реальном изменении строки поиска.
-  // Сравнение с params.search обязательно: идентичность setParams меняется при
-  // каждом изменении URL (react-router пересоздаёт setSearchParams), и без этой
-  // проверки эффект перезапускался бы на смену страницы и сбрасывал page на 1.
+  // debounced search → URL; we write only on an actual change of the search string.
+  // Comparison with params.search is required: the identity of setParams changes on
+  // every URL change (react-router recreates setSearchParams), and without this
+  // check the effect would re-run on page change and reset page to 1.
   useEffect(() => {
     if (debounced === (params.search ?? "")) return
     setParams({ search: debounced || undefined, page: 1 })
@@ -47,7 +47,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
     staleTime: CATEGORY_STALE_TIME,
   })
 
-  // при выбранном типе — его категории, при «Все» — объединение доходных и расходных
+  // for a selected type — its categories; for "All" — the union of income and expense ones
   const categories =
     params.type === "expense"
       ? (expenseCategories ?? [])

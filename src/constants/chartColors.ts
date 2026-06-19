@@ -1,3 +1,3 @@
-/** Семантические цвета рядов на графиках: доход — зелёный, расход — красный. */
+/** Semantic series colors on charts: income — green, expense — red. */
 export const INCOME_COLOR = "var(--mantine-color-green-5)"
 export const EXPENSE_COLOR = "var(--mantine-color-red-5)"

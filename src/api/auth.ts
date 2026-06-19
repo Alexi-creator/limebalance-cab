@@ -17,9 +17,9 @@ export interface RegisterPayload {
   password: string
 }
 
-// при регистрации шлём таймзону браузера — бэк выводит из неё дефолтную валюту
-// (на повторных входах игнорируется; валюту фронт не считает и не шлёт)
-// данные пользователя после этих запросов берутся из getMe(), поэтому их ответ не используем
+// on registration we send the browser timezone — the backend derives the default currency from it
+// (ignored on subsequent logins; the frontend does not compute or send the currency)
+// user data after these requests is taken from getMe(), so we do not use their response
 export function register(payload: RegisterPayload): Promise<void> {
   return commonRequest<void>(API_URLS.auth.register, {
     method: HttpMethods.POST,
@@ -44,9 +44,9 @@ export function getMe(): Promise<User> {
 
 export interface UpdateMePayload {
   name?: string
-  /** ISO 4217 код валюты */
+  /** ISO 4217 currency code */
   currency?: string
-  /** IANA-таймзона, напр. «Europe/Moscow» */
+  /** IANA timezone, e.g. "Europe/Moscow" */
   timezone?: string
 }
 
@@ -59,15 +59,15 @@ export function updateMe(payload: UpdateMePayload): Promise<User> {
 }
 
 export interface CredentialsPayload {
-  /** почта; передаётся только при первичной привязке, когда её ещё нет */
+  /** email; sent only on initial linking, when it does not exist yet */
   email?: string
-  /** новый пароль */
+  /** new password */
   password: string
-  /** текущий пароль; требуется при смене пароля, когда почта уже привязана */
+  /** current password; required when changing the password, when the email is already linked */
   currentPassword?: string
 }
 
-// задать почту+пароль (если почты нет) или сменить пароль (если почта уже привязана)
+// set email+password (if there is no email) or change the password (if the email is already linked)
 export function setCredentials(payload: CredentialsPayload): Promise<User> {
   return request<User>(API_URLS.auth.credentials, {
     method: HttpMethods.POST,
@@ -81,7 +81,7 @@ export async function logout(): Promise<void> {
 }
 
 export function loginTelegram(data: TelegramAuthData): Promise<void> {
-  // timezone — обычное поле рядом с данными виджета, не часть подписи Telegram
+  // timezone — a regular field next to the widget data, not part of the Telegram signature
   return commonRequest<void>(API_URLS.auth.telegram, {
     method: HttpMethods.POST,
     body: JSON.stringify({ ...data, timezone: getBrowserTimezone() }),
@@ -89,9 +89,9 @@ export function loginTelegram(data: TelegramAuthData): Promise<void> {
 }
 
 /**
- * Привязать Telegram к текущему (уже авторизованному) аккаунту — для тех, кто
- * регистрировался в ЛК. Идёт через `request` (с авторизацией/refresh). Актуального
- * пользователя после привязки берём из `getMe()`.
+ * Link Telegram to the current (already authenticated) account — for those who
+ * registered in the dashboard. Goes through `request` (with auth/refresh). The current
+ * user after linking is taken from `getMe()`.
  */
 export function linkTelegram(data: TelegramAuthData): Promise<void> {
   return request(API_URLS.auth.linkTelegram, {

@@ -15,25 +15,25 @@ import { getTransactionColumns } from "./settings"
 
 interface Props {
   transactions: Transaction[]
-  /** Всего записей под фильтры (для пагинации). */
+  /** Total records under the filters (for pagination). */
   total: number
   page: number
   onPageChange: (page: number) => void
-  /** Текущий размер страницы и его смена (селектор 20/50/100). */
+  /** Current page size and its change (20/50/100 selector). */
   recordsPerPage: number
   onRecordsPerPageChange: (limit: number) => void
-  /** Идёт загрузка/смена страницы — показывается оверлей. */
+  /** Loading/page change in progress — an overlay is shown. */
   fetching: boolean
   isError: boolean
   selectedRecords: Transaction[]
   onSelectedRecordsChange: (records: Transaction[]) => void
-  /** Итоги по выборке (в базовой валюте) — показываются в футере таблицы. */
+  /** Selection totals (in the base currency) — shown in the table footer. */
   summary?: TransactionsSummary
-  /** Активный фильтр типа — влияет на состав сумм в футере. */
+  /** Active type filter — affects which amounts appear in the footer. */
   type?: TransactionType
 }
 
-/** Таблица операций на `mantine-datatable`: серверная пагинация, состояния загрузки/пусто. */
+/** Transactions table on `mantine-datatable`: server-side pagination, loading/empty states. */
 export function TransactionsTable({
   transactions,
   total,
@@ -51,7 +51,7 @@ export function TransactionsTable({
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
 
-  // эмодзи категорий тянем из кеша (списки уже загружены) — id → эмодзи для колонки «Категория»
+  // we pull category emojis from the cache (lists are already loaded) — id → emoji for the "Category" column
   const { data: expenseCategories } = useQuery({
     queryKey: expenseKeys.categories,
     queryFn: getExpenseCategories,

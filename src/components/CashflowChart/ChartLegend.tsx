@@ -2,7 +2,7 @@ import { Box, Group, Text } from "@mantine/core"
 import { useTranslation } from "react-i18next"
 import { ACCENT, NEG } from "./config"
 
-/** Легенда графика: сплошная линия — доход, пунктир — расход. */
+/** Chart legend: solid line — income, dashed — expense. */
 export function ChartLegend() {
   const { t } = useTranslation()
 

@@ -20,16 +20,16 @@ import {
 const key = (d: Date) => format(d, "yyyy-MM-dd")
 
 /**
- * Данные страницы аналитики. KPI и временной ряд — из сводок `/summary` (текущий и
- * прошлый период, базовая валюта), пирог и сравнение по категориям — из `/stats`
- * с параметрами сравнения. Ключи запросов общие — react-query дедуплицирует.
+ * Analytics page data. KPIs and the time series come from the `/summary` summaries (current and
+ * previous period, base currency); the pie and category comparison come from `/stats`
+ * with comparison params. Query keys are shared — react-query deduplicates.
  */
 export function useAnalyticsData(period: AnalyticsPeriod, locale: Locale = enUS) {
   const range = useMemo(() => periodToRange(period), [period])
   const { from, to, prevFrom, prevTo } = range
   const granularity = GRANULARITY[period]
 
-  // сводки текущего периода — KPI (total) + временной ряд (buckets)
+  // current period summaries — KPIs (total) + time series (buckets)
   const expCurQ = useQuery({
     queryKey: expenseKeys.summary(key(from), key(to), granularity),
     queryFn: () => getExpensesSummary({ from, to, granularity }),
@@ -41,7 +41,7 @@ export function useAnalyticsData(period: AnalyticsPeriod, locale: Locale = enUS)
     staleTime: INCOME_STALE_TIME,
   })
 
-  // сводки прошлого периода — только итоги (total) для трендов KPI
+  // previous period summaries — only totals (total) for KPI trends
   const expPrevQ = useQuery({
     queryKey: expenseKeys.summary(key(prevFrom), key(prevTo), granularity),
     queryFn: () => getExpensesSummary({ from: prevFrom, to: prevTo, granularity }),
@@ -53,7 +53,7 @@ export function useAnalyticsData(period: AnalyticsPeriod, locale: Locale = enUS)
     staleTime: INCOME_STALE_TIME,
   })
 
-  // статистика категорий расходов с прошлым периодом — пирог (approxTotal) + сравнение (delta)
+  // expense category stats with the previous period — pie (approxTotal) + comparison (delta)
   const expStatsQ = useQuery({
     queryKey: expenseKeys.categoriesStatsRange(key(from), key(to), key(prevFrom), key(prevTo)),
     queryFn: () => getExpenseCategoriesStats(from, to, prevFrom, prevTo),
@@ -80,7 +80,7 @@ export function useAnalyticsData(period: AnalyticsPeriod, locale: Locale = enUS)
   return {
     ...derived,
     range,
-    // базовая валюта пользователя — для форматирования KPI
+    // user's base currency — for formatting KPIs
     baseCurrency: expCurQ.data?.baseCurrency ?? incCurQ.data?.baseCurrency,
     isLoading:
       expCurQ.isLoading ||

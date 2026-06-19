@@ -1,10 +1,10 @@
 import { EXPENSE_COLOR, INCOME_COLOR } from "@constants/chartColors"
 
-/** Цвета линий: доход (зелёный) и расход (красный). */
+/** Line colors: income (green) and expense (red). */
 export const ACCENT = INCOME_COLOR
 export const NEG = EXPENSE_COLOR
 
-/** Геометрия SVG-области графика (viewBox и внутренние отступы). */
+/** Geometry of the chart's SVG area (viewBox and inner padding). */
 export const CHART = {
   W: 640,
   H: 240,
@@ -14,14 +14,14 @@ export const CHART = {
   PAD_B: 30,
 } as const
 
-/** Доступные периоды переключателя; `labelKey` — ключ перевода для подписи. */
+/** Available toggle periods; `labelKey` — the translation key for the label. */
 export const PERIODS = [
   { value: "1m", labelKey: "chart.period_1m" },
   { value: "6m", labelKey: "chart.period_6m" },
   { value: "1y", labelKey: "chart.period_1y" },
 ] as const
 
-/** Заглушечные значения для периодов 6m/1y, когда нет реальной сводки. */
+/** Stub values for the 6m/1y periods when there is no real summary. */
 export const stubValues = {
   "6m": {
     income: [180, 196, 210, 218, 245, 280],

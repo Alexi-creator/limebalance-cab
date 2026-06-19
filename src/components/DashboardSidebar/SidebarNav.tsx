@@ -6,8 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { getNavGroups } from "./config"
 
 /**
- * Группы навигации дашборда. Локально подписан на текущий путь (`useLocation`),
- * поэтому при навигации перерисовывается только этот блок, а не весь сайдбар.
+ * Dashboard navigation groups. Locally subscribed to the current path (`useLocation`),
+ * so on navigation only this block re-renders, not the whole sidebar.
  */
 export function SidebarNav() {
   const { t } = useTranslation()

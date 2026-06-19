@@ -9,7 +9,7 @@ import {
 } from "@tabler/icons-react"
 import type { TFunction } from "i18next"
 
-/** Группы навигации сайдбара: заголовок секции + пункты с маршрутом, подписью и иконкой. */
+/** Sidebar navigation groups: section title + items with a route, label, and icon. */
 export const getNavGroups = (t: TFunction) => [
   {
     title: t("nav.menu"),
@@ -19,7 +19,7 @@ export const getNavGroups = (t: TFunction) => [
       { to: RouteNames.Categories, label: t("nav.categories"), icon: IconTags },
       { to: RouteNames.Analytics, label: t("nav.analytics"), icon: IconChartHistogram },
       { to: RouteNames.Goals, label: t("nav.goals"), icon: IconTarget },
-      // TODO(investments): временно скрыто, страница в разработке — вернуть пункт (+ IconCoin в импорт)
+      // TODO(investments): temporarily hidden, page under development — restore the item (+ IconCoin in the import)
       // { to: RouteNames.Investments, label: t("nav.investments"), icon: IconCoin },
     ],
   },

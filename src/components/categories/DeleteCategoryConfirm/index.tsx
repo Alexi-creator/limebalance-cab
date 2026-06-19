@@ -16,7 +16,7 @@ interface Props {
   isExpense: boolean
 }
 
-/** Подтверждение удаления категории. После успеха обновляет список, статистику и операции. */
+/** Category deletion confirmation. On success refreshes the list, stats, and transactions. */
 export function DeleteCategoryConfirm({ category, isExpense }: Props) {
   const { t } = useTranslation()
   const close = useModalStore((s) => s.close)

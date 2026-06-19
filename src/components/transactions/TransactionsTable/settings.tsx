@@ -9,9 +9,9 @@ import { TransactionsSummary as SummaryFooter } from "../TransactionsSummary"
 import { RowActions } from "./RowActions"
 
 /**
- * Колонки таблицы операций. Формат даты/суммы зависит от локали и языка.
- * `emojiByCategoryId` — эмодзи категории по её id (берётся из загруженных списков категорий).
- * `summary` — итоги по выборке: если переданы, показываются в футере таблицы.
+ * Transactions table columns. The date/amount format depends on the locale and language.
+ * `emojiByCategoryId` — category emoji by its id (taken from the loaded category lists).
+ * `summary` — selection totals: if provided, shown in the table footer.
  */
 export function getTransactionColumns(
   t: TFunction,
@@ -26,11 +26,11 @@ export function getTransactionColumns(
       accessor: "description",
       title: t("transactions.col_operation"),
       ellipsis: true,
-      // ячейку футера поднимаем над соседними (z-index), иначе их непрозрачный фон
-      // перекрывает вылезающий вправо текст итогов
+      // we raise the footer cell above its neighbors (z-index), otherwise their opaque background
+      // covers the totals text overflowing to the right
       footerStyle: { position: "relative", zIndex: 1, overflow: "visible" },
-      // итоги выводим абсолютным слоем поверх пустых ячеек футера справа: нулевой по
-      // ширине якорь не распирает колонку «Операция», поэтому колонки не сдвигаются
+      // we render the totals as an absolute layer over the empty footer cells on the right: a zero-
+      // width anchor does not stretch the "Transaction" column, so the columns do not shift
       footer: summary ? (
         <div style={{ position: "relative", width: 0 }}>
           <div

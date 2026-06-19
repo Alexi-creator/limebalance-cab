@@ -29,8 +29,8 @@ interface Props {
 }
 
 /**
- * Форма редактирования операции — сумма, дата, заметка с текущими значениями строки.
- * Тип и категория не меняются. После успеха локально правит запись в кеше операций (без рефетча).
+ * Transaction edit form — amount, date, note with the row's current values.
+ * Type and category do not change. On success it edits the record locally in the transactions cache (no refetch).
  */
 export function EditTransactionForm({ transaction }: Props) {
   const { t } = useTranslation()
@@ -68,9 +68,9 @@ export function EditTransactionForm({ transaction }: Props) {
     mutationFn: (payload: UpdateTransactionPayload) =>
       updateTransaction(transaction.type, transaction.id, payload),
     onSuccess: () => {
-      // рефетч списка операций (с текущими фильтрами) — чтобы строка пересортировалась после смены даты
+      // refetch the transactions list (with current filters) — so the row re-sorts after a date change
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      // сумма/валюта могли поменяться — статистика категорий и сводки главной устарели
+      // the amount/currency may have changed — category stats and home summaries are stale
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
@@ -83,7 +83,7 @@ export function EditTransactionForm({ transaction }: Props) {
       amount: Number(values.amount),
       currency: values.currency,
       description: values.description,
-      // date — выбранный день (YYYY-MM-DD); бэкенд хранит его в @db.Date без времени.
+      // date — the selected day (YYYY-MM-DD); the backend stores it in @db.Date without time.
       date: values.day as string,
     })
   })

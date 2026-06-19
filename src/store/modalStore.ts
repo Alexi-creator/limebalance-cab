@@ -8,7 +8,7 @@ interface ModalStore {
   isOpen: boolean
   modalProps: OpenModalProps
   open: (props?: OpenModalProps) => void
-  /** Меняет заголовок (шапку) уже открытой модалки — например, при смене вкладки внутри неё. */
+  /** Changes the title (header) of an already open modal — e.g. when switching a tab inside it. */
   setTitle: (title: ReactNode) => void
   close: () => void
 }

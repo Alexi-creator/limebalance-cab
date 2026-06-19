@@ -31,24 +31,24 @@ const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)
 
 const NAME_MAX = 32
 
-// из произвольного ввода/вставки оставляем ровно один графемный кластер (эмодзи могут
-// состоять из нескольких код-юнитов); берём последний — чтобы новый символ заменял старый
+// from arbitrary input/paste we keep exactly one grapheme cluster (emojis may
+// consist of several code units); we take the last one — so a new character replaces the old
 function lastGrapheme(input: string): string {
   const graphemes = [...new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(input)]
   return graphemes.at(-1)?.segment ?? ""
 }
 
 interface Props {
-  /** Передан — режим редактирования (PATCH); тип категории при этом сменить нельзя. */
+  /** If provided — edit mode (PATCH); the category type cannot be changed then. */
   category?: Category
-  /** Тип категории; в режиме создания — стартовое значение переключателя. */
+  /** Category type; in create mode — the toggle's initial value. */
   defaultType: "expense" | "income"
 }
 
 /**
- * Форма создания/редактирования категории (react-hook-form + zod). Валидирует непустое
- * имя, длину и дубль среди категорий выбранного типа; после успеха инвалидирует список,
- * статистику категорий и операции (на случай переименования).
+ * Category create/edit form (react-hook-form + zod). Validates a non-empty
+ * name, length, and duplicates among categories of the selected type; on success invalidates the list,
+ * category stats, and transactions (in case of a rename).
  */
 export function CategoryForm({ category, defaultType }: Props) {
   const { t } = useTranslation()
@@ -59,14 +59,14 @@ export function CategoryForm({ category, defaultType }: Props) {
   const [type, setType] = useState(defaultType)
   const isExpense = type === "expense"
 
-  // существующие категории выбранного типа — для проверки на дубликат (берём из кеша)
+  // existing categories of the selected type — for the duplicate check (taken from the cache)
   const { data: existing } = useQuery({
     queryKey: isExpense ? expenseKeys.categories : incomeKeys.categories,
     queryFn: isExpense ? getExpenseCategories : getIncomeCategories,
     staleTime: CATEGORY_STALE_TIME,
   })
 
-  // дубликаты считаем без учёта регистра и пробелов, исключая саму редактируемую категорию
+  // duplicates are checked case- and whitespace-insensitively, excluding the edited category itself
   const schema = useMemo(() => {
     const taken = new Set(
       (existing ?? []).filter((c) => c.id !== category?.id).map((c) => c.name.trim().toLowerCase()),
@@ -98,8 +98,8 @@ export function CategoryForm({ category, defaultType }: Props) {
 
   const emoji = watch("emoji")
 
-  // поле ручного ввода держим отдельно: пустое по умолчанию, чтобы был виден плейсхолдер
-  // «Свой»; при редактировании показываем текущий эмодзи, только если он не из палитры
+  // we keep the manual input field separate: empty by default so the placeholder is visible
+  // "Custom"; when editing we show the current emoji only if it is not from the palette
   const [custom, setCustom] = useState(
     category?.emoji && !EMOJI_PALETTE.includes(category.emoji) ? category.emoji : "",
   )
@@ -117,7 +117,7 @@ export function CategoryForm({ category, defaultType }: Props) {
       const keys = isExpense ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: keys.categories })
-      // имя/эмодзи категории видны в списке операций — обновим и его
+      // the category name/emoji are visible in the transactions list — update it too
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
       notifications.show({
         color: "green",

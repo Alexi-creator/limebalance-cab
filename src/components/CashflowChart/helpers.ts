@@ -3,14 +3,14 @@ import type { IncomesSummary } from "@appTypes/income"
 import { format, type Locale, parseISO, subMonths } from "date-fns"
 import { stubValues } from "./config"
 
-/** Готовый набор данных для отрисовки: ряды дохода/расхода и подписи оси X. */
+/** Ready-to-render dataset: income/expense series and X-axis labels. */
 export interface ChartDataset {
   income: number[]
   expense: number[]
   labels: string[]
 }
 
-/** Короткие названия последних `count` месяцев (для заглушек). */
+/** Short names of the last `count` months (for stubs). */
 export function getMonthLabels(count: number, locale: Locale): string[] {
   const now = new Date()
   return Array.from({ length: count }, (_, i) =>
@@ -18,7 +18,7 @@ export function getMonthLabels(count: number, locale: Locale): string[] {
   )
 }
 
-/** Подпись бакета оси: месяц (`YYYY-MM`) — короткое имя месяца, день — число месяца. */
+/** Axis bucket label: month (`YYYY-MM`) — short month name, day — day of the month. */
 function bucketLabel(
   bucket: string,
   monthly: boolean,
@@ -32,15 +32,15 @@ function bucketLabel(
     return format(new Date(year, month - 1, 1), "MMM", { locale })
   }
   const day = parseISO(bucket).getDate()
-  // в компактном режиме (узкий экран) подписываем каждый 5-й бакет и последний
+  // in compact mode (narrow screen) we label every 5th bucket and the last one
   if (compact && index % 5 !== 0 && index !== count - 1) return ""
   return String(day)
 }
 
 /**
- * Собирает набор для графика из бакетов сводок дохода/расхода. Мерж по `bucket`;
- * пустые бакеты (бэк отдаёт их с `approxTotal: null`) рисуем как 0. Суммы — в базовой
- * валюте пользователя (`approxTotal`).
+ * Builds the chart dataset from income/expense summary buckets. Merge by `bucket`;
+ * empty buckets (the backend returns them with `approxTotal: null`) are drawn as 0. Amounts — in the base
+ * currency of the user (`approxTotal`).
  */
 export function buildBucketDataset(
   expensesSummary: ExpensesSummary,
@@ -51,7 +51,7 @@ export function buildBucketDataset(
   const monthly = (expensesSummary.granularity ?? incomesSummary.granularity) === "month"
   const expMap = new Map(expensesSummary.buckets.map((b) => [b.bucket, b.approxTotal ?? 0]))
   const incMap = new Map(incomesSummary.buckets.map((b) => [b.bucket, b.approxTotal ?? 0]))
-  // объединяем ключи бакетов обоих рядов (на случай расхождений) и сортируем по дате
+  // merge bucket keys from both series (in case they diverge) and sort by date
   const keys = [...new Set([...expMap.keys(), ...incMap.keys()])].sort()
 
   return {
@@ -70,8 +70,8 @@ interface SelectDatasetParams {
 }
 
 /**
- * Выбирает набор данных под текущий период из сводок; пока данных нет (загрузка) —
- * показывает заглушку, чтобы график не схлопывался.
+ * Picks the dataset for the current period from the summaries; while there is no data (loading) —
+ * shows a stub so the chart does not collapse.
  */
 export function selectDataset({
   period,

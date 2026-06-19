@@ -3,9 +3,9 @@ import { useAuthStore } from "@store/authStore"
 import { Navigate, Outlet } from "react-router-dom"
 
 /**
- * Route-обёртка для приватных страниц.
- * Перенаправляет неавторизованного пользователя на страницу входа.
- * Не принимает пропсов — использует `<Outlet />` для рендера дочерних маршрутов.
+ * Route wrapper for private pages.
+ * Redirects an unauthenticated user to the login page.
+ * Takes no props — uses `<Outlet />` to render child routes.
  */
 export function ProtectedRoute() {
   const user = useAuthStore((s) => s.user)

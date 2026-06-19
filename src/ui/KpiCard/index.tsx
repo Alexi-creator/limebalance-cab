@@ -2,25 +2,25 @@ import { ActionIcon, Badge, Group, Paper, Text } from "@mantine/core"
 import { IconRefresh } from "@tabler/icons-react"
 
 interface Props {
-  /** Заголовок метрики (например, «Доходы за месяц») */
+  /** Metric title (e.g. "Income for the month") */
   label: string
-  /** Основное значение, отображаемое крупным шрифтом */
+  /** Main value displayed in large font */
   value: string
-  /** Дополнительная подпись под значением */
+  /** Additional caption under the value */
   sub?: string
-  /** Процентное изменение: положительное — зелёный badge ↑, отрицательное — красный ↓ */
+  /** Percentage change: positive — green badge ↑, negative — red ↓ */
   trend?: number
-  /** Цвет основного значения (CSS-переменная или цвет Mantine) */
+  /** Color of the main value (CSS variable or Mantine color) */
   accent?: string
-  /** Если передан — показывает кнопку обновления */
+  /** If provided — shows a refresh button */
   onRefresh?: () => void
-  /** Включает анимацию загрузки на кнопке обновления */
+  /** Enables the loading animation on the refresh button */
   isRefreshing?: boolean
 }
 
 /**
- * Карточка KPI-метрики для дашборда.
- * Отображает заголовок, крупное значение, опциональную подпись, badge тренда и кнопку обновления.
+ * KPI metric card for the dashboard.
+ * Displays a title, large value, optional caption, trend badge, and refresh button.
  */
 export function KpiCard({ label, value, sub, trend, accent, onRefresh, isRefreshing }: Props) {
   return (

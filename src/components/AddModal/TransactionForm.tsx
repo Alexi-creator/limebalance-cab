@@ -42,20 +42,20 @@ type CreateFormValues = {
 }
 
 interface Props {
-  /** Вызывается после успешного создания операции */
+  /** Called after a transaction is successfully created */
   onSubmit: () => void
-  /** Вызывается при нажатии кнопки «Отмена» */
+  /** Called when the "Cancel" button is clicked */
   onCancel: () => void
-  /** Предвыбранный тип операции (например, при создании из карточки категории) */
+  /** Preselected transaction type (e.g. when creating from a category card) */
   initialKind?: "income" | "expense"
-  /** Предвыбранная категория — её id подставляется в форму */
+  /** Preselected category — its id is filled into the form */
   initialCategoryId?: string
 }
 
 /**
- * Форма добавления финансовой операции — дохода или расхода (react-hook-form + zod).
- * Тянет категории нужного типа, отправляет POST с локальной датой и после успеха
- * дописывает новую операцию прямо в кеш react-query (без рефетча).
+ * Form for adding a financial transaction — income or expense (react-hook-form + zod).
+ * Fetches categories of the needed type, sends a POST with the local date, and on success
+ * appends the new transaction straight into the react-query cache (no refetch).
  */
 export function TransactionForm({ onSubmit, onCancel, initialKind, initialCategoryId }: Props) {
   const { t, i18n } = useTranslation()
@@ -104,10 +104,10 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
     staleTime: CATEGORY_STALE_TIME,
   })
 
-  // у текущего типа (расход/доход) нет ни одной категории — выбирать нечего
+  // the current type (expense/income) has no categories — nothing to choose
   const noCategories = !!categories && categories.length === 0
 
-  // при смене типа/загрузке списка выбираем первую категорию, если текущей нет среди доступных
+  // on type change/list load we pick the first category if the current one is not among the available ones
   useEffect(() => {
     if (categories?.length && !categories.some((c) => c.id === categoryId)) {
       setValue("categoryId", categories[0].id)
@@ -126,19 +126,19 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
       }
       const item = { ...created, category }
 
-      // 1) кладём операцию в закешированный список за её месяц (если он есть в кеше)
+      // 1) put the transaction into the cached list for its month (if it is in the cache)
       queryClient.setQueryData<(typeof item)[]>(keys.month(monthKey), (old) =>
         old ? [item, ...old] : old,
       )
 
-      // 2) сводки мультивалютны и приводят суммы к базовой валюте по курсам (это знает
-      // только бэкенд) — оптимистично пересчитать approxTotal нельзя, поэтому рефетчим
+      // 2) summaries are multi-currency and convert amounts to the base currency by rates (only
+      // the backend knows them) — approxTotal cannot be recomputed optimistically, so we refetch
       queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
 
-      // объединённый список операций (страница «Операции») — рефетч с текущими фильтрами
+      // the combined transactions list (the "Transactions" page) — refetch with current filters
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
 
-      // статистика категорий устарела — пометим, чтобы перезапросилась при заходе на «Категории»
+      // category stats are stale — mark them to refetch when visiting "Categories"
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
 
       notifications.show({
@@ -155,7 +155,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
       amount: Number(values.amount),
       currency: values.currency,
       description: values.description,
-      // date — выбранный день (YYYY-MM-DD); бэкенд хранит его в @db.Date без времени.
+      // date — the selected day (YYYY-MM-DD); the backend stores it in @db.Date without time.
       date: values.day as string,
     })
   })

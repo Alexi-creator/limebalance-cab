@@ -2,9 +2,9 @@ import { Modal } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 
 /**
- * Глобальный модальный контейнер приложения.
- * Не принимает пропсов — состояние (открыт/закрыт, содержимое) читается из `useModalStore`.
- * Размещается один раз на уровне App.
+ * The app's global modal container.
+ * Takes no props — the state (open/closed, content) is read from `useModalStore`.
+ * Mounted once at the App level.
  */
 export function GlobalModal() {
   const { isOpen, modalProps, close } = useModalStore()

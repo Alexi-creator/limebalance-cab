@@ -1,5 +1,5 @@
-/** Регион (ISO 3166-1 alpha-2) → код валюты (ISO 4217). Покрывает распространённые страны; */
-/* для остального используется фолбэк. Список можно расширять по мере необходимости. */
+/** Region (ISO 3166-1 alpha-2) → currency code (ISO 4217). Covers common countries; */
+/* a fallback is used for the rest. The list can be extended as needed. */
 export const regionToCurrency: Record<string, string> = {
   US: "USD",
   CA: "CAD",
@@ -44,7 +44,7 @@ export const regionToCurrency: Record<string, string> = {
   CL: "CLP",
   CO: "COP",
   PE: "PEN",
-  // Еврозона
+  // Eurozone
   DE: "EUR",
   FR: "EUR",
   ES: "EUR",
@@ -67,8 +67,8 @@ export const regionToCurrency: Record<string, string> = {
   HR: "EUR",
 }
 
-/** Уникальные коды валют из карты, по алфавиту — список опций для выбора валюты в настройках. */
+/** Unique currency codes from the map, alphabetized — the option list for choosing currency in settings. */
 export const CURRENCY_CODES = [...new Set(Object.values(regionToCurrency))].sort()
 
-/** Опции для Select валюты: значение и лейбл — просто код (`THB`), без расшифровки. */
+/** Options for the currency Select: value and label are just the code (`THB`), without a description. */
 export const CURRENCY_OPTIONS = CURRENCY_CODES.map((code) => ({ value: code, label: code }))

@@ -8,8 +8,8 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 /**
- * Точка входа в Telegram-бота в сайдбаре. Привязанным (`telegramId`) — прямая ссылка
- * на бота; остальным — переход в настройки на привязку (мягкое продвижение бота).
+ * Entry point to the Telegram bot in the sidebar. For linked users (`telegramId`) — a direct link
+ * to the bot; for everyone else — a jump to settings to link it (a soft bot promo).
  */
 export function SidebarTelegram() {
   const { t } = useTranslation()
@@ -17,9 +17,9 @@ export function SidebarTelegram() {
   const close = useSidebarStore((s) => s.close)
   const linked = !!user?.telegramId
 
-  // общие пропсы карточки-ссылки (визуал одинаков для обоих вариантов).
-  // карточка рендерится как <a>, а Paper себя как ссылку не красит — задаём цвет текста
-  // явно, иначе вложенный <Text> унаследует сиреневый currentColor посещённого <a> из UA-стилей.
+  // shared props for the link card (the visuals are the same for both variants).
+  // the card renders as <a>, and Paper does not style itself as a link — we set the text color
+  // explicitly, otherwise the nested <Text> inherits the purple currentColor of a visited <a> from UA styles.
   const cardProps = {
     withBorder: true,
     p: "xs",
@@ -55,8 +55,8 @@ export function SidebarTelegram() {
     </Group>
   )
 
-  // привязан — открываем бота в Telegram (внешняя ссылка); нет — ведём в настройки на привязку.
-  // рендерим двумя ветками, чтобы у полиморфного `component` Paper был конкретный тип, а не union.
+  // linked — open the bot in Telegram (external link); not — lead to settings to link.
+  // we render in two branches so the polymorphic `component` Paper has a concrete type, not a union.
   return linked ? (
     <Paper
       {...cardProps}

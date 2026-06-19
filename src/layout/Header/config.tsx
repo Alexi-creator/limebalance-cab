@@ -1,6 +1,6 @@
 import { AddModal } from "@components/AddModal"
 import { useModalStore } from "@store/modalStore"
-// TODO(asset): временно скрыто (форма в разработке) — вернуть IconChartLine и опцию «Актив» ниже
+// TODO(asset): temporarily hidden (form under development) — restore IconChartLine and the "Asset" option below
 import { IconCreditCard, IconTarget } from "@tabler/icons-react"
 import type { SelectButtonOption } from "@ui/SelectButton"
 import type { TFunction } from "i18next"
@@ -8,11 +8,11 @@ import type { ComponentProps } from "react"
 
 type AddType = ComponentProps<typeof AddModal>["type"]
 
-/** Открывает модалку добавления записи нужного типа. */
+/** Opens the add-record modal of the required type. */
 const openAdd = (type: AddType) =>
   useModalStore.getState().open({ size: "lg", centered: true, children: <AddModal type={type} /> })
 
-/** Пункты выпадающего меню кнопки «Добавить» в шапке. */
+/** Items of the header "Add" button dropdown menu. */
 export const getAddOptions = (t: TFunction): SelectButtonOption[] => [
   {
     label: t("header.add_transaction"),
@@ -26,10 +26,10 @@ export const getAddOptions = (t: TFunction): SelectButtonOption[] => [
     icon: <IconTarget size={16} />,
     onClick: () => openAdd("goal"),
   },
-  // TODO(asset): временно скрыто (форма в разработке) — вернуть опцию «Актив»
+  // TODO(asset): temporarily hidden (form under development) — restore the "Asset" option
   // {
-  //   label: "Актив в портфель",
-  //   description: "крипта",
+  //   label: "Add asset to portfolio",
+  //   description: "crypto",
   //   icon: <IconChartLine size={16} />,
   //   onClick: () => openAdd("asset"),
   // },

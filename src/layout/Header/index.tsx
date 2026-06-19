@@ -10,10 +10,10 @@ import { useTranslation } from "react-i18next"
 import { getAddOptions } from "./config"
 
 /**
- * Верхняя панель приложения (AppShell.Header).
- * Содержит бургер для мобильного меню, строку поиска, переключатель языка/темы,
- * колокольчик уведомлений и кнопку «Добавить» с выпадающим меню типов записей.
- * Состояние мобильного меню берёт из `sidebarStore`. Не принимает пропсов.
+ * Top app bar (AppShell.Header).
+ * Contains the burger for the mobile menu, the search field, the language/theme toggle,
+ * the notifications bell, and the "Add" button with a dropdown of record types.
+ * Reads the mobile menu state from `sidebarStore`. Takes no props.
  */
 export function Header() {
   const { t } = useTranslation()

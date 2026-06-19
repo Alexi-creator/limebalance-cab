@@ -24,7 +24,7 @@ async function refreshTokens(): Promise<boolean> {
 
 function redirectToLogin(): void {
   useAuthStore.getState().setUser(null)
-  // сессия протухла — выкидываем кеш, чтобы вход под другим аккаунтом не показал чужие данные
+  // the session expired — drop the cache so signing in under another account does not show someone else's data
   queryClient.clear()
 }
 

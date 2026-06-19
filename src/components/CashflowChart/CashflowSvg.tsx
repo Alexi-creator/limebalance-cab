@@ -3,21 +3,21 @@ import { ACCENT, CHART, NEG } from "./config"
 import type { ChartDataset } from "./helpers"
 
 interface Props {
-  /** Данные для отрисовки (ряды дохода/расхода и подписи). */
+  /** Data to render (income/expense series and labels). */
   data: ChartDataset
-  /** Текущий период (влияет на подпись тултипа). */
+  /** Current period (affects the tooltip label). */
   period: string
-  /** Индекс точки под курсором или `null`. */
+  /** Index of the point under the cursor or `null`. */
   hoveredIndex: number | null
-  /** Колбэк наведения/ухода с точки. */
+  /** Callback for hovering/leaving a point. */
   onHover: (index: number | null) => void
 }
 
 const { W, H, PAD_L, PAD_R, PAD_T, PAD_B } = CHART
 
 /**
- * SVG-отрисовка графика денежного потока: сетка, область дохода, линии дохода/расхода,
- * точки и интерактивный тултип. Вся геометрия и пути считаются здесь.
+ * SVG rendering of the cash flow chart: grid, income area, income/expense lines,
+ * points, and an interactive tooltip. All geometry and paths are computed here.
  */
 export function CashflowSvg({ data, period, hoveredIndex, onHover }: Props) {
   const { t } = useTranslation()

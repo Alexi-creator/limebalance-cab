@@ -6,8 +6,8 @@ import { useQueryClient } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
 
 /**
- * Карточка текущего пользователя с кнопкой выхода. Локально подписан на authStore
- * через селекторы, поэтому перерисовывается только при смене пользователя, а не при навигации.
+ * Current user card with a logout button. Locally subscribed to authStore
+ * via selectors, so it re-renders only when the user changes, not on navigation.
  */
 export function SidebarUserCard() {
   const { t } = useTranslation()
@@ -18,7 +18,7 @@ export function SidebarUserCard() {
   const handleLogout = async () => {
     await logout().catch(() => {})
     setUser(null)
-    // выкидываем весь кеш предыдущего пользователя, чтобы новый логин не видел чужие данные
+    // drop the entire cache of the previous user so a new login does not see someone else's data
     queryClient.clear()
   }
 

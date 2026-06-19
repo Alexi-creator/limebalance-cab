@@ -5,15 +5,15 @@ const POPULAR = ["BTC", "ETH", "SOL", "TON", "USDT", "BNB", "XRP", "DOGE", "ADA"
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
 interface Props {
-  /** Вызывается после успешной валидации и отправки формы */
+  /** Called after successful validation and form submission */
   onSubmit: () => void
-  /** Вызывается при нажатии кнопки «Отмена» */
+  /** Called when the "Cancel" button is clicked */
   onCancel: () => void
 }
 
 /**
- * Форма добавления крипто-актива в инвестиционный портфель.
- * Позволяет ввести тикер (с быстрым выбором из топ-10), количество и среднюю цену покупки.
+ * Form for adding a crypto asset to the investment portfolio.
+ * Lets you enter a ticker (with quick selection from the top 10), quantity, and average purchase price.
  */
 export function AssetForm({ onSubmit, onCancel }: Props) {
   const [sym, setSym] = useState("")
@@ -29,7 +29,7 @@ export function AssetForm({ onSubmit, onCancel }: Props) {
     <form onSubmit={submit}>
       <Stack gap="md">
         <TextInput
-          label="Тикер актива"
+          label="Asset ticker"
           required
           autoFocus
           placeholder="BTC"
@@ -54,7 +54,7 @@ export function AssetForm({ onSubmit, onCancel }: Props) {
         </Group>
         <SimpleGrid cols={2}>
           <NumberInput
-            label="Количество"
+            label="Quantity"
             required
             min={0}
             placeholder="0.5"
@@ -63,7 +63,7 @@ export function AssetForm({ onSubmit, onCancel }: Props) {
             decimalScale={8}
           />
           <NumberInput
-            label="Средняя цена"
+            label="Average price"
             min={0}
             placeholder="68 420"
             value={avg}
@@ -74,9 +74,9 @@ export function AssetForm({ onSubmit, onCancel }: Props) {
         </SimpleGrid>
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
           <Button variant="default" onClick={onCancel}>
-            Отмена
+            Cancel
           </Button>
-          <Button type="submit">Добавить в портфель</Button>
+          <Button type="submit">Add to portfolio</Button>
         </Group>
       </Stack>
     </form>

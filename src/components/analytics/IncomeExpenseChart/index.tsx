@@ -9,14 +9,14 @@ const TOP = 20
 const PLOT_H = 240
 const LEFT = 40
 
-/** Округляет максимум вверх до «красивого» значения для верхней линии оси. */
+/** Rounds the maximum up to a "nice" value for the top axis line. */
 function niceMax(value: number): number {
   if (value <= 0) return 1
   const pow = 10 ** Math.floor(Math.log10(value))
   return Math.ceil(value / pow) * pow
 }
 
-/** Компактная подпись оси: тысячи → «12k». */
+/** Compact axis label: thousands → "12k". */
 function axisLabel(v: number): string {
   return v >= 1000 ? `${Math.round(v / 1000)}k` : String(Math.round(v))
 }
@@ -27,7 +27,7 @@ interface Props {
   subtitle: string
 }
 
-/** Парные бары доходов (залитые) и расходов (контурные) по бакетам периода. */
+/** Paired bars of income (filled) and expenses (outlined) by period buckets. */
 export function IncomeExpenseChart({ series, title, subtitle }: Props) {
   const { t } = useTranslation()
   const max = niceMax(Math.max(1, ...series.flatMap((p) => [p.income, p.expense])))
@@ -100,7 +100,7 @@ export function IncomeExpenseChart({ series, title, subtitle }: Props) {
             const hIn = (p.income / max) * PLOT_H
             const hOut = (p.expense / max) * PLOT_H
             return (
-              // biome-ignore lint/suspicious/noArrayIndexKey: бакеты позиционны и стабильны по индексу
+              // biome-ignore lint/suspicious/noArrayIndexKey: buckets are positional and stable by index
               <g key={i}>
                 <rect
                   x={cx - barW - 1}

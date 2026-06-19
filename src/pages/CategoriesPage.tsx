@@ -45,7 +45,7 @@ export function CategoriesPage() {
   const list = (data ?? []).map(toDisplay)
   const maxSpent = Math.max(...list.map(baseAmount), 1)
 
-  // открыть форму создания (без аргумента) или редактирования (с категорией)
+  // open the create form (without an argument) or the edit form (with a category)
   const openForm = (category?: CategoryStats) =>
     openModal({
       size: "md",
@@ -63,7 +63,7 @@ export function CategoriesPage() {
       children: <CategoryForm category={category} defaultType={tab} />,
     })
 
-  // быстрое создание операции по конкретной категории: тип берём из текущей вкладки
+  // quick transaction creation for a specific category: the type is taken from the current tab
   const openAddTransaction = (categoryId: string) =>
     openModal({
       size: "lg",
@@ -122,7 +122,7 @@ export function CategoriesPage() {
       ) : isLoading ? (
         <SimpleGrid cols={GRID_COLS} spacing="md">
           {Array.from({ length: 8 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: статичные плейсхолдеры загрузки
+            // biome-ignore lint/suspicious/noArrayIndexKey: static loading placeholders
             <Skeleton key={i} h={120} radius="md" />
           ))}
         </SimpleGrid>

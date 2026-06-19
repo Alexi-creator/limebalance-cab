@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 interface SidebarState {
-  /** Открыто ли мобильное меню (на десктопе сайдбар виден всегда). */
+  /** Whether the mobile menu is open (on desktop the sidebar is always visible). */
   opened: boolean
   toggle: () => void
   open: () => void
@@ -9,9 +9,9 @@ interface SidebarState {
 }
 
 /**
- * Состояние мобильного сайдбара дашборда.
- * Вынесено из layout, чтобы переключение меню перерисовывало только подписчиков
- * (бургер, обёртка AppShell), а не всё дерево с текущей страницей.
+ * Dashboard mobile sidebar state.
+ * Extracted from the layout so toggling the menu re-renders only the subscribers
+ * (the burger, the AppShell wrapper), not the whole tree with the current page.
  */
 export const useSidebarStore = create<SidebarState>((set) => ({
   opened: false,

@@ -3,13 +3,13 @@ import { z } from "zod"
 export const categorySchema = z.object({
   id: z.string(),
   name: z.string(),
-  /** Эмодзи категории; бэк может не вернуть — тогда на фронте берём фолбэк из палитры. */
+  /** Category emoji; the backend may omit it — then the frontend uses a fallback from the palette. */
   emoji: z.string().nullish(),
 })
 
 export type Category = z.infer<typeof categorySchema>
 
-/** Сумма операций категории в одной валюте. */
+/** Total of a category's transactions in a single currency. */
 export const categoryCurrencyTotalSchema = z.object({
   currency: z.string(),
   total: z.coerce.number(),
@@ -18,9 +18,9 @@ export const categoryCurrencyTotalSchema = z.object({
 export type CategoryCurrencyTotal = z.infer<typeof categoryCurrencyTotalSchema>
 
 /**
- * Категория с агрегатами по операциям. Операции могут быть в разных валютах:
- * `totals` — разбивка по валютам, `approxTotal` — всё, приведённое к `baseCurrency`
- * (null, если курсы недоступны или валюта неизвестна).
+ * Category with transaction aggregates. Transactions may be in different currencies:
+ * `totals` — breakdown by currency, `approxTotal` — everything converted to `baseCurrency`
+ * (null if exchange rates are unavailable or the currency is unknown).
  */
 export const categoryStatsSchema = categorySchema.extend({
   count: z.coerce.number(),
@@ -28,9 +28,9 @@ export const categoryStatsSchema = categorySchema.extend({
   baseCurrency: z.string().nullish(),
   approxTotal: z.coerce.number().nullish(),
   /**
-   * Сравнение с прошлым периодом — приходят, только если в запрос переданы
-   * `compareFrom`/`compareTo`. `previousApproxTotal` — сумма категории за прошлый
-   * период в базовой валюте, `deltaApproxTotal` — разница (текущий − прошлый).
+   * Comparison with the previous period — returned only if the request includes
+   * `compareFrom`/`compareTo`. `previousApproxTotal` — the category total for the previous
+   * period in the base currency, `deltaApproxTotal` — the difference (current − previous).
    */
   previousApproxTotal: z.coerce.number().nullish(),
   deltaApproxTotal: z.coerce.number().nullish(),
@@ -38,7 +38,7 @@ export const categoryStatsSchema = categorySchema.extend({
 
 export type CategoryStats = z.infer<typeof categoryStatsSchema>
 
-/** Тело запроса создания/обновления категории. */
+/** Request body for creating/updating a category. */
 export interface CategoryPayload {
   name: string
   emoji?: string

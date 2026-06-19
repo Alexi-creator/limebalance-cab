@@ -2,7 +2,7 @@ import { Stack, Text, Title } from "@mantine/core"
 import { useTranslation } from "react-i18next"
 
 /**
- * Шапка главной страницы: приветствие и краткое описание периода.
+ * Home page header: greeting and a short description of the period.
  */
 export function HomeHeader() {
   const { t } = useTranslation()

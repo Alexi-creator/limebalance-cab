@@ -11,7 +11,7 @@ export const STUBS_ENABLED = false
 
 const BASE_CURRENCY = "USD"
 
-// ── детерминированный RNG ────────────────────────────────────────────────────
+// ── deterministic RNG ──────────────────────────────────────────────────────────
 function mulberry32(seed: number) {
   let a = seed
   return () => {
@@ -475,15 +475,20 @@ function buildTransactions(params: URLSearchParams) {
         t.description.toLowerCase().includes(search) || t.cat.name.toLowerCase().includes(search),
     )
 
-  const income = round2(items.filter((t) => t.type === "income").reduce((s, t) => s + t.amount, 0))
-  const expense = round2(
-    items.filter((t) => t.type === "expense").reduce((s, t) => s + t.amount, 0),
-  )
-
   const total = items.length
   const totalPages = Math.max(1, Math.ceil(total / limit))
   const startIdx = (page - 1) * limit
-  const pageItems = items.slice(startIdx, startIdx + limit).map(transactionItem)
+  const pageSlice = items.slice(startIdx, startIdx + limit)
+  const pageItems = pageSlice.map(transactionItem)
+
+  // Итог считаем по операциям текущей страницы (в базовой валюте), а не по всей выборке:
+  // меняется страница/размер порции — пересчитывается под то, что реально показано в таблице.
+  const income = round2(
+    pageSlice.filter((t) => t.type === "income").reduce((s, t) => s + t.amount, 0),
+  )
+  const expense = round2(
+    pageSlice.filter((t) => t.type === "expense").reduce((s, t) => s + t.amount, 0),
+  )
 
   return {
     items: pageItems,

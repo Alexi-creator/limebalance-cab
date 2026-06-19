@@ -1,10 +1,10 @@
 import { z } from "zod"
 
 /**
- * Поле `date` приходит как UTC-таймстамп (`...Z`), но его компоненты — это «настенное»
- * локальное время пользователя: бэкенд хранит дату операции в `timestamp without time zone`
- * и сериализует как UTC. Переносим UTC-компоненты в локальную дату браузера, чтобы date-fns
- * форматировал ровно ту дату/время, что у пользователя на часах, без сдвига на таймзону.
+ * The `date` field comes as a UTC timestamp (`...Z`), but its components are the "wall-clock"
+ * local time of the user: the backend stores the transaction date in `timestamp without time zone`
+ * and serializes it as UTC. We move the UTC components into the browser's local date so date-fns
+ * formats exactly the date/time on the user's clock, without a timezone shift.
  */
 export function utcPartsToLocal(date: Date): Date {
   return new Date(
@@ -17,5 +17,5 @@ export function utcPartsToLocal(date: Date): Date {
   )
 }
 
-/** Zod-поле для даты операции: парсит UTC-таймстамп и нормализует в «настенное» время. */
+/** Zod field for the transaction date: parses a UTC timestamp and normalizes it to "wall-clock" time. */
 export const wallClockDate = () => z.coerce.date().transform(utcPartsToLocal)

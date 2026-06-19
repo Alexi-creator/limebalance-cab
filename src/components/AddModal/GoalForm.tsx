@@ -29,16 +29,16 @@ const COLORS = [
 ]
 
 interface Props {
-  /** Вызывается после успешной валидации и отправки формы */
+  /** Called after successful validation and form submission */
   onSubmit: () => void
-  /** Вызывается при нажатии кнопки «Отмена» */
+  /** Called when the "Cancel" button is clicked */
   onCancel: () => void
 }
 
 /**
- * Форма создания финансовой цели-накопления.
- * Включает выбор иконки, названия, целевой суммы, уже накопленного, дедлайна и цвета.
- * Динамически рассчитывает и показывает рекомендуемую сумму ежемесячного взноса.
+ * Form for creating a savings goal.
+ * Includes selecting an icon, name, target amount, amount already saved, deadline, and color.
+ * Dynamically computes and shows the recommended monthly contribution amount.
  */
 export function GoalForm({ onSubmit, onCancel }: Props) {
   const [icon, setIcon] = useState("🎯")

@@ -45,7 +45,7 @@ export function TransactionsPage() {
     staleTime: TRANSACTIONS_STALE_TIME,
   })
 
-  // категории нужны, чтобы понять, можно ли вообще добавить операцию
+  // categories are needed to determine whether a transaction can be added at all
   const { data: expenseCategories } = useQuery({
     queryKey: expenseKeys.categories,
     queryFn: getExpenseCategories,
@@ -57,7 +57,7 @@ export function TransactionsPage() {
     staleTime: CATEGORY_STALE_TIME,
   })
 
-  // оба списка загружены и пусты — добавлять операцию некуда
+  // both lists are loaded and empty — there is nowhere to add a transaction
   const hasNoCategories =
     !!expenseCategories &&
     !!incomeCategories &&
@@ -84,7 +84,10 @@ export function TransactionsPage() {
 
   const items = data?.items ?? []
   const total = data?.total ?? 0
-  const summary = data?.summary
+  // Итог в футере приходит из роута уже посчитанным в базовой валюте и по срезу текущей
+  // страницы (бэкенд конвертирует валюты по курсу). Перезапрос при смене страницы/порции
+  // меняет query-ключ → итог пересчитывается под видимые строки.
+  const summary = items.length > 0 ? data?.summary : undefined
 
   return (
     <Stack gap="md" style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
@@ -104,9 +107,9 @@ export function TransactionsPage() {
           {hasNoCategories ? (
             <HoverCard width={240} shadow="md" withArrow position="bottom-end" openDelay={100}>
               <HoverCard.Target>
-                {/* приглушённо-зелёная (variant light) вместо серого data-disabled —
-                    чтобы не сливалась; остаётся целью наведения для подсказки, но
-                    клик гасим и помечаем aria-disabled */}
+                {/* muted green (variant light) instead of gray data-disabled —
+                    so it does not blend in; it stays a hover target for the tooltip, but
+                    we suppress the click and mark aria-disabled */}
                 <Button
                   size="sm"
                   variant="light"
@@ -167,7 +170,7 @@ export function TransactionsPage() {
           isError={isError}
           selectedRecords={selectedRecords}
           onSelectedRecordsChange={setSelectedRecords}
-          summary={total > 0 ? summary : undefined}
+          summary={summary}
           type={params.type}
         />
       </Paper>

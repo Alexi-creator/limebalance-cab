@@ -1,8 +1,8 @@
 import { QueryClient } from "@tanstack/react-query"
 
 /**
- * Единый клиент react-query. Один и тот же инстанс используется и внутри React
- * (через QueryClientProvider в main.tsx), и вне React — например, чтобы очистить
- * кеш при принудительном логауте по 401 в request.ts.
+ * Single react-query client. The same instance is used both inside React
+ * (via QueryClientProvider in main.tsx) and outside React — for example, to clear
+ * the cache on forced logout on 401 in request.ts.
  */
 export const queryClient = new QueryClient()

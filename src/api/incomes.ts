@@ -11,9 +11,9 @@ export interface CreateIncomePayload {
   categoryId: string
   amount: number
   description: string
-  /** Код валюты (ISO 4217), напр. «USD». */
+  /** Currency code (ISO 4217), e.g. "USD". */
   currency: string
-  /** ISO-таймстамп; если не передан — бэкенд проставит текущий момент. */
+  /** ISO timestamp; if omitted — the backend sets the current moment. */
   date?: string
 }
 
@@ -37,9 +37,9 @@ export function getIncomeCategories() {
 }
 
 /**
- * Категории доходов с суммой и числом операций; опционально за период `[from, to]`.
- * Если переданы `compareFrom`/`compareTo`, в каждой категории появятся
- * `previousApproxTotal`/`deltaApproxTotal` — сравнение с прошлым периодом.
+ * Income categories with totals and transaction counts; optionally for the period `[from, to]`.
+ * If `compareFrom`/`compareTo` are passed, each category will include
+ * `previousApproxTotal`/`deltaApproxTotal` — comparison with the previous period.
  */
 export function getIncomeCategoriesStats(
   from?: Date,

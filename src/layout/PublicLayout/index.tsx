@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next"
 import { Outlet } from "react-router-dom"
 
 /**
- * Layout для публичных страниц (авторизация, регистрация).
- * Показывает минималистичный хедер с названием приложения, переключателем языка и темы.
- * Не принимает пропсов.
+ * Layout for public pages (login, registration).
+ * Shows a minimalist header with the app name and the language and theme toggles.
+ * Takes no props.
  */
 export function PublicLayout() {
   const { t } = useTranslation()

@@ -17,7 +17,7 @@ interface Props {
   transaction: Transaction
 }
 
-/** Подтверждение удаления операции с показом её данных. После успеха обновляет список и сводки. */
+/** Transaction deletion confirmation that shows its data. On success refreshes the list and summaries. */
 export function DeleteTransactionConfirm({ transaction }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
@@ -27,9 +27,9 @@ export function DeleteTransactionConfirm({ transaction }: Props) {
   const mutation = useMutation({
     mutationFn: () => deleteTransaction(transaction.type, transaction.id),
     onSuccess: () => {
-      // список операций (рефетч добивает страницу)
+      // transactions list (refetch tops up the page)
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
-      // статистика категорий и сводки главной устарели
+      // category stats and home summaries are stale
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })

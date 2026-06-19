@@ -6,19 +6,19 @@ import { useTranslation } from "react-i18next"
 
 interface Props {
   summary: Summary
-  /** Активный фильтр типа: при `income`/`expense` показываем только релевантную сумму. */
+  /** Active type filter: with `income`/`expense` we show only the relevant amount. */
   type?: TransactionType
 }
 
 /**
- * Итоги по всей выборке операций (с учётом фильтров, не только текущая страница),
- * приведённые к базовой валюте пользователя. `null` (курсы недоступны) → «—».
- * «Итог» (net) показываем только без фильтра по типу — иначе он равен одной из сумм.
+ * Totals for the transactions shown on the current table page (recalculated on
+ * page/page-size change), in the user's base currency. `null` → "—".
+ * The net total is shown only without a type filter — otherwise it equals one of the amounts.
  */
 export function TransactionsSummary({ summary, type }: Props) {
   const { t, i18n } = useTranslation()
 
-  // Итог по выборке в базовой валюте; "—", если курсы недоступны (бэк вернул null).
+  // Selection total in the base currency; "—" if exchange rates are unavailable (the backend returned null).
   const fmt = (v: number | null | undefined) =>
     v == null ? "—" : formatCurrency(v, i18n.language, summary.baseCurrency)
 

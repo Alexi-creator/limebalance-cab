@@ -9,9 +9,9 @@ interface Props {
 }
 
 /**
- * Контекстный тулбар таблицы операций. Всегда занимает место (фиксированная высота),
- * чтобы таблица не «прыгала» при появлении/исчезновении: пустой — показывает подсказку,
- * при выделении — счётчик и действия над выбранными.
+ * Contextual toolbar for the transactions table. Always occupies space (fixed height),
+ * so the table does not "jump" when it appears/disappears: when empty — shows a hint,
+ * when there is a selection — a counter and actions over the selected rows.
  */
 export function TransactionsToolbar({ selectedCount, onClearSelection, onBulkDelete }: Props) {
   const { t } = useTranslation()
