@@ -43,4 +43,8 @@ export const API_URLS = {
     category: `${API_URL}/income-categories/:id`,
     stats: `${API_URL}/income-categories/stats`,
   },
+  notifications: {
+    notifications: `${API_URL}/notifications`,
+    readAll: `${API_URL}/notifications/read-all`,
+  },
 }

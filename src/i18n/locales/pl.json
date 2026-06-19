@@ -130,7 +130,6 @@
     "tx_count_many": "{{count}} transakcji"
   },
   "header": {
-    "search_placeholder": "Szukaj transakcji, celów, tickerów…",
     "add": "Dodaj",
     "add_transaction": "Transakcja",
     "add_transaction_desc": "przychód / wydatek",
@@ -138,6 +137,9 @@
     "add_goal_desc": "oszczędności"
   },
   "sidebar": {
+    "preferences": "Preferencje",
+    "language": "Język",
+    "theme": "Motyw",
     "telegram_open": "Otwórz bota",
     "telegram_connect": "Połącz Telegram",
     "telegram_open_desc": "Zapisuj bezpośrednio w Telegramie",
@@ -207,7 +209,6 @@
     "edit_title": "Edytuj transakcję",
     "delete_title": "Usuń transakcję",
     "records_per_page": "Wierszy na stronę",
-    "search_placeholder": "Szukaj transakcji",
     "clear_search": "Wyczyść wyszukiwanie",
     "period": "Okres",
     "date_range_placeholder": "Data od — do",

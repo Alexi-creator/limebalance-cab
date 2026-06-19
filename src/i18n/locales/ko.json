@@ -128,7 +128,6 @@
     "tx_count_other": "거래 {{count}}건"
   },
   "header": {
-    "search_placeholder": "거래, 목표, 티커 검색…",
     "add": "추가",
     "add_transaction": "거래",
     "add_transaction_desc": "수입 / 지출",
@@ -136,6 +135,9 @@
     "add_goal_desc": "저축"
   },
   "sidebar": {
+    "preferences": "환경설정",
+    "language": "언어",
+    "theme": "테마",
     "telegram_open": "봇 열기",
     "telegram_connect": "Telegram 연결",
     "telegram_open_desc": "Telegram에서 바로 기록",
@@ -197,7 +199,6 @@
     "edit_title": "거래 편집",
     "delete_title": "거래 삭제",
     "records_per_page": "페이지당 행 수",
-    "search_placeholder": "거래 검색",
     "clear_search": "검색 지우기",
     "period": "기간",
     "date_range_placeholder": "날짜 시작 — 종료",

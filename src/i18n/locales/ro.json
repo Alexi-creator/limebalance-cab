@@ -130,7 +130,6 @@
     "tx_count_other": "{{count}} de tranzacții"
   },
   "header": {
-    "search_placeholder": "Caută tranzacții, obiective, simboluri…",
     "add": "Adaugă",
     "add_transaction": "Tranzacție",
     "add_transaction_desc": "venit / cheltuială",
@@ -138,6 +137,9 @@
     "add_goal_desc": "economii"
   },
   "sidebar": {
+    "preferences": "Preferințe",
+    "language": "Limbă",
+    "theme": "Temă",
     "telegram_open": "Deschide botul",
     "telegram_connect": "Conectează Telegram",
     "telegram_open_desc": "Înregistrează direct în Telegram",
@@ -207,7 +209,6 @@
     "edit_title": "Editează tranzacția",
     "delete_title": "Șterge tranzacția",
     "records_per_page": "Rânduri pe pagină",
-    "search_placeholder": "Caută tranzacții",
     "clear_search": "Șterge căutarea",
     "period": "Perioadă",
     "date_range_placeholder": "Dată de la — până la",

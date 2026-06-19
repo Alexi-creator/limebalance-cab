@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} tranzakció"
   },
   "header": {
-    "search_placeholder": "Tranzakciók, célok, tickerek keresése…",
     "add": "Hozzáadás",
     "add_transaction": "Tranzakció",
     "add_transaction_desc": "bevétel / kiadás",
@@ -137,6 +136,9 @@
     "add_goal_desc": "megtakarítás"
   },
   "sidebar": {
+    "preferences": "Beállítások",
+    "language": "Nyelv",
+    "theme": "Téma",
     "telegram_open": "Bot megnyitása",
     "telegram_connect": "Telegram csatlakoztatása",
     "telegram_open_desc": "Rögzítés közvetlenül a Telegramban",
@@ -202,7 +204,6 @@
     "edit_title": "Tranzakció szerkesztése",
     "delete_title": "Tranzakció törlése",
     "records_per_page": "Sorok oldalanként",
-    "search_placeholder": "Tranzakciók keresése",
     "clear_search": "Keresés törlése",
     "period": "Időszak",
     "date_range_placeholder": "Dátum -tól — -ig",

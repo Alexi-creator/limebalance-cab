@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} tapahtumaa"
   },
   "header": {
-    "search_placeholder": "Hae tapahtumia, tavoitteita, tikkereitä…",
     "add": "Lisää",
     "add_transaction": "Tapahtuma",
     "add_transaction_desc": "tulo / meno",
@@ -137,6 +136,9 @@
     "add_goal_desc": "säästö"
   },
   "sidebar": {
+    "preferences": "Asetukset",
+    "language": "Kieli",
+    "theme": "Teema",
     "telegram_open": "Avaa botti",
     "telegram_connect": "Yhdistä Telegram",
     "telegram_open_desc": "Kirjaa suoraan Telegramissa",
@@ -202,7 +204,6 @@
     "edit_title": "Muokkaa tapahtumaa",
     "delete_title": "Poista tapahtuma",
     "records_per_page": "Rivejä sivulla",
-    "search_placeholder": "Hae tapahtumia",
     "clear_search": "Tyhjennä haku",
     "period": "Jakso",
     "date_range_placeholder": "Päivämäärä alkaen — päättyen",

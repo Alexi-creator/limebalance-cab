@@ -128,7 +128,6 @@
     "tx_count_other": "{{count}} ธุรกรรม"
   },
   "header": {
-    "search_placeholder": "ค้นหาธุรกรรม เป้าหมาย ทิกเกอร์…",
     "add": "เพิ่ม",
     "add_transaction": "ธุรกรรม",
     "add_transaction_desc": "รายรับ / รายจ่าย",
@@ -136,6 +135,9 @@
     "add_goal_desc": "การออม"
   },
   "sidebar": {
+    "preferences": "การตั้งค่า",
+    "language": "ภาษา",
+    "theme": "ธีม",
     "telegram_open": "เปิดบอท",
     "telegram_connect": "เชื่อมต่อ Telegram",
     "telegram_open_desc": "บันทึกโดยตรงใน Telegram",
@@ -197,7 +199,6 @@
     "edit_title": "แก้ไขธุรกรรม",
     "delete_title": "ลบธุรกรรม",
     "records_per_page": "แถวต่อหน้า",
-    "search_placeholder": "ค้นหาธุรกรรม",
     "clear_search": "ล้างการค้นหา",
     "period": "ช่วงเวลา",
     "date_range_placeholder": "วันที่ จาก — ถึง",

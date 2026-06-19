@@ -128,7 +128,6 @@
     "tx_count_other": "{{count}} 笔交易"
   },
   "header": {
-    "search_placeholder": "搜索交易、目标、代码…",
     "add": "添加",
     "add_transaction": "交易",
     "add_transaction_desc": "收入 / 支出",
@@ -136,6 +135,9 @@
     "add_goal_desc": "储蓄"
   },
   "sidebar": {
+    "preferences": "偏好设置",
+    "language": "语言",
+    "theme": "主题",
     "telegram_open": "打开机器人",
     "telegram_connect": "连接 Telegram",
     "telegram_open_desc": "直接在 Telegram 中记账",
@@ -197,7 +199,6 @@
     "edit_title": "编辑交易",
     "delete_title": "删除交易",
     "records_per_page": "每页行数",
-    "search_placeholder": "搜索交易",
     "clear_search": "清除搜索",
     "period": "周期",
     "date_range_placeholder": "日期 从 — 到",

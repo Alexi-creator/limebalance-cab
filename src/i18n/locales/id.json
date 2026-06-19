@@ -128,7 +128,6 @@
     "tx_count_other": "{{count}} transaksi"
   },
   "header": {
-    "search_placeholder": "Cari transaksi, tujuan, ticker…",
     "add": "Tambah",
     "add_transaction": "Transaksi",
     "add_transaction_desc": "pemasukan / pengeluaran",
@@ -136,6 +135,9 @@
     "add_goal_desc": "tabungan"
   },
   "sidebar": {
+    "preferences": "Preferensi",
+    "language": "Bahasa",
+    "theme": "Tema",
     "telegram_open": "Buka bot",
     "telegram_connect": "Hubungkan Telegram",
     "telegram_open_desc": "Catat langsung di Telegram",
@@ -197,7 +199,6 @@
     "edit_title": "Edit transaksi",
     "delete_title": "Hapus transaksi",
     "records_per_page": "Baris per halaman",
-    "search_placeholder": "Cari transaksi",
     "clear_search": "Hapus pencarian",
     "period": "Periode",
     "date_range_placeholder": "Tanggal dari — sampai",

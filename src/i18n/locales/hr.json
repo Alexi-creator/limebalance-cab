@@ -130,7 +130,6 @@
     "tx_count_other": "{{count}} transakcija"
   },
   "header": {
-    "search_placeholder": "Pretraži transakcije, ciljeve, simbole…",
     "add": "Dodaj",
     "add_transaction": "Transakcija",
     "add_transaction_desc": "prihod / rashod",
@@ -138,6 +137,9 @@
     "add_goal_desc": "štednja"
   },
   "sidebar": {
+    "preferences": "Postavke",
+    "language": "Jezik",
+    "theme": "Tema",
     "telegram_open": "Otvori bota",
     "telegram_connect": "Poveži Telegram",
     "telegram_open_desc": "Bilježite izravno u Telegramu",
@@ -207,7 +209,6 @@
     "edit_title": "Uredi transakciju",
     "delete_title": "Izbriši transakciju",
     "records_per_page": "Redaka po stranici",
-    "search_placeholder": "Pretraži transakcije",
     "clear_search": "Očisti pretragu",
     "period": "Razdoblje",
     "date_range_placeholder": "Datum od — do",

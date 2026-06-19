@@ -20,7 +20,12 @@ export function CashflowChart() {
   const [period, setPeriod] = useState("1m")
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const theme = useMantineTheme()
-  const isTabletOrAbove = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`)
+  // Read the media query synchronously on the first render (no SSR here), otherwise
+  // Mantine resolves it in an effect: the chart renders compact, then re-renders on
+  // mount — a visible "jump" every time the page (re)mounts.
+  const isTabletOrAbove = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`, true, {
+    getInitialValueInEffect: false,
+  })
 
   const { expensesSummary, incomesSummary } = useCashflowData(period)
 

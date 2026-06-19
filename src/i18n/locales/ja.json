@@ -128,7 +128,6 @@
     "tx_count_other": "{{count}} 件の取引"
   },
   "header": {
-    "search_placeholder": "取引、目標、ティッカーを検索…",
     "add": "追加",
     "add_transaction": "取引",
     "add_transaction_desc": "収入 / 支出",
@@ -136,6 +135,9 @@
     "add_goal_desc": "貯金"
   },
   "sidebar": {
+    "preferences": "設定",
+    "language": "言語",
+    "theme": "テーマ",
     "telegram_open": "ボットを開く",
     "telegram_connect": "Telegram を接続",
     "telegram_open_desc": "Telegram で直接記録",
@@ -197,7 +199,6 @@
     "edit_title": "取引の編集",
     "delete_title": "取引の削除",
     "records_per_page": "1ページあたりの行数",
-    "search_placeholder": "取引を検索",
     "clear_search": "検索をクリア",
     "period": "期間",
     "date_range_placeholder": "日付 開始 — 終了",

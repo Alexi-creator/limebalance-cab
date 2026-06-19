@@ -130,7 +130,6 @@
     "tx_count_many": "{{count}} транзакцій"
   },
   "header": {
-    "search_placeholder": "Пошук транзакцій, цілей, тикерів…",
     "add": "Додати",
     "add_transaction": "Транзакція",
     "add_transaction_desc": "дохід / витрата",
@@ -138,6 +137,9 @@
     "add_goal_desc": "скарбничка"
   },
   "sidebar": {
+    "preferences": "Налаштування",
+    "language": "Мова",
+    "theme": "Тема",
     "telegram_open": "Відкрити бота",
     "telegram_connect": "Підключити Telegram",
     "telegram_open_desc": "Облік прямо в Telegram",
@@ -207,7 +209,6 @@
     "edit_title": "Редагування транзакції",
     "delete_title": "Видалення транзакції",
     "records_per_page": "Рядків на сторінці",
-    "search_placeholder": "Пошук транзакцій",
     "clear_search": "Очистити пошук",
     "period": "Період",
     "date_range_placeholder": "Дата від — до",

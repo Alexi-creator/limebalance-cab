@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} transaksjoner"
   },
   "header": {
-    "search_placeholder": "Søk transaksjoner, mål, tickere…",
     "add": "Legg til",
     "add_transaction": "Transaksjon",
     "add_transaction_desc": "inntekt / utgift",
@@ -137,6 +136,9 @@
     "add_goal_desc": "sparing"
   },
   "sidebar": {
+    "preferences": "Innstillinger",
+    "language": "Språk",
+    "theme": "Tema",
     "telegram_open": "Åpne bot",
     "telegram_connect": "Koble til Telegram",
     "telegram_open_desc": "Registrer direkte i Telegram",
@@ -202,7 +204,6 @@
     "edit_title": "Rediger transaksjon",
     "delete_title": "Slett transaksjon",
     "records_per_page": "Rader per side",
-    "search_placeholder": "Søk transaksjoner",
     "clear_search": "Tøm søk",
     "period": "Periode",
     "date_range_placeholder": "Dato fra — til",

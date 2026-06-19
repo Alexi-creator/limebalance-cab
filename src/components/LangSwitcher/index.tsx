@@ -7,9 +7,9 @@ const languageOptions = Object.entries(languages).map(([value, { label }]) => ({
 /**
  * Dropdown select for changing the interface language.
  * On change it updates i18n and saves the choice in `localStorage`.
- * Takes no props.
+ * `w` overrides the width; defaults to a fixed 150px for the header.
  */
-export function LangSwitcher() {
+export function LangSwitcher({ w = 150 }: { w?: number | string }) {
   const { i18n } = useTranslation()
 
   const handleChange = (lang: string | null) => {
@@ -21,7 +21,7 @@ export function LangSwitcher() {
   return (
     <Select
       size="sm"
-      w={150}
+      w={w}
       value={i18n.language}
       onChange={handleChange}
       data={languageOptions}

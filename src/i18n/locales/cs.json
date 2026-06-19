@@ -130,7 +130,6 @@
     "tx_count_other": "{{count}} transakcí"
   },
   "header": {
-    "search_placeholder": "Hledat transakce, cíle, tickery…",
     "add": "Přidat",
     "add_transaction": "Transakce",
     "add_transaction_desc": "příjem / výdaj",
@@ -138,6 +137,9 @@
     "add_goal_desc": "úspory"
   },
   "sidebar": {
+    "preferences": "Předvolby",
+    "language": "Jazyk",
+    "theme": "Motiv",
     "telegram_open": "Otevřít bota",
     "telegram_connect": "Připojit Telegram",
     "telegram_open_desc": "Zaznamenávejte přímo v Telegramu",
@@ -207,7 +209,6 @@
     "edit_title": "Upravit transakci",
     "delete_title": "Smazat transakci",
     "records_per_page": "Řádků na stránku",
-    "search_placeholder": "Hledat transakce",
     "clear_search": "Vymazat hledání",
     "period": "Období",
     "date_range_placeholder": "Datum od — do",

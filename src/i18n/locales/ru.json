@@ -130,14 +130,26 @@
     "tx_count_many": "{{count}} операций"
   },
   "header": {
-    "search_placeholder": "Поиск по операциям, целям, тикерам…",
     "add": "Добавить",
     "add_transaction": "Операция",
     "add_transaction_desc": "доход / расход",
     "add_goal": "Цель",
     "add_goal_desc": "копилка"
   },
+  "notifications": {
+    "mark_all_read": "Прочитать все",
+    "empty": "Уведомлений пока нет",
+    "summary": {
+      "title": "Итоги месяца",
+      "body": "{{month}}: доход {{income}}, расход {{expense}}.",
+      "body_net": "{{month}}: доход {{income}}, расход {{expense}}, отложено {{net}}.",
+      "top_category": "Топ-категория — {{category}}."
+    }
+  },
   "sidebar": {
+    "preferences": "Настройки",
+    "language": "Язык",
+    "theme": "Тема",
     "telegram_open": "Открыть бота",
     "telegram_connect": "Подключить Telegram",
     "telegram_open_desc": "Учёт прямо в Telegram",
@@ -207,7 +219,6 @@
     "edit_title": "Редактирование операции",
     "delete_title": "Удаление операции",
     "records_per_page": "Строк на странице",
-    "search_placeholder": "Поиск операций",
     "clear_search": "Очистить поиск",
     "period": "Период",
     "date_range_placeholder": "Дата от — до",

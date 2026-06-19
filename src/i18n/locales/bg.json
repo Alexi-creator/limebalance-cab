@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} транзакции"
   },
   "header": {
-    "search_placeholder": "Търсене на транзакции, цели, тикери…",
     "add": "Добавяне",
     "add_transaction": "Транзакция",
     "add_transaction_desc": "приход / разход",
@@ -137,6 +136,9 @@
     "add_goal_desc": "спестявания"
   },
   "sidebar": {
+    "preferences": "Предпочитания",
+    "language": "Език",
+    "theme": "Тема",
     "telegram_open": "Отвори бота",
     "telegram_connect": "Свържи Telegram",
     "telegram_open_desc": "Записвай директно в Telegram",
@@ -202,7 +204,6 @@
     "edit_title": "Редактиране на транзакция",
     "delete_title": "Изтриване на транзакция",
     "records_per_page": "Редове на страница",
-    "search_placeholder": "Търсене на транзакции",
     "clear_search": "Изчисти търсенето",
     "period": "Период",
     "date_range_placeholder": "Дата от — до",

@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} Transaktionen"
   },
   "header": {
-    "search_placeholder": "Transaktionen, Ziele, Ticker suchen…",
     "add": "Hinzufügen",
     "add_transaction": "Transaktion",
     "add_transaction_desc": "Einnahme / Ausgabe",
@@ -137,6 +136,9 @@
     "add_goal_desc": "Sparen"
   },
   "sidebar": {
+    "preferences": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
     "telegram_open": "Bot öffnen",
     "telegram_connect": "Telegram verbinden",
     "telegram_open_desc": "Direkt in Telegram erfassen",
@@ -202,7 +204,6 @@
     "edit_title": "Transaktion bearbeiten",
     "delete_title": "Transaktion löschen",
     "records_per_page": "Zeilen pro Seite",
-    "search_placeholder": "Transaktionen suchen",
     "clear_search": "Suche löschen",
     "period": "Zeitraum",
     "date_range_placeholder": "Datum von — bis",

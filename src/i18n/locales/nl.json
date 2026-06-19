@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} transacties"
   },
   "header": {
-    "search_placeholder": "Zoek transacties, doelen, tickers…",
     "add": "Toevoegen",
     "add_transaction": "Transactie",
     "add_transaction_desc": "inkomst / uitgave",
@@ -137,6 +136,9 @@
     "add_goal_desc": "sparen"
   },
   "sidebar": {
+    "preferences": "Voorkeuren",
+    "language": "Taal",
+    "theme": "Thema",
     "telegram_open": "Bot openen",
     "telegram_connect": "Telegram verbinden",
     "telegram_open_desc": "Direct vastleggen in Telegram",
@@ -202,7 +204,6 @@
     "edit_title": "Transactie bewerken",
     "delete_title": "Transactie verwijderen",
     "records_per_page": "Rijen per pagina",
-    "search_placeholder": "Transacties zoeken",
     "clear_search": "Zoekopdracht wissen",
     "period": "Periode",
     "date_range_placeholder": "Datum van — tot",

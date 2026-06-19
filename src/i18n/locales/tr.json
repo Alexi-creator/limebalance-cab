@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} işlem"
   },
   "header": {
-    "search_placeholder": "İşlem, hedef, sembol ara…",
     "add": "Ekle",
     "add_transaction": "İşlem",
     "add_transaction_desc": "gelir / gider",
@@ -137,6 +136,9 @@
     "add_goal_desc": "birikim"
   },
   "sidebar": {
+    "preferences": "Tercihler",
+    "language": "Dil",
+    "theme": "Tema",
     "telegram_open": "Botu aç",
     "telegram_connect": "Telegram'ı bağla",
     "telegram_open_desc": "Doğrudan Telegram'da kaydet",
@@ -202,7 +204,6 @@
     "edit_title": "İşlemi düzenle",
     "delete_title": "İşlemi sil",
     "records_per_page": "Sayfa başına satır",
-    "search_placeholder": "İşlem ara",
     "clear_search": "Aramayı temizle",
     "period": "Dönem",
     "date_range_placeholder": "Tarih başlangıç — bitiş",

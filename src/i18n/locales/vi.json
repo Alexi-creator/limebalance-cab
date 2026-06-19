@@ -128,7 +128,6 @@
     "tx_count_other": "{{count}} giao dịch"
   },
   "header": {
-    "search_placeholder": "Tìm giao dịch, mục tiêu, mã…",
     "add": "Thêm",
     "add_transaction": "Giao dịch",
     "add_transaction_desc": "thu nhập / chi tiêu",
@@ -136,6 +135,9 @@
     "add_goal_desc": "tiết kiệm"
   },
   "sidebar": {
+    "preferences": "Tùy chọn",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
     "telegram_open": "Mở bot",
     "telegram_connect": "Kết nối Telegram",
     "telegram_open_desc": "Ghi trực tiếp trong Telegram",
@@ -197,7 +199,6 @@
     "edit_title": "Sửa giao dịch",
     "delete_title": "Xóa giao dịch",
     "records_per_page": "Số hàng mỗi trang",
-    "search_placeholder": "Tìm giao dịch",
     "clear_search": "Xóa tìm kiếm",
     "period": "Kỳ",
     "date_range_placeholder": "Ngày từ — đến",

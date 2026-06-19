@@ -1,17 +1,18 @@
 import { AddModal } from "@components/AddModal"
 import { LangSwitcher } from "@components/LangSwitcher"
+import { NotificationsMenu } from "@components/NotificationsMenu"
 import { ThemeToggle } from "@components/ThemeToggle"
-import { ActionIcon, AppShell, Box, Burger, Group, Indicator, TextInput } from "@mantine/core"
+import { AppShell, Box, Burger, Group } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 import { useSidebarStore } from "@store/sidebarStore"
-import { IconBell, IconPlus, IconSearch } from "@tabler/icons-react"
+import { IconPlus } from "@tabler/icons-react"
 import { SelectButton } from "@ui/SelectButton"
 import { useTranslation } from "react-i18next"
 import { getAddOptions } from "./config"
 
 /**
  * Top app bar (AppShell.Header).
- * Contains the burger for the mobile menu, the search field, the language/theme toggle,
+ * Contains the burger for the mobile menu, the language/theme toggle,
  * the notifications bell, and the "Add" button with a dropdown of record types.
  * Reads the mobile menu state from `sidebarStore`. Takes no props.
  */
@@ -26,24 +27,13 @@ export function Header() {
       <Group h="100%" px="md" gap="md" wrap="nowrap">
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 
-        <TextInput
-          placeholder={t("header.search_placeholder")}
-          leftSection={<IconSearch size={14} />}
-          rightSectionWidth={48}
-          style={{ flex: 1, maxWidth: 360 }}
-        />
-
         <Group gap="xs" ml="auto" wrap="nowrap">
           <Box visibleFrom="sm">
             <LangSwitcher />
           </Box>
 
           <Box visibleFrom="sm">
-            <Indicator color="lime" size={8} offset={6} processing>
-              <ActionIcon variant="default" size={36} aria-label={t("common.notifications")}>
-                <IconBell size={18} />
-              </ActionIcon>
-            </Indicator>
+            <NotificationsMenu />
           </Box>
 
           <Box visibleFrom="sm">

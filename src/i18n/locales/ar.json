@@ -133,7 +133,6 @@
     "tx_count_other": "{{count}} معاملة"
   },
   "header": {
-    "search_placeholder": "ابحث عن معاملات وأهداف ورموز…",
     "add": "إضافة",
     "add_transaction": "معاملة",
     "add_transaction_desc": "إيراد / مصروف",
@@ -141,6 +140,9 @@
     "add_goal_desc": "ادخار"
   },
   "sidebar": {
+    "preferences": "التفضيلات",
+    "language": "اللغة",
+    "theme": "السمة",
     "telegram_open": "فتح البوت",
     "telegram_connect": "ربط تيليجرام",
     "telegram_open_desc": "سجّل مباشرة في تيليجرام",
@@ -222,7 +224,6 @@
     "edit_title": "تعديل المعاملة",
     "delete_title": "حذف المعاملة",
     "records_per_page": "صفوف لكل صفحة",
-    "search_placeholder": "ابحث عن معاملات",
     "clear_search": "مسح البحث",
     "period": "الفترة",
     "date_range_placeholder": "التاريخ من — إلى",

@@ -129,14 +129,26 @@
     "tx_count_other": "{{count}} transactions"
   },
   "header": {
-    "search_placeholder": "Search transactions, goals, tickers…",
     "add": "Add",
     "add_transaction": "Transaction",
     "add_transaction_desc": "income / expense",
     "add_goal": "Goal",
     "add_goal_desc": "savings"
   },
+  "notifications": {
+    "mark_all_read": "Mark all as read",
+    "empty": "No notifications yet",
+    "summary": {
+      "title": "Monthly summary",
+      "body": "{{month}}: income {{income}}, expenses {{expense}}.",
+      "body_net": "{{month}}: income {{income}}, expenses {{expense}}, saved {{net}}.",
+      "top_category": "Top category — {{category}}."
+    }
+  },
   "sidebar": {
+    "preferences": "Preferences",
+    "language": "Language",
+    "theme": "Theme",
     "telegram_open": "Open bot",
     "telegram_connect": "Connect Telegram",
     "telegram_open_desc": "Track right in Telegram",
@@ -202,7 +214,6 @@
     "edit_title": "Edit transaction",
     "delete_title": "Delete transaction",
     "records_per_page": "Rows per page",
-    "search_placeholder": "Search transactions",
     "clear_search": "Clear search",
     "period": "Period",
     "date_range_placeholder": "Date from — to",

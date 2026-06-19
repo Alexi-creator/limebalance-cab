@@ -131,7 +131,6 @@
     "tx_count_other": "{{count}} עסקאות"
   },
   "header": {
-    "search_placeholder": "חפש עסקאות, יעדים, סמלים…",
     "add": "הוסף",
     "add_transaction": "עסקה",
     "add_transaction_desc": "הכנסה / הוצאה",
@@ -139,6 +138,9 @@
     "add_goal_desc": "חיסכון"
   },
   "sidebar": {
+    "preferences": "העדפות",
+    "language": "שפה",
+    "theme": "ערכת נושא",
     "telegram_open": "פתח בוט",
     "telegram_connect": "חבר טלגרם",
     "telegram_open_desc": "רשום ישירות בטלגרם",
@@ -212,7 +214,6 @@
     "edit_title": "עריכת עסקה",
     "delete_title": "מחיקת עסקה",
     "records_per_page": "שורות לעמוד",
-    "search_placeholder": "חפש עסקאות",
     "clear_search": "נקה חיפוש",
     "period": "תקופה",
     "date_range_placeholder": "תאריך מ — עד",

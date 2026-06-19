@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} συναλλαγές"
   },
   "header": {
-    "search_placeholder": "Αναζήτηση συναλλαγών, στόχων, tickers…",
     "add": "Προσθήκη",
     "add_transaction": "Συναλλαγή",
     "add_transaction_desc": "έσοδο / έξοδο",
@@ -137,6 +136,9 @@
     "add_goal_desc": "αποταμίευση"
   },
   "sidebar": {
+    "preferences": "Προτιμήσεις",
+    "language": "Γλώσσα",
+    "theme": "Θέμα",
     "telegram_open": "Άνοιγμα bot",
     "telegram_connect": "Σύνδεση Telegram",
     "telegram_open_desc": "Καταγραφή απευθείας στο Telegram",
@@ -202,7 +204,6 @@
     "edit_title": "Επεξεργασία συναλλαγής",
     "delete_title": "Διαγραφή συναλλαγής",
     "records_per_page": "Γραμμές ανά σελίδα",
-    "search_placeholder": "Αναζήτηση συναλλαγών",
     "clear_search": "Καθαρισμός αναζήτησης",
     "period": "Περίοδος",
     "date_range_placeholder": "Ημερομηνία από — έως",

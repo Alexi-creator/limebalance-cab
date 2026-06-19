@@ -129,7 +129,6 @@
     "tx_count_other": "{{count}} tehingut"
   },
   "header": {
-    "search_placeholder": "Otsi tehinguid, eesmärke, tickereid…",
     "add": "Lisa",
     "add_transaction": "Tehing",
     "add_transaction_desc": "tulu / kulu",
@@ -137,6 +136,9 @@
     "add_goal_desc": "säästmine"
   },
   "sidebar": {
+    "preferences": "Eelistused",
+    "language": "Keel",
+    "theme": "Teema",
     "telegram_open": "Ava bot",
     "telegram_connect": "Ühenda Telegram",
     "telegram_open_desc": "Kirjenda otse Telegramis",
@@ -202,7 +204,6 @@
     "edit_title": "Muuda tehingut",
     "delete_title": "Kustuta tehing",
     "records_per_page": "Ridu lehel",
-    "search_placeholder": "Otsi tehinguid",
     "clear_search": "Tühjenda otsing",
     "period": "Periood",
     "date_range_placeholder": "Kuupäev alates — kuni",

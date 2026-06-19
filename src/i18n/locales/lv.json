@@ -130,7 +130,6 @@
     "tx_count_other": "{{count}} darījumi"
   },
   "header": {
-    "search_placeholder": "Meklēt darījumus, mērķus, simbolus…",
     "add": "Pievienot",
     "add_transaction": "Darījums",
     "add_transaction_desc": "ieņēmumi / izdevumi",
@@ -138,6 +137,9 @@
     "add_goal_desc": "uzkrājumi"
   },
   "sidebar": {
+    "preferences": "Preferences",
+    "language": "Valoda",
+    "theme": "Motīvs",
     "telegram_open": "Atvērt botu",
     "telegram_connect": "Savienot Telegram",
     "telegram_open_desc": "Reģistrējiet tieši Telegram",
@@ -207,7 +209,6 @@
     "edit_title": "Rediģēt darījumu",
     "delete_title": "Dzēst darījumu",
     "records_per_page": "Rindas lapā",
-    "search_placeholder": "Meklēt darījumus",
     "clear_search": "Notīrīt meklēšanu",
     "period": "Periods",
     "date_range_placeholder": "Datums no — līdz",

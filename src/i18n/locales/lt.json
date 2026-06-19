@@ -130,7 +130,6 @@
     "tx_count_other": "{{count}} operacijų"
   },
   "header": {
-    "search_placeholder": "Ieškoti operacijų, tikslų, tikerių…",
     "add": "Pridėti",
     "add_transaction": "Operacija",
     "add_transaction_desc": "pajamos / išlaidos",
@@ -138,6 +137,9 @@
     "add_goal_desc": "santaupos"
   },
   "sidebar": {
+    "preferences": "Nuostatos",
+    "language": "Kalba",
+    "theme": "Tema",
     "telegram_open": "Atidaryti botą",
     "telegram_connect": "Prijungti Telegram",
     "telegram_open_desc": "Žymėkite tiesiai Telegrame",
@@ -207,7 +209,6 @@
     "edit_title": "Redaguoti operaciją",
     "delete_title": "Ištrinti operaciją",
     "records_per_page": "Eilučių puslapyje",
-    "search_placeholder": "Ieškoti operacijų",
     "clear_search": "Išvalyti paiešką",
     "period": "Laikotarpis",
     "date_range_placeholder": "Data nuo — iki",
