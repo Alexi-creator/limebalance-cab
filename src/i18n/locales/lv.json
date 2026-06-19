@@ -179,9 +179,9 @@
   },
   "transactions": {
     "title": "Darījumi",
-    "count_label_zero": "{{shown}} / {{count}} darījumu",
-    "count_label_one": "{{shown}} / {{count}} darījums",
-    "count_label_other": "{{shown}} / {{count}} darījumi",
+    "count_label_zero": "{{count}} darījumu",
+    "count_label_one": "{{count}} darījums",
+    "count_label_other": "{{count}} darījumi",
     "add": "Pievienot darījumu",
     "no_categories": "Jums nav nevienas kategorijas.",
     "add_group_link": "Pievienot kategoriju",

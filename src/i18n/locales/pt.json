@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "Transações",
-    "count_label_one": "{{shown}} / {{count}} transação",
-    "count_label_other": "{{shown}} / {{count}} transações",
+    "count_label_one": "{{count}} transação",
+    "count_label_other": "{{count}} transações",
     "add": "Adicionar transação",
     "no_categories": "Você não tem nenhuma categoria.",
     "add_group_link": "Adicionar uma categoria",

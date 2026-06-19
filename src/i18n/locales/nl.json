@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "Transacties",
-    "count_label_one": "{{shown}} / {{count}} transactie",
-    "count_label_other": "{{shown}} / {{count}} transacties",
+    "count_label_one": "{{count}} transactie",
+    "count_label_other": "{{count}} transacties",
     "add": "Transactie toevoegen",
     "no_categories": "Je hebt nog geen categorieën.",
     "add_group_link": "Een categorie toevoegen",

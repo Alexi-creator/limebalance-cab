@@ -179,9 +179,9 @@
   },
   "transactions": {
     "title": "Tranzacții",
-    "count_label_one": "{{shown}} / {{count}} tranzacție",
-    "count_label_few": "{{shown}} / {{count}} tranzacții",
-    "count_label_other": "{{shown}} / {{count}} de tranzacții",
+    "count_label_one": "{{count}} tranzacție",
+    "count_label_few": "{{count}} tranzacții",
+    "count_label_other": "{{count}} de tranzacții",
     "add": "Adaugă tranzacție",
     "no_categories": "Nu ai nicio categorie.",
     "add_group_link": "Adaugă o categorie",

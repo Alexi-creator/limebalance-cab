@@ -179,9 +179,9 @@
   },
   "transactions": {
     "title": "Operacijos",
-    "count_label_one": "{{shown}} / {{count}} operacija",
-    "count_label_few": "{{shown}} / {{count}} operacijos",
-    "count_label_other": "{{shown}} / {{count}} operacijų",
+    "count_label_one": "{{count}} operacija",
+    "count_label_few": "{{count}} operacijos",
+    "count_label_other": "{{count}} operacijų",
     "add": "Pridėti operaciją",
     "no_categories": "Neturite nė vienos kategorijos.",
     "add_group_link": "Pridėti kategoriją",

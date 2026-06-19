@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "Transaksjoner",
-    "count_label_one": "{{shown}} / {{count}} transaksjon",
-    "count_label_other": "{{shown}} / {{count}} transaksjoner",
+    "count_label_one": "{{count}} transaksjon",
+    "count_label_other": "{{count}} transaksjoner",
     "add": "Legg til transaksjon",
     "no_categories": "Du har ingen kategorier.",
     "add_group_link": "Legg til en kategori",

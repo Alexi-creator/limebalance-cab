@@ -179,9 +179,9 @@
   },
   "transactions": {
     "title": "Транзакції",
-    "count_label_one": "{{shown}} / {{count}} транзакція",
-    "count_label_few": "{{shown}} / {{count}} транзакції",
-    "count_label_many": "{{shown}} / {{count}} транзакцій",
+    "count_label_one": "{{count}} транзакція",
+    "count_label_few": "{{count}} транзакції",
+    "count_label_many": "{{count}} транзакцій",
     "add": "Додати транзакцію",
     "no_categories": "У вас немає жодної категорії.",
     "add_group_link": "Додайте категорію",

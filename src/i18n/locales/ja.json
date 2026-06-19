@@ -175,7 +175,7 @@
   },
   "transactions": {
     "title": "取引",
-    "count_label_other": "{{shown}} / {{count}} 件の取引",
+    "count_label_other": "{{count}} 件の取引",
     "add": "取引を追加",
     "no_categories": "カテゴリがありません。",
     "add_group_link": "カテゴリを追加",

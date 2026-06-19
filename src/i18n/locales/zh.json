@@ -175,7 +175,7 @@
   },
   "transactions": {
     "title": "交易",
-    "count_label_other": "{{shown}} / {{count}} 笔交易",
+    "count_label_other": "{{count}} 笔交易",
     "add": "添加交易",
     "no_categories": "您还没有任何分类。",
     "add_group_link": "添加分类",

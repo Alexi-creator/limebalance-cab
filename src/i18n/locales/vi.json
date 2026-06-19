@@ -175,7 +175,7 @@
   },
   "transactions": {
     "title": "Giao dịch",
-    "count_label_other": "{{shown}} / {{count}} giao dịch",
+    "count_label_other": "{{count}} giao dịch",
     "add": "Thêm giao dịch",
     "no_categories": "Bạn chưa có danh mục nào.",
     "add_group_link": "Thêm danh mục",

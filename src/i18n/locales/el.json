@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "Συναλλαγές",
-    "count_label_one": "{{shown}} / {{count}} συναλλαγή",
-    "count_label_other": "{{shown}} / {{count}} συναλλαγές",
+    "count_label_one": "{{count}} συναλλαγή",
+    "count_label_other": "{{count}} συναλλαγές",
     "add": "Προσθήκη συναλλαγής",
     "no_categories": "Δεν έχετε καμία κατηγορία.",
     "add_group_link": "Προσθήκη κατηγορίας",

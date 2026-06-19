@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "Транзакции",
-    "count_label_one": "{{shown}} / {{count}} транзакция",
-    "count_label_other": "{{shown}} / {{count}} транзакции",
+    "count_label_one": "{{count}} транзакция",
+    "count_label_other": "{{count}} транзакции",
     "add": "Добави транзакция",
     "no_categories": "Нямате нито една категория.",
     "add_group_link": "Добавете категория",

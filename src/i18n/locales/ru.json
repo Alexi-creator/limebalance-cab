@@ -179,9 +179,9 @@
   },
   "transactions": {
     "title": "Операции",
-    "count_label_one": "{{shown}} / {{count}} операция",
-    "count_label_few": "{{shown}} / {{count}} операции",
-    "count_label_many": "{{shown}} / {{count}} операций",
+    "count_label_one": "{{count}} операция",
+    "count_label_few": "{{count}} операции",
+    "count_label_many": "{{count}} операций",
     "add": "Добавить операцию",
     "no_categories": "У вас нет ни одной категории.",
     "add_group_link": "Добавьте группу",

@@ -97,7 +97,7 @@ export function TransactionsPage() {
             {t("transactions.title")}
           </Title>
           <Text size="sm" c="dimmed">
-            {t("transactions.count_label", { shown: items.length, count: total })}
+            {t("transactions.count_label", { count: total })}
           </Text>
         </Stack>
         <Group gap="xs">

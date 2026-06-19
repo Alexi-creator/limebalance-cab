@@ -175,7 +175,7 @@
   },
   "transactions": {
     "title": "Transaksi",
-    "count_label_other": "{{shown}} / {{count}} transaksi",
+    "count_label_other": "{{count}} transaksi",
     "add": "Tambah transaksi",
     "no_categories": "Anda belum punya kategori.",
     "add_group_link": "Tambah kategori",

@@ -175,7 +175,7 @@
   },
   "transactions": {
     "title": "ธุรกรรม",
-    "count_label_other": "{{shown}} / {{count}} ธุรกรรม",
+    "count_label_other": "{{count}} ธุรกรรม",
     "add": "เพิ่มธุรกรรม",
     "no_categories": "คุณยังไม่มีหมวดหมู่",
     "add_group_link": "เพิ่มหมวดหมู่",

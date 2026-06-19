@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "İşlemler",
-    "count_label_one": "{{shown}} / {{count}} işlem",
-    "count_label_other": "{{shown}} / {{count}} işlem",
+    "count_label_one": "{{count}} işlem",
+    "count_label_other": "{{count}} işlem",
     "add": "İşlem ekle",
     "no_categories": "Hiç kategoriniz yok.",
     "add_group_link": "Kategori ekle",

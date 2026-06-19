@@ -177,8 +177,8 @@
   },
   "transactions": {
     "title": "Tehingud",
-    "count_label_one": "{{shown}} / {{count}} tehing",
-    "count_label_other": "{{shown}} / {{count}} tehingut",
+    "count_label_one": "{{count}} tehing",
+    "count_label_other": "{{count}} tehingut",
     "add": "Lisa tehing",
     "no_categories": "Sul pole ühtegi kategooriat.",
     "add_group_link": "Lisa kategooria",

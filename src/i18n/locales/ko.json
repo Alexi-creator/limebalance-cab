@@ -175,7 +175,7 @@
   },
   "transactions": {
     "title": "거래",
-    "count_label_other": "{{shown}} / {{count}}건",
+    "count_label_other": "{{count}}건",
     "add": "거래 추가",
     "no_categories": "카테고리가 없습니다.",
     "add_group_link": "카테고리 추가",
