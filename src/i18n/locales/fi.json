@@ -385,5 +385,13 @@
     "connect_text": "Lisää tulot ja menot suoraan Telegramissa — ne synkronoituvat tähän paneeliin. Yhdistä botti tiliisi, jotta se tunnistaa sinut.",
     "linking": "Yhdistetään…",
     "dont_know_bot": "Etkö tunne bottia?"
+  },
+  "confirmEmail": {
+    "title": "Sähköpostin vahvistus",
+    "success": "Sähköpostisi on vahvistettu. Voit nyt kirjautua sisään sillä.",
+    "error": "Tämä vahvistuslinkki on virheellinen tai vanhentunut. Yritä yhdistää sähköpostisi uudelleen.",
+    "invalid": "Vahvistuslinkistä puuttuu tunnus.",
+    "go_settings": "Siirry asetuksiin",
+    "go_login": "Siirry kirjautumiseen"
   }
 }

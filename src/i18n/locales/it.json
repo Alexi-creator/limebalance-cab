@@ -385,5 +385,13 @@
     "connect_text": "Aggiungi entrate e uscite direttamente in Telegram: si sincronizzano con questa dashboard. Collega il bot al tuo account così ti riconosce.",
     "linking": "Collegamento…",
     "dont_know_bot": "Non conosci il bot?"
+  },
+  "confirmEmail": {
+    "title": "Conferma email",
+    "success": "La tua email è stata confermata. Ora puoi accedere con essa.",
+    "error": "Questo link di conferma non è valido o è scaduto. Prova a collegare di nuovo la tua email.",
+    "invalid": "Al link di conferma manca il token.",
+    "go_settings": "Vai alle impostazioni",
+    "go_login": "Vai all'accesso"
   }
 }

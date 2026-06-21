@@ -2,6 +2,7 @@ export const RouteNames = {
   Home: "/",
   Auth: "/auth",
   Register: "/register",
+  ConfirmEmail: "/confirm-email",
   Transactions: "/transactions",
   Analytics: "/analytics",
   Goals: "/goals",

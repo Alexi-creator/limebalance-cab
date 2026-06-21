@@ -2,16 +2,24 @@ import { GlobalModal } from "@components/GlobalModal"
 import { GuestRoute } from "@components/GuestRoute"
 import { ProtectedRoute } from "@components/ProtectedRoute"
 import { getEnv } from "@constants/env"
+import { RouteNames } from "@constants/routeNames"
 import { useAuthInit } from "@hooks/useAuthInit"
 import { Layout } from "@layout/Layout"
 import { PublicLayout } from "@layout/PublicLayout"
 import { LoadingOverlay } from "@mantine/core"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { appRoutes, publicRoutes } from "@settings/routesConfig"
+import { lazy } from "react"
 import { useTranslation } from "react-i18next"
 import { Route, Routes } from "react-router-dom"
 
 const GOOGLE_CLIENT_ID = getEnv("VITE_GOOGLE_CLIENT_ID")
+
+// Email confirmation link target — reachable by both guests and authenticated users,
+// so it lives outside GuestRoute/ProtectedRoute.
+const ConfirmEmailPage = lazy(() =>
+  import("@pages/ConfirmEmailPage").then((m) => ({ default: m.ConfirmEmailPage })),
+)
 
 function App() {
   const { i18n } = useTranslation()
@@ -38,6 +46,10 @@ function App() {
               <Route key={path} path={path} element={element} />
             ))}
           </Route>
+        </Route>
+
+        <Route element={<PublicLayout />}>
+          <Route path={RouteNames.ConfirmEmail} element={<ConfirmEmailPage />} />
         </Route>
       </Routes>
     </GoogleOAuthProvider>

@@ -385,5 +385,13 @@
     "connect_text": "Add hozzá a bevételeket és kiadásokat közvetlenül a Telegramban — szinkronizálódnak ezzel az irányítópulttal. Kapcsold a botot a fiókodhoz, hogy felismerjen.",
     "linking": "Csatlakoztatás…",
     "dont_know_bot": "Nem ismered a botot?"
+  },
+  "confirmEmail": {
+    "title": "E-mail megerősítése",
+    "success": "Az e-mail-címét megerősítettük. Mostantól bejelentkezhet vele.",
+    "error": "Ez a megerősítő hivatkozás érvénytelen vagy lejárt. Próbálja meg újra összekapcsolni az e-mail-címét.",
+    "invalid": "A megerősítő hivatkozásból hiányzik a token.",
+    "go_settings": "Ugrás a beállításokhoz",
+    "go_login": "Ugrás a bejelentkezéshez"
   }
 }

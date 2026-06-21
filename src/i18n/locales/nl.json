@@ -385,5 +385,13 @@
     "connect_text": "Voeg inkomsten en uitgaven direct in Telegram toe — ze worden gesynchroniseerd met dit dashboard. Koppel de bot aan je account zodat hij je herkent.",
     "linking": "Verbinden…",
     "dont_know_bot": "Ken je de bot niet?"
+  },
+  "confirmEmail": {
+    "title": "E-mailbevestiging",
+    "success": "Je e-mailadres is bevestigd. Je kunt er nu mee inloggen.",
+    "error": "Deze bevestigingslink is ongeldig of verlopen. Probeer je e-mailadres opnieuw te koppelen.",
+    "invalid": "In de bevestigingslink ontbreekt het token.",
+    "go_settings": "Naar instellingen",
+    "go_login": "Naar inloggen"
   }
 }

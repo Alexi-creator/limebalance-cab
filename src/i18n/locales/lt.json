@@ -395,5 +395,13 @@
     "connect_text": "Pridėkite pajamas ir išlaidas tiesiai Telegrame — jos sinchronizuojamos su šiuo skydeliu. Susiekite botą su savo paskyra, kad jis jus atpažintų.",
     "linking": "Jungiama…",
     "dont_know_bot": "Nepažįstate boto?"
+  },
+  "confirmEmail": {
+    "title": "El. pašto patvirtinimas",
+    "success": "Jūsų el. paštas patvirtintas. Dabar galite juo prisijungti.",
+    "error": "Ši patvirtinimo nuoroda negalioja arba nebegalioja. Pabandykite susieti el. paštą iš naujo.",
+    "invalid": "Patvirtinimo nuorodoje trūksta žetono.",
+    "go_settings": "Eiti į nustatymus",
+    "go_login": "Eiti į prisijungimą"
   }
 }

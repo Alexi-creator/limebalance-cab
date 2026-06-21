@@ -395,5 +395,13 @@
     "connect_text": "Dodawaj przychody i wydatki bezpośrednio w Telegramie — synchronizują się z tym panelem. Połącz bota ze swoim kontem, aby Cię rozpoznawał.",
     "linking": "Łączenie…",
     "dont_know_bot": "Nie znasz bota?"
+  },
+  "confirmEmail": {
+    "title": "Potwierdzenie e-maila",
+    "success": "Twój e-mail został potwierdzony. Możesz się teraz nim zalogować.",
+    "error": "Ten link potwierdzający jest nieprawidłowy lub wygasł. Spróbuj ponownie powiązać swój e-mail.",
+    "invalid": "W linku potwierdzającym brakuje tokena.",
+    "go_settings": "Przejdź do ustawień",
+    "go_login": "Przejdź do logowania"
   }
 }

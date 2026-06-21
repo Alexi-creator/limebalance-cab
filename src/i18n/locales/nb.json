@@ -385,5 +385,13 @@
     "connect_text": "Legg til inntekter og utgifter direkte i Telegram — de synkroniseres med dette dashbordet. Koble boten til kontoen din så den gjenkjenner deg.",
     "linking": "Kobler til…",
     "dont_know_bot": "Kjenner du ikke boten?"
+  },
+  "confirmEmail": {
+    "title": "Bekreftelse av e-post",
+    "success": "E-posten din er bekreftet. Du kan nå logge inn med den.",
+    "error": "Denne bekreftelseslenken er ugyldig eller utløpt. Prøv å koble til e-posten din på nytt.",
+    "invalid": "Bekreftelseslenken mangler token.",
+    "go_settings": "Gå til innstillinger",
+    "go_login": "Gå til innlogging"
   }
 }

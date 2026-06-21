@@ -385,5 +385,13 @@
     "connect_text": "Tilføj indtægter og udgifter direkte i Telegram — de synkroniseres med dette dashboard. Knyt botten til din konto, så den genkender dig.",
     "linking": "Forbinder…",
     "dont_know_bot": "Kender du ikke botten?"
+  },
+  "confirmEmail": {
+    "title": "Bekræftelse af e-mail",
+    "success": "Din e-mail er blevet bekræftet. Du kan nu logge ind med den.",
+    "error": "Dette bekræftelseslink er ugyldigt eller udløbet. Prøv at tilknytte din e-mail igen.",
+    "invalid": "Bekræftelseslinket mangler sit token.",
+    "go_settings": "Gå til indstillinger",
+    "go_login": "Gå til login"
   }
 }

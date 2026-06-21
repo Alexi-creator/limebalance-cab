@@ -385,5 +385,13 @@
     "connect_text": "Lägg till inkomster och utgifter direkt i Telegram — de synkroniseras med den här panelen. Koppla boten till ditt konto så att den känner igen dig.",
     "linking": "Ansluter…",
     "dont_know_bot": "Känner du inte till boten?"
+  },
+  "confirmEmail": {
+    "title": "Bekräftelse av e-post",
+    "success": "Din e-postadress har bekräftats. Du kan nu logga in med den.",
+    "error": "Den här bekräftelselänken är ogiltig eller har upphört att gälla. Försök länka din e-postadress igen.",
+    "invalid": "Bekräftelselänken saknar sin token.",
+    "go_settings": "Gå till inställningar",
+    "go_login": "Gå till inloggning"
   }
 }

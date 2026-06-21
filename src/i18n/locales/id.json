@@ -375,5 +375,13 @@
     "connect_text": "Tambahkan pemasukan dan pengeluaran langsung di Telegram — semuanya tersinkron dengan dasbor ini. Hubungkan bot ke akun Anda agar mengenali Anda.",
     "linking": "Menghubungkan…",
     "dont_know_bot": "Tidak kenal botnya?"
+  },
+  "confirmEmail": {
+    "title": "Konfirmasi email",
+    "success": "Email Anda telah dikonfirmasi. Anda sekarang dapat masuk dengannya.",
+    "error": "Tautan konfirmasi ini tidak valid atau telah kedaluwarsa. Coba tautkan email Anda lagi.",
+    "invalid": "Tautan konfirmasi tidak memiliki token.",
+    "go_settings": "Ke pengaturan",
+    "go_login": "Ke halaman masuk"
   }
 }

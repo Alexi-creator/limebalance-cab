@@ -395,5 +395,13 @@
     "connect_text": "Dodajte prihode i rashode izravno u Telegramu — sinkroniziraju se s ovom pločom. Povežite bota sa svojim računom da vas prepozna.",
     "linking": "Povezivanje…",
     "dont_know_bot": "Ne znate bota?"
+  },
+  "confirmEmail": {
+    "title": "Potvrda e-pošte",
+    "success": "Vaša e-pošta je potvrđena. Sada se možete prijaviti pomoću nje.",
+    "error": "Ova poveznica za potvrdu nevažeća je ili je istekla. Pokušajte ponovno povezati svoju e-poštu.",
+    "invalid": "Poveznici za potvrdu nedostaje token.",
+    "go_settings": "Idi na postavke",
+    "go_login": "Idi na prijavu"
   }
 }

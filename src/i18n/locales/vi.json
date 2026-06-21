@@ -375,5 +375,13 @@
     "connect_text": "Thêm thu nhập và chi tiêu trực tiếp trong Telegram — chúng đồng bộ với bảng điều khiển này. Liên kết bot với tài khoản của bạn để nó nhận ra bạn.",
     "linking": "Đang kết nối…",
     "dont_know_bot": "Không biết bot?"
+  },
+  "confirmEmail": {
+    "title": "Xác nhận email",
+    "success": "Email của bạn đã được xác nhận. Giờ đây bạn có thể đăng nhập bằng email này.",
+    "error": "Liên kết xác nhận này không hợp lệ hoặc đã hết hạn. Hãy thử liên kết email của bạn lại.",
+    "invalid": "Liên kết xác nhận thiếu mã token.",
+    "go_settings": "Đến phần cài đặt",
+    "go_login": "Đến trang đăng nhập"
   }
 }

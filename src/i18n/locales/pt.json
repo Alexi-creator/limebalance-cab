@@ -385,5 +385,13 @@
     "connect_text": "Adicione receitas e despesas direto no Telegram — elas sincronizam com este painel. Vincule o bot à sua conta para que ele reconheça você.",
     "linking": "Conectando…",
     "dont_know_bot": "Não conhece o bot?"
+  },
+  "confirmEmail": {
+    "title": "Confirmação de e-mail",
+    "success": "O seu e-mail foi confirmado. Já pode iniciar sessão com ele.",
+    "error": "Este link de confirmação é inválido ou expirou. Tente vincular o seu e-mail novamente.",
+    "invalid": "Falta o token no link de confirmação.",
+    "go_settings": "Ir para as definições",
+    "go_login": "Ir para o início de sessão"
   }
 }

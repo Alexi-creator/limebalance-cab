@@ -395,5 +395,13 @@
     "connect_text": "Přidávejte příjmy a výdaje přímo v Telegramu — synchronizují se s tímto panelem. Propojte bota se svým účtem, aby vás poznal.",
     "linking": "Připojování…",
     "dont_know_bot": "Neznáte bota?"
+  },
+  "confirmEmail": {
+    "title": "Potvrzení e-mailu",
+    "success": "Váš e-mail byl potvrzen. Nyní se jím můžete přihlásit.",
+    "error": "Tento potvrzovací odkaz je neplatný nebo vypršel. Zkuste e-mail propojit znovu.",
+    "invalid": "V potvrzovacím odkazu chybí token.",
+    "go_settings": "Přejít do nastavení",
+    "go_login": "Přejít na přihlášení"
   }
 }

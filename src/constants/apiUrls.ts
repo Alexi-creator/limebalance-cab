@@ -12,6 +12,7 @@ export const API_URLS = {
     logout: `${API_URL}/auth/logout`,
     me: `${API_URL}/auth/me`,
     credentials: `${API_URL}/auth/me/credentials`,
+    confirmEmail: `${API_URL}/auth/confirm-email`,
     linkGoogle: `${API_URL}/auth/link/google`,
     linkTelegram: `${API_URL}/auth/link/telegram`,
   },

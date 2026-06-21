@@ -76,6 +76,15 @@ export function setCredentials(payload: CredentialsPayload): Promise<User> {
   })
 }
 
+// confirm email linking for an account created via Telegram: consumes the token from the email
+// and the backend writes the pending email+password onto the account. Public endpoint — no auth.
+export function confirmEmail(token: string): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.confirmEmail, {
+    method: HttpMethods.POST,
+    body: JSON.stringify({ token }),
+  })
+}
+
 export async function logout(): Promise<void> {
   await request(API_URLS.auth.logout, { method: HttpMethods.POST })
 }

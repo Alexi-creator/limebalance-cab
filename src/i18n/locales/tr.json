@@ -385,5 +385,13 @@
     "connect_text": "Gelir ve giderleri doğrudan Telegram'da ekleyin — bu panoyla senkronize olur. Sizi tanıması için botu hesabınıza bağlayın.",
     "linking": "Bağlanıyor…",
     "dont_know_bot": "Botu tanımıyor musunuz?"
+  },
+  "confirmEmail": {
+    "title": "E-posta onayı",
+    "success": "E-postanız onaylandı. Artık onunla giriş yapabilirsiniz.",
+    "error": "Bu onay bağlantısı geçersiz veya süresi dolmuş. E-postanızı yeniden bağlamayı deneyin.",
+    "invalid": "Onay bağlantısında belirteç eksik.",
+    "go_settings": "Ayarlara git",
+    "go_login": "Girişe git"
   }
 }

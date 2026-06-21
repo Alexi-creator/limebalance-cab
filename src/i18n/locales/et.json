@@ -385,5 +385,13 @@
     "connect_text": "Lisa tulud ja kulud otse Telegramis — need sünkroonitakse selle töölauaga. Ühenda bot oma kontoga, et see sind tunneks.",
     "linking": "Ühendamine…",
     "dont_know_bot": "Ei tunne botti?"
+  },
+  "confirmEmail": {
+    "title": "E-posti kinnitamine",
+    "success": "Teie e-post on kinnitatud. Nüüd saate sellega sisse logida.",
+    "error": "See kinnituslink on kehtetu või aegunud. Proovige oma e-post uuesti siduda.",
+    "invalid": "Kinnituslingil puudub luba (token).",
+    "go_settings": "Ava seaded",
+    "go_login": "Ava sisselogimine"
   }
 }

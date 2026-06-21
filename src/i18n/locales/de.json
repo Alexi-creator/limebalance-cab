@@ -385,5 +385,13 @@
     "connect_text": "Fügen Sie Einnahmen und Ausgaben direkt in Telegram hinzu — sie werden mit diesem Dashboard synchronisiert. Verbinden Sie den Bot mit Ihrem Konto, damit er Sie erkennt.",
     "linking": "Wird verbunden…",
     "dont_know_bot": "Kennen Sie den Bot nicht?"
+  },
+  "confirmEmail": {
+    "title": "E-Mail-Bestätigung",
+    "success": "Deine E-Mail wurde bestätigt. Du kannst dich jetzt damit anmelden.",
+    "error": "Dieser Bestätigungslink ist ungültig oder abgelaufen. Versuche, deine E-Mail erneut zu verknüpfen.",
+    "invalid": "Im Bestätigungslink fehlt der Token.",
+    "go_settings": "Zu den Einstellungen",
+    "go_login": "Zur Anmeldung"
   }
 }

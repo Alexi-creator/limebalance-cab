@@ -395,5 +395,13 @@
     "connect_text": "Pievienojiet ieņēmumus un izdevumus tieši Telegram — tie sinhronizējas ar šo paneli. Saistiet botu ar savu kontu, lai tas jūs atpazītu.",
     "linking": "Savieno…",
     "dont_know_bot": "Nepazīstat botu?"
+  },
+  "confirmEmail": {
+    "title": "E-pasta apstiprināšana",
+    "success": "Jūsu e-pasts ir apstiprināts. Tagad varat ar to pieteikties.",
+    "error": "Šī apstiprinājuma saite nav derīga vai ir beigusies. Mēģiniet vēlreiz piesaistīt savu e-pastu.",
+    "invalid": "Apstiprinājuma saitei trūkst pilnvaras (token).",
+    "go_settings": "Doties uz iestatījumiem",
+    "go_login": "Doties uz pieteikšanos"
   }
 }

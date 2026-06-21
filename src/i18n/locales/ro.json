@@ -395,5 +395,13 @@
     "connect_text": "Adaugă venituri și cheltuieli direct în Telegram — se sincronizează cu acest panou. Conectează botul la contul tău ca să te recunoască.",
     "linking": "Se conectează…",
     "dont_know_bot": "Nu cunoști botul?"
+  },
+  "confirmEmail": {
+    "title": "Confirmarea e-mailului",
+    "success": "E-mailul tău a fost confirmat. Acum te poți conecta cu el.",
+    "error": "Acest link de confirmare este invalid sau a expirat. Încearcă să îți reasociezi e-mailul.",
+    "invalid": "Linkului de confirmare îi lipsește tokenul.",
+    "go_settings": "Mergi la setări",
+    "go_login": "Mergi la autentificare"
   }
 }

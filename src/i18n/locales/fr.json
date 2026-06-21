@@ -385,5 +385,13 @@
     "connect_text": "Ajoutez vos revenus et dépenses directement dans Telegram — ils se synchronisent avec ce tableau de bord. Liez le bot à votre compte pour qu'il vous reconnaisse.",
     "linking": "Connexion…",
     "dont_know_bot": "Vous ne connaissez pas le bot ?"
+  },
+  "confirmEmail": {
+    "title": "Confirmation de l'e-mail",
+    "success": "Votre e-mail a été confirmé. Vous pouvez désormais vous connecter avec.",
+    "error": "Ce lien de confirmation est invalide ou a expiré. Essayez de lier à nouveau votre e-mail.",
+    "invalid": "Le jeton est absent du lien de confirmation.",
+    "go_settings": "Aller aux paramètres",
+    "go_login": "Aller à la connexion"
   }
 }

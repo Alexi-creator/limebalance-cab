@@ -385,5 +385,13 @@
     "connect_text": "Añade ingresos y gastos directamente en Telegram: se sincronizan con este panel. Vincula el bot a tu cuenta para que te reconozca.",
     "linking": "Conectando…",
     "dont_know_bot": "¿No conoces el bot?"
+  },
+  "confirmEmail": {
+    "title": "Confirmación de correo",
+    "success": "Tu correo ha sido confirmado. Ya puedes iniciar sesión con él.",
+    "error": "Este enlace de confirmación no es válido o ha caducado. Intenta vincular tu correo de nuevo.",
+    "invalid": "Al enlace de confirmación le falta el token.",
+    "go_settings": "Ir a ajustes",
+    "go_login": "Ir a iniciar sesión"
   }
 }
