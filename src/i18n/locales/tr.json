@@ -77,6 +77,7 @@
     "email_label": "E-posta",
     "email_description": "Hesabınıza bağlı e-posta",
     "email_add_description": "Hesabınıza bir e-posta ekleyin",
+    "email_pending_description": "Onay bekleniyor. Bu adrese gönderdiğimiz e-postadaki bağlantıyı izleyin.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Geçerli bir e-posta girin",
     "name_label": "Ad",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Telegram ile giriş yaptınız. Hesabınıza erişimi kaybetmemek için ayarlardan bir e-posta ve şifre ekleyin.",
+    "account_confirm_email": "{{email}} adresine gönderdiğimiz bağlantı üzerinden e-postanızı onaylayın.",
     "account_go_settings": "Ayarlara git",
     "telegram_connect_text": "Bir Telegram botumuz var — gelir ve giderleri doğrudan sohbette ekleyin, burada görünecekler.",
     "telegram_connect_button": "Bağla"

@@ -77,6 +77,7 @@
     "email_label": "อีเมล",
     "email_description": "อีเมลที่เชื่อมกับบัญชีของคุณ",
     "email_add_description": "เพิ่มอีเมลในบัญชีของคุณ",
+    "email_pending_description": "รอการยืนยัน โปรดคลิกลิงก์ในอีเมลที่เราส่งไปยังที่อยู่นี้",
     "email_placeholder": "you@example.com",
     "email_invalid": "ป้อนอีเมลที่ถูกต้อง",
     "name_label": "ชื่อ",
@@ -177,6 +178,7 @@
   },
   "alerts": {
     "account_needs_email": "คุณเข้าสู่ระบบผ่าน Telegram เพิ่มอีเมลและรหัสผ่านในการตั้งค่าเพื่อไม่ให้สูญเสียการเข้าถึงบัญชีของคุณ",
+    "account_confirm_email": "ยืนยันอีเมล {{email}} ผ่านลิงก์ที่เราส่งไปยังที่อยู่นั้น",
     "account_go_settings": "ไปที่การตั้งค่า",
     "telegram_connect_text": "เรามีบอท Telegram — เพิ่มรายรับและรายจ่ายโดยตรงในแชต แล้วจะปรากฏที่นี่",
     "telegram_connect_button": "เชื่อมต่อ"

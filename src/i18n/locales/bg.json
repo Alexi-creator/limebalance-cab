@@ -77,6 +77,7 @@
     "email_label": "Имейл",
     "email_description": "Имейлът, свързан с акаунта ви",
     "email_add_description": "Добавете имейл към акаунта си",
+    "email_pending_description": "Очаква потвърждение. Последвайте връзката от писмото, изпратено на този адрес.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Въведете валиден имейл",
     "name_label": "Име",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Влязохте чрез Telegram. Добавете имейл и парола в настройките, за да не загубите достъп до акаунта си.",
+    "account_confirm_email": "Потвърдете имейла {{email}} чрез връзката, която изпратихме на него.",
     "account_go_settings": "Към настройките",
     "telegram_connect_text": "Имаме Telegram бот — добавяйте приходи и разходи директно в чата, те ще се появят тук.",
     "telegram_connect_button": "Свържи"

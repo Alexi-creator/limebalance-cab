@@ -7,6 +7,8 @@ import { getStub } from "../../src/api/stubs"
 export interface MockApiOptions {
   /** When false, `/auth/me` responds 401 so the app treats the user as a guest. */
   authenticated?: boolean
+  /** Override the user returned by `/auth/me` for an authenticated session. Defaults to `MOCK_USER`. */
+  user?: Record<string, unknown>
 }
 
 /** The user returned for an authenticated session (matches stubs.buildMe). */
@@ -16,6 +18,25 @@ export const MOCK_USER = {
   currency: "USD",
   timezone: "America/New_York",
   subscription: "pro",
+  hasPassword: true,
+}
+
+/** A Telegram user without a linked email/password — exercises the email-linking flow. */
+export const MOCK_USER_NO_EMAIL = {
+  name: "Alex Morgan",
+  currency: "USD",
+  timezone: "America/New_York",
+  telegramId: "123456789",
+  hasPassword: false,
+}
+
+/** A user whose email is submitted but not yet confirmed — lives in `pendingEmail`. */
+export const MOCK_USER_PENDING_EMAIL = {
+  name: "Alex Morgan",
+  currency: "USD",
+  timezone: "America/New_York",
+  telegramId: "123456789",
+  pendingEmail: "alex@example.com",
   hasPassword: true,
 }
 
@@ -29,7 +50,7 @@ export const MOCK_USER = {
  * Call this BEFORE `page.goto(...)` so the first auth check is already mocked.
  */
 export async function mockApi(page: Page, options: MockApiOptions = {}): Promise<void> {
-  const { authenticated = true } = options
+  const { authenticated = true, user = MOCK_USER } = options
 
   await blockThirdParty(page)
 
@@ -51,7 +72,7 @@ export async function mockApi(page: Page, options: MockApiOptions = {}): Promise
           body: JSON.stringify({ message: "Unauthorized" }),
         })
       }
-      return route.fulfill({ json: MOCK_USER })
+      return route.fulfill({ json: user })
     }
 
     if (method === "GET") {

@@ -11,6 +11,13 @@ export const userSchema = z.object({
   subscription: z.string().nullish(),
   /** Whether a password is set. Users who signed in via Google/Telegram may not have one. */
   hasPassword: z.boolean().nullish(),
+  /**
+   * Email awaiting confirmation. The backend writes `email` only after the user follows the
+   * link from the confirmation message; until then the submitted address lives in `pendingEmail`.
+   * So the three states are: no email at all (`email` and `pendingEmail` both null), awaiting
+   * confirmation (`email` null, `pendingEmail` set), confirmed (`email` set).
+   */
+  pendingEmail: z.email().nullish(),
 })
 
 export type User = z.infer<typeof userSchema>

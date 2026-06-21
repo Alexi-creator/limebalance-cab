@@ -77,6 +77,7 @@
     "email_label": "邮箱",
     "email_description": "与您的账户关联的邮箱",
     "email_add_description": "为您的账户添加邮箱",
+    "email_pending_description": "等待确认。请点击我们发送到此地址的邮件中的链接。",
     "email_placeholder": "you@example.com",
     "email_invalid": "请输入有效的邮箱",
     "name_label": "姓名",
@@ -177,6 +178,7 @@
   },
   "alerts": {
     "account_needs_email": "您通过 Telegram 登录。请在设置中添加邮箱和密码，以免失去对账户的访问权限。",
+    "account_confirm_email": "请通过我们发送到 {{email}} 的链接确认您的邮箱。",
     "account_go_settings": "前往设置",
     "telegram_connect_text": "我们有一个 Telegram 机器人——直接在聊天中添加收入和支出，它们会显示在这里。",
     "telegram_connect_button": "连接"

@@ -6,18 +6,23 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 /**
- * Warning banner for users who signed in via Telegram without a linked email.
- * Shown only if `telegramId` is set and `email` is missing.
- * Takes no props — reads state from `useAuthStore`.
+ * Warning banner about the account email. Two states:
+ * - email setup: a Telegram user with no email at all (`email` and `pendingEmail` both empty) —
+ *   prompts to add email + password;
+ * - email confirm: an email is awaiting confirmation (`pendingEmail` set, `email` still empty) —
+ *   prompts to confirm it via the link sent to that address.
+ * A confirmed email (`email` set) shows nothing. Takes no props — reads state from `useAuthStore`.
  */
 export function AccountAlert() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
 
-  // Stub condition: TG user without email/password
-  const needsEmailSetup = !!(user?.telegramId && !user?.email)
+  // TG user without any email — offer to add one
+  const needsEmailSetup = !!(user?.telegramId && !user?.email && !user?.pendingEmail)
+  // email submitted but not yet confirmed — the address lives in pendingEmail
+  const needsEmailConfirm = !!(!user?.email && user?.pendingEmail)
 
-  if (!needsEmailSetup) return null
+  if (!needsEmailSetup && !needsEmailConfirm) return null
 
   return (
     <Alert
@@ -28,16 +33,22 @@ export function AccountAlert() {
       styles={{ message: { width: "100%" } }}
     >
       <Group justify="space-between" wrap="wrap" gap="xs">
-        <Text size="sm">{t("alerts.account_needs_email")}</Text>
-        <Button
-          component={Link}
-          to={RouteNames.SettingsSecurity}
-          size="xs"
-          color="yellow"
-          variant="filled"
-        >
-          {t("alerts.account_go_settings")}
-        </Button>
+        <Text size="sm">
+          {needsEmailSetup
+            ? t("alerts.account_needs_email")
+            : t("alerts.account_confirm_email", { email: user?.pendingEmail })}
+        </Text>
+        {needsEmailSetup && (
+          <Button
+            component={Link}
+            to={RouteNames.SettingsSecurity}
+            size="xs"
+            color="yellow"
+            variant="filled"
+          >
+            {t("alerts.account_go_settings")}
+          </Button>
+        )}
       </Group>
     </Alert>
   )

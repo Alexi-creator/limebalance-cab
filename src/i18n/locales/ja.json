@@ -77,6 +77,7 @@
     "email_label": "メール",
     "email_description": "アカウントに紐づくメール",
     "email_add_description": "アカウントにメールを追加",
+    "email_pending_description": "確認待ちです。このアドレスに送信したメール内のリンクを開いてください。",
     "email_placeholder": "you@example.com",
     "email_invalid": "有効なメールアドレスを入力",
     "name_label": "名前",
@@ -177,6 +178,7 @@
   },
   "alerts": {
     "account_needs_email": "Telegram でログインしました。アカウントへのアクセスを失わないよう、設定でメールとパスワードを追加してください。",
+    "account_confirm_email": "メールアドレス {{email}} に送信したリンクから確認してください。",
     "account_go_settings": "設定へ移動",
     "telegram_connect_text": "Telegram ボットがあります。チャットで直接収入と支出を追加すると、ここに表示されます。",
     "telegram_connect_button": "接続"

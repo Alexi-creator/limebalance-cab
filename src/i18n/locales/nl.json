@@ -77,6 +77,7 @@
     "email_label": "E-mail",
     "email_description": "Het e-mailadres dat aan je account is gekoppeld",
     "email_add_description": "Voeg een e-mailadres toe aan je account",
+    "email_pending_description": "Wacht op bevestiging. Volg de link in de e-mail die we naar dit adres hebben gestuurd.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Voer een geldig e-mailadres in",
     "name_label": "Naam",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Je bent ingelogd via Telegram. Voeg een e-mailadres en wachtwoord toe in de instellingen om de toegang tot je account niet te verliezen.",
+    "account_confirm_email": "Bevestig het e-mailadres {{email}} via de link die we ernaartoe hebben gestuurd.",
     "account_go_settings": "Naar instellingen",
     "telegram_connect_text": "We hebben een Telegram-bot — voeg inkomsten en uitgaven direct in de chat toe, ze verschijnen hier.",
     "telegram_connect_button": "Verbinden"

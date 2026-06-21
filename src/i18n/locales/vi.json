@@ -77,6 +77,7 @@
     "email_label": "Email",
     "email_description": "Email liên kết với tài khoản của bạn",
     "email_add_description": "Thêm email vào tài khoản của bạn",
+    "email_pending_description": "Đang chờ xác nhận. Hãy nhấp vào liên kết trong email chúng tôi đã gửi đến địa chỉ này.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Nhập email hợp lệ",
     "name_label": "Tên",
@@ -177,6 +178,7 @@
   },
   "alerts": {
     "account_needs_email": "Bạn đã đăng nhập qua Telegram. Hãy thêm email và mật khẩu trong cài đặt để không mất quyền truy cập tài khoản.",
+    "account_confirm_email": "Xác nhận email {{email}} qua liên kết chúng tôi đã gửi đến địa chỉ đó.",
     "account_go_settings": "Đến cài đặt",
     "telegram_connect_text": "Chúng tôi có bot Telegram — thêm thu nhập và chi tiêu trực tiếp trong cuộc trò chuyện, chúng sẽ hiện ở đây.",
     "telegram_connect_button": "Kết nối"

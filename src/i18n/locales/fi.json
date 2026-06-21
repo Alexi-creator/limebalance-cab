@@ -77,6 +77,7 @@
     "email_label": "Sähköposti",
     "email_description": "Tiliisi liitetty sähköposti",
     "email_add_description": "Lisää sähköposti tiliisi",
+    "email_pending_description": "Odottaa vahvistusta. Seuraa tähän osoitteeseen lähettämämme sähköpostin linkkiä.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Syötä kelvollinen sähköposti",
     "name_label": "Nimi",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Kirjauduit Telegramilla. Lisää sähköposti ja salasana asetuksiin, jotta et menetä pääsyä tiliisi.",
+    "account_confirm_email": "Vahvista sähköposti {{email}} siihen lähettämämme linkin kautta.",
     "account_go_settings": "Siirry asetuksiin",
     "telegram_connect_text": "Meillä on Telegram-botti — lisää tulot ja menot suoraan chatissa, ne näkyvät täällä.",
     "telegram_connect_button": "Yhdistä"

@@ -77,6 +77,7 @@
     "email_label": "E-mail",
     "email_description": "A fiókodhoz kapcsolt e-mail",
     "email_add_description": "Adj hozzá e-mailt a fiókodhoz",
+    "email_pending_description": "Megerősítésre vár. Kövesse az erre a címre küldött e-mailben lévő hivatkozást.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Adj meg érvényes e-mailt",
     "name_label": "Név",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Telegramon keresztül jelentkeztél be. Adj hozzá e-mailt és jelszót a beállításokban, hogy ne veszítsd el a hozzáférést a fiókodhoz.",
+    "account_confirm_email": "Erősítse meg a(z) {{email}} e-mail-címet az oda küldött hivatkozással.",
     "account_go_settings": "Ugrás a beállításokhoz",
     "telegram_connect_text": "Van Telegram botunk — add hozzá a bevételeket és kiadásokat közvetlenül a csevegésben, itt fognak megjelenni.",
     "telegram_connect_button": "Csatlakoztatás"

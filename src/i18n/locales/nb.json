@@ -77,6 +77,7 @@
     "email_label": "E-post",
     "email_description": "E-posten som er knyttet til kontoen din",
     "email_add_description": "Legg til en e-post på kontoen din",
+    "email_pending_description": "Venter på bekreftelse. Følg lenken i e-posten vi sendte til denne adressen.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Skriv inn en gyldig e-post",
     "name_label": "Navn",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Du logget inn via Telegram. Legg til e-post og passord i innstillingene så du ikke mister tilgangen til kontoen din.",
+    "account_confirm_email": "Bekreft e-posten {{email}} via lenken vi sendte til den.",
     "account_go_settings": "Gå til innstillinger",
     "telegram_connect_text": "Vi har en Telegram-bot — legg til inntekter og utgifter direkte i chatten, de vises her.",
     "telegram_connect_button": "Koble til"

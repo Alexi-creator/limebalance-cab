@@ -77,6 +77,7 @@
     "email_label": "E-post",
     "email_description": "Sinu kontoga seotud e-post",
     "email_add_description": "Lisa oma kontole e-post",
+    "email_pending_description": "Ootab kinnitamist. Järgige sellele aadressile saadetud e-kirja linki.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Sisesta kehtiv e-post",
     "name_label": "Nimi",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Logisid sisse Telegrami kaudu. Lisa seadetes e-post ja parool, et mitte kaotada juurdepääsu oma kontole.",
+    "account_confirm_email": "Kinnitage e-post {{email}} lingi kaudu, mille sellele saatsime.",
     "account_go_settings": "Mine seadetesse",
     "telegram_connect_text": "Meil on Telegrami bot — lisa tulud ja kulud otse vestluses, need ilmuvad siia.",
     "telegram_connect_button": "Ühenda"

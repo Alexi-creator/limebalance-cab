@@ -77,6 +77,7 @@
     "email_label": "이메일",
     "email_description": "계정에 연결된 이메일",
     "email_add_description": "계정에 이메일 추가",
+    "email_pending_description": "확인 대기 중입니다. 이 주소로 보낸 이메일의 링크를 따라가세요.",
     "email_placeholder": "you@example.com",
     "email_invalid": "유효한 이메일을 입력하세요",
     "name_label": "이름",
@@ -177,6 +178,7 @@
   },
   "alerts": {
     "account_needs_email": "Telegram으로 로그인했습니다. 계정 접근 권한을 잃지 않도록 설정에서 이메일과 비밀번호를 추가하세요.",
+    "account_confirm_email": "{{email}} 주소로 보낸 링크를 통해 이메일을 확인해 주세요.",
     "account_go_settings": "설정으로 이동",
     "telegram_connect_text": "Telegram 봇이 있습니다 — 채팅에서 바로 수입과 지출을 추가하면 여기에 표시됩니다.",
     "telegram_connect_button": "연결"

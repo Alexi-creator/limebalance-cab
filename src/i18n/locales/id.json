@@ -77,6 +77,7 @@
     "email_label": "Email",
     "email_description": "Email yang tertaut ke akun Anda",
     "email_add_description": "Tambahkan email ke akun Anda",
+    "email_pending_description": "Menunggu konfirmasi. Ikuti tautan di email yang kami kirim ke alamat ini.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Masukkan email yang valid",
     "name_label": "Nama",
@@ -177,6 +178,7 @@
   },
   "alerts": {
     "account_needs_email": "Anda masuk lewat Telegram. Tambahkan email dan kata sandi di pengaturan agar tidak kehilangan akses ke akun Anda.",
+    "account_confirm_email": "Konfirmasikan email {{email}} melalui tautan yang kami kirim ke alamat itu.",
     "account_go_settings": "Buka pengaturan",
     "telegram_connect_text": "Kami punya bot Telegram — tambahkan pemasukan dan pengeluaran langsung di obrolan, akan muncul di sini.",
     "telegram_connect_button": "Hubungkan"

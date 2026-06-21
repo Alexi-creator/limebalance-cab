@@ -77,6 +77,7 @@
     "email_label": "Email",
     "email_description": "Το email που συνδέεται με τον λογαριασμό σας",
     "email_add_description": "Προσθέστε email στον λογαριασμό σας",
+    "email_pending_description": "Εκκρεμεί επιβεβαίωση. Ακολουθήστε τον σύνδεσμο στο email που στείλαμε σε αυτή τη διεύθυνση.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Εισαγάγετε έγκυρο email",
     "name_label": "Όνομα",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Συνδεθήκατε μέσω Telegram. Προσθέστε email και κωδικό στις ρυθμίσεις για να μη χάσετε την πρόσβαση στον λογαριασμό σας.",
+    "account_confirm_email": "Επιβεβαιώστε το email {{email}} μέσω του συνδέσμου που στείλαμε σε αυτό.",
     "account_go_settings": "Μετάβαση στις ρυθμίσεις",
     "telegram_connect_text": "Έχουμε bot στο Telegram — προσθέστε έσοδα και έξοδα απευθείας στη συνομιλία, θα εμφανιστούν εδώ.",
     "telegram_connect_button": "Σύνδεση"

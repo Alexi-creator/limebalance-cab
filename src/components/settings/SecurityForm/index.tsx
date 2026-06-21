@@ -28,6 +28,9 @@ export function SecurityForm() {
   const setUser = useAuthStore((s) => s.setUser)
 
   const hasEmail = !!user?.email
+  const pendingEmail = user?.pendingEmail ?? ""
+  // no email at all (and none awaiting confirmation) — this is the initial email-linking flow
+  const canLinkEmail = !hasEmail && !pendingEmail
   // whether a password already exists; for old responses without the field, infer from email presence (previous behavior)
   const hasPassword = user?.hasPassword ?? hasEmail
   const [email, setEmail] = useState("")
@@ -40,40 +43,39 @@ export function SecurityForm() {
 
   // when linking an email the password is always required; when changing — only if input has started
   const passwordTouched = password !== "" || confirm !== ""
-  const passwordRequired = !hasEmail || passwordTouched
+  const passwordRequired = canLinkEmail || passwordTouched
   // the current password is needed only when changing an already set password
   const currentPasswordRequired = hasPassword && passwordTouched
 
   // we show field errors only after input, so an empty form is not highlighted
-  const emailFieldError = !hasEmail && trimmedEmail !== "" && !emailValid
+  const emailFieldError = canLinkEmail && trimmedEmail !== "" && !emailValid
   const passwordFieldError = passwordRequired && password !== "" && password.length < MIN_PASSWORD
   const confirmFieldError = passwordRequired && confirm !== "" && confirm !== password
 
-  const emailOk = hasEmail || emailValid
+  const emailOk = !canLinkEmail || emailValid
   const passwordOk = !passwordRequired || (password.length >= MIN_PASSWORD && confirm === password)
   const currentPasswordOk = !currentPasswordRequired || currentPassword !== ""
-  // there is something to save: either set the email or change the password
-  const dirty = !hasEmail || passwordTouched
+  // there is something to save: either link the email or change the password
+  const dirty = canLinkEmail || passwordTouched
   const canSave = dirty && emailOk && passwordOk && currentPasswordOk
 
   const mutation = useMutation({
     mutationFn: () =>
       setCredentials({
         // send the email only on initial linking; the current password — only if it is already set
-        ...(hasEmail ? {} : { email: trimmedEmail }),
+        ...(canLinkEmail ? { email: trimmedEmail } : {}),
         ...(hasPassword ? { currentPassword } : {}),
         password,
       }),
     onSuccess: (updated) => {
       // Merge, do not replace: the response may be partial and wipe the name/currency.
-      // If we set the email — force it (the server value takes priority,
-      // but if the response did not return it, use the sent one) so hasEmail becomes true
-      // and the email field gets locked. The password was just set → hasPassword: true,
-      // so the form then requires the current password and shows that field.
+      // On initial linking the email goes to `pendingEmail` (the backend sets `email` only after
+      // the user confirms via the emailed link) — force it from the response or the sent value so
+      // the banner switches to "confirm" mode. The password was just set → hasPassword: true.
       setUser({
         ...user,
         ...updated,
-        ...(hasEmail ? {} : { email: updated?.email ?? trimmedEmail }),
+        ...(canLinkEmail ? { pendingEmail: updated?.pendingEmail ?? trimmedEmail } : {}),
         hasPassword: true,
       })
       setEmail("")
@@ -95,6 +97,16 @@ export function SecurityForm() {
           description={t("settings.email_description")}
           inputWrapperOrder={["label", "input", "description", "error"]}
           value={user?.email ?? ""}
+          readOnly
+          disabled
+        />
+      ) : pendingEmail ? (
+        // awaiting confirmation: show the pending address, locked, with a hint to confirm it
+        <TextInput
+          label={t("settings.email_label")}
+          description={t("settings.email_pending_description")}
+          inputWrapperOrder={["label", "input", "description", "error"]}
+          value={pendingEmail}
           readOnly
           disabled
         />

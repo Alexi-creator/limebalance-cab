@@ -77,6 +77,7 @@
     "email_label": "E-mail",
     "email_description": "L'e-mail lié à votre compte",
     "email_add_description": "Ajoutez un e-mail à votre compte",
+    "email_pending_description": "En attente de confirmation. Suivez le lien dans l'e-mail envoyé à cette adresse.",
     "email_placeholder": "you@example.com",
     "email_invalid": "Saisissez un e-mail valide",
     "name_label": "Nom",
@@ -179,6 +180,7 @@
   },
   "alerts": {
     "account_needs_email": "Vous vous êtes connecté via Telegram. Ajoutez un e-mail et un mot de passe dans les paramètres pour ne pas perdre l'accès à votre compte.",
+    "account_confirm_email": "Confirmez l'e-mail {{email}} via le lien que nous y avons envoyé.",
     "account_go_settings": "Aller aux paramètres",
     "telegram_connect_text": "Nous avons un bot Telegram — ajoutez vos revenus et dépenses directement dans le chat, ils apparaîtront ici.",
     "telegram_connect_button": "Connecter"
