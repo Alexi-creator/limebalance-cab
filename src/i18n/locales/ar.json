@@ -139,6 +139,20 @@
     "add_goal": "هدف",
     "add_goal_desc": "ادخار"
   },
+  "notifications": {
+    "mark_all_read": "تحديد الكل كمقروء",
+    "empty": "لا توجد إشعارات بعد",
+    "monthly_summary": {
+      "title": "ملخص الشهر",
+      "body": "{{month}}: الدخل {{income}}، المصروفات {{expense}}.",
+      "body_net": "{{month}}: الدخل {{income}}، المصروفات {{expense}}، المدّخر {{net}}.",
+      "top_category": "أهم فئة — {{category}}."
+    },
+    "goal_completed": {
+      "title": "تم تحقيق الهدف 🎉",
+      "body": "لقد ادّخرت ما يكفي لهدف «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "التفضيلات",
     "language": "اللغة",

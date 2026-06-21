@@ -135,6 +135,20 @@
     "add_goal": "Цел",
     "add_goal_desc": "спестявания"
   },
+  "notifications": {
+    "mark_all_read": "Маркирай всички като прочетени",
+    "empty": "Все още няма известия",
+    "monthly_summary": {
+      "title": "Месечен преглед",
+      "body": "{{month}}: приходи {{income}}, разходи {{expense}}.",
+      "body_net": "{{month}}: приходи {{income}}, разходи {{expense}}, спестени {{net}}.",
+      "top_category": "Топ категория — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Целта е постигната 🎉",
+      "body": "Спестихте за целта «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Предпочитания",
     "language": "Език",

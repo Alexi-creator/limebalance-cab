@@ -135,6 +135,20 @@
     "add_goal": "Objectif",
     "add_goal_desc": "épargne"
   },
+  "notifications": {
+    "mark_all_read": "Tout marquer comme lu",
+    "empty": "Aucune notification pour le moment",
+    "monthly_summary": {
+      "title": "Bilan du mois",
+      "body": "{{month}} : revenus {{income}}, dépenses {{expense}}.",
+      "body_net": "{{month}} : revenus {{income}}, dépenses {{expense}}, épargné {{net}}.",
+      "top_category": "Catégorie principale — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Objectif atteint 🎉",
+      "body": "Vous avez épargné pour l’objectif «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Préférences",
     "language": "Langue",

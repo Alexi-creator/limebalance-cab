@@ -31,8 +31,9 @@ export type GoalCompletedPayload = z.infer<typeof goalCompletedPayloadSchema>
 export const notificationSchema = z.object({
   id: z.string(),
   type: z.string(),
-  title: z.string(),
-  body: z.string(),
+  /** Server-rendered fallback text; may be null — never relied on when a `type` template exists. */
+  title: z.string().nullable(),
+  body: z.string().nullable(),
   payload: z.unknown().nullable(),
   isRead: z.boolean(),
   createdAt: z.coerce.date(),

@@ -135,6 +135,20 @@
     "add_goal": "Obiettivo",
     "add_goal_desc": "risparmio"
   },
+  "notifications": {
+    "mark_all_read": "Segna tutto come letto",
+    "empty": "Ancora nessuna notifica",
+    "monthly_summary": {
+      "title": "Riepilogo del mese",
+      "body": "{{month}}: entrate {{income}}, spese {{expense}}.",
+      "body_net": "{{month}}: entrate {{income}}, spese {{expense}}, risparmiato {{net}}.",
+      "top_category": "Categoria principale — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Obiettivo raggiunto 🎉",
+      "body": "Hai risparmiato per l’obiettivo «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Preferenze",
     "language": "Lingua",

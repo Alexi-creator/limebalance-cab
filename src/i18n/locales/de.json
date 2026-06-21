@@ -135,6 +135,20 @@
     "add_goal": "Ziel",
     "add_goal_desc": "Sparen"
   },
+  "notifications": {
+    "mark_all_read": "Alle als gelesen markieren",
+    "empty": "Noch keine Benachrichtigungen",
+    "monthly_summary": {
+      "title": "Monatsübersicht",
+      "body": "{{month}}: Einnahmen {{income}}, Ausgaben {{expense}}.",
+      "body_net": "{{month}}: Einnahmen {{income}}, Ausgaben {{expense}}, gespart {{net}}.",
+      "top_category": "Top-Kategorie — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Ziel erreicht 🎉",
+      "body": "Du hast für das Ziel «{{name}}» gespart."
+    }
+  },
   "sidebar": {
     "preferences": "Einstellungen",
     "language": "Sprache",

@@ -135,6 +135,20 @@
     "add_goal": "Στόχος",
     "add_goal_desc": "αποταμίευση"
   },
+  "notifications": {
+    "mark_all_read": "Σήμανση όλων ως αναγνωσμένων",
+    "empty": "Δεν υπάρχουν ειδοποιήσεις ακόμα",
+    "monthly_summary": {
+      "title": "Μηνιαία σύνοψη",
+      "body": "{{month}}: έσοδα {{income}}, έξοδα {{expense}}.",
+      "body_net": "{{month}}: έσοδα {{income}}, έξοδα {{expense}}, αποταμίευση {{net}}.",
+      "top_category": "Κορυφαία κατηγορία — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Ο στόχος επιτεύχθηκε 🎉",
+      "body": "Αποταμιεύσατε για τον στόχο «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Προτιμήσεις",
     "language": "Γλώσσα",

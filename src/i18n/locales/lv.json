@@ -136,6 +136,20 @@
     "add_goal": "Mērķis",
     "add_goal_desc": "uzkrājumi"
   },
+  "notifications": {
+    "mark_all_read": "Atzīmēt visus kā lasītus",
+    "empty": "Vēl nav paziņojumu",
+    "monthly_summary": {
+      "title": "Mēneša kopsavilkums",
+      "body": "{{month}}: ienākumi {{income}}, izdevumi {{expense}}.",
+      "body_net": "{{month}}: ienākumi {{income}}, izdevumi {{expense}}, uzkrāts {{net}}.",
+      "top_category": "Galvenā kategorija — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Mērķis sasniegts 🎉",
+      "body": "Jūs uzkrājāt mērķim «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Preferences",
     "language": "Valoda",

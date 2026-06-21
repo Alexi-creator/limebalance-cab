@@ -134,6 +134,20 @@
     "add_goal": "Tujuan",
     "add_goal_desc": "tabungan"
   },
+  "notifications": {
+    "mark_all_read": "Tandai semua sudah dibaca",
+    "empty": "Belum ada notifikasi",
+    "monthly_summary": {
+      "title": "Ringkasan bulanan",
+      "body": "{{month}}: pemasukan {{income}}, pengeluaran {{expense}}.",
+      "body_net": "{{month}}: pemasukan {{income}}, pengeluaran {{expense}}, ditabung {{net}}.",
+      "top_category": "Kategori teratas — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Target tercapai 🎉",
+      "body": "Kamu telah menabung untuk target «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Preferensi",
     "language": "Bahasa",

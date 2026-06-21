@@ -135,6 +135,20 @@
     "add_goal": "Eesmärk",
     "add_goal_desc": "säästmine"
   },
+  "notifications": {
+    "mark_all_read": "Märgi kõik loetuks",
+    "empty": "Teateid veel pole",
+    "monthly_summary": {
+      "title": "Kuu kokkuvõte",
+      "body": "{{month}}: tulu {{income}}, kulud {{expense}}.",
+      "body_net": "{{month}}: tulu {{income}}, kulud {{expense}}, säästetud {{net}}.",
+      "top_category": "Tippkategooria — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Eesmärk saavutatud 🎉",
+      "body": "Kogusid raha eesmärgiks «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Eelistused",
     "language": "Keel",

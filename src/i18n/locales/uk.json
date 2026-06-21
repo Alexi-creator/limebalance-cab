@@ -136,6 +136,20 @@
     "add_goal": "Ціль",
     "add_goal_desc": "скарбничка"
   },
+  "notifications": {
+    "mark_all_read": "Позначити все як прочитане",
+    "empty": "Сповіщень поки немає",
+    "monthly_summary": {
+      "title": "Підсумки місяця",
+      "body": "{{month}}: дохід {{income}}, витрати {{expense}}.",
+      "body_net": "{{month}}: дохід {{income}}, витрати {{expense}}, відкладено {{net}}.",
+      "top_category": "Топ-категорія — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Ціль досягнута 🎉",
+      "body": "Ви накопичили на ціль «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Налаштування",
     "language": "Мова",

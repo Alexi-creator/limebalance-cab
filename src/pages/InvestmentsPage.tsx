@@ -98,8 +98,20 @@ const WATCHLIST = [
 ]
 
 const ALERTS = [
-  { sym: "BTC", cond: "When the price ≥ $72 000", s: "active" as const, up: true, c: "green" as const },
-  { sym: "ETH", cond: "When the price ≤ $3 100", s: "active" as const, up: false, c: "red" as const },
+  {
+    sym: "BTC",
+    cond: "When the price ≥ $72 000",
+    s: "active" as const,
+    up: true,
+    c: "green" as const,
+  },
+  {
+    sym: "ETH",
+    cond: "When the price ≤ $3 100",
+    s: "active" as const,
+    up: false,
+    c: "red" as const,
+  },
   {
     sym: "SOL",
     cond: "24h change > 10%",

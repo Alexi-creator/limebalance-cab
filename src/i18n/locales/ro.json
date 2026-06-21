@@ -136,6 +136,20 @@
     "add_goal": "Obiectiv",
     "add_goal_desc": "economii"
   },
+  "notifications": {
+    "mark_all_read": "Marchează tot ca citit",
+    "empty": "Încă nu există notificări",
+    "monthly_summary": {
+      "title": "Rezumatul lunii",
+      "body": "{{month}}: venituri {{income}}, cheltuieli {{expense}}.",
+      "body_net": "{{month}}: venituri {{income}}, cheltuieli {{expense}}, economisit {{net}}.",
+      "top_category": "Categoria principală — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Obiectiv atins 🎉",
+      "body": "Ai economisit pentru obiectivul «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Preferințe",
     "language": "Limbă",

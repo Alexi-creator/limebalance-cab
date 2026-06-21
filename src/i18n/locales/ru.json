@@ -139,11 +139,15 @@
   "notifications": {
     "mark_all_read": "Прочитать все",
     "empty": "Уведомлений пока нет",
-    "summary": {
+    "monthly_summary": {
       "title": "Итоги месяца",
       "body": "{{month}}: доход {{income}}, расход {{expense}}.",
       "body_net": "{{month}}: доход {{income}}, расход {{expense}}, отложено {{net}}.",
       "top_category": "Топ-категория — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Цель достигнута 🎉",
+      "body": "Вы накопили на цель «{{name}}»."
     }
   },
   "sidebar": {

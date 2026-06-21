@@ -135,6 +135,20 @@
     "add_goal": "Doel",
     "add_goal_desc": "sparen"
   },
+  "notifications": {
+    "mark_all_read": "Alles als gelezen markeren",
+    "empty": "Nog geen meldingen",
+    "monthly_summary": {
+      "title": "Maandoverzicht",
+      "body": "{{month}}: inkomsten {{income}}, uitgaven {{expense}}.",
+      "body_net": "{{month}}: inkomsten {{income}}, uitgaven {{expense}}, gespaard {{net}}.",
+      "top_category": "Topcategorie — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Doel bereikt 🎉",
+      "body": "Je hebt gespaard voor het doel «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Voorkeuren",
     "language": "Taal",

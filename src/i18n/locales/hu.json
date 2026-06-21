@@ -135,6 +135,20 @@
     "add_goal": "Cél",
     "add_goal_desc": "megtakarítás"
   },
+  "notifications": {
+    "mark_all_read": "Összes megjelölése olvasottként",
+    "empty": "Még nincsenek értesítések",
+    "monthly_summary": {
+      "title": "Havi összegzés",
+      "body": "{{month}}: bevétel {{income}}, kiadás {{expense}}.",
+      "body_net": "{{month}}: bevétel {{income}}, kiadás {{expense}}, megtakarítva {{net}}.",
+      "top_category": "Top kategória — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Cél elérve 🎉",
+      "body": "Összegyűjtötted a «{{name}}» célra."
+    }
+  },
   "sidebar": {
     "preferences": "Beállítások",
     "language": "Nyelv",

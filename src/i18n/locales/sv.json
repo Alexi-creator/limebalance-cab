@@ -135,6 +135,20 @@
     "add_goal": "Mål",
     "add_goal_desc": "sparande"
   },
+  "notifications": {
+    "mark_all_read": "Markera alla som lästa",
+    "empty": "Inga aviseringar ännu",
+    "monthly_summary": {
+      "title": "Månadsöversikt",
+      "body": "{{month}}: inkomster {{income}}, utgifter {{expense}}.",
+      "body_net": "{{month}}: inkomster {{income}}, utgifter {{expense}}, sparat {{net}}.",
+      "top_category": "Toppkategori — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Mål uppnått 🎉",
+      "body": "Du har sparat ihop till målet «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Inställningar",
     "language": "Språk",

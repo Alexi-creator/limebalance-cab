@@ -137,6 +137,20 @@
     "add_goal": "יעד",
     "add_goal_desc": "חיסכון"
   },
+  "notifications": {
+    "mark_all_read": "סמן הכול כנקרא",
+    "empty": "אין התראות עדיין",
+    "monthly_summary": {
+      "title": "סיכום חודשי",
+      "body": "{{month}}: הכנסות {{income}}, הוצאות {{expense}}.",
+      "body_net": "{{month}}: הכנסות {{income}}, הוצאות {{expense}}, נחסך {{net}}.",
+      "top_category": "קטגוריה מובילה — {{category}}."
+    },
+    "goal_completed": {
+      "title": "המטרה הושגה 🎉",
+      "body": "חסכת למטרה «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "העדפות",
     "language": "שפה",

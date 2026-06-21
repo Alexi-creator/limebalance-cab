@@ -135,6 +135,20 @@
     "add_goal": "Objetivo",
     "add_goal_desc": "ahorro"
   },
+  "notifications": {
+    "mark_all_read": "Marcar todo como leído",
+    "empty": "Aún no hay notificaciones",
+    "monthly_summary": {
+      "title": "Resumen del mes",
+      "body": "{{month}}: ingresos {{income}}, gastos {{expense}}.",
+      "body_net": "{{month}}: ingresos {{income}}, gastos {{expense}}, ahorrado {{net}}.",
+      "top_category": "Categoría principal — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Meta alcanzada 🎉",
+      "body": "Has ahorrado para la meta «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Preferencias",
     "language": "Idioma",

@@ -136,6 +136,20 @@
     "add_goal": "Tikslas",
     "add_goal_desc": "santaupos"
   },
+  "notifications": {
+    "mark_all_read": "Žymėti visus kaip skaitytus",
+    "empty": "Pranešimų dar nėra",
+    "monthly_summary": {
+      "title": "Mėnesio suvestinė",
+      "body": "{{month}}: pajamos {{income}}, išlaidos {{expense}}.",
+      "body_net": "{{month}}: pajamos {{income}}, išlaidos {{expense}}, sutaupyta {{net}}.",
+      "top_category": "Pagrindinė kategorija — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Tikslas pasiektas 🎉",
+      "body": "Sutaupėte tikslui «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Nuostatos",
     "language": "Kalba",

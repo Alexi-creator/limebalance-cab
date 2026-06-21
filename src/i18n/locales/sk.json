@@ -136,6 +136,20 @@
     "add_goal": "Cieľ",
     "add_goal_desc": "úspory"
   },
+  "notifications": {
+    "mark_all_read": "Označiť všetko ako prečítané",
+    "empty": "Zatiaľ žiadne oznámenia",
+    "monthly_summary": {
+      "title": "Mesačný prehľad",
+      "body": "{{month}}: príjmy {{income}}, výdavky {{expense}}.",
+      "body_net": "{{month}}: príjmy {{income}}, výdavky {{expense}}, ušetrené {{net}}.",
+      "top_category": "Hlavná kategória — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Cieľ splnený 🎉",
+      "body": "Nasporili ste na cieľ «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Predvoľby",
     "language": "Jazyk",

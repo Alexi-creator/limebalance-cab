@@ -135,6 +135,20 @@
     "add_goal": "Tavoite",
     "add_goal_desc": "säästö"
   },
+  "notifications": {
+    "mark_all_read": "Merkitse kaikki luetuiksi",
+    "empty": "Ei ilmoituksia vielä",
+    "monthly_summary": {
+      "title": "Kuukausikatsaus",
+      "body": "{{month}}: tulot {{income}}, menot {{expense}}.",
+      "body_net": "{{month}}: tulot {{income}}, menot {{expense}}, säästetty {{net}}.",
+      "top_category": "Suurin kategoria — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Tavoite saavutettu 🎉",
+      "body": "Säästit tavoitteeseen «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Asetukset",
     "language": "Kieli",

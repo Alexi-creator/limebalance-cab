@@ -135,6 +135,20 @@
     "add_goal": "Meta",
     "add_goal_desc": "poupança"
   },
+  "notifications": {
+    "mark_all_read": "Marcar tudo como lido",
+    "empty": "Ainda não há notificações",
+    "monthly_summary": {
+      "title": "Resumo do mês",
+      "body": "{{month}}: receitas {{income}}, despesas {{expense}}.",
+      "body_net": "{{month}}: receitas {{income}}, despesas {{expense}}, poupado {{net}}.",
+      "top_category": "Categoria principal — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Meta alcançada 🎉",
+      "body": "Você economizou para a meta «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Preferências",
     "language": "Idioma",

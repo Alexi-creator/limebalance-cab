@@ -134,6 +134,20 @@
     "add_goal": "เป้าหมาย",
     "add_goal_desc": "การออม"
   },
+  "notifications": {
+    "mark_all_read": "ทำเครื่องหมายว่าอ่านทั้งหมด",
+    "empty": "ยังไม่มีการแจ้งเตือน",
+    "monthly_summary": {
+      "title": "สรุปรายเดือน",
+      "body": "{{month}}: รายรับ {{income}}, รายจ่าย {{expense}}",
+      "body_net": "{{month}}: รายรับ {{income}}, รายจ่าย {{expense}}, ออมได้ {{net}}",
+      "top_category": "หมวดหมู่ยอดนิยม — {{category}}"
+    },
+    "goal_completed": {
+      "title": "บรรลุเป้าหมายแล้ว 🎉",
+      "body": "คุณออมเงินครบสำหรับเป้าหมาย «{{name}}» แล้ว"
+    }
+  },
   "sidebar": {
     "preferences": "การตั้งค่า",
     "language": "ภาษา",

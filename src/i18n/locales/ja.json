@@ -134,6 +134,20 @@
     "add_goal": "目標",
     "add_goal_desc": "貯金"
   },
+  "notifications": {
+    "mark_all_read": "すべて既読にする",
+    "empty": "通知はまだありません",
+    "monthly_summary": {
+      "title": "今月のまとめ",
+      "body": "{{month}}：収入 {{income}}、支出 {{expense}}。",
+      "body_net": "{{month}}：収入 {{income}}、支出 {{expense}}、貯蓄 {{net}}。",
+      "top_category": "トップカテゴリ — {{category}}。"
+    },
+    "goal_completed": {
+      "title": "目標達成 🎉",
+      "body": "目標「{{name}}」の貯金を達成しました。"
+    }
+  },
   "sidebar": {
     "preferences": "設定",
     "language": "言語",

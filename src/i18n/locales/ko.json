@@ -134,6 +134,20 @@
     "add_goal": "목표",
     "add_goal_desc": "저축"
   },
+  "notifications": {
+    "mark_all_read": "모두 읽음으로 표시",
+    "empty": "아직 알림이 없습니다",
+    "monthly_summary": {
+      "title": "이번 달 요약",
+      "body": "{{month}}: 수입 {{income}}, 지출 {{expense}}.",
+      "body_net": "{{month}}: 수입 {{income}}, 지출 {{expense}}, 저축 {{net}}.",
+      "top_category": "주요 카테고리 — {{category}}."
+    },
+    "goal_completed": {
+      "title": "목표 달성 🎉",
+      "body": "목표 «{{name}}»에 필요한 금액을 모았습니다."
+    }
+  },
   "sidebar": {
     "preferences": "환경설정",
     "language": "언어",

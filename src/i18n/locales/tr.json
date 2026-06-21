@@ -135,6 +135,20 @@
     "add_goal": "Hedef",
     "add_goal_desc": "birikim"
   },
+  "notifications": {
+    "mark_all_read": "Tümünü okundu işaretle",
+    "empty": "Henüz bildirim yok",
+    "monthly_summary": {
+      "title": "Aylık özet",
+      "body": "{{month}}: gelir {{income}}, gider {{expense}}.",
+      "body_net": "{{month}}: gelir {{income}}, gider {{expense}}, biriken {{net}}.",
+      "top_category": "En çok harcanan kategori — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Hedefe ulaşıldı 🎉",
+      "body": "«{{name}}» hedefi için biriktirdiniz."
+    }
+  },
   "sidebar": {
     "preferences": "Tercihler",
     "language": "Dil",

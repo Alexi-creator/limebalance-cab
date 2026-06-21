@@ -134,6 +134,20 @@
     "add_goal": "Mục tiêu",
     "add_goal_desc": "tiết kiệm"
   },
+  "notifications": {
+    "mark_all_read": "Đánh dấu tất cả đã đọc",
+    "empty": "Chưa có thông báo nào",
+    "monthly_summary": {
+      "title": "Tổng kết tháng",
+      "body": "{{month}}: thu nhập {{income}}, chi tiêu {{expense}}.",
+      "body_net": "{{month}}: thu nhập {{income}}, chi tiêu {{expense}}, tiết kiệm {{net}}.",
+      "top_category": "Danh mục hàng đầu — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Đã đạt mục tiêu 🎉",
+      "body": "Bạn đã tiết kiệm đủ cho mục tiêu «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Tùy chọn",
     "language": "Ngôn ngữ",

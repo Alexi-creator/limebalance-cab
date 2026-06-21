@@ -136,6 +136,20 @@
     "add_goal": "Cilj",
     "add_goal_desc": "štednja"
   },
+  "notifications": {
+    "mark_all_read": "Označi sve kao pročitano",
+    "empty": "Još nema obavijesti",
+    "monthly_summary": {
+      "title": "Mjesečni pregled",
+      "body": "{{month}}: prihodi {{income}}, rashodi {{expense}}.",
+      "body_net": "{{month}}: prihodi {{income}}, rashodi {{expense}}, ušteđeno {{net}}.",
+      "top_category": "Glavna kategorija — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Cilj postignut 🎉",
+      "body": "Uštedjeli ste za cilj «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Postavke",
     "language": "Jezik",

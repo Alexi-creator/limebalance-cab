@@ -137,6 +137,20 @@
     "add_goal": "Cilj",
     "add_goal_desc": "varčevanje"
   },
+  "notifications": {
+    "mark_all_read": "Označi vse kot prebrano",
+    "empty": "Še ni obvestil",
+    "monthly_summary": {
+      "title": "Mesečni povzetek",
+      "body": "{{month}}: prihodki {{income}}, odhodki {{expense}}.",
+      "body_net": "{{month}}: prihodki {{income}}, odhodki {{expense}}, prihranjeno {{net}}.",
+      "top_category": "Glavna kategorija — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Cilj dosežen 🎉",
+      "body": "Prihranili ste za cilj «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Nastavitve",
     "language": "Jezik",

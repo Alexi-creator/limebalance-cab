@@ -138,11 +138,15 @@
   "notifications": {
     "mark_all_read": "Mark all as read",
     "empty": "No notifications yet",
-    "summary": {
+    "monthly_summary": {
       "title": "Monthly summary",
       "body": "{{month}}: income {{income}}, expenses {{expense}}.",
       "body_net": "{{month}}: income {{income}}, expenses {{expense}}, saved {{net}}.",
       "top_category": "Top category — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Goal reached 🎉",
+      "body": "You’ve saved up for «{{name}}»."
     }
   },
   "sidebar": {

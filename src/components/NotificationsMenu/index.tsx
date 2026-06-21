@@ -47,13 +47,17 @@ function capitalize(s: string) {
 }
 
 /**
- * Localized title/body for a notification. `monthly_summary` is rendered from its structured
- * payload so it follows the interface language; everything else falls back to the server text.
+ * Localized title/body for a notification, keyed by `type` via the convention
+ * `notifications.<type>.{title,body}`. New simple types need only locale strings — no code here.
+ *
+ * `monthly_summary` is the one exception: its card needs real client-side work (month name from
+ * `period`, currency formatting, optional net/top-category clauses), so it gets a dedicated branch.
+ * Anything without a matching template falls back to the server-rendered `title`/`body`.
  */
 function renderNotification(
   n: AppNotification,
   t: ReturnType<typeof useTranslation>["t"],
-  lang: string,
+  i18n: ReturnType<typeof useTranslation>["i18n"],
   locale: Locale,
 ): { title: string; message: string } {
   if (n.type === "monthly_summary") {
@@ -62,17 +66,18 @@ function renderNotification(
       const p = parsed.data
       const [year, month] = p.period.split("-").map(Number)
       const monthName = capitalize(format(new Date(year, month - 1, 1), "LLLL", { locale }))
-      const fmt = (v: number | null) => (v === null ? "—" : formatCurrency(v, lang, p.baseCurrency))
+      const fmt = (v: number | null) =>
+        v === null ? "—" : formatCurrency(v, i18n.language, p.baseCurrency)
 
       let message =
         p.net !== null
-          ? t("notifications.summary.body_net", {
+          ? t("notifications.monthly_summary.body_net", {
               month: monthName,
               income: fmt(p.income),
               expense: fmt(p.expense),
               net: fmt(p.net),
             })
-          : t("notifications.summary.body", {
+          : t("notifications.monthly_summary.body", {
               month: monthName,
               income: fmt(p.income),
               expense: fmt(p.expense),
@@ -80,16 +85,29 @@ function renderNotification(
 
       if (p.topCategory) {
         const emoji = p.topCategory.emoji ? `${p.topCategory.emoji} ` : ""
-        message += ` ${t("notifications.summary.top_category", {
+        message += ` ${t("notifications.monthly_summary.top_category", {
           category: `${emoji}${p.topCategory.name}`,
         })}`
       }
 
-      return { title: t("notifications.summary.title"), message }
+      return { title: t("notifications.monthly_summary.title"), message }
     }
   }
 
-  return { title: n.title, message: n.body }
+  // Convention-based lookup: render from `notifications.<type>.{title,body}` if a template exists,
+  // interpolating the payload (user data like `name` is passed through untranslated).
+  const titleKey = `notifications.${n.type}.title`
+  if (i18n.exists(titleKey)) {
+    const values: Record<string, unknown> =
+      n.payload && typeof n.payload === "object" ? (n.payload as Record<string, unknown>) : {}
+    const bodyKey = `notifications.${n.type}.body`
+    return {
+      title: t(titleKey, values),
+      message: i18n.exists(bodyKey) ? t(bodyKey, values) : (n.body ?? ""),
+    }
+  }
+
+  return { title: n.title ?? "", message: n.body ?? "" }
 }
 
 /** Bell in the header with a dropdown of in-app notifications and an unread indicator. */
@@ -111,9 +129,9 @@ export function NotificationsMenu() {
     () =>
       notifications.map((n) => ({
         notification: n,
-        ...renderNotification(n, t, i18n.language, locale),
+        ...renderNotification(n, t, i18n, locale),
       })),
-    [notifications, t, i18n.language, locale],
+    [notifications, t, i18n, i18n.language, locale],
   )
 
   const markRead = useMutation({

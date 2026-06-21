@@ -136,6 +136,20 @@
     "add_goal": "Cíl",
     "add_goal_desc": "úspory"
   },
+  "notifications": {
+    "mark_all_read": "Označit vše jako přečtené",
+    "empty": "Zatím žádná oznámení",
+    "monthly_summary": {
+      "title": "Měsíční přehled",
+      "body": "{{month}}: příjmy {{income}}, výdaje {{expense}}.",
+      "body_net": "{{month}}: příjmy {{income}}, výdaje {{expense}}, ušetřeno {{net}}.",
+      "top_category": "Hlavní kategorie — {{category}}."
+    },
+    "goal_completed": {
+      "title": "Cíl splněn 🎉",
+      "body": "Naspořili jste na cíl «{{name}}»."
+    }
+  },
   "sidebar": {
     "preferences": "Předvolby",
     "language": "Jazyk",

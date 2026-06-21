@@ -134,6 +134,20 @@
     "add_goal": "目标",
     "add_goal_desc": "储蓄"
   },
+  "notifications": {
+    "mark_all_read": "全部标为已读",
+    "empty": "暂无通知",
+    "monthly_summary": {
+      "title": "月度总结",
+      "body": "{{month}}：收入 {{income}}，支出 {{expense}}。",
+      "body_net": "{{month}}：收入 {{income}}，支出 {{expense}}，结余 {{net}}。",
+      "top_category": "最高类别 — {{category}}。"
+    },
+    "goal_completed": {
+      "title": "目标达成 🎉",
+      "body": "您已为目标「{{name}}」攒够了钱。"
+    }
+  },
   "sidebar": {
     "preferences": "偏好设置",
     "language": "语言",
