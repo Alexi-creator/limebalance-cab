@@ -1,5 +1,6 @@
 import { LangSwitcher } from "@components/LangSwitcher"
 import { ThemeToggle } from "@components/ThemeToggle"
+import { usePageTracking } from "@hooks/usePageTracking"
 import { AppShell, Group, LoadingOverlay, Text } from "@mantine/core"
 import { Suspense } from "react"
 import { useTranslation } from "react-i18next"
@@ -12,6 +13,7 @@ import { Outlet } from "react-router-dom"
  */
 export function PublicLayout() {
   const { t } = useTranslation()
+  usePageTracking()
 
   return (
     <AppShell header={{ height: 60 }} padding={0}>

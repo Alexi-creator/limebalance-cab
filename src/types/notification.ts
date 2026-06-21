@@ -16,6 +16,13 @@ export const monthlySummaryPayloadSchema = z.object({
 })
 export type MonthlySummaryPayload = z.infer<typeof monthlySummaryPayloadSchema>
 
+/** Structured data behind a `goal_completed` notification (the goal that just hit 100%). */
+export const goalCompletedPayloadSchema = z.object({
+  goalId: z.string(),
+  name: z.string(),
+})
+export type GoalCompletedPayload = z.infer<typeof goalCompletedPayloadSchema>
+
 /**
  * A notification from `GET /notifications`. `type` drives the icon and whether the card is rendered
  * from {@link monthlySummaryPayloadSchema} (`monthly_summary`) or from the server `title`/`body`

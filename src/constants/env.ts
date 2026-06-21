@@ -1,4 +1,8 @@
-type EnvKey = "VITE_API_URL" | "VITE_TELEGRAM_BOT_USERNAME" | "VITE_GOOGLE_CLIENT_ID"
+type EnvKey =
+  | "VITE_API_URL"
+  | "VITE_TELEGRAM_BOT_USERNAME"
+  | "VITE_GOOGLE_CLIENT_ID"
+  | "VITE_GA_MEASUREMENT_ID"
 
 const runtime = (window as unknown as { __ENV__?: Record<string, string> }).__ENV__ ?? {}
 

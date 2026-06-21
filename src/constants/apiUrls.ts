@@ -47,4 +47,7 @@ export const API_URLS = {
     notifications: `${API_URL}/notifications`,
     readAll: `${API_URL}/notifications/read-all`,
   },
+  goals: {
+    goals: `${API_URL}/goals`,
+  },
 }

@@ -19,7 +19,7 @@ import {
   ThemeIcon,
   UnstyledButton,
 } from "@mantine/core"
-import { IconBell, IconReportMoney, IconSparkles } from "@tabler/icons-react"
+import { IconBell, IconReportMoney, IconSparkles, IconTargetArrow } from "@tabler/icons-react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { formatCurrency } from "@utils/formatCurrency"
 import type { Locale } from "date-fns"
@@ -31,11 +31,13 @@ import { useTranslation } from "react-i18next"
 /** Icon per notification `type`, with a sensible fallback for unknown/new kinds. */
 const TYPE_ICON: Record<string, typeof IconBell> = {
   monthly_summary: IconReportMoney,
+  goal_completed: IconTargetArrow,
   news: IconSparkles,
 }
 
 const TYPE_COLOR: Record<string, string> = {
   monthly_summary: "lime",
+  goal_completed: "green",
   news: "grape",
 }
 

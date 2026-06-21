@@ -1,6 +1,8 @@
 import { EXPENSE_COLOR, INCOME_COLOR } from "@constants/chartColors"
 import { Box, Group, Paper, Stack, Text } from "@mantine/core"
+import { formatCurrency } from "@utils/formatCurrency"
 import { useTranslation } from "react-i18next"
+import { ChartTooltip, useChartTooltip } from "../chartTooltip"
 import type { SeriesPoint } from "../helpers"
 
 const W = 720
@@ -25,11 +27,15 @@ interface Props {
   series: SeriesPoint[]
   title: string
   subtitle: string
+  /** User's base currency — the series amounts come in it. */
+  baseCurrency?: string
 }
 
 /** Paired bars of income (filled) and expenses (outlined) by period buckets. */
-export function IncomeExpenseChart({ series, title, subtitle }: Props) {
-  const { t } = useTranslation()
+export function IncomeExpenseChart({ series, title, subtitle, baseCurrency }: Props) {
+  const { t, i18n } = useTranslation()
+  const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
+  const { wrapRef, tip, show, hide } = useChartTooltip()
   const max = niceMax(Math.max(1, ...series.flatMap((p) => [p.income, p.expense])))
   const slot = (W - LEFT - 10) / Math.max(series.length, 1)
   const barW = Math.min(14, slot * 0.32)
@@ -62,7 +68,7 @@ export function IncomeExpenseChart({ series, title, subtitle }: Props) {
           </Group>
         </Group>
       </Group>
-      <Box p="md">
+      <Box p="md" ref={wrapRef} style={{ position: "relative" }}>
         <svg
           viewBox={`0 0 ${W} ${H}`}
           style={{ width: "100%", height: 280, display: "block" }}
@@ -128,10 +134,28 @@ export function IncomeExpenseChart({ series, title, subtitle }: Props) {
                 >
                   {p.label}
                 </text>
+                {/* transparent full-column hit area — makes the thin bars easy to hover */}
+                {/* biome-ignore lint/a11y/noStaticElementInteractions: hover tooltip on a decorative chart column */}
+                <rect
+                  x={cx - slot / 2}
+                  y={TOP}
+                  width={slot}
+                  height={PLOT_H}
+                  fill="transparent"
+                  style={{ cursor: "pointer" }}
+                  onMouseMove={(e) =>
+                    show(
+                      e,
+                      `${t("common.income_plural")}: ${money(p.income)} · ${t("common.expense_plural")}: ${money(p.expense)}`,
+                    )
+                  }
+                  onMouseLeave={hide}
+                />
               </g>
             )
           })}
         </svg>
+        <ChartTooltip tip={tip} />
       </Box>
     </Paper>
   )

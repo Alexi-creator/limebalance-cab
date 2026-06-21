@@ -16,7 +16,7 @@ import { RouteNames } from "@constants/routeNames"
 import { useUrlParams } from "@hooks/useUrlParams"
 import { Anchor, Button, Group, HoverCard, Paper, Stack, Text, Title } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
-import { IconDownload, IconPlus } from "@tabler/icons-react"
+import { IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -101,9 +101,11 @@ export function TransactionsPage() {
           </Text>
         </Stack>
         <Group gap="xs">
+          {/* Hidden until the export API is ready
           <Button variant="default" size="sm" leftSection={<IconDownload size={14} />}>
             CSV
           </Button>
+          */}
           {hasNoCategories ? (
             <HoverCard width={240} shadow="md" withArrow position="bottom-end" openDelay={100}>
               <HoverCard.Target>

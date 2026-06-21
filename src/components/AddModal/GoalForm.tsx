@@ -1,31 +1,84 @@
+import { createContribution, createGoal, updateGoal } from "@api/goals"
+import type { Goal } from "@appTypes/goal"
+import { goalKeys } from "@constants/queries/goals"
+import { notificationKeys } from "@constants/queries/notifications"
+import { transactionKeys } from "@constants/queries/transactions"
+import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import {
   ActionIcon,
   Box,
   Button,
-  ColorSwatch,
   Group,
   NumberInput,
   Paper,
+  Select,
   SimpleGrid,
   Stack,
   Text,
   TextInput,
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { formatCurrency } from "@utils/formatCurrency"
+import { format } from "date-fns"
 import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
 
-const ICONS = ["🎯", "🌴", "🏡", "💻", "🚗", "🛡️", "📚", "💍", "🎓", "🎁"]
-const COLORS = [
-  { key: "lime", v: "var(--mantine-color-lime-4)" },
-  { key: "green", v: "var(--mantine-color-green-5)" },
-  { key: "yellow", v: "var(--mantine-color-yellow-5)" },
-  { key: "blue", v: "var(--mantine-color-blue-5)" },
-  { key: "red", v: "var(--mantine-color-red-5)" },
+const ICONS = [
+  "🎯",
+  "🌴",
+  "🏡",
+  "💻",
+  "🚗",
+  "🛡️",
+  "📚",
+  "💍",
+  "🎓",
+  "🎁",
+  "✈️",
+  "🏖️",
+  "🚙",
+  "🏠",
+  "📱",
+  "⌚",
+  "🎮",
+  "📷",
+  "🚲",
+  "🏍️",
+  "💰",
+  "💳",
+  "🏦",
+  "📈",
+  "💎",
+  "🪙",
+  "👶",
+  "🐶",
+  "🐱",
+  "🌱",
+  "🏥",
+  "💊",
+  "🦷",
+  "💪",
+  "🎸",
+  "🎨",
+  "🍴",
+  "☕",
+  "🎄",
+  "🎂",
+  "👰",
+  "🤵",
+  "🛋️",
+  "🧳",
+  "⛺",
+  "🛥️",
+  "🏆",
+  "🔧",
+  "🖥️",
+  "🎧",
 ]
 
 interface Props {
@@ -33,22 +86,30 @@ interface Props {
   onSubmit: () => void
   /** Called when the "Cancel" button is clicked */
   onCancel: () => void
+  /** When provided, the form edits an existing goal instead of creating a new one. */
+  goal?: Goal
 }
 
 /**
- * Form for creating a savings goal.
- * Includes selecting an icon, name, target amount, amount already saved, deadline, and color.
- * Dynamically computes and shows the recommended monthly contribution amount.
+ * Form for creating or editing a savings goal. For a new goal the "already saved" amount is posted
+ * as an initial contribution after creation; in edit mode the saved amount is managed through the
+ * contribution history instead, so that field is hidden. On success the goals list, balance and
+ * notifications are invalidated.
  */
-export function GoalForm({ onSubmit, onCancel }: Props) {
-  const [icon, setIcon] = useState("🎯")
-  const [name, setName] = useState("")
-  const [target, setTarget] = useState<number | string>("")
-  const [saved, setSaved] = useState<number | string>("")
-  const [date, setDate] = useState<string | null>(null)
-  const [color, setColor] = useState("lime")
+export function GoalForm({ onSubmit, onCancel, goal }: Props) {
+  const isEdit = !!goal
   const { t, i18n } = useTranslation()
+  const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
+
+  const [icon, setIcon] = useState(goal?.emoji ?? "🎯")
+  const [name, setName] = useState(goal?.name ?? "")
+  const [target, setTarget] = useState<number | string>(goal?.targetAmount ?? "")
+  const [saved, setSaved] = useState<number | string>("")
+  const [currency, setCurrency] = useState(goal?.currency ?? userCurrency ?? "USD")
+  const [date, setDate] = useState<string | null>(
+    goal?.targetDate ? format(goal.targetDate, "yyyy-MM-dd") : null,
+  )
 
   const hint = useMemo(() => {
     if (!target || !date) return null
@@ -56,17 +117,46 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
       1,
       Math.ceil((new Date(date).getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 30)),
     )
-    const per = Math.ceil((Number(target) - Number(saved || 0)) / months)
+    const per = Math.ceil((Number(target) - Number(saved || goal?.currentAmount || 0)) / months)
     return t("goal_form.hint", {
-      amount: formatCurrency(per, i18n.language, userCurrency),
+      amount: formatCurrency(per, i18n.language, currency),
       months,
     })
-  }, [target, saved, date, t, i18n.language, userCurrency])
+  }, [target, saved, date, currency, goal?.currentAmount, t, i18n.language])
+
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const payload = {
+        name: name.trim(),
+        emoji: icon.trim() || undefined,
+        targetAmount: Number(target),
+        currency,
+        targetDate: date ?? undefined,
+      }
+      if (isEdit) return updateGoal(goal.id, payload)
+
+      const created = await createGoal(payload)
+      const initial = Number(saved || 0)
+      if (initial > 0) await createContribution(created.id, { amount: initial })
+      return created
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: goalKeys.all })
+      // an initial contribution reserves money and may complete the goal
+      queryClient.invalidateQueries({ queryKey: transactionKeys.balance })
+      queryClient.invalidateQueries({ queryKey: notificationKeys.all })
+      notifications.show({
+        color: "green",
+        message: isEdit ? t("goal_form.updated") : t("goal_form.created"),
+      })
+      onSubmit()
+    },
+  })
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name || !target) return
-    onSubmit()
+    if (!name.trim() || !target || Number(target) <= 0) return
+    mutation.mutate()
   }
 
   return (
@@ -91,12 +181,23 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
               </ActionIcon>
             ))}
           </Group>
+          <TextInput
+            mt="xs"
+            w={140}
+            maxLength={16}
+            label={t("goal_form.icon_custom")}
+            placeholder="🦄"
+            value={icon}
+            onChange={(e) => setIcon(e.currentTarget.value)}
+            styles={{ input: { textAlign: "center", fontSize: 18 } }}
+          />
         </Box>
 
         <TextInput
           label={t("goal_form.name_label")}
           required
           autoFocus
+          maxLength={100}
           placeholder={t("goal_form.name_placeholder")}
           value={name}
           onChange={(e) => setName(e.currentTarget.value)}
@@ -110,17 +211,39 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
             onChange={setTarget}
             min={0}
             thousandSeparator=" "
-            suffix=" ₽"
           />
-          <NumberInput
-            label={t("goal_form.saved")}
-            value={saved}
-            onChange={setSaved}
-            min={0}
-            thousandSeparator=" "
-            suffix=" ₽"
-          />
+          {isEdit ? (
+            <Select
+              label={t("common.currency")}
+              data={CURRENCY_OPTIONS}
+              value={currency}
+              onChange={(v) => setCurrency(v ?? currency)}
+              searchable
+              allowDeselect={false}
+              nothingFoundMessage={t("common.nothing_found")}
+            />
+          ) : (
+            <NumberInput
+              label={t("goal_form.saved")}
+              value={saved}
+              onChange={setSaved}
+              min={0}
+              thousandSeparator=" "
+            />
+          )}
         </SimpleGrid>
+
+        {!isEdit && (
+          <Select
+            label={t("common.currency")}
+            data={CURRENCY_OPTIONS}
+            value={currency}
+            onChange={(v) => setCurrency(v ?? currency)}
+            searchable
+            allowDeselect={false}
+            nothingFoundMessage={t("common.nothing_found")}
+          />
+        )}
 
         <DatePickerInput
           label={t("goal_form.deadline")}
@@ -131,27 +254,6 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
           clearable
         />
 
-        <Box>
-          <Text size="xs" c="dimmed" tt="uppercase" mb={6}>
-            {t("goal_form.color")}
-          </Text>
-          <Group gap="xs">
-            {COLORS.map((c) => (
-              <ColorSwatch
-                key={c.key}
-                color={c.v}
-                size={28}
-                onClick={() => setColor(c.key)}
-                style={{
-                  cursor: "pointer",
-                  outline: color === c.key ? "2px solid var(--mantine-color-lime-4)" : "none",
-                  outlineOffset: 2,
-                }}
-              />
-            ))}
-          </Group>
-        </Box>
-
         {hint && (
           <Paper p="sm" bg="var(--mantine-color-default)">
             <Text size="sm" c="dimmed">
@@ -161,10 +263,12 @@ export function GoalForm({ onSubmit, onCancel }: Props) {
         )}
 
         <Group justify="flex-end" pt="sm" style={FOOTER_STYLE}>
-          <Button variant="default" onClick={onCancel}>
+          <Button variant="default" onClick={onCancel} disabled={mutation.isPending}>
             {t("common.cancel")}
           </Button>
-          <Button type="submit">{t("goal_form.create")}</Button>
+          <Button type="submit" loading={mutation.isPending}>
+            {isEdit ? t("common.save") : t("goal_form.create")}
+          </Button>
         </Group>
       </Stack>
     </form>

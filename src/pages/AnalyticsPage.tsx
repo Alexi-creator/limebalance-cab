@@ -6,18 +6,7 @@ import { IncomeExpenseChart } from "@components/analytics/IncomeExpenseChart"
 import { useAnalyticsData } from "@components/analytics/useAnalyticsData"
 import { useUrlParams } from "@hooks/useUrlParams"
 import { dateFnsLocales } from "@i18n/languages.ts"
-import {
-  Button,
-  Grid,
-  Group,
-  Paper,
-  SegmentedControl,
-  Skeleton,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core"
-import { IconDownload } from "@tabler/icons-react"
+import { Grid, Group, Paper, SegmentedControl, Skeleton, Stack, Text, Title } from "@mantine/core"
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useTranslation } from "react-i18next"
@@ -50,9 +39,11 @@ export function AnalyticsPage() {
             onChange={(v) => setParams({ period: v as typeof period })}
             data={ANALYTICS_PERIODS.map((p) => ({ value: p, label: t(`analytics.period_${p}`) }))}
           />
+          {/* Hidden until the export API is ready
           <Button variant="default" size="sm" leftSection={<IconDownload size={14} />} disabled>
             PDF
           </Button>
+          */}
         </Group>
       </Group>
 
@@ -80,6 +71,7 @@ export function AnalyticsPage() {
             series={series}
             title={t("analytics.income_vs_expense")}
             subtitle={periodLabel.toLowerCase()}
+            baseCurrency={baseCurrency}
           />
 
           <Grid gap="md">

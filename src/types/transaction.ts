@@ -36,8 +36,14 @@ export type TransactionsSummary = z.infer<typeof transactionsSummarySchema>
  */
 export const balanceSchema = z.object({
   baseCurrency: z.string(),
+  /** Free balance (income − expense − money reserved in goals), in USD. */
   balanceUsd: z.coerce.number().nullable(),
+  /** Free balance, in the base currency. */
   balance: z.coerce.number().nullable(),
+  /** Reserved in active goals, base currency; null without rates. May be absent on old backends. */
+  inGoals: z.coerce.number().nullable().optional(),
+  /** Reserved in active goals, USD; null without rates. */
+  inGoalsUsd: z.coerce.number().nullable().optional(),
 })
 export type Balance = z.infer<typeof balanceSchema>
 
