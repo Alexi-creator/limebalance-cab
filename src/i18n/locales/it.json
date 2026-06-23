@@ -78,6 +78,9 @@
     "email_description": "L'email collegata al tuo account",
     "email_add_description": "Aggiungi un'email al tuo account",
     "email_pending_description": "In attesa di conferma. Segui il link nell'email inviata a questo indirizzo.",
+    "email_resend": "Invia di nuovo il link",
+    "email_change": "Cambia email",
+    "email_resent": "Link di conferma inviato di nuovo",
     "email_placeholder": "you@example.com",
     "email_invalid": "Inserisci un'email valida",
     "name_label": "Nome",
@@ -220,6 +223,7 @@
     "edit_title": "Modifica transazione",
     "delete_title": "Elimina transazione",
     "records_per_page": "Righe per pagina",
+    "search_placeholder": "Cerca per descrizione",
     "clear_search": "Cancella ricerca",
     "period": "Periodo",
     "date_range_placeholder": "Data da — a",
@@ -387,10 +391,10 @@
     "dont_know_bot": "Non conosci il bot?"
   },
   "confirmEmail": {
-    "title": "Conferma email",
+    "title": "Conferma dell'email",
     "success": "La tua email è stata confermata. Ora puoi accedere con essa.",
     "error": "Questo link di conferma non è valido o è scaduto. Prova a collegare di nuovo la tua email.",
-    "invalid": "Al link di conferma manca il token.",
+    "invalid": "Nel link di conferma manca il token.",
     "go_settings": "Vai alle impostazioni",
     "go_login": "Vai all'accesso"
   }

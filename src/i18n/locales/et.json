@@ -78,6 +78,9 @@
     "email_description": "Sinu kontoga seotud e-post",
     "email_add_description": "Lisa oma kontole e-post",
     "email_pending_description": "Ootab kinnitamist. Järgige sellele aadressile saadetud e-kirja linki.",
+    "email_resend": "Saada link uuesti",
+    "email_change": "Muuda e-posti",
+    "email_resent": "Kinnituslink saadeti uuesti",
     "email_placeholder": "you@example.com",
     "email_invalid": "Sisesta kehtiv e-post",
     "name_label": "Nimi",
@@ -220,6 +223,7 @@
     "edit_title": "Muuda tehingut",
     "delete_title": "Kustuta tehing",
     "records_per_page": "Ridu lehel",
+    "search_placeholder": "Otsi kirjelduse järgi",
     "clear_search": "Tühjenda otsing",
     "period": "Periood",
     "date_range_placeholder": "Kuupäev alates — kuni",
@@ -388,9 +392,9 @@
   },
   "confirmEmail": {
     "title": "E-posti kinnitamine",
-    "success": "Teie e-post on kinnitatud. Nüüd saate sellega sisse logida.",
-    "error": "See kinnituslink on kehtetu või aegunud. Proovige oma e-post uuesti siduda.",
-    "invalid": "Kinnituslingil puudub luba (token).",
+    "success": "Sinu e-post on kinnitatud. Nüüd saad sellega sisse logida.",
+    "error": "See kinnituslink on kehtetu või aegunud. Proovi oma e-post uuesti siduda.",
+    "invalid": "Kinnituslingil puudub token.",
     "go_settings": "Ava seaded",
     "go_login": "Ava sisselogimine"
   }

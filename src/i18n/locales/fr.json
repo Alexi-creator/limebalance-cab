@@ -78,6 +78,9 @@
     "email_description": "L'e-mail lié à votre compte",
     "email_add_description": "Ajoutez un e-mail à votre compte",
     "email_pending_description": "En attente de confirmation. Suivez le lien dans l'e-mail envoyé à cette adresse.",
+    "email_resend": "Renvoyer le lien",
+    "email_change": "Changer d'e-mail",
+    "email_resent": "Lien de confirmation renvoyé",
     "email_placeholder": "you@example.com",
     "email_invalid": "Saisissez un e-mail valide",
     "name_label": "Nom",
@@ -220,6 +223,7 @@
     "edit_title": "Modifier la transaction",
     "delete_title": "Supprimer la transaction",
     "records_per_page": "Lignes par page",
+    "search_placeholder": "Rechercher par description",
     "clear_search": "Effacer la recherche",
     "period": "Période",
     "date_range_placeholder": "Date de — à",
@@ -388,9 +392,9 @@
   },
   "confirmEmail": {
     "title": "Confirmation de l'e-mail",
-    "success": "Votre e-mail a été confirmé. Vous pouvez désormais vous connecter avec.",
+    "success": "Votre e-mail a été confirmé. Vous pouvez maintenant vous connecter avec.",
     "error": "Ce lien de confirmation est invalide ou a expiré. Essayez de lier à nouveau votre e-mail.",
-    "invalid": "Le jeton est absent du lien de confirmation.",
+    "invalid": "Le lien de confirmation ne contient pas de jeton.",
     "go_settings": "Aller aux paramètres",
     "go_login": "Aller à la connexion"
   }

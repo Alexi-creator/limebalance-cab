@@ -2,5 +2,10 @@ export const notificationKeys = {
   all: ["notifications"] as const,
 }
 
-/** The bell recomputes the month summary on the server each fetch, so keep it briefly fresh. */
-export const NOTIFICATIONS_STALE_TIME = 60 * 1000
+/**
+ * The bell recomputes the month summary on the server each fetch, which is expensive, so we avoid
+ * polling it. Fresh data is pulled on demand by invalidating `notificationKeys.all` whenever goal
+ * data changes (a contribution or a goal closing). Time-wise we let it go stale only twice a day,
+ * so background refetches (mount / window focus) hit the server at most once per half-day.
+ */
+export const NOTIFICATIONS_STALE_TIME = 12 * 60 * 60 * 1000

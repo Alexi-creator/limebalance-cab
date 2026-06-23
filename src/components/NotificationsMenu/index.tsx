@@ -116,7 +116,10 @@ export function NotificationsMenu() {
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const queryClient = useQueryClient()
 
-  const { data, refetch } = useQuery({
+  // No refetch on open: data is refreshed by invalidation when goals change, and otherwise
+  // only goes stale once per half-day (see NOTIFICATIONS_STALE_TIME) to avoid hitting the
+  // server's expensive summary recompute on every interaction.
+  const { data } = useQuery({
     queryKey: notificationKeys.all,
     queryFn: getNotifications,
     staleTime: NOTIFICATIONS_STALE_TIME,
@@ -178,7 +181,7 @@ export function NotificationsMenu() {
   }
 
   return (
-    <Menu position="bottom-end" width={340} shadow="md" withArrow onOpen={() => refetch()}>
+    <Menu position="bottom-end" width={340} shadow="md" withArrow>
       <Menu.Target>
         <Indicator
           color="lime"

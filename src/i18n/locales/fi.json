@@ -78,6 +78,9 @@
     "email_description": "Tiliisi liitetty sähköposti",
     "email_add_description": "Lisää sähköposti tiliisi",
     "email_pending_description": "Odottaa vahvistusta. Seuraa tähän osoitteeseen lähettämämme sähköpostin linkkiä.",
+    "email_resend": "Lähetä linkki uudelleen",
+    "email_change": "Vaihda sähköposti",
+    "email_resent": "Vahvistuslinkki lähetetty uudelleen",
     "email_placeholder": "you@example.com",
     "email_invalid": "Syötä kelvollinen sähköposti",
     "name_label": "Nimi",
@@ -220,6 +223,7 @@
     "edit_title": "Muokkaa tapahtumaa",
     "delete_title": "Poista tapahtuma",
     "records_per_page": "Rivejä sivulla",
+    "search_placeholder": "Hae kuvauksen mukaan",
     "clear_search": "Tyhjennä haku",
     "period": "Jakso",
     "date_range_placeholder": "Päivämäärä alkaen — päättyen",
@@ -389,8 +393,8 @@
   "confirmEmail": {
     "title": "Sähköpostin vahvistus",
     "success": "Sähköpostisi on vahvistettu. Voit nyt kirjautua sisään sillä.",
-    "error": "Tämä vahvistuslinkki on virheellinen tai vanhentunut. Yritä yhdistää sähköpostisi uudelleen.",
-    "invalid": "Vahvistuslinkistä puuttuu tunnus.",
+    "error": "Tämä vahvistuslinkki on virheellinen tai vanhentunut. Yritä liittää sähköpostisi uudelleen.",
+    "invalid": "Vahvistuslinkistä puuttuu token.",
     "go_settings": "Siirry asetuksiin",
     "go_login": "Siirry kirjautumiseen"
   }

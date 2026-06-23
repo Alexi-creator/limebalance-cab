@@ -85,6 +85,12 @@ export function confirmEmail(token: string): Promise<void> {
   })
 }
 
+// Resend the confirmation link to the email awaiting confirmation, reusing the stored
+// email+password (no need to resubmit them). Authenticated — goes through `request`.
+export function resendEmailConfirmation(): Promise<void> {
+  return request(API_URLS.auth.resendEmailConfirmation, { method: HttpMethods.POST })
+}
+
 export async function logout(): Promise<void> {
   await request(API_URLS.auth.logout, { method: HttpMethods.POST })
 }

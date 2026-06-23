@@ -78,6 +78,9 @@
     "email_description": "Su paskyra susietas el. paštas",
     "email_add_description": "Pridėkite el. paštą prie paskyros",
     "email_pending_description": "Laukiama patvirtinimo. Spustelėkite nuorodą el. laiške, kurį išsiuntėme šiuo adresu.",
+    "email_resend": "Siųsti nuorodą dar kartą",
+    "email_change": "Keisti el. paštą",
+    "email_resent": "Patvirtinimo nuoroda išsiųsta dar kartą",
     "email_placeholder": "you@example.com",
     "email_invalid": "Įveskite tinkamą el. paštą",
     "name_label": "Vardas",
@@ -225,6 +228,7 @@
     "edit_title": "Redaguoti operaciją",
     "delete_title": "Ištrinti operaciją",
     "records_per_page": "Eilučių puslapyje",
+    "search_placeholder": "Ieškoti pagal aprašymą",
     "clear_search": "Išvalyti paiešką",
     "period": "Laikotarpis",
     "date_range_placeholder": "Data nuo — iki",
@@ -398,9 +402,9 @@
   },
   "confirmEmail": {
     "title": "El. pašto patvirtinimas",
-    "success": "Jūsų el. paštas patvirtintas. Dabar galite juo prisijungti.",
-    "error": "Ši patvirtinimo nuoroda negalioja arba nebegalioja. Pabandykite susieti el. paštą iš naujo.",
-    "invalid": "Patvirtinimo nuorodoje trūksta žetono.",
+    "success": "Jūsų el. paštas patvirtintas. Dabar galite su juo prisijungti.",
+    "error": "Ši patvirtinimo nuoroda negalioja arba baigėsi jos galiojimas. Pabandykite susieti el. paštą iš naujo.",
+    "invalid": "Patvirtinimo nuorodoje trūksta prieigos rakto.",
     "go_settings": "Eiti į nustatymus",
     "go_login": "Eiti į prisijungimą"
   }

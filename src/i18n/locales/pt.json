@@ -78,6 +78,9 @@
     "email_description": "O e-mail vinculado à sua conta",
     "email_add_description": "Adicione um e-mail à sua conta",
     "email_pending_description": "Aguardando confirmação. Siga o link no e-mail que enviamos para este endereço.",
+    "email_resend": "Reenviar link",
+    "email_change": "Alterar e-mail",
+    "email_resent": "Link de confirmação reenviado",
     "email_placeholder": "you@example.com",
     "email_invalid": "Digite um e-mail válido",
     "name_label": "Nome",
@@ -220,6 +223,7 @@
     "edit_title": "Editar transação",
     "delete_title": "Excluir transação",
     "records_per_page": "Linhas por página",
+    "search_placeholder": "Pesquisar por descrição",
     "clear_search": "Limpar busca",
     "period": "Período",
     "date_range_placeholder": "Data de — até",
@@ -388,10 +392,10 @@
   },
   "confirmEmail": {
     "title": "Confirmação de e-mail",
-    "success": "O seu e-mail foi confirmado. Já pode iniciar sessão com ele.",
-    "error": "Este link de confirmação é inválido ou expirou. Tente vincular o seu e-mail novamente.",
-    "invalid": "Falta o token no link de confirmação.",
-    "go_settings": "Ir para as definições",
-    "go_login": "Ir para o início de sessão"
+    "success": "Seu e-mail foi confirmado. Agora você pode entrar com ele.",
+    "error": "Este link de confirmação é inválido ou expirou. Tente vincular seu e-mail novamente.",
+    "invalid": "O link de confirmação está sem o token.",
+    "go_settings": "Ir para configurações",
+    "go_login": "Ir para o login"
   }
 }

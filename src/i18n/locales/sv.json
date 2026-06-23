@@ -78,6 +78,9 @@
     "email_description": "E-posten som är kopplad till ditt konto",
     "email_add_description": "Lägg till en e-post till ditt konto",
     "email_pending_description": "Väntar på bekräftelse. Följ länken i e-postmeddelandet vi skickade till denna adress.",
+    "email_resend": "Skicka länken igen",
+    "email_change": "Ändra e-post",
+    "email_resent": "Bekräftelselänk skickad igen",
     "email_placeholder": "you@example.com",
     "email_invalid": "Ange en giltig e-post",
     "name_label": "Namn",
@@ -220,6 +223,7 @@
     "edit_title": "Redigera transaktion",
     "delete_title": "Ta bort transaktion",
     "records_per_page": "Rader per sida",
+    "search_placeholder": "Sök efter beskrivning",
     "clear_search": "Rensa sökning",
     "period": "Period",
     "date_range_placeholder": "Datum från — till",
@@ -388,8 +392,8 @@
   },
   "confirmEmail": {
     "title": "Bekräftelse av e-post",
-    "success": "Din e-postadress har bekräftats. Du kan nu logga in med den.",
-    "error": "Den här bekräftelselänken är ogiltig eller har upphört att gälla. Försök länka din e-postadress igen.",
+    "success": "Din e-post har bekräftats. Du kan nu logga in med den.",
+    "error": "Den här bekräftelselänken är ogiltig eller har upphört att gälla. Försök att koppla din e-post igen.",
     "invalid": "Bekräftelselänken saknar sin token.",
     "go_settings": "Gå till inställningar",
     "go_login": "Gå till inloggning"

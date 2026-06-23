@@ -78,6 +78,9 @@
     "email_description": "E-mail prepojený s vaším účtom",
     "email_add_description": "Pridajte e-mail k svojmu účtu",
     "email_pending_description": "Čaká na potvrdenie. Kliknite na odkaz v e-maile, ktorý sme na túto adresu poslali.",
+    "email_resend": "Znova odoslať odkaz",
+    "email_change": "Zmeniť e-mail",
+    "email_resent": "Potvrdzovací odkaz bol znova odoslaný",
     "email_placeholder": "you@example.com",
     "email_invalid": "Zadajte platný e-mail",
     "name_label": "Meno",
@@ -225,6 +228,7 @@
     "edit_title": "Upraviť transakciu",
     "delete_title": "Odstrániť transakciu",
     "records_per_page": "Riadkov na stranu",
+    "search_placeholder": "Hľadať podľa popisu",
     "clear_search": "Vymazať hľadanie",
     "period": "Obdobie",
     "date_range_placeholder": "Dátum od — do",
@@ -399,7 +403,7 @@
   "confirmEmail": {
     "title": "Potvrdenie e-mailu",
     "success": "Váš e-mail bol potvrdený. Teraz sa ním môžete prihlásiť.",
-    "error": "Tento potvrdzovací odkaz je neplatný alebo vypršal. Skúste e-mail prepojiť znova.",
+    "error": "Tento potvrdzovací odkaz je neplatný alebo vypršal. Skúste svoj e-mail prepojiť znova.",
     "invalid": "V potvrdzovacom odkaze chýba token.",
     "go_settings": "Prejsť do nastavení",
     "go_login": "Prejsť na prihlásenie"

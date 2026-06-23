@@ -7,17 +7,24 @@
   background: var(--mantine-color-default);
   overflow-y: auto;
 
-  /* fill-height pages (e.g. Операции) own their internal scroll: switch to a flex
-     column so the page can stretch a table to full height instead of scrolling Main */
-  &.fill {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
   /* --app-shell-navbar-width stays 240px even when the navbar is collapsed on
      mobile, so the offset is applied only from the navbar breakpoint up */
   @media (min-width: 48em) {
     left: var(--app-shell-navbar-width, 240px);
+
+    /* fill-height pages (e.g. Операции) own their internal scroll: switch to a flex
+       column so the page can stretch a table to full height instead of scrolling Main.
+       Only from the navbar breakpoint up — on mobile the viewport is too short for a
+       locked-height table (filters eat the space and the table collapses), so there we
+       keep Main's normal vertical scroll and let the page grow to its natural height.
+       overflow-y stays auto (not hidden): on a tall screen the page fills exactly and
+       nothing scrolls, but on a short screen the table card hits its min-height and
+       Main scrolls instead of squeezing the table to nothing. */
+    &.fill {
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
   }
 }

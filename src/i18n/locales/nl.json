@@ -78,6 +78,9 @@
     "email_description": "Het e-mailadres dat aan je account is gekoppeld",
     "email_add_description": "Voeg een e-mailadres toe aan je account",
     "email_pending_description": "Wacht op bevestiging. Volg de link in de e-mail die we naar dit adres hebben gestuurd.",
+    "email_resend": "Link opnieuw verzenden",
+    "email_change": "E-mail wijzigen",
+    "email_resent": "Bevestigingslink opnieuw verzonden",
     "email_placeholder": "you@example.com",
     "email_invalid": "Voer een geldig e-mailadres in",
     "name_label": "Naam",
@@ -220,6 +223,7 @@
     "edit_title": "Transactie bewerken",
     "delete_title": "Transactie verwijderen",
     "records_per_page": "Rijen per pagina",
+    "search_placeholder": "Zoeken op beschrijving",
     "clear_search": "Zoekopdracht wissen",
     "period": "Periode",
     "date_range_placeholder": "Datum van — tot",
@@ -389,8 +393,8 @@
   "confirmEmail": {
     "title": "E-mailbevestiging",
     "success": "Je e-mailadres is bevestigd. Je kunt er nu mee inloggen.",
-    "error": "Deze bevestigingslink is ongeldig of verlopen. Probeer je e-mailadres opnieuw te koppelen.",
-    "invalid": "In de bevestigingslink ontbreekt het token.",
+    "error": "Deze bevestigingslink is ongeldig of verlopen. Probeer je e-mail opnieuw te koppelen.",
+    "invalid": "De bevestigingslink mist het token.",
     "go_settings": "Naar instellingen",
     "go_login": "Naar inloggen"
   }

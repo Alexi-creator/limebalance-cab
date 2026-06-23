@@ -78,6 +78,9 @@
     "email_description": "Die mit Ihrem Konto verknüpfte E-Mail",
     "email_add_description": "Fügen Sie Ihrem Konto eine E-Mail hinzu",
     "email_pending_description": "Bestätigung ausstehend. Folge dem Link in der E-Mail, die wir an diese Adresse gesendet haben.",
+    "email_resend": "Link erneut senden",
+    "email_change": "E-Mail ändern",
+    "email_resent": "Bestätigungslink erneut gesendet",
     "email_placeholder": "you@example.com",
     "email_invalid": "Geben Sie eine gültige E-Mail ein",
     "name_label": "Name",
@@ -220,6 +223,7 @@
     "edit_title": "Transaktion bearbeiten",
     "delete_title": "Transaktion löschen",
     "records_per_page": "Zeilen pro Seite",
+    "search_placeholder": "Nach Beschreibung suchen",
     "clear_search": "Suche löschen",
     "period": "Zeitraum",
     "date_range_placeholder": "Datum von — bis",
@@ -388,9 +392,9 @@
   },
   "confirmEmail": {
     "title": "E-Mail-Bestätigung",
-    "success": "Deine E-Mail wurde bestätigt. Du kannst dich jetzt damit anmelden.",
+    "success": "Deine E-Mail-Adresse wurde bestätigt. Du kannst dich jetzt damit anmelden.",
     "error": "Dieser Bestätigungslink ist ungültig oder abgelaufen. Versuche, deine E-Mail erneut zu verknüpfen.",
-    "invalid": "Im Bestätigungslink fehlt der Token.",
+    "invalid": "Im Bestätigungslink fehlt das Token.",
     "go_settings": "Zu den Einstellungen",
     "go_login": "Zur Anmeldung"
   }

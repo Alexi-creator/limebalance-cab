@@ -78,6 +78,9 @@
     "email_description": "Email liên kết với tài khoản của bạn",
     "email_add_description": "Thêm email vào tài khoản của bạn",
     "email_pending_description": "Đang chờ xác nhận. Hãy nhấp vào liên kết trong email chúng tôi đã gửi đến địa chỉ này.",
+    "email_resend": "Gửi lại liên kết",
+    "email_change": "Đổi email",
+    "email_resent": "Đã gửi lại liên kết xác nhận",
     "email_placeholder": "you@example.com",
     "email_invalid": "Nhập email hợp lệ",
     "name_label": "Tên",
@@ -215,6 +218,7 @@
     "edit_title": "Sửa giao dịch",
     "delete_title": "Xóa giao dịch",
     "records_per_page": "Số hàng mỗi trang",
+    "search_placeholder": "Tìm theo mô tả",
     "clear_search": "Xóa tìm kiếm",
     "period": "Kỳ",
     "date_range_placeholder": "Ngày từ — đến",
@@ -378,9 +382,9 @@
   },
   "confirmEmail": {
     "title": "Xác nhận email",
-    "success": "Email của bạn đã được xác nhận. Giờ đây bạn có thể đăng nhập bằng email này.",
-    "error": "Liên kết xác nhận này không hợp lệ hoặc đã hết hạn. Hãy thử liên kết email của bạn lại.",
-    "invalid": "Liên kết xác nhận thiếu mã token.",
+    "success": "Email của bạn đã được xác nhận. Bây giờ bạn có thể đăng nhập bằng email này.",
+    "error": "Liên kết xác nhận này không hợp lệ hoặc đã hết hạn. Hãy thử liên kết lại email của bạn.",
+    "invalid": "Liên kết xác nhận thiếu token.",
     "go_settings": "Đến phần cài đặt",
     "go_login": "Đến trang đăng nhập"
   }

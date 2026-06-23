@@ -1,7 +1,10 @@
+import { resendEmailConfirmation } from "@api/auth"
 import { RouteNames } from "@constants/routeNames"
 import { Alert, Button, Group, Text } from "@mantine/core"
+import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { IconAlertTriangle } from "@tabler/icons-react"
+import { useMutation } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
@@ -21,6 +24,12 @@ export function AccountAlert() {
   const needsEmailSetup = !!(user?.telegramId && !user?.email && !user?.pendingEmail)
   // email submitted but not yet confirmed — the address lives in pendingEmail
   const needsEmailConfirm = !!(!user?.email && user?.pendingEmail)
+
+  const resendMutation = useMutation({
+    mutationFn: resendEmailConfirmation,
+    onSuccess: () => notifications.show({ color: "green", message: t("settings.email_resent") }),
+    onError: () => notifications.show({ color: "red", message: t("settings.error") }),
+  })
 
   if (!needsEmailSetup && !needsEmailConfirm) return null
 
@@ -48,6 +57,28 @@ export function AccountAlert() {
           >
             {t("alerts.account_go_settings")}
           </Button>
+        )}
+        {needsEmailConfirm && (
+          <Group gap="xs">
+            <Button
+              size="xs"
+              color="yellow"
+              variant="filled"
+              loading={resendMutation.isPending}
+              onClick={() => resendMutation.mutate()}
+            >
+              {t("settings.email_resend")}
+            </Button>
+            <Button
+              component={Link}
+              to={RouteNames.SettingsSecurity}
+              size="xs"
+              color="yellow"
+              variant="subtle"
+            >
+              {t("settings.email_change")}
+            </Button>
+          </Group>
         )}
       </Group>
     </Alert>

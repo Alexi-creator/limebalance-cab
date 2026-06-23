@@ -78,6 +78,9 @@
     "email_description": "Jūsu kontam piesaistītais e-pasts",
     "email_add_description": "Pievienojiet kontam e-pastu",
     "email_pending_description": "Gaida apstiprinājumu. Sekojiet saitei e-pastā, ko nosūtījām uz šo adresi.",
+    "email_resend": "Sūtīt saiti vēlreiz",
+    "email_change": "Mainīt e-pastu",
+    "email_resent": "Apstiprināšanas saite nosūtīta vēlreiz",
     "email_placeholder": "you@example.com",
     "email_invalid": "Ievadiet derīgu e-pastu",
     "name_label": "Vārds",
@@ -225,6 +228,7 @@
     "edit_title": "Rediģēt darījumu",
     "delete_title": "Dzēst darījumu",
     "records_per_page": "Rindas lapā",
+    "search_placeholder": "Meklēt pēc apraksta",
     "clear_search": "Notīrīt meklēšanu",
     "period": "Periods",
     "date_range_placeholder": "Datums no — līdz",
@@ -399,8 +403,8 @@
   "confirmEmail": {
     "title": "E-pasta apstiprināšana",
     "success": "Jūsu e-pasts ir apstiprināts. Tagad varat ar to pieteikties.",
-    "error": "Šī apstiprinājuma saite nav derīga vai ir beigusies. Mēģiniet vēlreiz piesaistīt savu e-pastu.",
-    "invalid": "Apstiprinājuma saitei trūkst pilnvaras (token).",
+    "error": "Šī apstiprināšanas saite ir nederīga vai tās derīguma termiņš ir beidzies. Mēģiniet vēlreiz piesaistīt savu e-pastu.",
+    "invalid": "Apstiprināšanas saitei trūkst pilnvaras.",
     "go_settings": "Doties uz iestatījumiem",
     "go_login": "Doties uz pieteikšanos"
   }

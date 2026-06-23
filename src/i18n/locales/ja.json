@@ -78,6 +78,9 @@
     "email_description": "アカウントに紐づくメール",
     "email_add_description": "アカウントにメールを追加",
     "email_pending_description": "確認待ちです。このアドレスに送信したメール内のリンクを開いてください。",
+    "email_resend": "リンクを再送信",
+    "email_change": "メールアドレスを変更",
+    "email_resent": "確認リンクを再送信しました",
     "email_placeholder": "you@example.com",
     "email_invalid": "有効なメールアドレスを入力",
     "name_label": "名前",
@@ -215,6 +218,7 @@
     "edit_title": "取引の編集",
     "delete_title": "取引の削除",
     "records_per_page": "1ページあたりの行数",
+    "search_placeholder": "説明で検索",
     "clear_search": "検索をクリア",
     "period": "期間",
     "date_range_placeholder": "日付 開始 — 終了",
@@ -377,11 +381,11 @@
     "dont_know_bot": "ボットをご存じないですか？"
   },
   "confirmEmail": {
-    "title": "メールアドレスの確認",
-    "success": "メールアドレスが確認されました。これでサインインできます。",
-    "error": "この確認リンクは無効または期限切れです。メールアドレスをもう一度リンクしてください。",
+    "title": "メールの確認",
+    "success": "メールアドレスが確認されました。これでログインできます。",
+    "error": "この確認リンクは無効か、有効期限が切れています。メールアドレスをもう一度連携してください。",
     "invalid": "確認リンクにトークンがありません。",
-    "go_settings": "設定へ",
-    "go_login": "サインインへ"
+    "go_settings": "設定へ移動",
+    "go_login": "ログインへ移動"
   }
 }

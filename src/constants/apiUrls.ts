@@ -13,6 +13,7 @@ export const API_URLS = {
     me: `${API_URL}/auth/me`,
     credentials: `${API_URL}/auth/me/credentials`,
     confirmEmail: `${API_URL}/auth/confirm-email`,
+    resendEmailConfirmation: `${API_URL}/auth/resend-email-confirmation`,
     linkGoogle: `${API_URL}/auth/link/google`,
     linkTelegram: `${API_URL}/auth/link/telegram`,
   },

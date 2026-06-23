@@ -90,7 +90,7 @@ export function TransactionsPage() {
   const summary = items.length > 0 ? data?.summary : undefined
 
   return (
-    <Stack gap="md" style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
+    <Stack gap="md" style={{ flex: 1, minHeight: 0 }}>
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
@@ -147,7 +147,10 @@ export function TransactionsPage() {
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
-          minHeight: 0,
+          // Floor for the card so the table never collapses to nothing on a short screen.
+          // On a tall screen flex:1 grows past this and the table owns its internal scroll;
+          // on a short screen the card holds this height and Main scrolls to reach it.
+          minHeight: 420,
         }}
       >
         <TransactionsFilters params={params} setParams={setParams} />

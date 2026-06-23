@@ -78,6 +78,9 @@
     "email_description": "E-mail powiązany z Twoim kontem",
     "email_add_description": "Dodaj e-mail do swojego konta",
     "email_pending_description": "Oczekuje na potwierdzenie. Kliknij link w e-mailu wysłanym na ten adres.",
+    "email_resend": "Wyślij link ponownie",
+    "email_change": "Zmień e-mail",
+    "email_resent": "Link potwierdzający wysłany ponownie",
     "email_placeholder": "you@example.com",
     "email_invalid": "Wprowadź prawidłowy e-mail",
     "name_label": "Imię",
@@ -225,6 +228,7 @@
     "edit_title": "Edytuj transakcję",
     "delete_title": "Usuń transakcję",
     "records_per_page": "Wierszy na stronę",
+    "search_placeholder": "Szukaj według opisu",
     "clear_search": "Wyczyść wyszukiwanie",
     "period": "Okres",
     "date_range_placeholder": "Data od — do",
@@ -400,7 +404,7 @@
     "title": "Potwierdzenie e-maila",
     "success": "Twój e-mail został potwierdzony. Możesz się teraz nim zalogować.",
     "error": "Ten link potwierdzający jest nieprawidłowy lub wygasł. Spróbuj ponownie powiązać swój e-mail.",
-    "invalid": "W linku potwierdzającym brakuje tokena.",
+    "invalid": "W linku potwierdzającym brakuje tokenu.",
     "go_settings": "Przejdź do ustawień",
     "go_login": "Przejdź do logowania"
   }

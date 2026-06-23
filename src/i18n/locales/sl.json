@@ -78,6 +78,9 @@
     "email_description": "E-pošta, povezana z vašim računom",
     "email_add_description": "Dodajte e-pošto svojemu računu",
     "email_pending_description": "Čaka na potrditev. Sledite povezavi v e-pošti, ki smo jo poslali na ta naslov.",
+    "email_resend": "Znova pošlji povezavo",
+    "email_change": "Spremeni e-pošto",
+    "email_resent": "Povezava za potrditev je znova poslana",
     "email_placeholder": "you@example.com",
     "email_invalid": "Vnesite veljavno e-pošto",
     "name_label": "Ime",
@@ -230,6 +233,7 @@
     "edit_title": "Uredi transakcijo",
     "delete_title": "Izbriši transakcijo",
     "records_per_page": "Vrstic na stran",
+    "search_placeholder": "Iskanje po opisu",
     "clear_search": "Počisti iskanje",
     "period": "Obdobje",
     "date_range_placeholder": "Datum od — do",
@@ -410,7 +414,7 @@
     "title": "Potrditev e-pošte",
     "success": "Vaša e-pošta je potrjena. Zdaj se lahko prijavite z njo.",
     "error": "Ta povezava za potrditev je neveljavna ali je potekla. Poskusite znova povezati svojo e-pošto.",
-    "invalid": "Povezavi za potrditev manjka žeton.",
+    "invalid": "V povezavi za potrditev manjka žeton.",
     "go_settings": "Pojdi v nastavitve",
     "go_login": "Pojdi na prijavo"
   }

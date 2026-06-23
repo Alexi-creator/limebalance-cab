@@ -151,6 +151,55 @@ test.describe("Settings — email linking", () => {
       await expect(emailField).toBeDisabled()
       await expect(page.getByText("Awaiting confirmation", { exact: false })).toBeVisible()
     })
+
+    test("banner: resend link re-sends the confirmation and notifies", async ({ page }) => {
+      let called = false
+      await page.route(
+        (url) => new URL(url).pathname.endsWith("/auth/resend-email-confirmation"),
+        async (route) => {
+          called = true
+          await route.fulfill({ status: 200, json: { success: true } })
+        },
+      )
+
+      // Home has no security form — only the banner's resend button is present.
+      await page.goto("/")
+      await page.getByRole("button", { name: "Resend link" }).click()
+
+      await expect(page.getByText("Confirmation link sent again")).toBeVisible()
+      expect(called).toBe(true)
+    })
+
+    test("security form: resend link re-sends the confirmation", async ({ page }) => {
+      let called = false
+      await page.route(
+        (url) => new URL(url).pathname.endsWith("/auth/resend-email-confirmation"),
+        async (route) => {
+          called = true
+          await route.fulfill({ status: 200, json: { success: true } })
+        },
+      )
+
+      await page.goto("/settings/security")
+      // Both the banner and the form expose the action; the form's is last in the DOM.
+      await page.getByRole("button", { name: "Resend link" }).last().click()
+
+      await expect(page.getByText("Confirmation link sent again")).toBeVisible()
+      expect(called).toBe(true)
+    })
+
+    test("security form: change email unlocks an editable, empty email field", async ({ page }) => {
+      await page.goto("/settings/security")
+
+      const emailField = page.getByRole("textbox", { name: "Email" })
+      await expect(emailField).toBeDisabled()
+
+      // The form's "Change email" is last in the DOM (the banner's is first).
+      await page.getByRole("button", { name: "Change email" }).last().click()
+
+      await expect(emailField).toBeEditable()
+      await expect(emailField).toHaveValue("")
+    })
   })
 
   test.describe("email confirmed", () => {

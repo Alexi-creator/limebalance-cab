@@ -1,5 +1,5 @@
-import { setCredentials } from "@api/auth"
-import { Button, Group, PasswordInput, Stack, TextInput } from "@mantine/core"
+import { resendEmailConfirmation, setCredentials } from "@api/auth"
+import { Anchor, Button, Group, PasswordInput, Stack, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { useMutation } from "@tanstack/react-query"
@@ -29,8 +29,12 @@ export function SecurityForm() {
 
   const hasEmail = !!user?.email
   const pendingEmail = user?.pendingEmail ?? ""
-  // no email at all (and none awaiting confirmation) — this is the initial email-linking flow
-  const canLinkEmail = !hasEmail && !pendingEmail
+  // user explicitly chose to change the address while one is awaiting confirmation
+  const [editingEmail, setEditingEmail] = useState(false)
+  // awaiting confirmation and not currently changing it — show the locked pending state with resend/change
+  const pendingLocked = !!pendingEmail && !editingEmail
+  // the email can be entered: no email at all, or the user is changing the pending one
+  const canLinkEmail = !hasEmail && (!pendingEmail || editingEmail)
   // whether a password already exists; for old responses without the field, infer from email presence (previous behavior)
   const hasPassword = user?.hasPassword ?? hasEmail
   const [email, setEmail] = useState("")
@@ -82,11 +86,19 @@ export function SecurityForm() {
       setCurrentPassword("")
       setPassword("")
       setConfirm("")
+      setEditingEmail(false)
       notifications.show({ color: "green", message: t("settings.saved") })
     },
     onError: () => {
       notifications.show({ color: "red", message: t("settings.error") })
     },
+  })
+
+  // resend the confirmation link to the pending address, reusing the stored email+password
+  const resendMutation = useMutation({
+    mutationFn: resendEmailConfirmation,
+    onSuccess: () => notifications.show({ color: "green", message: t("settings.email_resent") }),
+    onError: () => notifications.show({ color: "red", message: t("settings.error") }),
   })
 
   return (
@@ -100,16 +112,36 @@ export function SecurityForm() {
           readOnly
           disabled
         />
-      ) : pendingEmail ? (
-        // awaiting confirmation: show the pending address, locked, with a hint to confirm it
-        <TextInput
-          label={t("settings.email_label")}
-          description={t("settings.email_pending_description")}
-          inputWrapperOrder={["label", "input", "description", "error"]}
-          value={pendingEmail}
-          readOnly
-          disabled
-        />
+      ) : pendingLocked ? (
+        // awaiting confirmation: show the pending address, locked, with resend / change actions
+        <Stack gap="xs">
+          <TextInput
+            label={t("settings.email_label")}
+            description={t("settings.email_pending_description")}
+            inputWrapperOrder={["label", "input", "description", "error"]}
+            value={pendingEmail}
+            readOnly
+            disabled
+          />
+          <Group gap="md">
+            <Button
+              variant="light"
+              size="xs"
+              loading={resendMutation.isPending}
+              onClick={() => resendMutation.mutate()}
+            >
+              {t("settings.email_resend")}
+            </Button>
+            <Anchor
+              component="button"
+              type="button"
+              size="sm"
+              onClick={() => setEditingEmail(true)}
+            >
+              {t("settings.email_change")}
+            </Anchor>
+          </Group>
+        </Stack>
       ) : (
         <TextInput
           type="email"
@@ -123,40 +155,50 @@ export function SecurityForm() {
         />
       )}
 
-      {hasPassword && (
-        <PasswordInput
-          label={t("settings.password_current_label")}
-          placeholder={t("settings.password_current_placeholder")}
-          value={currentPassword}
-          onChange={(e) => setCurrentPassword(e.currentTarget.value)}
-        />
+      {!pendingLocked && (
+        <>
+          {hasPassword && (
+            <PasswordInput
+              label={t("settings.password_current_label")}
+              placeholder={t("settings.password_current_placeholder")}
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.currentTarget.value)}
+            />
+          )}
+
+          <PasswordInput
+            label={t("settings.password_label")}
+            description={hasPassword ? undefined : t("settings.password_set_hint")}
+            inputWrapperOrder={["label", "input", "description", "error"]}
+            placeholder={t("settings.password_placeholder")}
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+            error={
+              passwordFieldError
+                ? t("settings.password_too_short", { count: MIN_PASSWORD })
+                : undefined
+            }
+          />
+
+          <PasswordInput
+            label={t("settings.password_confirm_label")}
+            placeholder={t("settings.password_placeholder")}
+            value={confirm}
+            onChange={(e) => setConfirm(e.currentTarget.value)}
+            error={confirmFieldError ? t("settings.password_mismatch") : undefined}
+          />
+
+          <Group justify="flex-end">
+            <Button
+              onClick={() => mutation.mutate()}
+              loading={mutation.isPending}
+              disabled={!canSave}
+            >
+              {t("settings.save")}
+            </Button>
+          </Group>
+        </>
       )}
-
-      <PasswordInput
-        label={t("settings.password_label")}
-        description={hasPassword ? undefined : t("settings.password_set_hint")}
-        inputWrapperOrder={["label", "input", "description", "error"]}
-        placeholder={t("settings.password_placeholder")}
-        value={password}
-        onChange={(e) => setPassword(e.currentTarget.value)}
-        error={
-          passwordFieldError ? t("settings.password_too_short", { count: MIN_PASSWORD }) : undefined
-        }
-      />
-
-      <PasswordInput
-        label={t("settings.password_confirm_label")}
-        placeholder={t("settings.password_placeholder")}
-        value={confirm}
-        onChange={(e) => setConfirm(e.currentTarget.value)}
-        error={confirmFieldError ? t("settings.password_mismatch") : undefined}
-      />
-
-      <Group justify="flex-end">
-        <Button onClick={() => mutation.mutate()} loading={mutation.isPending} disabled={!canSave}>
-          {t("settings.save")}
-        </Button>
-      </Group>
     </Stack>
   )
 }
