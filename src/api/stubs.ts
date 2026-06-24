@@ -513,7 +513,18 @@ function buildMe() {
     name: "Alex Morgan",
     currency: BASE_CURRENCY,
     timezone: "America/New_York",
-    subscription: "pro",
+    subscription: {
+      plan: {
+        id: "plan-pro",
+        name: "pro",
+        maxCategories: null,
+        maxExpenses: null,
+        maxIncomes: null,
+        price: "12.00",
+        investingAccess: true,
+      },
+      expiresAt: null,
+    },
     hasPassword: true,
   }
 }

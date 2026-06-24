@@ -1,6 +1,8 @@
 import { ApiError } from "@api/apiError"
+import { SchemaError } from "@api/schemaError"
 import type { HttpMethod } from "@constants/httpMethods"
 import { HttpMethods } from "@constants/httpMethods"
+import { z } from "zod/v4"
 import type { ZodType } from "zod/v4"
 
 export interface RequestOptions<T = unknown> {
@@ -30,7 +32,14 @@ export async function commonRequest<T>(url: string, options: RequestOptions<T> =
   const data = await response.json()
 
   if (options.schema) {
-    return options.schema.parse(data)
+    const result = options.schema.safeParse(data)
+    if (!result.success) {
+      // Contract drift between frontend and backend — a bug, not an auth/network failure.
+      // Surface it loudly instead of letting it masquerade as "logged out".
+      console.error(`Invalid response for ${url}:\n${z.prettifyError(result.error)}`)
+      throw new SchemaError(url, result.error)
+    }
+    return result.data
   }
 
   return data as T

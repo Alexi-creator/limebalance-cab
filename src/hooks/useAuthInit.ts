@@ -19,7 +19,10 @@ export function useAuthInit() {
         syncTimezone(user)
       } catch (err) {
         const isAuthError = err instanceof ApiError && err.status < 500
+        // Only a real auth failure means "logged out". Anything else (schema drift, 5xx,
+        // network) is unexpected — log it instead of silently treating the user as a guest.
         if (isAuthError) setUser(null)
+        else console.error("auth init failed:", err)
       } finally {
         setInitialized()
       }

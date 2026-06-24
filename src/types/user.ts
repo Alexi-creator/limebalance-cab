@@ -1,5 +1,23 @@
 import { z } from "zod"
 
+export const planSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  maxCategories: z.number().nullish(),
+  maxExpenses: z.number().nullish(),
+  maxIncomes: z.number().nullish(),
+  /** Decimal serialized as a string, e.g. "12.00" */
+  price: z.string(),
+  /** Unlocks the investing / crypto section */
+  investingAccess: z.boolean(),
+})
+
+export const subscriptionSchema = z.object({
+  plan: planSchema,
+  /** ISO date-time or null (null = perpetual, e.g. the ultra/lifetime plan) */
+  expiresAt: z.string().nullish(),
+})
+
 export const userSchema = z.object({
   // id: z.string(),
   email: z.email().nullish(),
@@ -8,7 +26,7 @@ export const userSchema = z.object({
   // locale: z.string().default("en"),
   currency: z.string().nullish(),
   timezone: z.string().nullish(),
-  subscription: z.string().nullish(),
+  subscription: subscriptionSchema.nullish(),
   /** Whether a password is set. Users who signed in via Google/Telegram may not have one. */
   hasPassword: z.boolean().nullish(),
   /**
