@@ -55,6 +55,7 @@
     "analytics": "Analyse",
     "goals": "Objectifs",
     "investments": "Investissements",
+    "investmentsLocked": "Passez à un forfait payant pour débloquer les investissements",
     "settings": "Paramètres",
     "menu": "Menu",
     "account": "Compte",
@@ -228,7 +229,8 @@
     "period": "Période",
     "date_range_placeholder": "Date de — à",
     "expense_added": "Dépense ajoutée",
-    "income_added": "Revenu ajouté"
+    "income_added": "Revenu ajouté",
+    "save_error": "Échec de l'enregistrement de la transaction"
   },
   "categories": {
     "title": "Catégories",
@@ -397,5 +399,14 @@
     "invalid": "Le lien de confirmation ne contient pas de jeton.",
     "go_settings": "Aller aux paramètres",
     "go_login": "Aller à la connexion"
+  },
+  "limits": {
+    "categories_soft_one": "Il reste {{count}} catégorie. Ensuite — passez à Pro.",
+    "categories_soft_other": "Il reste {{count}} catégories. Ensuite — passez à Pro.",
+    "categories_blocked": "Limite de catégories atteinte. Passez à un forfait supérieur pour en ajouter.",
+    "transactions_soft_one": "Il reste {{count}} transaction ce mois-ci. Ensuite — passez à Pro.",
+    "transactions_soft_other": "Il reste {{count}} transactions ce mois-ci. Ensuite — passez à Pro.",
+    "transactions_blocked": "Limite mensuelle de transactions atteinte. Changez de forfait ou attendez le mois prochain.",
+    "blocked_button_tooltip": "Limite atteinte — changez de forfait"
   }
 }

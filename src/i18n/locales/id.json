@@ -55,6 +55,7 @@
     "analytics": "Analitik",
     "goals": "Tujuan",
     "investments": "Investasi",
+    "investmentsLocked": "Beralih ke paket berbayar mana pun untuk membuka investasi",
     "settings": "Pengaturan",
     "menu": "Menu",
     "account": "Akun",
@@ -223,7 +224,8 @@
     "period": "Periode",
     "date_range_placeholder": "Tanggal dari — sampai",
     "expense_added": "Pengeluaran ditambahkan",
-    "income_added": "Pemasukan ditambahkan"
+    "income_added": "Pemasukan ditambahkan",
+    "save_error": "Gagal menyimpan transaksi"
   },
   "categories": {
     "title": "Kategori",
@@ -387,5 +389,12 @@
     "invalid": "Tautan konfirmasi tidak memiliki token.",
     "go_settings": "Buka pengaturan",
     "go_login": "Buka halaman masuk"
+  },
+  "limits": {
+    "categories_soft_other": "Tersisa {{count}} kategori. Setelah itu — tingkatkan ke Pro.",
+    "categories_blocked": "Batas kategori tercapai. Tingkatkan paket Anda untuk menambah lebih banyak.",
+    "transactions_soft_other": "Tersisa {{count}} transaksi bulan ini. Setelah itu — tingkatkan ke Pro.",
+    "transactions_blocked": "Batas transaksi bulanan tercapai. Tingkatkan paket Anda atau tunggu bulan depan.",
+    "blocked_button_tooltip": "Batas tercapai — tingkatkan paket Anda"
   }
 }

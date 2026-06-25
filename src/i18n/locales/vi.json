@@ -55,6 +55,7 @@
     "analytics": "Phân tích",
     "goals": "Mục tiêu",
     "investments": "Đầu tư",
+    "investmentsLocked": "Chuyển sang bất kỳ gói trả phí nào để mở khóa đầu tư",
     "settings": "Cài đặt",
     "menu": "Menu",
     "account": "Tài khoản",
@@ -223,7 +224,8 @@
     "period": "Kỳ",
     "date_range_placeholder": "Ngày từ — đến",
     "expense_added": "Đã thêm chi tiêu",
-    "income_added": "Đã thêm thu nhập"
+    "income_added": "Đã thêm thu nhập",
+    "save_error": "Không thể lưu giao dịch"
   },
   "categories": {
     "title": "Danh mục",
@@ -387,5 +389,12 @@
     "invalid": "Liên kết xác nhận thiếu token.",
     "go_settings": "Đến phần cài đặt",
     "go_login": "Đến trang đăng nhập"
+  },
+  "limits": {
+    "categories_soft_other": "Còn {{count}} danh mục. Sau đó — nâng cấp lên Pro.",
+    "categories_blocked": "Đã đạt giới hạn danh mục. Nâng cấp gói của bạn để thêm nhiều hơn.",
+    "transactions_soft_other": "Còn {{count}} giao dịch trong tháng này. Sau đó — nâng cấp lên Pro.",
+    "transactions_blocked": "Đã đạt giới hạn giao dịch hằng tháng. Nâng cấp gói của bạn hoặc đợi đến tháng sau.",
+    "blocked_button_tooltip": "Đã đạt giới hạn — nâng cấp gói của bạn"
   }
 }

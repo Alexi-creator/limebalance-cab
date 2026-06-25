@@ -8,9 +8,12 @@ import { CategoryForm } from "@components/categories/CategoryForm"
 import { GRID_COLS } from "@components/categories/config"
 import { DeleteCategoryConfirm } from "@components/categories/DeleteCategoryConfirm"
 import { baseAmount, toDisplay } from "@components/categories/helpers"
+import { LimitAlert } from "@components/LimitAlert"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
+import { useUsage } from "@hooks/useUsage"
 import {
+  Box,
   Button,
   Group,
   Paper,
@@ -20,10 +23,12 @@ import {
   Stack,
   Text,
   Title,
+  Tooltip,
 } from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 import { IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
+import { isLimitBlocked } from "@utils/subscription"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 
@@ -41,6 +46,10 @@ export function CategoriesPage() {
     queryFn: isExpense ? () => getExpenseCategoriesStats() : () => getIncomeCategoriesStats(),
     staleTime: isExpense ? EXPENSE_STALE_TIME : INCOME_STALE_TIME,
   })
+
+  // the categories limit is plan-wide (expense + income together), so it does not depend on the tab
+  const { data: usage } = useUsage()
+  const categoriesBlocked = isLimitBlocked(usage?.categories)
 
   const list = (data ?? []).map(toDisplay)
   const maxSpent = Math.max(...list.map(baseAmount), 1)
@@ -107,11 +116,33 @@ export function CategoriesPage() {
               { value: "income", label: t("common.income_plural") },
             ]}
           />
-          <Button size="sm" leftSection={<IconPlus size={14} />} onClick={() => openForm()}>
-            {t("categories.new")}
-          </Button>
+          {categoriesBlocked ? (
+            // a disabled button swallows hover, so the tooltip listens on the wrapping Box
+            <Tooltip label={t("limits.blocked_button_tooltip")} position="bottom-end" withArrow>
+              <Box>
+                <Button
+                  size="sm"
+                  leftSection={<IconPlus size={14} />}
+                  disabled
+                  style={{
+                    borderWidth: 1,
+                    borderStyle: "solid",
+                    borderColor: "var(--mantine-color-default-border)",
+                  }}
+                >
+                  {t("categories.new")}
+                </Button>
+              </Box>
+            </Tooltip>
+          ) : (
+            <Button size="sm" leftSection={<IconPlus size={14} />} onClick={() => openForm()}>
+              {t("categories.new")}
+            </Button>
+          )}
         </Group>
       </Group>
+
+      <LimitAlert usage={usage?.categories} kind="categories" />
 
       {isError ? (
         <Paper p="xl">

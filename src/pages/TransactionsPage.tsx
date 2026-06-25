@@ -3,6 +3,7 @@ import { getIncomeCategories } from "@api/incomes"
 import { getTransactions } from "@api/transactions"
 import type { Transaction } from "@appTypes/transaction"
 import { AddModal } from "@components/AddModal"
+import { LimitAlert } from "@components/LimitAlert"
 import { BulkDeleteModal } from "@components/transactions/BulkDeleteModal"
 import { transactionsParamsSchema } from "@components/transactions/config"
 import { TransactionsFilters } from "@components/transactions/TransactionsFilters"
@@ -14,10 +15,23 @@ import { incomeKeys } from "@constants/queries/incomes"
 import { TRANSACTIONS_STALE_TIME, transactionKeys } from "@constants/queries/transactions"
 import { RouteNames } from "@constants/routeNames"
 import { useUrlParams } from "@hooks/useUrlParams"
-import { Anchor, Button, Group, HoverCard, Paper, Stack, Text, Title } from "@mantine/core"
+import { useUsage } from "@hooks/useUsage"
+import {
+  Anchor,
+  Box,
+  Button,
+  Group,
+  HoverCard,
+  Paper,
+  Stack,
+  Text,
+  Title,
+  Tooltip,
+} from "@mantine/core"
 import { useModalStore } from "@store/modalStore"
 import { IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { isLimitBlocked } from "@utils/subscription"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
@@ -64,6 +78,10 @@ export function TransactionsPage() {
     expenseCategories.length === 0 &&
     incomeCategories.length === 0
 
+  // monthly transaction limit reached on the current plan — block creating more
+  const { data: usage } = useUsage()
+  const transactionsBlocked = isLimitBlocked(usage?.transactions)
+
   const [selectedRecords, setSelectedRecords] = useState<Transaction[]>([])
 
   const openAddModal = () =>
@@ -106,7 +124,25 @@ export function TransactionsPage() {
             CSV
           </Button>
           */}
-          {hasNoCategories ? (
+          {transactionsBlocked ? (
+            // a disabled button swallows hover, so the tooltip listens on the wrapping Box
+            <Tooltip label={t("limits.blocked_button_tooltip")} position="bottom-end" withArrow>
+              <Box>
+                <Button
+                  size="sm"
+                  leftSection={<IconPlus size={14} />}
+                  disabled
+                  style={{
+                    borderWidth: 1,
+                    borderStyle: "solid",
+                    borderColor: "var(--mantine-color-default-border)",
+                  }}
+                >
+                  {t("transactions.add")}
+                </Button>
+              </Box>
+            </Tooltip>
+          ) : hasNoCategories ? (
             <HoverCard width={240} shadow="md" withArrow position="bottom-end" openDelay={100}>
               <HoverCard.Target>
                 {/* muted green (variant light) instead of gray data-disabled —
@@ -140,6 +176,8 @@ export function TransactionsPage() {
           )}
         </Group>
       </Group>
+
+      <LimitAlert usage={usage?.transactions} kind="transactions" />
 
       <Paper
         style={{

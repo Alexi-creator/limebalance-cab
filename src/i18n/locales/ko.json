@@ -55,6 +55,7 @@
     "analytics": "분석",
     "goals": "목표",
     "investments": "투자",
+    "investmentsLocked": "투자 기능을 사용하려면 유료 플랜으로 전환하세요",
     "settings": "설정",
     "menu": "메뉴",
     "account": "계정",
@@ -223,7 +224,8 @@
     "period": "기간",
     "date_range_placeholder": "날짜 시작 — 종료",
     "expense_added": "지출이 추가되었습니다",
-    "income_added": "수입이 추가되었습니다"
+    "income_added": "수입이 추가되었습니다",
+    "save_error": "거래를 저장하지 못했습니다"
   },
   "categories": {
     "title": "카테고리",
@@ -387,5 +389,12 @@
     "invalid": "확인 링크에 토큰이 없습니다.",
     "go_settings": "설정으로 이동",
     "go_login": "로그인으로 이동"
+  },
+  "limits": {
+    "categories_soft_other": "{{count}}개의 카테고리가 남았습니다. 이후에는 Pro로 업그레이드하세요.",
+    "categories_blocked": "카테고리 한도에 도달했습니다. 더 추가하려면 요금제를 업그레이드하세요.",
+    "transactions_soft_other": "이번 달 {{count}}건 남았습니다. 이후에는 Pro로 업그레이드하세요.",
+    "transactions_blocked": "월간 거래 한도에 도달했습니다. 요금제를 업그레이드하거나 다음 달까지 기다리세요.",
+    "blocked_button_tooltip": "한도 도달 — 요금제를 업그레이드하세요"
   }
 }

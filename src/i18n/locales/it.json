@@ -55,6 +55,7 @@
     "analytics": "Analisi",
     "goals": "Obiettivi",
     "investments": "Investimenti",
+    "investmentsLocked": "Passa a un piano a pagamento per sbloccare gli investimenti",
     "settings": "Impostazioni",
     "menu": "Menu",
     "account": "Account",
@@ -228,7 +229,8 @@
     "period": "Periodo",
     "date_range_placeholder": "Data da — a",
     "expense_added": "Uscita aggiunta",
-    "income_added": "Entrata aggiunta"
+    "income_added": "Entrata aggiunta",
+    "save_error": "Impossibile salvare la transazione"
   },
   "categories": {
     "title": "Categorie",
@@ -397,5 +399,14 @@
     "invalid": "Nel link di conferma manca il token.",
     "go_settings": "Vai alle impostazioni",
     "go_login": "Vai all'accesso"
+  },
+  "limits": {
+    "categories_soft_one": "Resta {{count}} categoria. Poi passa a Pro.",
+    "categories_soft_other": "Restano {{count}} categorie. Poi passa a Pro.",
+    "categories_blocked": "Limite di categorie raggiunto. Passa a un piano superiore per aggiungerne altre.",
+    "transactions_soft_one": "Resta {{count}} transazione questo mese. Poi passa a Pro.",
+    "transactions_soft_other": "Restano {{count}} transazioni questo mese. Poi passa a Pro.",
+    "transactions_blocked": "Limite mensile di transazioni raggiunto. Passa a un piano superiore o attendi il mese prossimo.",
+    "blocked_button_tooltip": "Limite raggiunto: passa a un piano superiore"
   }
 }

@@ -9,16 +9,56 @@ export interface MockApiOptions {
   authenticated?: boolean
   /** Override the user returned by `/auth/me` for an authenticated session. Defaults to `MOCK_USER`. */
   user?: Record<string, unknown>
+  /**
+   * Override `/subscriptions/usage` to drive the limit warnings/blocking.
+   * Defaults to the stub value (unlimited — `limit`/`remaining` null). Use {@link buildUsage}.
+   */
+  usage?: Record<string, unknown>
 }
 
-/** The user returned for an authenticated session (matches stubs.buildMe). */
+type UsageEntry = { used: number; limit: number | null; remaining: number | null }
+
+/** Build a `/subscriptions/usage` payload for the limit tests. */
+export function buildUsage(categories: UsageEntry, transactions: UsageEntry) {
+  return { categories, transactions }
+}
+
+/** A paid plan that unlocks the investing / crypto section. */
+const PRO_PLAN = {
+  id: "plan-pro",
+  name: "pro",
+  maxCategories: null,
+  maxExpenses: null,
+  maxIncomes: null,
+  price: "12.00",
+  investingAccess: true,
+}
+
+/** The free tier — the investing / crypto section is locked on this plan. */
+const FREE_PLAN = {
+  id: "plan-free",
+  name: "free",
+  maxCategories: 5,
+  maxExpenses: 50,
+  maxIncomes: 50,
+  price: "0.00",
+  investingAccess: false,
+}
+
+/** The user returned for an authenticated session (matches stubs.buildMe — a paid "pro" plan). */
 export const MOCK_USER = {
   email: "alex.morgan@example.com",
   name: "Alex Morgan",
   currency: "USD",
   timezone: "America/New_York",
-  subscription: "pro",
+  subscription: { plan: PRO_PLAN, expiresAt: null },
   hasPassword: true,
+}
+
+/** A user on the free plan — the Investments section is locked for them. */
+export const MOCK_USER_FREE = {
+  ...MOCK_USER,
+  subscription: { plan: FREE_PLAN, expiresAt: null },
 }
 
 /** A Telegram user without a linked email/password — exercises the email-linking flow. */
@@ -50,7 +90,7 @@ export const MOCK_USER_PENDING_EMAIL = {
  * Call this BEFORE `page.goto(...)` so the first auth check is already mocked.
  */
 export async function mockApi(page: Page, options: MockApiOptions = {}): Promise<void> {
-  const { authenticated = true, user = MOCK_USER } = options
+  const { authenticated = true, user = MOCK_USER, usage } = options
 
   await blockThirdParty(page)
 
@@ -73,6 +113,10 @@ export async function mockApi(page: Page, options: MockApiOptions = {}): Promise
         })
       }
       return route.fulfill({ json: user })
+    }
+
+    if (path.endsWith("/subscriptions/usage") && usage) {
+      return route.fulfill({ json: usage })
     }
 
     if (method === "GET") {

@@ -55,6 +55,7 @@
     "analytics": "Elemzés",
     "goals": "Célok",
     "investments": "Befektetések",
+    "investmentsLocked": "Váltson bármelyik fizetős csomagra a befektetések feloldásához",
     "settings": "Beállítások",
     "menu": "Menü",
     "account": "Fiók",
@@ -228,7 +229,8 @@
     "period": "Időszak",
     "date_range_placeholder": "Dátum -tól — -ig",
     "expense_added": "Kiadás hozzáadva",
-    "income_added": "Bevétel hozzáadva"
+    "income_added": "Bevétel hozzáadva",
+    "save_error": "A tranzakció mentése nem sikerült"
   },
   "categories": {
     "title": "Kategóriák",
@@ -397,5 +399,14 @@
     "invalid": "A megerősítő hivatkozásból hiányzik a token.",
     "go_settings": "Ugrás a beállításokhoz",
     "go_login": "Ugrás a bejelentkezéshez"
+  },
+  "limits": {
+    "categories_soft_one": "{{count}} kategória maradt. Utána — válts Pro csomagra.",
+    "categories_soft_other": "{{count}} kategória maradt. Utána — válts Pro csomagra.",
+    "categories_blocked": "Elérted a kategóriakorlátot. Válts magasabb csomagra továbbiak hozzáadásához.",
+    "transactions_soft_one": "{{count}} tranzakció maradt ebben a hónapban. Utána — válts Pro csomagra.",
+    "transactions_soft_other": "{{count}} tranzakció maradt ebben a hónapban. Utána — válts Pro csomagra.",
+    "transactions_blocked": "Elérted a havi tranzakciós korlátot. Válts magasabb csomagra, vagy várj a következő hónapig.",
+    "blocked_button_tooltip": "Elérted a korlátot — válts csomagot"
   }
 }

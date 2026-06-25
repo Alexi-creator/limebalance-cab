@@ -3,9 +3,10 @@ import { z } from "zod"
 export const planSchema = z.object({
   id: z.string(),
   name: z.string(),
+  /** Total expense + income categories allowed (lifetime); null = unlimited */
   maxCategories: z.number().nullish(),
-  maxExpenses: z.number().nullish(),
-  maxIncomes: z.number().nullish(),
+  /** Expenses + incomes allowed per calendar month; null = unlimited */
+  maxTransactionsPerMonth: z.number().nullish(),
   /** Decimal serialized as a string, e.g. "12.00" */
   price: z.string(),
   /** Unlocks the investing / crypto section */

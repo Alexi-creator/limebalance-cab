@@ -55,6 +55,7 @@
     "analytics": "Analiz",
     "goals": "Hedefler",
     "investments": "Yatırımlar",
+    "investmentsLocked": "Yatırımların kilidini açmak için herhangi bir ücretli plana geçin",
     "settings": "Ayarlar",
     "menu": "Menü",
     "account": "Hesap",
@@ -228,7 +229,8 @@
     "period": "Dönem",
     "date_range_placeholder": "Tarih başlangıç — bitiş",
     "expense_added": "Gider eklendi",
-    "income_added": "Gelir eklendi"
+    "income_added": "Gelir eklendi",
+    "save_error": "İşlem kaydedilemedi"
   },
   "categories": {
     "title": "Kategoriler",
@@ -397,5 +399,14 @@
     "invalid": "Onay bağlantısında belirteç eksik.",
     "go_settings": "Ayarlara git",
     "go_login": "Girişe git"
+  },
+  "limits": {
+    "categories_soft_one": "{{count}} kategori kaldı. Sonrasında — Pro'ya geçin.",
+    "categories_soft_other": "{{count}} kategori kaldı. Sonrasında — Pro'ya geçin.",
+    "categories_blocked": "Kategori sınırına ulaşıldı. Daha fazlası için planınızı yükseltin.",
+    "transactions_soft_one": "Bu ay {{count}} işlem kaldı. Sonrasında — Pro'ya geçin.",
+    "transactions_soft_other": "Bu ay {{count}} işlem kaldı. Sonrasında — Pro'ya geçin.",
+    "transactions_blocked": "Aylık işlem sınırına ulaşıldı. Planınızı yükseltin veya gelecek ayı bekleyin.",
+    "blocked_button_tooltip": "Sınıra ulaşıldı — planınızı yükseltin"
   }
 }

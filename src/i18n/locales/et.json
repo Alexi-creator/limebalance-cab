@@ -55,6 +55,7 @@
     "analytics": "Analüütika",
     "goals": "Eesmärgid",
     "investments": "Investeeringud",
+    "investmentsLocked": "Investeeringute avamiseks vaheta mõnele tasulisele paketile",
     "settings": "Seaded",
     "menu": "Menüü",
     "account": "Konto",
@@ -228,7 +229,8 @@
     "period": "Periood",
     "date_range_placeholder": "Kuupäev alates — kuni",
     "expense_added": "Kulu lisatud",
-    "income_added": "Tulu lisatud"
+    "income_added": "Tulu lisatud",
+    "save_error": "Tehingu salvestamine ebaõnnestus"
   },
   "categories": {
     "title": "Kategooriad",
@@ -397,5 +399,14 @@
     "invalid": "Kinnituslingil puudub token.",
     "go_settings": "Ava seaded",
     "go_login": "Ava sisselogimine"
+  },
+  "limits": {
+    "categories_soft_one": "Jäänud {{count}} kategooria. Seejärel — uuenda Pro-le.",
+    "categories_soft_other": "Jäänud {{count}} kategooriat. Seejärel — uuenda Pro-le.",
+    "categories_blocked": "Kategooriate limiit täis. Rohkemate lisamiseks uuenda paketti.",
+    "transactions_soft_one": "Sel kuul jäänud {{count}} tehing. Seejärel — uuenda Pro-le.",
+    "transactions_soft_other": "Sel kuul jäänud {{count}} tehingut. Seejärel — uuenda Pro-le.",
+    "transactions_blocked": "Kuu tehingute limiit täis. Uuenda paketti või oota järgmise kuuni.",
+    "blocked_button_tooltip": "Limiit täis — uuenda paketti"
   }
 }

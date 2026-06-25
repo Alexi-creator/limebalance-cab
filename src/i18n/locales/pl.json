@@ -55,6 +55,7 @@
     "analytics": "Analityka",
     "goals": "Cele",
     "investments": "Inwestycje",
+    "investmentsLocked": "Przejdź na dowolny płatny plan, aby odblokować inwestycje",
     "settings": "Ustawienia",
     "menu": "Menu",
     "account": "Konto",
@@ -233,7 +234,8 @@
     "period": "Okres",
     "date_range_placeholder": "Data od — do",
     "expense_added": "Dodano wydatek",
-    "income_added": "Dodano przychód"
+    "income_added": "Dodano przychód",
+    "save_error": "Nie udało się zapisać transakcji"
   },
   "categories": {
     "title": "Kategorie",
@@ -407,5 +409,16 @@
     "invalid": "W linku potwierdzającym brakuje tokenu.",
     "go_settings": "Przejdź do ustawień",
     "go_login": "Przejdź do logowania"
+  },
+  "limits": {
+    "categories_soft_one": "Została {{count}} kategoria. Potem — przejdź na Pro.",
+    "categories_soft_few": "Zostały {{count}} kategorie. Potem — przejdź na Pro.",
+    "categories_soft_many": "Zostało {{count}} kategorii. Potem — przejdź na Pro.",
+    "categories_blocked": "Osiągnięto limit kategorii. Przejdź na wyższy plan, aby dodać więcej.",
+    "transactions_soft_one": "Została {{count}} transakcja w tym miesiącu. Potem — przejdź na Pro.",
+    "transactions_soft_few": "Zostały {{count}} transakcje w tym miesiącu. Potem — przejdź na Pro.",
+    "transactions_soft_many": "Zostało {{count}} transakcji w tym miesiącu. Potem — przejdź na Pro.",
+    "transactions_blocked": "Osiągnięto miesięczny limit transakcji. Przejdź na wyższy plan lub poczekaj do następnego miesiąca.",
+    "blocked_button_tooltip": "Osiągnięto limit — przejdź na wyższy plan"
   }
 }

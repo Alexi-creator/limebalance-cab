@@ -52,4 +52,7 @@ export const API_URLS = {
   goals: {
     goals: `${API_URL}/goals`,
   },
+  subscriptions: {
+    usage: `${API_URL}/subscriptions/usage`,
+  },
 }

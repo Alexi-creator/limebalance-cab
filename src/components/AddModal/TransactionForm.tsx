@@ -1,5 +1,8 @@
+import { ApiError } from "@api/apiError"
 import { type CreateExpensePayload, createExpense, getExpenseCategories } from "@api/expenses"
 import { createIncome, getIncomeCategories } from "@api/incomes"
+import { LimitAlert } from "@components/LimitAlert"
+import { HttpStatus } from "@constants/httpStatus"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
@@ -7,6 +10,7 @@ import { transactionKeys } from "@constants/queries/transactions"
 import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { RouteNames } from "@constants/routeNames"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useInvalidateUsage, useUsage } from "@hooks/useUsage"
 import {
   Anchor,
   Box,
@@ -23,6 +27,7 @@ import { DatePickerInput } from "@mantine/dates"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { isLimitBlocked } from "@utils/subscription"
 import { format } from "date-fns"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
@@ -61,6 +66,10 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
   const { t, i18n } = useTranslation()
   const queryClient = useQueryClient()
   const userCurrency = useAuthStore((s) => s.user?.currency)
+  const { data: usage } = useUsage()
+  const invalidateUsage = useInvalidateUsage()
+  // the monthly transaction limit is plan-wide (expenses + incomes together)
+  const limitReached = isLimitBlocked(usage?.transactions)
 
   const createSchema = z.object({
     kind: z.enum(["income", "expense"]),
@@ -141,11 +150,24 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
       // category stats are stale — mark them to refetch when visiting "Categories"
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
 
+      // a created transaction moves the monthly limit counter — refresh it
+      invalidateUsage()
+
       notifications.show({
         color: "green",
         message: isExpense ? t("transactions.expense_added") : t("transactions.income_added"),
       })
       onSubmit()
+    },
+    onError: (error) => {
+      // the server enforces the monthly limit too (in case our counter was stale) — on 403 show
+      // the same upgrade message instead of a generic error, and resync the counter
+      if (error instanceof ApiError && error.status === HttpStatus.FORBIDDEN) {
+        invalidateUsage()
+        notifications.show({ color: "red", message: t("limits.transactions_blocked") })
+        return
+      }
+      notifications.show({ color: "red", message: t("transactions.save_error") })
     },
   })
 
@@ -163,6 +185,8 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
   return (
     <form onSubmit={submit} noValidate>
       <Stack gap="lg">
+        {limitReached && <LimitAlert usage={usage?.transactions} kind="transactions" />}
+
         <Controller
           name="kind"
           control={control}
@@ -294,7 +318,11 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
           <Button variant="default" onClick={onCancel} disabled={mutation.isPending}>
             {t("common.cancel")}
           </Button>
-          <Button type="submit" loading={mutation.isPending} disabled={noCategories}>
+          <Button
+            type="submit"
+            loading={mutation.isPending}
+            disabled={noCategories || limitReached}
+          >
             {t("add_modal.save_transaction")}
           </Button>
         </Group>

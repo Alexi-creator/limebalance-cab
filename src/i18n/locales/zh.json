@@ -55,6 +55,7 @@
     "analytics": "分析",
     "goals": "目标",
     "investments": "投资",
+    "investmentsLocked": "切换到任意付费方案即可解锁投资",
     "settings": "设置",
     "menu": "菜单",
     "account": "账户",
@@ -223,7 +224,8 @@
     "period": "周期",
     "date_range_placeholder": "日期 从 — 到",
     "expense_added": "已添加支出",
-    "income_added": "已添加收入"
+    "income_added": "已添加收入",
+    "save_error": "无法保存交易"
   },
   "categories": {
     "title": "分类",
@@ -387,5 +389,12 @@
     "invalid": "确认链接缺少令牌。",
     "go_settings": "前往设置",
     "go_login": "前往登录"
+  },
+  "limits": {
+    "categories_soft_other": "还剩 {{count}} 个分类。之后请升级到 Pro。",
+    "categories_blocked": "已达到分类上限。请升级套餐以添加更多。",
+    "transactions_soft_other": "本月还剩 {{count}} 笔交易。之后请升级到 Pro。",
+    "transactions_blocked": "已达到本月交易上限。请升级套餐或等待下个月。",
+    "blocked_button_tooltip": "已达上限 — 请升级套餐"
   }
 }

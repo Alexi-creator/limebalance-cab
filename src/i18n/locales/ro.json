@@ -55,6 +55,7 @@
     "analytics": "Analiză",
     "goals": "Obiective",
     "investments": "Investiții",
+    "investmentsLocked": "Treceți la orice plan plătit pentru a debloca investițiile",
     "settings": "Setări",
     "menu": "Meniu",
     "account": "Cont",
@@ -233,7 +234,8 @@
     "period": "Perioadă",
     "date_range_placeholder": "Dată de la — până la",
     "expense_added": "Cheltuială adăugată",
-    "income_added": "Venit adăugat"
+    "income_added": "Venit adăugat",
+    "save_error": "Tranzacția nu a putut fi salvată"
   },
   "categories": {
     "title": "Categorii",
@@ -407,5 +409,16 @@
     "invalid": "Linkului de confirmare îi lipsește tokenul.",
     "go_settings": "Mergi la setări",
     "go_login": "Mergi la autentificare"
+  },
+  "limits": {
+    "categories_soft_one": "A mai rămas {{count}} categorie. Apoi — treci la Pro.",
+    "categories_soft_few": "Au mai rămas {{count}} categorii. Apoi — treci la Pro.",
+    "categories_soft_other": "Au mai rămas {{count}} de categorii. Apoi — treci la Pro.",
+    "categories_blocked": "Ai atins limita de categorii. Fă upgrade la plan pentru a adăuga mai multe.",
+    "transactions_soft_one": "A mai rămas {{count}} tranzacție luna aceasta. Apoi — treci la Pro.",
+    "transactions_soft_few": "Au mai rămas {{count}} tranzacții luna aceasta. Apoi — treci la Pro.",
+    "transactions_soft_other": "Au mai rămas {{count}} de tranzacții luna aceasta. Apoi — treci la Pro.",
+    "transactions_blocked": "Ai atins limita lunară de tranzacții. Fă upgrade la plan sau așteaptă luna viitoare.",
+    "blocked_button_tooltip": "Limită atinsă — fă upgrade la plan"
   }
 }

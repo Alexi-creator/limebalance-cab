@@ -1,11 +1,15 @@
+import { ApiError } from "@api/apiError"
 import { createExpenseCategory, getExpenseCategories, updateExpenseCategory } from "@api/expenses"
 import { createIncomeCategory, getIncomeCategories, updateIncomeCategory } from "@api/incomes"
 import type { Category, CategoryPayload } from "@appTypes/category"
+import { LimitAlert } from "@components/LimitAlert"
+import { HttpStatus } from "@constants/httpStatus"
 import { CATEGORY_STALE_TIME } from "@constants/queries/categories"
 import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
 import { transactionKeys } from "@constants/queries/transactions"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useInvalidateUsage, useUsage } from "@hooks/useUsage"
 import {
   ActionIcon,
   Box,
@@ -21,6 +25,7 @@ import {
 import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { isLimitBlocked } from "@utils/subscription"
 import { useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -55,6 +60,11 @@ export function CategoryForm({ category, defaultType }: Props) {
   const isEdit = !!category
   const close = useModalStore((s) => s.close)
   const queryClient = useQueryClient()
+  const { data: usage } = useUsage()
+  const invalidateUsage = useInvalidateUsage()
+
+  // only creation counts against the categories limit — editing an existing one never does
+  const limitReached = !isEdit && isLimitBlocked(usage?.categories)
 
   const [type, setType] = useState(defaultType)
   const isExpense = type === "expense"
@@ -119,13 +129,22 @@ export function CategoryForm({ category, defaultType }: Props) {
       queryClient.invalidateQueries({ queryKey: keys.categories })
       // the category name/emoji are visible in the transactions list — update it too
       queryClient.invalidateQueries({ queryKey: transactionKeys.all })
+      // a created category moves the limit counter — refresh it so warnings/blocking stay in sync
+      if (!isEdit) invalidateUsage()
       notifications.show({
         color: "green",
         message: isEdit ? t("categories.update_success") : t("categories.create_success"),
       })
       close()
     },
-    onError: () => {
+    onError: (error) => {
+      // the server enforces the limit too (in case our counter was stale) — on 403 show the same
+      // upgrade message instead of a generic error, and resync the counter to block further attempts
+      if (error instanceof ApiError && error.status === HttpStatus.FORBIDDEN) {
+        invalidateUsage()
+        notifications.show({ color: "red", message: t("limits.categories_blocked") })
+        return
+      }
       notifications.show({ color: "red", message: t("categories.save_error") })
     },
   })
@@ -137,6 +156,8 @@ export function CategoryForm({ category, defaultType }: Props) {
   return (
     <form onSubmit={onSubmit} noValidate>
       <Stack gap="lg">
+        {limitReached && <LimitAlert usage={usage?.categories} kind="categories" />}
+
         {!isEdit && (
           <SegmentedControl
             fullWidth
@@ -206,7 +227,7 @@ export function CategoryForm({ category, defaultType }: Props) {
           <Button variant="default" onClick={close} disabled={mutation.isPending}>
             {t("common.cancel")}
           </Button>
-          <Button type="submit" loading={mutation.isPending}>
+          <Button type="submit" loading={mutation.isPending} disabled={limitReached}>
             {isEdit ? t("common.save") : t("categories.create")}
           </Button>
         </Group>

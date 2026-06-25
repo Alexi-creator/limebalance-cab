@@ -55,6 +55,7 @@
     "analytics": "التحليلات",
     "goals": "الأهداف",
     "investments": "الاستثمارات",
+    "investmentsLocked": "بدّل إلى أي خطة مدفوعة لفتح الاستثمارات",
     "settings": "الإعدادات",
     "menu": "القائمة",
     "account": "الحساب",
@@ -248,7 +249,8 @@
     "period": "الفترة",
     "date_range_placeholder": "التاريخ من — إلى",
     "expense_added": "تمت إضافة المصروف",
-    "income_added": "تمت إضافة الإيراد"
+    "income_added": "تمت إضافة الإيراد",
+    "save_error": "تعذّر حفظ العملية"
   },
   "categories": {
     "title": "الفئات",
@@ -437,5 +439,22 @@
     "invalid": "رابط التأكيد يفتقد إلى الرمز المميز.",
     "go_settings": "الذهاب إلى الإعدادات",
     "go_login": "الذهاب إلى تسجيل الدخول"
+  },
+  "limits": {
+    "categories_soft_zero": "بقيت {{count}} فئة. بعد ذلك — قم بالترقية إلى Pro.",
+    "categories_soft_one": "بقيت {{count}} فئة. بعد ذلك — قم بالترقية إلى Pro.",
+    "categories_soft_two": "بقيت {{count}} فئتان. بعد ذلك — قم بالترقية إلى Pro.",
+    "categories_soft_few": "بقيت {{count}} فئات. بعد ذلك — قم بالترقية إلى Pro.",
+    "categories_soft_many": "بقيت {{count}} فئة. بعد ذلك — قم بالترقية إلى Pro.",
+    "categories_soft_other": "بقيت {{count}} فئة. بعد ذلك — قم بالترقية إلى Pro.",
+    "categories_blocked": "تم بلوغ حد الفئات. قم بترقية خطتك لإضافة المزيد.",
+    "transactions_soft_zero": "بقيت {{count}} عملية هذا الشهر. بعد ذلك — قم بالترقية إلى Pro.",
+    "transactions_soft_one": "بقيت {{count}} عملية هذا الشهر. بعد ذلك — قم بالترقية إلى Pro.",
+    "transactions_soft_two": "بقيت {{count}} عمليتان هذا الشهر. بعد ذلك — قم بالترقية إلى Pro.",
+    "transactions_soft_few": "بقيت {{count}} عمليات هذا الشهر. بعد ذلك — قم بالترقية إلى Pro.",
+    "transactions_soft_many": "بقيت {{count}} عملية هذا الشهر. بعد ذلك — قم بالترقية إلى Pro.",
+    "transactions_soft_other": "بقيت {{count}} عملية هذا الشهر. بعد ذلك — قم بالترقية إلى Pro.",
+    "transactions_blocked": "تم بلوغ الحد الشهري للعمليات. قم بترقية خطتك أو انتظر حتى الشهر المقبل.",
+    "blocked_button_tooltip": "تم بلوغ الحد — قم بترقية خطتك"
   }
 }

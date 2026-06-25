@@ -1,4 +1,5 @@
 import type { RouteConfig } from "@appTypes/route"
+import { InvestmentsGuard } from "@components/InvestmentsGuard"
 import { RouteNames } from "@constants/routeNames"
 import { lazy } from "react"
 
@@ -13,10 +14,9 @@ const AnalyticsPage = lazy(() =>
   import("@pages/AnalyticsPage").then((m) => ({ default: m.AnalyticsPage })),
 )
 const GoalsPage = lazy(() => import("@pages/GoalsPage").then((m) => ({ default: m.GoalsPage })))
-// TODO(investments): temporarily hidden, page under development — restore the import and route below
-// const InvestmentsPage = lazy(() =>
-//   import("@pages/InvestmentsPage").then((m) => ({ default: m.InvestmentsPage })),
-// )
+const InvestmentsPage = lazy(() =>
+  import("@pages/InvestmentsPage").then((m) => ({ default: m.InvestmentsPage })),
+)
 const SettingsPage = lazy(() =>
   import("@pages/SettingsPage").then((m) => ({ default: m.SettingsPage })),
 )
@@ -31,8 +31,14 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Categories, element: <CategoriesPage /> },
   { path: RouteNames.Analytics, element: <AnalyticsPage /> },
   { path: RouteNames.Goals, element: <GoalsPage /> },
-  // TODO(investments): temporarily hidden, page under development — restore the route
-  // { path: RouteNames.Investments, element: <InvestmentsPage /> },
+  {
+    path: RouteNames.Investments,
+    element: (
+      <InvestmentsGuard>
+        <InvestmentsPage />
+      </InvestmentsGuard>
+    ),
+  },
   { path: RouteNames.Settings, element: <SettingsPage /> },
   { path: RouteNames.SettingsSecurity, element: <SettingsPage /> },
   { path: RouteNames.SettingsTelegram, element: <SettingsPage /> },

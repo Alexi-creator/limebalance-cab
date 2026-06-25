@@ -55,6 +55,7 @@
     "analytics": "Analýza",
     "goals": "Ciele",
     "investments": "Investície",
+    "investmentsLocked": "Prejdite na ľubovoľný platený plán a odomknite investície",
     "settings": "Nastavenia",
     "menu": "Ponuka",
     "account": "Účet",
@@ -233,7 +234,8 @@
     "period": "Obdobie",
     "date_range_placeholder": "Dátum od — do",
     "expense_added": "Výdavok pridaný",
-    "income_added": "Príjem pridaný"
+    "income_added": "Príjem pridaný",
+    "save_error": "Transakciu sa nepodarilo uložiť"
   },
   "categories": {
     "title": "Kategórie",
@@ -407,5 +409,16 @@
     "invalid": "V potvrdzovacom odkaze chýba token.",
     "go_settings": "Prejsť do nastavení",
     "go_login": "Prejsť na prihlásenie"
+  },
+  "limits": {
+    "categories_soft_one": "Zostáva {{count}} kategória. Potom — prejdite na Pro.",
+    "categories_soft_few": "Zostávajú {{count}} kategórie. Potom — prejdite na Pro.",
+    "categories_soft_many": "Zostáva {{count}} kategórií. Potom — prejdite na Pro.",
+    "categories_blocked": "Dosiahnutý limit kategórií. Inovujte svoj plán a pridajte ďalšie.",
+    "transactions_soft_one": "Tento mesiac zostáva {{count}} transakcia. Potom — prejdite na Pro.",
+    "transactions_soft_few": "Tento mesiac zostávajú {{count}} transakcie. Potom — prejdite na Pro.",
+    "transactions_soft_many": "Tento mesiac zostáva {{count}} transakcií. Potom — prejdite na Pro.",
+    "transactions_blocked": "Dosiahnutý mesačný limit transakcií. Inovujte svoj plán alebo počkajte do budúceho mesiaca.",
+    "blocked_button_tooltip": "Limit dosiahnutý — inovujte svoj plán"
   }
 }

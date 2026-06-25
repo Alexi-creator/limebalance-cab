@@ -55,6 +55,7 @@
     "analytics": "Analyse",
     "goals": "Mål",
     "investments": "Investeringer",
+    "investmentsLocked": "Bytt til et betalt abonnement for å låse opp investeringer",
     "settings": "Innstillinger",
     "menu": "Meny",
     "account": "Konto",
@@ -228,7 +229,8 @@
     "period": "Periode",
     "date_range_placeholder": "Dato fra — til",
     "expense_added": "Utgift lagt til",
-    "income_added": "Inntekt lagt til"
+    "income_added": "Inntekt lagt til",
+    "save_error": "Kunne ikke lagre transaksjonen"
   },
   "categories": {
     "title": "Kategorier",
@@ -397,5 +399,14 @@
     "invalid": "Bekreftelseslenken mangler token.",
     "go_settings": "Gå til innstillinger",
     "go_login": "Gå til innlogging"
+  },
+  "limits": {
+    "categories_soft_one": "{{count}} kategori igjen. Deretter — oppgrader til Pro.",
+    "categories_soft_other": "{{count}} kategorier igjen. Deretter — oppgrader til Pro.",
+    "categories_blocked": "Kategorigrensen er nådd. Oppgrader abonnementet for å legge til flere.",
+    "transactions_soft_one": "{{count}} transaksjon igjen denne måneden. Deretter — oppgrader til Pro.",
+    "transactions_soft_other": "{{count}} transaksjoner igjen denne måneden. Deretter — oppgrader til Pro.",
+    "transactions_blocked": "Månedlig transaksjonsgrense nådd. Oppgrader abonnementet eller vent til neste måned.",
+    "blocked_button_tooltip": "Grensen er nådd — oppgrader abonnementet"
   }
 }

@@ -55,6 +55,7 @@
     "analytics": "Аналитика",
     "goals": "Цели",
     "investments": "Инвестиции",
+    "investmentsLocked": "Перейдите на любой платный тариф, чтобы открыть инвестиции",
     "settings": "Настройки",
     "menu": "Меню",
     "account": "Аккаунт",
@@ -198,6 +199,17 @@
     "name_required": "Введите название",
     "name_too_long": "Не больше {{max}} символов"
   },
+  "limits": {
+    "categories_soft_one": "Осталась {{count}} категория. Дальше — перейдите на Pro.",
+    "categories_soft_few": "Осталось {{count}} категории. Дальше — перейдите на Pro.",
+    "categories_soft_many": "Осталось {{count}} категорий. Дальше — перейдите на Pro.",
+    "categories_blocked": "Лимит категорий исчерпан. Перейдите на другой тариф.",
+    "transactions_soft_one": "Осталась {{count}} операция в этом месяце. Дальше — перейдите на Pro.",
+    "transactions_soft_few": "Осталось {{count}} операции в этом месяце. Дальше — перейдите на Pro.",
+    "transactions_soft_many": "Осталось {{count}} операций в этом месяце. Дальше — перейдите на Pro.",
+    "transactions_blocked": "Лимит операций за месяц исчерпан. Перейдите на другой тариф или дождитесь следующего месяца.",
+    "blocked_button_tooltip": "Лимит исчерпан — перейдите на другой тариф"
+  },
   "transactions": {
     "title": "Операции",
     "count_label_one": "{{count}} операция",
@@ -233,7 +245,8 @@
     "period": "Период",
     "date_range_placeholder": "Дата от — до",
     "expense_added": "Расход добавлен",
-    "income_added": "Доход добавлен"
+    "income_added": "Доход добавлен",
+    "save_error": "Не удалось сохранить операцию"
   },
   "categories": {
     "title": "Категории",

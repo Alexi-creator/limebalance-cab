@@ -55,6 +55,7 @@
     "analytics": "Analītika",
     "goals": "Mērķi",
     "investments": "Investīcijas",
+    "investmentsLocked": "Pārslēdzieties uz jebkuru maksas plānu, lai atbloķētu ieguldījumus",
     "settings": "Iestatījumi",
     "menu": "Izvēlne",
     "account": "Konts",
@@ -233,7 +234,8 @@
     "period": "Periods",
     "date_range_placeholder": "Datums no — līdz",
     "expense_added": "Izdevumi pievienoti",
-    "income_added": "Ieņēmumi pievienoti"
+    "income_added": "Ieņēmumi pievienoti",
+    "save_error": "Neizdevās saglabāt transakciju"
   },
   "categories": {
     "title": "Kategorijas",
@@ -407,5 +409,16 @@
     "invalid": "Apstiprināšanas saitei trūkst pilnvaras.",
     "go_settings": "Doties uz iestatījumiem",
     "go_login": "Doties uz pieteikšanos"
+  },
+  "limits": {
+    "categories_soft_zero": "Atlikušas {{count}} kategorijas. Pēc tam — pārejiet uz Pro.",
+    "categories_soft_one": "Atlikusi {{count}} kategorija. Pēc tam — pārejiet uz Pro.",
+    "categories_soft_other": "Atlikušas {{count}} kategorijas. Pēc tam — pārejiet uz Pro.",
+    "categories_blocked": "Sasniegts kategoriju limits. Jauniniet plānu, lai pievienotu vairāk.",
+    "transactions_soft_zero": "Šomēnes atlikušas {{count}} transakcijas. Pēc tam — pārejiet uz Pro.",
+    "transactions_soft_one": "Šomēnes atlikusi {{count}} transakcija. Pēc tam — pārejiet uz Pro.",
+    "transactions_soft_other": "Šomēnes atlikušas {{count}} transakcijas. Pēc tam — pārejiet uz Pro.",
+    "transactions_blocked": "Sasniegts mēneša transakciju limits. Jauniniet plānu vai gaidiet nākamo mēnesi.",
+    "blocked_button_tooltip": "Limits sasniegts — jauniniet plānu"
   }
 }

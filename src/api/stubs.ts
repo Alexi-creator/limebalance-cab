@@ -518,14 +518,23 @@ function buildMe() {
         id: "plan-pro",
         name: "pro",
         maxCategories: null,
-        maxExpenses: null,
-        maxIncomes: null,
+        maxTransactionsPerMonth: null,
         price: "12.00",
         investingAccess: true,
       },
       expiresAt: null,
     },
     hasPassword: true,
+  }
+}
+
+// Consistent with the pro plan above (unlimited). To exercise the limit warnings/blocking in
+// stub mode, give the free plan its caps in buildMe and return numbers here, e.g.
+// { categories: { used: 5, limit: 5, remaining: 0 }, transactions: { used: 19, limit: 20, remaining: 1 } }.
+function buildUsage() {
+  return {
+    categories: { used: 12, limit: null, remaining: null },
+    transactions: { used: 34, limit: null, remaining: null },
   }
 }
 
@@ -540,6 +549,7 @@ export function getStub(url: string, method: string): unknown {
   const granularity = q.get("granularity") ?? "month"
 
   if (path.endsWith("/auth/me")) return buildMe()
+  if (path.endsWith("/subscriptions/usage")) return buildUsage()
   if (path.endsWith("/transactions/balance")) return buildBalance()
   if (path.endsWith("/transactions")) return buildTransactions(q)
 

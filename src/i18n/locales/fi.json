@@ -55,6 +55,7 @@
     "analytics": "Analytiikka",
     "goals": "Tavoitteet",
     "investments": "Sijoitukset",
+    "investmentsLocked": "Vaihda mihin tahansa maksulliseen tilaukseen avataksesi sijoitukset",
     "settings": "Asetukset",
     "menu": "Valikko",
     "account": "Tili",
@@ -228,7 +229,8 @@
     "period": "Jakso",
     "date_range_placeholder": "Päivämäärä alkaen — päättyen",
     "expense_added": "Meno lisätty",
-    "income_added": "Tulo lisätty"
+    "income_added": "Tulo lisätty",
+    "save_error": "Tapahtuman tallennus epäonnistui"
   },
   "categories": {
     "title": "Kategoriat",
@@ -397,5 +399,14 @@
     "invalid": "Vahvistuslinkistä puuttuu token.",
     "go_settings": "Siirry asetuksiin",
     "go_login": "Siirry kirjautumiseen"
+  },
+  "limits": {
+    "categories_soft_one": "{{count}} luokka jäljellä. Sen jälkeen — päivitä Pro-tilaukseen.",
+    "categories_soft_other": "{{count}} luokkaa jäljellä. Sen jälkeen — päivitä Pro-tilaukseen.",
+    "categories_blocked": "Luokkaraja saavutettu. Päivitä tilauksesi lisätäksesi enemmän.",
+    "transactions_soft_one": "{{count}} tapahtuma jäljellä tässä kuussa. Sen jälkeen — päivitä Pro-tilaukseen.",
+    "transactions_soft_other": "{{count}} tapahtumaa jäljellä tässä kuussa. Sen jälkeen — päivitä Pro-tilaukseen.",
+    "transactions_blocked": "Kuukausittainen tapahtumaraja saavutettu. Päivitä tilauksesi tai odota ensi kuuhun.",
+    "blocked_button_tooltip": "Raja saavutettu — päivitä tilauksesi"
   }
 }

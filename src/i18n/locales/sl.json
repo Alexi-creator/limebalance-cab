@@ -55,6 +55,7 @@
     "analytics": "Analitika",
     "goals": "Cilji",
     "investments": "Naložbe",
+    "investmentsLocked": "Za odklep naložb preklopite na kateri koli plačljivi paket",
     "settings": "Nastavitve",
     "menu": "Meni",
     "account": "Račun",
@@ -238,7 +239,8 @@
     "period": "Obdobje",
     "date_range_placeholder": "Datum od — do",
     "expense_added": "Odhodek dodan",
-    "income_added": "Prihodek dodan"
+    "income_added": "Prihodek dodan",
+    "save_error": "Transakcije ni bilo mogoče shraniti"
   },
   "categories": {
     "title": "Kategorije",
@@ -417,5 +419,18 @@
     "invalid": "V povezavi za potrditev manjka žeton.",
     "go_settings": "Pojdi v nastavitve",
     "go_login": "Pojdi na prijavo"
+  },
+  "limits": {
+    "categories_soft_one": "Ostala je še {{count}} kategorija. Nato — nadgradite na Pro.",
+    "categories_soft_two": "Ostali sta še {{count}} kategoriji. Nato — nadgradite na Pro.",
+    "categories_soft_few": "Ostale so še {{count}} kategorije. Nato — nadgradite na Pro.",
+    "categories_soft_other": "Ostalo je še {{count}} kategorij. Nato — nadgradite na Pro.",
+    "categories_blocked": "Dosežena je omejitev kategorij. Nadgradite paket za dodajanje več.",
+    "transactions_soft_one": "Ta mesec je ostala še {{count}} transakcija. Nato — nadgradite na Pro.",
+    "transactions_soft_two": "Ta mesec sta ostali še {{count}} transakciji. Nato — nadgradite na Pro.",
+    "transactions_soft_few": "Ta mesec so ostale še {{count}} transakcije. Nato — nadgradite na Pro.",
+    "transactions_soft_other": "Ta mesec je ostalo še {{count}} transakcij. Nato — nadgradite na Pro.",
+    "transactions_blocked": "Dosežena je mesečna omejitev transakcij. Nadgradite paket ali počakajte do naslednjega meseca.",
+    "blocked_button_tooltip": "Omejitev dosežena — nadgradite paket"
   }
 }

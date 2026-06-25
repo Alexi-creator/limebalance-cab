@@ -55,6 +55,7 @@
     "analytics": "Analitika",
     "goals": "Tikslai",
     "investments": "Investicijos",
+    "investmentsLocked": "Perjunkite į bet kurį mokamą planą, kad atrakintumėte investicijas",
     "settings": "Nustatymai",
     "menu": "Meniu",
     "account": "Paskyra",
@@ -233,7 +234,8 @@
     "period": "Laikotarpis",
     "date_range_placeholder": "Data nuo — iki",
     "expense_added": "Išlaidos pridėtos",
-    "income_added": "Pajamos pridėtos"
+    "income_added": "Pajamos pridėtos",
+    "save_error": "Nepavyko išsaugoti operacijos"
   },
   "categories": {
     "title": "Kategorijos",
@@ -407,5 +409,18 @@
     "invalid": "Patvirtinimo nuorodoje trūksta prieigos rakto.",
     "go_settings": "Eiti į nustatymus",
     "go_login": "Eiti į prisijungimą"
+  },
+  "limits": {
+    "categories_soft_one": "Liko {{count}} kategorija. Toliau — atnaujinkite į Pro.",
+    "categories_soft_few": "Liko {{count}} kategorijos. Toliau — atnaujinkite į Pro.",
+    "categories_soft_many": "Liko {{count}} kategorijos. Toliau — atnaujinkite į Pro.",
+    "categories_soft_other": "Liko {{count}} kategorijų. Toliau — atnaujinkite į Pro.",
+    "categories_blocked": "Pasiektas kategorijų limitas. Atnaujinkite planą, kad pridėtumėte daugiau.",
+    "transactions_soft_one": "Šį mėnesį liko {{count}} operacija. Toliau — atnaujinkite į Pro.",
+    "transactions_soft_few": "Šį mėnesį liko {{count}} operacijos. Toliau — atnaujinkite į Pro.",
+    "transactions_soft_many": "Šį mėnesį liko {{count}} operacijos. Toliau — atnaujinkite į Pro.",
+    "transactions_soft_other": "Šį mėnesį liko {{count}} operacijų. Toliau — atnaujinkite į Pro.",
+    "transactions_blocked": "Pasiektas mėnesio operacijų limitas. Atnaujinkite planą arba palaukite kito mėnesio.",
+    "blocked_button_tooltip": "Limitas pasiektas — atnaujinkite planą"
   }
 }

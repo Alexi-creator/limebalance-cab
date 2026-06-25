@@ -55,6 +55,7 @@
     "analytics": "Analyse",
     "goals": "Mål",
     "investments": "Investeringer",
+    "investmentsLocked": "Skift til et betalt abonnement for at låse op for investeringer",
     "settings": "Indstillinger",
     "menu": "Menu",
     "account": "Konto",
@@ -228,7 +229,8 @@
     "period": "Periode",
     "date_range_placeholder": "Dato fra — til",
     "expense_added": "Udgift tilføjet",
-    "income_added": "Indtægt tilføjet"
+    "income_added": "Indtægt tilføjet",
+    "save_error": "Transaktionen kunne ikke gemmes"
   },
   "categories": {
     "title": "Kategorier",
@@ -397,5 +399,14 @@
     "invalid": "Bekræftelseslinket mangler sit token.",
     "go_settings": "Gå til indstillinger",
     "go_login": "Gå til login"
+  },
+  "limits": {
+    "categories_soft_one": "{{count}} kategori tilbage. Derefter — opgrader til Pro.",
+    "categories_soft_other": "{{count}} kategorier tilbage. Derefter — opgrader til Pro.",
+    "categories_blocked": "Kategorigrænsen er nået. Opgrader dit abonnement for at tilføje flere.",
+    "transactions_soft_one": "{{count}} transaktion tilbage denne måned. Derefter — opgrader til Pro.",
+    "transactions_soft_other": "{{count}} transaktioner tilbage denne måned. Derefter — opgrader til Pro.",
+    "transactions_blocked": "Månedlig transaktionsgrænse nået. Opgrader dit abonnement, eller vent til næste måned.",
+    "blocked_button_tooltip": "Grænsen er nået — opgrader dit abonnement"
   }
 }

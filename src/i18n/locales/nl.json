@@ -55,6 +55,7 @@
     "analytics": "Analyse",
     "goals": "Doelen",
     "investments": "Beleggingen",
+    "investmentsLocked": "Schakel over naar een betaald abonnement om beleggingen te ontgrendelen",
     "settings": "Instellingen",
     "menu": "Menu",
     "account": "Account",
@@ -228,7 +229,8 @@
     "period": "Periode",
     "date_range_placeholder": "Datum van — tot",
     "expense_added": "Uitgave toegevoegd",
-    "income_added": "Inkomst toegevoegd"
+    "income_added": "Inkomst toegevoegd",
+    "save_error": "Transactie opslaan mislukt"
   },
   "categories": {
     "title": "Categorieën",
@@ -397,5 +399,14 @@
     "invalid": "De bevestigingslink mist het token.",
     "go_settings": "Naar instellingen",
     "go_login": "Naar inloggen"
+  },
+  "limits": {
+    "categories_soft_one": "Nog {{count}} categorie over. Daarna — upgrade naar Pro.",
+    "categories_soft_other": "Nog {{count}} categorieën over. Daarna — upgrade naar Pro.",
+    "categories_blocked": "Categorielimiet bereikt. Upgrade je abonnement om meer toe te voegen.",
+    "transactions_soft_one": "Nog {{count}} transactie deze maand. Daarna — upgrade naar Pro.",
+    "transactions_soft_other": "Nog {{count}} transacties deze maand. Daarna — upgrade naar Pro.",
+    "transactions_blocked": "Maandelijkse transactielimiet bereikt. Upgrade je abonnement of wacht tot volgende maand.",
+    "blocked_button_tooltip": "Limiet bereikt — upgrade je abonnement"
   }
 }

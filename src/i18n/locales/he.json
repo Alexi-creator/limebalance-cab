@@ -55,6 +55,7 @@
     "analytics": "ניתוח",
     "goals": "יעדים",
     "investments": "השקעות",
+    "investmentsLocked": "עברו לכל תוכנית בתשלום כדי לפתוח את ההשקעות",
     "settings": "הגדרות",
     "menu": "תפריט",
     "account": "חשבון",
@@ -238,7 +239,8 @@
     "period": "תקופה",
     "date_range_placeholder": "תאריך מ — עד",
     "expense_added": "ההוצאה נוספה",
-    "income_added": "ההכנסה נוספה"
+    "income_added": "ההכנסה נוספה",
+    "save_error": "שמירת התנועה נכשלה"
   },
   "categories": {
     "title": "קטגוריות",
@@ -417,5 +419,16 @@
     "invalid": "בקישור האימות חסר האסימון.",
     "go_settings": "מעבר להגדרות",
     "go_login": "מעבר להתחברות"
+  },
+  "limits": {
+    "categories_soft_one": "נותרה {{count}} קטגוריה. לאחר מכן — שדרגו ל-Pro.",
+    "categories_soft_two": "נותרו {{count}} קטגוריות. לאחר מכן — שדרגו ל-Pro.",
+    "categories_soft_other": "נותרו {{count}} קטגוריות. לאחר מכן — שדרגו ל-Pro.",
+    "categories_blocked": "הגעת למגבלת הקטגוריות. שדרגו את התוכנית כדי להוסיף עוד.",
+    "transactions_soft_one": "נותרה {{count}} תנועה החודש. לאחר מכן — שדרגו ל-Pro.",
+    "transactions_soft_two": "נותרו {{count}} תנועות החודש. לאחר מכן — שדרגו ל-Pro.",
+    "transactions_soft_other": "נותרו {{count}} תנועות החודש. לאחר מכן — שדרגו ל-Pro.",
+    "transactions_blocked": "הגעת למגבלת התנועות החודשית. שדרגו את התוכנית או המתינו לחודש הבא.",
+    "blocked_button_tooltip": "הגעת למגבלה — שדרגו את התוכנית"
   }
 }

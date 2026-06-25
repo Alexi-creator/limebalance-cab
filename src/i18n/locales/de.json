@@ -55,6 +55,7 @@
     "analytics": "Analyse",
     "goals": "Ziele",
     "investments": "Investitionen",
+    "investmentsLocked": "Wechseln Sie zu einem kostenpflichtigen Tarif, um Investitionen freizuschalten",
     "settings": "Einstellungen",
     "menu": "Menü",
     "account": "Konto",
@@ -228,7 +229,8 @@
     "period": "Zeitraum",
     "date_range_placeholder": "Datum von — bis",
     "expense_added": "Ausgabe hinzugefügt",
-    "income_added": "Einnahme hinzugefügt"
+    "income_added": "Einnahme hinzugefügt",
+    "save_error": "Transaktion konnte nicht gespeichert werden"
   },
   "categories": {
     "title": "Kategorien",
@@ -397,5 +399,14 @@
     "invalid": "Im Bestätigungslink fehlt das Token.",
     "go_settings": "Zu den Einstellungen",
     "go_login": "Zur Anmeldung"
+  },
+  "limits": {
+    "categories_soft_one": "Noch {{count}} Kategorie übrig. Danach – Upgrade auf Pro.",
+    "categories_soft_other": "Noch {{count}} Kategorien übrig. Danach – Upgrade auf Pro.",
+    "categories_blocked": "Kategorienlimit erreicht. Führe ein Upgrade durch, um mehr hinzuzufügen.",
+    "transactions_soft_one": "Noch {{count}} Transaktion in diesem Monat. Danach – Upgrade auf Pro.",
+    "transactions_soft_other": "Noch {{count}} Transaktionen in diesem Monat. Danach – Upgrade auf Pro.",
+    "transactions_blocked": "Monatliches Transaktionslimit erreicht. Führe ein Upgrade durch oder warte bis zum nächsten Monat.",
+    "blocked_button_tooltip": "Limit erreicht – bitte Upgrade durchführen"
   }
 }

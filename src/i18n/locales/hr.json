@@ -55,6 +55,7 @@
     "analytics": "Analitika",
     "goals": "Ciljevi",
     "investments": "Ulaganja",
+    "investmentsLocked": "Prijeđite na bilo koji plaćeni plan da otključate ulaganja",
     "settings": "Postavke",
     "menu": "Izbornik",
     "account": "Račun",
@@ -233,7 +234,8 @@
     "period": "Razdoblje",
     "date_range_placeholder": "Datum od — do",
     "expense_added": "Rashod dodan",
-    "income_added": "Prihod dodan"
+    "income_added": "Prihod dodan",
+    "save_error": "Spremanje transakcije nije uspjelo"
   },
   "categories": {
     "title": "Kategorije",
@@ -407,5 +409,16 @@
     "invalid": "Poveznici za potvrdu nedostaje token.",
     "go_settings": "Idi na postavke",
     "go_login": "Idi na prijavu"
+  },
+  "limits": {
+    "categories_soft_one": "Preostala je {{count}} kategorija. Zatim — prijeđite na Pro.",
+    "categories_soft_few": "Preostale su {{count}} kategorije. Zatim — prijeđite na Pro.",
+    "categories_soft_other": "Preostalo je {{count}} kategorija. Zatim — prijeđite na Pro.",
+    "categories_blocked": "Dosegnuto je ograničenje kategorija. Nadogradite plan da biste dodali još.",
+    "transactions_soft_one": "Ovaj mjesec preostala je {{count}} transakcija. Zatim — prijeđite na Pro.",
+    "transactions_soft_few": "Ovaj mjesec preostale su {{count}} transakcije. Zatim — prijeđite na Pro.",
+    "transactions_soft_other": "Ovaj mjesec preostalo je {{count}} transakcija. Zatim — prijeđite na Pro.",
+    "transactions_blocked": "Dosegnuto je mjesečno ograničenje transakcija. Nadogradite plan ili pričekajte sljedeći mjesec.",
+    "blocked_button_tooltip": "Ograničenje dosegnuto — nadogradite plan"
   }
 }

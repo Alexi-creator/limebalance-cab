@@ -55,6 +55,7 @@
     "analytics": "Análise",
     "goals": "Metas",
     "investments": "Investimentos",
+    "investmentsLocked": "Mude para qualquer plano pago para desbloquear os investimentos",
     "settings": "Configurações",
     "menu": "Menu",
     "account": "Conta",
@@ -228,7 +229,8 @@
     "period": "Período",
     "date_range_placeholder": "Data de — até",
     "expense_added": "Despesa adicionada",
-    "income_added": "Receita adicionada"
+    "income_added": "Receita adicionada",
+    "save_error": "Não foi possível salvar a transação"
   },
   "categories": {
     "title": "Categorias",
@@ -397,5 +399,14 @@
     "invalid": "O link de confirmação está sem o token.",
     "go_settings": "Ir para configurações",
     "go_login": "Ir para o login"
+  },
+  "limits": {
+    "categories_soft_one": "Resta {{count}} categoria. Depois, mude para o Pro.",
+    "categories_soft_other": "Restam {{count}} categorias. Depois, mude para o Pro.",
+    "categories_blocked": "Limite de categorias atingido. Faça upgrade do plano para adicionar mais.",
+    "transactions_soft_one": "Resta {{count}} transação este mês. Depois, mude para o Pro.",
+    "transactions_soft_other": "Restam {{count}} transações este mês. Depois, mude para o Pro.",
+    "transactions_blocked": "Limite mensal de transações atingido. Faça upgrade do plano ou aguarde o próximo mês.",
+    "blocked_button_tooltip": "Limite atingido — faça upgrade do plano"
   }
 }

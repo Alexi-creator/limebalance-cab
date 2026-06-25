@@ -55,6 +55,7 @@
     "analytics": "Analytics",
     "goals": "Goals",
     "investments": "Investments",
+    "investmentsLocked": "Switch to any paid plan to unlock investments",
     "settings": "Settings",
     "menu": "Menu",
     "account": "Account",
@@ -196,6 +197,15 @@
     "name_required": "Enter a name",
     "name_too_long": "No more than {{max}} characters"
   },
+  "limits": {
+    "categories_soft_one": "{{count}} category left. After that — upgrade to Pro.",
+    "categories_soft_other": "{{count}} categories left. After that — upgrade to Pro.",
+    "categories_blocked": "Category limit reached. Upgrade your plan to add more.",
+    "transactions_soft_one": "{{count}} transaction left this month. After that — upgrade to Pro.",
+    "transactions_soft_other": "{{count}} transactions left this month. After that — upgrade to Pro.",
+    "transactions_blocked": "Monthly transaction limit reached. Upgrade your plan or wait until next month.",
+    "blocked_button_tooltip": "Limit reached — upgrade your plan"
+  },
   "transactions": {
     "title": "Transactions",
     "count_label_one": "{{count}} transaction",
@@ -228,7 +238,8 @@
     "period": "Period",
     "date_range_placeholder": "Date from — to",
     "expense_added": "Expense added",
-    "income_added": "Income added"
+    "income_added": "Income added",
+    "save_error": "Failed to save transaction"
   },
   "categories": {
     "title": "Categories",
