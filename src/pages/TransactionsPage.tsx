@@ -27,7 +27,9 @@ import {
   Text,
   Title,
   Tooltip,
+  useMantineTheme,
 } from "@mantine/core"
+import { useMediaQuery } from "@mantine/hooks"
 import { useModalStore } from "@store/modalStore"
 import { IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
@@ -38,6 +40,12 @@ import { Link } from "react-router-dom"
 
 export function TransactionsPage() {
   const { t } = useTranslation()
+  const theme = useMantineTheme()
+  // below `md` the filters live in a bottom drawer whose handle is fixed to the viewport
+  // edge — reserve space so it never covers the table footer/pagination.
+  const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`, true, {
+    getInitialValueInEffect: false,
+  })
   const [params, setParams] = useUrlParams(transactionsParamsSchema)
   const openModal = useModalStore((s) => s.open)
 
@@ -108,7 +116,7 @@ export function TransactionsPage() {
   const summary = items.length > 0 ? data?.summary : undefined
 
   return (
-    <Stack gap="md" style={{ flex: 1, minHeight: 0 }}>
+    <Stack gap="md" style={{ flex: 1, minHeight: 0, paddingBottom: isDesktop ? 0 : 64 }}>
       <Group justify="space-between" align="flex-end" wrap="wrap">
         <Stack gap={4}>
           <Title order={2} size="h3">
@@ -188,7 +196,8 @@ export function TransactionsPage() {
           // Floor for the card so the table never collapses to nothing on a short screen.
           // On a tall screen flex:1 grows past this and the table owns its internal scroll;
           // on a short screen the card holds this height and Main scrolls to reach it.
-          minHeight: 420,
+          // Below `md` the controls move out to the bottom drawer, so the card can sit lower.
+          minHeight: isDesktop ? 420 : 320,
         }}
       >
         <TransactionsFilters params={params} setParams={setParams} />

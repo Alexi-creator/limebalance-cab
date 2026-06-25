@@ -2,8 +2,8 @@ import { ApiError } from "@api/apiError"
 import { SchemaError } from "@api/schemaError"
 import type { HttpMethod } from "@constants/httpMethods"
 import { HttpMethods } from "@constants/httpMethods"
-import { z } from "zod/v4"
 import type { ZodType } from "zod/v4"
+import { z } from "zod/v4"
 
 export interface RequestOptions<T = unknown> {
   method?: HttpMethod

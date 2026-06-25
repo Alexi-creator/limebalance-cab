@@ -1,5 +1,5 @@
 import type { LimitUsage } from "@appTypes/usage"
-import { Alert, Flex, Text } from "@mantine/core"
+import { Alert, Text } from "@mantine/core"
 import { IconAlertTriangle } from "@tabler/icons-react"
 import { limitLevel } from "@utils/subscription"
 import { useTranslation } from "react-i18next"
@@ -29,11 +29,17 @@ export function LimitAlert({ usage, kind }: Props) {
       t(`limits.${kind}_soft`, { count: usage?.remaining ?? 0 })
 
   return (
-    <Alert color={blocked ? "red" : "orange"} variant="light" radius="md" p="sm">
-      <Flex gap="xs" align="flex-start">
-        <IconAlertTriangle size={16} style={{ flexShrink: 0, marginTop: 2 }} />
-        <Text size="sm">{message}</Text>
-      </Flex>
+    <Alert
+      // marginTop nudges the icon onto the first text line; flex-start keeps it there
+      // when the message wraps to two lines (instead of centering on the whole block).
+      icon={<IconAlertTriangle size={16} style={{ marginTop: 2 }} />}
+      color={blocked ? "red" : "orange"}
+      variant="light"
+      radius="md"
+      p="sm"
+      styles={{ wrapper: { alignItems: "flex-start" } }}
+    >
+      <Text size="sm">{message}</Text>
     </Alert>
   )
 }
