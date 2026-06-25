@@ -10,6 +10,17 @@ export function hasInvestmentsAccess(user: User | null): boolean {
   return user?.subscription?.plan.investingAccess ?? false
 }
 
+/**
+ * Whether the user's plan caps anything at all (categories or monthly transactions).
+ * Unlimited (paid) plans have both caps null → there's nothing to warn about, so the
+ * usage counter never needs to be fetched. Used to gate the usage request.
+ */
+export function planHasLimits(user: User | null): boolean {
+  const plan = user?.subscription?.plan
+  if (!plan) return true // no plan info yet → assume limited (free) and fetch to be safe
+  return plan.maxCategories != null || plan.maxTransactionsPerMonth != null
+}
+
 /** At or below this many remaining we nudge the user toward upgrading (soft warning). */
 const SOFT_WARNING_THRESHOLD = 2
 
