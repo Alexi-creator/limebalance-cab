@@ -1,5 +1,5 @@
 import { expect, test } from "./fixtures"
-import { buildUsage, mockApi } from "./helpers/mockApi"
+import { buildUsage, MOCK_USER_FREE, mockApi } from "./helpers/mockApi"
 
 // English fallback copy for the limit messages (the test browser runs in `en`).
 const CATEGORIES_BLOCKED = "Category limit reached. Upgrade your plan to add more."
@@ -14,6 +14,7 @@ test.describe("Plan limits — warnings and blocking", () => {
   test.describe("categories", () => {
     test("limit reached: red alert, create button disabled with tooltip", async ({ page }) => {
       await mockApi(page, {
+        user: MOCK_USER_FREE,
         usage: buildUsage({ used: 5, limit: 5, remaining: 0 }, ROOMY),
       })
       await page.goto("/categories")
@@ -30,6 +31,7 @@ test.describe("Plan limits — warnings and blocking", () => {
 
     test("almost out (1 left): soft hint, create button still enabled", async ({ page }) => {
       await mockApi(page, {
+        user: MOCK_USER_FREE,
         usage: buildUsage({ used: 4, limit: 5, remaining: 1 }, ROOMY),
       })
       await page.goto("/categories")
@@ -49,6 +51,7 @@ test.describe("Plan limits — warnings and blocking", () => {
   test.describe("transactions", () => {
     test("limit reached: red alert, add button disabled with tooltip", async ({ page }) => {
       await mockApi(page, {
+        user: MOCK_USER_FREE,
         usage: buildUsage(ROOMY, { used: 20, limit: 20, remaining: 0 }),
       })
       await page.goto("/transactions")
@@ -64,6 +67,7 @@ test.describe("Plan limits — warnings and blocking", () => {
 
     test("almost out (2 left): soft monthly hint, add button still enabled", async ({ page }) => {
       await mockApi(page, {
+        user: MOCK_USER_FREE,
         usage: buildUsage(ROOMY, { used: 18, limit: 20, remaining: 2 }),
       })
       await page.goto("/transactions")
@@ -78,6 +82,7 @@ test.describe("Plan limits — warnings and blocking", () => {
       // Counter still shows room (button enabled), so the form opens — but the server rejects the
       // creation with 403 (a stale counter / race). The form must show the upgrade message.
       await mockApi(page, {
+        user: MOCK_USER_FREE,
         usage: buildUsage(ROOMY, { used: 19, limit: 20, remaining: 1 }),
       })
 

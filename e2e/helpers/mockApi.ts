@@ -23,24 +23,22 @@ export function buildUsage(categories: UsageEntry, transactions: UsageEntry) {
   return { categories, transactions }
 }
 
-/** A paid plan that unlocks the investing / crypto section. */
+/** A paid plan that unlocks the investing / crypto section. Unlimited — no caps. */
 const PRO_PLAN = {
   id: "plan-pro",
   name: "pro",
   maxCategories: null,
-  maxExpenses: null,
-  maxIncomes: null,
+  maxTransactionsPerMonth: null,
   price: "12.00",
   investingAccess: true,
 }
 
-/** The free tier — the investing / crypto section is locked on this plan. */
+/** The free tier — has caps and the investing / crypto section is locked. */
 const FREE_PLAN = {
   id: "plan-free",
   name: "free",
   maxCategories: 5,
-  maxExpenses: 50,
-  maxIncomes: 50,
+  maxTransactionsPerMonth: 50,
   price: "0.00",
   investingAccess: false,
 }
