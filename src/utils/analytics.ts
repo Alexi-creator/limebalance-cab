@@ -31,8 +31,11 @@ export function initGA(): void {
   document.head.appendChild(script)
 
   window.dataLayer = window.dataLayer || []
-  window.gtag = (...args: GtagArgs) => {
-    window.dataLayer?.push(args)
+  // gtag.js only processes a real `arguments` object as a command.
+  // Pushing a plain array leaves config/event unprocessed and no hits are sent.
+  window.gtag = function gtag() {
+    // biome-ignore lint: gtag.js requires the arguments object, not an array
+    window.dataLayer?.push(arguments)
   }
 
   window.gtag("js", new Date())
