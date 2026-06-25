@@ -187,6 +187,7 @@
     "account_needs_email": "Du loggede ind via Telegram. Tilføj en e-mail og adgangskode i indstillingerne, så du ikke mister adgangen til din konto.",
     "account_confirm_email": "Bekræft e-mailen {{email}} via linket, vi har sendt til den.",
     "account_go_settings": "Gå til indstillinger",
+    "email_verify": "Vi har sendt en besked til {{email}}. Bekræft din adresse, så du ikke mister adgangen til din konto — ubekræftede inaktive konti kan blive slettet.",
     "telegram_connect_text": "Vi har en Telegram-bot — tilføj indtægter og udgifter direkte i chatten, de vises her.",
     "telegram_connect_button": "Forbind"
   },
@@ -398,6 +399,7 @@
     "title": "Bekræftelse af e-mail",
     "success": "Din e-mail er blevet bekræftet. Du kan nu logge ind med den.",
     "error": "Dette bekræftelseslink er ugyldigt eller udløbet. Prøv at tilknytte din e-mail igen.",
+    "already": "Denne e-mail er allerede bekræftet.",
     "invalid": "Bekræftelseslinket mangler sit token.",
     "go_settings": "Gå til indstillinger",
     "go_login": "Gå til login"

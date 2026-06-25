@@ -1,4 +1,5 @@
 import { AccountAlert } from "@components/AccountAlert"
+import { EmailVerifyAlert } from "@components/EmailVerifyAlert"
 import { TelegramConnectAlert } from "@components/TelegramConnectAlert"
 import { RouteNames } from "@constants/routeNames"
 import { AppShell, Box, LoadingOverlay } from "@mantine/core"
@@ -27,6 +28,7 @@ export function Main() {
       <LoadingOverlay visible={isLoading} />
 
       <AccountAlert />
+      <EmailVerifyAlert />
       <TelegramConnectAlert />
 
       <Suspense fallback={<LoadingOverlay visible />}>

@@ -187,6 +187,7 @@
     "account_needs_email": "You signed in via Telegram. Add an email and password in settings so you don't lose access to your account.",
     "account_confirm_email": "Confirm your email {{email}} via the link we sent to it.",
     "account_go_settings": "Go to settings",
+    "email_verify": "We sent a message to {{email}}. Confirm your address so you don't lose access to your account — unconfirmed inactive accounts may be removed.",
     "telegram_connect_text": "We have a Telegram bot — add income and expenses right in the chat, they'll show up here.",
     "telegram_connect_button": "Connect"
   },
@@ -407,6 +408,7 @@
     "title": "Email confirmation",
     "success": "Your email has been confirmed. You can now sign in with it.",
     "error": "This confirmation link is invalid or has expired. Try linking your email again.",
+    "already": "This email is already confirmed.",
     "invalid": "The confirmation link is missing its token.",
     "go_settings": "Go to settings",
     "go_login": "Go to sign in"

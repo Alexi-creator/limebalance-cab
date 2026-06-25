@@ -3,6 +3,7 @@ import { MOCK_USER_PENDING_EMAIL, mockApi } from "./helpers/mockApi"
 
 // English copy (the default fallback locale) for the strings asserted below.
 const SUCCESS = "Your email has been confirmed. You can now sign in with it."
+const ALREADY = "This email is already confirmed."
 const ERROR = "This confirmation link is invalid or has expired. Try linking your email again."
 const NO_TOKEN = "The confirmation link is missing its token."
 
@@ -46,6 +47,16 @@ test.describe("Confirm email page", () => {
     await page.goto("/confirm-email?token=dead")
 
     await expect(page.getByText(ERROR)).toBeVisible()
+  })
+
+  test("treats a 409 as already-confirmed and sends the user onward", async ({ page }) => {
+    await mockApi(page, { authenticated: false })
+    await routeConfirm(page, 409, { message: "already confirmed" })
+
+    await page.goto("/confirm-email?token=used")
+
+    await expect(page.getByText(ALREADY)).toBeVisible()
+    await expect(page.getByRole("link", { name: "Go to sign in" })).toBeVisible()
   })
 
   test("shows an error when the token is missing from the URL", async ({ page }) => {

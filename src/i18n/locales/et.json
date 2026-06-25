@@ -187,6 +187,7 @@
     "account_needs_email": "Logisid sisse Telegrami kaudu. Lisa seadetes e-post ja parool, et mitte kaotada juurdepääsu oma kontole.",
     "account_confirm_email": "Kinnitage e-post {{email}} lingi kaudu, mille sellele saatsime.",
     "account_go_settings": "Mine seadetesse",
+    "email_verify": "Saatsime sõnumi aadressile {{email}}. Kinnitage oma aadress, et te ei kaotaks juurdepääsu kontole — kinnitamata ja mitteaktiivsed kontod võidakse kustutada.",
     "telegram_connect_text": "Meil on Telegrami bot — lisa tulud ja kulud otse vestluses, need ilmuvad siia.",
     "telegram_connect_button": "Ühenda"
   },
@@ -398,6 +399,7 @@
     "title": "E-posti kinnitamine",
     "success": "Sinu e-post on kinnitatud. Nüüd saad sellega sisse logida.",
     "error": "See kinnituslink on kehtetu või aegunud. Proovi oma e-post uuesti siduda.",
+    "already": "See e-post on juba kinnitatud.",
     "invalid": "Kinnituslingil puudub token.",
     "go_settings": "Ava seaded",
     "go_login": "Ava sisselogimine"

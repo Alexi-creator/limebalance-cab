@@ -189,6 +189,7 @@
     "account_needs_email": "Te-ai autentificat prin Telegram. Adaugă un e-mail și o parolă în setări ca să nu pierzi accesul la cont.",
     "account_confirm_email": "Confirmați e-mailul {{email}} prin linkul trimis la această adresă.",
     "account_go_settings": "Mergi la setări",
+    "email_verify": "Am trimis un mesaj la {{email}}. Confirmă adresa ca să nu pierzi accesul la cont — conturile neconfirmate și inactive pot fi șterse.",
     "telegram_connect_text": "Avem un bot de Telegram — adaugă venituri și cheltuieli direct în chat, vor apărea aici.",
     "telegram_connect_button": "Conectează"
   },
@@ -408,6 +409,7 @@
     "title": "Confirmarea e-mailului",
     "success": "E-mailul tău a fost confirmat. Acum te poți autentifica cu el.",
     "error": "Acest link de confirmare este invalid sau a expirat. Încearcă să îți reasociezi e-mailul.",
+    "already": "Acest e-mail este deja confirmat.",
     "invalid": "Linkului de confirmare îi lipsește tokenul.",
     "go_settings": "Mergi la setări",
     "go_login": "Mergi la autentificare"

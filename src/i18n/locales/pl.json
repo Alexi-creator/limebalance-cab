@@ -189,6 +189,7 @@
     "account_needs_email": "Zalogowano przez Telegram. Dodaj e-mail i hasło w ustawieniach, aby nie utracić dostępu do konta.",
     "account_confirm_email": "Potwierdź e-mail {{email}} za pomocą linku, który na niego wysłaliśmy.",
     "account_go_settings": "Przejdź do ustawień",
+    "email_verify": "Wysłaliśmy wiadomość na {{email}}. Potwierdź swój adres, aby nie utracić dostępu do konta — niepotwierdzone, nieaktywne konta mogą zostać usunięte.",
     "telegram_connect_text": "Mamy bota Telegram — dodawaj przychody i wydatki bezpośrednio na czacie, pojawią się tutaj.",
     "telegram_connect_button": "Połącz"
   },
@@ -408,6 +409,7 @@
     "title": "Potwierdzenie e-maila",
     "success": "Twój e-mail został potwierdzony. Możesz się teraz nim zalogować.",
     "error": "Ten link potwierdzający jest nieprawidłowy lub wygasł. Spróbuj ponownie powiązać swój e-mail.",
+    "already": "Ten adres e-mail jest już potwierdzony.",
     "invalid": "W linku potwierdzającym brakuje tokenu.",
     "go_settings": "Przejdź do ustawień",
     "go_login": "Przejdź do logowania"

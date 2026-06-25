@@ -187,6 +187,7 @@
     "account_needs_email": "Has iniciado sesión con Telegram. Añade un correo y una contraseña en los ajustes para no perder el acceso a tu cuenta.",
     "account_confirm_email": "Confirma el correo {{email}} mediante el enlace que enviamos a esa dirección.",
     "account_go_settings": "Ir a ajustes",
+    "email_verify": "Enviamos un mensaje a {{email}}. Confirma tu dirección para no perder el acceso a tu cuenta; las cuentas no confirmadas e inactivas pueden eliminarse.",
     "telegram_connect_text": "Tenemos un bot de Telegram: añade ingresos y gastos directamente en el chat, aparecerán aquí.",
     "telegram_connect_button": "Conectar"
   },
@@ -398,6 +399,7 @@
     "title": "Confirmación de correo",
     "success": "Tu correo ha sido confirmado. Ya puedes iniciar sesión con él.",
     "error": "Este enlace de confirmación no es válido o ha caducado. Intenta vincular tu correo de nuevo.",
+    "already": "Este correo ya está confirmado.",
     "invalid": "Al enlace de confirmación le falta el token.",
     "go_settings": "Ir a ajustes",
     "go_login": "Ir a iniciar sesión"

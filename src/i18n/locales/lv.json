@@ -189,6 +189,7 @@
     "account_needs_email": "Jūs pieteicāties caur Telegram. Pievienojiet iestatījumos e-pastu un paroli, lai nezaudētu piekļuvi kontam.",
     "account_confirm_email": "Apstipriniet e-pastu {{email}}, izmantojot saiti, ko uz to nosūtījām.",
     "account_go_settings": "Doties uz iestatījumiem",
+    "email_verify": "Nosūtījām ziņojumu uz {{email}}. Apstipriniet savu adresi, lai nezaudētu piekļuvi kontam — neapstiprināti neaktīvi konti var tikt dzēsti.",
     "telegram_connect_text": "Mums ir Telegram bots — pievienojiet ieņēmumus un izdevumus tieši tērzēšanā, tie parādīsies šeit.",
     "telegram_connect_button": "Savienot"
   },
@@ -408,6 +409,7 @@
     "title": "E-pasta apstiprināšana",
     "success": "Jūsu e-pasts ir apstiprināts. Tagad varat ar to pieteikties.",
     "error": "Šī apstiprināšanas saite ir nederīga vai tās derīguma termiņš ir beidzies. Mēģiniet vēlreiz piesaistīt savu e-pastu.",
+    "already": "Šis e-pasts jau ir apstiprināts.",
     "invalid": "Apstiprināšanas saitei trūkst pilnvaras.",
     "go_settings": "Doties uz iestatījumiem",
     "go_login": "Doties uz pieteikšanos"

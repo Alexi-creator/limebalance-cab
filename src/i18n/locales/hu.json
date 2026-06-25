@@ -187,6 +187,7 @@
     "account_needs_email": "Telegramon keresztül jelentkeztél be. Adj hozzá e-mailt és jelszót a beállításokban, hogy ne veszítsd el a hozzáférést a fiókodhoz.",
     "account_confirm_email": "Erősítse meg a(z) {{email}} e-mail-címet az oda küldött hivatkozással.",
     "account_go_settings": "Ugrás a beállításokhoz",
+    "email_verify": "Üzenetet küldtünk a következő címre: {{email}}. Erősítsd meg a címedet, hogy ne veszítsd el a hozzáférést a fiókodhoz — a meg nem erősített, inaktív fiókok törölhetők.",
     "telegram_connect_text": "Van Telegram botunk — add hozzá a bevételeket és kiadásokat közvetlenül a csevegésben, itt fognak megjelenni.",
     "telegram_connect_button": "Csatlakoztatás"
   },
@@ -398,6 +399,7 @@
     "title": "E-mail megerősítése",
     "success": "Az e-mail-címét megerősítettük. Most már bejelentkezhet vele.",
     "error": "Ez a megerősítő hivatkozás érvénytelen vagy lejárt. Próbálja meg újra összekapcsolni az e-mail-címét.",
+    "already": "Ez az e-mail már megerősített.",
     "invalid": "A megerősítő hivatkozásból hiányzik a token.",
     "go_settings": "Ugrás a beállításokhoz",
     "go_login": "Ugrás a bejelentkezéshez"

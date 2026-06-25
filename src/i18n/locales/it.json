@@ -187,6 +187,7 @@
     "account_needs_email": "Hai effettuato l'accesso tramite Telegram. Aggiungi email e password nelle impostazioni per non perdere l'accesso al tuo account.",
     "account_confirm_email": "Conferma l'email {{email}} tramite il link che ti abbiamo inviato.",
     "account_go_settings": "Vai alle impostazioni",
+    "email_verify": "Abbiamo inviato un messaggio a {{email}}. Conferma il tuo indirizzo per non perdere l'accesso al tuo account: gli account non confermati e inattivi possono essere rimossi.",
     "telegram_connect_text": "Abbiamo un bot Telegram: aggiungi entrate e uscite direttamente in chat, appariranno qui.",
     "telegram_connect_button": "Collega"
   },
@@ -398,6 +399,7 @@
     "title": "Conferma dell'email",
     "success": "La tua email è stata confermata. Ora puoi accedere con essa.",
     "error": "Questo link di conferma non è valido o è scaduto. Prova a collegare di nuovo la tua email.",
+    "already": "Questa email è già confermata.",
     "invalid": "Nel link di conferma manca il token.",
     "go_settings": "Vai alle impostazioni",
     "go_login": "Vai all'accesso"

@@ -185,6 +185,7 @@
     "account_needs_email": "您通过 Telegram 登录。请在设置中添加邮箱和密码，以免失去对账户的访问权限。",
     "account_confirm_email": "请通过我们发送到 {{email}} 的链接确认您的邮箱。",
     "account_go_settings": "前往设置",
+    "email_verify": "我们已向 {{email}} 发送了一条消息。请确认您的邮箱地址，以免失去对账户的访问权限——未确认且不活跃的账户可能会被删除。",
     "telegram_connect_text": "我们有一个 Telegram 机器人——直接在聊天中添加收入和支出，它们会显示在这里。",
     "telegram_connect_button": "连接"
   },
@@ -388,6 +389,7 @@
     "title": "邮箱确认",
     "success": "您的邮箱已确认。现在可以使用它登录。",
     "error": "此确认链接无效或已过期。请尝试重新绑定您的邮箱。",
+    "already": "该邮箱已确认。",
     "invalid": "确认链接缺少令牌。",
     "go_settings": "前往设置",
     "go_login": "前往登录"

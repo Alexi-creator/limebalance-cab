@@ -187,6 +187,7 @@
     "account_needs_email": "Telegram ile giriş yaptınız. Hesabınıza erişimi kaybetmemek için ayarlardan bir e-posta ve şifre ekleyin.",
     "account_confirm_email": "{{email}} adresine gönderdiğimiz bağlantı üzerinden e-postanızı onaylayın.",
     "account_go_settings": "Ayarlara git",
+    "email_verify": "{{email}} adresine bir mesaj gönderdik. Hesabınıza erişimi kaybetmemek için adresinizi onaylayın — onaylanmamış ve etkin olmayan hesaplar silinebilir.",
     "telegram_connect_text": "Bir Telegram botumuz var — gelir ve giderleri doğrudan sohbette ekleyin, burada görünecekler.",
     "telegram_connect_button": "Bağla"
   },
@@ -398,6 +399,7 @@
     "title": "E-posta onayı",
     "success": "E-postanız onaylandı. Artık onunla giriş yapabilirsiniz.",
     "error": "Bu onay bağlantısı geçersiz veya süresi dolmuş. E-postanızı yeniden bağlamayı deneyin.",
+    "already": "Bu e-posta zaten onaylanmış.",
     "invalid": "Onay bağlantısında belirteç eksik.",
     "go_settings": "Ayarlara git",
     "go_login": "Girişe git"

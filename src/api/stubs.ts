@@ -525,6 +525,7 @@ function buildMe() {
       expiresAt: null,
     },
     hasPassword: true,
+    emailVerified: true,
   }
 }
 

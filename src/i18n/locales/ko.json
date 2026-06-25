@@ -185,6 +185,7 @@
     "account_needs_email": "Telegram으로 로그인했습니다. 계정 접근 권한을 잃지 않도록 설정에서 이메일과 비밀번호를 추가하세요.",
     "account_confirm_email": "{{email}} 주소로 보낸 링크를 통해 이메일을 확인해 주세요.",
     "account_go_settings": "설정으로 이동",
+    "email_verify": "{{email}}(으)로 메시지를 보냈습니다. 계정 접근 권한을 잃지 않도록 주소를 확인해 주세요. 확인되지 않은 비활성 계정은 삭제될 수 있습니다.",
     "telegram_connect_text": "Telegram 봇이 있습니다 — 채팅에서 바로 수입과 지출을 추가하면 여기에 표시됩니다.",
     "telegram_connect_button": "연결"
   },
@@ -388,6 +389,7 @@
     "title": "이메일 확인",
     "success": "이메일이 확인되었습니다. 이제 이메일로 로그인할 수 있습니다.",
     "error": "이 확인 링크가 유효하지 않거나 만료되었습니다. 이메일을 다시 연결해 보세요.",
+    "already": "이 이메일은 이미 확인되었습니다.",
     "invalid": "확인 링크에 토큰이 없습니다.",
     "go_settings": "설정으로 이동",
     "go_login": "로그인으로 이동"

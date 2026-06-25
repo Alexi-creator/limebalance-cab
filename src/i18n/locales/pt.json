@@ -187,6 +187,7 @@
     "account_needs_email": "Você entrou pelo Telegram. Adicione um e-mail e uma senha nas configurações para não perder o acesso à sua conta.",
     "account_confirm_email": "Confirme o e-mail {{email}} pelo link que enviamos para ele.",
     "account_go_settings": "Ir para configurações",
+    "email_verify": "Enviámos uma mensagem para {{email}}. Confirme o seu endereço para não perder o acesso à sua conta — contas não confirmadas e inativas podem ser removidas.",
     "telegram_connect_text": "Temos um bot do Telegram — adicione receitas e despesas direto no chat, elas aparecerão aqui.",
     "telegram_connect_button": "Conectar"
   },
@@ -398,6 +399,7 @@
     "title": "Confirmação de e-mail",
     "success": "Seu e-mail foi confirmado. Agora você pode entrar com ele.",
     "error": "Este link de confirmação é inválido ou expirou. Tente vincular seu e-mail novamente.",
+    "already": "Este email já está confirmado.",
     "invalid": "O link de confirmação está sem o token.",
     "go_settings": "Ir para configurações",
     "go_login": "Ir para o login"

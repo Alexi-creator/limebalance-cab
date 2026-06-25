@@ -187,6 +187,7 @@
     "account_needs_email": "Je bent ingelogd via Telegram. Voeg een e-mailadres en wachtwoord toe in de instellingen om de toegang tot je account niet te verliezen.",
     "account_confirm_email": "Bevestig het e-mailadres {{email}} via de link die we ernaartoe hebben gestuurd.",
     "account_go_settings": "Naar instellingen",
+    "email_verify": "We hebben een bericht naar {{email}} gestuurd. Bevestig je adres zodat je de toegang tot je account niet verliest — niet-bevestigde, inactieve accounts kunnen worden verwijderd.",
     "telegram_connect_text": "We hebben een Telegram-bot — voeg inkomsten en uitgaven direct in de chat toe, ze verschijnen hier.",
     "telegram_connect_button": "Verbinden"
   },
@@ -398,6 +399,7 @@
     "title": "E-mailbevestiging",
     "success": "Je e-mailadres is bevestigd. Je kunt er nu mee inloggen.",
     "error": "Deze bevestigingslink is ongeldig of verlopen. Probeer je e-mail opnieuw te koppelen.",
+    "already": "Dit e-mailadres is al bevestigd.",
     "invalid": "De bevestigingslink mist het token.",
     "go_settings": "Naar instellingen",
     "go_login": "Naar inloggen"

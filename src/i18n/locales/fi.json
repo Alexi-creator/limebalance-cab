@@ -187,6 +187,7 @@
     "account_needs_email": "Kirjauduit Telegramilla. Lisää sähköposti ja salasana asetuksiin, jotta et menetä pääsyä tiliisi.",
     "account_confirm_email": "Vahvista sähköposti {{email}} siihen lähettämämme linkin kautta.",
     "account_go_settings": "Siirry asetuksiin",
+    "email_verify": "Lähetimme viestin osoitteeseen {{email}}. Vahvista osoitteesi, jotta et menetä pääsyä tilillesi — vahvistamattomat ja käyttämättömät tilit voidaan poistaa.",
     "telegram_connect_text": "Meillä on Telegram-botti — lisää tulot ja menot suoraan chatissa, ne näkyvät täällä.",
     "telegram_connect_button": "Yhdistä"
   },
@@ -398,6 +399,7 @@
     "title": "Sähköpostin vahvistus",
     "success": "Sähköpostisi on vahvistettu. Voit nyt kirjautua sisään sillä.",
     "error": "Tämä vahvistuslinkki on virheellinen tai vanhentunut. Yritä liittää sähköpostisi uudelleen.",
+    "already": "Tämä sähköposti on jo vahvistettu.",
     "invalid": "Vahvistuslinkistä puuttuu token.",
     "go_settings": "Siirry asetuksiin",
     "go_login": "Siirry kirjautumiseen"

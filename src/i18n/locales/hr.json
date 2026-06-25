@@ -189,6 +189,7 @@
     "account_needs_email": "Prijavili ste se putem Telegrama. Dodajte e-poštu i lozinku u postavkama kako ne biste izgubili pristup računu.",
     "account_confirm_email": "Potvrdite e-poštu {{email}} putem poveznice koju smo poslali na nju.",
     "account_go_settings": "Idi na postavke",
+    "email_verify": "Poslali smo poruku na {{email}}. Potvrdite svoju adresu kako ne biste izgubili pristup računu — nepotvrđeni neaktivni računi mogu biti uklonjeni.",
     "telegram_connect_text": "Imamo Telegram bota — dodajte prihode i rashode izravno u chatu, pojavit će se ovdje.",
     "telegram_connect_button": "Poveži"
   },
@@ -408,6 +409,7 @@
     "title": "Potvrda e-pošte",
     "success": "Vaša e-pošta je potvrđena. Sada se možete prijaviti njome.",
     "error": "Ova poveznica za potvrdu nevažeća je ili je istekla. Pokušajte ponovno povezati svoju e-poštu.",
+    "already": "Ova e-pošta već je potvrđena.",
     "invalid": "Poveznici za potvrdu nedostaje token.",
     "go_settings": "Idi na postavke",
     "go_login": "Idi na prijavu"

@@ -187,6 +187,7 @@
     "account_needs_email": "Vous vous êtes connecté via Telegram. Ajoutez un e-mail et un mot de passe dans les paramètres pour ne pas perdre l'accès à votre compte.",
     "account_confirm_email": "Confirmez l'e-mail {{email}} via le lien que nous y avons envoyé.",
     "account_go_settings": "Aller aux paramètres",
+    "email_verify": "Nous avons envoyé un message à {{email}}. Confirmez votre adresse pour ne pas perdre l'accès à votre compte — les comptes non confirmés et inactifs peuvent être supprimés.",
     "telegram_connect_text": "Nous avons un bot Telegram — ajoutez vos revenus et dépenses directement dans le chat, ils apparaîtront ici.",
     "telegram_connect_button": "Connecter"
   },
@@ -398,6 +399,7 @@
     "title": "Confirmation de l'e-mail",
     "success": "Votre e-mail a été confirmé. Vous pouvez maintenant vous connecter avec.",
     "error": "Ce lien de confirmation est invalide ou a expiré. Essayez de lier à nouveau votre e-mail.",
+    "already": "Cet e-mail est déjà confirmé.",
     "invalid": "Le lien de confirmation ne contient pas de jeton.",
     "go_settings": "Aller aux paramètres",
     "go_login": "Aller à la connexion"

@@ -185,6 +185,7 @@
     "account_needs_email": "Anda masuk lewat Telegram. Tambahkan email dan kata sandi di pengaturan agar tidak kehilangan akses ke akun Anda.",
     "account_confirm_email": "Konfirmasikan email {{email}} melalui tautan yang kami kirim ke alamat itu.",
     "account_go_settings": "Buka pengaturan",
+    "email_verify": "Kami mengirim pesan ke {{email}}. Konfirmasikan alamat Anda agar tidak kehilangan akses ke akun — akun yang tidak dikonfirmasi dan tidak aktif dapat dihapus.",
     "telegram_connect_text": "Kami punya bot Telegram — tambahkan pemasukan dan pengeluaran langsung di obrolan, akan muncul di sini.",
     "telegram_connect_button": "Hubungkan"
   },
@@ -388,6 +389,7 @@
     "title": "Konfirmasi email",
     "success": "Email Anda telah dikonfirmasi. Sekarang Anda dapat masuk menggunakannya.",
     "error": "Tautan konfirmasi ini tidak valid atau telah kedaluwarsa. Coba tautkan email Anda lagi.",
+    "already": "Email ini sudah dikonfirmasi.",
     "invalid": "Tautan konfirmasi tidak memiliki token.",
     "go_settings": "Buka pengaturan",
     "go_login": "Buka halaman masuk"

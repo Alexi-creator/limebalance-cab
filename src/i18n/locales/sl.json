@@ -191,6 +191,7 @@
     "account_needs_email": "Prijavili ste se prek Telegrama. V nastavitvah dodajte e-pošto in geslo, da ne izgubite dostopa do računa.",
     "account_confirm_email": "Potrdite e-pošto {{email}} prek povezave, ki smo jo poslali nanjo.",
     "account_go_settings": "Pojdi v nastavitve",
+    "email_verify": "Sporočilo smo poslali na {{email}}. Potrdite svoj naslov, da ne izgubite dostopa do računa — nepotrjeni neaktivni računi so lahko odstranjeni.",
     "telegram_connect_text": "Imamo Telegram bota — dodajajte prihodke in odhodke neposredno v klepetu, prikazali se bodo tukaj.",
     "telegram_connect_button": "Poveži"
   },
@@ -418,6 +419,7 @@
     "title": "Potrditev e-pošte",
     "success": "Vaša e-pošta je potrjena. Zdaj se lahko prijavite z njo.",
     "error": "Ta povezava za potrditev je neveljavna ali je potekla. Poskusite znova povezati svojo e-pošto.",
+    "already": "Ta e-naslov je že potrjen.",
     "invalid": "V povezavi za potrditev manjka žeton.",
     "go_settings": "Pojdi v nastavitve",
     "go_login": "Pojdi na prijavo"

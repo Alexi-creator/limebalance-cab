@@ -185,6 +185,7 @@
     "account_needs_email": "Bạn đã đăng nhập qua Telegram. Hãy thêm email và mật khẩu trong cài đặt để không mất quyền truy cập tài khoản.",
     "account_confirm_email": "Xác nhận email {{email}} qua liên kết chúng tôi đã gửi đến địa chỉ đó.",
     "account_go_settings": "Đến cài đặt",
+    "email_verify": "Chúng tôi đã gửi một tin nhắn đến {{email}}. Hãy xác nhận địa chỉ của bạn để không mất quyền truy cập vào tài khoản — các tài khoản chưa xác nhận và không hoạt động có thể bị xóa.",
     "telegram_connect_text": "Chúng tôi có bot Telegram — thêm thu nhập và chi tiêu trực tiếp trong cuộc trò chuyện, chúng sẽ hiện ở đây.",
     "telegram_connect_button": "Kết nối"
   },
@@ -388,6 +389,7 @@
     "title": "Xác nhận email",
     "success": "Email của bạn đã được xác nhận. Bây giờ bạn có thể đăng nhập bằng email này.",
     "error": "Liên kết xác nhận này không hợp lệ hoặc đã hết hạn. Hãy thử liên kết lại email của bạn.",
+    "already": "Email này đã được xác nhận.",
     "invalid": "Liên kết xác nhận thiếu token.",
     "go_settings": "Đến phần cài đặt",
     "go_login": "Đến trang đăng nhập"

@@ -189,6 +189,7 @@
     "account_needs_email": "Prihlásili ste sa cez Telegram. Pridajte v nastaveniach e-mail a heslo, aby ste nestratili prístup k svojmu účtu.",
     "account_confirm_email": "Potvrďte e-mail {{email}} cez odkaz, ktorý sme naň poslali.",
     "account_go_settings": "Prejsť do nastavení",
+    "email_verify": "Poslali sme správu na {{email}}. Potvrďte svoju adresu, aby ste nestratili prístup k účtu — nepotvrdené neaktívne účty môžu byť odstránené.",
     "telegram_connect_text": "Máme Telegram bota — pridávajte príjmy a výdavky priamo v chate, objavia sa tu.",
     "telegram_connect_button": "Pripojiť"
   },
@@ -408,6 +409,7 @@
     "title": "Potvrdenie e-mailu",
     "success": "Váš e-mail bol potvrdený. Teraz sa ním môžete prihlásiť.",
     "error": "Tento potvrdzovací odkaz je neplatný alebo vypršal. Skúste svoj e-mail prepojiť znova.",
+    "already": "Tento e-mail je už potvrdený.",
     "invalid": "V potvrdzovacom odkaze chýba token.",
     "go_settings": "Prejsť do nastavení",
     "go_login": "Prejsť na prihlásenie"

@@ -189,6 +189,7 @@
     "account_needs_email": "Prisijungėte per Telegram. Nustatymuose pridėkite el. paštą ir slaptažodį, kad neprarastumėte prieigos prie paskyros.",
     "account_confirm_email": "Patvirtinkite el. paštą {{email}} per nuorodą, kurią į jį išsiuntėme.",
     "account_go_settings": "Eiti į nustatymus",
+    "email_verify": "Išsiuntėme žinutę adresu {{email}}. Patvirtinkite savo adresą, kad neprarastumėte prieigos prie paskyros — nepatvirtintos neaktyvios paskyros gali būti pašalintos.",
     "telegram_connect_text": "Turime Telegram botą — pridėkite pajamas ir išlaidas tiesiai pokalbyje, jos atsiras čia.",
     "telegram_connect_button": "Prijungti"
   },
@@ -408,6 +409,7 @@
     "title": "El. pašto patvirtinimas",
     "success": "Jūsų el. paštas patvirtintas. Dabar galite su juo prisijungti.",
     "error": "Ši patvirtinimo nuoroda negalioja arba baigėsi jos galiojimas. Pabandykite susieti el. paštą iš naujo.",
+    "already": "Šis el. paštas jau patvirtintas.",
     "invalid": "Patvirtinimo nuorodoje trūksta prieigos rakto.",
     "go_settings": "Eiti į nustatymus",
     "go_login": "Eiti į prisijungimą"

@@ -187,6 +187,7 @@
     "account_needs_email": "Sie haben sich über Telegram angemeldet. Fügen Sie in den Einstellungen E-Mail und Passwort hinzu, um den Zugriff auf Ihr Konto nicht zu verlieren.",
     "account_confirm_email": "Bestätige die E-Mail {{email}} über den Link, den wir an sie gesendet haben.",
     "account_go_settings": "Zu den Einstellungen",
+    "email_verify": "Wir haben eine Nachricht an {{email}} gesendet. Bestätige deine Adresse, um den Zugang zu deinem Konto nicht zu verlieren — unbestätigte, inaktive Konten können gelöscht werden.",
     "telegram_connect_text": "Wir haben einen Telegram-Bot — fügen Sie Einnahmen und Ausgaben direkt im Chat hinzu, sie erscheinen hier.",
     "telegram_connect_button": "Verbinden"
   },
@@ -398,6 +399,7 @@
     "title": "E-Mail-Bestätigung",
     "success": "Deine E-Mail-Adresse wurde bestätigt. Du kannst dich jetzt damit anmelden.",
     "error": "Dieser Bestätigungslink ist ungültig oder abgelaufen. Versuche, deine E-Mail erneut zu verknüpfen.",
+    "already": "Diese E-Mail ist bereits bestätigt.",
     "invalid": "Im Bestätigungslink fehlt das Token.",
     "go_settings": "Zu den Einstellungen",
     "go_login": "Zur Anmeldung"

@@ -31,6 +31,14 @@ export const userSchema = z.object({
   /** Whether a password is set. Users who signed in via Google/Telegram may not have one. */
   hasPassword: z.boolean().nullish(),
   /**
+   * Whether the account's `email` has been confirmed. `false` right after email/password
+   * registration until the user follows the link; `true` after confirming or when signing in
+   * via Google (already verified). Independent of {@link userSchema.shape.pendingEmail}: this is
+   * about the email already on the account, while `pendingEmail` is an address awaiting linking
+   * to a Telegram account. The "confirm your email" banner shows when `email && !emailVerified`.
+   */
+  emailVerified: z.boolean().nullish(),
+  /**
    * Email awaiting confirmation. The backend writes `email` only after the user follows the
    * link from the confirmation message; until then the submitted address lives in `pendingEmail`.
    * So the three states are: no email at all (`email` and `pendingEmail` both null), awaiting

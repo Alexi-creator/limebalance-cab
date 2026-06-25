@@ -53,6 +53,7 @@ export const MOCK_USER = {
   timezone: "America/New_York",
   subscription: { plan: PRO_PLAN, expiresAt: null },
   hasPassword: true,
+  emailVerified: true,
 }
 
 /** A user on the free plan — the Investments section is locked for them. */
@@ -68,6 +69,12 @@ export const MOCK_USER_NO_EMAIL = {
   timezone: "America/New_York",
   telegramId: "123456789",
   hasPassword: false,
+}
+
+/** An email/password user whose own email is set but not yet confirmed — drives the verify banner. */
+export const MOCK_USER_UNVERIFIED = {
+  ...MOCK_USER,
+  emailVerified: false,
 }
 
 /** A user whose email is submitted but not yet confirmed — lives in `pendingEmail`. */
