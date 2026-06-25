@@ -12,18 +12,10 @@ export function useAuthInit() {
     const resolveUser = async () => {
       try {
         const user = await checkAuth()
-        console.log("[AUTH_DBG] checkAuth OK hasUser=", !!user, "path=", window.location.pathname)
         setUser(user)
         syncTimezone(user)
       } catch (err) {
         const isAuthError = err instanceof ApiError && err.status < 500
-        console.log(
-          "[AUTH_DBG] checkAuth THREW",
-          (err as Error)?.name,
-          (err as Error)?.message,
-          "isAuthError=",
-          isAuthError,
-        )
         // Only a real auth failure means "logged out". Anything else (schema drift, 5xx,
         // network) is unexpected — log it instead of silently treating the user as a guest.
         if (isAuthError) setUser(null)
@@ -33,10 +25,7 @@ export function useAuthInit() {
 
     if (!initialized.current) {
       initialized.current = true
-      resolveUser().finally(() => {
-        console.log("[AUTH_DBG] setInitialized()")
-        setInitialized()
-      })
+      resolveUser().finally(setInitialized)
     }
 
     // When the page is restored from the bfcache (clicking a browser bookmark, or
