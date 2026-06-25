@@ -21,6 +21,12 @@ const ConfirmEmailPage = lazy(() =>
   import("@pages/ConfirmEmailPage").then((m) => ({ default: m.ConfirmEmailPage })),
 )
 
+// Password-reset link target — like email confirmation, reachable by guests and
+// authenticated users alike, so it lives outside GuestRoute/ProtectedRoute.
+const ResetPasswordPage = lazy(() =>
+  import("@pages/ResetPasswordPage").then((m) => ({ default: m.ResetPasswordPage })),
+)
+
 function App() {
   const { i18n } = useTranslation()
   const { isInitialized } = useAuthInit()
@@ -50,6 +56,7 @@ function App() {
 
         <Route element={<PublicLayout />}>
           <Route path={RouteNames.ConfirmEmail} element={<ConfirmEmailPage />} />
+          <Route path={RouteNames.ResetPassword} element={<ResetPasswordPage />} />
         </Route>
       </Routes>
     </GoogleOAuthProvider>

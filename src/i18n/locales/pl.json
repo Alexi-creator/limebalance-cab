@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimum 8 znaków",
     "invalid_credentials": "Nieprawidłowy e-mail lub hasło",
+    "forgot_password": "Nie pamiętasz hasła?",
     "submit": "Zaloguj się",
     "back": "Wstecz",
     "terms": "Logując się, akceptujesz nasze warunki korzystania z usługi",
@@ -404,6 +405,31 @@
     "connect_text": "Dodawaj przychody i wydatki bezpośrednio w Telegramie — synchronizują się z tym panelem. Połącz bota ze swoim kontem, aby Cię rozpoznawał.",
     "linking": "Łączenie…",
     "dont_know_bot": "Nie znasz bota?"
+  },
+  "forgotPassword": {
+    "title": "Resetowanie hasła",
+    "subtitle": "Podaj adres e-mail swojego konta, a wyślemy Ci link do zresetowania hasła.",
+    "email_label": "E-mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "Nieprawidłowy e-mail",
+    "submit": "Wyślij link",
+    "sent": "Jeśli konto z tym adresem e-mail istnieje, wysłaliśmy na nie link do zresetowania hasła. Sprawdź skrzynkę.",
+    "back_to_login": "Powrót do logowania"
+  },
+  "resetPassword": {
+    "title": "Ustaw nowe hasło",
+    "password_label": "Nowe hasło",
+    "password_placeholder": "••••••",
+    "password_error": "Minimum 8 znaków",
+    "confirm_label": "Potwierdź nowe hasło",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Hasła nie są zgodne",
+    "submit": "Zapisz hasło",
+    "success": "Twoje hasło zostało zmienione. Zaloguj się przy użyciu nowego hasła.",
+    "token_error": "Ten link jest nieprawidłowy lub wygasł. Poproś o nowy, aby spróbować ponownie.",
+    "no_token": "Ten link jest nieprawidłowy — brakuje w nim tokenu.",
+    "request_new": "Poproś o nowy link",
+    "back_to_login": "Powrót do logowania"
   },
   "confirmEmail": {
     "title": "Potwierdzenie e-maila",

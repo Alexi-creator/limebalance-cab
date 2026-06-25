@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minst 8 tegn",
     "invalid_credentials": "Ugyldig e-post eller passord",
+    "forgot_password": "Glemt passordet?",
     "submit": "Logg inn",
     "back": "Tilbake",
     "terms": "Ved å logge inn godtar du våre vilkår for bruk",
@@ -394,6 +395,31 @@
     "connect_text": "Legg til inntekter og utgifter direkte i Telegram — de synkroniseres med dette dashbordet. Koble boten til kontoen din så den gjenkjenner deg.",
     "linking": "Kobler til…",
     "dont_know_bot": "Kjenner du ikke boten?"
+  },
+  "forgotPassword": {
+    "title": "Tilbakestill passord",
+    "subtitle": "Skriv inn e-postadressen til kontoen din, så sender vi deg en lenke for å tilbakestille passordet.",
+    "email_label": "E-post",
+    "email_placeholder": "you@example.com",
+    "email_error": "Ugyldig e-post",
+    "submit": "Send lenke",
+    "sent": "Hvis det finnes en konto med den e-postadressen, har vi sendt en lenke for å tilbakestille passordet. Sjekk innboksen din.",
+    "back_to_login": "Tilbake til innlogging"
+  },
+  "resetPassword": {
+    "title": "Angi et nytt passord",
+    "password_label": "Nytt passord",
+    "password_placeholder": "••••••",
+    "password_error": "Minst 8 tegn",
+    "confirm_label": "Bekreft nytt passord",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Passordene samsvarer ikke",
+    "submit": "Lagre passord",
+    "success": "Passordet ditt er endret. Logg inn med det nye passordet.",
+    "token_error": "Denne lenken er ugyldig eller utløpt. Be om en ny for å prøve igjen.",
+    "no_token": "Denne lenken er ugyldig — den mangler token.",
+    "request_new": "Be om en ny lenke",
+    "back_to_login": "Tilbake til innlogging"
   },
   "confirmEmail": {
     "title": "Bekreftelse av e-post",

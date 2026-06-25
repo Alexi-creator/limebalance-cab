@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Najmanj 8 znakov",
     "invalid_credentials": "Neveljavna e-pošta ali geslo",
+    "forgot_password": "Ste pozabili geslo?",
     "submit": "Prijava",
     "back": "Nazaj",
     "terms": "S prijavo se strinjate z našimi pogoji uporabe",
@@ -414,6 +415,31 @@
     "connect_text": "Dodajajte prihodke in odhodke neposredno v Telegramu — sinhronizirajo se s to ploščo. Povežite bota s svojim računom, da vas prepozna.",
     "linking": "Povezovanje…",
     "dont_know_bot": "Ne poznate bota?"
+  },
+  "forgotPassword": {
+    "title": "Ponastavitev gesla",
+    "subtitle": "Vnesite e-pošto svojega računa in poslali vam bomo povezavo za ponastavitev gesla.",
+    "email_label": "E-pošta",
+    "email_placeholder": "you@example.com",
+    "email_error": "Neveljavna e-pošta",
+    "submit": "Pošlji povezavo",
+    "sent": "Če račun s tem e-naslovom obstaja, smo nanj poslali povezavo za ponastavitev gesla. Preverite nabiralnik.",
+    "back_to_login": "Nazaj na prijavo"
+  },
+  "resetPassword": {
+    "title": "Nastavi novo geslo",
+    "password_label": "Novo geslo",
+    "password_placeholder": "••••••",
+    "password_error": "Najmanj 8 znakov",
+    "confirm_label": "Potrdite novo geslo",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Gesli se ne ujemata",
+    "submit": "Shrani geslo",
+    "success": "Vaše geslo je bilo spremenjeno. Prijavite se z novim geslom.",
+    "token_error": "Ta povezava je neveljavna ali je potekla. Zahtevajte novo in poskusite znova.",
+    "no_token": "Ta povezava je neveljavna – manjka ji žeton.",
+    "request_new": "Zahtevaj novo povezavo",
+    "back_to_login": "Nazaj na prijavo"
   },
   "confirmEmail": {
     "title": "Potrditev e-pošte",

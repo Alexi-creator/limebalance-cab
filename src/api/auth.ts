@@ -91,6 +91,25 @@ export function resendEmailConfirmation(): Promise<void> {
   return request(API_URLS.auth.resendEmailConfirmation, { method: HttpMethods.POST })
 }
 
+// Request a password-reset link by email. Public endpoint — no auth.
+// Always resolves with { success: true } even for an unknown email (anti-enumeration),
+// so callers must show a neutral "if an account exists…" message rather than confirming the address.
+export function forgotPassword(email: string): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.forgotPassword, {
+    method: HttpMethods.POST,
+    body: JSON.stringify({ email }),
+  })
+}
+
+// Set a new password using the one-time UUID token from the reset email. Public — no auth.
+// 400 means the token is invalid, already used, or expired (15-minute lifetime).
+export function resetPassword(payload: { token: string; password: string }): Promise<void> {
+  return commonRequest<void>(API_URLS.auth.resetPassword, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+  })
+}
+
 export async function logout(): Promise<void> {
   await request(API_URLS.auth.logout, { method: HttpMethods.POST })
 }

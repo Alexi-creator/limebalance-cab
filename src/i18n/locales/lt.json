@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Mažiausiai 8 simboliai",
     "invalid_credentials": "Netinkamas el. paštas arba slaptažodis",
+    "forgot_password": "Pamiršote slaptažodį?",
     "submit": "Prisijungti",
     "back": "Atgal",
     "terms": "Prisijungdami sutinkate su mūsų naudojimo sąlygomis",
@@ -404,6 +405,31 @@
     "connect_text": "Pridėkite pajamas ir išlaidas tiesiai Telegrame — jos sinchronizuojamos su šiuo skydeliu. Susiekite botą su savo paskyra, kad jis jus atpažintų.",
     "linking": "Jungiama…",
     "dont_know_bot": "Nepažįstate boto?"
+  },
+  "forgotPassword": {
+    "title": "Slaptažodžio atstatymas",
+    "subtitle": "Įveskite savo paskyros el. paštą ir mes atsiųsime nuorodą slaptažodžiui atstatyti.",
+    "email_label": "El. paštas",
+    "email_placeholder": "you@example.com",
+    "email_error": "Netinkamas el. paštas",
+    "submit": "Siųsti nuorodą",
+    "sent": "Jei paskyra su šiuo el. paštu egzistuoja, išsiųsėme nuorodą slaptažodžiui atstatyti. Patikrinkite pašto dėžutę.",
+    "back_to_login": "Atgal į prisijungimą"
+  },
+  "resetPassword": {
+    "title": "Nustatyti naują slaptažodį",
+    "password_label": "Naujas slaptažodis",
+    "password_placeholder": "••••••",
+    "password_error": "Mažiausiai 8 simboliai",
+    "confirm_label": "Pakartokite naują slaptažodį",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Slaptažodžiai nesutampa",
+    "submit": "Išsaugoti slaptažodį",
+    "success": "Jūsų slaptažodis pakeistas. Prisijunkite su nauju slaptažodžiu.",
+    "token_error": "Ši nuoroda negalioja arba pasibaigė jos galiojimas. Užsisakykite naują ir bandykite dar kartą.",
+    "no_token": "Ši nuoroda negalioja — trūksta žetono.",
+    "request_new": "Užsisakyti naują nuorodą",
+    "back_to_login": "Atgal į prisijungimą"
   },
   "confirmEmail": {
     "title": "El. pašto patvirtinimas",

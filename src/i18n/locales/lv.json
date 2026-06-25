@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Vismaz 8 rakstzīmes",
     "invalid_credentials": "Nederīgs e-pasts vai parole",
+    "forgot_password": "Aizmirsāt paroli?",
     "submit": "Pieteikties",
     "back": "Atpakaļ",
     "terms": "Piesakoties, jūs piekrītat mūsu lietošanas noteikumiem",
@@ -404,6 +405,31 @@
     "connect_text": "Pievienojiet ieņēmumus un izdevumus tieši Telegram — tie sinhronizējas ar šo paneli. Saistiet botu ar savu kontu, lai tas jūs atpazītu.",
     "linking": "Savieno…",
     "dont_know_bot": "Nepazīstat botu?"
+  },
+  "forgotPassword": {
+    "title": "Paroles atiestatīšana",
+    "subtitle": "Ievadiet sava konta e-pastu, un mēs nosūtīsim saiti paroles atiestatīšanai.",
+    "email_label": "E-pasts",
+    "email_placeholder": "you@example.com",
+    "email_error": "Nederīgs e-pasts",
+    "submit": "Nosūtīt saiti",
+    "sent": "Ja konts ar šo e-pastu pastāv, mēs nosūtījām saiti paroles atiestatīšanai. Pārbaudiet savu pastkastīti.",
+    "back_to_login": "Atpakaļ uz pieteikšanos"
+  },
+  "resetPassword": {
+    "title": "Iestatīt jaunu paroli",
+    "password_label": "Jaunā parole",
+    "password_placeholder": "••••••",
+    "password_error": "Vismaz 8 rakstzīmes",
+    "confirm_label": "Apstipriniet jauno paroli",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Paroles nesakrīt",
+    "submit": "Saglabāt paroli",
+    "success": "Jūsu parole ir nomainīta. Piesakieties ar jauno paroli.",
+    "token_error": "Šī saite nav derīga vai ir beigusies. Pieprasīet jaunu, lai mēģinātu vēlreiz.",
+    "no_token": "Šī saite nav derīga — tai trūkst marķiera.",
+    "request_new": "Pieprasīt jaunu saiti",
+    "back_to_login": "Atpakaļ uz pieteikšanos"
   },
   "confirmEmail": {
     "title": "E-pasta apstiprināšana",

@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimum 8 caractères",
     "invalid_credentials": "E-mail ou mot de passe incorrect",
+    "forgot_password": "Mot de passe oublié ?",
     "submit": "Se connecter",
     "back": "Retour",
     "terms": "En vous connectant, vous acceptez nos conditions d'utilisation",
@@ -394,6 +395,31 @@
     "connect_text": "Ajoutez vos revenus et dépenses directement dans Telegram — ils se synchronisent avec ce tableau de bord. Liez le bot à votre compte pour qu'il vous reconnaisse.",
     "linking": "Connexion…",
     "dont_know_bot": "Vous ne connaissez pas le bot ?"
+  },
+  "forgotPassword": {
+    "title": "Réinitialiser le mot de passe",
+    "subtitle": "Saisissez l'e-mail de votre compte et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "email_label": "E-mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "E-mail invalide",
+    "submit": "Envoyer le lien",
+    "sent": "Si un compte existe avec cet e-mail, nous lui avons envoyé un lien pour réinitialiser le mot de passe. Vérifiez votre boîte mail.",
+    "back_to_login": "Retour à la connexion"
+  },
+  "resetPassword": {
+    "title": "Définir un nouveau mot de passe",
+    "password_label": "Nouveau mot de passe",
+    "password_placeholder": "••••••",
+    "password_error": "Minimum 8 caractères",
+    "confirm_label": "Confirmer le nouveau mot de passe",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Les mots de passe ne correspondent pas",
+    "submit": "Enregistrer le mot de passe",
+    "success": "Votre mot de passe a été modifié. Connectez-vous avec votre nouveau mot de passe.",
+    "token_error": "Ce lien est invalide ou a expiré. Demandez-en un nouveau pour réessayer.",
+    "no_token": "Ce lien est invalide — il lui manque le jeton.",
+    "request_new": "Demander un nouveau lien",
+    "back_to_login": "Retour à la connexion"
   },
   "confirmEmail": {
     "title": "Confirmation de l'e-mail",

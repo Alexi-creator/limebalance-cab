@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Vähemalt 8 märki",
     "invalid_credentials": "Vale e-post või parool",
+    "forgot_password": "Unustasid parooli?",
     "submit": "Logi sisse",
     "back": "Tagasi",
     "terms": "Sisse logides nõustud meie kasutustingimustega",
@@ -394,6 +395,31 @@
     "connect_text": "Lisa tulud ja kulud otse Telegramis — need sünkroonitakse selle töölauaga. Ühenda bot oma kontoga, et see sind tunneks.",
     "linking": "Ühendamine…",
     "dont_know_bot": "Ei tunne botti?"
+  },
+  "forgotPassword": {
+    "title": "Parooli lähtestamine",
+    "subtitle": "Sisesta oma konto e-posti aadress ja saadame sulle parooli lähtestamise lingi.",
+    "email_label": "E-post",
+    "email_placeholder": "you@example.com",
+    "email_error": "Vigane e-post",
+    "submit": "Saada link",
+    "sent": "Kui selle e-posti aadressiga konto on olemas, saatsime parooli lähtestamise lingi. Kontrolli oma postkasti.",
+    "back_to_login": "Tagasi sisselogimisse"
+  },
+  "resetPassword": {
+    "title": "Määra uus parool",
+    "password_label": "Uus parool",
+    "password_placeholder": "••••••",
+    "password_error": "Vähemalt 8 märki",
+    "confirm_label": "Kinnita uus parool",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Paroolid ei ühti",
+    "submit": "Salvesta parool",
+    "success": "Sinu parool on muudetud. Logi sisse uue parooliga.",
+    "token_error": "See link on kehtetu või aegunud. Taotle uut, et uuesti proovida.",
+    "no_token": "See link on kehtetu — sellel puudub luba.",
+    "request_new": "Taotle uut linki",
+    "back_to_login": "Tagasi sisselogimisse"
   },
   "confirmEmail": {
     "title": "E-posti kinnitamine",

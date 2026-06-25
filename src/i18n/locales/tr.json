@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "En az 8 karakter",
     "invalid_credentials": "Geçersiz e-posta veya şifre",
+    "forgot_password": "Şifreni mi unuttun?",
     "submit": "Giriş yap",
     "back": "Geri",
     "terms": "Giriş yaparak hizmet şartlarımızı kabul edersiniz",
@@ -394,6 +395,31 @@
     "connect_text": "Gelir ve giderleri doğrudan Telegram'da ekleyin — bu panoyla senkronize olur. Sizi tanıması için botu hesabınıza bağlayın.",
     "linking": "Bağlanıyor…",
     "dont_know_bot": "Botu tanımıyor musunuz?"
+  },
+  "forgotPassword": {
+    "title": "Şifre sıfırlama",
+    "subtitle": "Hesabının e-postasını gir, şifreni sıfırlaman için sana bir bağlantı gönderelim.",
+    "email_label": "E-posta",
+    "email_placeholder": "you@example.com",
+    "email_error": "Geçersiz e-posta",
+    "submit": "Bağlantı gönder",
+    "sent": "Bu e-postayla bir hesap varsa, şifre sıfırlama bağlantısı gönderdik. Gelen kutunu kontrol et.",
+    "back_to_login": "Girişe dön"
+  },
+  "resetPassword": {
+    "title": "Yeni şifre belirle",
+    "password_label": "Yeni şifre",
+    "password_placeholder": "••••••",
+    "password_error": "En az 8 karakter",
+    "confirm_label": "Yeni şifreyi onayla",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Şifreler eşleşmiyor",
+    "submit": "Şifreyi kaydet",
+    "success": "Şifren değiştirildi. Yeni şifrenle giriş yap.",
+    "token_error": "Bu bağlantı geçersiz veya süresi dolmuş. Tekrar denemek için yeni bir tane iste.",
+    "no_token": "Bu bağlantı geçersiz — belirteci eksik.",
+    "request_new": "Yeni bağlantı iste",
+    "back_to_login": "Girişe dön"
   },
   "confirmEmail": {
     "title": "E-posta onayı",

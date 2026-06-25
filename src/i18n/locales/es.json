@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Mínimo 8 caracteres",
     "invalid_credentials": "Correo o contraseña incorrectos",
+    "forgot_password": "¿Olvidaste tu contraseña?",
     "submit": "Iniciar sesión",
     "back": "Atrás",
     "terms": "Al iniciar sesión, aceptas nuestras condiciones de servicio",
@@ -394,6 +395,31 @@
     "connect_text": "Añade ingresos y gastos directamente en Telegram: se sincronizan con este panel. Vincula el bot a tu cuenta para que te reconozca.",
     "linking": "Conectando…",
     "dont_know_bot": "¿No conoces el bot?"
+  },
+  "forgotPassword": {
+    "title": "Restablecer contraseña",
+    "subtitle": "Introduce el correo de tu cuenta y te enviaremos un enlace para restablecer tu contraseña.",
+    "email_label": "Correo",
+    "email_placeholder": "you@example.com",
+    "email_error": "Correo no válido",
+    "submit": "Enviar enlace",
+    "sent": "Si existe una cuenta con ese correo, le hemos enviado un enlace para restablecer la contraseña. Revisa tu bandeja de entrada.",
+    "back_to_login": "Volver al inicio de sesión"
+  },
+  "resetPassword": {
+    "title": "Establecer nueva contraseña",
+    "password_label": "Nueva contraseña",
+    "password_placeholder": "••••••",
+    "password_error": "Mínimo 8 caracteres",
+    "confirm_label": "Confirmar nueva contraseña",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Las contraseñas no coinciden",
+    "submit": "Guardar contraseña",
+    "success": "Tu contraseña se ha cambiado. Inicia sesión con tu nueva contraseña.",
+    "token_error": "Este enlace no es válido o ha caducado. Solicita uno nuevo para volver a intentarlo.",
+    "no_token": "Este enlace no es válido: le falta el token.",
+    "request_new": "Solicitar un nuevo enlace",
+    "back_to_login": "Volver al inicio de sesión"
   },
   "confirmEmail": {
     "title": "Confirmación de correo",

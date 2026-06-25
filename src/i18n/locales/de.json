@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Mindestens 8 Zeichen",
     "invalid_credentials": "Ungültige E-Mail oder Passwort",
+    "forgot_password": "Passwort vergessen?",
     "submit": "Anmelden",
     "back": "Zurück",
     "terms": "Mit der Anmeldung stimmen Sie unseren Nutzungsbedingungen zu",
@@ -394,6 +395,31 @@
     "connect_text": "Fügen Sie Einnahmen und Ausgaben direkt in Telegram hinzu — sie werden mit diesem Dashboard synchronisiert. Verbinden Sie den Bot mit Ihrem Konto, damit er Sie erkennt.",
     "linking": "Wird verbunden…",
     "dont_know_bot": "Kennen Sie den Bot nicht?"
+  },
+  "forgotPassword": {
+    "title": "Passwort zurücksetzen",
+    "subtitle": "Gib die E-Mail-Adresse deines Kontos ein, und wir senden dir einen Link zum Zurücksetzen deines Passworts.",
+    "email_label": "E-Mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "Ungültige E-Mail",
+    "submit": "Link senden",
+    "sent": "Falls ein Konto mit dieser E-Mail-Adresse existiert, haben wir einen Link zum Zurücksetzen des Passworts gesendet. Prüfe dein Postfach.",
+    "back_to_login": "Zurück zur Anmeldung"
+  },
+  "resetPassword": {
+    "title": "Neues Passwort festlegen",
+    "password_label": "Neues Passwort",
+    "password_placeholder": "••••••",
+    "password_error": "Mindestens 8 Zeichen",
+    "confirm_label": "Neues Passwort bestätigen",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Passwörter stimmen nicht überein",
+    "submit": "Passwort speichern",
+    "success": "Dein Passwort wurde geändert. Bitte melde dich mit dem neuen Passwort an.",
+    "token_error": "Dieser Link ist ungültig oder abgelaufen. Fordere einen neuen an, um es erneut zu versuchen.",
+    "no_token": "Dieser Link ist ungültig – ihm fehlt das Token.",
+    "request_new": "Neuen Link anfordern",
+    "back_to_login": "Zurück zur Anmeldung"
   },
   "confirmEmail": {
     "title": "E-Mail-Bestätigung",

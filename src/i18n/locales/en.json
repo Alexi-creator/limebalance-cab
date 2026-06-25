@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimum 8 characters",
     "invalid_credentials": "Invalid email or password",
+    "forgot_password": "Forgot your password?",
     "submit": "Sign In",
     "back": "Back",
     "terms": "By signing in, you agree to our terms of service",
@@ -403,6 +404,31 @@
     "connect_text": "Add income and expenses right in Telegram — they sync with this dashboard. Link the bot to your account so it recognizes you.",
     "linking": "Linking…",
     "dont_know_bot": "Don't know the bot?"
+  },
+  "forgotPassword": {
+    "title": "Reset password",
+    "subtitle": "Enter the email for your account and we'll send you a link to reset your password.",
+    "email_label": "Email",
+    "email_placeholder": "you@example.com",
+    "email_error": "Invalid email",
+    "submit": "Send reset link",
+    "sent": "If an account with that email exists, we've sent it a link to reset your password. Check your inbox.",
+    "back_to_login": "Back to sign in"
+  },
+  "resetPassword": {
+    "title": "Set a new password",
+    "password_label": "New password",
+    "password_placeholder": "••••••",
+    "password_error": "Minimum 8 characters",
+    "confirm_label": "Confirm new password",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Passwords do not match",
+    "submit": "Save new password",
+    "success": "Your password has been changed. Please sign in with your new password.",
+    "token_error": "This reset link is invalid or has expired. Request a new one to try again.",
+    "no_token": "This reset link is invalid — it's missing its token.",
+    "request_new": "Request a new link",
+    "back_to_login": "Back to sign in"
   },
   "confirmEmail": {
     "title": "Email confirmation",

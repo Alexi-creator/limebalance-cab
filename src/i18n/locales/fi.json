@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Vähintään 8 merkkiä",
     "invalid_credentials": "Virheellinen sähköposti tai salasana",
+    "forgot_password": "Unohditko salasanasi?",
     "submit": "Kirjaudu sisään",
     "back": "Takaisin",
     "terms": "Kirjautumalla hyväksyt käyttöehtomme",
@@ -394,6 +395,31 @@
     "connect_text": "Lisää tulot ja menot suoraan Telegramissa — ne synkronoituvat tähän paneeliin. Yhdistä botti tiliisi, jotta se tunnistaa sinut.",
     "linking": "Yhdistetään…",
     "dont_know_bot": "Etkö tunne bottia?"
+  },
+  "forgotPassword": {
+    "title": "Salasanan palautus",
+    "subtitle": "Anna tilisi sähköpostiosoite, niin lähetämme sinulle linkin salasanan palauttamiseen.",
+    "email_label": "Sähköposti",
+    "email_placeholder": "you@example.com",
+    "email_error": "Virheellinen sähköposti",
+    "submit": "Lähetä linkki",
+    "sent": "Jos tällä sähköpostilla on tili, lähetimme siihen linkin salasanan palauttamista varten. Tarkista postilaatikkosi.",
+    "back_to_login": "Takaisin kirjautumiseen"
+  },
+  "resetPassword": {
+    "title": "Aseta uusi salasana",
+    "password_label": "Uusi salasana",
+    "password_placeholder": "••••••",
+    "password_error": "Vähintään 8 merkkiä",
+    "confirm_label": "Vahvista uusi salasana",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Salasanat eivät täsmää",
+    "submit": "Tallenna salasana",
+    "success": "Salasanasi on vaihdettu. Kirjaudu sisään uudella salasanalla.",
+    "token_error": "Tämä linkki on virheellinen tai vanhentunut. Pyydä uusi yrittääksesi uudelleen.",
+    "no_token": "Tämä linkki on virheellinen — siitä puuttuu tunnus.",
+    "request_new": "Pyydä uusi linkki",
+    "back_to_login": "Takaisin kirjautumiseen"
   },
   "confirmEmail": {
     "title": "Sähköpostin vahvistus",

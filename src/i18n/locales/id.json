@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimal 8 karakter",
     "invalid_credentials": "Email atau kata sandi salah",
+    "forgot_password": "Lupa kata sandi?",
     "submit": "Masuk",
     "back": "Kembali",
     "terms": "Dengan masuk, Anda menyetujui ketentuan layanan kami",
@@ -384,6 +385,31 @@
     "connect_text": "Tambahkan pemasukan dan pengeluaran langsung di Telegram — semuanya tersinkron dengan dasbor ini. Hubungkan bot ke akun Anda agar mengenali Anda.",
     "linking": "Menghubungkan…",
     "dont_know_bot": "Tidak kenal botnya?"
+  },
+  "forgotPassword": {
+    "title": "Atur ulang kata sandi",
+    "subtitle": "Masukkan email akun Anda dan kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.",
+    "email_label": "Email",
+    "email_placeholder": "you@example.com",
+    "email_error": "Email tidak valid",
+    "submit": "Kirim tautan",
+    "sent": "Jika akun dengan email itu ada, kami telah mengirimkan tautan untuk mengatur ulang kata sandi. Periksa kotak masuk Anda.",
+    "back_to_login": "Kembali ke masuk"
+  },
+  "resetPassword": {
+    "title": "Atur kata sandi baru",
+    "password_label": "Kata sandi baru",
+    "password_placeholder": "••••••",
+    "password_error": "Minimal 8 karakter",
+    "confirm_label": "Konfirmasi kata sandi baru",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Kata sandi tidak cocok",
+    "submit": "Simpan kata sandi",
+    "success": "Kata sandi Anda telah diubah. Masuk dengan kata sandi baru Anda.",
+    "token_error": "Tautan ini tidak valid atau telah kedaluwarsa. Minta yang baru untuk mencoba lagi.",
+    "no_token": "Tautan ini tidak valid — tokennya tidak ada.",
+    "request_new": "Minta tautan baru",
+    "back_to_login": "Kembali ke masuk"
   },
   "confirmEmail": {
     "title": "Konfirmasi email",

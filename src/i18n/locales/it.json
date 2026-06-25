@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimo 8 caratteri",
     "invalid_credentials": "Email o password non validi",
+    "forgot_password": "Password dimenticata?",
     "submit": "Accedi",
     "back": "Indietro",
     "terms": "Accedendo, accetti i nostri termini di servizio",
@@ -394,6 +395,31 @@
     "connect_text": "Aggiungi entrate e uscite direttamente in Telegram: si sincronizzano con questa dashboard. Collega il bot al tuo account così ti riconosce.",
     "linking": "Collegamento…",
     "dont_know_bot": "Non conosci il bot?"
+  },
+  "forgotPassword": {
+    "title": "Reimposta password",
+    "subtitle": "Inserisci l'email del tuo account e ti invieremo un link per reimpostare la password.",
+    "email_label": "Email",
+    "email_placeholder": "you@example.com",
+    "email_error": "Email non valida",
+    "submit": "Invia link",
+    "sent": "Se esiste un account con questa email, abbiamo inviato un link per reimpostare la password. Controlla la posta.",
+    "back_to_login": "Torna all'accesso"
+  },
+  "resetPassword": {
+    "title": "Imposta una nuova password",
+    "password_label": "Nuova password",
+    "password_placeholder": "••••••",
+    "password_error": "Minimo 8 caratteri",
+    "confirm_label": "Conferma nuova password",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Le password non corrispondono",
+    "submit": "Salva password",
+    "success": "La tua password è stata modificata. Accedi con la nuova password.",
+    "token_error": "Questo link non è valido o è scaduto. Richiedine uno nuovo per riprovare.",
+    "no_token": "Questo link non è valido: manca il token.",
+    "request_new": "Richiedi un nuovo link",
+    "back_to_login": "Torna all'accesso"
   },
   "confirmEmail": {
     "title": "Conferma dell'email",

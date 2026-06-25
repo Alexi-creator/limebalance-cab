@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimaal 8 tekens",
     "invalid_credentials": "Ongeldige e-mail of wachtwoord",
+    "forgot_password": "Wachtwoord vergeten?",
     "submit": "Inloggen",
     "back": "Terug",
     "terms": "Door in te loggen ga je akkoord met onze servicevoorwaarden",
@@ -394,6 +395,31 @@
     "connect_text": "Voeg inkomsten en uitgaven direct in Telegram toe — ze worden gesynchroniseerd met dit dashboard. Koppel de bot aan je account zodat hij je herkent.",
     "linking": "Verbinden…",
     "dont_know_bot": "Ken je de bot niet?"
+  },
+  "forgotPassword": {
+    "title": "Wachtwoord opnieuw instellen",
+    "subtitle": "Voer het e-mailadres van je account in en we sturen je een link om je wachtwoord opnieuw in te stellen.",
+    "email_label": "E-mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "Ongeldige e-mail",
+    "submit": "Link versturen",
+    "sent": "Als er een account met dit e-mailadres bestaat, hebben we een link gestuurd om het wachtwoord opnieuw in te stellen. Controleer je inbox.",
+    "back_to_login": "Terug naar inloggen"
+  },
+  "resetPassword": {
+    "title": "Nieuw wachtwoord instellen",
+    "password_label": "Nieuw wachtwoord",
+    "password_placeholder": "••••••",
+    "password_error": "Minimaal 8 tekens",
+    "confirm_label": "Bevestig nieuw wachtwoord",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Wachtwoorden komen niet overeen",
+    "submit": "Wachtwoord opslaan",
+    "success": "Je wachtwoord is gewijzigd. Log in met je nieuwe wachtwoord.",
+    "token_error": "Deze link is ongeldig of verlopen. Vraag een nieuwe aan om het opnieuw te proberen.",
+    "no_token": "Deze link is ongeldig — het token ontbreekt.",
+    "request_new": "Nieuwe link aanvragen",
+    "back_to_login": "Terug naar inloggen"
   },
   "confirmEmail": {
     "title": "E-mailbevestiging",

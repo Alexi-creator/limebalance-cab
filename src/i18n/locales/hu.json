@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Legalább 8 karakter",
     "invalid_credentials": "Érvénytelen e-mail vagy jelszó",
+    "forgot_password": "Elfelejtette a jelszavát?",
     "submit": "Bejelentkezés",
     "back": "Vissza",
     "terms": "A bejelentkezéssel elfogadod a felhasználási feltételeinket",
@@ -394,6 +395,31 @@
     "connect_text": "Add hozzá a bevételeket és kiadásokat közvetlenül a Telegramban — szinkronizálódnak ezzel az irányítópulttal. Kapcsold a botot a fiókodhoz, hogy felismerjen.",
     "linking": "Csatlakoztatás…",
     "dont_know_bot": "Nem ismered a botot?"
+  },
+  "forgotPassword": {
+    "title": "Jelszó visszaállítása",
+    "subtitle": "Adja meg fiókja e-mail-címét, és küldünk egy linket a jelszó visszaállításához.",
+    "email_label": "E-mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "Érvénytelen e-mail",
+    "submit": "Link küldése",
+    "sent": "Ha létezik fiók ezzel az e-mail-címmel, küldtünk rá egy linket a jelszó visszaállításához. Ellenőrizze a postaládáját.",
+    "back_to_login": "Vissza a bejelentkezéshez"
+  },
+  "resetPassword": {
+    "title": "Új jelszó beállítása",
+    "password_label": "Új jelszó",
+    "password_placeholder": "••••••",
+    "password_error": "Legalább 8 karakter",
+    "confirm_label": "Új jelszó megerősítése",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "A jelszavak nem egyeznek",
+    "submit": "Jelszó mentése",
+    "success": "A jelszava megváltozott. Jelentkezzen be az új jelszavával.",
+    "token_error": "Ez a link érvénytelen vagy lejárt. Kérjen újat az újrapróbálkozáshoz.",
+    "no_token": "Ez a link érvénytelen — hiányzik belőle a token.",
+    "request_new": "Új link kérése",
+    "back_to_login": "Vissza a bejelentkezéshez"
   },
   "confirmEmail": {
     "title": "E-mail megerősítése",

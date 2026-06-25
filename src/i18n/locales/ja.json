@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "8 文字以上",
     "invalid_credentials": "メールアドレスまたはパスワードが正しくありません",
+    "forgot_password": "パスワードをお忘れですか？",
     "submit": "ログイン",
     "back": "戻る",
     "terms": "ログインすると利用規約に同意したものとみなされます",
@@ -384,6 +385,31 @@
     "connect_text": "収入と支出を Telegram で直接追加すると、このダッシュボードと同期されます。ボットをアカウントに接続して認識させましょう。",
     "linking": "接続中…",
     "dont_know_bot": "ボットをご存じないですか？"
+  },
+  "forgotPassword": {
+    "title": "パスワードのリセット",
+    "subtitle": "アカウントのメールアドレスを入力してください。パスワードをリセットするためのリンクをお送りします。",
+    "email_label": "メール",
+    "email_placeholder": "you@example.com",
+    "email_error": "無効なメールアドレス",
+    "submit": "リンクを送信",
+    "sent": "このメールアドレスのアカウントが存在する場合、パスワードをリセットするリンクを送信しました。受信トレイをご確認ください。",
+    "back_to_login": "ログインに戻る"
+  },
+  "resetPassword": {
+    "title": "新しいパスワードを設定",
+    "password_label": "新しいパスワード",
+    "password_placeholder": "••••••",
+    "password_error": "8 文字以上",
+    "confirm_label": "新しいパスワードの確認",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "パスワードが一致しません",
+    "submit": "パスワードを保存",
+    "success": "パスワードが変更されました。新しいパスワードでログインしてください。",
+    "token_error": "このリンクは無効か期限切れです。新しいリンクをリクエストして再度お試しください。",
+    "no_token": "このリンクは無効です。トークンがありません。",
+    "request_new": "新しいリンクをリクエスト",
+    "back_to_login": "ログインに戻る"
   },
   "confirmEmail": {
     "title": "メールの確認",

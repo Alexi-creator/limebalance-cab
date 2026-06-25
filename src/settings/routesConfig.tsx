@@ -24,6 +24,9 @@ const AuthPage = lazy(() => import("@pages/AuthPage").then((m) => ({ default: m.
 const RegisterPage = lazy(() =>
   import("@pages/RegisterPage").then((m) => ({ default: m.RegisterPage })),
 )
+const ForgotPasswordPage = lazy(() =>
+  import("@pages/ForgotPasswordPage").then((m) => ({ default: m.ForgotPasswordPage })),
+)
 
 export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Home, element: <HomePage /> },
@@ -52,5 +55,9 @@ export const publicRoutes: RouteConfig[] = [
   {
     path: RouteNames.Register,
     element: <RegisterPage />,
+  },
+  {
+    path: RouteNames.ForgotPassword,
+    element: <ForgotPasswordPage />,
   },
 ]

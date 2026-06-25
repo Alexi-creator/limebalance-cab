@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minst 8 tecken",
     "invalid_credentials": "Felaktig e-post eller lösenord",
+    "forgot_password": "Glömt lösenordet?",
     "submit": "Logga in",
     "back": "Tillbaka",
     "terms": "Genom att logga in godkänner du våra användarvillkor",
@@ -394,6 +395,31 @@
     "connect_text": "Lägg till inkomster och utgifter direkt i Telegram — de synkroniseras med den här panelen. Koppla boten till ditt konto så att den känner igen dig.",
     "linking": "Ansluter…",
     "dont_know_bot": "Känner du inte till boten?"
+  },
+  "forgotPassword": {
+    "title": "Återställ lösenord",
+    "subtitle": "Ange e-postadressen för ditt konto så skickar vi en länk för att återställa ditt lösenord.",
+    "email_label": "E-post",
+    "email_placeholder": "you@example.com",
+    "email_error": "Ogiltig e-post",
+    "submit": "Skicka länk",
+    "sent": "Om ett konto med den e-postadressen finns har vi skickat en länk för att återställa lösenordet. Kolla din inkorg.",
+    "back_to_login": "Tillbaka till inloggningen"
+  },
+  "resetPassword": {
+    "title": "Ange ett nytt lösenord",
+    "password_label": "Nytt lösenord",
+    "password_placeholder": "••••••",
+    "password_error": "Minst 8 tecken",
+    "confirm_label": "Bekräfta nytt lösenord",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Lösenorden matchar inte",
+    "submit": "Spara lösenord",
+    "success": "Ditt lösenord har ändrats. Logga in med ditt nya lösenord.",
+    "token_error": "Den här länken är ogiltig eller har gått ut. Begär en ny för att försöka igen.",
+    "no_token": "Den här länken är ogiltig — den saknar token.",
+    "request_new": "Begär en ny länk",
+    "back_to_login": "Tillbaka till inloggningen"
   },
   "confirmEmail": {
     "title": "Bekräftelse av e-post",

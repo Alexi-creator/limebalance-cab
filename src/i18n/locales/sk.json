@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Minimálne 8 znakov",
     "invalid_credentials": "Neplatný e-mail alebo heslo",
+    "forgot_password": "Zabudli ste heslo?",
     "submit": "Prihlásiť sa",
     "back": "Späť",
     "terms": "Prihlásením súhlasíte s našimi podmienkami používania",
@@ -404,6 +405,31 @@
     "connect_text": "Pridávajte príjmy a výdavky priamo v Telegrame — synchronizujú sa s týmto panelom. Prepojte bota so svojím účtom, aby vás rozpoznal.",
     "linking": "Pripája sa…",
     "dont_know_bot": "Nepoznáte bota?"
+  },
+  "forgotPassword": {
+    "title": "Obnovenie hesla",
+    "subtitle": "Zadajte e-mail svojho účtu a pošleme vám odkaz na obnovenie hesla.",
+    "email_label": "E-mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "Neplatný e-mail",
+    "submit": "Odoslať odkaz",
+    "sent": "Ak účet s týmto e-mailom existuje, poslali sme naň odkaz na obnovenie hesla. Skontrolujte si schránku.",
+    "back_to_login": "Späť na prihlásenie"
+  },
+  "resetPassword": {
+    "title": "Nastaviť nové heslo",
+    "password_label": "Nové heslo",
+    "password_placeholder": "••••••",
+    "password_error": "Minimálne 8 znakov",
+    "confirm_label": "Potvrďte nové heslo",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "Heslá sa nezhodujú",
+    "submit": "Uložiť heslo",
+    "success": "Vaše heslo bolo zmenené. Prihláste sa novým heslom.",
+    "token_error": "Tento odkaz je neplatný alebo vypršal. Vyžiadajte si nový a skúste to znova.",
+    "no_token": "Tento odkaz je neplatný — chýba v ňom token.",
+    "request_new": "Vyžiadať nový odkaz",
+    "back_to_login": "Späť na prihlásenie"
   },
   "confirmEmail": {
     "title": "Potvrdenie e-mailu",

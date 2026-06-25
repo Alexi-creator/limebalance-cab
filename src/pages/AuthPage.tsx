@@ -102,6 +102,10 @@ function EmailForm({ onBack }: { onBack: () => void }) {
           {t("auth.submit")}
         </Button>
 
+        <Anchor component={Link} to={RouteNames.ForgotPassword} size="sm" ta="center">
+          {t("auth.forgot_password")}
+        </Anchor>
+
         <Anchor component="button" type="button" size="sm" ta="center" onClick={onBack}>
           {t("auth.back")}
         </Anchor>

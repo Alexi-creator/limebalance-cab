@@ -3,6 +3,8 @@ export const RouteNames = {
   Auth: "/auth",
   Register: "/register",
   ConfirmEmail: "/confirm-email",
+  ForgotPassword: "/forgot-password",
+  ResetPassword: "/reset-password",
   Transactions: "/transactions",
   Analytics: "/analytics",
   Goals: "/goals",

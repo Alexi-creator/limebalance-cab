@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "Mínimo de 8 caracteres",
     "invalid_credentials": "E-mail ou senha inválidos",
+    "forgot_password": "Esqueceu sua senha?",
     "submit": "Entrar",
     "back": "Voltar",
     "terms": "Ao entrar, você concorda com nossos termos de serviço",
@@ -394,6 +395,31 @@
     "connect_text": "Adicione receitas e despesas direto no Telegram — elas sincronizam com este painel. Vincule o bot à sua conta para que ele reconheça você.",
     "linking": "Conectando…",
     "dont_know_bot": "Não conhece o bot?"
+  },
+  "forgotPassword": {
+    "title": "Redefinir senha",
+    "subtitle": "Informe o e-mail da sua conta e enviaremos um link para redefinir sua senha.",
+    "email_label": "E-mail",
+    "email_placeholder": "you@example.com",
+    "email_error": "E-mail inválido",
+    "submit": "Enviar link",
+    "sent": "Se existir uma conta com esse e-mail, enviamos um link para redefinir a senha. Verifique sua caixa de entrada.",
+    "back_to_login": "Voltar para o login"
+  },
+  "resetPassword": {
+    "title": "Definir nova senha",
+    "password_label": "Nova senha",
+    "password_placeholder": "••••••",
+    "password_error": "Mínimo de 8 caracteres",
+    "confirm_label": "Confirmar nova senha",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "As senhas não coincidem",
+    "submit": "Salvar senha",
+    "success": "Sua senha foi alterada. Entre com a nova senha.",
+    "token_error": "Este link é inválido ou expirou. Solicite um novo para tentar novamente.",
+    "no_token": "Este link é inválido — falta o token.",
+    "request_new": "Solicitar um novo link",
+    "back_to_login": "Voltar para o login"
   },
   "confirmEmail": {
     "title": "Confirmação de e-mail",

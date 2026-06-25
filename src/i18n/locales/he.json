@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "לפחות 8 תווים",
     "invalid_credentials": "אימייל או סיסמה שגויים",
+    "forgot_password": "שכחת את הסיסמה?",
     "submit": "התחברות",
     "back": "חזרה",
     "terms": "בהתחברות אתה מסכים לתנאי השימוש שלנו",
@@ -414,6 +415,31 @@
     "connect_text": "הוסף הכנסות והוצאות ישירות בטלגרם — הן מסתנכרנות עם לוח זה. חבר את הבוט לחשבונך כדי שיזהה אותך.",
     "linking": "מחבר…",
     "dont_know_bot": "לא מכיר את הבוט?"
+  },
+  "forgotPassword": {
+    "title": "איפוס סיסמה",
+    "subtitle": "הזן את האימייל של חשבונך ונשלח לך קישור לאיפוס הסיסמה.",
+    "email_label": "אימייל",
+    "email_placeholder": "you@example.com",
+    "email_error": "אימייל לא תקין",
+    "submit": "שלח קישור",
+    "sent": "אם קיים חשבון עם אימייל זה, שלחנו אליו קישור לאיפוס הסיסמה. בדוק את תיבת הדואר שלך.",
+    "back_to_login": "חזרה להתחברות"
+  },
+  "resetPassword": {
+    "title": "הגדרת סיסמה חדשה",
+    "password_label": "סיסמה חדשה",
+    "password_placeholder": "••••••",
+    "password_error": "לפחות 8 תווים",
+    "confirm_label": "אשר סיסמה חדשה",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "הסיסמאות אינן תואמות",
+    "submit": "שמור סיסמה",
+    "success": "הסיסמה שלך שונתה. התחבר עם הסיסמה החדשה.",
+    "token_error": "הקישור אינו תקין או שפג תוקפו. בקש קישור חדש כדי לנסות שוב.",
+    "no_token": "הקישור אינו תקין — חסר בו אסימון.",
+    "request_new": "בקש קישור חדש",
+    "back_to_login": "חזרה להתחברות"
   },
   "confirmEmail": {
     "title": "אימות דוא\"ל",

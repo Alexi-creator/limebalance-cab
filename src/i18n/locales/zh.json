@@ -14,6 +14,7 @@
     "password_placeholder": "••••••",
     "password_error": "至少 8 个字符",
     "invalid_credentials": "邮箱或密码错误",
+    "forgot_password": "忘记密码？",
     "submit": "登录",
     "back": "返回",
     "terms": "登录即表示您同意我们的服务条款",
@@ -384,6 +385,31 @@
     "connect_text": "直接在 Telegram 中添加收入和支出——它们会与此面板同步。将机器人关联到您的账户，让它识别您。",
     "linking": "正在连接…",
     "dont_know_bot": "不认识这个机器人？"
+  },
+  "forgotPassword": {
+    "title": "重置密码",
+    "subtitle": "输入您账户的电子邮箱，我们将向您发送重置密码的链接。",
+    "email_label": "邮箱",
+    "email_placeholder": "you@example.com",
+    "email_error": "邮箱无效",
+    "submit": "发送链接",
+    "sent": "如果存在使用该邮箱的账户，我们已发送重置密码的链接。请查收您的收件箱。",
+    "back_to_login": "返回登录"
+  },
+  "resetPassword": {
+    "title": "设置新密码",
+    "password_label": "新密码",
+    "password_placeholder": "••••••",
+    "password_error": "至少 8 个字符",
+    "confirm_label": "确认新密码",
+    "confirm_placeholder": "••••••",
+    "confirm_error": "两次密码不一致",
+    "submit": "保存密码",
+    "success": "您的密码已更改。请使用新密码登录。",
+    "token_error": "此链接无效或已过期。请重新申请以再次尝试。",
+    "no_token": "此链接无效——缺少令牌。",
+    "request_new": "申请新链接",
+    "back_to_login": "返回登录"
   },
   "confirmEmail": {
     "title": "邮箱确认",
