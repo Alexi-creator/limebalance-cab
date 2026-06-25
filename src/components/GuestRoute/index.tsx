@@ -9,6 +9,15 @@ import { Navigate, Outlet } from "react-router-dom"
  */
 export function GuestRoute() {
   const user = useAuthStore((s) => s.user)
+  const isInitialized = useAuthStore((s) => s.isInitialized)
+  console.log(
+    "[AUTH_DBG] GuestRoute render init=",
+    isInitialized,
+    "user=",
+    !!user,
+    "path=",
+    window.location.pathname,
+  )
 
   if (user) return <Navigate to={RouteNames.Home} replace />
 

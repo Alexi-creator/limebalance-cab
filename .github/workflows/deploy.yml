@@ -38,7 +38,7 @@ jobs:
           retention-days: 7
 
   deploy:
-    # Деплой идёт только после зелёных E2E-тестов.
+    # Deploy runs only after the E2E tests pass.
     needs: test
     runs-on: ubuntu-latest
     permissions:
