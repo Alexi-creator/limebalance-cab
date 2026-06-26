@@ -19,7 +19,7 @@ export function markNotificationRead(id: string) {
   })
 }
 
-/** "Прочитать все" — marks every unread notification read. */
+/** "Mark all as read" — marks every unread notification read. */
 export function markAllNotificationsRead() {
   return request(API_URLS.notifications.readAll, {
     method: HttpMethods.POST,

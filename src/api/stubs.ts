@@ -481,8 +481,9 @@ function buildTransactions(params: URLSearchParams) {
   const pageSlice = items.slice(startIdx, startIdx + limit)
   const pageItems = pageSlice.map(transactionItem)
 
-  // Итог считаем по операциям текущей страницы (в базовой валюте), а не по всей выборке:
-  // меняется страница/размер порции — пересчитывается под то, что реально показано в таблице.
+  // The totals are computed over the current page's transactions (in the base currency),
+  // not the whole dataset: when the page or page size changes, they are recomputed to match
+  // what is actually shown in the table.
   const income = round2(
     pageSlice.filter((t) => t.type === "income").reduce((s, t) => s + t.amount, 0),
   )

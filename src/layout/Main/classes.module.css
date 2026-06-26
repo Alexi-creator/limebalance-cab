@@ -4,7 +4,11 @@
   inset: 0;
   top: var(--app-shell-header-height, 64px);
   padding: var(--mantine-spacing-md);
-  background: var(--mantine-color-default);
+  /* In the light theme the page background and the white cards (Paper) are almost
+     the same color and blend together. We give the page a slightly gray background
+     (gray-1) so the white cards visually lift above it. In the dark theme there is
+     already enough contrast — keep the standard default background. */
+  background: light-dark(var(--mantine-color-gray-1), var(--mantine-color-default));
   overflow-y: auto;
 
   /* --app-shell-navbar-width stays 240px even when the navbar is collapsed on
@@ -12,7 +16,7 @@
   @media (min-width: 48em) {
     left: var(--app-shell-navbar-width, 240px);
 
-    /* fill-height pages (e.g. Операции) own their internal scroll: switch to a flex
+    /* fill-height pages (e.g. Transactions) own their internal scroll: switch to a flex
        column so the page can stretch a table to full height instead of scrolling Main.
        Only from the navbar breakpoint up — on mobile the viewport is too short for a
        locked-height table (filters eat the space and the table collapses), so there we

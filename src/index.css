@@ -1,12 +1,12 @@
 /*
- * Токены дизайн-системы — цвета, которых нет в палитре Mantine (бренд-цвета и
- * разовые акценты). Держим их здесь как CSS-переменные, чтобы переиспользовать и
- * менять в одном месте, а не хардкодить hex по компонентам. Префикс --app-* отделяет
- * их от встроенных --mantine-color-*.
+ * Design-system tokens — colors that are not part of the Mantine palette (brand
+ * colors and one-off accents). We keep them here as CSS variables to reuse and
+ * change them in one place instead of hardcoding hex values across components. The
+ * --app-* prefix separates them from the built-in --mantine-color-* variables.
  */
 :root {
-  --app-color-telegram: #229ed9; /* фирменный синий Telegram */
-  --app-logo-ink: #0a0d12; /* тёмный текст на лаймовом бейдже логотипа */
+  --app-color-telegram: #229ed9; /* Telegram brand blue */
+  --app-logo-ink: #0a0d12; /* dark text on the lime logo badge */
 }
 
 html,
@@ -24,11 +24,11 @@ body {
 }
 
 /*
- * mantine-datatable закрепляет колонку с чекбоксами (position: sticky) и при
- * горизонтальном скролле рисует у неё тень-градиент (псевдоэлемент :after) —
- * она выглядит как лишний артефакт у первой колонки. Фон колонки непрозрачный,
- * контент под неё не просвечивает, поэтому тень убираем. Тень закреплённой
- * последней колонки (pinLastColumn) не трогаем.
+ * mantine-datatable pins the checkbox column (position: sticky) and on horizontal
+ * scroll draws a gradient shadow on it (the :after pseudo-element) — it looks like a
+ * stray artifact next to the first column. The column background is opaque and the
+ * content underneath does not show through, so we remove the shadow. We leave the
+ * shadow of the pinned last column (pinLastColumn) untouched.
  */
 .mantine-datatable-header-selector-cell[data-shadow-visible]::after,
 .mantine-datatable-row-selector-cell[data-shadow-visible]::after,

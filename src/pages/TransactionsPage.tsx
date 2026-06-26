@@ -110,9 +110,9 @@ export function TransactionsPage() {
 
   const items = data?.items ?? []
   const total = data?.total ?? 0
-  // Итог в футере приходит из роута уже посчитанным в базовой валюте и по срезу текущей
-  // страницы (бэкенд конвертирует валюты по курсу). Перезапрос при смене страницы/порции
-  // меняет query-ключ → итог пересчитывается под видимые строки.
+  // The footer totals come from the route already computed in the base currency and for the
+  // current page's slice (the backend converts currencies at the exchange rate). Refetching on
+  // a page/page-size change updates the query key → the totals are recomputed for the visible rows.
   const summary = items.length > 0 ? data?.summary : undefined
 
   return (

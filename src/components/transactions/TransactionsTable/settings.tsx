@@ -27,8 +27,8 @@ export function getTransactionColumns(
       title: t("transactions.col_operation"),
       ellipsis: true,
       // we raise the footer cell above its neighbors (z-index), otherwise their opaque background
-      // covers the totals text overflowing to the right; нижний паддинг наращивает высоту строки,
-      // чтобы горизонтальный скролл не налезал на цифры (итоги привязаны к верху ячейки)
+      // covers the totals text overflowing to the right; the bottom padding grows the row height
+      // so the horizontal scrollbar does not overlap the numbers (totals are anchored to the cell top)
       footerStyle: { position: "relative", zIndex: 1, overflow: "visible", paddingBottom: 14 },
       // we render the totals as an absolute layer over the empty footer cells on the right: a zero-
       // width anchor does not stretch the "Transaction" column, so the columns do not shift
@@ -38,8 +38,8 @@ export function getTransactionColumns(
             style={{
               position: "absolute",
               left: 0,
-              // приподнимаем итоги над горизонтальным скроллом таблицы, чтобы он не перекрывал цифры,
-              // но оставляем отступ сверху, иначе цифры прилипают к верхней границе строки
+              // lift the totals above the table's horizontal scrollbar so it does not overlap the numbers,
+              // but keep some top offset, otherwise the numbers stick to the top edge of the row
               top: "calc(50% - 4px)",
               transform: "translateY(-50%)",
               whiteSpace: "nowrap",

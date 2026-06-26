@@ -20,7 +20,11 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <MantineProvider theme={theme} colorSchemeManager={colorSchemeManager}>
+        <MantineProvider
+          theme={theme}
+          colorSchemeManager={colorSchemeManager}
+          defaultColorScheme="dark"
+        >
           <Notifications position="top-right" />
           <App />
         </MantineProvider>
