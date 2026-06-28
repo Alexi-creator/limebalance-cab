@@ -1,0 +1,6 @@
+/* The default track (gray-1 in light) matches the page background and blends in. Darken it
+   so the income/expense switcher reads as a distinct control. Light theme only — dark keeps
+   the default. Plain attribute selector (not CSS `light-dark()`) so it survives the prod build. */
+[data-mantine-color-scheme="light"] .typeControl {
+  background-color: var(--mantine-color-gray-3);
+}

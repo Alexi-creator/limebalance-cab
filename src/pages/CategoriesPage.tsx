@@ -31,6 +31,7 @@ import { useQuery } from "@tanstack/react-query"
 import { isLimitBlocked } from "@utils/subscription"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
+import classes from "./CategoriesPage.module.css"
 
 export function CategoriesPage() {
   const { t } = useTranslation()
@@ -109,6 +110,7 @@ export function CategoriesPage() {
         </Stack>
         <Group gap="xs">
           <SegmentedControl
+            classNames={{ root: classes.typeControl }}
             value={tab}
             onChange={(v) => setTab(v as "expense" | "income")}
             data={[

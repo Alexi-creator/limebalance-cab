@@ -4,11 +4,12 @@
   inset: 0;
   top: var(--app-shell-header-height, 64px);
   padding: var(--mantine-spacing-md);
-  /* In the light theme the page background and the white cards (Paper) are almost
-     the same color and blend together. We give the page a slightly gray background
-     (gray-1) so the white cards visually lift above it. In the dark theme there is
-     already enough contrast — keep the standard default background. */
-  background: light-dark(var(--mantine-color-gray-1), var(--mantine-color-default));
+  /* Dark theme has enough contrast — keep the standard default background.
+     The light-theme gray is applied via the `[data-mantine-color-scheme="light"]` rule below.
+     We can't use CSS `light-dark()`: the prod build (rolldown-vite + lightningcss) polyfills it
+     into an invalid two-color `background` that the browser drops, so it works in dev but vanishes
+     in prod. Mantine's color-scheme attribute is plain CSS and survives the build. */
+  background: var(--mantine-color-default);
   overflow-y: auto;
 
   /* --app-shell-navbar-width stays 240px even when the navbar is collapsed on
@@ -31,4 +32,10 @@
       overflow-y: auto;
     }
   }
+}
+
+/* Light theme: a slightly gray page so the white cards (Paper) visually lift above it,
+   instead of blending into a same-white background. */
+[data-mantine-color-scheme="light"] .root {
+  background: var(--mantine-color-gray-1);
 }

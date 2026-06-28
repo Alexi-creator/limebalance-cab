@@ -10,6 +10,7 @@ import { Grid, Group, Paper, SegmentedControl, Skeleton, Stack, Text, Title } fr
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useTranslation } from "react-i18next"
+import classes from "./AnalyticsPage.module.css"
 
 export function AnalyticsPage() {
   const { t, i18n } = useTranslation()
@@ -35,6 +36,7 @@ export function AnalyticsPage() {
         </Stack>
         <Group gap="xs">
           <SegmentedControl
+            classNames={{ root: classes.periodControl }}
             value={period}
             onChange={(v) => setParams({ period: v as typeof period })}
             data={ANALYTICS_PERIODS.map((p) => ({ value: p, label: t(`analytics.period_${p}`) }))}

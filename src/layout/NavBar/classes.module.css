@@ -1,5 +1,10 @@
+/* See Header/classes.module.css: avoid CSS `light-dark()` — the prod build drops it. Use Mantine's
+   color-scheme attribute instead. */
 .root {
-  /* Match the header: soften the bright white menu in light theme. Dark theme keeps the default.
-     Mantine's styles live in `@layer mantine`, so this unlayered rule wins without specificity hacks. */
-  background: light-dark(var(--mantine-color-gray-0), var(--mantine-color-body));
+  background: var(--mantine-color-body);
+}
+
+/* Match the header: soften the bright white menu in light theme. Dark theme keeps the default. */
+[data-mantine-color-scheme="light"] .root {
+  background: var(--mantine-color-gray-0);
 }
