@@ -1,5 +1,7 @@
-.root {
+/* Doubled `.root.root` raises specificity above Mantine's own `.mantine-AppShell-header`
+   rule — otherwise CSS ordering in the production bundle lets Mantine's white win. */
+.root.root {
   /* In light theme the default white header against the gray page reads as too harsh —
-     tint it to a soft gray to soften the contrast. Dark theme keeps the default. */
+     tint it to a barely-there off-white to soften the contrast. Dark theme keeps the default. */
   background: light-dark(var(--mantine-color-gray-0), var(--mantine-color-body));
 }
