@@ -168,7 +168,12 @@ export function ContributionForm({ goal, initialMode = "deposit" }: Props) {
           <Button variant="default" onClick={close} disabled={mutation.isPending}>
             {t("common.cancel")}
           </Button>
-          <Button type="submit" loading={mutation.isPending} disabled={maxAmount <= 0}>
+          <Button
+            type="submit"
+            color={mode === "withdraw" ? "red" : undefined}
+            loading={mutation.isPending}
+            disabled={maxAmount <= 0}
+          >
             {mode === "withdraw" ? t("goals.withdraw") : t("goals.deposit_action")}
           </Button>
         </Group>
