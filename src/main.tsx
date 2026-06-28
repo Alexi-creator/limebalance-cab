@@ -6,10 +6,13 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
-import "@mantine/core/styles.css"
-import "@mantine/dates/styles.css"
-import "@mantine/notifications/styles.css"
-import "mantine-datatable/styles.css"
+// Layered builds wrap all Mantine styles in `@layer mantine`. Unlayered styles (our CSS modules,
+// index.css) always beat layered ones regardless of bundle order — this fixes prod-only overrides
+// where Mantine's CSS chunk loaded after ours and won on equal specificity.
+import "@mantine/core/styles.layer.css"
+import "@mantine/dates/styles.layer.css"
+import "@mantine/notifications/styles.layer.css"
+import "mantine-datatable/styles.layer.css"
 import "./index.css"
 import App from "./App.tsx"
 import { theme } from "./theme.ts"

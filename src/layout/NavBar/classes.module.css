@@ -1,6 +1,5 @@
-/* Doubled `.root.root` raises specificity above Mantine's own `.mantine-AppShell-navbar`
-   rule — otherwise CSS ordering in the production bundle lets Mantine's white win. */
-.root.root {
-  /* Match the header: soften the bright white menu in light theme. Dark theme keeps the default. */
+.root {
+  /* Match the header: soften the bright white menu in light theme. Dark theme keeps the default.
+     Mantine's styles live in `@layer mantine`, so this unlayered rule wins without specificity hacks. */
   background: light-dark(var(--mantine-color-gray-0), var(--mantine-color-body));
 }
