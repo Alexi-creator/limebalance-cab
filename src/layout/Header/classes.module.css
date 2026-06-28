@@ -1,0 +1,5 @@
+.root {
+  /* In light theme the default white header against the gray page reads as too harsh —
+     tint it to a soft gray to soften the contrast. Dark theme keeps the default. */
+  background: light-dark(var(--mantine-color-gray-0), var(--mantine-color-body));
+}

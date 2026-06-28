@@ -8,6 +8,7 @@ import { useSidebarStore } from "@store/sidebarStore"
 import { IconPlus } from "@tabler/icons-react"
 import { SelectButton } from "@ui/SelectButton"
 import { useTranslation } from "react-i18next"
+import classes from "./classes.module.css"
 import { getAddOptions } from "./config"
 
 /**
@@ -23,7 +24,7 @@ export function Header() {
   const toggle = useSidebarStore((s) => s.toggle)
 
   return (
-    <AppShell.Header>
+    <AppShell.Header className={classes.root}>
       <Group h="100%" px="md" gap="md" wrap="nowrap">
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
 

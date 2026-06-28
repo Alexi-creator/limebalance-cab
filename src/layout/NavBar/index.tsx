@@ -1,5 +1,6 @@
 import { DashboardSidebar } from "@components/DashboardSidebar"
 import { AppShell } from "@mantine/core"
+import classes from "./classes.module.css"
 
 /**
  * Navigation bar wrapper (AppShell.Navbar).
@@ -7,7 +8,7 @@ import { AppShell } from "@mantine/core"
  */
 export function NavBar() {
   return (
-    <AppShell.Navbar p="md">
+    <AppShell.Navbar p="md" className={classes.root}>
       <DashboardSidebar />
     </AppShell.Navbar>
   )
