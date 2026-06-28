@@ -76,6 +76,8 @@
     "password_set_hint": "Nastavte heslo pro přihlášení e-mailem",
     "password_too_short": "Heslo musí mít alespoň {{count}} znaků",
     "password_mismatch": "Hesla se neshodují",
+    "password_reset": "Obnovit heslo",
+    "password_reset_sent": "Odkaz pro obnovení hesla byl odeslán na váš e-mail",
     "email_label": "E-mail",
     "email_description": "E-mail propojený s vaším účtem",
     "email_add_description": "Přidejte e-mail ke svému účtu",

@@ -1,5 +1,5 @@
 import type { CategoryStats } from "@appTypes/category"
-import { COLOR_PALETTE, EMOJI_PALETTE } from "./config"
+import { COLOR_PALETTE } from "./config"
 import type { DisplayCategory } from "./types"
 
 /**
@@ -15,11 +15,11 @@ export function isApprox(cat: CategoryStats): boolean {
   return cat.totals.some((t) => t.currency !== cat.baseCurrency)
 }
 
-/** Enriches the stats: emoji from the backend (otherwise a fallback from the palette) and color by index. */
+/** Enriches the stats: emoji from the backend (shown only if present — no palette fallback) and color by index. */
 export function toDisplay(stat: CategoryStats, index: number): DisplayCategory {
   return {
     ...stat,
-    icon: stat.emoji || EMOJI_PALETTE[index % EMOJI_PALETTE.length],
+    icon: stat.emoji ?? "",
     color: COLOR_PALETTE[index % COLOR_PALETTE.length],
   }
 }

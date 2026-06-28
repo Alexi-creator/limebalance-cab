@@ -76,6 +76,8 @@
     "password_set_hint": "Atur kata sandi untuk masuk dengan email",
     "password_too_short": "Kata sandi harus minimal {{count}} karakter",
     "password_mismatch": "Kata sandi tidak cocok",
+    "password_reset": "Atur ulang kata sandi",
+    "password_reset_sent": "Tautan pengaturan ulang kata sandi telah dikirim ke email Anda",
     "email_label": "Email",
     "email_description": "Email yang tertaut ke akun Anda",
     "email_add_description": "Tambahkan email ke akun Anda",

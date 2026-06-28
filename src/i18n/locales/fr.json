@@ -76,6 +76,8 @@
     "password_set_hint": "Définissez un mot de passe pour vous connecter par e-mail",
     "password_too_short": "Le mot de passe doit comporter au moins {{count}} caractères",
     "password_mismatch": "Les mots de passe ne correspondent pas",
+    "password_reset": "Réinitialiser le mot de passe",
+    "password_reset_sent": "Un lien de réinitialisation du mot de passe a été envoyé à votre adresse e-mail",
     "email_label": "E-mail",
     "email_description": "L'e-mail lié à votre compte",
     "email_add_description": "Ajoutez un e-mail à votre compte",

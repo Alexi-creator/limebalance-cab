@@ -76,6 +76,8 @@
     "password_set_hint": "Setează o parolă pentru autentificarea cu e-mail",
     "password_too_short": "Parola trebuie să aibă cel puțin {{count}} caractere",
     "password_mismatch": "Parolele nu coincid",
+    "password_reset": "Resetează parola",
+    "password_reset_sent": "Un link pentru resetarea parolei a fost trimis pe e-mailul tău",
     "email_label": "E-mail",
     "email_description": "E-mailul asociat contului tău",
     "email_add_description": "Adaugă un e-mail la contul tău",

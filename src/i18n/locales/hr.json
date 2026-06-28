@@ -76,6 +76,8 @@
     "password_set_hint": "Postavite lozinku za prijavu e-poštom",
     "password_too_short": "Lozinka mora imati najmanje {{count}} znakova",
     "password_mismatch": "Lozinke se ne podudaraju",
+    "password_reset": "Ponovno postavi lozinku",
+    "password_reset_sent": "Veza za ponovno postavljanje lozinke poslana je na vašu e-poštu",
     "email_label": "E-pošta",
     "email_description": "E-pošta povezana s vašim računom",
     "email_add_description": "Dodajte e-poštu svom računu",

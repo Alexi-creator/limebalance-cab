@@ -76,6 +76,8 @@
     "password_set_hint": "Nastavite geslo za prijavo z e-pošto",
     "password_too_short": "Geslo mora imeti vsaj {{count}} znakov",
     "password_mismatch": "Gesli se ne ujemata",
+    "password_reset": "Ponastavi geslo",
+    "password_reset_sent": "Povezava za ponastavitev gesla je bila poslana na vaš e-poštni naslov",
     "email_label": "E-pošta",
     "email_description": "E-pošta, povezana z vašim računom",
     "email_add_description": "Dodajte e-pošto svojemu računu",

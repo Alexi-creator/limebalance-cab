@@ -76,6 +76,8 @@
     "password_set_hint": "Stel een wachtwoord in om met e-mail in te loggen",
     "password_too_short": "Wachtwoord moet minstens {{count}} tekens bevatten",
     "password_mismatch": "Wachtwoorden komen niet overeen",
+    "password_reset": "Wachtwoord opnieuw instellen",
+    "password_reset_sent": "Er is een link om je wachtwoord opnieuw in te stellen naar je e-mail gestuurd",
     "email_label": "E-mail",
     "email_description": "Het e-mailadres dat aan je account is gekoppeld",
     "email_add_description": "Voeg een e-mailadres toe aan je account",

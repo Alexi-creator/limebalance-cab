@@ -76,6 +76,8 @@
     "password_set_hint": "Iestatiet paroli, lai pieteiktos ar e-pastu",
     "password_too_short": "Parolei jābūt vismaz {{count}} rakstzīmes garai",
     "password_mismatch": "Paroles nesakrīt",
+    "password_reset": "Atiestatīt paroli",
+    "password_reset_sent": "Paroles atiestatīšanas saite ir nosūtīta uz jūsu e-pastu",
     "email_label": "E-pasts",
     "email_description": "Jūsu kontam piesaistītais e-pasts",
     "email_add_description": "Pievienojiet kontam e-pastu",

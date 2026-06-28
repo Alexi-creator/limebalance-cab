@@ -76,6 +76,8 @@
     "password_set_hint": "הגדר סיסמה כדי להתחבר עם אימייל",
     "password_too_short": "הסיסמה חייבת להכיל לפחות {{count}} תווים",
     "password_mismatch": "הסיסמאות אינן תואמות",
+    "password_reset": "איפוס סיסמה",
+    "password_reset_sent": "קישור לאיפוס הסיסמה נשלח לאימייל שלך",
     "email_label": "אימייל",
     "email_description": "האימייל המקושר לחשבונך",
     "email_add_description": "הוסף אימייל לחשבונך",

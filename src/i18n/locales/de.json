@@ -76,6 +76,8 @@
     "password_set_hint": "Legen Sie ein Passwort fest, um sich mit E-Mail anzumelden",
     "password_too_short": "Passwort muss mindestens {{count}} Zeichen lang sein",
     "password_mismatch": "Passwörter stimmen nicht überein",
+    "password_reset": "Passwort zurücksetzen",
+    "password_reset_sent": "Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet",
     "email_label": "E-Mail",
     "email_description": "Die mit Ihrem Konto verknüpfte E-Mail",
     "email_add_description": "Fügen Sie Ihrem Konto eine E-Mail hinzu",

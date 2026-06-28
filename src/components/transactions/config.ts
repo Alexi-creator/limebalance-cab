@@ -10,8 +10,8 @@ export const PAGE_SIZE_OPTIONS = [20, 50, 100]
 /** Type toggle options (value `all` = no type filter). */
 export const getTypeOptions = (t: TFunction) => [
   { value: "all", label: t("common.all") },
-  { value: "income", label: t("common.income_plural") },
   { value: "expense", label: t("common.expense_plural") },
+  { value: "income", label: t("common.income_plural") },
 ]
 
 /**

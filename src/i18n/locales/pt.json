@@ -76,6 +76,8 @@
     "password_set_hint": "Defina uma senha para entrar com e-mail",
     "password_too_short": "A senha deve ter pelo menos {{count}} caracteres",
     "password_mismatch": "As senhas não coincidem",
+    "password_reset": "Redefinir senha",
+    "password_reset_sent": "Um link para redefinir a senha foi enviado para o seu e-mail",
     "email_label": "E-mail",
     "email_description": "O e-mail vinculado à sua conta",
     "email_add_description": "Adicione um e-mail à sua conta",

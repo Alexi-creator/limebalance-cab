@@ -76,6 +76,8 @@
     "password_set_hint": "Ustaw hasło, aby logować się e-mailem",
     "password_too_short": "Hasło musi mieć co najmniej {{count}} znaków",
     "password_mismatch": "Hasła nie są zgodne",
+    "password_reset": "Zresetuj hasło",
+    "password_reset_sent": "Link do zresetowania hasła został wysłany na Twój e-mail",
     "email_label": "E-mail",
     "email_description": "E-mail powiązany z Twoim kontem",
     "email_add_description": "Dodaj e-mail do swojego konta",

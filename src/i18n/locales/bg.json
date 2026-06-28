@@ -76,6 +76,8 @@
     "password_set_hint": "Задайте парола за вход с имейл",
     "password_too_short": "Паролата трябва да е поне {{count}} знака",
     "password_mismatch": "Паролите не съвпадат",
+    "password_reset": "Възстановяване на паролата",
+    "password_reset_sent": "Връзка за нулиране на паролата беше изпратена на имейла ви",
     "email_label": "Имейл",
     "email_description": "Имейлът, свързан с акаунта ви",
     "email_add_description": "Добавете имейл към акаунта си",

@@ -276,6 +276,7 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
                   color={categoryId === c.id ? "lime" : "gray"}
                   size="xs"
                   radius="sm"
+                  leftSection={c.emoji || undefined}
                   onClick={() => setValue("categoryId", c.id, { shouldValidate: true })}
                 >
                   {c.name}

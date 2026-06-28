@@ -76,6 +76,8 @@
     "password_set_hint": "Задайте пароль для входа по почте",
     "password_too_short": "Пароль должен быть не короче {{count}} символов",
     "password_mismatch": "Пароли не совпадают",
+    "password_reset": "Восстановить пароль",
+    "password_reset_sent": "Ссылка для сброса пароля отправлена на вашу почту",
     "email_label": "Почта",
     "email_description": "Почта, привязанная к вашему аккаунту",
     "email_add_description": "Добавьте почту к вашему аккаунту",

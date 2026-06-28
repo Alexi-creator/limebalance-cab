@@ -1,4 +1,4 @@
-import { resendEmailConfirmation, setCredentials } from "@api/auth"
+import { forgotPassword, resendEmailConfirmation, setCredentials } from "@api/auth"
 import { Anchor, Button, Group, PasswordInput, Stack, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
@@ -101,6 +101,14 @@ export function SecurityForm() {
     onError: () => notifications.show({ color: "red", message: t("settings.error") }),
   })
 
+  // send a password-reset link to the linked email (for users who forgot their current password)
+  const resetMutation = useMutation({
+    mutationFn: () => forgotPassword(user?.email ?? ""),
+    onSuccess: () =>
+      notifications.show({ color: "green", message: t("settings.password_reset_sent") }),
+    onError: () => notifications.show({ color: "red", message: t("settings.error") }),
+  })
+
   return (
     <Stack gap="lg">
       {hasEmail ? (
@@ -164,6 +172,20 @@ export function SecurityForm() {
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.currentTarget.value)}
             />
+          )}
+
+          {/* for users who forgot their current password — email them a reset link */}
+          {hasEmail && hasPassword && (
+            <Anchor
+              component="button"
+              type="button"
+              size="sm"
+              ta="left"
+              onClick={() => resetMutation.mutate()}
+              style={{ alignSelf: "flex-start" }}
+            >
+              {t("settings.password_reset")}
+            </Anchor>
           )}
 
           <PasswordInput

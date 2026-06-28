@@ -76,6 +76,8 @@
     "password_set_hint": "Establece una contraseña para iniciar sesión con correo",
     "password_too_short": "La contraseña debe tener al menos {{count}} caracteres",
     "password_mismatch": "Las contraseñas no coinciden",
+    "password_reset": "Restablecer contraseña",
+    "password_reset_sent": "Se ha enviado un enlace para restablecer la contraseña a tu correo",
     "email_label": "Correo",
     "email_description": "El correo vinculado a tu cuenta",
     "email_add_description": "Añade un correo a tu cuenta",

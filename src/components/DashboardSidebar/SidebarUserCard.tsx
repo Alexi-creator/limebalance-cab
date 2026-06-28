@@ -1,9 +1,11 @@
 import { logout } from "@api/auth"
+import { RouteNames } from "@constants/routeNames"
 import { ActionIcon, Avatar, Box, Group, Paper, Text, Tooltip } from "@mantine/core"
 import { useAuthStore } from "@store/authStore"
 import { IconLogout } from "@tabler/icons-react"
 import { useQueryClient } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 
 /**
  * Current user card with a logout button. Locally subscribed to authStore
@@ -30,9 +32,18 @@ export function SidebarUserCard() {
   return (
     <Paper p="xs" mt={6} withBorder>
       <Group gap="xs" wrap="nowrap">
-        <Avatar size="sm" radius="xl" color="lime">
-          {initials}
-        </Avatar>
+        <Tooltip label={t("nav.settings")} position="right">
+          <Avatar
+            component={Link}
+            to={RouteNames.Settings}
+            size="md"
+            radius="xl"
+            color="lime"
+            style={{ cursor: "pointer" }}
+          >
+            {initials}
+          </Avatar>
+        </Tooltip>
         <Box style={{ minWidth: 0, flex: 1 }}>
           <Text size="sm" truncate>
             {displayName}

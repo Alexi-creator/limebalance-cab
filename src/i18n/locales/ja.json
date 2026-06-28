@@ -76,6 +76,8 @@
     "password_set_hint": "メールでログインするためのパスワードを設定",
     "password_too_short": "パスワードは {{count}} 文字以上にしてください",
     "password_mismatch": "パスワードが一致しません",
+    "password_reset": "パスワードをリセット",
+    "password_reset_sent": "パスワードリセットのリンクをメールに送信しました",
     "email_label": "メール",
     "email_description": "アカウントに紐づくメール",
     "email_add_description": "アカウントにメールを追加",

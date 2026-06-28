@@ -76,6 +76,8 @@
     "password_set_hint": "Ange ett lösenord för att logga in med e-post",
     "password_too_short": "Lösenordet måste innehålla minst {{count}} tecken",
     "password_mismatch": "Lösenorden matchar inte",
+    "password_reset": "Återställ lösenord",
+    "password_reset_sent": "En länk för att återställa lösenordet har skickats till din e-post",
     "email_label": "E-post",
     "email_description": "E-posten som är kopplad till ditt konto",
     "email_add_description": "Lägg till en e-post till ditt konto",

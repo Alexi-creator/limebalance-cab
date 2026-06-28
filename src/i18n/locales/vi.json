@@ -76,6 +76,8 @@
     "password_set_hint": "Đặt mật khẩu để đăng nhập bằng email",
     "password_too_short": "Mật khẩu phải có ít nhất {{count}} ký tự",
     "password_mismatch": "Mật khẩu không khớp",
+    "password_reset": "Đặt lại mật khẩu",
+    "password_reset_sent": "Một liên kết đặt lại mật khẩu đã được gửi đến email của bạn",
     "email_label": "Email",
     "email_description": "Email liên kết với tài khoản của bạn",
     "email_add_description": "Thêm email vào tài khoản của bạn",

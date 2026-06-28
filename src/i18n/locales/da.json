@@ -76,6 +76,8 @@
     "password_set_hint": "Angiv en adgangskode for at logge ind med e-mail",
     "password_too_short": "Adgangskoden skal være mindst {{count}} tegn",
     "password_mismatch": "Adgangskoderne stemmer ikke overens",
+    "password_reset": "Nulstil adgangskode",
+    "password_reset_sent": "Et link til nulstilling af adgangskode er sendt til din e-mail",
     "email_label": "E-mail",
     "email_description": "E-mailen, der er knyttet til din konto",
     "email_add_description": "Tilføj en e-mail til din konto",

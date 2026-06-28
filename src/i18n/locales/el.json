@@ -76,6 +76,8 @@
     "password_set_hint": "Ορίστε κωδικό για σύνδεση με email",
     "password_too_short": "Ο κωδικός πρέπει να έχει τουλάχιστον {{count}} χαρακτήρες",
     "password_mismatch": "Οι κωδικοί δεν ταιριάζουν",
+    "password_reset": "Επαναφορά κωδικού πρόσβασης",
+    "password_reset_sent": "Ένας σύνδεσμος επαναφοράς κωδικού πρόσβασης στάλθηκε στο email σας",
     "email_label": "Email",
     "email_description": "Το email που συνδέεται με τον λογαριασμό σας",
     "email_add_description": "Προσθέστε email στον λογαριασμό σας",

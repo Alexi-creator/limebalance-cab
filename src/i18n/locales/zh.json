@@ -76,6 +76,8 @@
     "password_set_hint": "设置密码以使用邮箱登录",
     "password_too_short": "密码至少需要 {{count}} 个字符",
     "password_mismatch": "两次密码不一致",
+    "password_reset": "重置密码",
+    "password_reset_sent": "重置密码的链接已发送到您的邮箱",
     "email_label": "邮箱",
     "email_description": "与您的账户关联的邮箱",
     "email_add_description": "为您的账户添加邮箱",

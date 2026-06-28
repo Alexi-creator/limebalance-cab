@@ -76,6 +76,8 @@
     "password_set_hint": "Angi et passord for å logge inn med e-post",
     "password_too_short": "Passordet må ha minst {{count}} tegn",
     "password_mismatch": "Passordene samsvarer ikke",
+    "password_reset": "Tilbakestill passord",
+    "password_reset_sent": "En lenke for tilbakestilling av passord er sendt til e-posten din",
     "email_label": "E-post",
     "email_description": "E-posten som er knyttet til kontoen din",
     "email_add_description": "Legg til en e-post på kontoen din",

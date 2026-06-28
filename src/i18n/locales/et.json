@@ -76,6 +76,8 @@
     "password_set_hint": "Määra parool, et e-postiga sisse logida",
     "password_too_short": "Parool peab olema vähemalt {{count}} märki",
     "password_mismatch": "Paroolid ei ühti",
+    "password_reset": "Lähtesta parool",
+    "password_reset_sent": "Parooli lähtestamise link saadeti teie e-posti aadressile",
     "email_label": "E-post",
     "email_description": "Sinu kontoga seotud e-post",
     "email_add_description": "Lisa oma kontole e-post",

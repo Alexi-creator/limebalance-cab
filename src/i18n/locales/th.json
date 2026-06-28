@@ -76,6 +76,8 @@
     "password_set_hint": "ตั้งรหัสผ่านเพื่อเข้าสู่ระบบด้วยอีเมล",
     "password_too_short": "รหัสผ่านต้องมีอย่างน้อย {{count}} ตัวอักษร",
     "password_mismatch": "รหัสผ่านไม่ตรงกัน",
+    "password_reset": "รีเซ็ตรหัสผ่าน",
+    "password_reset_sent": "ส่งลิงก์รีเซ็ตรหัสผ่านไปยังอีเมลของคุณแล้ว",
     "email_label": "อีเมล",
     "email_description": "อีเมลที่เชื่อมกับบัญชีของคุณ",
     "email_add_description": "เพิ่มอีเมลในบัญชีของคุณ",

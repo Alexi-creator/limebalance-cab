@@ -76,6 +76,8 @@
     "password_set_hint": "Imposta una password per accedere con email",
     "password_too_short": "La password deve contenere almeno {{count}} caratteri",
     "password_mismatch": "Le password non corrispondono",
+    "password_reset": "Reimposta password",
+    "password_reset_sent": "Un link per reimpostare la password è stato inviato alla tua email",
     "email_label": "Email",
     "email_description": "L'email collegata al tuo account",
     "email_add_description": "Aggiungi un'email al tuo account",

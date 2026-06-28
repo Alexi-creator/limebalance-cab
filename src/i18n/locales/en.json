@@ -76,6 +76,8 @@
     "password_set_hint": "Set a password to sign in with email",
     "password_too_short": "Password must be at least {{count}} characters",
     "password_mismatch": "Passwords do not match",
+    "password_reset": "Reset password",
+    "password_reset_sent": "A password reset link has been sent to your email",
     "email_label": "Email",
     "email_description": "The email linked to your account",
     "email_add_description": "Add an email to your account",

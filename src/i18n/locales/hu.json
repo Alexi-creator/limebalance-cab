@@ -76,6 +76,8 @@
     "password_set_hint": "Állíts be jelszót az e-mailes bejelentkezéshez",
     "password_too_short": "A jelszónak legalább {{count}} karakterből kell állnia",
     "password_mismatch": "A jelszavak nem egyeznek",
+    "password_reset": "Jelszó visszaállítása",
+    "password_reset_sent": "A jelszó-visszaállítási hivatkozást elküldtük az e-mail-címére",
     "email_label": "E-mail",
     "email_description": "A fiókodhoz kapcsolt e-mail",
     "email_add_description": "Adj hozzá e-mailt a fiókodhoz",

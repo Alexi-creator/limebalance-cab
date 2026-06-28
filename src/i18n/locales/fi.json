@@ -76,6 +76,8 @@
     "password_set_hint": "Aseta salasana kirjautuaksesi sähköpostilla",
     "password_too_short": "Salasanassa on oltava vähintään {{count}} merkkiä",
     "password_mismatch": "Salasanat eivät täsmää",
+    "password_reset": "Palauta salasana",
+    "password_reset_sent": "Salasanan palautuslinkki on lähetetty sähköpostiisi",
     "email_label": "Sähköposti",
     "email_description": "Tiliisi liitetty sähköposti",
     "email_add_description": "Lisää sähköposti tiliisi",

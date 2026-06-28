@@ -76,6 +76,8 @@
     "password_set_hint": "E-posta ile giriş yapmak için bir şifre belirleyin",
     "password_too_short": "Şifre en az {{count}} karakter olmalıdır",
     "password_mismatch": "Şifreler eşleşmiyor",
+    "password_reset": "Parolayı sıfırla",
+    "password_reset_sent": "Parola sıfırlama bağlantısı e-postanıza gönderildi",
     "email_label": "E-posta",
     "email_description": "Hesabınıza bağlı e-posta",
     "email_add_description": "Hesabınıza bir e-posta ekleyin",

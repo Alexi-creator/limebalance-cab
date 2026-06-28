@@ -76,6 +76,8 @@
     "password_set_hint": "Nustatykite slaptažodį, kad galėtumėte prisijungti el. paštu",
     "password_too_short": "Slaptažodį turi sudaryti bent {{count}} simbolių",
     "password_mismatch": "Slaptažodžiai nesutampa",
+    "password_reset": "Atstatyti slaptažodį",
+    "password_reset_sent": "Slaptažodžio atstatymo nuoroda išsiųsta į jūsų el. paštą",
     "email_label": "El. paštas",
     "email_description": "Su paskyra susietas el. paštas",
     "email_add_description": "Pridėkite el. paštą prie paskyros",

@@ -90,21 +90,23 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
       </Group>
 
       <Group gap="sm">
-        <Box
-          w={44}
-          h={44}
-          fz={20}
-          style={{
-            borderRadius: 12,
-            background: `color-mix(in oklab, ${cat.color} 22%, var(--mantine-color-default-hover))`,
-            border: `1px solid color-mix(in oklab, ${cat.color} 30%, transparent)`,
-            display: "grid",
-            placeItems: "center",
-            flexShrink: 0,
-          }}
-        >
-          {cat.icon}
-        </Box>
+        {cat.icon && (
+          <Box
+            w={44}
+            h={44}
+            fz={20}
+            style={{
+              borderRadius: 12,
+              background: `color-mix(in oklab, ${cat.color} 22%, var(--mantine-color-default-hover))`,
+              border: `1px solid color-mix(in oklab, ${cat.color} 30%, transparent)`,
+              display: "grid",
+              placeItems: "center",
+              flexShrink: 0,
+            }}
+          >
+            {cat.icon}
+          </Box>
+        )}
         <Stack gap={2} style={{ minWidth: 0, flex: 1 }}>
           <Text fw={500} truncate>
             {cat.name}
