@@ -212,6 +212,7 @@
     "summary_total": "Tổng",
     "summary_hint": "Số tiền được quy đổi sang tiền tệ cơ sở của bạn theo tỷ giá hiện tại. Bạn có thể đổi tiền tệ cơ sở trong cài đặt.",
     "delete_success": "Đã xóa giao dịch",
+    "edit_success": "Đã cập nhật giao dịch",
     "delete_confirm": "Xóa giao dịch này? Hành động này không thể hoàn tác.",
     "bulk_delete_success_other": "Đã xóa {{count}} giao dịch",
     "bulk_delete_confirm_other": "Xóa {{count}} giao dịch? Hành động này không thể hoàn tác.",

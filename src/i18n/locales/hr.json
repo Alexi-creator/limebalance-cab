@@ -218,6 +218,7 @@
     "summary_total": "Ukupno",
     "summary_hint": "Iznosi se pretvaraju u vašu osnovnu valutu po trenutnom tečaju. Osnovnu valutu možete promijeniti u postavkama.",
     "delete_success": "Transakcija izbrisana",
+    "edit_success": "Transakcija ažurirana",
     "delete_confirm": "Izbrisati ovu transakciju? Ova se radnja ne može poništiti.",
     "bulk_delete_success_one": "Izbrisana {{count}} transakcija",
     "bulk_delete_success_few": "Izbrisane {{count}} transakcije",

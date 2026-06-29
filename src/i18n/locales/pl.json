@@ -218,6 +218,7 @@
     "summary_total": "Razem",
     "summary_hint": "Kwoty są przeliczane na Twoją walutę bazową po bieżącym kursie. Walutę bazową możesz zmienić w ustawieniach.",
     "delete_success": "Transakcja usunięta",
+    "edit_success": "Transakcja zaktualizowana",
     "delete_confirm": "Usunąć tę transakcję? Tej operacji nie można cofnąć.",
     "bulk_delete_success_one": "Usunięto {{count}} transakcję",
     "bulk_delete_success_few": "Usunięto {{count}} transakcje",

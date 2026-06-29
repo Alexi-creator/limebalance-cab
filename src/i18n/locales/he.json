@@ -221,6 +221,7 @@
     "summary_total": "סך הכול",
     "summary_hint": "הסכומים מומרים למטבע הבסיס שלך לפי השער הנוכחי. ניתן לשנות את מטבע הבסיס בהגדרות.",
     "delete_success": "העסקה נמחקה",
+    "edit_success": "העסקה עודכנה",
     "delete_confirm": "למחוק עסקה זו? לא ניתן לבטל פעולה זו.",
     "bulk_delete_success_one": "נמחקה {{count}} עסקה",
     "bulk_delete_success_two": "נמחקו {{count}} עסקאות",

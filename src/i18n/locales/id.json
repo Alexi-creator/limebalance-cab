@@ -212,6 +212,7 @@
     "summary_total": "Total",
     "summary_hint": "Jumlah dikonversi ke mata uang dasar Anda dengan kurs saat ini. Mata uang dasar dapat diubah di pengaturan.",
     "delete_success": "Transaksi dihapus",
+    "edit_success": "Transaksi diperbarui",
     "delete_confirm": "Hapus transaksi ini? Tindakan ini tidak dapat dibatalkan.",
     "bulk_delete_success_other": "{{count}} transaksi dihapus",
     "bulk_delete_confirm_other": "Hapus {{count}} transaksi? Tindakan ini tidak dapat dibatalkan.",

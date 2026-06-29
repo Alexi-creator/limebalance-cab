@@ -218,6 +218,7 @@
     "summary_total": "Iš viso",
     "summary_hint": "Sumos konvertuojamos į jūsų pagrindinę valiutą pagal dabartinį kursą. Pagrindinę valiutą galite pakeisti nustatymuose.",
     "delete_success": "Operacija ištrinta",
+    "edit_success": "Operacija atnaujinta",
     "delete_confirm": "Ištrinti šią operaciją? Šio veiksmo atšaukti negalima.",
     "bulk_delete_success_one": "Ištrinta {{count}} operacija",
     "bulk_delete_success_few": "Ištrintos {{count}} operacijos",

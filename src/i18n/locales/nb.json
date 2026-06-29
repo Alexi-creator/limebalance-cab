@@ -215,6 +215,7 @@
     "summary_total": "Totalt",
     "summary_hint": "Beløpene konverteres til basisvalutaen din med dagens kurs. Du kan endre basisvalutaen i innstillingene.",
     "delete_success": "Transaksjon slettet",
+    "edit_success": "Transaksjon oppdatert",
     "delete_confirm": "Slette denne transaksjonen? Dette kan ikke angres.",
     "bulk_delete_success_one": "{{count}} transaksjon slettet",
     "bulk_delete_success_other": "{{count}} transaksjoner slettet",

@@ -215,6 +215,7 @@
     "summary_total": "Kokku",
     "summary_hint": "Summad teisendatakse sinu põhivaluutasse praeguse kursi alusel. Põhivaluutat saad muuta seadetes.",
     "delete_success": "Tehing kustutatud",
+    "edit_success": "Tehing uuendatud",
     "delete_confirm": "Kustutada see tehing? Seda ei saa tagasi võtta.",
     "bulk_delete_success_one": "{{count}} tehing kustutatud",
     "bulk_delete_success_other": "{{count}} tehingut kustutatud",

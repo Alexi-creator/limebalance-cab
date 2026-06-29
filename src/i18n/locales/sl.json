@@ -221,6 +221,7 @@
     "summary_total": "Skupaj",
     "summary_hint": "Zneski so pretvorjeni v vašo osnovno valuto po trenutnem tečaju. Osnovno valuto lahko spremenite v nastavitvah.",
     "delete_success": "Transakcija izbrisana",
+    "edit_success": "Transakcija posodobljena",
     "delete_confirm": "Izbrišem to transakcijo? Dejanja ni mogoče razveljaviti.",
     "bulk_delete_success_one": "Izbrisana {{count}} transakcija",
     "bulk_delete_success_two": "Izbrisani {{count}} transakciji",

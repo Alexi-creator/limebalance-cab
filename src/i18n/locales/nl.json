@@ -215,6 +215,7 @@
     "summary_total": "Totaal",
     "summary_hint": "Bedragen worden tegen de huidige koers omgerekend naar je basisvaluta. Je kunt de basisvaluta wijzigen in de instellingen.",
     "delete_success": "Transactie verwijderd",
+    "edit_success": "Transactie bijgewerkt",
     "delete_confirm": "Deze transactie verwijderen? Dit kan niet ongedaan worden gemaakt.",
     "bulk_delete_success_one": "{{count}} transactie verwijderd",
     "bulk_delete_success_other": "{{count}} transacties verwijderd",

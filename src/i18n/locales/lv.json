@@ -218,6 +218,7 @@
     "summary_total": "Kopā",
     "summary_hint": "Summas tiek pārrēķinātas jūsu pamatvalūtā pēc pašreizējā kursa. Pamatvalūtu var mainīt iestatījumos.",
     "delete_success": "Darījums dzēsts",
+    "edit_success": "Darījums atjaunināts",
     "delete_confirm": "Dzēst šo darījumu? Šo darbību nevar atsaukt.",
     "bulk_delete_success_zero": "Dzēsti {{count}} darījumu",
     "bulk_delete_success_one": "Dzēsts {{count}} darījums",

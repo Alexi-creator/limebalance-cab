@@ -215,6 +215,7 @@
     "summary_total": "Toplam",
     "summary_hint": "Tutarlar güncel kurla ana para biriminize çevrilir. Ana para birimini ayarlardan değiştirebilirsiniz.",
     "delete_success": "İşlem silindi",
+    "edit_success": "İşlem güncellendi",
     "delete_confirm": "Bu işlem silinsin mi? Bu işlem geri alınamaz.",
     "bulk_delete_success_one": "{{count}} işlem silindi",
     "bulk_delete_success_other": "{{count}} işlem silindi",

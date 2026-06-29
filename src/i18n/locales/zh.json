@@ -212,6 +212,7 @@
     "summary_total": "合计",
     "summary_hint": "金额按当前汇率换算为您的基础货币。您可以在设置中更改基础货币。",
     "delete_success": "交易已删除",
+    "edit_success": "交易已更新",
     "delete_confirm": "删除这笔交易？此操作无法撤销。",
     "bulk_delete_success_other": "已删除 {{count}} 笔交易",
     "bulk_delete_confirm_other": "删除 {{count}} 笔交易？此操作无法撤销。",

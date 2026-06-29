@@ -215,6 +215,7 @@
     "summary_total": "Yhteensä",
     "summary_hint": "Summat muunnetaan perusvaluuttaasi nykyisellä kurssilla. Voit vaihtaa perusvaluutan asetuksissa.",
     "delete_success": "Tapahtuma poistettu",
+    "edit_success": "Tapahtuma päivitetty",
     "delete_confirm": "Poistetaanko tämä tapahtuma? Tätä ei voi peruuttaa.",
     "bulk_delete_success_one": "{{count}} tapahtuma poistettu",
     "bulk_delete_success_other": "{{count}} tapahtumaa poistettu",

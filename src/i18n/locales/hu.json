@@ -215,6 +215,7 @@
     "summary_total": "Összesen",
     "summary_hint": "Az összegek a jelenlegi árfolyamon az alap-pénznemedre vannak átszámítva. Az alap-pénznemet a beállításokban módosíthatod.",
     "delete_success": "Tranzakció törölve",
+    "edit_success": "Tranzakció frissítve",
     "delete_confirm": "Törlöd ezt a tranzakciót? A művelet nem vonható vissza.",
     "bulk_delete_success_one": "{{count}} tranzakció törölve",
     "bulk_delete_success_other": "{{count}} tranzakció törölve",

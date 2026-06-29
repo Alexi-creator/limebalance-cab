@@ -218,6 +218,7 @@
     "summary_total": "Celkem",
     "summary_hint": "Částky se převádějí na vaši základní měnu aktuálním kurzem. Základní měnu můžete změnit v nastavení.",
     "delete_success": "Transakce smazána",
+    "edit_success": "Transakce aktualizována",
     "delete_confirm": "Smazat tuto transakci? Tuto akci nelze vrátit zpět.",
     "bulk_delete_success_one": "Smazána {{count}} transakce",
     "bulk_delete_success_few": "Smazány {{count}} transakce",

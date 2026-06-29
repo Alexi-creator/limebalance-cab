@@ -218,6 +218,7 @@
     "summary_total": "Spolu",
     "summary_hint": "Sumy sa prepočítavajú na vašu základnú menu aktuálnym kurzom. Základnú menu môžete zmeniť v nastaveniach.",
     "delete_success": "Transakcia odstránená",
+    "edit_success": "Transakcia aktualizovaná",
     "delete_confirm": "Odstrániť túto transakciu? Túto akciu nie je možné vrátiť späť.",
     "bulk_delete_success_one": "Odstránená {{count}} transakcia",
     "bulk_delete_success_few": "Odstránené {{count}} transakcie",

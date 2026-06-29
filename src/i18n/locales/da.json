@@ -215,6 +215,7 @@
     "summary_total": "I alt",
     "summary_hint": "Beløbene omregnes til din basisvaluta til den aktuelle kurs. Du kan ændre basisvalutaen i indstillingerne.",
     "delete_success": "Transaktion slettet",
+    "edit_success": "Transaktion opdateret",
     "delete_confirm": "Slet denne transaktion? Dette kan ikke fortrydes.",
     "bulk_delete_success_one": "{{count}} transaktion slettet",
     "bulk_delete_success_other": "{{count}} transaktioner slettet",

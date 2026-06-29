@@ -215,6 +215,7 @@
     "summary_total": "Total",
     "summary_hint": "Os valores são convertidos para sua moeda base pela taxa atual. Você pode alterar a moeda base nas configurações.",
     "delete_success": "Transação excluída",
+    "edit_success": "Transação atualizada",
     "delete_confirm": "Excluir esta transação? Esta ação é irreversível.",
     "bulk_delete_success_one": "{{count}} transação excluída",
     "bulk_delete_success_other": "{{count}} transações excluídas",

@@ -7,6 +7,7 @@ import { CURRENCY_OPTIONS } from "@constants/regionToCurrency"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button, Group, NumberInput, Select, Stack, Textarea } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
+import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { useModalStore } from "@store/modalStore"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -74,7 +75,11 @@ export function EditTransactionForm({ transaction }: Props) {
       const keys = transaction.type === "expense" ? expenseKeys : incomeKeys
       queryClient.invalidateQueries({ queryKey: keys.categoriesStats })
       queryClient.invalidateQueries({ queryKey: [keys.all[0], "summary"] })
+      notifications.show({ color: "green", message: t("transactions.edit_success") })
       close()
+    },
+    onError: () => {
+      notifications.show({ color: "red", message: t("transactions.save_error") })
     },
   })
 

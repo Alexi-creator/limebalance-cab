@@ -215,6 +215,7 @@
     "summary_total": "Total",
     "summary_hint": "Les montants sont convertis dans votre devise de base au taux actuel. Vous pouvez changer la devise de base dans les paramètres.",
     "delete_success": "Transaction supprimée",
+    "edit_success": "Transaction mise à jour",
     "delete_confirm": "Supprimer cette transaction ? Cette action est irréversible.",
     "bulk_delete_success_one": "{{count}} transaction supprimée",
     "bulk_delete_success_other": "{{count}} transactions supprimées",

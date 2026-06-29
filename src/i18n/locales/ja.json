@@ -212,6 +212,7 @@
     "summary_total": "合計",
     "summary_hint": "金額は現在のレートで基準通貨に換算されます。基準通貨は設定で変更できます。",
     "delete_success": "取引を削除しました",
+    "edit_success": "取引を更新しました",
     "delete_confirm": "この取引を削除しますか？この操作は取り消せません。",
     "bulk_delete_success_other": "{{count}} 件の取引を削除しました",
     "bulk_delete_confirm_other": "{{count}} 件の取引を削除しますか？この操作は取り消せません。",

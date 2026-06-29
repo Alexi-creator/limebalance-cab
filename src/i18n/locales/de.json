@@ -215,6 +215,7 @@
     "summary_total": "Gesamt",
     "summary_hint": "Beträge werden zum aktuellen Kurs in Ihre Basiswährung umgerechnet. Die Basiswährung können Sie in den Einstellungen ändern.",
     "delete_success": "Transaktion gelöscht",
+    "edit_success": "Transaktion aktualisiert",
     "delete_confirm": "Diese Transaktion löschen? Dies kann nicht rückgängig gemacht werden.",
     "bulk_delete_success_one": "{{count}} Transaktion gelöscht",
     "bulk_delete_success_other": "{{count}} Transaktionen gelöscht",

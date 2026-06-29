@@ -215,6 +215,7 @@
     "summary_total": "Totalt",
     "summary_hint": "Beloppen omräknas till din basvaluta med aktuell kurs. Du kan ändra basvalutan i inställningarna.",
     "delete_success": "Transaktion borttagen",
+    "edit_success": "Transaktion uppdaterad",
     "delete_confirm": "Ta bort den här transaktionen? Det går inte att ångra.",
     "bulk_delete_success_one": "{{count}} transaktion borttagen",
     "bulk_delete_success_other": "{{count}} transaktioner borttagna",

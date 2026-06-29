@@ -224,6 +224,7 @@
     "summary_total": "Total",
     "summary_hint": "Amounts are converted to your base currency at the current rate. You can change the base currency in settings.",
     "delete_success": "Transaction deleted",
+    "edit_success": "Transaction updated",
     "delete_confirm": "Delete this transaction? This cannot be undone.",
     "bulk_delete_success_one": "Deleted {{count}} transaction",
     "bulk_delete_success_other": "Deleted {{count}} transactions",

@@ -215,6 +215,7 @@
     "summary_total": "Totale",
     "summary_hint": "Gli importi sono convertiti nella tua valuta di base al tasso attuale. Puoi cambiare la valuta di base nelle impostazioni.",
     "delete_success": "Transazione eliminata",
+    "edit_success": "Transazione aggiornata",
     "delete_confirm": "Eliminare questa transazione? L'azione è irreversibile.",
     "bulk_delete_success_one": "{{count}} transazione eliminata",
     "bulk_delete_success_other": "{{count}} transazioni eliminate",

@@ -218,6 +218,7 @@
     "summary_total": "Total",
     "summary_hint": "Sumele sunt convertite în moneda ta de bază la cursul curent. Poți schimba moneda de bază în setări.",
     "delete_success": "Tranzacție ștearsă",
+    "edit_success": "Tranzacție actualizată",
     "delete_confirm": "Ștergi această tranzacție? Această acțiune este ireversibilă.",
     "bulk_delete_success_one": "{{count}} tranzacție ștearsă",
     "bulk_delete_success_few": "{{count}} tranzacții șterse",

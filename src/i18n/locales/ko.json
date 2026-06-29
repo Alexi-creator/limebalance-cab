@@ -212,6 +212,7 @@
     "summary_total": "합계",
     "summary_hint": "금액은 현재 환율로 기본 통화로 환산됩니다. 기본 통화는 설정에서 변경할 수 있습니다.",
     "delete_success": "거래가 삭제되었습니다",
+    "edit_success": "거래가 업데이트되었습니다",
     "delete_confirm": "이 거래를 삭제할까요? 이 작업은 되돌릴 수 없습니다.",
     "bulk_delete_success_other": "거래 {{count}}건을 삭제했습니다",
     "bulk_delete_confirm_other": "거래 {{count}}건을 삭제할까요? 이 작업은 되돌릴 수 없습니다.",
