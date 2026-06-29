@@ -236,7 +236,11 @@
     "date_range_placeholder": "Dátum -tól — -ig",
     "expense_added": "Kiadás hozzáadva",
     "income_added": "Bevétel hozzáadva",
-    "save_error": "A tranzakció mentése nem sikerült"
+    "save_error": "A tranzakció mentése nem sikerült",
+    "categories_selected_one": "{{count}} kategória",
+    "categories_selected_other": "{{count}} kategória",
+    "currencies_selected_one": "{{count}} pénznem",
+    "currencies_selected_other": "{{count}} pénznem"
   },
   "categories": {
     "title": "Kategóriák",

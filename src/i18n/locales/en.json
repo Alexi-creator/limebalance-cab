@@ -245,7 +245,11 @@
     "date_range_placeholder": "Date from — to",
     "expense_added": "Expense added",
     "income_added": "Income added",
-    "save_error": "Failed to save transaction"
+    "save_error": "Failed to save transaction",
+    "categories_selected_one": "{{count}} category",
+    "categories_selected_other": "{{count}} categories",
+    "currencies_selected_one": "{{count}} currency",
+    "currencies_selected_other": "{{count}} currencies"
   },
   "categories": {
     "title": "Categories",

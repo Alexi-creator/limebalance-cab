@@ -236,7 +236,11 @@
     "date_range_placeholder": "Ημερομηνία από — έως",
     "expense_added": "Το έξοδο προστέθηκε",
     "income_added": "Το έσοδο προστέθηκε",
-    "save_error": "Αποτυχία αποθήκευσης συναλλαγής"
+    "save_error": "Αποτυχία αποθήκευσης συναλλαγής",
+    "categories_selected_one": "{{count}} κατηγορία",
+    "categories_selected_other": "{{count}} κατηγορίες",
+    "currencies_selected_one": "{{count}} νόμισμα",
+    "currencies_selected_other": "{{count}} νομίσματα"
   },
   "categories": {
     "title": "Κατηγορίες",

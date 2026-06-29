@@ -231,7 +231,9 @@
     "date_range_placeholder": "日期 从 — 到",
     "expense_added": "已添加支出",
     "income_added": "已添加收入",
-    "save_error": "无法保存交易"
+    "save_error": "无法保存交易",
+    "categories_selected_other": "{{count}} 个类别",
+    "currencies_selected_other": "{{count}} 种货币"
   },
   "categories": {
     "title": "分类",

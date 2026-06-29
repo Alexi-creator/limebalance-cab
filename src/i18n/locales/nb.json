@@ -236,7 +236,11 @@
     "date_range_placeholder": "Dato fra — til",
     "expense_added": "Utgift lagt til",
     "income_added": "Inntekt lagt til",
-    "save_error": "Kunne ikke lagre transaksjonen"
+    "save_error": "Kunne ikke lagre transaksjonen",
+    "categories_selected_one": "{{count}} kategori",
+    "categories_selected_other": "{{count}} kategorier",
+    "currencies_selected_one": "{{count}} valuta",
+    "currencies_selected_other": "{{count}} valutaer"
   },
   "categories": {
     "title": "Kategorier",

@@ -236,7 +236,11 @@
     "date_range_placeholder": "Data de — até",
     "expense_added": "Despesa adicionada",
     "income_added": "Receita adicionada",
-    "save_error": "Não foi possível salvar a transação"
+    "save_error": "Não foi possível salvar a transação",
+    "categories_selected_one": "{{count}} categoria",
+    "categories_selected_other": "{{count}} categorias",
+    "currencies_selected_one": "{{count}} moeda",
+    "currencies_selected_other": "{{count}} moedas"
   },
   "categories": {
     "title": "Categorias",

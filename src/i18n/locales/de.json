@@ -236,7 +236,11 @@
     "date_range_placeholder": "Datum von — bis",
     "expense_added": "Ausgabe hinzugefügt",
     "income_added": "Einnahme hinzugefügt",
-    "save_error": "Transaktion konnte nicht gespeichert werden"
+    "save_error": "Transaktion konnte nicht gespeichert werden",
+    "categories_selected_one": "{{count}} Kategorie",
+    "categories_selected_other": "{{count}} Kategorien",
+    "currencies_selected_one": "{{count}} Währung",
+    "currencies_selected_other": "{{count}} Währungen"
   },
   "categories": {
     "title": "Kategorien",

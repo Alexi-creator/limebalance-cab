@@ -252,7 +252,13 @@
     "date_range_placeholder": "Дата от — до",
     "expense_added": "Расход добавлен",
     "income_added": "Доход добавлен",
-    "save_error": "Не удалось сохранить операцию"
+    "save_error": "Не удалось сохранить операцию",
+    "categories_selected_one": "{{count}} категория",
+    "categories_selected_few": "{{count}} категории",
+    "categories_selected_many": "{{count}} категорий",
+    "currencies_selected_one": "{{count}} валюта",
+    "currencies_selected_few": "{{count}} валюты",
+    "currencies_selected_many": "{{count}} валют"
   },
   "categories": {
     "title": "Категории",

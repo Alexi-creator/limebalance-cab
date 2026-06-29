@@ -236,7 +236,11 @@
     "date_range_placeholder": "Дата от — до",
     "expense_added": "Разходът е добавен",
     "income_added": "Приходът е добавен",
-    "save_error": "Неуспешно записване на транзакцията"
+    "save_error": "Неуспешно записване на транзакцията",
+    "categories_selected_one": "{{count}} категория",
+    "categories_selected_other": "{{count}} категории",
+    "currencies_selected_one": "{{count}} валута",
+    "currencies_selected_other": "{{count}} валути"
   },
   "categories": {
     "title": "Категории",

@@ -236,7 +236,11 @@
     "date_range_placeholder": "Päivämäärä alkaen — päättyen",
     "expense_added": "Meno lisätty",
     "income_added": "Tulo lisätty",
-    "save_error": "Tapahtuman tallennus epäonnistui"
+    "save_error": "Tapahtuman tallennus epäonnistui",
+    "categories_selected_one": "{{count}} kategoria",
+    "categories_selected_other": "{{count}} kategoriaa",
+    "currencies_selected_one": "{{count}} valuutta",
+    "currencies_selected_other": "{{count}} valuuttaa"
   },
   "categories": {
     "title": "Kategoriat",

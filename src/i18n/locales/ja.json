@@ -231,7 +231,9 @@
     "date_range_placeholder": "日付 開始 — 終了",
     "expense_added": "支出を追加しました",
     "income_added": "収入を追加しました",
-    "save_error": "取引を保存できませんでした"
+    "save_error": "取引を保存できませんでした",
+    "categories_selected_other": "{{count}} カテゴリ",
+    "currencies_selected_other": "{{count}} 通貨"
   },
   "categories": {
     "title": "カテゴリ",

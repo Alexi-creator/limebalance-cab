@@ -256,7 +256,19 @@
     "date_range_placeholder": "التاريخ من — إلى",
     "expense_added": "تمت إضافة المصروف",
     "income_added": "تمت إضافة الإيراد",
-    "save_error": "تعذّر حفظ العملية"
+    "save_error": "تعذّر حفظ العملية",
+    "categories_selected_zero": "{{count}} فئة",
+    "categories_selected_one": "{{count}} فئة",
+    "categories_selected_two": "فئتان",
+    "categories_selected_few": "{{count}} فئات",
+    "categories_selected_many": "{{count}} فئة",
+    "categories_selected_other": "{{count}} فئة",
+    "currencies_selected_zero": "{{count}} عملة",
+    "currencies_selected_one": "{{count}} عملة",
+    "currencies_selected_two": "عملتان",
+    "currencies_selected_few": "{{count}} عملات",
+    "currencies_selected_many": "{{count}} عملة",
+    "currencies_selected_other": "{{count}} عملة"
   },
   "categories": {
     "title": "الفئات",

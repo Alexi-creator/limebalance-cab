@@ -236,7 +236,11 @@
     "date_range_placeholder": "Fecha desde — hasta",
     "expense_added": "Gasto añadido",
     "income_added": "Ingreso añadido",
-    "save_error": "No se pudo guardar la transacción"
+    "save_error": "No se pudo guardar la transacción",
+    "categories_selected_one": "{{count}} categoría",
+    "categories_selected_other": "{{count}} categorías",
+    "currencies_selected_one": "{{count}} moneda",
+    "currencies_selected_other": "{{count}} monedas"
   },
   "categories": {
     "title": "Categorías",

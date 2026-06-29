@@ -236,7 +236,11 @@
     "date_range_placeholder": "Tarih başlangıç — bitiş",
     "expense_added": "Gider eklendi",
     "income_added": "Gelir eklendi",
-    "save_error": "İşlem kaydedilemedi"
+    "save_error": "İşlem kaydedilemedi",
+    "categories_selected_one": "{{count}} kategori",
+    "categories_selected_other": "{{count}} kategori",
+    "currencies_selected_one": "{{count}} para birimi",
+    "currencies_selected_other": "{{count}} para birimi"
   },
   "categories": {
     "title": "Kategoriler",

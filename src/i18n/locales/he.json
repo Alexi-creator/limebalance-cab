@@ -246,7 +246,15 @@
     "date_range_placeholder": "תאריך מ — עד",
     "expense_added": "ההוצאה נוספה",
     "income_added": "ההכנסה נוספה",
-    "save_error": "שמירת התנועה נכשלה"
+    "save_error": "שמירת התנועה נכשלה",
+    "categories_selected_one": "{{count}} קטגוריה",
+    "categories_selected_two": "{{count}} קטגוריות",
+    "categories_selected_many": "{{count}} קטגוריות",
+    "categories_selected_other": "{{count}} קטגוריות",
+    "currencies_selected_one": "{{count}} מטבע",
+    "currencies_selected_two": "{{count}} מטבעות",
+    "currencies_selected_many": "{{count}} מטבעות",
+    "currencies_selected_other": "{{count}} מטבעות"
   },
   "categories": {
     "title": "קטגוריות",

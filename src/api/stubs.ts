@@ -457,8 +457,8 @@ function buildCategoryStats(
 
 function buildTransactions(params: URLSearchParams) {
   const type = params.get("type") as "income" | "expense" | null
-  const categoryId = params.get("categoryId")
-  const currency = params.get("currency")
+  const categoryIds = params.getAll("categoryId")
+  const currencies = params.getAll("currency")
   const search = params.get("search")?.toLowerCase()
   const from = parseDate(params.get("from"))
   const to = parseDate(params.get("to"))
@@ -467,8 +467,8 @@ function buildTransactions(params: URLSearchParams) {
 
   let items = DATASET.filter((t) => inRange(t, from, to))
   if (type) items = items.filter((t) => t.type === type)
-  if (categoryId) items = items.filter((t) => t.cat.id === categoryId)
-  if (currency) items = items.filter(() => currency === BASE_CURRENCY)
+  if (categoryIds.length) items = items.filter((t) => categoryIds.includes(t.cat.id))
+  if (currencies.length) items = items.filter(() => currencies.includes(BASE_CURRENCY))
   if (search)
     items = items.filter(
       (t) =>

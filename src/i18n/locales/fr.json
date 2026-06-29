@@ -236,7 +236,11 @@
     "date_range_placeholder": "Date de — à",
     "expense_added": "Dépense ajoutée",
     "income_added": "Revenu ajouté",
-    "save_error": "Échec de l'enregistrement de la transaction"
+    "save_error": "Échec de l'enregistrement de la transaction",
+    "categories_selected_one": "{{count}} catégorie",
+    "categories_selected_other": "{{count}} catégories",
+    "currencies_selected_one": "{{count}} devise",
+    "currencies_selected_other": "{{count}} devises"
   },
   "categories": {
     "title": "Catégories",

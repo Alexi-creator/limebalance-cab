@@ -241,7 +241,13 @@
     "date_range_placeholder": "Data nuo — iki",
     "expense_added": "Išlaidos pridėtos",
     "income_added": "Pajamos pridėtos",
-    "save_error": "Nepavyko išsaugoti operacijos"
+    "save_error": "Nepavyko išsaugoti operacijos",
+    "categories_selected_one": "{{count}} kategorija",
+    "categories_selected_few": "{{count}} kategorijos",
+    "categories_selected_other": "{{count}} kategorijų",
+    "currencies_selected_one": "{{count}} valiuta",
+    "currencies_selected_few": "{{count}} valiutos",
+    "currencies_selected_other": "{{count}} valiutų"
   },
   "categories": {
     "title": "Kategorijos",

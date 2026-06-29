@@ -231,7 +231,9 @@
     "date_range_placeholder": "날짜 시작 — 종료",
     "expense_added": "지출이 추가되었습니다",
     "income_added": "수입이 추가되었습니다",
-    "save_error": "거래를 저장하지 못했습니다"
+    "save_error": "거래를 저장하지 못했습니다",
+    "categories_selected_other": "카테고리 {{count}}개",
+    "currencies_selected_other": "통화 {{count}}개"
   },
   "categories": {
     "title": "카테고리",

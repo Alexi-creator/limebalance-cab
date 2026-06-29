@@ -246,7 +246,15 @@
     "date_range_placeholder": "Datum od — do",
     "expense_added": "Odhodek dodan",
     "income_added": "Prihodek dodan",
-    "save_error": "Transakcije ni bilo mogoče shraniti"
+    "save_error": "Transakcije ni bilo mogoče shraniti",
+    "categories_selected_one": "{{count}} kategorija",
+    "categories_selected_two": "{{count}} kategoriji",
+    "categories_selected_few": "{{count}} kategorije",
+    "categories_selected_other": "{{count}} kategorij",
+    "currencies_selected_one": "{{count}} valuta",
+    "currencies_selected_two": "{{count}} valuti",
+    "currencies_selected_few": "{{count}} valute",
+    "currencies_selected_other": "{{count}} valut"
   },
   "categories": {
     "title": "Kategorije",

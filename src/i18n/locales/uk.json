@@ -241,7 +241,13 @@
     "date_range_placeholder": "Дата від — до",
     "expense_added": "Витрату додано",
     "income_added": "Дохід додано",
-    "save_error": "Не вдалося зберегти операцію"
+    "save_error": "Не вдалося зберегти операцію",
+    "categories_selected_one": "{{count}} категорія",
+    "categories_selected_few": "{{count}} категорії",
+    "categories_selected_many": "{{count}} категорій",
+    "currencies_selected_one": "{{count}} валюта",
+    "currencies_selected_few": "{{count}} валюти",
+    "currencies_selected_many": "{{count}} валют"
   },
   "categories": {
     "title": "Категорії",

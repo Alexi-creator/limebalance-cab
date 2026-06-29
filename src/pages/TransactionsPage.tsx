@@ -4,8 +4,10 @@ import { getTransactions } from "@api/transactions"
 import type { Transaction } from "@appTypes/transaction"
 import { AddModal } from "@components/AddModal"
 import { LimitAlert } from "@components/LimitAlert"
+import { ActiveFilterChips } from "@components/transactions/ActiveFilterChips"
 import { BulkDeleteModal } from "@components/transactions/BulkDeleteModal"
 import { transactionsParamsSchema } from "@components/transactions/config"
+import { buildFilterChipGroups } from "@components/transactions/filterChips"
 import { TransactionsFilters } from "@components/transactions/TransactionsFilters"
 import { TransactionsTable } from "@components/transactions/TransactionsTable"
 import { TransactionsToolbar } from "@components/transactions/TransactionsToolbar"
@@ -78,6 +80,9 @@ export function TransactionsPage() {
     queryFn: getIncomeCategories,
     staleTime: CATEGORY_STALE_TIME,
   })
+
+  // union of both sets — used to resolve selected category ids into names/emoji for the chips
+  const allCategories = [...(expenseCategories ?? []), ...(incomeCategories ?? [])]
 
   // both lists are loaded and empty — there is nowhere to add a transaction
   const hasNoCategories =
@@ -201,6 +206,10 @@ export function TransactionsPage() {
         }}
       >
         <TransactionsFilters params={params} setParams={setParams} />
+
+        <ActiveFilterChips
+          groups={buildFilterChipGroups({ params, categories: allCategories, t, setParams })}
+        />
 
         <TransactionsToolbar
           selectedCount={selectedRecords.length}

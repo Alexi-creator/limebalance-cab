@@ -13,7 +13,6 @@ import {
   Overlay,
   Portal,
   SegmentedControl,
-  Select,
   Stack,
   Text,
   TextInput,
@@ -22,11 +21,15 @@ import {
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue, useDisclosure, useMediaQuery } from "@mantine/hooks"
+import { useSidebarStore } from "@store/sidebarStore"
 import { IconChevronUp, IconFilter, IconSearch, IconX } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { ActiveFilterChips } from "../ActiveFilterChips"
 import { getTypeOptions, type TransactionsParams } from "../config"
+import { buildFilterChipGroups } from "../filterChips"
+import { MultiSelectFilter } from "../MultiSelectFilter"
 
 interface Props {
   params: TransactionsParams
@@ -45,6 +48,9 @@ export function TransactionsFilters({ params, setParams }: Props) {
   const theme = useMantineTheme()
   const [search, setSearch] = useState(params.search ?? "")
   const [debounced] = useDebouncedValue(search, 350)
+  // when the mobile nav menu is open, its sheet covers the screen — keep our fixed filter
+  // handle/sheet hidden so it doesn't paint over the menu's content
+  const menuOpened = useSidebarStore((s) => s.opened)
 
   // resolve synchronously on first render (no SSR here) to avoid a layout flash
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`, true, {
@@ -109,12 +115,22 @@ export function TransactionsFilters({ params, setParams }: Props) {
 
   const categoryOptions = categories.map((c) => ({ value: c.id, label: c.name }))
 
+  // removable chips for the active multi-select filters — surfaced inside the drawer so the
+  // selection is visible there too (categories are resolved against the full union, not the
+  // type-filtered list, so a selected id still shows after switching the type tab)
+  const chipGroups = buildFilterChipGroups({
+    params,
+    categories: [...(expenseCategories ?? []), ...(incomeCategories ?? [])],
+    t,
+    setParams,
+  })
+
   const reset = () => {
     setSearch("")
     setParams({
       type: undefined,
-      categoryId: undefined,
-      currency: undefined,
+      categoryId: [],
+      currency: [],
       search: undefined,
       from: undefined,
       to: undefined,
@@ -125,8 +141,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
   // count of active filters — shown on the mobile handle (period counts as one)
   const activeCount =
     (params.type ? 1 : 0) +
-    (params.categoryId ? 1 : 0) +
-    (params.currency ? 1 : 0) +
+    (params.categoryId.length > 0 ? 1 : 0) +
+    (params.currency.length > 0 ? 1 : 0) +
     (params.search ? 1 : 0) +
     (params.from || params.to ? 1 : 0)
 
@@ -140,7 +156,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
         onChange={(v) =>
           setParams({
             type: v === "all" ? undefined : (v as "income" | "expense"),
-            categoryId: undefined,
+            categoryId: [],
             page: 1,
           })
         }
@@ -170,26 +186,24 @@ export function TransactionsFilters({ params, setParams }: Props) {
         style={vertical ? { width: "100%" } : { flex: 1, minWidth: 220 }}
       />
 
-      <Select
+      <MultiSelectFilter
         label={t("common.category")}
         placeholder={t("common.all")}
         data={categoryOptions}
-        value={params.categoryId ?? null}
-        onChange={(v) => setParams({ categoryId: v ?? undefined, page: 1 })}
-        clearable
-        searchable
+        value={params.categoryId}
+        onChange={(v) => setParams({ categoryId: v, page: 1 })}
+        summary={(count) => t("transactions.categories_selected", { count })}
         w={vertical ? "100%" : 180}
       />
 
-      <Select
+      <MultiSelectFilter
         label={t("common.currency")}
         placeholder={t("common.all")}
         data={CURRENCY_OPTIONS}
-        value={params.currency ?? null}
-        onChange={(v) => setParams({ currency: v ?? undefined, page: 1 })}
-        clearable
-        searchable
-        w={vertical ? "100%" : 120}
+        value={params.currency}
+        onChange={(v) => setParams({ currency: v, page: 1 })}
+        summary={(count) => t("transactions.currencies_selected", { count })}
+        w={vertical ? "100%" : 160}
       />
 
       <DatePickerInput
@@ -225,6 +239,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
         p="md"
         gap="sm"
         wrap="wrap"
+        align="flex-end"
         style={{ borderBottom: "1px solid var(--mantine-color-default-border)", flexShrink: 0 }}
       >
         {controls(false)}
@@ -237,82 +252,94 @@ export function TransactionsFilters({ params, setParams }: Props) {
       {/* zero-height marker measured to align the handle/drawer with the table block */}
       <div ref={anchorRef} style={{ height: 0 }} />
 
-      {/* peeking handle pinned to the bottom edge, spanning the table block width */}
-      <Portal>
-        <UnstyledButton
-          onClick={drawer.open}
-          aria-label={t("transactions.filters")}
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: bounds?.left ?? 0,
-            right: bounds?.right ?? 0,
-            zIndex: 190,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            padding: "12px 16px",
-            backgroundColor: "var(--mantine-color-body)",
-            borderTop: "1px solid var(--mantine-color-default-border)",
-            borderTopLeftRadius: "var(--mantine-radius-md)",
-            borderTopRightRadius: "var(--mantine-radius-md)",
-            boxShadow: "0 -2px 12px rgba(0, 0, 0, 0.25)",
-          }}
-        >
-          <IconFilter size={16} />
-          <Text size="sm" fw={500}>
-            {t("transactions.filters")}
-          </Text>
-          {activeCount > 0 && (
-            <Badge size="sm" variant="filled" circle>
-              {activeCount}
-            </Badge>
-          )}
-          <IconChevronUp size={16} />
-        </UnstyledButton>
-      </Portal>
-
-      {/* Own slide-up sheet instead of Mantine's bottom Drawer: a plain fixed box with
-          left/right pinned to the card edges auto-sizes to the card width (Mantine's
-          Drawer forces an explicit full-viewport width on its inner, which overflowed and
-          clipped on the right). translateY drives the slide; it sits below the viewport
-          when closed, so the peeking handle stays visible underneath. */}
-      <Portal>
-        {drawerOpened && <Overlay onClick={drawer.close} zIndex={195} backgroundOpacity={0.55} />}
-        <Box
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: bounds?.left ?? 0,
-            right: bounds?.right ?? 0,
-            zIndex: 200,
-            maxHeight: "80vh",
-            overflowY: "auto",
-            padding: "var(--mantine-spacing-md)",
-            backgroundColor: "var(--mantine-color-body)",
-            borderTop: "1px solid var(--mantine-color-default-border)",
-            borderTopLeftRadius: "var(--mantine-radius-md)",
-            borderTopRightRadius: "var(--mantine-radius-md)",
-            boxShadow: "0 -2px 12px rgba(0, 0, 0, 0.25)",
-            transform: drawerOpened ? "translateY(0)" : "translateY(101%)",
-            transition: "transform 200ms ease",
-          }}
-        >
-          <Group justify="space-between" mb="sm">
-            <Text fw={600}>{t("transactions.filters")}</Text>
-            <ActionIcon
-              variant="subtle"
-              color="gray"
-              onClick={drawer.close}
-              aria-label={t("common.close")}
+      {/* While the mobile nav menu is open it covers the screen — hiding the fixed handle and
+          sheet keeps them from painting over the menu's content. */}
+      {!menuOpened && (
+        <>
+          {/* peeking handle pinned to the bottom edge, spanning the table block width */}
+          <Portal>
+            <UnstyledButton
+              onClick={drawer.open}
+              aria-label={t("transactions.filters")}
+              style={{
+                position: "fixed",
+                bottom: 0,
+                left: bounds?.left ?? 0,
+                right: bounds?.right ?? 0,
+                zIndex: 190,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+                padding: "12px 16px",
+                backgroundColor: "var(--mantine-color-body)",
+                borderTop: "1px solid var(--mantine-color-default-border)",
+                borderTopLeftRadius: "var(--mantine-radius-md)",
+                borderTopRightRadius: "var(--mantine-radius-md)",
+                boxShadow: "0 -2px 12px rgba(0, 0, 0, 0.25)",
+              }}
             >
-              <IconX size={18} />
-            </ActionIcon>
-          </Group>
-          <Stack gap="sm">{controls(true)}</Stack>
-        </Box>
-      </Portal>
+              <IconFilter size={16} />
+              <Text size="sm" fw={500}>
+                {t("transactions.filters")}
+              </Text>
+              {activeCount > 0 && (
+                <Badge size="sm" variant="filled" circle>
+                  {activeCount}
+                </Badge>
+              )}
+              <IconChevronUp size={16} />
+            </UnstyledButton>
+          </Portal>
+
+          {/* Own slide-up sheet instead of Mantine's bottom Drawer: a plain fixed box with
+              left/right pinned to the card edges auto-sizes to the card width (Mantine's
+              Drawer forces an explicit full-viewport width on its inner, which overflowed and
+              clipped on the right). translateY drives the slide; it sits below the viewport
+              when closed, so the peeking handle stays visible underneath. */}
+          <Portal>
+            {drawerOpened && (
+              <Overlay onClick={drawer.close} zIndex={195} backgroundOpacity={0.55} />
+            )}
+            <Box
+              style={{
+                position: "fixed",
+                bottom: 0,
+                left: bounds?.left ?? 0,
+                right: bounds?.right ?? 0,
+                zIndex: 200,
+                maxHeight: "80vh",
+                overflowY: "auto",
+                padding: "var(--mantine-spacing-md)",
+                backgroundColor: "var(--mantine-color-body)",
+                borderTop: "1px solid var(--mantine-color-default-border)",
+                borderTopLeftRadius: "var(--mantine-radius-md)",
+                borderTopRightRadius: "var(--mantine-radius-md)",
+                boxShadow: "0 -2px 12px rgba(0, 0, 0, 0.25)",
+                transform: drawerOpened ? "translateY(0)" : "translateY(101%)",
+                transition: "transform 200ms ease",
+              }}
+            >
+              <Group justify="space-between" mb="sm">
+                <Text fw={600}>{t("transactions.filters")}</Text>
+                <ActionIcon
+                  variant="subtle"
+                  color="gray"
+                  onClick={drawer.close}
+                  aria-label={t("common.close")}
+                >
+                  <IconX size={18} />
+                </ActionIcon>
+              </Group>
+              <Stack gap="sm">
+                {/* selected-filter chips, mirrored from the table so the picks are visible here */}
+                <ActiveFilterChips groups={chipGroups} px={0} withBorder={false} />
+                {controls(true)}
+              </Stack>
+            </Box>
+          </Portal>
+        </>
+      )}
     </>
   )
 }

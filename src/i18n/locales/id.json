@@ -231,7 +231,9 @@
     "date_range_placeholder": "Tanggal dari — sampai",
     "expense_added": "Pengeluaran ditambahkan",
     "income_added": "Pemasukan ditambahkan",
-    "save_error": "Gagal menyimpan transaksi"
+    "save_error": "Gagal menyimpan transaksi",
+    "categories_selected_other": "{{count}} kategori",
+    "currencies_selected_other": "{{count}} mata uang"
   },
   "categories": {
     "title": "Kategori",

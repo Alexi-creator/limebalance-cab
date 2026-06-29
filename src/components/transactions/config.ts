@@ -20,8 +20,16 @@ export const getTypeOptions = (t: TFunction) => [
  */
 export const transactionsParamsSchema = z.object({
   type: z.enum(["income", "expense"]).optional().catch(undefined),
-  categoryId: z.string().optional().catch(undefined),
-  currency: z.string().optional().catch(undefined),
+  // Multi-select: serialized in the URL as repeated params (?categoryId=a&categoryId=b).
+  // Normalized to an array — a single value in the URL still parses to a one-element array.
+  categoryId: z
+    .preprocess((v) => (v == null ? [] : Array.isArray(v) ? v : [v]), z.array(z.string()))
+    .catch([])
+    .default([]),
+  currency: z
+    .preprocess((v) => (v == null ? [] : Array.isArray(v) ? v : [v]), z.array(z.string()))
+    .catch([])
+    .default([]),
   search: z.string().optional().catch(undefined),
   /** Transaction date range, format `YYYY-MM-DD`. */
   from: z.string().optional().catch(undefined),

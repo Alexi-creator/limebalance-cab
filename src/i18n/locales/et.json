@@ -236,7 +236,11 @@
     "date_range_placeholder": "Kuupäev alates — kuni",
     "expense_added": "Kulu lisatud",
     "income_added": "Tulu lisatud",
-    "save_error": "Tehingu salvestamine ebaõnnestus"
+    "save_error": "Tehingu salvestamine ebaõnnestus",
+    "categories_selected_one": "{{count}} kategooria",
+    "categories_selected_other": "{{count}} kategooriat",
+    "currencies_selected_one": "{{count}} valuuta",
+    "currencies_selected_other": "{{count}} valuutat"
   },
   "categories": {
     "title": "Kategooriad",

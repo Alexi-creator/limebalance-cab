@@ -231,7 +231,9 @@
     "date_range_placeholder": "วันที่ จาก — ถึง",
     "expense_added": "เพิ่มรายจ่ายแล้ว",
     "income_added": "เพิ่มรายรับแล้ว",
-    "save_error": "บันทึกรายการไม่สำเร็จ"
+    "save_error": "บันทึกรายการไม่สำเร็จ",
+    "categories_selected_other": "{{count}} หมวดหมู่",
+    "currencies_selected_other": "{{count}} สกุลเงิน"
   },
   "categories": {
     "title": "หมวดหมู่",

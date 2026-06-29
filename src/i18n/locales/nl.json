@@ -236,7 +236,11 @@
     "date_range_placeholder": "Datum van — tot",
     "expense_added": "Uitgave toegevoegd",
     "income_added": "Inkomst toegevoegd",
-    "save_error": "Transactie opslaan mislukt"
+    "save_error": "Transactie opslaan mislukt",
+    "categories_selected_one": "{{count}} categorie",
+    "categories_selected_other": "{{count}} categorieën",
+    "currencies_selected_one": "{{count}} valuta",
+    "currencies_selected_other": "{{count}} valuta's"
   },
   "categories": {
     "title": "Categorieën",

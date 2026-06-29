@@ -231,7 +231,9 @@
     "date_range_placeholder": "Ngày từ — đến",
     "expense_added": "Đã thêm chi tiêu",
     "income_added": "Đã thêm thu nhập",
-    "save_error": "Không thể lưu giao dịch"
+    "save_error": "Không thể lưu giao dịch",
+    "categories_selected_other": "{{count}} danh mục",
+    "currencies_selected_other": "{{count}} loại tiền tệ"
   },
   "categories": {
     "title": "Danh mục",

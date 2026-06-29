@@ -241,7 +241,13 @@
     "date_range_placeholder": "Dátum od — do",
     "expense_added": "Výdavok pridaný",
     "income_added": "Príjem pridaný",
-    "save_error": "Transakciu sa nepodarilo uložiť"
+    "save_error": "Transakciu sa nepodarilo uložiť",
+    "categories_selected_one": "{{count}} kategória",
+    "categories_selected_few": "{{count}} kategórie",
+    "categories_selected_other": "{{count}} kategórií",
+    "currencies_selected_one": "{{count}} mena",
+    "currencies_selected_few": "{{count}} meny",
+    "currencies_selected_other": "{{count}} mien"
   },
   "categories": {
     "title": "Kategórie",

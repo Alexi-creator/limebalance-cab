@@ -1,5 +1,6 @@
 import {
   createTheme,
+  InputBase,
   Modal,
   Notification,
   NumberInput,
@@ -53,6 +54,7 @@ export const theme = createTheme({
     NumberInput: NumberInput.extend({ styles: floatingLabel }),
     Textarea: Textarea.extend({ styles: floatingLabel }),
     Select: Select.extend({ styles: floatingLabel }),
+    InputBase: InputBase.extend({ styles: floatingLabel }),
     DatePickerInput: DatePickerInput.extend({ styles: floatingLabel }),
     // extra space on top so the first field's "floating" label does not bump into the modal header
     Modal: Modal.extend({

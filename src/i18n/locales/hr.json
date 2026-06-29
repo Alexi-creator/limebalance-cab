@@ -241,7 +241,13 @@
     "date_range_placeholder": "Datum od — do",
     "expense_added": "Rashod dodan",
     "income_added": "Prihod dodan",
-    "save_error": "Spremanje transakcije nije uspjelo"
+    "save_error": "Spremanje transakcije nije uspjelo",
+    "categories_selected_one": "{{count}} kategorija",
+    "categories_selected_few": "{{count}} kategorije",
+    "categories_selected_other": "{{count}} kategorija",
+    "currencies_selected_one": "{{count}} valuta",
+    "currencies_selected_few": "{{count}} valute",
+    "currencies_selected_other": "{{count}} valuta"
   },
   "categories": {
     "title": "Kategorije",

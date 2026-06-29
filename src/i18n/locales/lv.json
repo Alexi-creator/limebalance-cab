@@ -241,7 +241,13 @@
     "date_range_placeholder": "Datums no — līdz",
     "expense_added": "Izdevumi pievienoti",
     "income_added": "Ieņēmumi pievienoti",
-    "save_error": "Neizdevās saglabāt transakciju"
+    "save_error": "Neizdevās saglabāt transakciju",
+    "categories_selected_zero": "{{count}} kategoriju",
+    "categories_selected_one": "{{count}} kategorija",
+    "categories_selected_other": "{{count}} kategorijas",
+    "currencies_selected_zero": "{{count}} valūtu",
+    "currencies_selected_one": "{{count}} valūta",
+    "currencies_selected_other": "{{count}} valūtas"
   },
   "categories": {
     "title": "Kategorijas",

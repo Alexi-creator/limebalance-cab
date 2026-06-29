@@ -236,7 +236,11 @@
     "date_range_placeholder": "Datum från — till",
     "expense_added": "Utgift tillagd",
     "income_added": "Inkomst tillagd",
-    "save_error": "Det gick inte att spara transaktionen"
+    "save_error": "Det gick inte att spara transaktionen",
+    "categories_selected_one": "{{count}} kategori",
+    "categories_selected_other": "{{count}} kategorier",
+    "currencies_selected_one": "{{count}} valuta",
+    "currencies_selected_other": "{{count}} valutor"
   },
   "categories": {
     "title": "Kategorier",

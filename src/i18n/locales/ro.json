@@ -241,7 +241,13 @@
     "date_range_placeholder": "Dată de la — până la",
     "expense_added": "Cheltuială adăugată",
     "income_added": "Venit adăugat",
-    "save_error": "Tranzacția nu a putut fi salvată"
+    "save_error": "Tranzacția nu a putut fi salvată",
+    "categories_selected_one": "{{count}} categorie",
+    "categories_selected_few": "{{count}} categorii",
+    "categories_selected_other": "{{count}} de categorii",
+    "currencies_selected_one": "{{count}} monedă",
+    "currencies_selected_few": "{{count}} monede",
+    "currencies_selected_other": "{{count}} de monede"
   },
   "categories": {
     "title": "Categorii",

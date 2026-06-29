@@ -11,8 +11,8 @@ export function getBalance() {
 
 export interface GetTransactionsParams {
   type?: "income" | "expense"
-  categoryId?: string
-  currency?: string
+  categoryId?: string[]
+  currency?: string[]
   search?: string
   from?: string
   to?: string
@@ -24,8 +24,9 @@ export interface GetTransactionsParams {
 export function getTransactions(params: GetTransactionsParams) {
   const qs = new URLSearchParams()
   if (params.type) qs.set("type", params.type)
-  if (params.categoryId) qs.set("categoryId", params.categoryId)
-  if (params.currency) qs.set("currency", params.currency)
+  // one repeated param per value: ?categoryId=a&categoryId=b, ?currency=USD&currency=EUR
+  if (params.categoryId) for (const id of params.categoryId) qs.append("categoryId", id)
+  if (params.currency) for (const c of params.currency) qs.append("currency", c)
   if (params.search) qs.set("search", params.search)
   if (params.from) qs.set("from", params.from)
   if (params.to) qs.set("to", params.to)

@@ -241,7 +241,13 @@
     "date_range_placeholder": "Datum od — do",
     "expense_added": "Výdaj přidán",
     "income_added": "Příjem přidán",
-    "save_error": "Transakci se nepodařilo uložit"
+    "save_error": "Transakci se nepodařilo uložit",
+    "categories_selected_one": "{{count}} kategorie",
+    "categories_selected_few": "{{count}} kategorie",
+    "categories_selected_other": "{{count}} kategorií",
+    "currencies_selected_one": "{{count}} měna",
+    "currencies_selected_few": "{{count}} měny",
+    "currencies_selected_other": "{{count}} měn"
   },
   "categories": {
     "title": "Kategorie",
