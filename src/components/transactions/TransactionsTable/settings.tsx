@@ -71,7 +71,7 @@ export function getTransactionColumns(
               style={{
                 borderRadius: 8,
                 flexShrink: 0,
-                background: "var(--mantine-color-default-hover)",
+                background: "var(--mantine-color-body)",
                 border: "1px solid var(--mantine-color-default-border)",
               }}
             >

@@ -113,7 +113,10 @@ export function TransactionsFilters({ params, setParams }: Props) {
         ? (incomeCategories ?? [])
         : [...(expenseCategories ?? []), ...(incomeCategories ?? [])]
 
-  const categoryOptions = categories.map((c) => ({ value: c.id, label: c.name }))
+  const categoryOptions = categories.map((c) => ({
+    value: c.id,
+    label: c.emoji ? `${c.emoji} ${c.name}` : c.name,
+  }))
 
   // removable chips for the active multi-select filters — surfaced inside the drawer so the
   // selection is visible there too (categories are resolved against the full union, not the
