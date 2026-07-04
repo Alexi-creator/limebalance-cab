@@ -1,3 +1,4 @@
+import { useElementSize } from "@mantine/hooks"
 import { useTranslation } from "react-i18next"
 import { ACCENT, CHART, NEG } from "./config"
 import type { ChartDataset } from "./helpers"
@@ -13,14 +14,18 @@ interface Props {
   onHover: (index: number | null) => void
 }
 
-const { W, H, PAD_L, PAD_R, PAD_T, PAD_B } = CHART
+const { H, PAD_L, PAD_R, PAD_T, PAD_B } = CHART
 
 /**
  * SVG rendering of the cash flow chart: grid, income area, income/expense lines,
  * points, and an interactive tooltip. All geometry and paths are computed here.
+ * The viewBox width follows the real container width so that SVG units map 1:1
+ * to pixels — otherwise circles and text get stretched non-uniformly.
  */
 export function CashflowSvg({ data, period, hoveredIndex, onHover }: Props) {
   const { t } = useTranslation()
+  const { ref, width } = useElementSize()
+  const W = width || CHART.W
 
   const max = Math.max(...data.income, ...data.expense) * 1.1 || 1
   const slots = Math.max(data.income.length - 1, 1)
@@ -66,9 +71,9 @@ export function CashflowSvg({ data, period, hoveredIndex, onHover }: Props) {
 
   return (
     <svg
+      ref={ref}
       viewBox={`0 0 ${W} ${H}`}
-      preserveAspectRatio="none"
-      style={{ width: "100%", height: 240, display: "block" }}
+      style={{ width: "100%", height: H, display: "block" }}
       role="img"
       aria-label={t("chart.cashflow_title")}
       onMouseLeave={() => onHover(null)}

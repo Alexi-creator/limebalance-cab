@@ -44,6 +44,7 @@ export const regionToCurrency: Record<string, string> = {
   CL: "CLP",
   CO: "COP",
   PE: "PEN",
+  UY: "UYU",
   // Eurozone
   DE: "EUR",
   FR: "EUR",
