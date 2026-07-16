@@ -304,7 +304,9 @@
     "income_vs_expense": "Приходи срещу разходи",
     "expenses_by_category": "Разходи по категории",
     "comparison_title": "Сравнение с предходния период",
-    "comparison_subtitle": "Къде се промениха разходите"
+    "comparison_subtitle": "Къде се промениха разходите",
+    "details_title": "Детайли на транзакциите",
+    "details_empty": "Няма транзакции за периода"
   },
   "add_modal": {
     "title_transaction": "Нова транзакция",

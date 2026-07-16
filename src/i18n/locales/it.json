@@ -304,7 +304,9 @@
     "income_vs_expense": "Entrate vs uscite",
     "expenses_by_category": "Uscite per categoria",
     "comparison_title": "Confronto con il periodo precedente",
-    "comparison_subtitle": "Dove sono cambiate le uscite"
+    "comparison_subtitle": "Dove sono cambiate le uscite",
+    "details_title": "Dettaglio delle transazioni",
+    "details_empty": "Nessuna transazione nel periodo"
   },
   "add_modal": {
     "title_transaction": "Nuova transazione",

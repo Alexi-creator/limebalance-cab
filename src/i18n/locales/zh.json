@@ -293,7 +293,9 @@
     "income_vs_expense": "收入 vs 支出",
     "expenses_by_category": "按分类的支出",
     "comparison_title": "与上一周期对比",
-    "comparison_subtitle": "支出变化之处"
+    "comparison_subtitle": "支出变化之处",
+    "details_title": "交易明细",
+    "details_empty": "该时段没有交易"
   },
   "add_modal": {
     "title_transaction": "新交易",

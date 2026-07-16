@@ -24,6 +24,15 @@ body {
 }
 
 /*
+ * Mantine's `highlightToday` draws a 1px gray-4/dark-4 border on today's cell, which is
+ * nearly invisible against the dark-scheme cell background. Recolor it with the primary
+ * (lime) so today reads at a glance; selected/in-range days keep their own styling.
+ */
+[data-today][data-highlight-today]:not([data-selected], [data-in-range]) {
+  border: 1px solid var(--mantine-primary-color-filled);
+}
+
+/*
  * mantine-datatable pins the checkbox column (position: sticky) and on horizontal
  * scroll draws a gradient shadow on it (the :after pseudo-element) — it looks like a
  * stray artifact next to the first column. The column background is opaque and the

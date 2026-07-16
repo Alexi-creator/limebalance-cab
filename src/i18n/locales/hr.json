@@ -315,7 +315,9 @@
     "income_vs_expense": "Prihodi naspram rashoda",
     "expenses_by_category": "Rashodi po kategorijama",
     "comparison_title": "Usporedba s prethodnim razdobljem",
-    "comparison_subtitle": "Gdje su se rashodi promijenili"
+    "comparison_subtitle": "Gdje su se rashodi promijenili",
+    "details_title": "Detalji transakcija",
+    "details_empty": "Nema transakcija za razdoblje"
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",

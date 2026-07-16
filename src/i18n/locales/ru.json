@@ -326,7 +326,9 @@
     "income_vs_expense": "Доходы vs расходы",
     "expenses_by_category": "Расходы по категориям",
     "comparison_title": "Сравнение с прошлым периодом",
-    "comparison_subtitle": "Где изменились расходы"
+    "comparison_subtitle": "Где изменились расходы",
+    "details_title": "Детализация операций",
+    "details_empty": "Нет операций за период"
   },
   "add_modal": {
     "title_transaction": "Новая операция",

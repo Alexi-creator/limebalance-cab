@@ -4,6 +4,7 @@ import type { IncomesSummary } from "@appTypes/income"
 import { COLOR_PALETTE, EMOJI_PALETTE } from "@components/categories/config"
 import type { Locale } from "date-fns"
 import {
+  differenceInCalendarDays,
   endOfMonth,
   endOfQuarter,
   endOfYear,
@@ -13,6 +14,7 @@ import {
   startOfQuarter,
   startOfWeek,
   startOfYear,
+  subDays,
   subMonths,
   subQuarters,
   subWeeks,
@@ -82,6 +84,27 @@ export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): 
       }
     }
   }
+}
+
+/**
+ * Custom range `[from, to]` (both inclusive) + the previous interval of the same length
+ * immediately before it — for KPI trends and the category comparison.
+ */
+export function customRange(from: Date, to: Date): AnalyticsRange {
+  const days = differenceInCalendarDays(to, from) + 1
+  const prevTo = subDays(from, 1)
+  return { from, to, prevFrom: subDays(prevTo, days - 1), prevTo }
+}
+
+/**
+ * Bucket granularity for a custom range by its length: up to ~5 weeks — by day,
+ * up to ~4 months — by week, longer — by month.
+ */
+export function rangeGranularity(from: Date, to: Date): SummaryGranularity {
+  const days = differenceInCalendarDays(to, from) + 1
+  if (days <= 35) return "day"
+  if (days <= 120) return "week"
+  return "month"
 }
 
 /** Percentage change relative to the previous period; `undefined` if there is no baseline (no badge). */

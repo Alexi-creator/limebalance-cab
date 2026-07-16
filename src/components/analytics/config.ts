@@ -14,6 +14,9 @@ export const COMPARISON_LIMIT = 8
  */
 export const analyticsParamsSchema = z.object({
   period: z.enum(["week", "month", "quarter", "year"]).catch("month").default("month"),
+  /** Custom date range, format `YYYY-MM-DD`; when both are set, it overrides `period`. */
+  from: z.string().optional().catch(undefined),
+  to: z.string().optional().catch(undefined),
 })
 
 export type AnalyticsParams = z.infer<typeof analyticsParamsSchema>

@@ -1,7 +1,8 @@
-import { type SummaryParams, statsQuery, summaryQuery } from "@api/expenses"
+import { detailedStatQuery, type SummaryParams, statsQuery, summaryQuery } from "@api/expenses"
 import { request } from "@api/request"
 import { type CategoryPayload, categorySchema, categoryStatsSchema } from "@appTypes/category"
 import { createdIncomeSchema, incomeSchema, incomesSummarySchema } from "@appTypes/income"
+import { detailedStatSchema } from "@appTypes/stat"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
 import { format } from "date-fns"
@@ -29,6 +30,16 @@ export function getIncomes(from?: Date, to?: Date) {
 export function getIncomesSummary(params: SummaryParams) {
   return request(`${API_URLS.incomes.summary}?${summaryQuery(params)}`, {
     schema: incomesSummarySchema,
+  })
+}
+
+/**
+ * Detailed income stat for `[from, to]`: the overall total and per-category totals in the
+ * base currency + the transaction details (each in its original currency).
+ */
+export function getIncomesStat(from: Date, to: Date) {
+  return request(`${API_URLS.incomes.stat}?${detailedStatQuery(from, to)}`, {
+    schema: detailedStatSchema,
   })
 }
 

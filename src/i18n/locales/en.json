@@ -313,7 +313,9 @@
     "income_vs_expense": "Income vs expenses",
     "expenses_by_category": "Expenses by category",
     "comparison_title": "Comparison with previous period",
-    "comparison_subtitle": "Where spending changed"
+    "comparison_subtitle": "Where spending changed",
+    "details_title": "Transaction details",
+    "details_empty": "No transactions for the period"
   },
   "add_modal": {
     "title_transaction": "New transaction",

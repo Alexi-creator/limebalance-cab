@@ -293,7 +293,9 @@
     "income_vs_expense": "Thu nhập vs chi tiêu",
     "expenses_by_category": "Chi tiêu theo danh mục",
     "comparison_title": "So sánh với kỳ trước",
-    "comparison_subtitle": "Nơi chi tiêu thay đổi"
+    "comparison_subtitle": "Nơi chi tiêu thay đổi",
+    "details_title": "Chi tiết giao dịch",
+    "details_empty": "Không có giao dịch trong kỳ"
   },
   "add_modal": {
     "title_transaction": "Giao dịch mới",

@@ -304,7 +304,9 @@
     "income_vs_expense": "Tulot vs. menot",
     "expenses_by_category": "Menot kategorioittain",
     "comparison_title": "Vertailu edelliseen jaksoon",
-    "comparison_subtitle": "Missä menot muuttuivat"
+    "comparison_subtitle": "Missä menot muuttuivat",
+    "details_title": "Tapahtumien tiedot",
+    "details_empty": "Ei tapahtumia jaksolla"
   },
   "add_modal": {
     "title_transaction": "Uusi tapahtuma",

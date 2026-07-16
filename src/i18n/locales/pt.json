@@ -304,7 +304,9 @@
     "income_vs_expense": "Receitas vs despesas",
     "expenses_by_category": "Despesas por categoria",
     "comparison_title": "Comparação com o período anterior",
-    "comparison_subtitle": "Onde as despesas mudaram"
+    "comparison_subtitle": "Onde as despesas mudaram",
+    "details_title": "Detalhes das transações",
+    "details_empty": "Nenhuma transação no período"
   },
   "add_modal": {
     "title_transaction": "Nova transação",

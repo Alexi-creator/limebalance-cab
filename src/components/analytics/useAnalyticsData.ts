@@ -4,7 +4,7 @@ import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
 import { useQuery } from "@tanstack/react-query"
 import type { Locale } from "date-fns"
-import { format } from "date-fns"
+import { format, parseISO } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useMemo } from "react"
 import { type AnalyticsPeriod, COMPARISON_LIMIT } from "./config"
@@ -12,9 +12,11 @@ import {
   buildSeries,
   compareCategories,
   computeMetricsFromSummaries,
+  customRange,
   GRANULARITY,
   groupByCategory,
   periodToRange,
+  rangeGranularity,
 } from "./helpers"
 
 const key = (d: Date) => format(d, "yyyy-MM-dd")
@@ -23,11 +25,26 @@ const key = (d: Date) => format(d, "yyyy-MM-dd")
  * Analytics page data. KPIs and the time series come from the `/summary` summaries (current and
  * previous period, base currency); the pie and category comparison come from `/stats`
  * with comparison params. Query keys are shared — react-query deduplicates.
+ *
+ * `customFrom`/`customTo` (`YYYY-MM-DD`) — a custom date range from the datepicker; when both
+ * are set, it overrides `period` (granularity is derived from the range length).
  */
-export function useAnalyticsData(period: AnalyticsPeriod, locale: Locale = enUS) {
-  const range = useMemo(() => periodToRange(period), [period])
+export function useAnalyticsData(
+  period: AnalyticsPeriod,
+  locale: Locale = enUS,
+  customFrom?: string,
+  customTo?: string,
+) {
+  const isCustom = Boolean(customFrom && customTo)
+  const range = useMemo(
+    () =>
+      customFrom && customTo
+        ? customRange(parseISO(customFrom), parseISO(customTo))
+        : periodToRange(period),
+    [period, customFrom, customTo],
+  )
   const { from, to, prevFrom, prevTo } = range
-  const granularity = GRANULARITY[period]
+  const granularity = isCustom ? rangeGranularity(from, to) : GRANULARITY[period]
 
   // current period summaries — KPIs (total) + time series (buckets)
   const expCurQ = useQuery({

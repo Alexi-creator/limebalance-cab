@@ -315,7 +315,9 @@
     "income_vs_expense": "Доходи проти витрат",
     "expenses_by_category": "Витрати за категоріями",
     "comparison_title": "Порівняння з минулим періодом",
-    "comparison_subtitle": "Де змінилися витрати"
+    "comparison_subtitle": "Де змінилися витрати",
+    "details_title": "Деталізація операцій",
+    "details_empty": "Немає операцій за період"
   },
   "add_modal": {
     "title_transaction": "Нова транзакція",

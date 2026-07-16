@@ -293,7 +293,9 @@
     "income_vs_expense": "Pemasukan vs pengeluaran",
     "expenses_by_category": "Pengeluaran per kategori",
     "comparison_title": "Perbandingan dengan periode sebelumnya",
-    "comparison_subtitle": "Di mana pengeluaran berubah"
+    "comparison_subtitle": "Di mana pengeluaran berubah",
+    "details_title": "Rincian transaksi",
+    "details_empty": "Tidak ada transaksi pada periode ini"
   },
   "add_modal": {
     "title_transaction": "Transaksi baru",

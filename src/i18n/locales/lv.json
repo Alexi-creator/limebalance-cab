@@ -315,7 +315,9 @@
     "income_vs_expense": "Ieņēmumi pret izdevumiem",
     "expenses_by_category": "Izdevumi pa kategorijām",
     "comparison_title": "Salīdzinājums ar iepriekšējo periodu",
-    "comparison_subtitle": "Kur izdevumi mainījās"
+    "comparison_subtitle": "Kur izdevumi mainījās",
+    "details_title": "Darījumu detaļas",
+    "details_empty": "Periodā nav darījumu"
   },
   "add_modal": {
     "title_transaction": "Jauns darījums",

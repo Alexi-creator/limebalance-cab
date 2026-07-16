@@ -315,7 +315,9 @@
     "income_vs_expense": "Venituri vs cheltuieli",
     "expenses_by_category": "Cheltuieli pe categorii",
     "comparison_title": "Comparație cu perioada anterioară",
-    "comparison_subtitle": "Unde s-au schimbat cheltuielile"
+    "comparison_subtitle": "Unde s-au schimbat cheltuielile",
+    "details_title": "Detalii tranzacții",
+    "details_empty": "Nicio tranzacție în perioadă"
   },
   "add_modal": {
     "title_transaction": "Tranzacție nouă",

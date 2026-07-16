@@ -293,7 +293,9 @@
     "income_vs_expense": "รายรับ vs รายจ่าย",
     "expenses_by_category": "รายจ่ายตามหมวดหมู่",
     "comparison_title": "เปรียบเทียบกับช่วงก่อนหน้า",
-    "comparison_subtitle": "จุดที่รายจ่ายเปลี่ยนแปลง"
+    "comparison_subtitle": "จุดที่รายจ่ายเปลี่ยนแปลง",
+    "details_title": "รายละเอียดธุรกรรม",
+    "details_empty": "ไม่มีธุรกรรมในช่วงเวลานี้"
   },
   "add_modal": {
     "title_transaction": "ธุรกรรมใหม่",

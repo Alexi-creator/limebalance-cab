@@ -304,7 +304,9 @@
     "income_vs_expense": "Einnahmen vs. Ausgaben",
     "expenses_by_category": "Ausgaben nach Kategorie",
     "comparison_title": "Vergleich mit dem Vorzeitraum",
-    "comparison_subtitle": "Wo sich die Ausgaben geändert haben"
+    "comparison_subtitle": "Wo sich die Ausgaben geändert haben",
+    "details_title": "Transaktionsdetails",
+    "details_empty": "Keine Transaktionen im Zeitraum"
   },
   "add_modal": {
     "title_transaction": "Neue Transaktion",

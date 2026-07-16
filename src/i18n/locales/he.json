@@ -326,7 +326,9 @@
     "income_vs_expense": "הכנסות מול הוצאות",
     "expenses_by_category": "הוצאות לפי קטגוריה",
     "comparison_title": "השוואה לתקופה הקודמת",
-    "comparison_subtitle": "היכן ההוצאות השתנו"
+    "comparison_subtitle": "היכן ההוצאות השתנו",
+    "details_title": "פירוט עסקאות",
+    "details_empty": "אין עסקאות בתקופה"
   },
   "add_modal": {
     "title_transaction": "עסקה חדשה",

@@ -304,7 +304,9 @@
     "income_vs_expense": "Tulud vs kulud",
     "expenses_by_category": "Kulud kategooriate kaupa",
     "comparison_title": "Võrdlus eelmise perioodiga",
-    "comparison_subtitle": "Kus kulud muutusid"
+    "comparison_subtitle": "Kus kulud muutusid",
+    "details_title": "Tehingute üksikasjad",
+    "details_empty": "Perioodil tehinguid pole"
   },
   "add_modal": {
     "title_transaction": "Uus tehing",

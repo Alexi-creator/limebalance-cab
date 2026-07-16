@@ -27,11 +27,13 @@ export const API_URLS = {
     expenses: `${API_URL}/expenses`,
     expense: `${API_URL}/expenses/:id`,
     summary: `${API_URL}/expenses/summary`,
+    stat: `${API_URL}/expenses/stat`,
   },
   incomes: {
     incomes: `${API_URL}/incomes`,
     income: `${API_URL}/incomes/:id`,
     summary: `${API_URL}/incomes/summary`,
+    stat: `${API_URL}/incomes/stat`,
   },
   transactions: {
     transactions: `${API_URL}/transactions`,

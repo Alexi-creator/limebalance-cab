@@ -315,7 +315,9 @@
     "income_vs_expense": "Przychody vs wydatki",
     "expenses_by_category": "Wydatki według kategorii",
     "comparison_title": "Porównanie z poprzednim okresem",
-    "comparison_subtitle": "Gdzie zmieniły się wydatki"
+    "comparison_subtitle": "Gdzie zmieniły się wydatki",
+    "details_title": "Szczegóły transakcji",
+    "details_empty": "Brak transakcji w tym okresie"
   },
   "add_modal": {
     "title_transaction": "Nowa transakcja",

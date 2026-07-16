@@ -293,7 +293,9 @@
     "income_vs_expense": "수입 vs 지출",
     "expenses_by_category": "카테고리별 지출",
     "comparison_title": "이전 기간과 비교",
-    "comparison_subtitle": "지출이 변한 부분"
+    "comparison_subtitle": "지출이 변한 부분",
+    "details_title": "거래 내역",
+    "details_empty": "기간 내 거래가 없습니다"
   },
   "add_modal": {
     "title_transaction": "새 거래",

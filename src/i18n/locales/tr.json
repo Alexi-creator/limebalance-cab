@@ -304,7 +304,9 @@
     "income_vs_expense": "Gelir vs gider",
     "expenses_by_category": "Kategoriye göre giderler",
     "comparison_title": "Önceki dönemle karşılaştırma",
-    "comparison_subtitle": "Giderlerin değiştiği yerler"
+    "comparison_subtitle": "Giderlerin değiştiği yerler",
+    "details_title": "İşlem detayları",
+    "details_empty": "Dönem için işlem yok"
   },
   "add_modal": {
     "title_transaction": "Yeni işlem",

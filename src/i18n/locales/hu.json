@@ -304,7 +304,9 @@
     "income_vs_expense": "Bevételek vs kiadások",
     "expenses_by_category": "Kiadások kategóriánként",
     "comparison_title": "Összehasonlítás az előző időszakkal",
-    "comparison_subtitle": "Hol változtak a kiadások"
+    "comparison_subtitle": "Hol változtak a kiadások",
+    "details_title": "Tranzakciók részletei",
+    "details_empty": "Nincs tranzakció az időszakban"
   },
   "add_modal": {
     "title_transaction": "Új tranzakció",

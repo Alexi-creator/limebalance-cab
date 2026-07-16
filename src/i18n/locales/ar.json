@@ -348,7 +348,9 @@
     "income_vs_expense": "الإيرادات مقابل المصروفات",
     "expenses_by_category": "المصروفات حسب الفئة",
     "comparison_title": "مقارنة بالفترة السابقة",
-    "comparison_subtitle": "أين تغيّرت المصروفات"
+    "comparison_subtitle": "أين تغيّرت المصروفات",
+    "details_title": "تفاصيل المعاملات",
+    "details_empty": "لا توجد معاملات في هذه الفترة"
   },
   "add_modal": {
     "title_transaction": "معاملة جديدة",

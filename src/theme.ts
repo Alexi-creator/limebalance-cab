@@ -55,7 +55,11 @@ export const theme = createTheme({
     Textarea: Textarea.extend({ styles: floatingLabel }),
     Select: Select.extend({ styles: floatingLabel }),
     InputBase: InputBase.extend({ styles: floatingLabel }),
-    DatePickerInput: DatePickerInput.extend({ styles: floatingLabel }),
+    // highlightToday marks today's cell in every calendar; the lime border itself is in index.css
+    DatePickerInput: DatePickerInput.extend({
+      defaultProps: { highlightToday: true },
+      styles: floatingLabel,
+    }),
     // extra space on top so the first field's "floating" label does not bump into the modal header
     Modal: Modal.extend({
       styles: { body: { paddingTop: "calc(var(--mantine-spacing-md) + 6px)" } },

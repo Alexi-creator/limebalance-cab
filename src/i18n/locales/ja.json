@@ -293,7 +293,9 @@
     "income_vs_expense": "収入 vs 支出",
     "expenses_by_category": "カテゴリ別支出",
     "comparison_title": "前期間との比較",
-    "comparison_subtitle": "支出が変化した箇所"
+    "comparison_subtitle": "支出が変化した箇所",
+    "details_title": "取引の詳細",
+    "details_empty": "期間内の取引はありません"
   },
   "add_modal": {
     "title_transaction": "新しい取引",

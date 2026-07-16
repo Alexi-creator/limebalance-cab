@@ -304,7 +304,9 @@
     "income_vs_expense": "Inkomster mot utgifter",
     "expenses_by_category": "Utgifter per kategori",
     "comparison_title": "Jämförelse med föregående period",
-    "comparison_subtitle": "Var utgifterna ändrades"
+    "comparison_subtitle": "Var utgifterna ändrades",
+    "details_title": "Transaktionsdetaljer",
+    "details_empty": "Inga transaktioner under perioden"
   },
   "add_modal": {
     "title_transaction": "Ny transaktion",

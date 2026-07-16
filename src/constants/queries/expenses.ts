@@ -2,6 +2,8 @@ export const expenseKeys = {
   all: ["expenses"] as const,
   summary: (from: string, to: string, granularity: string) =>
     ["expenses", "summary", from, to, granularity] as const,
+  // detailed stat for a period: total + per-category totals + transaction details
+  stat: (from: string, to: string) => ["expenses", "stat", from, to] as const,
   month: (month: string) => ["expenses", "month", month] as const,
   range: (from: string, to: string) => ["expenses", "range", from, to] as const,
   categories: ["expenses", "categories"] as const,

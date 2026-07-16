@@ -315,7 +315,9 @@
     "income_vs_expense": "Príjmy vs výdavky",
     "expenses_by_category": "Výdavky podľa kategórií",
     "comparison_title": "Porovnanie s predchádzajúcim obdobím",
-    "comparison_subtitle": "Kde sa výdavky zmenili"
+    "comparison_subtitle": "Kde sa výdavky zmenili",
+    "details_title": "Podrobnosti transakcií",
+    "details_empty": "Žiadne transakcie za obdobie"
   },
   "add_modal": {
     "title_transaction": "Nová transakcia",

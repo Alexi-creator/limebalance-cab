@@ -304,7 +304,9 @@
     "income_vs_expense": "Inkomsten vs uitgaven",
     "expenses_by_category": "Uitgaven per categorie",
     "comparison_title": "Vergelijking met de vorige periode",
-    "comparison_subtitle": "Waar de uitgaven zijn veranderd"
+    "comparison_subtitle": "Waar de uitgaven zijn veranderd",
+    "details_title": "Transactiedetails",
+    "details_empty": "Geen transacties in de periode"
   },
   "add_modal": {
     "title_transaction": "Nieuwe transactie",

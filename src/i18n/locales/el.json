@@ -304,7 +304,9 @@
     "income_vs_expense": "Έσοδα vs έξοδα",
     "expenses_by_category": "Έξοδα ανά κατηγορία",
     "comparison_title": "Σύγκριση με την προηγούμενη περίοδο",
-    "comparison_subtitle": "Πού άλλαξαν τα έξοδα"
+    "comparison_subtitle": "Πού άλλαξαν τα έξοδα",
+    "details_title": "Λεπτομέρειες συναλλαγών",
+    "details_empty": "Δεν υπάρχουν συναλλαγές για την περίοδο"
   },
   "add_modal": {
     "title_transaction": "Νέα συναλλαγή",

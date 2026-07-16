@@ -326,7 +326,9 @@
     "income_vs_expense": "Prihodki proti odhodkom",
     "expenses_by_category": "Odhodki po kategorijah",
     "comparison_title": "Primerjava s prejšnjim obdobjem",
-    "comparison_subtitle": "Kje so se odhodki spremenili"
+    "comparison_subtitle": "Kje so se odhodki spremenili",
+    "details_title": "Podrobnosti transakcij",
+    "details_empty": "Ni transakcij za obdobje"
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",

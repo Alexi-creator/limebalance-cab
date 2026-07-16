@@ -315,7 +315,9 @@
     "income_vs_expense": "Pajamos ir išlaidos",
     "expenses_by_category": "Išlaidos pagal kategorijas",
     "comparison_title": "Palyginimas su ankstesniu laikotarpiu",
-    "comparison_subtitle": "Kur pasikeitė išlaidos"
+    "comparison_subtitle": "Kur pasikeitė išlaidos",
+    "details_title": "Operacijų detalės",
+    "details_empty": "Laikotarpiu operacijų nėra"
   },
   "add_modal": {
     "title_transaction": "Nauja operacija",
