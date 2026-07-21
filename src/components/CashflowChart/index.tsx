@@ -17,7 +17,9 @@ import { useCashflowData } from "./useCashflowData"
 export function CashflowChart() {
   const { i18n, t } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
-  const [period, setPeriod] = useState("1m")
+  // Default to 6 months rather than 1 — a single month is a flat, sparse line for a new
+  // account; a wider window reads better and keeps looking good as history accumulates.
+  const [period, setPeriod] = useState("6m")
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const theme = useMantineTheme()
   // Read the media query synchronously on the first render (no SSR here), otherwise

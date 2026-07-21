@@ -70,7 +70,9 @@ export function GoalsSnippet() {
               <Box
                 key={g.id}
                 py="sm"
+                onClick={() => navigate(RouteNames.Goals, { state: { goalId: g.id } })}
                 style={{
+                  cursor: "pointer",
                   borderBottom:
                     i < goals.length - 1 ? "1px solid var(--mantine-color-default-border)" : "none",
                 }}

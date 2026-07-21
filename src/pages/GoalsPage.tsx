@@ -30,7 +30,7 @@ import { formatCurrency } from "@utils/formatCurrency"
 import { addMonths, differenceInDays, differenceInMonths, format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import type { TFunction } from "i18next"
-import { useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 
@@ -95,6 +95,30 @@ export function GoalsPage() {
       navigate(location.pathname, { replace: true, state: null })
     }
   }, [location.state])
+
+  // Scroll to + briefly highlight a goal card when navigated here from the home snippet's row
+  // click. Goals load async, so this must wait for the query rather than firing on mount —
+  // it re-checks whenever `goals` changes and only clears the nav state once it actually finds
+  // the card (otherwise clearing before the data arrives would drop the request silently).
+  const goalRefs = useRef<Record<string, HTMLDivElement | null>>({})
+  const [highlightedGoalId, setHighlightedGoalId] = useState<string | null>(null)
+  useEffect(() => {
+    const goalId = (location.state as { goalId?: string } | null)?.goalId
+    if (!goalId || isLoading) return
+    const el = goalRefs.current[goalId]
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "center" })
+    setHighlightedGoalId(goalId)
+    navigate(location.pathname, { replace: true, state: null })
+  }, [location.state, isLoading, navigate, location.pathname])
+
+  // Separate from the effect above on purpose: that one re-runs when `navigate` clears the nav
+  // state, which would cancel a timeout declared in its own cleanup before it ever fires.
+  useEffect(() => {
+    if (!highlightedGoalId) return
+    const timeout = setTimeout(() => setHighlightedGoalId(null), 2000)
+    return () => clearTimeout(timeout)
+  }, [highlightedGoalId])
 
   const openEdit = (goal: Goal) =>
     open({
@@ -203,7 +227,20 @@ export function GoalsPage() {
           {goals.map((g) => {
             const color = goalColor(g)
             return (
-              <Paper key={g.id} p="lg">
+              <Paper
+                key={g.id}
+                p="lg"
+                ref={(el) => {
+                  goalRefs.current[g.id] = el
+                }}
+                style={{
+                  transition: "box-shadow 300ms ease",
+                  boxShadow:
+                    highlightedGoalId === g.id
+                      ? "0 0 0 2px var(--mantine-color-lime-5)"
+                      : undefined,
+                }}
+              >
                 <Group justify="space-between" align="flex-start" mb="md">
                   <Group gap="sm">
                     <Box
