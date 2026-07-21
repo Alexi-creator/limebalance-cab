@@ -44,6 +44,10 @@ import { useTranslation } from "react-i18next"
 
 const PAGE_SIZE_OPTIONS = ["20", "50", "100"]
 const DEFAULT_PAGE_SIZE = 20
+// Cap for the top KPI row's own fetch (independent of the table's pagination) — the API's max
+// page size. Until GET /investing/stat lands, "the whole filtered period" means "up to 200 of
+// its most recent trades"; kpiCapped below flags when that actually clips the true total.
+const STATS_MAX = 200
 
 interface Props {
   accounts: ExchangeAccount[]
@@ -108,15 +112,33 @@ export function PositionsSection({ accounts }: Props) {
   // The category filter is client-side over the loaded page (no server param yet).
   const items = category === "all" ? allItems : allItems.filter((p) => p.category === category)
 
-  // KPI over the loaded selection (the current page) — see the note in the component doc.
-  const totalPnl = items.reduce((s, p) => s + p.closedPnl, 0)
-  const wins = items.filter((p) => p.closedPnl > 0).length
-  const winrate = items.length ? Math.round((wins / items.length) * 100) : null
-  const tradesCount = category === "all" ? total : items.length
+  // Page summary (bottom row, next to pagination) — over just the rows shown on this page,
+  // same idea as the transactions table's footer.
+  const pageTotalPnl = items.reduce((s, p) => s + p.closedPnl, 0)
+  const pageWins = items.filter((p) => p.closedPnl > 0).length
+  const pageWinrate = items.length ? Math.round((pageWins / items.length) * 100) : null
 
-  // What Total PnL actually sums up — the date filter if set, otherwise a page hint, since
-  // the KPI is only over the loaded page (not the full filtered result set) until stats move
-  // server-side. Without this, "Total PnL" reads as an all-time figure it usually isn't.
+  // Top KPI row — over the whole current filter selection (symbol/account/period), not just
+  // the visible page. A separate, unpaginated fetch capped at the API's max page size; true
+  // aggregation is still pending a backend GET /investing/stat.
+  const statsParams: PositionsParams = { ...filterParams, limit: STATS_MAX, offset: 0 }
+  const { data: statsData } = useQuery({
+    queryKey: investingKeys.positions(statsParams),
+    queryFn: () => getPositions(statsParams),
+    placeholderData: keepPreviousData,
+  })
+  const statsAllItems = statsData?.items ?? []
+  const statsTotal = statsData?.total ?? 0
+  const statsItems =
+    category === "all" ? statsAllItems : statsAllItems.filter((p) => p.category === category)
+  const totalPnl = statsItems.reduce((s, p) => s + p.closedPnl, 0)
+  const wins = statsItems.filter((p) => p.closedPnl > 0).length
+  const winrate = statsItems.length ? Math.round((wins / statsItems.length) * 100) : null
+  const tradesCount = category === "all" ? statsTotal : statsItems.length
+  // Only linear/spot/manual mixed under "all" can exceed the cap in practice; flag it rather
+  // than silently under-counting.
+  const kpiCapped = statsTotal > STATS_MAX
+
   const pnlCaption =
     range[0] && range[1]
       ? `${format(new Date(range[0]), "d MMM", { locale })} – ${format(new Date(range[1]), "d MMM yyyy", { locale })}`
@@ -128,9 +150,7 @@ export function PositionsSection({ accounts }: Props) {
           ? t("investments.kpi_period_to", {
               date: format(new Date(range[1]), "d MMM yyyy", { locale }),
             })
-          : totalPages > 1
-            ? t("investments.kpi_period_page", { page, totalPages })
-            : t("investments.kpi_period_all")
+          : t("investments.kpi_period_all")
 
   const openCreate = () =>
     open({
@@ -158,18 +178,37 @@ export function PositionsSection({ accounts }: Props) {
   const accountOptions = accounts.map((a) => ({ value: a.id, label: a.label }))
   const accountById = new Map(accounts.map((a) => [a.id, a]))
 
+  const pnlValue = statsItems.length ? formatPnl(totalPnl, i18n.language) : "—"
+  const pnlKpiColor = statsItems.length ? pnlColor(totalPnl) : undefined
+  const pnlFullCaption = kpiCapped
+    ? `${pnlCaption} · ${t("investments.kpi_capped", { max: STATS_MAX })}`
+    : pnlCaption
+
   return (
     <Stack gap="md">
-      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="xs">
+      {/* >=768px (Mantine's sm breakpoint): three separate cards. Below that, one combined
+          card (KpiCompact) — three full-width tiles stacked would eat too much vertical space
+          on a phone. */}
+      <SimpleGrid cols={3} spacing="xs" visibleFrom="sm">
         <Kpi
           label={t("investments.kpi_pnl")}
-          value={items.length ? formatPnl(totalPnl, i18n.language) : "—"}
-          color={items.length ? pnlColor(totalPnl) : undefined}
-          caption={pnlCaption}
+          value={pnlValue}
+          color={pnlKpiColor}
+          caption={pnlFullCaption}
         />
         <Kpi label={t("investments.kpi_winrate")} value={winrate === null ? "—" : `${winrate}%`} />
         <Kpi label={t("investments.kpi_trades")} value={String(tradesCount)} />
       </SimpleGrid>
+      <KpiCompact
+        pnlLabel={t("investments.kpi_pnl")}
+        pnlValue={pnlValue}
+        pnlValueColor={pnlKpiColor}
+        winrateLabel={t("investments.kpi_winrate")}
+        winrateValue={winrate === null ? "—" : `${winrate}%`}
+        tradesLabel={t("investments.kpi_trades")}
+        tradesValue={String(tradesCount)}
+        caption={pnlFullCaption}
+      />
 
       <EquityCurve params={filterParams} category={category} />
 
@@ -402,18 +441,44 @@ export function PositionsSection({ accounts }: Props) {
         )}
 
         {total > 0 && (
-          <Group justify="space-between" p="md" wrap="wrap" gap="xs">
-            <Select
-              size="xs"
-              w={140}
-              label={t("investments.pos_page_size")}
-              data={PAGE_SIZE_OPTIONS}
-              value={String(pageSize)}
-              onChange={(v) => v && setPageSize(Number(v))}
-              allowDeselect={false}
-              checkIconPosition="right"
-              comboboxProps={{ width: 80 }}
-            />
+          <Group justify="space-between" p="md" wrap="wrap" gap="md">
+            <Group gap="md" wrap="wrap">
+              <Select
+                size="xs"
+                w={140}
+                label={t("investments.pos_page_size")}
+                data={PAGE_SIZE_OPTIONS}
+                value={String(pageSize)}
+                onChange={(v) => v && setPageSize(Number(v))}
+                allowDeselect={false}
+                checkIconPosition="right"
+                comboboxProps={{ width: 80 }}
+              />
+              {/* Sums just the rows on this page — same idea as the transactions table's
+                  footer, so it stays honest when the top KPI row covers the whole filter. */}
+              {items.length > 0 && (
+                <Group gap={6} wrap="nowrap">
+                  <Text size="xs" c="dimmed">
+                    {t("investments.kpi_page_summary")}
+                  </Text>
+                  <Text size="xs" fw={600} c={pnlColor(pageTotalPnl)}>
+                    {formatPnl(pageTotalPnl, i18n.language)}
+                  </Text>
+                  <Text size="xs" c="dimmed">
+                    ·
+                  </Text>
+                  <Text size="xs">
+                    {t("investments.kpi_winrate")}: {pageWinrate === null ? "—" : `${pageWinrate}%`}
+                  </Text>
+                  <Text size="xs" c="dimmed">
+                    ·
+                  </Text>
+                  <Text size="xs">
+                    {t("investments.kpi_trades")}: {items.length}
+                  </Text>
+                </Group>
+              )}
+            </Group>
             {totalPages > 1 && (
               <Pagination size="sm" total={totalPages} value={page} onChange={setPage} />
             )}
@@ -484,6 +549,60 @@ function Kpi({
       </Text>
       {caption && (
         <Text size="xs" c="dimmed">
+          {caption}
+        </Text>
+      )}
+    </Paper>
+  )
+}
+
+/** Below Mantine's sm breakpoint (768px): the three KPIs share one card instead of one each. */
+function KpiCompact({
+  pnlLabel,
+  pnlValue,
+  pnlValueColor,
+  winrateLabel,
+  winrateValue,
+  tradesLabel,
+  tradesValue,
+  caption,
+}: {
+  pnlLabel: string
+  pnlValue: string
+  pnlValueColor?: string
+  winrateLabel: string
+  winrateValue: string
+  tradesLabel: string
+  tradesValue: string
+  caption?: string
+}) {
+  const stat = (label: string, value: string, color?: string) => (
+    <Stack gap={0} style={{ minWidth: 0 }}>
+      <Text
+        ff="monospace"
+        size="xs"
+        c="dimmed"
+        tt="uppercase"
+        truncate="end"
+        style={{ letterSpacing: "0.06em" }}
+      >
+        {label}
+      </Text>
+      <Text ff="monospace" size="md" fw={500} c={color} truncate="end">
+        {value}
+      </Text>
+    </Stack>
+  )
+
+  return (
+    <Paper p="sm" hiddenFrom="sm">
+      <Group justify="space-between" wrap="nowrap" align="flex-start">
+        {stat(pnlLabel, pnlValue, pnlValueColor)}
+        {stat(winrateLabel, winrateValue)}
+        {stat(tradesLabel, tradesValue)}
+      </Group>
+      {caption && (
+        <Text size="xs" c="dimmed" mt={4}>
           {caption}
         </Text>
       )}

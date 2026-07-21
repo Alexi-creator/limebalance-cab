@@ -39,9 +39,10 @@ test.describe("Investments — trade journal", () => {
     await expect(manual.getByText("Manual")).toBeVisible()
     await expect(manual.getByText("Short")).toBeVisible()
 
-    // KPI over the loaded page: 120.5 + 30 − 50.25; 2 of 3 trades are green.
-    await expect(page.getByText("+$100.25")).toBeVisible()
-    await expect(page.getByText("67%")).toBeVisible()
+    // Top KPI row, over the whole filtered selection: 120.5 + 30 − 50.25; 2 of 3 trades are
+    // green. Scoped by size — the page-summary footer repeats the same numbers at a smaller size.
+    await expect(page.locator('[data-size="lg"]').filter({ hasText: "+$100.25" })).toBeVisible()
+    await expect(page.locator('[data-size="lg"]').filter({ hasText: "67%" })).toBeVisible()
   })
 
   test("the Opened column shows the open date, or a dash when it's unavailable", async ({
