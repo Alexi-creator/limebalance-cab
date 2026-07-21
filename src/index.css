@@ -33,6 +33,26 @@ body {
 }
 
 /*
+ * StickyScrollbarX's proxy track: a 14px-tall overflow-x:auto strip whose only job is to show
+ * a draggable scrollbar. Chromium/macOS "overlay" scrollbars are invisible until hovered,
+ * which would make the strip look like an empty bar — force a slim, always-visible thumb.
+ */
+.sticky-scroll-x {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mantine-color-gray-6) transparent;
+}
+.sticky-scroll-x::-webkit-scrollbar {
+  height: 10px;
+}
+.sticky-scroll-x::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sticky-scroll-x::-webkit-scrollbar-thumb {
+  background-color: var(--mantine-color-gray-6);
+  border-radius: 999px;
+}
+
+/*
  * mantine-datatable pins the checkbox column (position: sticky) and on horizontal
  * scroll draws a gradient shadow on it (the :after pseudo-element) — it looks like a
  * stray artifact next to the first column. The column background is opaque and the

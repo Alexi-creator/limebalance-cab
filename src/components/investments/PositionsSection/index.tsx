@@ -11,6 +11,7 @@ import { EquityCurve } from "@components/investments/EquityCurve"
 import { formatPnl, formatQty, formatUsd, pnlColor } from "@components/investments/format"
 import { PositionForm } from "@components/investments/PositionForm"
 import { MobileFilterSheet } from "@components/MobileFilterSheet"
+import { StickyScrollbarX } from "@components/StickyScrollbarX"
 import { investingKeys } from "@constants/queries/investing"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
@@ -80,6 +81,10 @@ export function PositionsSection({ accounts }: Props) {
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`, true, {
     getInitialValueInEffect: false,
   })
+  // Callback ref (state, not useRef): the table wrapper mounts conditionally (behind the
+  // loading state), and StickyScrollbarX needs its effect to re-run once that actually
+  // happens — a plain ref object doesn't change identity when `.current` changes later.
+  const [tableScrollEl, setTableScrollEl] = useState<HTMLDivElement | null>(null)
 
   const [symbol, setSymbol] = useState("")
   const [debouncedSymbol] = useDebouncedValue(symbol, 400)
@@ -327,7 +332,7 @@ export function PositionsSection({ accounts }: Props) {
             {t("investments.pos_empty")}
           </Text>
         ) : (
-          <Box style={{ overflowX: "auto" }}>
+          <Box ref={setTableScrollEl} style={{ overflowX: "auto" }}>
             {/* The table defaults to width:100%, which lets the browser's auto layout squeeze
                 columns (badges ellipsize) instead of scrolling. max-content forces it to size to
                 its natural content and overflow into the Box's scrollbar instead. */}
@@ -481,6 +486,12 @@ export function PositionsSection({ accounts }: Props) {
             </Table>
           </Box>
         )}
+
+        {/* Table can be wider than the viewport (many columns) — its own scrollbar sits at
+            its bottom edge, which is off-screen until you scroll the whole page down. This
+            mirrors it at the viewport's bottom edge instead, right above the mobile filter
+            handle when that's showing. */}
+        <StickyScrollbarX target={tableScrollEl} bottomOffset={isDesktop ? 0 : 48} />
 
         {total > 0 && (
           <Group justify="space-between" p="md" wrap="wrap" gap="md">
