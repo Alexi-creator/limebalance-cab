@@ -9,6 +9,9 @@ export const RouteNames = {
   Analytics: "/analytics",
   Goals: "/goals",
   Investments: "/investments",
+  // Optional dynamic segment (react-router) — one route match for all tabs, so switching
+  // tabs updates the param instead of unmounting/remounting the page.
+  InvestmentsTab: "/investments/:tab?",
   Categories: "/categories",
   Settings: "/settings",
   SettingsSecurity: "/settings/security",

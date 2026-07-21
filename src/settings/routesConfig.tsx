@@ -35,7 +35,7 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Analytics, element: <AnalyticsPage /> },
   { path: RouteNames.Goals, element: <GoalsPage /> },
   {
-    path: RouteNames.Investments,
+    path: RouteNames.InvestmentsTab,
     element: (
       <InvestmentsGuard>
         <InvestmentsPage />

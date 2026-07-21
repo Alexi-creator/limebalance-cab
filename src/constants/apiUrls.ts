@@ -59,4 +59,10 @@ export const API_URLS = {
   subscriptions: {
     usage: `${API_URL}/subscriptions/usage`,
   },
+  investing: {
+    accounts: `${API_URL}/investing/accounts`,
+    positions: `${API_URL}/investing/positions`,
+    trades: `${API_URL}/investing/trades`,
+    holdings: `${API_URL}/investing/holdings`,
+  },
 }

@@ -540,6 +540,149 @@ function buildUsage() {
   }
 }
 
+// ── investing (Pro/Ultra section) ──────────────────────────────────────────────
+// Fixed, deterministic fixtures (no RNG): the e2e specs assert on these values.
+// Shapes mirror /api/investing/* — Decimal fields are strings, like the backend sends.
+
+const INVESTING_ACCOUNTS = [
+  {
+    id: "acc-bybit-1",
+    exchange: "bybit",
+    label: "Main account",
+    status: "ACTIVE",
+    lastError: null,
+    apiKeyMasked: "••••3f9a",
+    syncFrom: "2026-01-01T00:00:00.000Z",
+    lastSyncAt: "2026-07-16T09:00:00.000Z",
+    createdAt: "2026-07-01T10:00:00.000Z",
+  },
+]
+
+const INVESTING_POSITIONS = [
+  // linear (futures): openedAt unavailable for this one (opening fills predate synced history) —
+  // exercises the graceful "—" fallback for both Opened and Fee; 10x leverage, so entryVolumeUsd
+  // (580) is the notional (5800) divided down to capital actually committed.
+  {
+    id: "pos-linear-1",
+    accountId: "acc-bybit-1",
+    source: "bybit",
+    symbol: "BTCUSDT",
+    category: "linear",
+    side: "Sell",
+    qty: "0.1",
+    avgEntryPrice: "58000",
+    avgExitPrice: "59205",
+    closedPnl: "120.5",
+    leverage: "10",
+    openedAt: null,
+    closedAt: "2026-07-15T14:30:00.000Z",
+    entryVolumeUsd: 580,
+    totalFeeUsd: null,
+  },
+  // spot: always Long, no leverage (entryVolumeUsd = full notional), openedAt = oldest closed
+  // FIFO buy, totalFeeUsd sums the buy + sell fills' fees over the position's life.
+  {
+    id: "pos-spot-1",
+    accountId: "acc-bybit-1",
+    source: "bybit",
+    symbol: "SOLUSDT",
+    category: "spot",
+    side: "Sell",
+    qty: "20",
+    avgEntryPrice: "140",
+    avgExitPrice: "141.5",
+    closedPnl: "30",
+    leverage: null,
+    openedAt: "2026-07-01T08:00:00.000Z",
+    closedAt: "2026-07-14T10:00:00.000Z",
+    entryVolumeUsd: 2800,
+    totalFeeUsd: 2.83,
+  },
+  // manual: user-entered, editable, side Buy → Short. No synced fills → totalFeeUsd is always null.
+  {
+    id: "pos-manual-1",
+    accountId: null,
+    source: "manual",
+    symbol: "ETHUSDT",
+    category: "manual",
+    side: "Buy",
+    qty: "1.5",
+    avgEntryPrice: "3200",
+    avgExitPrice: "3233.5",
+    closedPnl: "-50.25",
+    leverage: "3",
+    openedAt: "2026-07-10T12:00:00.000Z",
+    closedAt: "2026-07-13T18:00:00.000Z",
+    entryVolumeUsd: 1600,
+    totalFeeUsd: null,
+  },
+]
+
+const INVESTING_HOLDINGS = {
+  items: [
+    {
+      id: "hold-btc",
+      asset: "BTC",
+      amount: "0.5",
+      avgBuyPrice: "50000",
+      location: "Cold wallet",
+      note: null,
+      price: 60000,
+      value: 30000,
+      pnlUsd: 5000,
+      pnlPct: 20,
+      createdAt: "2026-06-01T10:00:00.000Z",
+      updatedAt: "2026-07-10T10:00:00.000Z",
+    },
+    // no avgBuyPrice → value is known, PnL is not
+    {
+      id: "hold-usdt",
+      asset: "USDT",
+      amount: "100",
+      avgBuyPrice: null,
+      location: "Bybit",
+      note: "stable stash",
+      price: 1,
+      value: 100,
+      pnlUsd: null,
+      pnlPct: null,
+      createdAt: "2026-06-05T10:00:00.000Z",
+      updatedAt: "2026-07-10T10:00:00.000Z",
+    },
+    // no USDT ticker on Bybit → no price, excluded from totalValue
+    {
+      id: "hold-rare",
+      asset: "RARECOIN",
+      amount: "1000",
+      avgBuyPrice: "0.5",
+      location: "MEXC",
+      note: null,
+      price: null,
+      value: null,
+      pnlUsd: null,
+      pnlPct: null,
+      createdAt: "2026-06-10T10:00:00.000Z",
+      updatedAt: "2026-07-10T10:00:00.000Z",
+    },
+  ],
+  totalValue: 30100,
+}
+
+function paged<T extends { symbol: string; accountId: string | null }>(
+  rows: T[],
+  params: URLSearchParams,
+) {
+  const symbol = params.get("symbol")
+  const accountId = params.get("accountId")
+  let items = rows
+  if (symbol) items = items.filter((r) => r.symbol === symbol)
+  if (accountId) items = items.filter((r) => r.accountId === accountId)
+  const total = items.length
+  const offset = Number(params.get("offset") ?? 0)
+  const limit = Number(params.get("limit") ?? 50)
+  return { items: items.slice(offset, offset + limit), total }
+}
+
 export function getStub(url: string, method: string): unknown {
   if (method !== "GET") return undefined
 
@@ -552,6 +695,10 @@ export function getStub(url: string, method: string): unknown {
 
   if (path.endsWith("/auth/me")) return buildMe()
   if (path.endsWith("/subscriptions/usage")) return buildUsage()
+
+  if (path.endsWith("/investing/accounts")) return INVESTING_ACCOUNTS
+  if (path.endsWith("/investing/positions")) return paged(INVESTING_POSITIONS, q)
+  if (path.endsWith("/investing/holdings")) return INVESTING_HOLDINGS
   if (path.endsWith("/transactions/balance")) return buildBalance()
   if (path.endsWith("/transactions")) return buildTransactions(q)
 
