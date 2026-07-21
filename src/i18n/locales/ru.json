@@ -458,6 +458,7 @@
     "kpi_period_from": "С {{date}}",
     "kpi_period_to": "По {{date}}",
     "filter_period": "Период",
+    "filters_title": "Фильтры",
     "filter_account": "Аккаунт",
     "pos_page_size": "Строк на странице",
     "pos_add": "Добавить сделку",

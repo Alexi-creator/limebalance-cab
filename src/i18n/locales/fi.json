@@ -435,6 +435,7 @@
     "kpi_period_from": "Alkaen {{date}}",
     "kpi_period_to": "Asti {{date}}",
     "filter_period": "Ajanjakso",
+    "filters_title": "Suodattimet",
     "filter_account": "Tili",
     "pos_page_size": "Rivejä sivulla",
     "pos_add": "Lisää kauppa",

@@ -433,6 +433,7 @@
     "kpi_period_from": "Siden {{date}}",
     "kpi_period_to": "Indtil {{date}}",
     "filter_period": "Periode",
+    "filters_title": "Filtre",
     "filter_account": "Konto",
     "pos_page_size": "Rækker pr. side",
     "pos_add": "Tilføj handel",

@@ -447,6 +447,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Razdoblje",
+    "filters_title": "Filtri",
     "filter_account": "Račun",
     "pos_page_size": "Redaka po stranici",
     "pos_add": "Dodaj trgovanje",

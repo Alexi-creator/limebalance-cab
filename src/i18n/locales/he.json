@@ -459,6 +459,7 @@
     "kpi_period_from": "מאז {{date}}",
     "kpi_period_to": "עד {{date}}",
     "filter_period": "תקופה",
+    "filters_title": "מסננים",
     "filter_account": "חשבון",
     "pos_page_size": "שורות בעמוד",
     "pos_add": "הוספת עסקה",

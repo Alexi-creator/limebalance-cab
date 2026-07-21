@@ -433,6 +433,7 @@
     "kpi_period_from": "Alates {{date}}",
     "kpi_period_to": "Kuni {{date}}",
     "filter_period": "Periood",
+    "filters_title": "Filtrid",
     "filter_account": "Konto",
     "pos_page_size": "Ridu lehel",
     "pos_add": "Lisa tehing",

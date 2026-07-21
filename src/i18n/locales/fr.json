@@ -435,6 +435,7 @@
     "kpi_period_from": "Depuis le {{date}}",
     "kpi_period_to": "Jusqu'au {{date}}",
     "filter_period": "Période",
+    "filters_title": "Filtres",
     "filter_account": "Compte",
     "pos_page_size": "Lignes par page",
     "pos_add": "Ajouter une transaction",

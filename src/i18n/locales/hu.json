@@ -435,6 +435,7 @@
     "kpi_period_from": "{{date}} óta",
     "kpi_period_to": "{{date}}-ig",
     "filter_period": "Időszak",
+    "filters_title": "Szűrők",
     "filter_account": "Fiók",
     "pos_page_size": "Sor / oldal",
     "pos_add": "Kereskedés hozzáadása",

@@ -433,6 +433,7 @@
     "kpi_period_from": "Από {{date}}",
     "kpi_period_to": "Έως {{date}}",
     "filter_period": "Περίοδος",
+    "filters_title": "Φίλτρα",
     "filter_account": "Λογαριασμός",
     "pos_page_size": "Γραμμές ανά σελίδα",
     "pos_add": "Προσθήκη συναλλαγής",

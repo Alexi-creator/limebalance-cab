@@ -10,6 +10,7 @@ import { DeletePositionConfirm } from "@components/investments/DeletePositionCon
 import { EquityCurve } from "@components/investments/EquityCurve"
 import { formatPnl, formatQty, formatUsd, pnlColor } from "@components/investments/format"
 import { PositionForm } from "@components/investments/PositionForm"
+import { MobileFilterSheet } from "@components/MobileFilterSheet"
 import { investingKeys } from "@constants/queries/investing"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
@@ -31,9 +32,10 @@ import {
   Text,
   TextInput,
   Tooltip,
+  useMantineTheme,
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
-import { useDebouncedValue } from "@mantine/hooks"
+import { useDebouncedValue, useMediaQuery } from "@mantine/hooks"
 import { useModalStore } from "@store/modalStore"
 import { IconEdit, IconInfoCircle, IconPlus, IconSearch, IconTrash } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
@@ -72,6 +74,12 @@ export function PositionsSection({ accounts }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const open = useModalStore((s) => s.open)
+  const theme = useMantineTheme()
+  // Below `md` the filter controls don't fit in a row — they move into a bottom drawer,
+  // same pattern as the transactions table (see MobileFilterSheet).
+  const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`, true, {
+    getInitialValueInEffect: false,
+  })
 
   const [symbol, setSymbol] = useState("")
   const [debouncedSymbol] = useDebouncedValue(symbol, 400)
@@ -178,6 +186,63 @@ export function PositionsSection({ accounts }: Props) {
   const accountOptions = accounts.map((a) => ({ value: a.id, label: a.label }))
   const accountById = new Map(accounts.map((a) => [a.id, a]))
 
+  // count of active filters — shown on the mobile drawer's handle
+  const activeFilterCount =
+    (debouncedSymbol ? 1 : 0) +
+    (range[0] || range[1] ? 1 : 0) +
+    (accountId ? 1 : 0) +
+    (category !== "all" ? 1 : 0)
+
+  // `vertical` stacks the controls full-width for the drawer; the row layout keeps the fixed
+  // widths used on desktop. Same split as TransactionsFilters' `controls(vertical)`.
+  const filterControls = (vertical: boolean) => (
+    <>
+      <TextInput
+        size={vertical ? "sm" : "xs"}
+        label={vertical ? t("investments.col_symbol") : undefined}
+        w={vertical ? "100%" : 140}
+        placeholder="BTCUSDT"
+        leftSection={<IconSearch size={14} />}
+        value={symbol}
+        onChange={(e) => setSymbol(e.currentTarget.value)}
+      />
+      <DatePickerInput
+        size={vertical ? "sm" : "xs"}
+        w={vertical ? "100%" : 220}
+        type="range"
+        clearable
+        placeholder={t("investments.filter_period")}
+        value={range}
+        onChange={setRange}
+        locale={i18n.language}
+        valueFormat="DD MMM YYYY"
+      />
+      {accounts.length > 0 && (
+        <Select
+          size={vertical ? "sm" : "xs"}
+          w={vertical ? "100%" : 160}
+          clearable
+          placeholder={t("investments.filter_account")}
+          data={accountOptions}
+          value={accountId}
+          onChange={setAccountId}
+        />
+      )}
+      <SegmentedControl
+        size={vertical ? "sm" : "xs"}
+        fullWidth={vertical}
+        value={category}
+        onChange={(v) => setCategory(v as CategoryFilter)}
+        data={[
+          { value: "all", label: t("common.all") },
+          { value: "linear", label: t("investments.cat_linear") },
+          { value: "spot", label: t("investments.cat_spot") },
+          { value: "manual", label: t("investments.cat_manual") },
+        ]}
+      />
+    </>
+  )
+
   const pnlValue = statsItems.length ? formatPnl(totalPnl, i18n.language) : "—"
   const pnlKpiColor = statsItems.length ? pnlColor(totalPnl) : undefined
   const pnlFullCaption = kpiCapped
@@ -185,7 +250,9 @@ export function PositionsSection({ accounts }: Props) {
     : pnlCaption
 
   return (
-    <Stack gap="md">
+    // Below `md`, the filter drawer's handle is fixed to the viewport edge — reserve space
+    // so it never covers the table footer/pagination (same as the transactions page).
+    <Stack gap="md" style={{ paddingBottom: isDesktop ? 0 : 64 }}>
       {/* >=768px (Mantine's sm breakpoint): three separate cards. Below that, one combined
           card (KpiCompact) — three full-width tiles stacked would eat too much vertical space
           on a phone. */}
@@ -224,53 +291,28 @@ export function PositionsSection({ accounts }: Props) {
           gap="xs"
           style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
         >
-          <Group gap="xs" wrap="wrap">
-            <TextInput
-              size="xs"
-              w={140}
-              placeholder="BTCUSDT"
-              leftSection={<IconSearch size={14} />}
-              value={symbol}
-              onChange={(e) => setSymbol(e.currentTarget.value)}
-            />
-            <DatePickerInput
-              size="xs"
-              w={220}
-              type="range"
-              clearable
-              placeholder={t("investments.filter_period")}
-              value={range}
-              onChange={setRange}
-              locale={i18n.language}
-              valueFormat="DD MMM YYYY"
-            />
-            {accounts.length > 0 && (
-              <Select
-                size="xs"
-                w={160}
-                clearable
-                placeholder={t("investments.filter_account")}
-                data={accountOptions}
-                value={accountId}
-                onChange={setAccountId}
-              />
-            )}
-            <SegmentedControl
-              size="xs"
-              value={category}
-              onChange={(v) => setCategory(v as CategoryFilter)}
-              data={[
-                { value: "all", label: t("common.all") },
-                { value: "linear", label: t("investments.cat_linear") },
-                { value: "spot", label: t("investments.cat_spot") },
-                { value: "manual", label: t("investments.cat_manual") },
-              ]}
-            />
-          </Group>
+          {isDesktop ? (
+            <Group gap="xs" wrap="wrap">
+              {filterControls(false)}
+            </Group>
+          ) : (
+            // Filters live in the bottom drawer below `md` — only the primary action stays here.
+            <span />
+          )}
           <Button size="xs" leftSection={<IconPlus size={14} />} onClick={openCreate}>
             {t("investments.pos_add")}
           </Button>
         </Group>
+
+        {!isDesktop && (
+          <MobileFilterSheet
+            title={t("investments.filters_title")}
+            closeLabel={t("common.close")}
+            activeCount={activeFilterCount}
+          >
+            <Stack gap="sm">{filterControls(true)}</Stack>
+          </MobileFilterSheet>
+        )}
 
         {error ? (
           <Alert color="red" m="md">

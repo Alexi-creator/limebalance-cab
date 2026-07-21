@@ -7,7 +7,7 @@ import { PositionsSection } from "@components/investments/PositionsSection"
 import { HttpStatus } from "@constants/httpStatus"
 import { ACCOUNTS_FIRST_SYNC_POLL_MS, investingKeys } from "@constants/queries/investing"
 import { RouteNames } from "@constants/routeNames"
-import { Alert, Stack, Tabs, Text, Title } from "@mantine/core"
+import { Alert, Box, Stack, Tabs, Text, Title } from "@mantine/core"
 import { IconBriefcase, IconNotebook, IconPlugConnected } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
@@ -72,13 +72,19 @@ export function InvestmentsPage() {
         <Tabs value={activeTab} onChange={setTab} keepMounted={false}>
           <Tabs.List mb="md">
             <Tabs.Tab value="journal" leftSection={<IconNotebook size={16} />}>
-              {t("investments.tab_journal")}
+              <Box component="span" visibleFrom="sm">
+                {t("investments.tab_journal")}
+              </Box>
             </Tabs.Tab>
             <Tabs.Tab value="portfolio" leftSection={<IconBriefcase size={16} />}>
-              {t("investments.tab_portfolio")}
+              <Box component="span" visibleFrom="sm">
+                {t("investments.tab_portfolio")}
+              </Box>
             </Tabs.Tab>
             <Tabs.Tab value="accounts" leftSection={<IconPlugConnected size={16} />}>
-              {t("investments.tab_accounts")}
+              <Box component="span" visibleFrom="sm">
+                {t("investments.tab_accounts")}
+              </Box>
             </Tabs.Tab>
           </Tabs.List>
 

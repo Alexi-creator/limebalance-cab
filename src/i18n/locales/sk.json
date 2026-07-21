@@ -447,6 +447,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Obdobie",
+    "filters_title": "Filtre",
     "filter_account": "Účet",
     "pos_page_size": "Riadkov na stránku",
     "pos_add": "Pridať obchod",

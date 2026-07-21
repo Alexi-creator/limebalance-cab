@@ -447,6 +447,7 @@
     "kpi_period_from": "З {{date}}",
     "kpi_period_to": "До {{date}}",
     "filter_period": "Період",
+    "filters_title": "Фільтри",
     "filter_account": "Акаунт",
     "pos_page_size": "Рядків на сторінку",
     "pos_add": "Додати угоду",

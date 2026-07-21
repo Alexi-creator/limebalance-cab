@@ -435,6 +435,7 @@
     "kpi_period_from": "Dal {{date}}",
     "kpi_period_to": "Al {{date}}",
     "filter_period": "Periodo",
+    "filters_title": "Filtri",
     "filter_account": "Account",
     "pos_page_size": "Righe per pagina",
     "pos_add": "Aggiungi operazione",

@@ -481,6 +481,7 @@
     "kpi_period_from": "منذ {{date}}",
     "kpi_period_to": "حتى {{date}}",
     "filter_period": "الفترة",
+    "filters_title": "التصفية",
     "filter_account": "الحساب",
     "pos_page_size": "صفوف لكل صفحة",
     "pos_add": "إضافة صفقة",

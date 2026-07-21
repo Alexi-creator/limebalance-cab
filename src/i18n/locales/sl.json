@@ -459,6 +459,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Obdobje",
+    "filters_title": "Filtri",
     "filter_account": "Račun",
     "pos_page_size": "Vrstic na stran",
     "pos_add": "Dodaj posel",

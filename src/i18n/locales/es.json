@@ -433,6 +433,7 @@
     "kpi_period_from": "Desde {{date}}",
     "kpi_period_to": "Hasta {{date}}",
     "filter_period": "Período",
+    "filters_title": "Filtros",
     "filter_account": "Cuenta",
     "pos_page_size": "Filas por página",
     "pos_add": "Añadir operación",

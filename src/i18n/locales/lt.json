@@ -445,6 +445,7 @@
     "kpi_period_from": "Nuo {{date}}",
     "kpi_period_to": "Iki {{date}}",
     "filter_period": "Laikotarpis",
+    "filters_title": "Filtrai",
     "filter_account": "Paskyra",
     "pos_page_size": "Eilučių puslapyje",
     "pos_add": "Pridėti sandorį",

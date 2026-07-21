@@ -445,6 +445,7 @@
     "kpi_period_from": "Din {{date}}",
     "kpi_period_to": "Până la {{date}}",
     "filter_period": "Perioadă",
+    "filters_title": "Filtre",
     "filter_account": "Cont",
     "pos_page_size": "Rânduri pe pagină",
     "pos_add": "Adaugă tranzacție",

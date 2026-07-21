@@ -423,6 +423,7 @@
     "kpi_period_from": "自 {{date}}",
     "kpi_period_to": "至 {{date}}",
     "filter_period": "时间段",
+    "filters_title": "筛选",
     "filter_account": "账户",
     "pos_page_size": "每页行数",
     "pos_add": "添加交易",

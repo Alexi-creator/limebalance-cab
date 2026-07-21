@@ -421,6 +421,7 @@
     "kpi_period_from": "{{date}}부터",
     "kpi_period_to": "{{date}}까지",
     "filter_period": "기간",
+    "filters_title": "필터",
     "filter_account": "계정",
     "pos_page_size": "페이지당 행 수",
     "pos_add": "거래 추가",

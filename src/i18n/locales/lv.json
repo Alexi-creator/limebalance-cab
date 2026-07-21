@@ -445,6 +445,7 @@
     "kpi_period_from": "No {{date}}",
     "kpi_period_to": "Līdz {{date}}",
     "filter_period": "Periods",
+    "filters_title": "Filtri",
     "filter_account": "Konts",
     "pos_page_size": "Rindas lapā",
     "pos_add": "Pievienot darījumu",

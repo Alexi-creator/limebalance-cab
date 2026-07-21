@@ -423,6 +423,7 @@
     "kpi_period_from": "Từ {{date}}",
     "kpi_period_to": "Đến {{date}}",
     "filter_period": "Khoảng thời gian",
+    "filters_title": "Bộ lọc",
     "filter_account": "Tài khoản",
     "pos_page_size": "Số dòng mỗi trang",
     "pos_add": "Thêm giao dịch",

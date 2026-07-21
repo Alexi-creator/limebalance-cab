@@ -444,6 +444,7 @@
     "kpi_period_from": "Since {{date}}",
     "kpi_period_to": "Until {{date}}",
     "filter_period": "Period",
+    "filters_title": "Filters",
     "filter_account": "Account",
     "pos_page_size": "Rows per page",
     "pos_add": "Add trade",

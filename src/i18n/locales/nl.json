@@ -433,6 +433,7 @@
     "kpi_period_from": "Sinds {{date}}",
     "kpi_period_to": "Tot {{date}}",
     "filter_period": "Periode",
+    "filters_title": "Filters",
     "filter_account": "Account",
     "pos_page_size": "Rijen per pagina",
     "pos_add": "Transactie toevoegen",

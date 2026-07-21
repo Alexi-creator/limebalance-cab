@@ -435,6 +435,7 @@
     "kpi_period_from": "Sedan {{date}}",
     "kpi_period_to": "Till {{date}}",
     "filter_period": "Period",
+    "filters_title": "Filter",
     "filter_account": "Konto",
     "pos_page_size": "Rader per sida",
     "pos_add": "Lägg till affär",

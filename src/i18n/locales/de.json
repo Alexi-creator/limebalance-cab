@@ -433,6 +433,7 @@
     "kpi_period_from": "Seit {{date}}",
     "kpi_period_to": "Bis {{date}}",
     "filter_period": "Zeitraum",
+    "filters_title": "Filter",
     "filter_account": "Konto",
     "pos_page_size": "Zeilen pro Seite",
     "pos_add": "Trade hinzufügen",

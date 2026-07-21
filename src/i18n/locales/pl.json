@@ -445,6 +445,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Okres",
+    "filters_title": "Filtry",
     "filter_account": "Konto",
     "pos_page_size": "Wierszy na stronę",
     "pos_add": "Dodaj transakcję",

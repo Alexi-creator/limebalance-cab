@@ -423,6 +423,7 @@
     "kpi_period_from": "ตั้งแต่ {{date}}",
     "kpi_period_to": "จนถึง {{date}}",
     "filter_period": "ช่วงเวลา",
+    "filters_title": "ตัวกรอง",
     "filter_account": "บัญชี",
     "pos_page_size": "แถวต่อหน้า",
     "pos_add": "เพิ่มการเทรด",

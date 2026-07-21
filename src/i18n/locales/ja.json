@@ -423,6 +423,7 @@
     "kpi_period_from": "{{date}}から",
     "kpi_period_to": "{{date}}まで",
     "filter_period": "期間",
+    "filters_title": "フィルター",
     "filter_account": "アカウント",
     "pos_page_size": "1ページの行数",
     "pos_add": "取引を追加",

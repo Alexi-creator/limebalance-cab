@@ -423,6 +423,7 @@
     "kpi_period_from": "Sejak {{date}}",
     "kpi_period_to": "Hingga {{date}}",
     "filter_period": "Periode",
+    "filters_title": "Filter",
     "filter_account": "Akun",
     "pos_page_size": "Baris per halaman",
     "pos_add": "Tambah transaksi",
