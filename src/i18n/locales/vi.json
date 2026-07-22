@@ -439,6 +439,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Không có giao dịch nào trong khoảng thời gian này",
+    "pos_syncing": "Đang đồng bộ…",
     "pos_journal_intro": "Các giao dịch đang mở được ghim lên đầu; các giao dịch đã đóng được sắp xếp theo ngày đóng.",
     "pos_status_open": "Đang mở",
     "pos_status_closed": "Đã đóng",

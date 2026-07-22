@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Selle perioodi kohta tehinguid ei ole",
+    "pos_syncing": "Sünkroonimine käib…",
     "pos_journal_intro": "Avatud tehingud on kinnitatud üleval; suletud on sorteeritud sulgemiskuupäeva järgi.",
     "pos_status_open": "Avatud",
     "pos_status_closed": "Suletud",

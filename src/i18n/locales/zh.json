@@ -439,6 +439,7 @@
     "pos_long": "做多",
     "pos_short": "做空",
     "pos_empty": "该时间段内没有交易",
+    "pos_syncing": "同步中…",
     "pos_journal_intro": "持仓中的交易置顶显示；已平仓的按平仓日期排序。",
     "pos_status_open": "持仓中",
     "pos_status_closed": "已平仓",

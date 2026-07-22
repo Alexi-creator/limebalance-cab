@@ -439,6 +439,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Tidak ada transaksi untuk periode ini",
+    "pos_syncing": "Sinkronisasi sedang berlangsung…",
     "pos_journal_intro": "Transaksi terbuka disematkan di atas; yang ditutup diurutkan berdasarkan tanggal penutupan.",
     "pos_status_open": "Terbuka",
     "pos_status_closed": "Ditutup",

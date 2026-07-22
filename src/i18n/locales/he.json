@@ -475,6 +475,7 @@
     "pos_long": "לונג",
     "pos_short": "שורט",
     "pos_empty": "אין עסקאות בתקופה זו",
+    "pos_syncing": "סנכרון מתבצע…",
     "pos_journal_intro": "עסקאות פתוחות מוצמדות למעלה; עסקאות סגורות ממוינות לפי תאריך סגירה.",
     "pos_status_open": "פתוחה",
     "pos_status_closed": "סגורה",

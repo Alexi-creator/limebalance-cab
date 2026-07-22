@@ -148,6 +148,11 @@ export function PositionsSection({ accounts }: Props) {
   const totalPages = Math.ceil(total / urlParams.limit)
   const items = data?.items ?? []
 
+  // `lastSyncAt` stays null until an account's first sync finishes (see AccountsSection) —
+  // reuse that signal here so a freshly connected account shows "syncing" instead of the
+  // plain empty state right after the tab switches to the journal.
+  const firstSyncPending = accounts.some((a) => a.lastSyncAt === null)
+
   // Top KPI row — over the whole current filter selection (symbol/account/period/category),
   // not just the visible page. Aggregated server-side, no page cap.
   const { data: summaryData } = useQuery({
@@ -411,6 +416,15 @@ export function PositionsSection({ accounts }: Props) {
         ) : isLoading ? (
           <Center py="xl">
             <Loader size="sm" />
+          </Center>
+        ) : items.length === 0 && firstSyncPending ? (
+          <Center py="xl">
+            <Stack align="center" gap={6}>
+              <Loader size="sm" />
+              <Text size="sm" c="dimmed">
+                {t("investments.pos_syncing")}
+              </Text>
+            </Stack>
           </Center>
         ) : items.length === 0 ? (
           <Text size="sm" c="dimmed" ta="center" py="xl">

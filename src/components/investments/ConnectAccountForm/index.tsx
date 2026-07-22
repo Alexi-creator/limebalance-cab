@@ -2,11 +2,13 @@ import { ApiError } from "@api/apiError"
 import { connectExchangeAccount } from "@api/investing"
 import { HttpStatus } from "@constants/httpStatus"
 import { investingKeys } from "@constants/queries/investing"
+import { RouteNames } from "@constants/routeNames"
 import { Alert, Button, Group, List, Stack, Text, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
 interface Props {
   /** Called after a successful connect (e.g. to close the modal). */
@@ -23,6 +25,7 @@ interface Props {
 export function ConnectAccountForm({ onDone, onCancel }: Props) {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const [apiKey, setApiKey] = useState("")
   const [apiSecret, setApiSecret] = useState("")
@@ -39,6 +42,9 @@ export function ConnectAccountForm({ onDone, onCancel }: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: investingKeys.accounts })
       notifications.show({ color: "green", message: t("investments.acc_connected") })
+      // Always land on the journal after connecting — the sync just started, so it shows
+      // its own "syncing" loader there instead of the account list.
+      navigate(`${RouteNames.Investments}/journal`, { replace: true })
       onDone?.()
     },
     onError: (err) => {

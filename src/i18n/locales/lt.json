@@ -463,6 +463,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Šiam laikotarpiui sandorių nėra",
+    "pos_syncing": "Vyksta sinchronizacija…",
     "pos_journal_intro": "Atviri sandoriai prisegti viršuje; uždaryti rikiuojami pagal uždarymo datą.",
     "pos_status_open": "Atviras",
     "pos_status_closed": "Uždarytas",

@@ -34,8 +34,12 @@ export function StickyScrollbarX({ target, bottomOffset = 0 }: Props) {
     const updateSize = () => {
       setScrollWidth(target.scrollWidth)
       setClientWidth(target.clientWidth)
-      const main = target.closest("main") ?? target
-      const r = main.getBoundingClientRect()
+      // Bounds must come from `target` itself, not an ancestor — the proxy's own width has to
+      // match target.clientWidth exactly, otherwise dragging the proxy to its end sets
+      // target.scrollLeft short of its real max (scrollWidth - clientWidth), permanently
+      // hiding the last slice of content behind the pinned column (e.g. the journal table's
+      // last data column, covered by the sticky actions column).
+      const r = target.getBoundingClientRect()
       setBounds({ left: r.left, right: window.innerWidth - r.right })
     }
 

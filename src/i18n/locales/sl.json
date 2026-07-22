@@ -475,6 +475,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "V tem obdobju ni poslov",
+    "pos_syncing": "Sinhronizacija poteka…",
     "pos_journal_intro": "Odprti posli so pripeti na vrhu; zaprti so razvrščeni po datumu zaprtja.",
     "pos_status_open": "Odprto",
     "pos_status_closed": "Zaprto",

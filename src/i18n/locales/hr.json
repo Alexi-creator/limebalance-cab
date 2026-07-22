@@ -463,6 +463,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Nema trgovanja za ovo razdoblje",
+    "pos_syncing": "Sinkronizacija u tijeku…",
     "pos_journal_intro": "Otvorene transakcije prikvačene su na vrhu; zatvorene su razvrstane po datumu zatvaranja.",
     "pos_status_open": "Otvoreno",
     "pos_status_closed": "Zatvoreno",

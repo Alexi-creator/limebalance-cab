@@ -460,6 +460,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "No trades for this period",
+    "pos_syncing": "Syncing your trades…",
     "pos_journal_intro": "Open trades are pinned to the top; closed ones are sorted by close date.",
     "pos_status_open": "Open",
     "pos_status_closed": "Closed",

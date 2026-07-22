@@ -41,7 +41,9 @@ export function SidebarNav() {
 
           {group.items.map((item) => {
             const Icon = item.icon
-            const isActive = pathname === item.to
+            // Prefix match (with a trailing "/" boundary) so sub-routes keep the parent item
+            // highlighted — e.g. /investments/journal, /settings/security.
+            const isActive = pathname === item.to || pathname.startsWith(`${item.to}/`)
             const isLocked = item.requiresPaid && !canInvest
 
             const link = (

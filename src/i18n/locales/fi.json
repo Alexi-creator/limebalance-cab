@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Ei kauppoja tällä ajanjaksolla",
+    "pos_syncing": "Synkronointi käynnissä…",
     "pos_journal_intro": "Avoimet kaupat on kiinnitetty ylös; suljetut on lajiteltu sulkemispäivän mukaan.",
     "pos_status_open": "Avoin",
     "pos_status_closed": "Suljettu",

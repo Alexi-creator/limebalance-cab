@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Ingen handler i denne periode",
+    "pos_syncing": "Synkronisering i gang…",
     "pos_journal_intro": "Åbne handler er fastgjort øverst; lukkede er sorteret efter lukkedato.",
     "pos_status_open": "Åben",
     "pos_status_closed": "Lukket",

@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Aucune transaction pour cette période",
+    "pos_syncing": "Synchronisation en cours…",
     "pos_journal_intro": "Les transactions ouvertes sont épinglées en haut ; les clôturées sont triées par date de clôture.",
     "pos_status_open": "Ouverte",
     "pos_status_closed": "Clôturée",

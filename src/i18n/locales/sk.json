@@ -463,6 +463,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Za toto obdobie nie sú žiadne obchody",
+    "pos_syncing": "Prebieha synchronizácia…",
     "pos_journal_intro": "Otvorené obchody sú pripnuté navrchu; uzavreté sú zoradené podľa dátumu uzavretia.",
     "pos_status_open": "Otvorený",
     "pos_status_closed": "Uzavretý",

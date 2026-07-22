@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Nenhuma operação neste período",
+    "pos_syncing": "Sincronização em andamento…",
     "pos_journal_intro": "Operações abertas ficam fixadas no topo; as fechadas são ordenadas pela data de fechamento.",
     "pos_status_open": "Aberta",
     "pos_status_closed": "Fechada",

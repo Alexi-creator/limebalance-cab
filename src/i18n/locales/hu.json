@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Nincs kereskedés ebben az időszakban",
+    "pos_syncing": "Szinkronizálás folyamatban…",
     "pos_journal_intro": "A nyitott kereskedések felül vannak rögzítve; a zártak a zárás dátuma szerint vannak rendezve.",
     "pos_status_open": "Nyitott",
     "pos_status_closed": "Zárt",

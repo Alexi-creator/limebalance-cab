@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Inga affärer för den här perioden",
+    "pos_syncing": "Synkronisering pågår…",
     "pos_journal_intro": "Öppna affärer är fästa högst upp; stängda är sorterade efter stängningsdatum.",
     "pos_status_open": "Öppen",
     "pos_status_closed": "Stängd",

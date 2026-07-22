@@ -463,6 +463,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Brak transakcji w tym okresie",
+    "pos_syncing": "Trwa synchronizacja…",
     "pos_journal_intro": "Otwarte transakcje są przypięte na górze; zamknięte są posortowane według daty zamknięcia.",
     "pos_status_open": "Otwarta",
     "pos_status_closed": "Zamknięta",

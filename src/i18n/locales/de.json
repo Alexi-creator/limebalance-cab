@@ -451,6 +451,7 @@
     "pos_long": "Long",
     "pos_short": "Short",
     "pos_empty": "Keine Trades in diesem Zeitraum",
+    "pos_syncing": "Synchronisierung läuft…",
     "pos_journal_intro": "Offene Trades sind oben angeheftet; geschlossene sind nach Schlussdatum sortiert.",
     "pos_status_open": "Offen",
     "pos_status_closed": "Geschlossen",

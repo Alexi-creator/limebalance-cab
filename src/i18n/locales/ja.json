@@ -439,6 +439,7 @@
     "pos_long": "ロング",
     "pos_short": "ショート",
     "pos_empty": "この期間の取引はありません",
+    "pos_syncing": "同期中…",
     "pos_journal_intro": "保有中の取引は上部に固定表示され、決済済みの取引は決済日順に並びます。",
     "pos_status_open": "建玉中",
     "pos_status_closed": "決済済み",
