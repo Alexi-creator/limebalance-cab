@@ -14,7 +14,11 @@ export const positionsParamsSchema = z.object({
   /** YYYY-MM-DD. */
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),
-  status: z.enum(["OPEN", "CLOSED"]).optional().catch(undefined),
+  // Defaults to CLOSED — landing on the journal shows completed trades first, matching what
+  // the Total PnL/winrate KPIs above the table already summarize. "all" is a real, persisted
+  // value (like `category` below), not just the param's absence — otherwise picking "All"
+  // couldn't stick across a reload.
+  status: z.enum(["all", "OPEN", "CLOSED"]).catch("CLOSED").default("CLOSED"),
   /** Client-side only — the API has no category param yet. */
   category: z.enum(["all", "linear", "spot", "manual"]).catch("all").default("all"),
   page: z.coerce.number().int().min(1).catch(1).default(1),

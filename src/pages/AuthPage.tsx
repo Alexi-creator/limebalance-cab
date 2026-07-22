@@ -17,7 +17,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core"
-import { GoogleLogin } from "@react-oauth/google"
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import { useAuthStore } from "@store/authStore"
 import { IconBrandTelegram, IconMail } from "@tabler/icons-react"
 import type { TelegramAuthData } from "@telegram-auth/react"
@@ -30,6 +30,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { z } from "zod"
 
 const BOT_USERNAME = getEnv("VITE_TELEGRAM_BOT_USERNAME")
+const GOOGLE_CLIENT_ID = getEnv("VITE_GOOGLE_CLIENT_ID")
 
 type AuthMethod = "select" | "email"
 
@@ -174,11 +175,16 @@ export function AuthPage() {
               </Alert>
 
               <Box style={{ display: "flex", justifyContent: "center" }}>
-                <GoogleLogin
-                  onSuccess={({ credential }) => credential && handleGoogleAuth(credential)}
-                  onError={() => {}}
-                  width={320}
-                />
+                {/* Scoped to this button, not the whole app (see App.tsx) — GoogleOAuthProvider
+                    only picks up a new locale on remount, and `key`-ing it at the app root would
+                    reset scroll position on every page whenever the language changes. */}
+                <GoogleOAuthProvider key={i18n.language} clientId={GOOGLE_CLIENT_ID} locale={i18n.language}>
+                  <GoogleLogin
+                    onSuccess={({ credential }) => credential && handleGoogleAuth(credential)}
+                    onError={() => {}}
+                    width={320}
+                  />
+                </GoogleOAuthProvider>
               </Box>
 
               <Divider label={t("auth.or")} labelPosition="center" />

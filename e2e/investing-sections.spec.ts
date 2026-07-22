@@ -43,6 +43,32 @@ test.describe("Investments — trade journal", () => {
     // green. Scoped by size — the page-summary footer repeats the same numbers at a smaller size.
     await expect(page.locator('[data-size="lg"]').filter({ hasText: "+$100.25" })).toBeVisible()
     await expect(page.locator('[data-size="lg"]').filter({ hasText: "67%" })).toBeVisible()
+
+    // "All time" is captioned with the earliest closed trade's date (ETHUSDT, closedAt
+    // 2026-07-13T18:00Z) — sourced from the equity-curve endpoint, sorted ascending, the
+    // same request the chart uses. Day depends on the runner's local timezone, like the
+    // closedAt cell elsewhere in this file — only the month/year are asserted here.
+    await expect(page.getByText(/All time \(since \d+ Jul 2026\)/).first()).toBeVisible()
+  })
+
+  test("clearing filters resets the reset (icon-only) button back to the default view", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+
+    await page.getByLabel("Pair").fill("BTCUSDT")
+    await page
+      .locator("label")
+      .filter({ hasText: /^Spot$/ })
+      .click()
+    await expect(page.locator("table tbody tr")).toHaveCount(0)
+
+    await page.getByRole("button", { name: "Reset" }).click()
+
+    await expect(page.getByLabel("Pair")).toHaveValue("")
+    await expect(page.getByPlaceholder("Status")).toHaveValue("Closed")
+    // Back to the default Closed view: linear/spot/manual, ADAUSDT (OPEN) still excluded.
+    await expect(page.locator("table tbody tr")).toHaveCount(3)
   })
 
   test("the Opened column shows the open date, or a dash when it's unavailable", async ({
@@ -90,6 +116,9 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
+    // The journal defaults to Closed — ADAUSDT is the OPEN one, so it needs Open/All picked first.
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "Open" }).click()
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     await expect(row.getByText("Open", { exact: true })).toBeVisible()
@@ -100,6 +129,9 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
+    // ADAUSDT is OPEN and the journal defaults to Closed — switch to All to see it.
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     // Edit/delete stay off-limits for a bybit-sourced position — notes don't.
@@ -141,8 +173,8 @@ test.describe("Investments — trade journal", () => {
 
   test("the category filter narrows the table server-side", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    // 3 closed (linear/spot/manual) + 1 open linear (ADAUSDT).
-    await expect(page.locator("table tbody tr")).toHaveCount(4)
+    // The journal defaults to Closed: linear/spot/manual (ADAUSDT, the open one, is excluded).
+    await expect(page.locator("table tbody tr")).toHaveCount(3)
 
     await page
       .locator("label")
@@ -156,7 +188,8 @@ test.describe("Investments — trade journal", () => {
 
   test("the status filter narrows the table server-side", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    await expect(page.locator("table tbody tr")).toHaveCount(4)
+    // Defaults to Closed (3 positions) — ADAUSDT (OPEN) only shows up once Open/All is picked.
+    await expect(page.locator("table tbody tr")).toHaveCount(3)
 
     await page.getByPlaceholder("Status").click()
     await page.getByRole("option", { name: "Open" }).click()
@@ -167,6 +200,13 @@ test.describe("Investments — trade journal", () => {
     await page.getByRole("option", { name: "Closed" }).click()
     await expect(page.locator("table tbody tr")).toHaveCount(3)
     await expect(page.getByText("ADAUSDT")).toHaveCount(0)
+  })
+
+  test("the journal defaults to the Closed status filter on first load", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+    await expect(page.getByPlaceholder("Status")).toHaveValue("Closed")
   })
 
   test("filters persist in the URL across a reload", async ({ authedPage: page }) => {

@@ -1,10 +1,14 @@
 import { createPositionNote, deletePositionNote, updatePositionNote } from "@api/investing"
 import type { Position } from "@appTypes/investing"
+import { positionDirection } from "@appTypes/investing"
+import { CategoryBadge } from "@components/investments/CategoryBadge"
+import { formatUsd } from "@components/investments/format"
 import { investingKeys } from "@constants/queries/investing"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
   ActionIcon,
   Anchor,
+  Badge,
   Button,
   Group,
   Paper,
@@ -81,8 +85,42 @@ export function PositionNotes({ position }: Props) {
     create.mutate()
   }
 
+  const long = positionDirection(position) === "long"
+
   return (
     <Stack gap="md">
+      {/* Which trade this is — the modal only carries the symbol in its title, and with
+          several positions on the same pair (scale-ins, re-entries) that alone doesn't
+          say which one you're annotating. */}
+      <Paper withBorder p="sm" bg="var(--mantine-color-default)">
+        <Group gap={6} mb={4}>
+          <Badge variant="light" color={long ? "green" : "red"} size="sm">
+            {t(long ? "investments.pos_long" : "investments.pos_short")}
+          </Badge>
+          <CategoryBadge category={position.category} />
+          {position.status === "OPEN" && (
+            <Badge variant="light" color="green" size="sm">
+              {t("investments.pos_status_open")}
+            </Badge>
+          )}
+        </Group>
+        <Text size="sm" ff="monospace">
+          {formatUsd(position.avgEntryPrice, i18n.language)} →{" "}
+          {position.avgExitPrice == null
+            ? t("investments.pos_in_trade")
+            : formatUsd(position.avgExitPrice, i18n.language)}
+        </Text>
+        <Text size="xs" c="dimmed">
+          {position.openedAt ? format(position.openedAt, "d MMM yyyy", { locale }) : "—"}
+          {" → "}
+          {position.closedAt
+            ? format(position.closedAt, "d MMM yyyy", { locale })
+            : t("investments.pos_in_trade")}
+          {" · "}
+          {formatUsd(position.entryVolumeUsd, i18n.language)}
+        </Text>
+      </Paper>
+
       {position.notes.length === 0 ? (
         <Text size="sm" c="dimmed">
           {t("investments.note_empty")}

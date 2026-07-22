@@ -79,6 +79,7 @@ body {
   background-color: var(--mantine-color-body);
   box-shadow: -6px 0 6px -6px rgba(0, 0, 0, 0.25);
 }
-tr:hover .pinned-col {
+/* Body rows only — the header row has no hover state and shouldn't tint its pinned cell. */
+tbody tr:hover .pinned-col {
   background-color: var(--table-hover-color);
 }

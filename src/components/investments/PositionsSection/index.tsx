@@ -1,4 +1,5 @@
 import {
+  getEquityCurve,
   getPositions,
   getPositionsSummary,
   type PositionsParams,
@@ -12,6 +13,7 @@ import {
   positionRoi,
   unleveragedQty,
 } from "@appTypes/investing"
+import { CategoryBadge } from "@components/investments/CategoryBadge"
 import { DeletePositionConfirm } from "@components/investments/DeletePositionConfirm"
 import { EquityCurve } from "@components/investments/EquityCurve"
 import {
@@ -59,12 +61,12 @@ import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import {
   IconEdit,
-  IconInfoCircle,
   IconNotes,
   IconPlus,
   IconRefresh,
   IconSearch,
   IconTrash,
+  IconX,
 } from "@tabler/icons-react"
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { format } from "date-fns"
@@ -78,12 +80,6 @@ interface Props {
 
 /** "all" means the param is omitted — every other value is a real `category` filter on the API. */
 type CategoryFilter = "all" | "linear" | "spot" | "manual"
-
-const CATEGORY_BADGE: Record<string, { color: string; key: string }> = {
-  linear: { color: "blue", key: "investments.cat_linear" },
-  spot: { color: "teal", key: "investments.cat_spot" },
-  manual: { color: "gray", key: "investments.cat_manual" },
-}
 
 /**
  * Trade journal: closed positions synced from the exchange + manual entries.
@@ -130,7 +126,7 @@ export function PositionsSection({ accounts }: Props) {
     accountId: urlParams.accountId,
     from: urlParams.from ? new Date(urlParams.from) : undefined,
     to: urlParams.to ? new Date(urlParams.to) : undefined,
-    status: urlParams.status,
+    status: urlParams.status === "all" ? undefined : urlParams.status,
     category: urlParams.category === "all" ? undefined : urlParams.category,
   }
   const params: PositionsParams = {
@@ -167,6 +163,21 @@ export function PositionsSection({ accounts }: Props) {
     ? Math.round(((summaryData?.winCount ?? 0) / closedCount) * 100)
     : null
 
+  // Same allowlist EquityCurve builds for itself (symbol/account/category, no date range/status —
+  // the endpoint always covers full closed history) — an identical params object means React
+  // Query dedupes this against the curve's own request instead of firing a second one. Only
+  // used for its earliest entry, to caption the "all time" KPI with the actual start date.
+  const chartParams: PositionsParams = {
+    symbol: filterParams.symbol,
+    accountId: filterParams.accountId,
+    category: filterParams.category,
+  }
+  const { data: equityData } = useQuery({
+    queryKey: investingKeys.equityCurve(chartParams),
+    queryFn: () => getEquityCurve(chartParams),
+  })
+  const earliestClosedAt = equityData?.items[0]?.closedAt
+
   // Page summary (bottom row, next to pagination) — over just the rows shown on this page,
   // same idea as the transactions table's footer. Open trades have no closedPnl yet, so
   // they're excluded from the PnL/winrate math (they still count toward "trades" below).
@@ -188,7 +199,11 @@ export function PositionsSection({ accounts }: Props) {
           ? t("investments.kpi_period_to", {
               date: format(new Date(range[1]), "d MMM yyyy", { locale }),
             })
-          : t("investments.kpi_period_all")
+          : earliestClosedAt
+            ? t("investments.kpi_period_all_since", {
+                date: format(earliestClosedAt, "d MMM yyyy", { locale }),
+              })
+            : t("investments.kpi_period_all")
 
   const openCreate = () =>
     open({
@@ -254,7 +269,22 @@ export function PositionsSection({ accounts }: Props) {
     (range[0] || range[1] ? 1 : 0) +
     (urlParams.accountId ? 1 : 0) +
     (urlParams.category !== "all" ? 1 : 0) +
-    (urlParams.status ? 1 : 0)
+    (urlParams.status !== "all" ? 1 : 0)
+
+  // Back to the schema defaults — status included, so this also restores the default
+  // "Closed" view rather than clearing it to "All".
+  const resetFilters = () => {
+    setSymbolInput("")
+    setParams({
+      symbol: undefined,
+      accountId: undefined,
+      from: undefined,
+      to: undefined,
+      status: undefined,
+      category: "all",
+      page: 1,
+    })
+  }
 
   // `vertical` stacks the controls full-width for the drawer; the row layout keeps the fixed
   // widths used on desktop. Same split as TransactionsFilters' `controls(vertical)`.
@@ -306,10 +336,8 @@ export function PositionsSection({ accounts }: Props) {
           { value: "OPEN", label: t("investments.pos_status_open") },
           { value: "CLOSED", label: t("investments.pos_status_closed") },
         ]}
-        value={urlParams.status ?? "all"}
-        onChange={(v) =>
-          setParams({ status: v === "all" ? undefined : (v as "OPEN" | "CLOSED"), page: 1 })
-        }
+        value={urlParams.status}
+        onChange={(v) => v && setParams({ status: v as "all" | "OPEN" | "CLOSED", page: 1 })}
       />
       <SegmentedControl
         size={vertical ? "sm" : "xs"}
@@ -323,6 +351,17 @@ export function PositionsSection({ accounts }: Props) {
           { value: "manual", label: t("investments.cat_manual") },
         ]}
       />
+      <Tooltip label={t("common.reset")}>
+        <ActionIcon
+          variant="light"
+          color="red"
+          size="lg"
+          aria-label={t("common.reset")}
+          onClick={resetFilters}
+        >
+          <IconX size={16} />
+        </ActionIcon>
+      </Tooltip>
     </>
   )
 
@@ -358,10 +397,6 @@ export function PositionsSection({ accounts }: Props) {
       />
 
       <EquityCurve params={filterParams} />
-
-      <Alert color="blue" variant="light" icon={<IconInfoCircle size={16} />}>
-        {t("investments.pos_journal_intro")}
-      </Alert>
 
       <Paper>
         <Group
@@ -457,7 +492,9 @@ export function PositionsSection({ accounts }: Props) {
                   <Table.Th>{t("investments.col_opened_at")}</Table.Th>
                   <Table.Th>{t("investments.col_closed_at")}</Table.Th>
                   <Table.Th ta="right">{t("investments.col_days")}</Table.Th>
-                  <Table.Th w={122} className="pinned-col" />
+                  <Table.Th w={122} ta="right" className="pinned-col">
+                    {t("investments.col_actions")}
+                  </Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -685,38 +722,6 @@ export function PositionsSection({ accounts }: Props) {
         )}
       </Paper>
     </Stack>
-  )
-}
-
-/**
- * linear = futures, spot = assembled by the backend from buys/sells (FIFO — a sell
- * closes the oldest buys, the entry price is volume-weighted, hence the tooltip),
- * manual = entered by the user. Unknown future categories fall back to a plain badge.
- */
-function CategoryBadge({ category }: { category: string }) {
-  const { t } = useTranslation()
-  const badge = CATEGORY_BADGE[category]
-
-  if (!badge) {
-    return (
-      <Badge variant="light" color="gray" size="sm" tt="none">
-        {category}
-      </Badge>
-    )
-  }
-
-  const element = (
-    <Badge variant="light" color={badge.color} size="sm">
-      {t(badge.key)}
-    </Badge>
-  )
-
-  if (category !== "spot") return element
-
-  return (
-    <Tooltip label={t("investments.spot_fifo_hint")} multiline maw={320}>
-      {element}
-    </Tooltip>
   )
 }
 
