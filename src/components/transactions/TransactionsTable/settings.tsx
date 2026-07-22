@@ -1,5 +1,5 @@
 import type { Transaction, TransactionsSummary, TransactionType } from "@appTypes/transaction"
-import { Center, Group, Text } from "@mantine/core"
+import { Center, Group, Text, Tooltip } from "@mantine/core"
 import { IconTag } from "@tabler/icons-react"
 import { format, type Locale } from "date-fns"
 import type { TFunction } from "i18next"
@@ -7,6 +7,17 @@ import type { DataTableColumn } from "mantine-datatable"
 import { formatTxAmount } from "../helpers"
 import { TransactionsSummary as SummaryFooter } from "../TransactionsSummary"
 import { RowActions } from "./RowActions"
+
+/** Description cell: truncates with ellipsis and always offers the full text in a tooltip. */
+function DescriptionCell({ description }: { description: string }) {
+  return (
+    <Tooltip label={description} openDelay={300} withinPortal multiline maw={320}>
+      <Text size="sm" truncate>
+        {description}
+      </Text>
+    </Tooltip>
+  )
+}
 
 /**
  * Transactions table columns. The date/amount format depends on the locale and language.
@@ -25,7 +36,8 @@ export function getTransactionColumns(
     {
       accessor: "description",
       title: t("transactions.col_operation"),
-      ellipsis: true,
+      width: 260,
+      render: (t) => <DescriptionCell description={t.description} />,
       // we raise the footer cell above its neighbors (z-index), otherwise their opaque background
       // covers the totals text overflowing to the right; the bottom padding grows the row height
       // so the horizontal scrollbar does not overlap the numbers (totals are anchored to the cell top)
@@ -53,7 +65,7 @@ export function getTransactionColumns(
     {
       accessor: "categoryName",
       title: t("common.category"),
-      width: 190,
+      width: 230,
       render: (t) => {
         if (!t.categoryName)
           return (
@@ -87,7 +99,7 @@ export function getTransactionColumns(
     {
       accessor: "date",
       title: t("transactions.col_date"),
-      width: 130,
+      width: 150,
       render: (t) => (
         <Text size="sm" c="dimmed">
           {format(t.date, "dd MMM yyyy", { locale })}
@@ -97,7 +109,7 @@ export function getTransactionColumns(
     {
       accessor: "amount",
       title: t("transactions.col_amount"),
-      width: 150,
+      width: 170,
       textAlign: "right",
       render: (t) => (
         <Text ff="monospace" size="sm" fw={500} c={t.type === "income" ? "green.5" : "red.5"}>

@@ -1,12 +1,14 @@
 import { deleteContribution, getContributions } from "@api/goals"
-import type { Goal } from "@appTypes/goal"
+import type { Contribution, Goal } from "@appTypes/goal"
+import { ContributionForm } from "@components/goals/ContributionForm"
 import { GOALS_STALE_TIME, goalKeys } from "@constants/queries/goals"
 import { notificationKeys } from "@constants/queries/notifications"
 import { transactionKeys } from "@constants/queries/transactions"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import { ActionIcon, Group, Loader, Paper, ScrollArea, Stack, Text } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
-import { IconTrash } from "@tabler/icons-react"
+import { useModalStore } from "@store/modalStore"
+import { IconEdit, IconTrash } from "@tabler/icons-react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { formatCurrency } from "@utils/formatCurrency"
 import { format } from "date-fns"
@@ -17,11 +19,19 @@ interface Props {
   goal: Goal
 }
 
-/** Contribution history for a goal with per-item deletion. Deleting refetches the goal and balance. */
+/** Contribution history for a goal with per-item editing and deletion. Both refetch the goal and balance. */
 export function ContributionsHistory({ goal }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const queryClient = useQueryClient()
+  const open = useModalStore((s) => s.open)
+
+  const openEdit = (contribution: Contribution) =>
+    open({
+      centered: true,
+      title: t("goals.edit_contribution_title"),
+      children: <ContributionForm goal={goal} contribution={contribution} />,
+    })
 
   const { data, isLoading } = useQuery({
     queryKey: goalKeys.contributions(goal.id),
@@ -87,6 +97,15 @@ export function ContributionsHistory({ goal }: Props) {
                     {negative ? "−" : "+"}
                     {formatCurrency(Math.abs(c.amount), i18n.language, goal.currency)}
                   </Text>
+                  <ActionIcon
+                    variant="subtle"
+                    color="gray"
+                    size="sm"
+                    aria-label={t("common.edit")}
+                    onClick={() => openEdit(c)}
+                  >
+                    <IconEdit size={14} />
+                  </ActionIcon>
                   <ActionIcon
                     variant="subtle"
                     color="gray"

@@ -559,6 +559,35 @@ const INVESTING_ACCOUNTS = [
 ]
 
 const INVESTING_POSITIONS = [
+  // OPEN linear position: avgExitPrice/closedPnl/closedAt are null and stay that way until the
+  // backend closes it — sorts first regardless of date, per GET /investing/positions. Carries a
+  // note to exercise the notes list (both bybit and manual positions can have notes).
+  {
+    id: "pos-linear-open",
+    accountId: "acc-bybit-1",
+    source: "bybit",
+    symbol: "ADAUSDT",
+    category: "linear",
+    side: "Sell",
+    qty: "2000",
+    avgEntryPrice: "0.68",
+    avgExitPrice: null,
+    closedPnl: null,
+    leverage: "5",
+    openedAt: "2026-07-18T09:00:00.000Z",
+    closedAt: null,
+    entryVolumeUsd: 272,
+    totalFeeUsd: null,
+    status: "OPEN",
+    notes: [
+      {
+        id: "note-1",
+        body: "Breakout above the range high, entering with a tight stop.",
+        imageUrl: null,
+        createdAt: "2026-07-18T09:05:00.000Z",
+      },
+    ],
+  },
   // linear (futures): openedAt unavailable for this one (opening fills predate synced history) —
   // exercises the graceful "—" fallback for both Opened and Fee; 10x leverage, so entryVolumeUsd
   // (580) is the notional (5800) divided down to capital actually committed.
@@ -578,6 +607,8 @@ const INVESTING_POSITIONS = [
     closedAt: "2026-07-15T14:30:00.000Z",
     entryVolumeUsd: 580,
     totalFeeUsd: null,
+    status: "CLOSED",
+    notes: [],
   },
   // spot: always Long, no leverage (entryVolumeUsd = full notional), openedAt = oldest closed
   // FIFO buy, totalFeeUsd sums the buy + sell fills' fees over the position's life.
@@ -597,6 +628,8 @@ const INVESTING_POSITIONS = [
     closedAt: "2026-07-14T10:00:00.000Z",
     entryVolumeUsd: 2800,
     totalFeeUsd: 2.83,
+    status: "CLOSED",
+    notes: [],
   },
   // manual: user-entered, editable, side Buy → Short. No synced fills → totalFeeUsd is always null.
   {
@@ -615,6 +648,8 @@ const INVESTING_POSITIONS = [
     closedAt: "2026-07-13T18:00:00.000Z",
     entryVolumeUsd: 1600,
     totalFeeUsd: null,
+    status: "CLOSED",
+    notes: [],
   },
 ]
 
@@ -668,19 +703,60 @@ const INVESTING_HOLDINGS = {
   totalValue: 30100,
 }
 
-function paged<T extends { symbol: string; accountId: string | null }>(
-  rows: T[],
-  params: URLSearchParams,
-) {
+function filterPositions<
+  T extends { symbol: string; accountId: string | null; status?: string; category: string },
+>(rows: T[], params: URLSearchParams) {
   const symbol = params.get("symbol")
   const accountId = params.get("accountId")
+  const status = params.get("status")
+  const category = params.get("category")
   let items = rows
   if (symbol) items = items.filter((r) => r.symbol === symbol)
   if (accountId) items = items.filter((r) => r.accountId === accountId)
+  if (status) items = items.filter((r) => r.status === status)
+  if (category) items = items.filter((r) => r.category === category)
+  return items
+}
+
+function paged<
+  T extends { symbol: string; accountId: string | null; status?: string; category: string },
+>(rows: T[], params: URLSearchParams) {
+  const items = filterPositions(rows, params)
   const total = items.length
   const offset = Number(params.get("offset") ?? 0)
   const limit = Number(params.get("limit") ?? 50)
   return { items: items.slice(offset, offset + limit), total }
+}
+
+// Mirrors GET /investing/positions/summary — aggregated over the full filtered set, no
+// limit/offset cap (that's the whole point of the endpoint vs. `paged` above).
+function positionsSummary(rows: typeof INVESTING_POSITIONS, params: URLSearchParams) {
+  const items = filterPositions(rows, params)
+  const closed = items.filter((r) => r.status === "CLOSED")
+  const totalPnl = closed.reduce((s, r) => s + Number(r.closedPnl ?? 0), 0)
+  const winCount = closed.filter((r) => Number(r.closedPnl) > 0).length
+  const lossCount = closed.filter((r) => Number(r.closedPnl) < 0).length
+  return {
+    totalPnl: round2(totalPnl),
+    openCount: items.length - closed.length,
+    closedCount: closed.length,
+    winCount,
+    lossCount,
+    breakevenCount: closed.length - winCount - lossCount,
+  }
+}
+
+// Mirrors GET /investing/positions/equity-curve — every closed position matching the filters,
+// sorted by closedAt ascending, no limit/offset cap; status is always forced to CLOSED.
+function equityCurve(rows: typeof INVESTING_POSITIONS, params: URLSearchParams) {
+  const closed = filterPositions(rows, params).filter(
+    (r): r is typeof r & { closedAt: string; closedPnl: string } =>
+      r.status === "CLOSED" && r.closedAt != null,
+  )
+  const sorted = [...closed].sort(
+    (a, b) => new Date(a.closedAt).getTime() - new Date(b.closedAt).getTime(),
+  )
+  return { items: sorted.map((r) => ({ closedAt: r.closedAt, closedPnl: r.closedPnl })) }
 }
 
 export function getStub(url: string, method: string): unknown {
@@ -697,6 +773,8 @@ export function getStub(url: string, method: string): unknown {
   if (path.endsWith("/subscriptions/usage")) return buildUsage()
 
   if (path.endsWith("/investing/accounts")) return INVESTING_ACCOUNTS
+  if (path.endsWith("/investing/positions/summary")) return positionsSummary(INVESTING_POSITIONS, q)
+  if (path.endsWith("/investing/positions/equity-curve")) return equityCurve(INVESTING_POSITIONS, q)
   if (path.endsWith("/investing/positions")) return paged(INVESTING_POSITIONS, q)
   if (path.endsWith("/investing/holdings")) return INVESTING_HOLDINGS
   if (path.endsWith("/transactions/balance")) return buildBalance()

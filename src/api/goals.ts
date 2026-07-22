@@ -71,6 +71,21 @@ export function getContributions(goalId: string) {
   })
 }
 
+export type UpdateContributionPayload = Partial<CreateContributionPayload>
+
+/** Edits a past contribution (amount/note/date) and returns the recomputed goal. */
+export function updateContribution(
+  goalId: string,
+  contributionId: string,
+  payload: UpdateContributionPayload,
+) {
+  return request(`${API_URLS.goals.goals}/${goalId}/contributions/${contributionId}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+    schema: goalSchema,
+  })
+}
+
 export function deleteContribution(goalId: string, contributionId: string) {
   return request(`${API_URLS.goals.goals}/${goalId}/contributions/${contributionId}`, {
     method: HttpMethods.DELETE,

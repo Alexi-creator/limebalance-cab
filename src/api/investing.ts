@@ -1,8 +1,10 @@
 import { request } from "@api/request"
 import {
+  equityCurveResponseSchema,
   exchangeAccountSchema,
   holdingsResponseSchema,
   positionsResponseSchema,
+  positionsSummarySchema,
 } from "@appTypes/investing"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
@@ -57,9 +59,13 @@ export function deleteExchangeAccount(id: string) {
 export interface PositionsParams {
   accountId?: string
   symbol?: string
-  /** Filter by close date, inclusive. */
+  /** Filter by close date, inclusive. Ignored server-side for status=OPEN — open positions
+   *  have no close date to filter on. */
   from?: Date
   to?: Date
+  /** Omitted → both, open pinned on top and closed below by close date (server default). */
+  status?: "OPEN" | "CLOSED"
+  category?: "linear" | "spot" | "manual"
   limit?: number
   offset?: number
 }
@@ -70,6 +76,8 @@ function positionsQuery(params: PositionsParams): string {
   if (params.symbol) q.set("symbol", params.symbol)
   if (params.from) q.set("from", format(params.from, "yyyy-MM-dd"))
   if (params.to) q.set("to", format(params.to, "yyyy-MM-dd"))
+  if (params.status) q.set("status", params.status)
+  if (params.category) q.set("category", params.category)
   if (params.limit != null) q.set("limit", String(params.limit))
   if (params.offset) q.set("offset", String(params.offset))
   return q.size ? `?${q}` : ""
@@ -81,20 +89,40 @@ export function getPositions(params: PositionsParams = {}) {
   })
 }
 
+/** Aggregated over every position matching the filters — no page cap, unlike getPositions. */
+export function getPositionsSummary(params: PositionsParams = {}) {
+  return request(`${API_URLS.investing.positionsSummary}${positionsQuery(params)}`, {
+    schema: positionsSummarySchema,
+  })
+}
+
+/** Every closed position matching the filters (just closedAt/closedPnl) — no page cap, for
+ *  drawing the full equity curve. `status` is ignored server-side: always CLOSED. */
+export function getEquityCurve(params: Omit<PositionsParams, "status" | "limit" | "offset"> = {}) {
+  return request(`${API_URLS.investing.equityCurve}${positionsQuery(params)}`, {
+    schema: equityCurveResponseSchema,
+  })
+}
+
 export interface ManualPositionPayload {
   symbol: string
   direction: "long" | "short"
   qty: number
   entryPrice: number
-  exitPrice: number
+  /** Omitted together with closedAt → the trade is logged as still OPEN. Either both are
+   *  present or neither is — the backend rejects a payload with just one of them (400). */
+  exitPrice?: number
   /** ISO timestamp. */
-  closedAt: string
+  closedAt?: string
   openedAt?: string
   leverage?: number
   /** Where the trade happened — MEXC, an exchanger… */
   venue?: string
   /** Omitted → the backend computes it from the prices. */
   closedPnl?: number
+  /** POST only — creates the position's first note. Ignored on PATCH. */
+  note?: string
+  noteImageUrl?: string
 }
 
 export function createManualPosition(payload: ManualPositionPayload) {
@@ -104,7 +132,8 @@ export function createManualPosition(payload: ManualPositionPayload) {
   })
 }
 
-/** Only source=manual — the backend rejects edits of exchange positions with 400. */
+/** Only source=manual — the backend rejects edits of exchange positions with 400. Patching in
+ *  exitPrice + closedAt on a still-OPEN position closes it (the backend flips its status). */
 export function updateManualPosition(id: string, payload: Partial<ManualPositionPayload>) {
   return request(`${API_URLS.investing.positions}/${id}`, {
     method: HttpMethods.PATCH,
@@ -114,6 +143,37 @@ export function updateManualPosition(id: string, payload: Partial<ManualPosition
 
 export function deleteManualPosition(id: string) {
   return request(`${API_URLS.investing.positions}/${id}`, { method: HttpMethods.DELETE })
+}
+
+// ── position notes (any source, open or closed) ────────────────────────────────
+
+export interface PositionNotePayload {
+  body: string
+  imageUrl?: string
+}
+
+export function createPositionNote(positionId: string, payload: PositionNotePayload) {
+  return request(`${API_URLS.investing.positions}/${positionId}/notes`, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+  })
+}
+
+export function updatePositionNote(
+  positionId: string,
+  noteId: string,
+  payload: Partial<PositionNotePayload>,
+) {
+  return request(`${API_URLS.investing.positions}/${positionId}/notes/${noteId}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+  })
+}
+
+export function deletePositionNote(positionId: string, noteId: string) {
+  return request(`${API_URLS.investing.positions}/${positionId}/notes/${noteId}`, {
+    method: HttpMethods.DELETE,
+  })
 }
 
 // ── holdings (portfolio) ───────────────────────────────────────────────────────

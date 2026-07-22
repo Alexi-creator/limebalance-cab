@@ -1,5 +1,5 @@
-import { createContribution } from "@api/goals"
-import type { Goal } from "@appTypes/goal"
+import { createContribution, updateContribution } from "@api/goals"
+import type { Contribution, Goal } from "@appTypes/goal"
 import { CloseGoalConfirm } from "@components/goals/CloseGoalConfirm"
 import { goalKeys } from "@constants/queries/goals"
 import { notificationKeys } from "@constants/queries/notifications"
@@ -25,44 +25,63 @@ import { useTranslation } from "react-i18next"
 
 interface Props {
   goal: Goal
-  /** Which tab is selected when the form opens. Defaults to "deposit". */
+  /** Which tab is selected when the form opens. Defaults to "deposit". Ignored when editing. */
   initialMode?: "deposit" | "withdraw"
+  /** When set, PATCHes this past contribution instead of creating a new one. */
+  contribution?: Contribution
 }
 
 /**
- * Deposit into / withdraw from a goal. A withdrawal is the same endpoint with a negative amount.
+ * Deposit into / withdraw from a goal, or (when `contribution` is passed) edit a past one.
+ * A withdrawal is the same endpoint/payload shape with a negative amount.
  * On success the goals list, balance (money is reserved/released) and notifications (a deposit may
  * complete the goal) are invalidated.
  */
-export function ContributionForm({ goal, initialMode = "deposit" }: Props) {
+export function ContributionForm({ goal, initialMode = "deposit", contribution }: Props) {
   const { t, i18n } = useTranslation()
   const queryClient = useQueryClient()
   const open = useModalStore((s) => s.open)
   const close = useModalStore((s) => s.close)
 
-  const [mode, setMode] = useState<"deposit" | "withdraw">(initialMode)
-  const [amount, setAmount] = useState<number | string>("")
-  const [note, setNote] = useState("")
-  const [day, setDay] = useState<string | null>(format(new Date(), "yyyy-MM-dd"))
+  const [mode, setMode] = useState<"deposit" | "withdraw">(
+    contribution ? (contribution.amount < 0 ? "withdraw" : "deposit") : initialMode,
+  )
+  const [amount, setAmount] = useState<number | string>(
+    contribution ? Math.abs(contribution.amount) : "",
+  )
+  const [note, setNote] = useState(contribution?.note ?? "")
+  const [day, setDay] = useState<string | null>(
+    contribution ? format(contribution.date, "yyyy-MM-dd") : format(new Date(), "yyyy-MM-dd"),
+  )
 
-  // Deposit can't exceed what's left to reach the target; withdrawal can't exceed what's saved.
-  const maxAmount = mode === "deposit" ? goal.remaining : goal.currentAmount
+  // The amount being edited already counts towards currentAmount/remaining, so it's added back
+  // before checking the new value against the target/balance — otherwise editing a contribution
+  // close to the target (or a large withdrawal) would be clamped tighter than it should be.
+  const editedAmount = contribution?.amount ?? 0
+  const maxFor = (m: "deposit" | "withdraw") =>
+    m === "deposit"
+      ? Math.max(goal.remaining + editedAmount, 0)
+      : Math.max(goal.currentAmount - editedAmount, 0)
+  const maxAmount = maxFor(mode)
 
   const switchMode = (v: string) => {
     const next = v as "deposit" | "withdraw"
     setMode(next)
-    const nextMax = next === "deposit" ? goal.remaining : goal.currentAmount
+    const nextMax = maxFor(next)
     if (Number(amount) > nextMax) setAmount(nextMax || "")
   }
 
   const mutation = useMutation({
     mutationFn: () => {
       const value = Number(amount)
-      return createContribution(goal.id, {
+      const payload = {
         amount: mode === "withdraw" ? -value : value,
         note: note.trim() || undefined,
         date: day ?? undefined,
-      })
+      }
+      return contribution
+        ? updateContribution(goal.id, contribution.id, payload)
+        : createContribution(goal.id, payload)
     },
     onSuccess: (updatedGoal) => {
       queryClient.invalidateQueries({ queryKey: goalKeys.all })
@@ -71,7 +90,11 @@ export function ContributionForm({ goal, initialMode = "deposit" }: Props) {
       queryClient.invalidateQueries({ queryKey: notificationKeys.all })
       notifications.show({
         color: "green",
-        message: mode === "withdraw" ? t("goals.withdraw_success") : t("goals.deposit_success"),
+        message: contribution
+          ? t("goals.contribution_updated")
+          : mode === "withdraw"
+            ? t("goals.withdraw_success")
+            : t("goals.deposit_success"),
       })
       // A deposit that just reached the target: offer to close (archive) the goal right away.
       if (mode === "deposit" && !goal.isCompleted && updatedGoal.isCompleted) {
@@ -83,6 +106,9 @@ export function ContributionForm({ goal, initialMode = "deposit" }: Props) {
         return
       }
       close()
+    },
+    onError: (err) => {
+      notifications.show({ color: "red", message: err.message })
     },
   })
 
@@ -174,7 +200,11 @@ export function ContributionForm({ goal, initialMode = "deposit" }: Props) {
             loading={mutation.isPending}
             disabled={maxAmount <= 0}
           >
-            {mode === "withdraw" ? t("goals.withdraw") : t("goals.deposit_action")}
+            {contribution
+              ? t("common.save")
+              : mode === "withdraw"
+                ? t("goals.withdraw")
+                : t("goals.deposit_action")}
           </Button>
         </Group>
       </Stack>

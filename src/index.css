@@ -64,3 +64,21 @@ body {
 .mantine-datatable-footer-selector-placeholder-cell[data-shadow-visible]::after {
   display: none;
 }
+
+/*
+ * Pinned last column for plain mantine `Table`s (mantine-datatable's `pinLastColumn`
+ * isn't available there). Opaque background so the scrolling columns don't show through,
+ * plus a left shadow as the pinned-edge cue (same idea as mantine-datatable's own).
+ * `--table-hover-color` is the same CSS variable Table's `highlightOnHover` sets on the
+ * row — reading it here keeps the pinned cell in sync with the row's hover state.
+ */
+.pinned-col {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background-color: var(--mantine-color-body);
+  box-shadow: -6px 0 6px -6px rgba(0, 0, 0, 0.25);
+}
+tr:hover .pinned-col {
+  background-color: var(--table-hover-color);
+}

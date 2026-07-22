@@ -58,6 +58,9 @@ export function AccountsSection({ accounts, isLoading }: Props) {
       notifications.show({ color: "green", message: t("investments.acc_sync_success") })
     },
     onError: (err) => {
+      // A failed manual sync still persists lastError/status on the account (same as a failed
+      // background sync) — refetch so the row's error tooltip picks it up.
+      queryClient.invalidateQueries({ queryKey: investingKeys.all })
       notifications.show({ color: "red", message: err.message })
     },
   })

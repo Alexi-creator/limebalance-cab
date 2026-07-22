@@ -17,6 +17,15 @@ export function formatPnl(value: number, locale: string): string {
   return value >= 0 ? `+${formatted}` : `−${formatted}`
 }
 
+/** Signed ROI, e.g. "+12.40%" / "−3.05%" — same sign convention as formatPnl. */
+export function formatPct(value: number, locale: string): string {
+  const formatted = new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Math.abs(value))
+  return value >= 0 ? `+${formatted}%` : `−${formatted}%`
+}
+
 /** Quantity / amount without a currency symbol; up to 8 decimals for small coins. */
 export function formatQty(value: number, locale: string): string {
   return new Intl.NumberFormat(locale, { maximumFractionDigits: 8 }).format(value)

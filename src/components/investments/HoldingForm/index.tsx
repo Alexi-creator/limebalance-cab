@@ -1,7 +1,7 @@
 import { createHolding, type HoldingPayload, updateHolding } from "@api/investing"
 import type { Holding } from "@appTypes/investing"
 import { investingKeys } from "@constants/queries/investing"
-import { Button, Group, NumberInput, Stack, Textarea, TextInput } from "@mantine/core"
+import { Button, Group, NumberInput, Stack, Text, Textarea, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -88,15 +88,19 @@ export function HoldingForm({ holding }: Props) {
         </Group>
 
         <Group grow align="flex-start">
-          <NumberInput
-            label={t("investments.hold_avg_buy_price")}
-            description={t("investments.hold_avg_buy_price_hint")}
-            value={avgBuyPrice}
-            onChange={setAvgBuyPrice}
-            min={0}
-            decimalScale={8}
-            prefix="$"
-          />
+          <Stack gap={4}>
+            <NumberInput
+              label={t("investments.hold_avg_buy_price")}
+              value={avgBuyPrice}
+              onChange={setAvgBuyPrice}
+              min={0}
+              decimalScale={8}
+              prefix="$"
+            />
+            <Text size="xs" c="dimmed">
+              {t("investments.hold_avg_buy_price_hint")}
+            </Text>
+          </Stack>
           <TextInput
             label={t("investments.hold_location")}
             placeholder={t("investments.hold_location_placeholder")}

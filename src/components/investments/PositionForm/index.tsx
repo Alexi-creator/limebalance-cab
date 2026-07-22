@@ -3,9 +3,19 @@ import {
   type ManualPositionPayload,
   updateManualPosition,
 } from "@api/investing"
-import { type ClosedPosition, positionDirection } from "@appTypes/investing"
+import { type Position, positionDirection } from "@appTypes/investing"
 import { investingKeys } from "@constants/queries/investing"
-import { Button, Group, NumberInput, SegmentedControl, Stack, Text, TextInput } from "@mantine/core"
+import {
+  Button,
+  Checkbox,
+  Group,
+  NumberInput,
+  SegmentedControl,
+  Stack,
+  Text,
+  Textarea,
+  TextInput,
+} from "@mantine/core"
 import { DateTimePicker } from "@mantine/dates"
 import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
@@ -23,7 +33,7 @@ const PICKER_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
 interface Props {
   /** When set (must be source=manual) the form edits it, otherwise creates a new entry. */
-  position?: ClosedPosition
+  position?: Position
 }
 
 type Direction = "long" | "short"
@@ -54,14 +64,25 @@ export function PositionForm({ position }: Props) {
   const [exitPrice, setExitPrice] = useState<number | string>(position?.avgExitPrice ?? "")
   const [leverage, setLeverage] = useState<number | string>(position?.leverage ?? "")
   const [venue, setVenue] = useState("")
+  // Editing an OPEN position starts with no closedAt to fill in — "now" is only a sensible
+  // default once the user actually decides to close it (unchecks stillOpen below).
   const [closedAt, setClosedAt] = useState<string | null>(
-    format(position?.closedAt ?? new Date(), PICKER_FORMAT),
+    position?.closedAt
+      ? format(position.closedAt, PICKER_FORMAT)
+      : format(new Date(), PICKER_FORMAT),
   )
   const [openedAt, setOpenedAt] = useState<string | null>(
     position?.openedAt ? format(position.openedAt, PICKER_FORMAT) : null,
   )
   const [pnl, setPnl] = useState<number | string>("")
   const [pnlTouched, setPnlTouched] = useState(false)
+  // Exit price / closed at / PnL only apply once the trade is closed — checked by default for a
+  // new entry (the common case: logging a completed trade) and mirrors the position's own status
+  // when editing. Unchecking it on an OPEN position and filling in exit + closed at closes it —
+  // the backend flips the status itself (see updateManualPosition).
+  const [stillOpen, setStillOpen] = useState(position ? position.status === "OPEN" : false)
+  const [note, setNote] = useState("")
+  const [noteImageUrl, setNoteImageUrl] = useState("")
 
   const autoPnl =
     Number(qty) > 0 && Number(entryPrice) > 0 && Number(exitPrice) > 0
@@ -71,19 +92,23 @@ export function PositionForm({ position }: Props) {
 
   const mutation = useMutation({
     mutationFn: () => {
-      if (!closedAt) return Promise.reject(new Error("closedAt is required"))
       const payload: ManualPositionPayload = {
         symbol: symbol.trim().toUpperCase(),
         direction,
         qty: Number(qty),
         entryPrice: Number(entryPrice),
-        exitPrice: Number(exitPrice),
-        closedAt: pickerValueToIso(closedAt),
+        // Omitted together → the trade stays (or becomes) OPEN; the backend rejects one
+        // without the other.
+        exitPrice: stillOpen ? undefined : Number(exitPrice),
+        closedAt: stillOpen || !closedAt ? undefined : pickerValueToIso(closedAt),
         openedAt: openedAt ? pickerValueToIso(openedAt) : undefined,
         leverage: Number(leverage) > 0 ? Number(leverage) : undefined,
         venue: venue.trim() || undefined,
         // Untouched → let the backend compute it from the prices.
-        closedPnl: pnlTouched && pnl !== "" ? Number(pnl) : undefined,
+        closedPnl: !stillOpen && pnlTouched && pnl !== "" ? Number(pnl) : undefined,
+        // The backend only accepts these on create — a first note for the new position.
+        note: !position && note.trim() ? note.trim() : undefined,
+        noteImageUrl: !position && noteImageUrl.trim() ? noteImageUrl.trim() : undefined,
       }
       return position ? updateManualPosition(position.id, payload) : createManualPosition(payload)
     },
@@ -104,8 +129,7 @@ export function PositionForm({ position }: Props) {
     symbol.trim().length > 0 &&
     Number(qty) > 0 &&
     Number(entryPrice) > 0 &&
-    Number(exitPrice) > 0 &&
-    closedAt !== null
+    (stillOpen || (Number(exitPrice) > 0 && closedAt !== null))
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -174,16 +198,24 @@ export function PositionForm({ position }: Props) {
             decimalScale={8}
             prefix="$"
           />
-          <NumberInput
-            label={t("investments.pos_exit")}
-            required
-            value={exitPrice}
-            onChange={setExitPrice}
-            min={0}
-            decimalScale={8}
-            prefix="$"
-          />
+          {!stillOpen && (
+            <NumberInput
+              label={t("investments.pos_exit")}
+              required
+              value={exitPrice}
+              onChange={setExitPrice}
+              min={0}
+              decimalScale={8}
+              prefix="$"
+            />
+          )}
         </Group>
+
+        <Checkbox
+          label={t("investments.pos_still_open")}
+          checked={stillOpen}
+          onChange={(e) => setStillOpen(e.currentTarget.checked)}
+        />
 
         <Group grow align="flex-start">
           <DateTimePicker
@@ -193,41 +225,67 @@ export function PositionForm({ position }: Props) {
             clearable
             valueFormat="DD MMM YYYY HH:mm"
           />
-          <DateTimePicker
-            label={t("investments.pos_closed_at")}
-            required
-            value={closedAt}
-            onChange={setClosedAt}
-            valueFormat="DD MMM YYYY HH:mm"
-          />
+          {!stillOpen && (
+            <DateTimePicker
+              label={t("investments.pos_closed_at")}
+              required
+              value={closedAt}
+              onChange={setClosedAt}
+              valueFormat="DD MMM YYYY HH:mm"
+            />
+          )}
         </Group>
 
-        <Stack gap={4}>
-          <NumberInput
-            label={t("investments.pos_pnl")}
-            description={t("investments.pos_pnl_hint")}
-            value={pnlValue}
-            onChange={(v) => {
-              setPnlTouched(true)
-              setPnl(v)
-            }}
-            decimalScale={2}
-            prefix="$"
-          />
-          {pnlTouched && (
-            <Button
-              variant="light"
-              size="compact-xs"
-              w="fit-content"
-              onClick={() => {
-                setPnlTouched(false)
-                setPnl("")
+        {!stillOpen && (
+          <Stack gap={4}>
+            <NumberInput
+              label={t("investments.pos_pnl")}
+              value={pnlValue}
+              onChange={(v) => {
+                setPnlTouched(true)
+                setPnl(v)
               }}
-            >
-              {t("investments.pos_pnl_reset")}
-            </Button>
-          )}
-        </Stack>
+              decimalScale={2}
+              prefix="$"
+            />
+            <Text size="xs" c="dimmed">
+              {t("investments.pos_pnl_hint")}
+            </Text>
+            {pnlTouched && (
+              <Button
+                variant="light"
+                size="compact-xs"
+                w="fit-content"
+                onClick={() => {
+                  setPnlTouched(false)
+                  setPnl("")
+                }}
+              >
+                {t("investments.pos_pnl_reset")}
+              </Button>
+            )}
+          </Stack>
+        )}
+
+        {!position && (
+          <Stack gap="xs">
+            <Textarea
+              label={t("investments.pos_note")}
+              placeholder={t("investments.pos_note_placeholder")}
+              value={note}
+              onChange={(e) => setNote(e.currentTarget.value)}
+              autosize
+              minRows={2}
+              maxLength={2000}
+            />
+            <TextInput
+              label={t("investments.pos_note_image")}
+              placeholder="https://…"
+              value={noteImageUrl}
+              onChange={(e) => setNoteImageUrl(e.currentTarget.value)}
+            />
+          </Stack>
+        )}
 
         {position && (
           <Text size="xs" c="dimmed">

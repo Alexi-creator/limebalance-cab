@@ -1,5 +1,5 @@
 import { deleteManualPosition } from "@api/investing"
-import { type ClosedPosition, positionDirection } from "@appTypes/investing"
+import { type Position, positionDirection } from "@appTypes/investing"
 import { investingKeys } from "@constants/queries/investing"
 import { Badge, Button, Group, Paper, Stack, Text } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next"
 
 interface Props {
   /** Only source=manual — the backend rejects deleting exchange positions. */
-  position: ClosedPosition
+  position: Position
 }
 
 export function DeletePositionConfirm({ position }: Props) {
@@ -44,7 +44,8 @@ export function DeletePositionConfirm({ position }: Props) {
             {t(long ? "investments.pos_long" : "investments.pos_short")}
           </Badge>
           <Text ff="monospace" size="sm" c="dimmed">
-            {position.avgEntryPrice} → {position.avgExitPrice}
+            {position.avgEntryPrice} →{" "}
+            {position.avgExitPrice == null ? t("investments.pos_in_trade") : position.avgExitPrice}
           </Text>
         </Group>
       </Paper>

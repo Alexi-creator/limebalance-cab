@@ -3,9 +3,9 @@ import { expect, test } from "./fixtures"
 
 /**
  * Investing section against the stubbed /api/investing/* endpoints (see
- * src/api/stubs.ts — one bybit account, three positions: linear/spot/manual,
- * holdings with a missing price and a missing buy price).
- * All copy asserted here is the English fallback.
+ * src/api/stubs.ts — one bybit account, four positions: an OPEN linear (ADAUSDT, with a
+ * note) plus three CLOSED ones (linear/spot/manual), holdings with a missing price and a
+ * missing buy price). All copy asserted here is the English fallback.
  */
 
 const path = (url: URL, suffix: string) => url.pathname.endsWith(suffix)
@@ -74,21 +74,75 @@ test.describe("Investments — trade journal", () => {
     await expect(feeCell(rows.filter({ hasText: "ETHUSDT" }))).toHaveText("—")
   })
 
-  test("edit and delete are only offered on manual positions", async ({ authedPage: page }) => {
+  test("edit and delete are only enabled on manual positions", async ({ authedPage: page }) => {
     await gotoInvestments(page)
 
     const rows = page.locator("table tbody tr")
     await expect(
       rows.filter({ hasText: "ETHUSDT" }).getByRole("button", { name: "Edit" }),
-    ).toBeVisible()
+    ).toBeEnabled()
     await expect(
       rows.filter({ hasText: "BTCUSDT" }).getByRole("button", { name: "Edit" }),
-    ).toHaveCount(0)
+    ).toBeDisabled()
   })
 
-  test("the category filter narrows the table client-side", async ({ authedPage: page }) => {
+  test("an OPEN position shows a status badge and dashes where PnL/ROI/Closed would be", async ({
+    authedPage: page,
+  }) => {
     await gotoInvestments(page)
-    await expect(page.locator("table tbody tr")).toHaveCount(3)
+
+    const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
+    await expect(row.getByText("Open", { exact: true })).toBeVisible()
+    await expect(row.getByText("still open")).toBeVisible()
+  })
+
+  test("notes are available on every position, including bybit ones", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+
+    const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
+    // Edit/delete stay off-limits for a bybit-sourced position — notes don't.
+    await expect(row.getByRole("button", { name: "Edit" })).toBeDisabled()
+    const notesButton = row.getByRole("button", { name: /Notes/ })
+    await expect(notesButton).toBeEnabled()
+    await notesButton.click()
+
+    const dialog = page.getByRole("dialog")
+    await expect(dialog.getByText("Breakout above the range high", { exact: false })).toBeVisible()
+
+    // The stub doesn't persist mutations — the field clearing on success is the observable signal.
+    const noteField = dialog.getByLabel("Note")
+    await noteField.fill("Added context")
+    await dialog.getByRole("button", { name: "Add note" }).click()
+    await expect(noteField).toHaveValue("")
+  })
+
+  test("logging a trade as still open hides exit price, closed at and PnL", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+    await page.getByRole("button", { name: "Add trade" }).click()
+
+    const dialog = page.getByRole("dialog")
+    await expect(dialog.getByLabel("Exit price")).toBeVisible()
+
+    await dialog.getByLabel("Trade is still open").check()
+    await expect(dialog.getByLabel("Exit price")).toHaveCount(0)
+    await expect(dialog.getByLabel(/Closed at/)).toHaveCount(0)
+    await expect(dialog.getByLabel(/PnL/)).toHaveCount(0)
+
+    await dialog.getByLabel("Pair").fill("XRPUSDT")
+    await dialog.getByLabel("Quantity").fill("100")
+    await dialog.getByLabel("Entry price").fill("0.5")
+    await dialog.getByRole("button", { name: "Save" }).click()
+    await expect(page.getByText("Trade added")).toBeVisible()
+  })
+
+  test("the category filter narrows the table server-side", async ({ authedPage: page }) => {
+    await gotoInvestments(page)
+    // 3 closed (linear/spot/manual) + 1 open linear (ADAUSDT).
+    await expect(page.locator("table tbody tr")).toHaveCount(4)
 
     await page
       .locator("label")
@@ -98,6 +152,34 @@ test.describe("Investments — trade journal", () => {
     await expect(page.locator("table tbody tr")).toHaveCount(1)
     await expect(page.getByText("SOLUSDT")).toBeVisible()
     await expect(page.getByText("BTCUSDT")).toHaveCount(0)
+  })
+
+  test("the status filter narrows the table server-side", async ({ authedPage: page }) => {
+    await gotoInvestments(page)
+    await expect(page.locator("table tbody tr")).toHaveCount(4)
+
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "Open" }).click()
+    await expect(page.locator("table tbody tr")).toHaveCount(1)
+    await expect(page.getByText("ADAUSDT")).toBeVisible()
+
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "Closed" }).click()
+    await expect(page.locator("table tbody tr")).toHaveCount(3)
+    await expect(page.getByText("ADAUSDT")).toHaveCount(0)
+  })
+
+  test("filters persist in the URL across a reload", async ({ authedPage: page }) => {
+    await gotoInvestments(page)
+
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "Open" }).click()
+    await expect(page).toHaveURL(/status=OPEN/)
+
+    await page.reload()
+    await expect(page.getByRole("heading", { name: "Investments and crypto" })).toBeVisible()
+    await expect(page.locator("table tbody tr")).toHaveCount(1)
+    await expect(page.getByText("ADAUSDT")).toBeVisible()
   })
 
   test("draws the equity curve; a filter leaving one trade hides it", async ({

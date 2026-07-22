@@ -4,3 +4,14 @@
 [data-mantine-color-scheme="light"] .periodControl {
   background-color: var(--mantine-color-gray-3);
 }
+
+/* The date filter's default border/background nearly match the page background in dark mode
+   (both near-black) — this control sits directly on the page, unlike other date pickers that
+   live inside a Paper card whose lighter background gives the same border enough contrast.
+   Dark bg + a bright primary-color border reads as a distinct field without competing with the
+   page's other (neutral gray) borders. Light theme keeps the default, which already reads fine
+   against the white page. */
+[data-mantine-color-scheme="dark"] .periodPicker {
+  background-color: var(--mantine-color-dark-6);
+  border-color: var(--mantine-primary-color-filled);
+}

@@ -51,6 +51,8 @@ export function AnalyticsPage() {
           <DatePickerInput
             type="range"
             size="sm"
+            classNames={{ input: classes.periodPicker }}
+            label={t("transactions.period")}
             placeholder={t("transactions.date_range_placeholder")}
             valueFormat="D MMM YYYY"
             value={[params.from ?? null, params.to ?? null]}

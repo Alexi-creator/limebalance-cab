@@ -1,4 +1,4 @@
-import { getPositions, type PositionsParams } from "@api/investing"
+import { getEquityCurve, type PositionsParams } from "@api/investing"
 import { formatPnl, formatUsd, pnlColor } from "@components/investments/format"
 import { INCOME_COLOR } from "@constants/chartColors"
 import { investingKeys } from "@constants/queries/investing"
@@ -12,11 +12,10 @@ import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 interface Props {
-  /** Journal filters (symbol/account); the chart re-fetches with the max page size. Period
-   *  (from/to) is intentionally not passed through — the curve always covers full history. */
-  params: Omit<PositionsParams, "from" | "to">
-  /** Client-side category filter, same as the table ("all" = no filter). */
-  category: string
+  /** Journal filters (symbol/account/category) — period (from/to) is intentionally not passed
+   *  through, the curve always covers full history; status is irrelevant, the API always
+   *  scopes this endpoint to closed positions. */
+  params: Pick<PositionsParams, "symbol" | "accountId" | "category">
 }
 
 /** Chart geometry (viewBox height and inner padding); width follows the container. */
@@ -39,37 +38,34 @@ interface EquityPoint {
 /**
  * Equity curve: cumulative closedPnl over closed trades, oldest → newest,
  * x-spaced by trade sequence (not calendar time — trades are unevenly spaced).
- * Until GET /investing/stat lands, it is built client-side from the journal
- * selection capped at the API's max page (200 most recent trades).
+ * Built from GET /investing/positions/equity-curve — every closed position matching the
+ * filters, already sorted by closedAt ascending, no page cap.
  */
-export function EquityCurve({ params, category }: Props) {
+export function EquityCurve({ params }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const { ref, width } = useElementSize()
   const [hovered, setHovered] = useState<number | null>(null)
 
   // Explicit allowlist, not a spread of `params` — the caller's object may still carry
-  // from/to at runtime even though the Props type omits them; the curve must ignore them.
+  // from/to/status at runtime even though the Props type omits them; the curve must ignore them.
   const chartParams: PositionsParams = {
     symbol: params.symbol,
     accountId: params.accountId,
-    limit: 200,
-    offset: 0,
+    category: params.category,
   }
   const { data } = useQuery({
-    queryKey: investingKeys.positions(chartParams),
-    queryFn: () => getPositions(chartParams),
+    queryKey: investingKeys.equityCurve(chartParams),
+    queryFn: () => getEquityCurve(chartParams),
   })
 
   const points = useMemo<EquityPoint[]>(() => {
-    const items = (data?.items ?? []).filter((p) => category === "all" || p.category === category)
-    const sorted = [...items].sort((a, b) => a.closedAt.getTime() - b.closedAt.getTime())
     let equity = 0
-    return sorted.map((p) => {
+    return (data?.items ?? []).map((p) => {
       equity += p.closedPnl
       return { date: p.closedAt, equity, pnl: p.closedPnl }
     })
-  }, [data, category])
+  }, [data])
 
   // A curve needs at least two closed trades; below that the KPI row says it all.
   if (points.length < 2) return null

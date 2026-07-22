@@ -5,6 +5,10 @@ export const investingKeys = {
   accounts: ["investing", "accounts"] as const,
   positions: (params: PositionsParams) => ["investing", "positions", params] as const,
   allPositions: ["investing", "positions"] as const,
+  positionsSummary: (params: PositionsParams) =>
+    ["investing", "positions", "summary", params] as const,
+  equityCurve: (params: PositionsParams) =>
+    ["investing", "positions", "equity-curve", params] as const,
   holdings: ["investing", "holdings"] as const,
 }
 

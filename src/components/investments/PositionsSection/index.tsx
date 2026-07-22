@@ -1,18 +1,36 @@
-import { getPositions, type PositionsParams } from "@api/investing"
 import {
-  type ClosedPosition,
+  getPositions,
+  getPositionsSummary,
+  type PositionsParams,
+  syncExchangeAccount,
+} from "@api/investing"
+import {
   type ExchangeAccount,
   holdingDays,
+  type Position,
   positionDirection,
+  positionRoi,
   unleveragedQty,
 } from "@appTypes/investing"
 import { DeletePositionConfirm } from "@components/investments/DeletePositionConfirm"
 import { EquityCurve } from "@components/investments/EquityCurve"
-import { formatPnl, formatQty, formatUsd, pnlColor } from "@components/investments/format"
+import {
+  formatPct,
+  formatPnl,
+  formatQty,
+  formatUsd,
+  pnlColor,
+} from "@components/investments/format"
 import { PositionForm } from "@components/investments/PositionForm"
+import { PositionNotes } from "@components/investments/PositionNotes"
+import {
+  POSITIONS_PAGE_SIZE_OPTIONS,
+  positionsParamsSchema,
+} from "@components/investments/PositionsSection/config"
 import { MobileFilterSheet } from "@components/MobileFilterSheet"
 import { StickyScrollbarX } from "@components/StickyScrollbarX"
 import { investingKeys } from "@constants/queries/investing"
+import { useUrlParams } from "@hooks/useUrlParams"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
   ActionIcon,
@@ -37,26 +55,28 @@ import {
 } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue, useMediaQuery } from "@mantine/hooks"
+import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
-import { IconEdit, IconInfoCircle, IconPlus, IconSearch, IconTrash } from "@tabler/icons-react"
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import {
+  IconEdit,
+  IconInfoCircle,
+  IconNotes,
+  IconPlus,
+  IconRefresh,
+  IconSearch,
+  IconTrash,
+} from "@tabler/icons-react"
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 
-const PAGE_SIZE_OPTIONS = ["20", "50", "100"]
-const DEFAULT_PAGE_SIZE = 20
-// Cap for the top KPI row's own fetch (independent of the table's pagination) — the API's max
-// page size. Until GET /investing/stat lands, "the whole filtered period" means "up to 200 of
-// its most recent trades"; kpiCapped below flags when that actually clips the true total.
-const STATS_MAX = 200
-
 interface Props {
   accounts: ExchangeAccount[]
 }
 
-/** Client-side category filter — the API has no category param yet. */
+/** "all" means the param is omitted — every other value is a real `category` filter on the API. */
 type CategoryFilter = "all" | "linear" | "spot" | "manual"
 
 const CATEGORY_BADGE: Record<string, { color: string; key: string }> = {
@@ -68,13 +88,14 @@ const CATEGORY_BADGE: Record<string, { color: string; key: string }> = {
 /**
  * Trade journal: closed positions synced from the exchange + manual entries.
  * Manual rows are editable; bybit rows aren't (owned by the exchange sync).
- * The KPI row is computed on the client over the loaded page for now — to be
- * replaced with GET /investing/stat once it lands on the backend.
+ * The KPI row (PnL/winrate/trades) comes entirely from GET /investing/positions/summary —
+ * aggregated server-side over the whole filtered history, not just the visible page.
  */
 export function PositionsSection({ accounts }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const open = useModalStore((s) => s.open)
+  const queryClient = useQueryClient()
   const theme = useMantineTheme()
   // Below `md` the filter controls don't fit in a row — they move into a bottom drawer,
   // same pattern as the transactions table (see MobileFilterSheet).
@@ -86,30 +107,36 @@ export function PositionsSection({ accounts }: Props) {
   // happens — a plain ref object doesn't change identity when `.current` changes later.
   const [tableScrollEl, setTableScrollEl] = useState<HTMLDivElement | null>(null)
 
-  const [symbol, setSymbol] = useState("")
-  const [debouncedSymbol] = useDebouncedValue(symbol, 400)
-  const [accountId, setAccountId] = useState<string | null>(null)
-  const [range, setRange] = useState<[string | null, string | null]>([null, null])
-  const [category, setCategory] = useState<CategoryFilter>("all")
-  const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
+  // Filters/pagination live in the URL (like the transactions table) so a reload or a shared
+  // link keeps the same view — see PositionsSection/config.ts.
+  const [urlParams, setParams] = useUrlParams(positionsParamsSchema)
 
-  // Any filter change restarts from the first page.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reset only on filter changes
+  const [symbolInput, setSymbolInput] = useState(urlParams.symbol ?? "")
+  const [debouncedSymbol] = useDebouncedValue(symbolInput, 400)
+
+  // debounced search → URL; comparison against urlParams.symbol is required: setParams'
+  // identity changes on every URL update, and without this check the effect would re-run
+  // on page change and reset it back to 1 — same guard as TransactionsFilters' search.
   useEffect(() => {
-    setPage(1)
-  }, [debouncedSymbol, accountId, range[0], range[1], category, pageSize])
+    const next = debouncedSymbol.trim().toUpperCase() || undefined
+    if (next === urlParams.symbol) return
+    setParams({ symbol: next, page: 1 })
+  }, [debouncedSymbol, urlParams.symbol, setParams])
+
+  const range: [string | null, string | null] = [urlParams.from ?? null, urlParams.to ?? null]
 
   const filterParams: PositionsParams = {
-    symbol: debouncedSymbol.trim().toUpperCase() || undefined,
-    accountId: accountId ?? undefined,
-    from: range[0] ? new Date(range[0]) : undefined,
-    to: range[1] ? new Date(range[1]) : undefined,
+    symbol: urlParams.symbol,
+    accountId: urlParams.accountId,
+    from: urlParams.from ? new Date(urlParams.from) : undefined,
+    to: urlParams.to ? new Date(urlParams.to) : undefined,
+    status: urlParams.status,
+    category: urlParams.category === "all" ? undefined : urlParams.category,
   }
   const params: PositionsParams = {
     ...filterParams,
-    limit: pageSize,
-    offset: (page - 1) * pageSize,
+    limit: urlParams.limit,
+    offset: (urlParams.page - 1) * urlParams.limit,
   }
 
   const { data, isLoading, error } = useQuery({
@@ -117,40 +144,33 @@ export function PositionsSection({ accounts }: Props) {
     queryFn: () => getPositions(params),
     placeholderData: keepPreviousData,
   })
-
-  const allItems = data?.items ?? []
   const total = data?.total ?? 0
-  const totalPages = Math.ceil(total / pageSize)
+  const totalPages = Math.ceil(total / urlParams.limit)
+  const items = data?.items ?? []
 
-  // The category filter is client-side over the loaded page (no server param yet).
-  const items = category === "all" ? allItems : allItems.filter((p) => p.category === category)
-
-  // Page summary (bottom row, next to pagination) — over just the rows shown on this page,
-  // same idea as the transactions table's footer.
-  const pageTotalPnl = items.reduce((s, p) => s + p.closedPnl, 0)
-  const pageWins = items.filter((p) => p.closedPnl > 0).length
-  const pageWinrate = items.length ? Math.round((pageWins / items.length) * 100) : null
-
-  // Top KPI row — over the whole current filter selection (symbol/account/period), not just
-  // the visible page. A separate, unpaginated fetch capped at the API's max page size; true
-  // aggregation is still pending a backend GET /investing/stat.
-  const statsParams: PositionsParams = { ...filterParams, limit: STATS_MAX, offset: 0 }
-  const { data: statsData } = useQuery({
-    queryKey: investingKeys.positions(statsParams),
-    queryFn: () => getPositions(statsParams),
+  // Top KPI row — over the whole current filter selection (symbol/account/period/category),
+  // not just the visible page. Aggregated server-side, no page cap.
+  const { data: summaryData } = useQuery({
+    queryKey: investingKeys.positionsSummary(filterParams),
+    queryFn: () => getPositionsSummary(filterParams),
     placeholderData: keepPreviousData,
   })
-  const statsAllItems = statsData?.items ?? []
-  const statsTotal = statsData?.total ?? 0
-  const statsItems =
-    category === "all" ? statsAllItems : statsAllItems.filter((p) => p.category === category)
-  const totalPnl = statsItems.reduce((s, p) => s + p.closedPnl, 0)
-  const wins = statsItems.filter((p) => p.closedPnl > 0).length
-  const winrate = statsItems.length ? Math.round((wins / statsItems.length) * 100) : null
-  const tradesCount = category === "all" ? statsTotal : statsItems.length
-  // Only linear/spot/manual mixed under "all" can exceed the cap in practice; flag it rather
-  // than silently under-counting.
-  const kpiCapped = statsTotal > STATS_MAX
+  const closedCount = summaryData?.closedCount ?? 0
+  const totalPnl = summaryData?.totalPnl ?? 0
+  const tradesCount = total
+  const winrate = closedCount
+    ? Math.round(((summaryData?.winCount ?? 0) / closedCount) * 100)
+    : null
+
+  // Page summary (bottom row, next to pagination) — over just the rows shown on this page,
+  // same idea as the transactions table's footer. Open trades have no closedPnl yet, so
+  // they're excluded from the PnL/winrate math (they still count toward "trades" below).
+  const pageClosedItems = items.filter((p) => p.status === "CLOSED")
+  const pageTotalPnl = pageClosedItems.reduce((s, p) => s + (p.closedPnl ?? 0), 0)
+  const pageWins = pageClosedItems.filter((p) => (p.closedPnl ?? 0) > 0).length
+  const pageWinrate = pageClosedItems.length
+    ? Math.round((pageWins / pageClosedItems.length) * 100)
+    : null
 
   const pnlCaption =
     range[0] && range[1]
@@ -173,7 +193,7 @@ export function PositionsSection({ accounts }: Props) {
       children: <PositionForm />,
     })
 
-  const openEdit = (position: ClosedPosition) =>
+  const openEdit = (position: Position) =>
     open({
       size: "lg",
       centered: true,
@@ -181,12 +201,44 @@ export function PositionsSection({ accounts }: Props) {
       children: <PositionForm position={position} />,
     })
 
-  const openDelete = (position: ClosedPosition) =>
+  const openDelete = (position: Position) =>
     open({
       centered: true,
       title: t("investments.pos_delete_title"),
       children: <DeletePositionConfirm position={position} />,
     })
+
+  // Available on every position — bybit or manual, open or closed — unlike edit/delete.
+  const openNotes = (position: Position) =>
+    open({
+      size: "lg",
+      centered: true,
+      title: t("investments.note_title", { symbol: position.symbol }),
+      children: <PositionNotes position={position} />,
+    })
+
+  // Manual re-sync from the journal itself — the filtered account if one is selected,
+  // otherwise every connected account. Same call as the "Sync now" button on the
+  // Exchange accounts tab; invalidating "investing" also refreshes the table below.
+  const syncMutation = useMutation({
+    mutationFn: async () => {
+      const targets = urlParams.accountId
+        ? accounts.filter((a) => a.id === urlParams.accountId)
+        : accounts
+      await Promise.all(targets.map((a) => syncExchangeAccount(a.id)))
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: investingKeys.all })
+      notifications.show({ color: "green", message: t("investments.acc_sync_success") })
+    },
+    onError: (err) => {
+      // Same reasoning as AccountsSection's sync mutation: a failed manual sync still persists
+      // lastError/status on the account, so refetch to pick it up (also surfaces any accounts
+      // that did sync before the one that failed, when re-syncing all of them at once).
+      queryClient.invalidateQueries({ queryKey: investingKeys.all })
+      notifications.show({ color: "red", message: err.message })
+    },
+  })
 
   const accountOptions = accounts.map((a) => ({ value: a.id, label: a.label }))
   const accountById = new Map(accounts.map((a) => [a.id, a]))
@@ -195,8 +247,9 @@ export function PositionsSection({ accounts }: Props) {
   const activeFilterCount =
     (debouncedSymbol ? 1 : 0) +
     (range[0] || range[1] ? 1 : 0) +
-    (accountId ? 1 : 0) +
-    (category !== "all" ? 1 : 0)
+    (urlParams.accountId ? 1 : 0) +
+    (urlParams.category !== "all" ? 1 : 0) +
+    (urlParams.status ? 1 : 0)
 
   // `vertical` stacks the controls full-width for the drawer; the row layout keeps the fixed
   // widths used on desktop. Same split as TransactionsFilters' `controls(vertical)`.
@@ -204,21 +257,24 @@ export function PositionsSection({ accounts }: Props) {
     <>
       <TextInput
         size={vertical ? "sm" : "xs"}
-        label={vertical ? t("investments.col_symbol") : undefined}
+        label={t("investments.col_symbol")}
         w={vertical ? "100%" : 140}
         placeholder="BTCUSDT"
         leftSection={<IconSearch size={14} />}
-        value={symbol}
-        onChange={(e) => setSymbol(e.currentTarget.value)}
+        value={symbolInput}
+        onChange={(e) => setSymbolInput(e.currentTarget.value)}
       />
       <DatePickerInput
         size={vertical ? "sm" : "xs"}
         w={vertical ? "100%" : 220}
         type="range"
+        label={t("investments.filter_period")}
         clearable
         placeholder={t("investments.filter_period")}
         value={range}
-        onChange={setRange}
+        onChange={([from, to]) =>
+          setParams({ from: from ?? undefined, to: to ?? undefined, page: 1 })
+        }
         locale={i18n.language}
         valueFormat="DD MMM YYYY"
       />
@@ -226,18 +282,35 @@ export function PositionsSection({ accounts }: Props) {
         <Select
           size={vertical ? "sm" : "xs"}
           w={vertical ? "100%" : 160}
+          label={t("investments.filter_account")}
           clearable
           placeholder={t("investments.filter_account")}
           data={accountOptions}
-          value={accountId}
-          onChange={setAccountId}
+          value={urlParams.accountId ?? null}
+          onChange={(v) => setParams({ accountId: v ?? undefined, page: 1 })}
         />
       )}
+      <Select
+        size={vertical ? "sm" : "xs"}
+        w={vertical ? "100%" : 140}
+        label={t("investments.filter_status")}
+        placeholder={t("investments.filter_status")}
+        allowDeselect={false}
+        data={[
+          { value: "all", label: t("common.all") },
+          { value: "OPEN", label: t("investments.pos_status_open") },
+          { value: "CLOSED", label: t("investments.pos_status_closed") },
+        ]}
+        value={urlParams.status ?? "all"}
+        onChange={(v) =>
+          setParams({ status: v === "all" ? undefined : (v as "OPEN" | "CLOSED"), page: 1 })
+        }
+      />
       <SegmentedControl
         size={vertical ? "sm" : "xs"}
         fullWidth={vertical}
-        value={category}
-        onChange={(v) => setCategory(v as CategoryFilter)}
+        value={urlParams.category}
+        onChange={(v) => setParams({ category: v as CategoryFilter, page: 1 })}
         data={[
           { value: "all", label: t("common.all") },
           { value: "linear", label: t("investments.cat_linear") },
@@ -248,11 +321,8 @@ export function PositionsSection({ accounts }: Props) {
     </>
   )
 
-  const pnlValue = statsItems.length ? formatPnl(totalPnl, i18n.language) : "—"
-  const pnlKpiColor = statsItems.length ? pnlColor(totalPnl) : undefined
-  const pnlFullCaption = kpiCapped
-    ? `${pnlCaption} · ${t("investments.kpi_capped", { max: STATS_MAX })}`
-    : pnlCaption
+  const pnlValue = closedCount ? formatPnl(totalPnl, i18n.language) : "—"
+  const pnlKpiColor = closedCount ? pnlColor(totalPnl) : undefined
 
   return (
     // Below `md`, the filter drawer's handle is fixed to the viewport edge — reserve space
@@ -266,7 +336,7 @@ export function PositionsSection({ accounts }: Props) {
           label={t("investments.kpi_pnl")}
           value={pnlValue}
           color={pnlKpiColor}
-          caption={pnlFullCaption}
+          caption={pnlCaption}
         />
         <Kpi label={t("investments.kpi_winrate")} value={winrate === null ? "—" : `${winrate}%`} />
         <Kpi label={t("investments.kpi_trades")} value={String(tradesCount)} />
@@ -279,10 +349,10 @@ export function PositionsSection({ accounts }: Props) {
         winrateValue={winrate === null ? "—" : `${winrate}%`}
         tradesLabel={t("investments.kpi_trades")}
         tradesValue={String(tradesCount)}
-        caption={pnlFullCaption}
+        caption={pnlCaption}
       />
 
-      <EquityCurve params={filterParams} category={category} />
+      <EquityCurve params={filterParams} />
 
       <Alert color="blue" variant="light" icon={<IconInfoCircle size={16} />}>
         {t("investments.pos_journal_intro")}
@@ -304,9 +374,24 @@ export function PositionsSection({ accounts }: Props) {
             // Filters live in the bottom drawer below `md` — only the primary action stays here.
             <span />
           )}
-          <Button size="xs" leftSection={<IconPlus size={14} />} onClick={openCreate}>
-            {t("investments.pos_add")}
-          </Button>
+          <Group gap="xs" wrap="nowrap">
+            {accounts.length > 0 && (
+              <Tooltip label={t("investments.acc_sync_now")}>
+                <ActionIcon
+                  variant="default"
+                  size="lg"
+                  aria-label={t("investments.acc_sync_now")}
+                  loading={syncMutation.isPending}
+                  onClick={() => syncMutation.mutate()}
+                >
+                  <IconRefresh size={16} />
+                </ActionIcon>
+              </Tooltip>
+            )}
+            <Button size="xs" leftSection={<IconPlus size={14} />} onClick={openCreate}>
+              {t("investments.pos_add")}
+            </Button>
+          </Group>
         </Group>
 
         {!isDesktop && (
@@ -353,16 +438,18 @@ export function PositionsSection({ accounts }: Props) {
                   </Table.Th>
                   <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
                   <Table.Th ta="right">PnL</Table.Th>
+                  <Table.Th ta="right">ROI, %</Table.Th>
                   <Table.Th>{t("investments.col_account")}</Table.Th>
                   <Table.Th>{t("investments.col_opened_at")}</Table.Th>
                   <Table.Th>{t("investments.col_closed_at")}</Table.Th>
                   <Table.Th ta="right">{t("investments.col_days")}</Table.Th>
-                  <Table.Th w={90} />
+                  <Table.Th w={122} className="pinned-col" />
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
                 {items.map((p) => {
                   const long = positionDirection(p) === "long"
+                  const roi = positionRoi(p)
                   return (
                     <Table.Tr key={p.id}>
                       <Table.Td>
@@ -376,6 +463,11 @@ export function PositionsSection({ accounts }: Props) {
                             {t(long ? "investments.pos_long" : "investments.pos_short")}
                           </Badge>
                           <CategoryBadge category={p.category} />
+                          {p.status === "OPEN" && (
+                            <Badge variant="light" color="green" size="sm">
+                              {t("investments.pos_status_open")}
+                            </Badge>
+                          )}
                         </Group>
                       </Table.Td>
                       <Table.Td ta="right">
@@ -386,7 +478,9 @@ export function PositionsSection({ accounts }: Props) {
                       <Table.Td ta="center">
                         <Text ff="monospace" size="sm" c="dimmed" style={{ whiteSpace: "nowrap" }}>
                           {formatUsd(p.avgEntryPrice, i18n.language)} →{" "}
-                          {formatUsd(p.avgExitPrice, i18n.language)}
+                          {p.avgExitPrice == null
+                            ? t("investments.pos_in_trade")
+                            : formatUsd(p.avgExitPrice, i18n.language)}
                         </Text>
                       </Table.Td>
                       <Table.Td ta="right">
@@ -411,9 +505,26 @@ export function PositionsSection({ accounts }: Props) {
                         </Text>
                       </Table.Td>
                       <Table.Td ta="right">
-                        <Text ff="monospace" size="sm" fw={500} c={pnlColor(p.closedPnl)}>
-                          {formatPnl(p.closedPnl, i18n.language)}
-                        </Text>
+                        {p.closedPnl == null ? (
+                          <Text size="sm" c="dimmed">
+                            —
+                          </Text>
+                        ) : (
+                          <Text ff="monospace" size="sm" fw={500} c={pnlColor(p.closedPnl)}>
+                            {formatPnl(p.closedPnl, i18n.language)}
+                          </Text>
+                        )}
+                      </Table.Td>
+                      <Table.Td ta="right">
+                        {roi == null ? (
+                          <Text size="sm" c="dimmed">
+                            —
+                          </Text>
+                        ) : (
+                          <Text ff="monospace" size="sm" fw={500} c={pnlColor(roi)}>
+                            {formatPct(roi, i18n.language)}
+                          </Text>
+                        )}
                       </Table.Td>
                       <Table.Td>
                         {p.accountId && accountById.get(p.accountId) ? (
@@ -438,12 +549,17 @@ export function PositionsSection({ accounts }: Props) {
                           c={p.openedAt ? undefined : "dimmed"}
                           style={{ whiteSpace: "nowrap" }}
                         >
-                          {p.openedAt ? format(p.openedAt, "d MMM yyyy HH:mm", { locale }) : "—"}
+                          {p.openedAt ? format(p.openedAt, "d MMM yyyy", { locale }) : "—"}
                         </Text>
                       </Table.Td>
                       <Table.Td>
-                        <Text ff="monospace" size="sm" style={{ whiteSpace: "nowrap" }}>
-                          {format(p.closedAt, "d MMM yyyy HH:mm", { locale })}
+                        <Text
+                          ff="monospace"
+                          size="sm"
+                          c={p.closedAt ? undefined : "dimmed"}
+                          style={{ whiteSpace: "nowrap" }}
+                        >
+                          {p.closedAt ? format(p.closedAt, "d MMM yyyy", { locale }) : "—"}
                         </Text>
                       </Table.Td>
                       <Table.Td ta="right">
@@ -451,33 +567,44 @@ export function PositionsSection({ accounts }: Props) {
                           {holdingDays(p) === null ? "—" : holdingDays(p)}
                         </Text>
                       </Table.Td>
-                      <Table.Td>
-                        {p.source === "manual" && (
-                          <Group gap={4} justify="flex-end" wrap="nowrap">
-                            <Tooltip label={t("common.change")}>
-                              <ActionIcon
-                                variant="subtle"
-                                size="sm"
-                                color="gray"
-                                aria-label={t("common.change")}
-                                onClick={() => openEdit(p)}
-                              >
-                                <IconEdit size={14} />
-                              </ActionIcon>
-                            </Tooltip>
-                            <Tooltip label={t("common.delete")}>
-                              <ActionIcon
-                                variant="subtle"
-                                size="sm"
-                                color="gray"
-                                aria-label={t("common.delete")}
-                                onClick={() => openDelete(p)}
-                              >
-                                <IconTrash size={14} />
-                              </ActionIcon>
-                            </Tooltip>
-                          </Group>
-                        )}
+                      <Table.Td className="pinned-col">
+                        <Group gap={4} justify="flex-end" wrap="nowrap">
+                          <Tooltip label={t("investments.note_title", { symbol: p.symbol })}>
+                            <ActionIcon
+                              variant="subtle"
+                              size="sm"
+                              color={p.notes.length > 0 ? "blue" : "gray"}
+                              aria-label={t("investments.note_title", { symbol: p.symbol })}
+                              onClick={() => openNotes(p)}
+                            >
+                              <IconNotes size={14} />
+                            </ActionIcon>
+                          </Tooltip>
+                          <Tooltip label={t("common.change")}>
+                            <ActionIcon
+                              variant="subtle"
+                              size="sm"
+                              color={p.source === "manual" ? "blue" : "gray"}
+                              aria-label={t("common.change")}
+                              disabled={p.source !== "manual"}
+                              onClick={() => openEdit(p)}
+                            >
+                              <IconEdit size={14} />
+                            </ActionIcon>
+                          </Tooltip>
+                          <Tooltip label={t("common.delete")}>
+                            <ActionIcon
+                              variant="subtle"
+                              size="sm"
+                              color={p.source === "manual" ? "red" : "gray"}
+                              aria-label={t("common.delete")}
+                              disabled={p.source !== "manual"}
+                              onClick={() => openDelete(p)}
+                            >
+                              <IconTrash size={14} />
+                            </ActionIcon>
+                          </Tooltip>
+                        </Group>
                       </Table.Td>
                     </Table.Tr>
                   )
@@ -500,9 +627,9 @@ export function PositionsSection({ accounts }: Props) {
                 size="xs"
                 w={140}
                 label={t("investments.pos_page_size")}
-                data={PAGE_SIZE_OPTIONS}
-                value={String(pageSize)}
-                onChange={(v) => v && setPageSize(Number(v))}
+                data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
+                value={String(urlParams.limit)}
+                onChange={(v) => v && setParams({ limit: Number(v), page: 1 })}
                 allowDeselect={false}
                 checkIconPosition="right"
                 comboboxProps={{ width: 80 }}
@@ -533,7 +660,12 @@ export function PositionsSection({ accounts }: Props) {
               )}
             </Group>
             {totalPages > 1 && (
-              <Pagination size="sm" total={totalPages} value={page} onChange={setPage} />
+              <Pagination
+                size="sm"
+                total={totalPages}
+                value={urlParams.page}
+                onChange={(page) => setParams({ page })}
+              />
             )}
           </Group>
         )}

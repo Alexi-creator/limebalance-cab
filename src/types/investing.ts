@@ -27,7 +27,14 @@ export const exchangeAccountSchema = z.object({
   readOnly: z.boolean().optional(),
 })
 
-export const closedPositionSchema = z.object({
+export const positionNoteSchema = z.object({
+  id: z.string(),
+  body: z.string(),
+  imageUrl: z.string().nullable(),
+  createdAt: z.coerce.date(),
+})
+
+export const positionSchema = z.object({
   id: z.string(),
   /** null for manual entries. */
   accountId: z.string().nullable(),
@@ -39,25 +46,52 @@ export const closedPositionSchema = z.object({
   side: z.enum(["Sell", "Buy"]),
   qty: decimal(),
   avgEntryPrice: decimal(),
-  avgExitPrice: decimal(),
-  /** USDT; exchange positions include fees. */
-  closedPnl: decimal(),
+  /** null while the position is still OPEN. */
+  avgExitPrice: nullableDecimal(),
+  /** USDT; exchange positions include fees. null while OPEN. */
+  closedPnl: nullableDecimal(),
   /** Always null for spot. */
   leverage: nullableDecimal(),
   /** Spot/manual: exact. Linear: derived from fills by FIFO — null when the opening fills
    *  predate the synced history. */
   openedAt: nullableDate(),
-  closedAt: z.coerce.date(),
+  /** null while the position is still OPEN. */
+  closedAt: nullableDate(),
   /** (qty × avgEntryPrice) / leverage — capital actually committed, in USDT; 1x for spot/manual. */
   entryVolumeUsd: z.number(),
   /** Every fee (trading + funding) over the position's life, signed as Bybit reports it
    *  (positive = paid, negative = rebate). Null for manual entries and undated linear ones. */
   totalFeeUsd: z.number().nullable(),
+  status: z.enum(["OPEN", "CLOSED"]),
+  notes: z.array(positionNoteSchema),
 })
 
 export const positionsResponseSchema = z.object({
-  items: z.array(closedPositionSchema),
+  items: z.array(positionSchema),
   total: z.number(),
+})
+
+/** GET /investing/positions/summary — aggregated over the whole filtered history, not just
+ *  one page. Unlike `positionsResponseSchema.items`, this isn't capped at the API's page limit.
+ *  winCount/lossCount/breakevenCount partition closedCount (closedPnl >/</= 0). */
+export const positionsSummarySchema = z.object({
+  totalPnl: decimal(),
+  openCount: z.number(),
+  closedCount: z.number(),
+  winCount: z.number(),
+  lossCount: z.number(),
+  breakevenCount: z.number(),
+})
+
+/** GET /investing/positions/equity-curve — every closed position matching the filters, sorted
+ *  by closedAt ascending, no pagination cap. Just the two fields the curve needs. */
+export const equityCurveResponseSchema = z.object({
+  items: z.array(
+    z.object({
+      closedAt: z.coerce.date(),
+      closedPnl: decimal(),
+    }),
+  ),
 })
 
 export const holdingSchema = z.object({
@@ -85,16 +119,20 @@ export const holdingsResponseSchema = z.object({
 })
 
 export type ExchangeAccount = z.infer<typeof exchangeAccountSchema>
-export type ClosedPosition = z.infer<typeof closedPositionSchema>
+export type PositionNote = z.infer<typeof positionNoteSchema>
+export type Position = z.infer<typeof positionSchema>
 export type PositionsResponse = z.infer<typeof positionsResponseSchema>
+export type PositionsSummary = z.infer<typeof positionsSummarySchema>
+export type EquityCurveResponse = z.infer<typeof equityCurveResponseSchema>
 export type Holding = z.infer<typeof holdingSchema>
 export type HoldingsResponse = z.infer<typeof holdingsResponseSchema>
 
 /**
- * Human-readable direction of a closed position (`side` is the closing order's side).
+ * Human-readable direction of a position (`side` is the closing/current order's side,
+ * same convention whether the position is still OPEN or already CLOSED).
  * Spot has no shorts — a spot position is always a Long regardless of `side`.
  */
-export function positionDirection(position: ClosedPosition): "long" | "short" {
+export function positionDirection(position: Position): "long" | "short" {
   if (position.category === "spot") return "long"
   return position.side === "Sell" ? "long" : "short"
 }
@@ -104,13 +142,21 @@ export function positionDirection(position: ClosedPosition): "long" | "short" {
  * Divided by leverage it's the coin amount the committed capital (entryVolumeUsd) would have
  * bought unleveraged; 1x for spot/manual (no leverage) leaves it unchanged.
  */
-export function unleveragedQty(position: ClosedPosition): number {
+export function unleveragedQty(position: Position): number {
   return position.leverage ? position.qty / position.leverage : position.qty
 }
 
-/** Days held — closedAt minus openedAt. Null when openedAt is unknown (see closedPositionSchema). */
-export function holdingDays(position: ClosedPosition): number | null {
-  if (!position.openedAt) return null
+/** Days held — closedAt minus openedAt. Null when the position is still OPEN, or openedAt
+ *  is unknown (see positionSchema). */
+export function holdingDays(position: Position): number | null {
+  if (!position.openedAt || !position.closedAt) return null
   const ms = position.closedAt.getTime() - position.openedAt.getTime()
   return Math.floor(ms / (24 * 60 * 60 * 1000))
+}
+
+/** closedPnl against the capital actually committed (entryVolumeUsd), as a percentage.
+ *  Null while the position is still OPEN (closedPnl isn't known yet). */
+export function positionRoi(position: Position): number | null {
+  if (position.closedPnl == null || !position.entryVolumeUsd) return null
+  return (position.closedPnl / position.entryVolumeUsd) * 100
 }
