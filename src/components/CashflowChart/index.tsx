@@ -42,7 +42,7 @@ export function CashflowChart() {
   const periodData = PERIODS.map((p) => ({ value: p.value, label: t(p.labelKey) }))
 
   return (
-    <Paper>
+    <Paper data-tour="chart">
       <Group
         justify="space-between"
         p="md"

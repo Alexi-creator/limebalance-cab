@@ -95,7 +95,11 @@
     "currency_not_found": "Nekas nav atrasts",
     "save": "Saglabāt",
     "saved": "Iestatījumi saglabāti",
-    "error": "Neizdevās saglabāt iestatījumus"
+    "error": "Neizdevās saglabāt iestatījumus",
+    "tour_tabs_title": "Vispārīgi, drošība, Telegram",
+    "tour_tabs_desc": "Šeit pārslēdzieties starp profilu, e-pastu/paroli un Telegram iestatījumiem.",
+    "tour_form_title": "Jūsu iestatījumi",
+    "tour_form_desc": "Atjauniniet izvēlētās cilnes iestatījumus šajā formā."
   },
   "app": {
     "name": "LimeBalance"
@@ -186,7 +190,15 @@
     "recent_subtitle_other": "Pēdējie {{count}} darījumi",
     "recent_show_all": "Rādīt visus →",
     "recent_empty": "Vēl nav darījumu",
-    "goals_all": "Visi →"
+    "goals_all": "Visi →",
+    "tour_kpis_title": "Galvenie rādītāji",
+    "tour_kpis_desc": "Jūsu pašreizējais atlikums, ienākumi un izdevumi šajā mēnesī vienā mirklī.",
+    "tour_chart_title": "Naudas plūsmas grafiks",
+    "tour_chart_desc": "Skatiet, kā mainās jūsu ienākumi un izdevumi dienu no dienas.",
+    "tour_goals_title": "Jūsu mērķi",
+    "tour_goals_desc": "Sekojiet līdzi progresam ceļā uz saviem uzkrājumu mērķiem šeit.",
+    "tour_transactions_title": "Nesenie darījumi",
+    "tour_transactions_desc": "Ātra piekļuve jūsu jaunākajiem darījumiem."
   },
   "alerts": {
     "account_needs_email": "Jūs pieteicāties caur Telegram. Pievienojiet iestatījumos e-pastu un paroli, lai nezaudētu piekļuvi kontam.",
@@ -248,7 +260,11 @@
     "categories_selected_other": "{{count}} kategorijas",
     "currencies_selected_zero": "{{count}} valūtu",
     "currencies_selected_one": "{{count}} valūta",
-    "currencies_selected_other": "{{count}} valūtas"
+    "currencies_selected_other": "{{count}} valūtas",
+    "tour_add_title": "Pievienot darījumu",
+    "tour_add_desc": "Jau iestatīts uz ienākumu/izdevumu — pievienojiet to ar vienu klikšķi.",
+    "tour_list_title": "Filtrēšana un meklēšana",
+    "tour_list_desc": "Filtrējiet pēc veida, kategorijas, valūtas vai datuma un meklējiet savus darījumus šeit."
   },
   "categories": {
     "title": "Kategorijas",
@@ -289,7 +305,13 @@
     "count_income_one": "{{count}} ieņēmumu kategorija",
     "count_income_other": "{{count}} ieņēmumu kategorijas",
     "load_error": "Neizdevās ielādēt kategorijas",
-    "empty": "Vēl nav kategoriju"
+    "empty": "Vēl nav kategoriju",
+    "tour_toggle_title": "Izdevumi vai ienākumi",
+    "tour_toggle_desc": "Pārslēdzieties starp izdevumu un ienākumu kategorijām.",
+    "tour_add_title": "Jauna kategorija",
+    "tour_add_desc": "Izveidojiet kategoriju ar savu emocijzīmi un krāsu.",
+    "tour_grid_title": "Jūsu kategorijas",
+    "tour_grid_desc": "Katra karte rāda izdevumu progresu — noklikšķiniet, lai pievienotu darījumu, rediģētu vai dzēstu."
   },
   "analytics": {
     "title": "Analītika",
@@ -317,7 +339,13 @@
     "comparison_title": "Salīdzinājums ar iepriekšējo periodu",
     "comparison_subtitle": "Kur izdevumi mainījās",
     "details_title": "Darījumu detaļas",
-    "details_empty": "Periodā nav darījumu"
+    "details_empty": "Periodā nav darījumu",
+    "tour_period_title": "Izvēlieties periodu",
+    "tour_period_desc": "Pārslēdzieties starp iepriekš iestatītiem periodiem vai izvēlieties pielāgotu datumu diapazonu.",
+    "tour_kpis_title": "Galvenie rādītāji",
+    "tour_kpis_desc": "Uzkrājumi un uzkrājumu likme izvēlētajam periodam.",
+    "tour_charts_title": "Sadalījums un tendences",
+    "tour_charts_desc": "Skatiet, kur iet jūsu nauda pa kategorijām un kas mainījies kopš iepriekšējā perioda."
   },
   "add_modal": {
     "title_transaction": "Jauns darījums",
@@ -406,7 +434,13 @@
     "completed_title": "Mērķis sasniegts!",
     "completed_confirm": "Jūs sasniedzāt šo mērķi. Vai aizvērt to tagad? Uzkrātā nauda atgriežas jūsu brīvajā atlikumā, un iemaksu vēsture tiek saglabāta.",
     "completed_keep": "Atstāt atvērtu",
-    "active_count_zero": "{{count}} aktīvu mērķu"
+    "active_count_zero": "{{count}} aktīvu mērķu",
+    "tour_add_title": "Jauns mērķis",
+    "tour_add_desc": "Iestatiet mērķa summu un termiņu — LimeBalance ieteiks, cik daudz atlicināt katru mēnesi.",
+    "tour_summary_title": "Kopējais progress",
+    "tour_summary_desc": "Kopējie uzkrājumi visos jūsu mērķos un cik daudz vēl atlicis.",
+    "tour_cards_title": "Jūsu mērķi",
+    "tour_cards_desc": "Šeit iemaksājiet, izņemiet vai apskatiet katra mērķa iemaksu vēsturi."
   },
   "investments": {
     "title": "Investīcijas un kriptovalūta",
@@ -538,7 +572,17 @@
     "spot_fifo_hint": "Tūlītējā tirgus pozīcija tiek veidota no pirkumiem un pārdošanas pēc FIFO principa: pārdošana slēdz vecākos pirkumus, ieejas cena ir apjoma svērta, bet atvēršanas datums ir vecākais slēgtais pirkums. Monētas, kas pirktas ārpus Bybit (depozīti), par darījumu nekļūst.",
     "pos_opened_from": "atvērts {{date}}",
     "equity_title": "Kapitāla līkne",
-    "kpi_capped": "pirmās {{max}}"
+    "kpi_capped": "pirmās {{max}}",
+    "tour_tabs_title": "Žurnāls, portfelis, konti",
+    "tour_tabs_desc": "Reģistrējiet darījumus žurnālā, sekojiet līdzi saviem aktīviem portfelī un savienojiet biržas kontus šeit.",
+    "tour_journal_filters_title": "Filtrējiet savus darījumus",
+    "tour_journal_filters_desc": "Filtrējiet pēc simbola, perioda, konta, statusa vai veida — sinhronizējiet tūlīt vai pievienojiet manuālu darījumu no šejienes.",
+    "tour_journal_title": "Tirdzniecības žurnāls",
+    "tour_journal_desc": "Jūsu atvērtās un slēgtās pozīcijas ar PNL, uzvaru procentu un darījumu skaitu.",
+    "tour_portfolio_title": "Portfelis",
+    "tour_portfolio_desc": "Jūsu kriptoaktīvi, novērtēti pēc reāllaika cenām, ar nerealizētu peļņu un zaudējumiem.",
+    "tour_accounts_title": "Biržas konti",
+    "tour_accounts_desc": "Savienojiet un pārvaldiet savus Bybit kontus un palaidiet manuālu sinhronizāciju."
   },
   "telegram": {
     "linked_success": "Telegram savienots",
@@ -595,5 +639,20 @@
     "transactions_soft_other": "Šomēnes atlikušas {{count}} transakcijas. Pēc tam — pārejiet uz Pro.",
     "transactions_blocked": "Sasniegts mēneša transakciju limits. Jauniniet plānu vai gaidiet nākamo mēnesi.",
     "blocked_button_tooltip": "Limits sasniegts — jauniniet plānu"
+  },
+  "tour": {
+    "start": "Rādīt tūri",
+    "hint_title": "Vadīta tūre",
+    "hint_desc": "Noklikšķiniet šeit jebkurā laikā, lai vēlreiz apskatītu īsu šīs lapas tūri.",
+    "next": "Tālāk",
+    "prev": "Atpakaļ",
+    "done": "Gatavs",
+    "progress": "{{current}} no {{total}}",
+    "nav_title": "Navigācija",
+    "nav_desc": "Visas sadaļas ir šeit: darījumi, kategorijas, mērķi, investīcijas un analītika.",
+    "nav_mobile_title": "Izvēlne",
+    "nav_mobile_desc": "Pieskarieties šeit, lai atvērtu navigāciju: darījumi, kategorijas, mērķi, investīcijas un analītika.",
+    "add_title": "Ātrā pievienošana",
+    "add_desc": "Pievienojiet ienākumus, izdevumus vai mērķi ar vienu klikšķi — šī poga ir pieejama jebkurā lapā."
   }
 }

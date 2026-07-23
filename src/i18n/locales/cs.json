@@ -95,7 +95,11 @@
     "currency_not_found": "Nic nenalezeno",
     "save": "Uložit",
     "saved": "Nastavení uloženo",
-    "error": "Nastavení se nepodařilo uložit"
+    "error": "Nastavení se nepodařilo uložit",
+    "tour_tabs_title": "Obecné, zabezpečení, Telegram",
+    "tour_tabs_desc": "Přepínejte zde mezi profilem, e-mailem/heslem a nastavením Telegramu.",
+    "tour_form_title": "Vaše nastavení",
+    "tour_form_desc": "Aktualizujte nastavení vybrané karty v tomto formuláři."
   },
   "app": {
     "name": "LimeBalance"
@@ -186,7 +190,15 @@
     "recent_subtitle_other": "Posledních {{count}} transakcí",
     "recent_show_all": "Zobrazit vše →",
     "recent_empty": "Zatím žádné transakce",
-    "goals_all": "Vše →"
+    "goals_all": "Vše →",
+    "tour_kpis_title": "Klíčová čísla",
+    "tour_kpis_desc": "Váš aktuální zůstatek, příjmy a výdaje za tento měsíc na první pohled.",
+    "tour_chart_title": "Graf peněžních toků",
+    "tour_chart_desc": "Podívejte se, jak se vaše příjmy a výdaje mění den ze dne.",
+    "tour_goals_title": "Vaše cíle",
+    "tour_goals_desc": "Sledujte zde pokrok směrem k vašim spořicím cílům.",
+    "tour_transactions_title": "Poslední transakce",
+    "tour_transactions_desc": "Rychlý přístup k vašim nejnovějším transakcím."
   },
   "alerts": {
     "account_needs_email": "Přihlásili jste se přes Telegram. Přidejte v nastavení e-mail a heslo, abyste neztratili přístup ke svému účtu.",
@@ -248,7 +260,11 @@
     "categories_selected_other": "{{count}} kategorií",
     "currencies_selected_one": "{{count}} měna",
     "currencies_selected_few": "{{count}} měny",
-    "currencies_selected_other": "{{count}} měn"
+    "currencies_selected_other": "{{count}} měn",
+    "tour_add_title": "Přidat transakci",
+    "tour_add_desc": "Typ příjem/výdaj je již nastaven — přidejte jej jedním kliknutím.",
+    "tour_list_title": "Filtrování a hledání",
+    "tour_list_desc": "Filtrujte podle typu, kategorie, měny nebo data a vyhledávejte zde své transakce."
   },
   "categories": {
     "title": "Kategorie",
@@ -289,7 +305,13 @@
     "count_income_few": "{{count}} kategorie příjmů",
     "count_income_other": "{{count}} kategorií příjmů",
     "load_error": "Kategorie se nepodařilo načíst",
-    "empty": "Zatím žádné kategorie"
+    "empty": "Zatím žádné kategorie",
+    "tour_toggle_title": "Výdaj nebo příjem",
+    "tour_toggle_desc": "Přepínejte mezi kategoriemi výdajů a příjmů.",
+    "tour_add_title": "Nová kategorie",
+    "tour_add_desc": "Vytvořte kategorii s vlastním emoji a barvou.",
+    "tour_grid_title": "Vaše kategorie",
+    "tour_grid_desc": "Každá karta zobrazuje průběh výdajů — klikněte na ni pro přidání transakce, úpravu nebo smazání."
   },
   "analytics": {
     "title": "Analýza",
@@ -317,7 +339,13 @@
     "comparison_title": "Srovnání s předchozím obdobím",
     "comparison_subtitle": "Kde se výdaje změnily",
     "details_title": "Podrobnosti transakcí",
-    "details_empty": "Žádné transakce za období"
+    "details_empty": "Žádné transakce za období",
+    "tour_period_title": "Vyberte období",
+    "tour_period_desc": "Přepínejte mezi přednastavenými obdobími nebo zvolte vlastní rozsah dat.",
+    "tour_kpis_title": "Klíčová čísla",
+    "tour_kpis_desc": "Úspory a míra úspor za vybrané období.",
+    "tour_charts_title": "Rozpad a trendy",
+    "tour_charts_desc": "Podívejte se, kam jdou vaše peníze podle kategorií a co se změnilo od předchozího období."
   },
   "add_modal": {
     "title_transaction": "Nová transakce",
@@ -406,7 +434,13 @@
     "completed_title": "Cíl splněn!",
     "completed_confirm": "Tento cíl jste splnili. Zavřít jej nyní? Naspořené peníze se vrátí do volného zůstatku a historie příspěvků zůstane zachována.",
     "completed_keep": "Ponechat otevřený",
-    "active_count_few": "{{count}} aktivní cíle"
+    "active_count_few": "{{count}} aktivní cíle",
+    "tour_add_title": "Nový cíl",
+    "tour_add_desc": "Nastavte cílovou částku a termín — LimeBalance navrhne, kolik odkládat každý měsíc.",
+    "tour_summary_title": "Celkový pokrok",
+    "tour_summary_desc": "Celková naspořená částka napříč všemi vašimi cíli a kolik zbývá.",
+    "tour_cards_title": "Vaše cíle",
+    "tour_cards_desc": "Zde můžete vkládat, vybírat nebo zkontrolovat historii vkladů pro každý cíl."
   },
   "investments": {
     "title": "Investice a krypto",
@@ -538,7 +572,17 @@
     "spot_fifo_hint": "Spotová pozice se skládá z nákupů a prodejů metodou FIFO: prodej uzavírá nejstarší nákupy, vstupní cena je vážená objemem a datum otevření je datum nejstaršího uzavřeného nákupu. Mince nakoupené mimo Bybit (vklady) se obchodem nestávají.",
     "pos_opened_from": "otevřeno {{date}}",
     "equity_title": "Křivka kapitálu",
-    "kpi_capped": "prvních {{max}}"
+    "kpi_capped": "prvních {{max}}",
+    "tour_tabs_title": "Deník, portfolio, účty",
+    "tour_tabs_desc": "Zaznamenávejte obchody v deníku, sledujte svá aktiva v portfoliu a propojujte burzovní účty zde.",
+    "tour_journal_filters_title": "Filtrujte své obchody",
+    "tour_journal_filters_desc": "Filtrujte podle symbolu, období, účtu, stavu nebo typu — odtud synchronizujte nebo přidejte ruční obchod.",
+    "tour_journal_title": "Obchodní deník",
+    "tour_journal_desc": "Vaše otevřené a uzavřené pozice s PnL, úspěšností a počtem obchodů.",
+    "tour_portfolio_title": "Portfolio",
+    "tour_portfolio_desc": "Vaše kryptoaktiva oceněná podle aktuálních cen, s nerealizovaným ziskem a ztrátou.",
+    "tour_accounts_title": "Burzovní účty",
+    "tour_accounts_desc": "Připojte a spravujte své účty Bybit a spusťte ruční synchronizaci."
   },
   "telegram": {
     "linked_success": "Telegram připojen",
@@ -595,5 +639,20 @@
     "transactions_soft_many": "Tento měsíc zbývá {{count}} transakcí. Poté — přejděte na Pro.",
     "transactions_blocked": "Dosažen měsíční limit transakcí. Upgradujte svůj plán nebo počkejte do příštího měsíce.",
     "blocked_button_tooltip": "Limit dosažen — upgradujte svůj plán"
+  },
+  "tour": {
+    "start": "Zobrazit prohlídku",
+    "hint_title": "Průvodce",
+    "hint_desc": "Klikněte sem kdykoli pro opětovné zobrazení krátké prohlídky této stránky.",
+    "next": "Další",
+    "prev": "Zpět",
+    "done": "Hotovo",
+    "progress": "{{current}} z {{total}}",
+    "nav_title": "Navigace",
+    "nav_desc": "Zde najdete vše: transakce, kategorie, cíle, investice a analýzy.",
+    "nav_mobile_title": "Menu",
+    "nav_mobile_desc": "Klepnutím sem otevřete navigaci: transakce, kategorie, cíle, investice a analýzy.",
+    "add_title": "Rychlé přidání",
+    "add_desc": "Přidejte příjem, výdaj nebo cíl jedním kliknutím — toto tlačítko je dostupné na jakékoli stránce."
   }
 }

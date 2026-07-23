@@ -95,7 +95,11 @@
     "currency_not_found": "Ingenting funnet",
     "save": "Lagre",
     "saved": "Innstillinger lagret",
-    "error": "Kunne ikke lagre innstillingene"
+    "error": "Kunne ikke lagre innstillingene",
+    "tour_tabs_title": "Generelt, sikkerhet, Telegram",
+    "tour_tabs_desc": "Bytt mellom profil, e-post/passord og Telegram-innstillinger her.",
+    "tour_form_title": "Innstillingene dine",
+    "tour_form_desc": "Oppdater innstillingene for den valgte fanen i dette skjemaet."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Siste {{count}} transaksjoner",
     "recent_show_all": "Vis alle →",
     "recent_empty": "Ingen transaksjoner ennå",
-    "goals_all": "Alle →"
+    "goals_all": "Alle →",
+    "tour_kpis_title": "Nøkkeltall",
+    "tour_kpis_desc": "Din nåværende saldo, inntekter og utgifter for denne måneden på et øyeblikk.",
+    "tour_chart_title": "Kontantstrømdiagram",
+    "tour_chart_desc": "Se hvordan inntektene og utgiftene dine endrer seg dag for dag.",
+    "tour_goals_title": "Dine mål",
+    "tour_goals_desc": "Følg fremgangen mot sparemålene dine her.",
+    "tour_transactions_title": "Nylige transaksjoner",
+    "tour_transactions_desc": "Rask tilgang til dine nyeste transaksjoner."
   },
   "alerts": {
     "account_needs_email": "Du logget inn via Telegram. Legg til e-post og passord i innstillingene så du ikke mister tilgangen til kontoen din.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} kategori",
     "categories_selected_other": "{{count}} kategorier",
     "currencies_selected_one": "{{count}} valuta",
-    "currencies_selected_other": "{{count}} valutaer"
+    "currencies_selected_other": "{{count}} valutaer",
+    "tour_add_title": "Legg til en transaksjon",
+    "tour_add_desc": "Allerede satt til inntekt/utgift — legg til én med ett klikk.",
+    "tour_list_title": "Filtrer og søk",
+    "tour_list_desc": "Filtrer etter type, kategori, valuta eller dato, og søk i transaksjonene dine her."
   },
   "categories": {
     "title": "Kategorier",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} inntektskategori",
     "count_income_other": "{{count}} inntektskategorier",
     "load_error": "Kunne ikke laste kategorier",
-    "empty": "Ingen kategorier ennå"
+    "empty": "Ingen kategorier ennå",
+    "tour_toggle_title": "Utgift eller inntekt",
+    "tour_toggle_desc": "Bytt mellom utgifts- og inntektskategorier.",
+    "tour_add_title": "Ny kategori",
+    "tour_add_desc": "Opprett en kategori med sin egen emoji og farge.",
+    "tour_grid_title": "Dine kategorier",
+    "tour_grid_desc": "Hvert kort viser forbruksfremgang — klikk for å legge til en transaksjon, redigere eller slette."
   },
   "analytics": {
     "title": "Analyse",
@@ -306,7 +328,13 @@
     "comparison_title": "Sammenligning med forrige periode",
     "comparison_subtitle": "Hvor utgiftene endret seg",
     "details_title": "Transaksjonsdetaljer",
-    "details_empty": "Ingen transaksjoner i perioden"
+    "details_empty": "Ingen transaksjoner i perioden",
+    "tour_period_title": "Velg en periode",
+    "tour_period_desc": "Bytt mellom forhåndsinnstilte perioder eller velg et tilpasset datointervall.",
+    "tour_kpis_title": "Nøkkeltall",
+    "tour_kpis_desc": "Sparing og sparerate for den valgte perioden.",
+    "tour_charts_title": "Nedbrytning og trender",
+    "tour_charts_desc": "Se hvor pengene dine går etter kategori, og hva som har endret seg siden forrige periode."
   },
   "add_modal": {
     "title_transaction": "Ny transaksjon",
@@ -394,7 +422,13 @@
     "close_success": "Mål lukket",
     "completed_title": "Mål nådd!",
     "completed_confirm": "Du har nådd dette målet. Vil du lukke det nå? De sparte pengene føres tilbake til den frie saldoen din, og innbetalingshistorikken beholdes.",
-    "completed_keep": "Behold åpent"
+    "completed_keep": "Behold åpent",
+    "tour_add_title": "Nytt mål",
+    "tour_add_desc": "Angi et målbeløp og en frist — LimeBalance foreslår hvor mye du bør sette til side hver måned.",
+    "tour_summary_title": "Samlet fremgang",
+    "tour_summary_desc": "Totalt spart på tvers av alle målene dine, og hvor mye som gjenstår.",
+    "tour_cards_title": "Dine mål",
+    "tour_cards_desc": "Sett inn, ta ut, eller sjekk innskuddshistorikken for hvert mål her."
   },
   "investments": {
     "title": "Investeringer og krypto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "En spotposisjon settes sammen av kjøp og salg etter FIFO-prinsippet: et salg lukker de eldste kjøpene, inngangsprisen er volumveid, og åpningsdatoen er det eldste lukkede kjøpet. Mynter kjøpt utenfor Bybit (innskudd) blir ikke til handler.",
     "pos_opened_from": "åpnet {{date}}",
     "equity_title": "Kapitalkurve",
-    "kpi_capped": "de første {{max}}"
+    "kpi_capped": "de første {{max}}",
+    "tour_tabs_title": "Journal, portefølje, kontoer",
+    "tour_tabs_desc": "Registrer handler i journalen, følg beholdningen din i porteføljen, og koble til børskontoer her.",
+    "tour_journal_filters_title": "Filtrer handlene dine",
+    "tour_journal_filters_desc": "Filtrer etter symbol, periode, konto, status eller type — synkroniser nå eller legg til en manuell handel herfra.",
+    "tour_journal_title": "Handelsjournal",
+    "tour_journal_desc": "Dine åpne og lukkede posisjoner, med PnL, treffrate og antall handler.",
+    "tour_portfolio_title": "Portefølje",
+    "tour_portfolio_desc": "Kryptobeholdningen din verdsatt til live-priser, med urealisert gevinst og tap.",
+    "tour_accounts_title": "Børskontoer",
+    "tour_accounts_desc": "Koble til og administrer Bybit-kontoene dine, og utløs en manuell synkronisering."
   },
   "telegram": {
     "linked_success": "Telegram tilkoblet",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "{{count}} transaksjoner igjen denne måneden. Deretter — oppgrader til Pro.",
     "transactions_blocked": "Månedlig transaksjonsgrense nådd. Oppgrader abonnementet eller vent til neste måned.",
     "blocked_button_tooltip": "Grensen er nådd — oppgrader abonnementet"
+  },
+  "tour": {
+    "start": "Vis omvisning",
+    "hint_title": "Guidet omvisning",
+    "hint_desc": "Klikk her når som helst for å se en kort omvisning på denne siden igjen.",
+    "next": "Neste",
+    "prev": "Tilbake",
+    "done": "Ferdig",
+    "progress": "{{current}} av {{total}}",
+    "nav_title": "Navigasjon",
+    "nav_desc": "Alle seksjoner er her: transaksjoner, kategorier, mål, investeringer og analyse.",
+    "nav_mobile_title": "Meny",
+    "nav_mobile_desc": "Trykk her for å åpne navigasjonen: transaksjoner, kategorier, mål, investeringer og analyse.",
+    "add_title": "Hurtig tillegg",
+    "add_desc": "Legg til inntekt, utgift eller et mål med ett klikk — denne knappen er tilgjengelig fra hvilken som helst side."
   }
 }

@@ -95,7 +95,11 @@
     "currency_not_found": "Nincs találat",
     "save": "Mentés",
     "saved": "Beállítások mentve",
-    "error": "Nem sikerült menteni a beállításokat"
+    "error": "Nem sikerült menteni a beállításokat",
+    "tour_tabs_title": "Általános, biztonság, Telegram",
+    "tour_tabs_desc": "Váltson itt a profil, az e-mail/jelszó és a Telegram beállítások között.",
+    "tour_form_title": "Beállításai",
+    "tour_form_desc": "Frissítse a kiválasztott lap beállításait ebben az űrlapban."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Legutóbbi {{count}} tranzakció",
     "recent_show_all": "Összes megjelenítése →",
     "recent_empty": "Még nincsenek tranzakciók",
-    "goals_all": "Összes →"
+    "goals_all": "Összes →",
+    "tour_kpis_title": "Legfontosabb számok",
+    "tour_kpis_desc": "Aktuális egyenlege, bevételei és kiadásai erre a hónapra egy pillantással.",
+    "tour_chart_title": "Pénzforgalmi grafikon",
+    "tour_chart_desc": "Nézze meg, hogyan változnak bevételei és kiadásai napról napra.",
+    "tour_goals_title": "Céljai",
+    "tour_goals_desc": "Kövesse itt a megtakarítási céljai felé tett előrehaladást.",
+    "tour_transactions_title": "Legutóbbi tranzakciók",
+    "tour_transactions_desc": "Gyors hozzáférés a legújabb tranzakcióihoz."
   },
   "alerts": {
     "account_needs_email": "Telegramon keresztül jelentkeztél be. Adj hozzá e-mailt és jelszót a beállításokban, hogy ne veszítsd el a hozzáférést a fiókodhoz.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} kategória",
     "categories_selected_other": "{{count}} kategória",
     "currencies_selected_one": "{{count}} pénznem",
-    "currencies_selected_other": "{{count}} pénznem"
+    "currencies_selected_other": "{{count}} pénznem",
+    "tour_add_title": "Tranzakció hozzáadása",
+    "tour_add_desc": "Már bevételre/kiadásra van állítva — adjon hozzá egyet egy kattintással.",
+    "tour_list_title": "Szűrés és keresés",
+    "tour_list_desc": "Szűrjön típus, kategória, pénznem vagy dátum szerint, és keressen a tranzakciói között itt."
   },
   "categories": {
     "title": "Kategóriák",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} bevételi kategória",
     "count_income_other": "{{count}} bevételi kategória",
     "load_error": "Nem sikerült betölteni a kategóriákat",
-    "empty": "Még nincsenek kategóriák"
+    "empty": "Még nincsenek kategóriák",
+    "tour_toggle_title": "Kiadás vagy bevétel",
+    "tour_toggle_desc": "Váltson a kiadási és bevételi kategóriák között.",
+    "tour_add_title": "Új kategória",
+    "tour_add_desc": "Hozzon létre egy kategóriát saját emojival és színnel.",
+    "tour_grid_title": "Kategóriái",
+    "tour_grid_desc": "Minden kártya mutatja a kiadás előrehaladását — kattintson rá tranzakció hozzáadásához, szerkesztéshez vagy törléshez."
   },
   "analytics": {
     "title": "Elemzés",
@@ -306,7 +328,13 @@
     "comparison_title": "Összehasonlítás az előző időszakkal",
     "comparison_subtitle": "Hol változtak a kiadások",
     "details_title": "Tranzakciók részletei",
-    "details_empty": "Nincs tranzakció az időszakban"
+    "details_empty": "Nincs tranzakció az időszakban",
+    "tour_period_title": "Válasszon időszakot",
+    "tour_period_desc": "Váltson előre beállított időszakok között, vagy válasszon egyéni dátumtartományt.",
+    "tour_kpis_title": "Legfontosabb számok",
+    "tour_kpis_desc": "Megtakarítás és megtakarítási ráta a kiválasztott időszakra.",
+    "tour_charts_title": "Bontás és trendek",
+    "tour_charts_desc": "Nézze meg, hova megy a pénze kategóriák szerint, és mi változott az előző időszak óta."
   },
   "add_modal": {
     "title_transaction": "Új tranzakció",
@@ -394,7 +422,13 @@
     "close_success": "Cél lezárva",
     "completed_title": "Cél elérve!",
     "completed_confirm": "Elérted ezt a célt. Bezárod most? A megtakarított pénz visszakerül a szabad egyenlegedbe, a befizetési előzmények pedig megmaradnak.",
-    "completed_keep": "Maradjon nyitva"
+    "completed_keep": "Maradjon nyitva",
+    "tour_add_title": "Új cél",
+    "tour_add_desc": "Állítson be egy célösszeget és határidőt — a LimeBalance javasolja, mennyit tegyen félre havonta.",
+    "tour_summary_title": "Összesített előrehaladás",
+    "tour_summary_desc": "Az összes célja során megtakarított összeg és a hátralévő rész.",
+    "tour_cards_title": "Céljai",
+    "tour_cards_desc": "Itt fizethet be, vehet ki, vagy tekintheti meg az egyes célok befizetési előzményeit."
   },
   "investments": {
     "title": "Befektetések és kripto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Az azonnali (spot) pozíció a vételekből és eladásokból FIFO elv szerint áll össze: az eladás a legrégebbi vételeket zárja le, a belépési ár volumensúlyozott, a nyitás dátuma pedig a legrégebbi lezárt vétel. A Bybiten kívül vásárolt érmék (befizetések) nem válnak kereskedéssé.",
     "pos_opened_from": "nyitva {{date}} óta",
     "equity_title": "Tőkegörbe",
-    "kpi_capped": "első {{max}}"
+    "kpi_capped": "első {{max}}",
+    "tour_tabs_title": "Napló, portfólió, fiókok",
+    "tour_tabs_desc": "Rögzítse ügyleteit a naplóban, kövesse eszközeit a portfólióban, és csatlakoztasson tőzsdei fiókokat itt.",
+    "tour_journal_filters_title": "Szűrje ügyleteit",
+    "tour_journal_filters_desc": "Szűrjön szimbólum, időszak, fiók, státusz vagy típus szerint — szinkronizáljon most, vagy adjon hozzá kézi ügyletet innen.",
+    "tour_journal_title": "Kereskedési napló",
+    "tour_journal_desc": "Nyitott és zárt pozíciói, PnL-lel, nyerési aránnyal és ügyletek számával.",
+    "tour_portfolio_title": "Portfólió",
+    "tour_portfolio_desc": "Kriptoeszközei élő árakon értékelve, nem realizált nyereséggel és veszteséggel.",
+    "tour_accounts_title": "Tőzsdei fiókok",
+    "tour_accounts_desc": "Csatlakoztassa és kezelje Bybit fiókjait, és indítson kézi szinkronizálást."
   },
   "telegram": {
     "linked_success": "Telegram csatlakoztatva",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "{{count}} tranzakció maradt ebben a hónapban. Utána — válts Pro csomagra.",
     "transactions_blocked": "Elérted a havi tranzakciós korlátot. Válts magasabb csomagra, vagy várj a következő hónapig.",
     "blocked_button_tooltip": "Elérted a korlátot — válts csomagot"
+  },
+  "tour": {
+    "start": "Túra megjelenítése",
+    "hint_title": "Vezetett túra",
+    "hint_desc": "Kattintson ide bármikor, hogy újra megnézze ennek az oldalnak a rövid bemutatóját.",
+    "next": "Tovább",
+    "prev": "Vissza",
+    "done": "Kész",
+    "progress": "{{current}}/{{total}}",
+    "nav_title": "Navigáció",
+    "nav_desc": "Minden szakasz itt található: tranzakciók, kategóriák, célok, befektetések és elemzések.",
+    "nav_mobile_title": "Menü",
+    "nav_mobile_desc": "Koppintson ide a navigáció megnyitásához: tranzakciók, kategóriák, célok, befektetések és elemzések.",
+    "add_title": "Gyors hozzáadás",
+    "add_desc": "Adjon hozzá bevételt, kiadást vagy célt egy kattintással — ez a gomb bármelyik oldalon elérhető."
   }
 }

@@ -178,7 +178,11 @@ export function AuthPage() {
                 {/* Scoped to this button, not the whole app (see App.tsx) — GoogleOAuthProvider
                     only picks up a new locale on remount, and `key`-ing it at the app root would
                     reset scroll position on every page whenever the language changes. */}
-                <GoogleOAuthProvider key={i18n.language} clientId={GOOGLE_CLIENT_ID} locale={i18n.language}>
+                <GoogleOAuthProvider
+                  key={i18n.language}
+                  clientId={GOOGLE_CLIENT_ID}
+                  locale={i18n.language}
+                >
                   <GoogleLogin
                     onSuccess={({ credential }) => credential && handleGoogleAuth(credential)}
                     onError={() => {}}

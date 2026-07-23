@@ -95,7 +95,11 @@
     "currency_not_found": "Không tìm thấy",
     "save": "Lưu",
     "saved": "Đã lưu cài đặt",
-    "error": "Không thể lưu cài đặt"
+    "error": "Không thể lưu cài đặt",
+    "tour_tabs_title": "Chung, bảo mật, Telegram",
+    "tour_tabs_desc": "Chuyển đổi giữa hồ sơ, email/mật khẩu và cài đặt Telegram tại đây.",
+    "tour_form_title": "Cài đặt của bạn",
+    "tour_form_desc": "Cập nhật cài đặt của tab đã chọn trong biểu mẫu này."
   },
   "app": {
     "name": "LimeBalance"
@@ -182,7 +186,15 @@
     "recent_subtitle_other": "{{count}} giao dịch gần nhất",
     "recent_show_all": "Xem tất cả →",
     "recent_empty": "Chưa có giao dịch",
-    "goals_all": "Tất cả →"
+    "goals_all": "Tất cả →",
+    "tour_kpis_title": "Số liệu chính",
+    "tour_kpis_desc": "Số dư, thu nhập và chi phí hiện tại của bạn trong tháng này chỉ trong nháy mắt.",
+    "tour_chart_title": "Biểu đồ dòng tiền",
+    "tour_chart_desc": "Xem thu nhập và chi phí của bạn thay đổi như thế nào từng ngày.",
+    "tour_goals_title": "Mục tiêu của bạn",
+    "tour_goals_desc": "Theo dõi tiến độ hướng tới các mục tiêu tiết kiệm của bạn tại đây.",
+    "tour_transactions_title": "Giao dịch gần đây",
+    "tour_transactions_desc": "Truy cập nhanh vào các giao dịch mới nhất của bạn."
   },
   "alerts": {
     "account_needs_email": "Bạn đã đăng nhập qua Telegram. Hãy thêm email và mật khẩu trong cài đặt để không mất quyền truy cập tài khoản.",
@@ -234,7 +246,11 @@
     "income_added": "Đã thêm thu nhập",
     "save_error": "Không thể lưu giao dịch",
     "categories_selected_other": "{{count}} danh mục",
-    "currencies_selected_other": "{{count}} loại tiền tệ"
+    "currencies_selected_other": "{{count}} loại tiền tệ",
+    "tour_add_title": "Thêm giao dịch",
+    "tour_add_desc": "Đã đặt sẵn là thu nhập/chi phí — thêm chỉ trong một cú nhấp.",
+    "tour_list_title": "Lọc và tìm kiếm",
+    "tour_list_desc": "Lọc theo loại, danh mục, tiền tệ hoặc ngày, và tìm kiếm giao dịch của bạn tại đây."
   },
   "categories": {
     "title": "Danh mục",
@@ -267,7 +283,13 @@
     "count_expense_other": "{{count}} danh mục chi tiêu",
     "count_income_other": "{{count}} danh mục thu nhập",
     "load_error": "Không thể tải danh mục",
-    "empty": "Chưa có danh mục"
+    "empty": "Chưa có danh mục",
+    "tour_toggle_title": "Chi phí hay thu nhập",
+    "tour_toggle_desc": "Chuyển đổi giữa danh mục chi phí và thu nhập.",
+    "tour_add_title": "Danh mục mới",
+    "tour_add_desc": "Tạo một danh mục với biểu tượng cảm xúc và màu sắc riêng.",
+    "tour_grid_title": "Danh mục của bạn",
+    "tour_grid_desc": "Mỗi thẻ hiển thị tiến độ chi tiêu — nhấp vào để thêm giao dịch, chỉnh sửa hoặc xóa."
   },
   "analytics": {
     "title": "Phân tích",
@@ -295,7 +317,13 @@
     "comparison_title": "So sánh với kỳ trước",
     "comparison_subtitle": "Nơi chi tiêu thay đổi",
     "details_title": "Chi tiết giao dịch",
-    "details_empty": "Không có giao dịch trong kỳ"
+    "details_empty": "Không có giao dịch trong kỳ",
+    "tour_period_title": "Chọn khoảng thời gian",
+    "tour_period_desc": "Chuyển đổi giữa các khoảng thời gian đặt trước hoặc chọn phạm vi ngày tùy chỉnh.",
+    "tour_kpis_title": "Số liệu chính",
+    "tour_kpis_desc": "Khoản tiết kiệm và tỷ lệ tiết kiệm cho khoảng thời gian đã chọn.",
+    "tour_charts_title": "Phân tích chi tiết và xu hướng",
+    "tour_charts_desc": "Xem tiền của bạn đi đâu theo danh mục và những gì đã thay đổi so với kỳ trước."
   },
   "add_modal": {
     "title_transaction": "Giao dịch mới",
@@ -382,7 +410,13 @@
     "close_success": "Đã đóng mục tiêu",
     "completed_title": "Đã đạt mục tiêu!",
     "completed_confirm": "Bạn đã đạt được mục tiêu này. Đóng ngay bây giờ? Số tiền đã tiết kiệm sẽ trở lại số dư khả dụng của bạn và lịch sử đóng góp được giữ lại.",
-    "completed_keep": "Giữ mở"
+    "completed_keep": "Giữ mở",
+    "tour_add_title": "Mục tiêu mới",
+    "tour_add_desc": "Đặt số tiền mục tiêu và thời hạn — LimeBalance sẽ đề xuất số tiền cần dành ra mỗi tháng.",
+    "tour_summary_title": "Tiến độ tổng thể",
+    "tour_summary_desc": "Tổng số tiền đã tiết kiệm trên tất cả các mục tiêu của bạn và số tiền còn lại.",
+    "tour_cards_title": "Mục tiêu của bạn",
+    "tour_cards_desc": "Gửi tiền, rút tiền hoặc xem lịch sử đóng góp cho từng mục tiêu tại đây."
   },
   "investments": {
     "title": "Đầu tư và tiền mã hóa",
@@ -514,7 +548,17 @@
     "spot_fifo_hint": "Vị thế giao ngay được ghép từ các lệnh mua và bán theo FIFO: lệnh bán sẽ đóng các lệnh mua cũ nhất trước, giá vào là giá bình quân theo khối lượng, và ngày mở là ngày của lệnh mua đã đóng cũ nhất. Coin mua ngoài Bybit (nạp tiền) sẽ không trở thành giao dịch.",
     "pos_opened_from": "mở lúc {{date}}",
     "equity_title": "Đường cong vốn",
-    "kpi_capped": "{{max}} đầu tiên"
+    "kpi_capped": "{{max}} đầu tiên",
+    "tour_tabs_title": "Nhật ký, danh mục đầu tư, tài khoản",
+    "tour_tabs_desc": "Ghi lại giao dịch trong nhật ký, theo dõi tài sản của bạn trong danh mục đầu tư và kết nối tài khoản sàn giao dịch tại đây.",
+    "tour_journal_filters_title": "Lọc các giao dịch của bạn",
+    "tour_journal_filters_desc": "Lọc theo mã, khoảng thời gian, tài khoản, trạng thái hoặc loại — đồng bộ hóa ngay hoặc thêm giao dịch thủ công từ đây.",
+    "tour_journal_title": "Nhật ký giao dịch",
+    "tour_journal_desc": "Các vị thế đang mở và đã đóng của bạn, cùng với PnL, tỷ lệ thắng và số lượng giao dịch.",
+    "tour_portfolio_title": "Danh mục đầu tư",
+    "tour_portfolio_desc": "Tài sản tiền điện tử của bạn được định giá theo giá thực, cùng với lãi và lỗ chưa thực hiện.",
+    "tour_accounts_title": "Tài khoản sàn giao dịch",
+    "tour_accounts_desc": "Kết nối và quản lý tài khoản Bybit của bạn, và kích hoạt đồng bộ hóa thủ công."
   },
   "telegram": {
     "linked_success": "Đã kết nối Telegram",
@@ -567,5 +611,20 @@
     "transactions_soft_other": "Còn {{count}} giao dịch trong tháng này. Sau đó — nâng cấp lên Pro.",
     "transactions_blocked": "Đã đạt giới hạn giao dịch hằng tháng. Nâng cấp gói của bạn hoặc đợi đến tháng sau.",
     "blocked_button_tooltip": "Đã đạt giới hạn — nâng cấp gói của bạn"
+  },
+  "tour": {
+    "start": "Hiển thị hướng dẫn",
+    "hint_title": "Hướng dẫn tham quan",
+    "hint_desc": "Nhấp vào đây bất cứ lúc nào để xem lại phần hướng dẫn ngắn về trang này.",
+    "next": "Tiếp theo",
+    "prev": "Quay lại",
+    "done": "Xong",
+    "progress": "{{current}} trong số {{total}}",
+    "nav_title": "Điều hướng",
+    "nav_desc": "Tất cả các phần đều ở đây: giao dịch, danh mục, mục tiêu, đầu tư và phân tích.",
+    "nav_mobile_title": "Menu",
+    "nav_mobile_desc": "Chạm vào đây để mở điều hướng: giao dịch, danh mục, mục tiêu, đầu tư và phân tích.",
+    "add_title": "Thêm nhanh",
+    "add_desc": "Thêm thu nhập, chi phí hoặc mục tiêu chỉ trong một cú nhấp — nút này có sẵn ở mọi trang."
   }
 }

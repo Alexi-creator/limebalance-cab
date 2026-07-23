@@ -95,7 +95,11 @@
     "currency_not_found": "Niets gevonden",
     "save": "Opslaan",
     "saved": "Instellingen opgeslagen",
-    "error": "Instellingen konden niet worden opgeslagen"
+    "error": "Instellingen konden niet worden opgeslagen",
+    "tour_tabs_title": "Algemeen, beveiliging, Telegram",
+    "tour_tabs_desc": "Schakel hier tussen profiel, e-mail/wachtwoord en Telegram-instellingen.",
+    "tour_form_title": "Uw instellingen",
+    "tour_form_desc": "Werk de instellingen van het geselecteerde tabblad bij in dit formulier."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Laatste {{count}} transacties",
     "recent_show_all": "Alles tonen →",
     "recent_empty": "Nog geen transacties",
-    "goals_all": "Alle →"
+    "goals_all": "Alle →",
+    "tour_kpis_title": "Belangrijkste cijfers",
+    "tour_kpis_desc": "Uw huidige saldo, inkomsten en uitgaven voor deze maand in één oogopslag.",
+    "tour_chart_title": "Cashflow-grafiek",
+    "tour_chart_desc": "Bekijk hoe uw inkomsten en uitgaven dagelijks veranderen.",
+    "tour_goals_title": "Uw doelen",
+    "tour_goals_desc": "Volg hier de voortgang van uw spaardoelen.",
+    "tour_transactions_title": "Recente transacties",
+    "tour_transactions_desc": "Snelle toegang tot uw meest recente transacties."
   },
   "alerts": {
     "account_needs_email": "Je bent ingelogd via Telegram. Voeg een e-mailadres en wachtwoord toe in de instellingen om de toegang tot je account niet te verliezen.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} categorie",
     "categories_selected_other": "{{count}} categorieën",
     "currencies_selected_one": "{{count}} valuta",
-    "currencies_selected_other": "{{count}} valuta's"
+    "currencies_selected_other": "{{count}} valuta's",
+    "tour_add_title": "Transactie toevoegen",
+    "tour_add_desc": "Al ingesteld op inkomsten/uitgaven — voeg er één toe met één klik.",
+    "tour_list_title": "Filteren en zoeken",
+    "tour_list_desc": "Filter op type, categorie, valuta of datum, en zoek hier in uw transacties."
   },
   "categories": {
     "title": "Categorieën",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} inkomstencategorie",
     "count_income_other": "{{count}} inkomstencategorieën",
     "load_error": "Kon categorieën niet laden",
-    "empty": "Nog geen categorieën"
+    "empty": "Nog geen categorieën",
+    "tour_toggle_title": "Uitgave of inkomst",
+    "tour_toggle_desc": "Schakel tussen uitgaven- en inkomstencategorieën.",
+    "tour_add_title": "Nieuwe categorie",
+    "tour_add_desc": "Maak een categorie met een eigen emoji en kleur.",
+    "tour_grid_title": "Uw categorieën",
+    "tour_grid_desc": "Elke kaart toont de uitgavenvoortgang — klik erop om een transactie toe te voegen, te bewerken of te verwijderen."
   },
   "analytics": {
     "title": "Analyse",
@@ -306,7 +328,13 @@
     "comparison_title": "Vergelijking met de vorige periode",
     "comparison_subtitle": "Waar de uitgaven zijn veranderd",
     "details_title": "Transactiedetails",
-    "details_empty": "Geen transacties in de periode"
+    "details_empty": "Geen transacties in de periode",
+    "tour_period_title": "Kies een periode",
+    "tour_period_desc": "Schakel tussen vooraf ingestelde periodes of kies een aangepast datumbereik.",
+    "tour_kpis_title": "Belangrijkste cijfers",
+    "tour_kpis_desc": "Besparingen en spaarquote voor de geselecteerde periode.",
+    "tour_charts_title": "Uitsplitsing en trends",
+    "tour_charts_desc": "Bekijk waar uw geld naartoe gaat per categorie en wat er is veranderd sinds de vorige periode."
   },
   "add_modal": {
     "title_transaction": "Nieuwe transactie",
@@ -394,7 +422,13 @@
     "close_success": "Doel gesloten",
     "completed_title": "Doel bereikt!",
     "completed_confirm": "Je hebt dit doel bereikt. Nu sluiten? Het gespaarde geld gaat terug naar je vrije saldo en de inleghistorie blijft behouden.",
-    "completed_keep": "Open houden"
+    "completed_keep": "Open houden",
+    "tour_add_title": "Nieuw doel",
+    "tour_add_desc": "Stel een streefbedrag en deadline in — LimeBalance stelt voor hoeveel u elke maand opzij moet zetten.",
+    "tour_summary_title": "Totale voortgang",
+    "tour_summary_desc": "Totaal gespaard over al uw doelen en hoeveel er nog resteert.",
+    "tour_cards_title": "Uw doelen",
+    "tour_cards_desc": "Stort, neem op of bekijk hier de bijdragegeschiedenis voor elk doel."
   },
   "investments": {
     "title": "Beleggingen en crypto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Een spotpositie wordt samengesteld uit aankopen en verkopen volgens FIFO: een verkoop sluit de oudste aankopen, de instapprijs is volumegewogen en de openingsdatum is de oudste gesloten aankoop. Munten die buiten Bybit zijn gekocht (deposito's) worden geen transacties.",
     "pos_opened_from": "geopend op {{date}}",
     "equity_title": "Kapitaalcurve",
-    "kpi_capped": "eerste {{max}}"
+    "kpi_capped": "eerste {{max}}",
+    "tour_tabs_title": "Journaal, portefeuille, accounts",
+    "tour_tabs_desc": "Leg trades vast in het journaal, volg uw bezittingen in de portefeuille en koppel hier exchange-accounts.",
+    "tour_journal_filters_title": "Filter uw trades",
+    "tour_journal_filters_desc": "Filter op symbool, periode, account, status of type — synchroniseer nu of voeg hier een handmatige trade toe.",
+    "tour_journal_title": "Handelsjournaal",
+    "tour_journal_desc": "Uw open en gesloten posities, met PnL, winratio en aantal trades.",
+    "tour_portfolio_title": "Portefeuille",
+    "tour_portfolio_desc": "Uw crypto-bezittingen gewaardeerd tegen actuele prijzen, met ongerealiseerde winsten en verliezen.",
+    "tour_accounts_title": "Exchange-accounts",
+    "tour_accounts_desc": "Koppel en beheer uw Bybit-accounts en start een handmatige synchronisatie."
   },
   "telegram": {
     "linked_success": "Telegram verbonden",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "Nog {{count}} transacties deze maand. Daarna — upgrade naar Pro.",
     "transactions_blocked": "Maandelijkse transactielimiet bereikt. Upgrade je abonnement of wacht tot volgende maand.",
     "blocked_button_tooltip": "Limiet bereikt — upgrade je abonnement"
+  },
+  "tour": {
+    "start": "Toon rondleiding",
+    "hint_title": "Rondleiding",
+    "hint_desc": "Klik hier op elk moment om een korte rondleiding van deze pagina opnieuw te bekijken.",
+    "next": "Volgende",
+    "prev": "Terug",
+    "done": "Klaar",
+    "progress": "{{current}} van {{total}}",
+    "nav_title": "Navigatie",
+    "nav_desc": "Alle secties staan hier: transacties, categorieën, doelen, beleggingen en analyses.",
+    "nav_mobile_title": "Menu",
+    "nav_mobile_desc": "Tik hier om de navigatie te openen: transacties, categorieën, doelen, beleggingen en analyses.",
+    "add_title": "Snel toevoegen",
+    "add_desc": "Voeg inkomsten, uitgaven of een doel toe met één klik — deze knop is beschikbaar op elke pagina."
   }
 }

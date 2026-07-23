@@ -14,6 +14,8 @@ import "@mantine/dates/styles.layer.css"
 import "@mantine/notifications/styles.layer.css"
 import "mantine-datatable/styles.layer.css"
 import "./index.css"
+import "driver.js/dist/driver.css"
+import "./styles/driver-theme.css"
 import App from "./App.tsx"
 import { theme } from "./theme.ts"
 

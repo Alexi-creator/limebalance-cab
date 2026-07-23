@@ -95,7 +95,11 @@
     "currency_not_found": "Nieko nerasta",
     "save": "Išsaugoti",
     "saved": "Nustatymai išsaugoti",
-    "error": "Nepavyko išsaugoti nustatymų"
+    "error": "Nepavyko išsaugoti nustatymų",
+    "tour_tabs_title": "Bendra, saugumas, Telegram",
+    "tour_tabs_desc": "Čia perjunkite tarp profilio, el. pašto / slaptažodžio ir Telegram nustatymų.",
+    "tour_form_title": "Jūsų nustatymai",
+    "tour_form_desc": "Atnaujinkite pasirinkto skirtuko nustatymus šioje formoje."
   },
   "app": {
     "name": "LimeBalance"
@@ -186,7 +190,15 @@
     "recent_subtitle_other": "Naujausių {{count}} operacijų",
     "recent_show_all": "Rodyti visas →",
     "recent_empty": "Operacijų dar nėra",
-    "goals_all": "Visi →"
+    "goals_all": "Visi →",
+    "tour_kpis_title": "Pagrindiniai skaičiai",
+    "tour_kpis_desc": "Jūsų dabartinis likutis, pajamos ir išlaidos šį mėnesį vienu žvilgsniu.",
+    "tour_chart_title": "Pinigų srautų grafikas",
+    "tour_chart_desc": "Peržiūrėkite, kaip kasdien keičiasi jūsų pajamos ir išlaidos.",
+    "tour_goals_title": "Jūsų tikslai",
+    "tour_goals_desc": "Čia stebėkite pažangą siekiant santaupų tikslų.",
+    "tour_transactions_title": "Naujausios operacijos",
+    "tour_transactions_desc": "Greita prieiga prie naujausių jūsų operacijų."
   },
   "alerts": {
     "account_needs_email": "Prisijungėte per Telegram. Nustatymuose pridėkite el. paštą ir slaptažodį, kad neprarastumėte prieigos prie paskyros.",
@@ -248,7 +260,11 @@
     "categories_selected_other": "{{count}} kategorijų",
     "currencies_selected_one": "{{count}} valiuta",
     "currencies_selected_few": "{{count}} valiutos",
-    "currencies_selected_other": "{{count}} valiutų"
+    "currencies_selected_other": "{{count}} valiutų",
+    "tour_add_title": "Pridėti operaciją",
+    "tour_add_desc": "Jau nustatyta kaip pajamos/išlaidos — pridėkite vienu paspaudimu.",
+    "tour_list_title": "Filtravimas ir paieška",
+    "tour_list_desc": "Filtruokite pagal tipą, kategoriją, valiutą ar datą ir čia ieškokite savo operacijų."
   },
   "categories": {
     "title": "Kategorijos",
@@ -289,7 +305,13 @@
     "count_income_few": "{{count}} pajamų kategorijos",
     "count_income_other": "{{count}} pajamų kategorijų",
     "load_error": "Nepavyko įkelti kategorijų",
-    "empty": "Kategorijų dar nėra"
+    "empty": "Kategorijų dar nėra",
+    "tour_toggle_title": "Išlaidos ar pajamos",
+    "tour_toggle_desc": "Perjunkite tarp išlaidų ir pajamų kategorijų.",
+    "tour_add_title": "Nauja kategorija",
+    "tour_add_desc": "Sukurkite kategoriją su savo jaustuku ir spalva.",
+    "tour_grid_title": "Jūsų kategorijos",
+    "tour_grid_desc": "Kiekviena kortelė rodo išlaidų pažangą — spustelėkite, kad pridėtumėte operaciją, redaguotumėte ar ištrintumėte."
   },
   "analytics": {
     "title": "Analitika",
@@ -317,7 +339,13 @@
     "comparison_title": "Palyginimas su ankstesniu laikotarpiu",
     "comparison_subtitle": "Kur pasikeitė išlaidos",
     "details_title": "Operacijų detalės",
-    "details_empty": "Laikotarpiu operacijų nėra"
+    "details_empty": "Laikotarpiu operacijų nėra",
+    "tour_period_title": "Pasirinkite laikotarpį",
+    "tour_period_desc": "Perjunkite tarp iš anksto nustatytų laikotarpių arba pasirinkite pasirinktinį datų intervalą.",
+    "tour_kpis_title": "Pagrindiniai skaičiai",
+    "tour_kpis_desc": "Santaupos ir santaupų norma pasirinktam laikotarpiui.",
+    "tour_charts_title": "Suskirstymas ir tendencijos",
+    "tour_charts_desc": "Peržiūrėkite, kur eina jūsų pinigai pagal kategoriją ir kas pasikeitė nuo ankstesnio laikotarpio."
   },
   "add_modal": {
     "title_transaction": "Nauja operacija",
@@ -406,7 +434,13 @@
     "completed_title": "Tikslas pasiektas!",
     "completed_confirm": "Pasiekėte šį tikslą. Uždaryti jį dabar? Sutaupyti pinigai grįžta į jūsų laisvą likutį, o įmokų istorija išsaugoma.",
     "completed_keep": "Palikti atvirą",
-    "active_count_few": "{{count}} aktyvūs tikslai"
+    "active_count_few": "{{count}} aktyvūs tikslai",
+    "tour_add_title": "Naujas tikslas",
+    "tour_add_desc": "Nustatykite tikslinę sumą ir terminą — LimeBalance pasiūlys, kiek atidėti kas mėnesį.",
+    "tour_summary_title": "Bendra pažanga",
+    "tour_summary_desc": "Bendra sukaupta suma visuose jūsų tiksluose ir kiek liko.",
+    "tour_cards_title": "Jūsų tikslai",
+    "tour_cards_desc": "Čia įneškite, išsiimkite ar peržiūrėkite kiekvieno tikslo įnašų istoriją."
   },
   "investments": {
     "title": "Investicijos ir kriptovaliuta",
@@ -538,7 +572,17 @@
     "spot_fifo_hint": "Spot pozicija sudaroma iš pirkimų ir pardavimų pagal FIFO principą: pardavimas uždaro seniausius pirkimus, įėjimo kaina — svertinis vidurkis, o atidarymo data — seniausio uždaryto pirkimo data. Monetos, pirktos ne Bybit (įnašai), sandoriu netampa.",
     "pos_opened_from": "atidaryta {{date}}",
     "equity_title": "Kapitalo kreivė",
-    "kpi_capped": "pirmos {{max}}"
+    "kpi_capped": "pirmos {{max}}",
+    "tour_tabs_title": "Žurnalas, portfelis, paskyros",
+    "tour_tabs_desc": "Registruokite sandorius žurnale, stebėkite savo turtą portfelyje ir prijunkite biržos paskyras čia.",
+    "tour_journal_filters_title": "Filtruokite savo sandorius",
+    "tour_journal_filters_desc": "Filtruokite pagal simbolį, laikotarpį, paskyrą, būseną ar tipą — sinchronizuokite dabar arba pridėkite sandorį rankiniu būdu iš čia.",
+    "tour_journal_title": "Prekybos žurnalas",
+    "tour_journal_desc": "Jūsų atviros ir uždarytos pozicijos su PNL, laimėjimo procentu ir sandorių skaičiumi.",
+    "tour_portfolio_title": "Portfelis",
+    "tour_portfolio_desc": "Jūsų kriptovaliutų turtas, įvertintas realaus laiko kainomis, su nerealizuotu pelnu ir nuostoliu.",
+    "tour_accounts_title": "Biržos paskyros",
+    "tour_accounts_desc": "Prijunkite ir tvarkykite savo Bybit paskyras bei paleiskite rankinę sinchronizaciją."
   },
   "telegram": {
     "linked_success": "Telegram prijungtas",
@@ -597,5 +641,20 @@
     "transactions_soft_other": "Šį mėnesį liko {{count}} operacijų. Toliau — atnaujinkite į Pro.",
     "transactions_blocked": "Pasiektas mėnesio operacijų limitas. Atnaujinkite planą arba palaukite kito mėnesio.",
     "blocked_button_tooltip": "Limitas pasiektas — atnaujinkite planą"
+  },
+  "tour": {
+    "start": "Rodyti turą",
+    "hint_title": "Vedžiojama apžvalga",
+    "hint_desc": "Spustelėkite čia bet kada, kad dar kartą peržiūrėtumėte trumpą šio puslapio apžvalgą.",
+    "next": "Toliau",
+    "prev": "Atgal",
+    "done": "Baigta",
+    "progress": "{{current}} iš {{total}}",
+    "nav_title": "Naršymas",
+    "nav_desc": "Visi skyriai yra čia: operacijos, kategorijos, tikslai, investicijos ir analizė.",
+    "nav_mobile_title": "Meniu",
+    "nav_mobile_desc": "Palieskite čia, kad atidarytumėte naršymą: operacijos, kategorijos, tikslai, investicijos ir analizė.",
+    "add_title": "Greitas pridėjimas",
+    "add_desc": "Vienu paspaudimu pridėkite pajamas, išlaidas ar tikslą — šis mygtukas pasiekiamas bet kuriame puslapyje."
   }
 }

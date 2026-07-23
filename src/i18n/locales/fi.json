@@ -95,7 +95,11 @@
     "currency_not_found": "Ei tuloksia",
     "save": "Tallenna",
     "saved": "Asetukset tallennettu",
-    "error": "Asetusten tallennus epäonnistui"
+    "error": "Asetusten tallennus epäonnistui",
+    "tour_tabs_title": "Yleiset, tietoturva, Telegram",
+    "tour_tabs_desc": "Vaihda täällä profiilin, sähköpostin/salasanan ja Telegram-asetusten välillä.",
+    "tour_form_title": "Asetuksesi",
+    "tour_form_desc": "Päivitä valitun välilehden asetukset tässä lomakkeessa."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Viimeisimmät {{count}} tapahtumaa",
     "recent_show_all": "Näytä kaikki →",
     "recent_empty": "Ei vielä tapahtumia",
-    "goals_all": "Kaikki →"
+    "goals_all": "Kaikki →",
+    "tour_kpis_title": "Avainluvut",
+    "tour_kpis_desc": "Nykyinen saldosi, tulot ja menot tältä kuukaudelta yhdellä silmäyksellä.",
+    "tour_chart_title": "Kassavirtakaavio",
+    "tour_chart_desc": "Katso, miten tulosi ja menosi muuttuvat päivittäin.",
+    "tour_goals_title": "Tavoitteesi",
+    "tour_goals_desc": "Seuraa säästötavoitteidesi edistymistä täältä.",
+    "tour_transactions_title": "Viimeisimmät tapahtumat",
+    "tour_transactions_desc": "Nopea pääsy uusimpiin tapahtumiisi."
   },
   "alerts": {
     "account_needs_email": "Kirjauduit Telegramilla. Lisää sähköposti ja salasana asetuksiin, jotta et menetä pääsyä tiliisi.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} kategoria",
     "categories_selected_other": "{{count}} kategoriaa",
     "currencies_selected_one": "{{count}} valuutta",
-    "currencies_selected_other": "{{count}} valuuttaa"
+    "currencies_selected_other": "{{count}} valuuttaa",
+    "tour_add_title": "Lisää tapahtuma",
+    "tour_add_desc": "Jo asetettu tuloksi/menoksi — lisää yhdellä napsautuksella.",
+    "tour_list_title": "Suodata ja hae",
+    "tour_list_desc": "Suodata tyypin, kategorian, valuutan tai päivämäärän mukaan ja hae tapahtumiasi täältä."
   },
   "categories": {
     "title": "Kategoriat",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} tulokategoria",
     "count_income_other": "{{count}} tulokategoriaa",
     "load_error": "Kategorioiden lataus epäonnistui",
-    "empty": "Ei vielä kategorioita"
+    "empty": "Ei vielä kategorioita",
+    "tour_toggle_title": "Meno vai tulo",
+    "tour_toggle_desc": "Vaihda meno- ja tulokategorioiden välillä.",
+    "tour_add_title": "Uusi kategoria",
+    "tour_add_desc": "Luo kategoria omalla emojilla ja värillä.",
+    "tour_grid_title": "Kategoriasi",
+    "tour_grid_desc": "Jokainen kortti näyttää kulutuksen edistymisen — napsauta lisätäksesi tapahtuman, muokataksesi tai poistaaksesi."
   },
   "analytics": {
     "title": "Analytiikka",
@@ -306,7 +328,13 @@
     "comparison_title": "Vertailu edelliseen jaksoon",
     "comparison_subtitle": "Missä menot muuttuivat",
     "details_title": "Tapahtumien tiedot",
-    "details_empty": "Ei tapahtumia jaksolla"
+    "details_empty": "Ei tapahtumia jaksolla",
+    "tour_period_title": "Valitse ajanjakso",
+    "tour_period_desc": "Vaihda esiasetettujen ajanjaksojen välillä tai valitse mukautettu päivämääräväli.",
+    "tour_kpis_title": "Avainluvut",
+    "tour_kpis_desc": "Säästöt ja säästöaste valitulta ajanjaksolta.",
+    "tour_charts_title": "Erittely ja trendit",
+    "tour_charts_desc": "Katso, mihin rahasi menee kategorioittain ja mikä on muuttunut edellisestä ajanjaksosta."
   },
   "add_modal": {
     "title_transaction": "Uusi tapahtuma",
@@ -394,7 +422,13 @@
     "close_success": "Tavoite suljettu",
     "completed_title": "Tavoite saavutettu!",
     "completed_confirm": "Saavutit tämän tavoitteen. Suljetaanko se nyt? Säästetyt rahat palautuvat vapaaseen saldoosi ja maksuhistoria säilyy.",
-    "completed_keep": "Pidä avoinna"
+    "completed_keep": "Pidä avoinna",
+    "tour_add_title": "Uusi tavoite",
+    "tour_add_desc": "Aseta tavoitesumma ja määräaika — LimeBalance ehdottaa, kuinka paljon säästää kuukausittain.",
+    "tour_summary_title": "Kokonaisedistyminen",
+    "tour_summary_desc": "Kaikkien tavoitteidesi yhteenlaskettu säästö ja kuinka paljon on jäljellä.",
+    "tour_cards_title": "Tavoitteesi",
+    "tour_cards_desc": "Talleta, nosta tai tarkista kunkin tavoitteen talletushistoria täältä."
   },
   "investments": {
     "title": "Sijoitukset ja kryptovaluutta",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Spot-positio kootaan ostoista ja myynneistä FIFO-periaatteella: myynti sulkee vanhimmat ostot, aloitushinta on volyymipainotettu ja avauspäivä on vanhin suljettu osto. Muualta kuin Bybitistä ostetut kolikot (talletukset) eivät muutu kaupoiksi.",
     "pos_opened_from": "avattu {{date}}",
     "equity_title": "Pääomakäyrä",
-    "kpi_capped": "ensimmäiset {{max}}"
+    "kpi_capped": "ensimmäiset {{max}}",
+    "tour_tabs_title": "Päiväkirja, salkku, tilit",
+    "tour_tabs_desc": "Kirjaa kaupat päiväkirjaan, seuraa omaisuuttasi salkussa ja yhdistä pörssitilit täältä.",
+    "tour_journal_filters_title": "Suodata kauppojasi",
+    "tour_journal_filters_desc": "Suodata symbolin, ajanjakson, tilin, tilan tai tyypin mukaan — synkronoi nyt tai lisää manuaalinen kauppa täältä.",
+    "tour_journal_title": "Kaupankäyntipäiväkirja",
+    "tour_journal_desc": "Avoimet ja suljetut positiosi, PnL, voittoprosentti ja kauppojen määrä.",
+    "tour_portfolio_title": "Salkku",
+    "tour_portfolio_desc": "Kryptovarasi arvostettuna reaaliaikaisin hinnoin, realisoitumattomine voittoineen ja tappioineen.",
+    "tour_accounts_title": "Pörssitilit",
+    "tour_accounts_desc": "Yhdistä ja hallitse Bybit-tilejäsi ja käynnistä manuaalinen synkronointi."
   },
   "telegram": {
     "linked_success": "Telegram yhdistetty",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "{{count}} tapahtumaa jäljellä tässä kuussa. Sen jälkeen — päivitä Pro-tilaukseen.",
     "transactions_blocked": "Kuukausittainen tapahtumaraja saavutettu. Päivitä tilauksesi tai odota ensi kuuhun.",
     "blocked_button_tooltip": "Raja saavutettu — päivitä tilauksesi"
+  },
+  "tour": {
+    "start": "Näytä kierros",
+    "hint_title": "Opastettu kierros",
+    "hint_desc": "Napsauta tätä milloin tahansa nähdäksesi uudelleen lyhyen esittelyn tästä sivusta.",
+    "next": "Seuraava",
+    "prev": "Takaisin",
+    "done": "Valmis",
+    "progress": "{{current}}/{{total}}",
+    "nav_title": "Navigointi",
+    "nav_desc": "Kaikki osiot löytyvät täältä: tapahtumat, kategoriat, tavoitteet, sijoitukset ja analytiikka.",
+    "nav_mobile_title": "Valikko",
+    "nav_mobile_desc": "Napauta tästä avataksesi navigoinnin: tapahtumat, kategoriat, tavoitteet, sijoitukset ja analytiikka.",
+    "add_title": "Pikalisäys",
+    "add_desc": "Lisää tulo, meno tai tavoite yhdellä napsautuksella — tämä painike on käytettävissä millä tahansa sivulla."
   }
 }

@@ -5,10 +5,11 @@ test.describe("Dashboard (authenticated)", () => {
     await authedPage.goto("/")
 
     await expect(authedPage).toHaveURL(/\/$/)
-    await expect(authedPage.getByRole("heading", { name: "Hi 👋" })).toBeVisible()
+    await expect(authedPage.getByRole("heading", { name: "Hi, Alex Morgan 👋" })).toBeVisible()
     await expect(authedPage.getByText("Current balance")).toBeVisible()
-    // User card in the sidebar shows the logged-in user (from MOCK_USER).
-    await expect(authedPage.getByText("Alex Morgan")).toBeVisible()
+    // User card in the sidebar shows the logged-in user (from MOCK_USER). Scoped to the
+    // nav landmark — the greeting heading above also renders the same name now.
+    await expect(authedPage.getByRole("navigation").getByText("Alex Morgan")).toBeVisible()
   })
 
   test("navigates through the sidebar to each section", async ({ authedPage }) => {

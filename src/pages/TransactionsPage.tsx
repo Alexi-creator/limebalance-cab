@@ -16,6 +16,7 @@ import { expenseKeys } from "@constants/queries/expenses"
 import { incomeKeys } from "@constants/queries/incomes"
 import { TRANSACTIONS_STALE_TIME, transactionKeys } from "@constants/queries/transactions"
 import { RouteNames } from "@constants/routeNames"
+import { useTransactionsTour } from "@hooks/useTransactionsTour"
 import { useUrlParams } from "@hooks/useUrlParams"
 import { useUsage } from "@hooks/useUsage"
 import {
@@ -35,6 +36,7 @@ import { useMediaQuery } from "@mantine/hooks"
 import { useModalStore } from "@store/modalStore"
 import { IconPlus } from "@tabler/icons-react"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { TourTriggerButton } from "@ui/TourTriggerButton"
 import { isLimitBlocked } from "@utils/subscription"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -50,6 +52,7 @@ export function TransactionsPage() {
   })
   const [params, setParams] = useUrlParams(transactionsParamsSchema)
   const openModal = useModalStore((s) => s.open)
+  const { startTour } = useTransactionsTour()
 
   const apiParams = {
     type: params.type,
@@ -137,62 +140,66 @@ export function TransactionsPage() {
             CSV
           </Button>
           */}
-          {transactionsBlocked ? (
-            // a disabled button swallows hover, so the tooltip listens on the wrapping Box
-            <Tooltip label={t("limits.blocked_button_tooltip")} position="bottom-end" withArrow>
-              <Box>
-                <Button
-                  size="sm"
-                  leftSection={<IconPlus size={14} />}
-                  disabled
-                  style={{
-                    borderWidth: 1,
-                    borderStyle: "solid",
-                    borderColor: "var(--mantine-color-default-border)",
-                  }}
-                >
-                  {t("transactions.add")}
-                </Button>
-              </Box>
-            </Tooltip>
-          ) : hasNoCategories ? (
-            <HoverCard width={240} shadow="md" withArrow position="bottom-end" openDelay={100}>
-              <HoverCard.Target>
-                {/* muted green (variant light) instead of gray data-disabled —
+          <Box data-tour="tx-add">
+            {transactionsBlocked ? (
+              // a disabled button swallows hover, so the tooltip listens on the wrapping Box
+              <Tooltip label={t("limits.blocked_button_tooltip")} position="bottom-end" withArrow>
+                <Box>
+                  <Button
+                    size="sm"
+                    leftSection={<IconPlus size={14} />}
+                    disabled
+                    style={{
+                      borderWidth: 1,
+                      borderStyle: "solid",
+                      borderColor: "var(--mantine-color-default-border)",
+                    }}
+                  >
+                    {t("transactions.add")}
+                  </Button>
+                </Box>
+              </Tooltip>
+            ) : hasNoCategories ? (
+              <HoverCard width={240} shadow="md" withArrow position="bottom-end" openDelay={100}>
+                <HoverCard.Target>
+                  {/* muted green (variant light) instead of gray data-disabled —
                     so it does not blend in; it stays a hover target for the tooltip, but
                     we suppress the click and mark aria-disabled */}
-                <Button
-                  size="sm"
-                  variant="light"
-                  leftSection={<IconPlus size={14} />}
-                  aria-disabled
-                  onClick={(e) => e.preventDefault()}
-                  style={{ cursor: "default" }}
-                >
-                  {t("transactions.add")}
-                </Button>
-              </HoverCard.Target>
+                  <Button
+                    size="sm"
+                    variant="light"
+                    leftSection={<IconPlus size={14} />}
+                    aria-disabled
+                    onClick={(e) => e.preventDefault()}
+                    style={{ cursor: "default" }}
+                  >
+                    {t("transactions.add")}
+                  </Button>
+                </HoverCard.Target>
 
-              <HoverCard.Dropdown>
-                <Text size="sm">
-                  {t("transactions.no_categories")}{" "}
-                  <Anchor component={Link} to={RouteNames.Categories}>
-                    {t("transactions.add_group_link")}
-                  </Anchor>
-                </Text>
-              </HoverCard.Dropdown>
-            </HoverCard>
-          ) : (
-            <Button size="sm" leftSection={<IconPlus size={14} />} onClick={openAddModal}>
-              {t("transactions.add")}
-            </Button>
-          )}
+                <HoverCard.Dropdown>
+                  <Text size="sm">
+                    {t("transactions.no_categories")}{" "}
+                    <Anchor component={Link} to={RouteNames.Categories}>
+                      {t("transactions.add_group_link")}
+                    </Anchor>
+                  </Text>
+                </HoverCard.Dropdown>
+              </HoverCard>
+            ) : (
+              <Button size="sm" leftSection={<IconPlus size={14} />} onClick={openAddModal}>
+                {t("transactions.add")}
+              </Button>
+            )}
+          </Box>
+          <TourTriggerButton onClick={startTour} />
         </Group>
       </Group>
 
       <LimitAlert usage={usage?.transactions} kind="transactions" />
 
       <Paper
+        data-tour="tx-list"
         style={{
           flex: 1,
           overflow: "hidden",

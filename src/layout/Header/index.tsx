@@ -26,7 +26,7 @@ export function Header() {
   return (
     <AppShell.Header className={classes.root}>
       <Group h="100%" px="md" gap="md" wrap="nowrap">
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" data-tour="nav-burger" />
 
         <Group gap="xs" ml="auto" wrap="nowrap">
           <Box visibleFrom="sm">
@@ -41,15 +41,17 @@ export function Header() {
             <ThemeToggle />
           </Box>
 
-          <SelectButton
-            label={t("header.add")}
-            icon={<IconPlus size={14} />}
-            onClick={() =>
-              open({ size: "lg", centered: true, children: <AddModal type="transaction" /> })
-            }
-            options={getAddOptions(t)}
-            menuWidth={260}
-          />
+          <Box data-tour="add-button">
+            <SelectButton
+              label={t("header.add")}
+              icon={<IconPlus size={14} />}
+              onClick={() =>
+                open({ size: "lg", centered: true, children: <AddModal type="transaction" /> })
+              }
+              options={getAddOptions(t)}
+              menuWidth={260}
+            />
+          </Box>
         </Group>
       </Group>
     </AppShell.Header>

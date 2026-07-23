@@ -7,6 +7,7 @@ import { ContributionForm } from "@components/goals/ContributionForm"
 import { ContributionsHistory } from "@components/goals/ContributionsHistory"
 import { DeleteGoalConfirm } from "@components/goals/DeleteGoalConfirm"
 import { GOALS_STALE_TIME, goalKeys } from "@constants/queries/goals"
+import { useGoalsTour } from "@hooks/useGoalsTour"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
   ActionIcon,
@@ -26,6 +27,7 @@ import {
 import { useModalStore } from "@store/modalStore"
 import { IconCircleCheck, IconEdit, IconPlus, IconTrash } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
+import { TourTriggerButton } from "@ui/TourTriggerButton"
 import { formatCurrency } from "@utils/formatCurrency"
 import { addMonths, differenceInDays, differenceInMonths, format } from "date-fns"
 import { enUS } from "date-fns/locale"
@@ -68,6 +70,7 @@ export function GoalsPage() {
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const open = useModalStore((s) => s.open)
   const close = useModalStore((s) => s.close)
+  const { startTour } = useGoalsTour()
   const money = (n: number, currency?: string) => formatCurrency(n, i18n.language, currency)
   const dash = (v: number | null | undefined, currency?: string) =>
     v == null ? "—" : money(v, currency)
@@ -175,12 +178,20 @@ export function GoalsPage() {
             {t("goals.active_count", { count: summary?.activeCount ?? 0 })}
           </Text>
         </Stack>
-        <Button size="sm" leftSection={<IconPlus size={14} />} onClick={openCreate}>
-          {t("goals.new")}
-        </Button>
+        <Group gap="xs">
+          <Button
+            data-tour="g-add"
+            size="sm"
+            leftSection={<IconPlus size={14} />}
+            onClick={openCreate}
+          >
+            {t("goals.new")}
+          </Button>
+          <TourTriggerButton onClick={startTour} />
+        </Group>
       </Group>
 
-      <Paper p="lg">
+      <Paper p="lg" data-tour="g-summary">
         <Group justify="space-between" align="center" wrap="wrap" gap="md">
           <Stack gap={4}>
             <Text size="xs" c="dimmed">
@@ -223,7 +234,7 @@ export function GoalsPage() {
           <Loader size="sm" />
         </Center>
       ) : (
-        <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
+        <SimpleGrid data-tour="g-cards" cols={{ base: 1, md: 2 }} spacing="md">
           {goals.map((g) => {
             const color = goalColor(g)
             return (

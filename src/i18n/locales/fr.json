@@ -95,7 +95,11 @@
     "currency_not_found": "Aucun résultat",
     "save": "Enregistrer",
     "saved": "Paramètres enregistrés",
-    "error": "Échec de l'enregistrement des paramètres"
+    "error": "Échec de l'enregistrement des paramètres",
+    "tour_tabs_title": "Général, sécurité, Telegram",
+    "tour_tabs_desc": "Basculez ici entre le profil, l'e-mail/mot de passe et les paramètres Telegram.",
+    "tour_form_title": "Vos paramètres",
+    "tour_form_desc": "Mettez à jour les paramètres de l'onglet sélectionné dans ce formulaire."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "{{count}} dernières transactions",
     "recent_show_all": "Tout afficher →",
     "recent_empty": "Aucune transaction pour le moment",
-    "goals_all": "Tous →"
+    "goals_all": "Tous →",
+    "tour_kpis_title": "Chiffres clés",
+    "tour_kpis_desc": "Votre solde actuel, vos revenus et dépenses de ce mois-ci en un coup d'œil.",
+    "tour_chart_title": "Graphique de trésorerie",
+    "tour_chart_desc": "Voyez comment vos revenus et dépenses évoluent jour après jour.",
+    "tour_goals_title": "Vos objectifs",
+    "tour_goals_desc": "Suivez ici la progression de vos objectifs d'épargne.",
+    "tour_transactions_title": "Transactions récentes",
+    "tour_transactions_desc": "Accès rapide à vos transactions les plus récentes."
   },
   "alerts": {
     "account_needs_email": "Vous vous êtes connecté via Telegram. Ajoutez un e-mail et un mot de passe dans les paramètres pour ne pas perdre l'accès à votre compte.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} catégorie",
     "categories_selected_other": "{{count}} catégories",
     "currencies_selected_one": "{{count}} devise",
-    "currencies_selected_other": "{{count}} devises"
+    "currencies_selected_other": "{{count}} devises",
+    "tour_add_title": "Ajouter une transaction",
+    "tour_add_desc": "Déjà défini sur revenu/dépense — ajoutez-en une en un clic.",
+    "tour_list_title": "Filtrer et rechercher",
+    "tour_list_desc": "Filtrez par type, catégorie, devise ou date, et recherchez vos transactions ici."
   },
   "categories": {
     "title": "Catégories",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} catégorie de revenus",
     "count_income_other": "{{count}} catégories de revenus",
     "load_error": "Échec du chargement des catégories",
-    "empty": "Aucune catégorie pour le moment"
+    "empty": "Aucune catégorie pour le moment",
+    "tour_toggle_title": "Dépense ou revenu",
+    "tour_toggle_desc": "Basculez entre les catégories de dépenses et de revenus.",
+    "tour_add_title": "Nouvelle catégorie",
+    "tour_add_desc": "Créez une catégorie avec son propre emoji et sa couleur.",
+    "tour_grid_title": "Vos catégories",
+    "tour_grid_desc": "Chaque carte affiche la progression des dépenses — cliquez pour ajouter une transaction, modifier ou supprimer."
   },
   "analytics": {
     "title": "Analyse",
@@ -306,7 +328,13 @@
     "comparison_title": "Comparaison avec la période précédente",
     "comparison_subtitle": "Où les dépenses ont changé",
     "details_title": "Détail des transactions",
-    "details_empty": "Aucune transaction sur la période"
+    "details_empty": "Aucune transaction sur la période",
+    "tour_period_title": "Choisissez une période",
+    "tour_period_desc": "Basculez entre des périodes prédéfinies ou choisissez une plage de dates personnalisée.",
+    "tour_kpis_title": "Chiffres clés",
+    "tour_kpis_desc": "Épargne et taux d'épargne pour la période sélectionnée.",
+    "tour_charts_title": "Répartition et tendances",
+    "tour_charts_desc": "Voyez où va votre argent par catégorie et ce qui a changé depuis la période précédente."
   },
   "add_modal": {
     "title_transaction": "Nouvelle transaction",
@@ -394,7 +422,13 @@
     "close_success": "Objectif clôturé",
     "completed_title": "Objectif atteint !",
     "completed_confirm": "Vous avez atteint cet objectif. Le clôturer maintenant ? L'argent épargné retourne dans votre solde libre et l'historique des contributions est conservé.",
-    "completed_keep": "Garder ouvert"
+    "completed_keep": "Garder ouvert",
+    "tour_add_title": "Nouvel objectif",
+    "tour_add_desc": "Définissez un montant cible et une échéance — LimeBalance suggérera combien mettre de côté chaque mois.",
+    "tour_summary_title": "Progression globale",
+    "tour_summary_desc": "Total épargné sur tous vos objectifs et ce qu'il reste.",
+    "tour_cards_title": "Vos objectifs",
+    "tour_cards_desc": "Déposez, retirez ou consultez l'historique des contributions de chaque objectif ici."
   },
   "investments": {
     "title": "Investissements et crypto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Une position spot est assemblée à partir des achats et des ventes selon la méthode FIFO : une vente clôture les achats les plus anciens, le prix d'entrée est pondéré par le volume, et la date d'ouverture correspond à l'achat clôturé le plus ancien. Les pièces achetées en dehors de Bybit (dépôts) ne deviennent pas des transactions.",
     "pos_opened_from": "ouverte le {{date}}",
     "equity_title": "Courbe de capital",
-    "kpi_capped": "les {{max}} premières"
+    "kpi_capped": "les {{max}} premières",
+    "tour_tabs_title": "Journal, portefeuille, comptes",
+    "tour_tabs_desc": "Enregistrez vos trades dans le journal, suivez vos avoirs dans le portefeuille et connectez des comptes d'échange ici.",
+    "tour_journal_filters_title": "Filtrez vos trades",
+    "tour_journal_filters_desc": "Filtrez par symbole, période, compte, statut ou type — synchronisez maintenant ou ajoutez un trade manuel ici.",
+    "tour_journal_title": "Journal des trades",
+    "tour_journal_desc": "Vos positions ouvertes et fermées, avec le PnL, le taux de réussite et le nombre de trades.",
+    "tour_portfolio_title": "Portefeuille",
+    "tour_portfolio_desc": "Vos avoirs en cryptomonnaies évalués aux prix en temps réel, avec gains et pertes latents.",
+    "tour_accounts_title": "Comptes d'échange",
+    "tour_accounts_desc": "Connectez et gérez vos comptes Bybit, et déclenchez une synchronisation manuelle."
   },
   "telegram": {
     "linked_success": "Telegram connecté",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "Il reste {{count}} transactions ce mois-ci. Ensuite — passez à Pro.",
     "transactions_blocked": "Limite mensuelle de transactions atteinte. Changez de forfait ou attendez le mois prochain.",
     "blocked_button_tooltip": "Limite atteinte — changez de forfait"
+  },
+  "tour": {
+    "start": "Afficher la visite",
+    "hint_title": "Visite guidée",
+    "hint_desc": "Cliquez ici à tout moment pour revoir une courte visite de cette page.",
+    "next": "Suivant",
+    "prev": "Retour",
+    "done": "Terminé",
+    "progress": "{{current}} sur {{total}}",
+    "nav_title": "Navigation",
+    "nav_desc": "Toutes les sections sont ici : transactions, catégories, objectifs, investissements et analyses.",
+    "nav_mobile_title": "Menu",
+    "nav_mobile_desc": "Appuyez ici pour ouvrir la navigation : transactions, catégories, objectifs, investissements et analyses.",
+    "add_title": "Ajout rapide",
+    "add_desc": "Ajoutez un revenu, une dépense ou un objectif en un clic — ce bouton est disponible sur toutes les pages."
   }
 }

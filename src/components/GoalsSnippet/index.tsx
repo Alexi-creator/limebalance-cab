@@ -31,7 +31,7 @@ export function GoalsSnippet() {
   const goals = (data?.items ?? []).slice(0, 4)
 
   return (
-    <Paper>
+    <Paper data-tour="goals">
       <Group
         justify="space-between"
         p="md"

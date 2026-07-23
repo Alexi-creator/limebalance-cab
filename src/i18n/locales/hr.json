@@ -95,7 +95,11 @@
     "currency_not_found": "Ništa nije pronađeno",
     "save": "Spremi",
     "saved": "Postavke spremljene",
-    "error": "Postavke nije moguće spremiti"
+    "error": "Postavke nije moguće spremiti",
+    "tour_tabs_title": "Opće, sigurnost, Telegram",
+    "tour_tabs_desc": "Ovdje se prebacujte između profila, e-pošte/lozinke i postavki Telegrama.",
+    "tour_form_title": "Vaše postavke",
+    "tour_form_desc": "Ažurirajte postavke odabrane kartice u ovom obrascu."
   },
   "app": {
     "name": "LimeBalance"
@@ -186,7 +190,15 @@
     "recent_subtitle_other": "Posljednjih {{count}} transakcija",
     "recent_show_all": "Prikaži sve →",
     "recent_empty": "Još nema transakcija",
-    "goals_all": "Sve →"
+    "goals_all": "Sve →",
+    "tour_kpis_title": "Ključni brojevi",
+    "tour_kpis_desc": "Vaš trenutni saldo, prihodi i troškovi za ovaj mjesec na prvi pogled.",
+    "tour_chart_title": "Grafikon novčanog toka",
+    "tour_chart_desc": "Pogledajte kako se vaši prihodi i troškovi mijenjaju iz dana u dan.",
+    "tour_goals_title": "Vaši ciljevi",
+    "tour_goals_desc": "Ovdje pratite napredak prema svojim štednim ciljevima.",
+    "tour_transactions_title": "Nedavne transakcije",
+    "tour_transactions_desc": "Brz pristup vašim najnovijim transakcijama."
   },
   "alerts": {
     "account_needs_email": "Prijavili ste se putem Telegrama. Dodajte e-poštu i lozinku u postavkama kako ne biste izgubili pristup računu.",
@@ -248,7 +260,11 @@
     "categories_selected_other": "{{count}} kategorija",
     "currencies_selected_one": "{{count}} valuta",
     "currencies_selected_few": "{{count}} valute",
-    "currencies_selected_other": "{{count}} valuta"
+    "currencies_selected_other": "{{count}} valuta",
+    "tour_add_title": "Dodaj transakciju",
+    "tour_add_desc": "Već postavljeno na prihod/trošak — dodajte jednim klikom.",
+    "tour_list_title": "Filtriranje i pretraga",
+    "tour_list_desc": "Filtrirajte prema vrsti, kategoriji, valuti ili datumu, i pretražujte svoje transakcije ovdje."
   },
   "categories": {
     "title": "Kategorije",
@@ -289,7 +305,13 @@
     "count_income_few": "{{count}} kategorije prihoda",
     "count_income_other": "{{count}} kategorija prihoda",
     "load_error": "Kategorije nije moguće učitati",
-    "empty": "Još nema kategorija"
+    "empty": "Još nema kategorija",
+    "tour_toggle_title": "Trošak ili prihod",
+    "tour_toggle_desc": "Prebacujte se između kategorija troškova i prihoda.",
+    "tour_add_title": "Nova kategorija",
+    "tour_add_desc": "Izradite kategoriju s vlastitim emojijem i bojom.",
+    "tour_grid_title": "Vaše kategorije",
+    "tour_grid_desc": "Svaka kartica prikazuje napredak potrošnje — kliknite za dodavanje transakcije, uređivanje ili brisanje."
   },
   "analytics": {
     "title": "Analitika",
@@ -317,7 +339,13 @@
     "comparison_title": "Usporedba s prethodnim razdobljem",
     "comparison_subtitle": "Gdje su se rashodi promijenili",
     "details_title": "Detalji transakcija",
-    "details_empty": "Nema transakcija za razdoblje"
+    "details_empty": "Nema transakcija za razdoblje",
+    "tour_period_title": "Odaberite razdoblje",
+    "tour_period_desc": "Prebacujte se između unaprijed postavljenih razdoblja ili odaberite prilagođeni raspon datuma.",
+    "tour_kpis_title": "Ključni brojevi",
+    "tour_kpis_desc": "Ušteđevina i stopa štednje za odabrano razdoblje.",
+    "tour_charts_title": "Raščlamba i trendovi",
+    "tour_charts_desc": "Pogledajte kamo ide vaš novac po kategorijama i što se promijenilo od prethodnog razdoblja."
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",
@@ -406,7 +434,13 @@
     "completed_title": "Cilj postignut!",
     "completed_confirm": "Postigli ste ovaj cilj. Želite li ga sada zatvoriti? Ušteđeni novac vraća se na vaš slobodni saldo, a povijest uplata se čuva.",
     "completed_keep": "Ostavi otvoreno",
-    "active_count_few": "{{count}} aktivna cilja"
+    "active_count_few": "{{count}} aktivna cilja",
+    "tour_add_title": "Novi cilj",
+    "tour_add_desc": "Postavite ciljani iznos i rok — LimeBalance će predložiti koliko odvajati svaki mjesec.",
+    "tour_summary_title": "Ukupni napredak",
+    "tour_summary_desc": "Ukupno ušteđeno za sve vaše ciljeve i koliko je preostalo.",
+    "tour_cards_title": "Vaši ciljevi",
+    "tour_cards_desc": "Ovdje uplaćujte, podižite ili provjerite povijest uplata za svaki cilj."
   },
   "investments": {
     "title": "Ulaganja i kriptovalute",
@@ -538,7 +572,17 @@
     "spot_fifo_hint": "Spot pozicija sastavlja se od kupnji i prodaja po FIFO metodi: prodaja zatvara najstarije kupnje, ulazna cijena je ponderirana volumenom, a datum otvaranja je najstarija zatvorena kupnja. Novčići kupljeni izvan Bybita (depoziti) ne postaju trgovanja.",
     "pos_opened_from": "otvoreno {{date}}",
     "equity_title": "Krivulja kapitala",
-    "kpi_capped": "prvih {{max}}"
+    "kpi_capped": "prvih {{max}}",
+    "tour_tabs_title": "Dnevnik, portfelj, računi",
+    "tour_tabs_desc": "Bilježite transakcije u dnevniku, pratite svoju imovinu u portfelju i povežite burzovne račune ovdje.",
+    "tour_journal_filters_title": "Filtrirajte svoje transakcije",
+    "tour_journal_filters_desc": "Filtrirajte prema simbolu, razdoblju, računu, statusu ili vrsti — sinkronizirajte odmah ili dodajte ručnu transakciju odavde.",
+    "tour_journal_title": "Dnevnik trgovanja",
+    "tour_journal_desc": "Vaše otvorene i zatvorene pozicije, s PnL-om, postotkom uspješnosti i brojem transakcija.",
+    "tour_portfolio_title": "Portfelj",
+    "tour_portfolio_desc": "Vaša kripto imovina procijenjena po trenutnim cijenama, s nerealiziranom dobiti i gubitkom.",
+    "tour_accounts_title": "Burzovni računi",
+    "tour_accounts_desc": "Povežite i upravljajte svojim Bybit računima te pokrenite ručnu sinkronizaciju."
   },
   "telegram": {
     "linked_success": "Telegram povezan",
@@ -595,5 +639,20 @@
     "transactions_soft_other": "Ovaj mjesec preostalo je {{count}} transakcija. Zatim — prijeđite na Pro.",
     "transactions_blocked": "Dosegnuto je mjesečno ograničenje transakcija. Nadogradite plan ili pričekajte sljedeći mjesec.",
     "blocked_button_tooltip": "Ograničenje dosegnuto — nadogradite plan"
+  },
+  "tour": {
+    "start": "Prikaži vodič",
+    "hint_title": "Vođena tura",
+    "hint_desc": "Kliknite ovdje bilo kada za ponovni pregled kratke ture ove stranice.",
+    "next": "Dalje",
+    "prev": "Natrag",
+    "done": "Gotovo",
+    "progress": "{{current}} od {{total}}",
+    "nav_title": "Navigacija",
+    "nav_desc": "Svi odjeljci su ovdje: transakcije, kategorije, ciljevi, ulaganja i analitika.",
+    "nav_mobile_title": "Izbornik",
+    "nav_mobile_desc": "Dotaknite ovdje za otvaranje navigacije: transakcije, kategorije, ciljevi, ulaganja i analitika.",
+    "add_title": "Brzo dodavanje",
+    "add_desc": "Dodajte prihod, trošak ili cilj jednim klikom — ovaj gumb dostupan je na svakoj stranici."
   }
 }

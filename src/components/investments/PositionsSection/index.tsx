@@ -400,6 +400,7 @@ export function PositionsSection({ accounts }: Props) {
 
       <Paper>
         <Group
+          data-tour="inv-journal-filters"
           justify="space-between"
           p="md"
           wrap="wrap"

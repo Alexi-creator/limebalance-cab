@@ -95,7 +95,11 @@
     "currency_not_found": "לא נמצא דבר",
     "save": "שמור",
     "saved": "ההגדרות נשמרו",
-    "error": "שמירת ההגדרות נכשלה"
+    "error": "שמירת ההגדרות נכשלה",
+    "tour_tabs_title": "כללי, אבטחה, טלגרם",
+    "tour_tabs_desc": "החליפו כאן בין פרופיל, אימייל/סיסמה והגדרות טלגרם.",
+    "tour_form_title": "ההגדרות שלכם",
+    "tour_form_desc": "עדכנו את הגדרות הלשונית הנבחרת בטופס זה."
   },
   "app": {
     "name": "LimeBalance"
@@ -188,7 +192,15 @@
     "recent_subtitle_other": "{{count}} העסקאות האחרונות",
     "recent_show_all": "הצג הכול →",
     "recent_empty": "אין עדיין עסקאות",
-    "goals_all": "הכול →"
+    "goals_all": "הכול →",
+    "tour_kpis_title": "נתונים עיקריים",
+    "tour_kpis_desc": "היתרה הנוכחית, ההכנסות וההוצאות שלכם החודש במבט אחד.",
+    "tour_chart_title": "גרף תזרים מזומנים",
+    "tour_chart_desc": "ראו כיצד ההכנסות וההוצאות שלכם משתנות מיום ליום.",
+    "tour_goals_title": "היעדים שלכם",
+    "tour_goals_desc": "עקבו כאן אחר ההתקדמות ליעדי החיסכון שלכם.",
+    "tour_transactions_title": "תנועות אחרונות",
+    "tour_transactions_desc": "גישה מהירה לתנועות האחרונות שלכם."
   },
   "alerts": {
     "account_needs_email": "התחברת דרך טלגרם. הוסף אימייל וסיסמה בהגדרות כדי לא לאבד גישה לחשבונך.",
@@ -255,7 +267,11 @@
     "currencies_selected_one": "{{count}} מטבע",
     "currencies_selected_two": "{{count}} מטבעות",
     "currencies_selected_many": "{{count}} מטבעות",
-    "currencies_selected_other": "{{count}} מטבעות"
+    "currencies_selected_other": "{{count}} מטבעות",
+    "tour_add_title": "הוספת תנועה",
+    "tour_add_desc": "כבר מוגדר כהכנסה/הוצאה — הוסיפו אחת בלחיצה.",
+    "tour_list_title": "סינון וחיפוש",
+    "tour_list_desc": "סננו לפי סוג, קטגוריה, מטבע או תאריך, וחפשו את התנועות שלכם כאן."
   },
   "categories": {
     "title": "קטגוריות",
@@ -300,7 +316,13 @@
     "count_income_many": "{{count}} קטגוריות הכנסות",
     "count_income_other": "{{count}} קטגוריות הכנסות",
     "load_error": "טעינת הקטגוריות נכשלה",
-    "empty": "אין עדיין קטגוריות"
+    "empty": "אין עדיין קטגוריות",
+    "tour_toggle_title": "הוצאה או הכנסה",
+    "tour_toggle_desc": "החליפו בין קטגוריות הוצאה והכנסה.",
+    "tour_add_title": "קטגוריה חדשה",
+    "tour_add_desc": "צרו קטגוריה עם אימוג'י וצבע משלה.",
+    "tour_grid_title": "הקטגוריות שלכם",
+    "tour_grid_desc": "כל כרטיס מציג את התקדמות ההוצאות — לחצו כדי להוסיף תנועה, לערוך או למחוק."
   },
   "analytics": {
     "title": "ניתוח",
@@ -328,7 +350,13 @@
     "comparison_title": "השוואה לתקופה הקודמת",
     "comparison_subtitle": "היכן ההוצאות השתנו",
     "details_title": "פירוט עסקאות",
-    "details_empty": "אין עסקאות בתקופה"
+    "details_empty": "אין עסקאות בתקופה",
+    "tour_period_title": "בחרו תקופה",
+    "tour_period_desc": "החליפו בין תקופות מוגדרות מראש או בחרו טווח תאריכים מותאם אישית.",
+    "tour_kpis_title": "נתונים עיקריים",
+    "tour_kpis_desc": "חיסכון ושיעור חיסכון עבור התקופה שנבחרה.",
+    "tour_charts_title": "פירוט ומגמות",
+    "tour_charts_desc": "ראו לאן הכסף שלכם הולך לפי קטגוריה ומה השתנה מאז התקופה הקודמת."
   },
   "add_modal": {
     "title_transaction": "עסקה חדשה",
@@ -418,7 +446,13 @@
     "completed_confirm": "השגת את היעד הזה. לסגור אותו עכשיו? הכסף שנחסך יחזור ליתרה הפנויה שלך והיסטוריית ההפקדות תישמר.",
     "completed_keep": "להשאיר פתוח",
     "active_count_two": "{{count}} יעדים פעילים",
-    "active_count_many": "{{count}} יעדים פעילים"
+    "active_count_many": "{{count}} יעדים פעילים",
+    "tour_add_title": "יעד חדש",
+    "tour_add_desc": "קבעו סכום יעד ומועד סופי — LimeBalance יציע כמה להפריש כל חודש.",
+    "tour_summary_title": "התקדמות כוללת",
+    "tour_summary_desc": "סך החיסכון בכל היעדים שלכם וכמה נותר.",
+    "tour_cards_title": "היעדים שלכם",
+    "tour_cards_desc": "הפקידו, משכו או בדקו את היסטוריית ההפקדות של כל יעד כאן."
   },
   "investments": {
     "title": "השקעות וקריפטו",
@@ -550,7 +584,17 @@
     "spot_fifo_hint": "פוזיציית ספוט מורכבת מקניות ומכירות לפי שיטת FIFO: מכירה סוגרת את הקניות הישנות ביותר, מחיר הכניסה הוא ממוצע משוקלל נפח, ותאריך הפתיחה הוא הקנייה הישנה ביותר שנסגרה. מטבעות שנקנו מחוץ ל-Bybit (הפקדות) אינם הופכים לעסקאות.",
     "pos_opened_from": "נפתחה ב-{{date}}",
     "equity_title": "עקומת ההון",
-    "kpi_capped": "{{max}} הראשונים"
+    "kpi_capped": "{{max}} הראשונים",
+    "tour_tabs_title": "יומן, תיק השקעות, חשבונות",
+    "tour_tabs_desc": "תעדו עסקאות ביומן, עקבו אחר הנכסים שלכם בתיק ההשקעות וחברו חשבונות בורסה כאן.",
+    "tour_journal_filters_title": "סננו את העסקאות שלכם",
+    "tour_journal_filters_desc": "סננו לפי סימול, תקופה, חשבון, סטטוס או סוג — סנכרנו עכשיו או הוסיפו עסקה ידנית מכאן.",
+    "tour_journal_title": "יומן עסקאות",
+    "tour_journal_desc": "הפוזיציות הפתוחות והסגורות שלכם, עם רווח/הפסד, אחוז הצלחה ומספר עסקאות.",
+    "tour_portfolio_title": "תיק השקעות",
+    "tour_portfolio_desc": "נכסי הקריפטו שלכם מוערכים במחירים בזמן אמת, עם רווח והפסד שטרם מומשו.",
+    "tour_accounts_title": "חשבונות בורסה",
+    "tour_accounts_desc": "חברו ונהלו את חשבונות ה-Bybit שלכם, והפעילו סנכרון ידני."
   },
   "telegram": {
     "linked_success": "טלגרם חובר",
@@ -607,5 +651,20 @@
     "transactions_soft_other": "נותרו {{count}} תנועות החודש. לאחר מכן — שדרגו ל-Pro.",
     "transactions_blocked": "הגעת למגבלת התנועות החודשית. שדרגו את התוכנית או המתינו לחודש הבא.",
     "blocked_button_tooltip": "הגעת למגבלה — שדרגו את התוכנית"
+  },
+  "tour": {
+    "start": "הצג סיור",
+    "hint_title": "סיור מודרך",
+    "hint_desc": "לחצו כאן בכל עת כדי לצפות שוב בסיור קצר בעמוד זה.",
+    "next": "הבא",
+    "prev": "חזרה",
+    "done": "סיום",
+    "progress": "{{current}} מתוך {{total}}",
+    "nav_title": "ניווט",
+    "nav_desc": "כל האזורים נמצאים כאן: תנועות, קטגוריות, יעדים, השקעות ואנליטיקה.",
+    "nav_mobile_title": "תפריט",
+    "nav_mobile_desc": "הקישו כאן כדי לפתוח את הניווט: תנועות, קטגוריות, יעדים, השקעות ואנליטיקה.",
+    "add_title": "הוספה מהירה",
+    "add_desc": "הוסיפו הכנסה, הוצאה או יעד בלחיצה אחת — כפתור זה זמין מכל עמוד."
   }
 }

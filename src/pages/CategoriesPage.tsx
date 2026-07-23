@@ -11,6 +11,7 @@ import { baseAmount, toDisplay } from "@components/categories/helpers"
 import { LimitAlert } from "@components/LimitAlert"
 import { EXPENSE_STALE_TIME, expenseKeys } from "@constants/queries/expenses"
 import { INCOME_STALE_TIME, incomeKeys } from "@constants/queries/incomes"
+import { useCategoriesTour } from "@hooks/useCategoriesTour"
 import { useUsage } from "@hooks/useUsage"
 import {
   Box,
@@ -28,6 +29,7 @@ import {
 import { useModalStore } from "@store/modalStore"
 import { IconPlus } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
+import { TourTriggerButton } from "@ui/TourTriggerButton"
 import { isLimitBlocked } from "@utils/subscription"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
@@ -41,6 +43,7 @@ export function CategoriesPage() {
     setSearchParams({ type: value }, { replace: true })
   const isExpense = tab === "expense"
   const openModal = useModalStore((s) => s.open)
+  const { startTour } = useCategoriesTour()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: isExpense ? expenseKeys.categoriesStats : incomeKeys.categoriesStats,
@@ -110,6 +113,7 @@ export function CategoriesPage() {
         </Stack>
         <Group gap="xs">
           <SegmentedControl
+            data-tour="cat-toggle"
             classNames={{ root: classes.typeControl }}
             value={tab}
             onChange={(v) => setTab(v as "expense" | "income")}
@@ -118,29 +122,32 @@ export function CategoriesPage() {
               { value: "income", label: t("common.income_plural") },
             ]}
           />
-          {categoriesBlocked ? (
-            // a disabled button swallows hover, so the tooltip listens on the wrapping Box
-            <Tooltip label={t("limits.blocked_button_tooltip")} position="bottom-end" withArrow>
-              <Box>
-                <Button
-                  size="sm"
-                  leftSection={<IconPlus size={14} />}
-                  disabled
-                  style={{
-                    borderWidth: 1,
-                    borderStyle: "solid",
-                    borderColor: "var(--mantine-color-default-border)",
-                  }}
-                >
-                  {t("categories.new")}
-                </Button>
-              </Box>
-            </Tooltip>
-          ) : (
-            <Button size="sm" leftSection={<IconPlus size={14} />} onClick={() => openForm()}>
-              {t("categories.new")}
-            </Button>
-          )}
+          <Box data-tour="cat-add">
+            {categoriesBlocked ? (
+              // a disabled button swallows hover, so the tooltip listens on the wrapping Box
+              <Tooltip label={t("limits.blocked_button_tooltip")} position="bottom-end" withArrow>
+                <Box>
+                  <Button
+                    size="sm"
+                    leftSection={<IconPlus size={14} />}
+                    disabled
+                    style={{
+                      borderWidth: 1,
+                      borderStyle: "solid",
+                      borderColor: "var(--mantine-color-default-border)",
+                    }}
+                  >
+                    {t("categories.new")}
+                  </Button>
+                </Box>
+              </Tooltip>
+            ) : (
+              <Button size="sm" leftSection={<IconPlus size={14} />} onClick={() => openForm()}>
+                {t("categories.new")}
+              </Button>
+            )}
+          </Box>
+          <TourTriggerButton onClick={startTour} />
         </Group>
       </Group>
 
@@ -168,7 +175,7 @@ export function CategoriesPage() {
       ) : (
         <>
           <CategoriesSummary list={list} isExpense={isExpense} />
-          <SimpleGrid cols={GRID_COLS} spacing="md">
+          <SimpleGrid data-tour="cat-grid" cols={GRID_COLS} spacing="md">
             {list.map((c) => (
               <CategoryCard
                 key={c.id}

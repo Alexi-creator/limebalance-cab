@@ -95,7 +95,11 @@
     "currency_not_found": "Nichts gefunden",
     "save": "Speichern",
     "saved": "Einstellungen gespeichert",
-    "error": "Einstellungen konnten nicht gespeichert werden"
+    "error": "Einstellungen konnten nicht gespeichert werden",
+    "tour_tabs_title": "Allgemein, Sicherheit, Telegram",
+    "tour_tabs_desc": "Wechseln Sie hier zwischen Profil-, E-Mail-/Passwort- und Telegram-Einstellungen.",
+    "tour_form_title": "Ihre Einstellungen",
+    "tour_form_desc": "Aktualisieren Sie die Einstellungen des ausgewählten Tabs in diesem Formular."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Letzte {{count}} Transaktionen",
     "recent_show_all": "Alle anzeigen →",
     "recent_empty": "Noch keine Transaktionen",
-    "goals_all": "Alle →"
+    "goals_all": "Alle →",
+    "tour_kpis_title": "Wichtige Kennzahlen",
+    "tour_kpis_desc": "Ihr aktueller Kontostand, Einnahmen und Ausgaben für diesen Monat auf einen Blick.",
+    "tour_chart_title": "Cashflow-Diagramm",
+    "tour_chart_desc": "Sehen Sie, wie sich Ihre Einnahmen und Ausgaben Tag für Tag verändern.",
+    "tour_goals_title": "Ihre Ziele",
+    "tour_goals_desc": "Verfolgen Sie hier den Fortschritt Ihrer Sparziele.",
+    "tour_transactions_title": "Letzte Transaktionen",
+    "tour_transactions_desc": "Schneller Zugriff auf Ihre neuesten Transaktionen."
   },
   "alerts": {
     "account_needs_email": "Sie haben sich über Telegram angemeldet. Fügen Sie in den Einstellungen E-Mail und Passwort hinzu, um den Zugriff auf Ihr Konto nicht zu verlieren.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} Kategorie",
     "categories_selected_other": "{{count}} Kategorien",
     "currencies_selected_one": "{{count}} Währung",
-    "currencies_selected_other": "{{count}} Währungen"
+    "currencies_selected_other": "{{count}} Währungen",
+    "tour_add_title": "Transaktion hinzufügen",
+    "tour_add_desc": "Bereits auf Einnahme/Ausgabe eingestellt — mit einem Klick hinzufügen.",
+    "tour_list_title": "Filtern und suchen",
+    "tour_list_desc": "Filtern Sie nach Typ, Kategorie, Währung oder Datum, und durchsuchen Sie hier Ihre Transaktionen."
   },
   "categories": {
     "title": "Kategorien",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} Einnahmenkategorie",
     "count_income_other": "{{count}} Einnahmenkategorien",
     "load_error": "Kategorien konnten nicht geladen werden",
-    "empty": "Noch keine Kategorien"
+    "empty": "Noch keine Kategorien",
+    "tour_toggle_title": "Ausgabe oder Einnahme",
+    "tour_toggle_desc": "Wechseln Sie zwischen Ausgaben- und Einnahmekategorien.",
+    "tour_add_title": "Neue Kategorie",
+    "tour_add_desc": "Erstellen Sie eine Kategorie mit eigenem Emoji und eigener Farbe.",
+    "tour_grid_title": "Ihre Kategorien",
+    "tour_grid_desc": "Jede Karte zeigt den Ausgabenverlauf — klicken Sie darauf, um eine Transaktion hinzuzufügen, zu bearbeiten oder zu löschen."
   },
   "analytics": {
     "title": "Analyse",
@@ -306,7 +328,13 @@
     "comparison_title": "Vergleich mit dem Vorzeitraum",
     "comparison_subtitle": "Wo sich die Ausgaben geändert haben",
     "details_title": "Transaktionsdetails",
-    "details_empty": "Keine Transaktionen im Zeitraum"
+    "details_empty": "Keine Transaktionen im Zeitraum",
+    "tour_period_title": "Zeitraum wählen",
+    "tour_period_desc": "Wechseln Sie zwischen voreingestellten Zeiträumen oder wählen Sie einen eigenen Datumsbereich.",
+    "tour_kpis_title": "Wichtige Kennzahlen",
+    "tour_kpis_desc": "Ersparnisse und Sparquote für den gewählten Zeitraum.",
+    "tour_charts_title": "Aufschlüsselung und Trends",
+    "tour_charts_desc": "Sehen Sie, wohin Ihr Geld nach Kategorie fließt und was sich seit dem vorherigen Zeitraum geändert hat."
   },
   "add_modal": {
     "title_transaction": "Neue Transaktion",
@@ -394,7 +422,13 @@
     "close_success": "Ziel geschlossen",
     "completed_title": "Ziel erreicht!",
     "completed_confirm": "Du hast dieses Ziel erreicht. Jetzt schließen? Das gesparte Geld fließt zurück in dein freies Guthaben und der Einzahlungsverlauf bleibt erhalten.",
-    "completed_keep": "Offen lassen"
+    "completed_keep": "Offen lassen",
+    "tour_add_title": "Neues Ziel",
+    "tour_add_desc": "Legen Sie einen Zielbetrag und eine Frist fest — LimeBalance schlägt vor, wie viel Sie monatlich zurücklegen sollten.",
+    "tour_summary_title": "Gesamtfortschritt",
+    "tour_summary_desc": "Insgesamt Angespartes über alle Ihre Ziele und wie viel noch übrig ist.",
+    "tour_cards_title": "Ihre Ziele",
+    "tour_cards_desc": "Zahlen Sie hier ein, aus, oder prüfen Sie den Einzahlungsverlauf für jedes Ziel."
   },
   "investments": {
     "title": "Investitionen und Krypto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Eine Spot-Position wird nach FIFO aus Käufen und Verkäufen zusammengesetzt: Ein Verkauf schließt die ältesten Käufe, der Einstiegspreis ist volumengewichtet, und das Eröffnungsdatum ist der älteste geschlossene Kauf. Münzen, die außerhalb von Bybit gekauft wurden (Einzahlungen), werden nicht zu Trades.",
     "pos_opened_from": "eröffnet {{date}}",
     "equity_title": "Kapitalkurve",
-    "kpi_capped": "erste {{max}}"
+    "kpi_capped": "erste {{max}}",
+    "tour_tabs_title": "Journal, Portfolio, Konten",
+    "tour_tabs_desc": "Erfassen Sie Trades im Journal, verfolgen Sie Ihre Bestände im Portfolio und verbinden Sie hier Börsenkonten.",
+    "tour_journal_filters_title": "Trades filtern",
+    "tour_journal_filters_desc": "Filtern Sie nach Symbol, Zeitraum, Konto, Status oder Typ — synchronisieren Sie jetzt oder fügen Sie hier einen manuellen Trade hinzu.",
+    "tour_journal_title": "Handelsjournal",
+    "tour_journal_desc": "Ihre offenen und geschlossenen Positionen mit PnL, Trefferquote und Anzahl der Trades.",
+    "tour_portfolio_title": "Portfolio",
+    "tour_portfolio_desc": "Ihre Krypto-Bestände bewertet zu Live-Preisen, mit nicht realisierten Gewinnen und Verlusten.",
+    "tour_accounts_title": "Börsenkonten",
+    "tour_accounts_desc": "Verbinden und verwalten Sie Ihre Bybit-Konten und starten Sie eine manuelle Synchronisierung."
   },
   "telegram": {
     "linked_success": "Telegram verbunden",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "Noch {{count}} Transaktionen in diesem Monat. Danach – Upgrade auf Pro.",
     "transactions_blocked": "Monatliches Transaktionslimit erreicht. Führe ein Upgrade durch oder warte bis zum nächsten Monat.",
     "blocked_button_tooltip": "Limit erreicht – bitte Upgrade durchführen"
+  },
+  "tour": {
+    "start": "Tour anzeigen",
+    "hint_title": "Geführte Tour",
+    "hint_desc": "Klicken Sie jederzeit hier, um eine kurze Tour dieser Seite erneut anzusehen.",
+    "next": "Weiter",
+    "prev": "Zurück",
+    "done": "Fertig",
+    "progress": "{{current}} von {{total}}",
+    "nav_title": "Navigation",
+    "nav_desc": "Alle Bereiche sind hier: Transaktionen, Kategorien, Ziele, Investitionen und Analysen.",
+    "nav_mobile_title": "Menü",
+    "nav_mobile_desc": "Tippen Sie hier, um die Navigation zu öffnen: Transaktionen, Kategorien, Ziele, Investitionen und Analysen.",
+    "add_title": "Schnell hinzufügen",
+    "add_desc": "Fügen Sie mit einem Klick Einnahmen, Ausgaben oder ein Ziel hinzu — dieser Button ist auf jeder Seite verfügbar."
   }
 }

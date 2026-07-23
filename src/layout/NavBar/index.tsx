@@ -8,7 +8,7 @@ import classes from "./classes.module.css"
  */
 export function NavBar() {
   return (
-    <AppShell.Navbar p="md" className={classes.root}>
+    <AppShell.Navbar p="md" className={classes.root} data-tour="nav">
       <DashboardSidebar />
     </AppShell.Navbar>
   )

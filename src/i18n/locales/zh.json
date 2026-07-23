@@ -95,7 +95,11 @@
     "currency_not_found": "未找到",
     "save": "保存",
     "saved": "设置已保存",
-    "error": "无法保存设置"
+    "error": "无法保存设置",
+    "tour_tabs_title": "通用、安全、Telegram",
+    "tour_tabs_desc": "在此处切换个人资料、邮箱/密码和 Telegram 设置。",
+    "tour_form_title": "您的设置",
+    "tour_form_desc": "在此表单中更新所选标签页的设置。"
   },
   "app": {
     "name": "LimeBalance"
@@ -182,7 +186,15 @@
     "recent_subtitle_other": "最近 {{count}} 笔交易",
     "recent_show_all": "查看全部 →",
     "recent_empty": "暂无交易",
-    "goals_all": "全部 →"
+    "goals_all": "全部 →",
+    "tour_kpis_title": "关键数据",
+    "tour_kpis_desc": "一目了然地查看本月的当前余额、收入和支出。",
+    "tour_chart_title": "现金流图表",
+    "tour_chart_desc": "查看您的收入和支出每天的变化情况。",
+    "tour_goals_title": "您的目标",
+    "tour_goals_desc": "在此处跟踪储蓄目标的进度。",
+    "tour_transactions_title": "最近交易",
+    "tour_transactions_desc": "快速访问您的最新交易。"
   },
   "alerts": {
     "account_needs_email": "您通过 Telegram 登录。请在设置中添加邮箱和密码，以免失去对账户的访问权限。",
@@ -234,7 +246,11 @@
     "income_added": "已添加收入",
     "save_error": "无法保存交易",
     "categories_selected_other": "{{count}} 个类别",
-    "currencies_selected_other": "{{count}} 种货币"
+    "currencies_selected_other": "{{count}} 种货币",
+    "tour_add_title": "添加交易",
+    "tour_add_desc": "已设置为收入/支出 — 一键添加。",
+    "tour_list_title": "筛选和搜索",
+    "tour_list_desc": "按类型、分类、货币或日期筛选，并在此处搜索您的交易。"
   },
   "categories": {
     "title": "分类",
@@ -267,7 +283,13 @@
     "count_expense_other": "{{count}} 个支出分类",
     "count_income_other": "{{count}} 个收入分类",
     "load_error": "无法加载分类",
-    "empty": "暂无分类"
+    "empty": "暂无分类",
+    "tour_toggle_title": "支出还是收入",
+    "tour_toggle_desc": "在支出和收入分类之间切换。",
+    "tour_add_title": "新建分类",
+    "tour_add_desc": "创建具有专属表情符号和颜色的分类。",
+    "tour_grid_title": "您的分类",
+    "tour_grid_desc": "每张卡片显示支出进度 — 点击可添加交易、编辑或删除。"
   },
   "analytics": {
     "title": "分析",
@@ -295,7 +317,13 @@
     "comparison_title": "与上一周期对比",
     "comparison_subtitle": "支出变化之处",
     "details_title": "交易明细",
-    "details_empty": "该时段没有交易"
+    "details_empty": "该时段没有交易",
+    "tour_period_title": "选择时间段",
+    "tour_period_desc": "在预设时间段之间切换，或选择自定义日期范围。",
+    "tour_kpis_title": "关键数据",
+    "tour_kpis_desc": "所选时间段的储蓄额和储蓄率。",
+    "tour_charts_title": "明细与趋势",
+    "tour_charts_desc": "按分类查看您的资金去向，以及与上一时间段相比的变化。"
   },
   "add_modal": {
     "title_transaction": "新交易",
@@ -382,7 +410,13 @@
     "close_success": "目标已关闭",
     "completed_title": "目标已达成！",
     "completed_confirm": "您已达成此目标。现在关闭吗？已存的钱将返还到您的可用余额，且缴存记录会保留。",
-    "completed_keep": "保持开启"
+    "completed_keep": "保持开启",
+    "tour_add_title": "新建目标",
+    "tour_add_desc": "设置目标金额和截止日期 — LimeBalance 会建议每月应存多少钱。",
+    "tour_summary_title": "总体进度",
+    "tour_summary_desc": "所有目标的总储蓄额以及剩余金额。",
+    "tour_cards_title": "您的目标",
+    "tour_cards_desc": "在此处存入、取出或查看每个目标的缴款历史。"
   },
   "investments": {
     "title": "投资与加密货币",
@@ -514,7 +548,17 @@
     "spot_fifo_hint": "现货仓位按 FIFO（先进先出）方式由买入和卖出组成：卖出会平掉最早的买入，开仓价为成交量加权平均价，开仓日期为最早被平掉的买入日期。在 Bybit 之外购买的币（充值转入）不会成为交易记录。",
     "pos_opened_from": "开仓于 {{date}}",
     "equity_title": "权益曲线",
-    "kpi_capped": "前 {{max}} 条"
+    "kpi_capped": "前 {{max}} 条",
+    "tour_tabs_title": "日志、投资组合、账户",
+    "tour_tabs_desc": "在日志中记录交易，在投资组合中跟踪您的持仓，并在此处连接交易所账户。",
+    "tour_journal_filters_title": "筛选您的交易",
+    "tour_journal_filters_desc": "按代码、时间段、账户、状态或类型筛选 — 立即同步或在此处手动添加交易。",
+    "tour_journal_title": "交易日志",
+    "tour_journal_desc": "您的持仓和已平仓头寸，包含盈亏、胜率和交易次数。",
+    "tour_portfolio_title": "投资组合",
+    "tour_portfolio_desc": "按实时价格估值的加密资产，包含未实现盈亏。",
+    "tour_accounts_title": "交易所账户",
+    "tour_accounts_desc": "连接并管理您的 Bybit 账户，并触发手动同步。"
   },
   "telegram": {
     "linked_success": "已连接 Telegram",
@@ -567,5 +611,20 @@
     "transactions_soft_other": "本月还剩 {{count}} 笔交易。之后请升级到 Pro。",
     "transactions_blocked": "已达到本月交易上限。请升级套餐或等待下个月。",
     "blocked_button_tooltip": "已达上限 — 请升级套餐"
+  },
+  "tour": {
+    "start": "显示导览",
+    "hint_title": "引导导览",
+    "hint_desc": "随时点击此处即可重新查看本页面的简短导览。",
+    "next": "下一步",
+    "prev": "返回",
+    "done": "完成",
+    "progress": "第 {{current}} 步，共 {{total}} 步",
+    "nav_title": "导航",
+    "nav_desc": "所有版块都在这里：交易、分类、目标、投资和分析。",
+    "nav_mobile_title": "菜单",
+    "nav_mobile_desc": "点击此处打开导航：交易、分类、目标、投资和分析。",
+    "add_title": "快速添加",
+    "add_desc": "一键添加收入、支出或目标 — 此按钮在任意页面均可使用。"
   }
 }

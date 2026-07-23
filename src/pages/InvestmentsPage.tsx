@@ -7,9 +7,11 @@ import { PositionsSection } from "@components/investments/PositionsSection"
 import { HttpStatus } from "@constants/httpStatus"
 import { ACCOUNTS_FIRST_SYNC_POLL_MS, investingKeys } from "@constants/queries/investing"
 import { RouteNames } from "@constants/routeNames"
-import { Alert, Box, Stack, Tabs, Text, Title } from "@mantine/core"
+import { useInvestmentsTour } from "@hooks/useInvestmentsTour"
+import { Alert, Box, Group, Stack, Tabs, Text, Title } from "@mantine/core"
 import { IconBriefcase, IconNotebook, IconPlugConnected } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
+import { TourTriggerButton } from "@ui/TourTriggerButton"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 
@@ -22,6 +24,7 @@ const TAB_VALUES = ["journal", "portfolio", "accounts"]
  */
 export function InvestmentsPage() {
   const { t } = useTranslation()
+  const { startTour } = useInvestmentsTour()
   const navigate = useNavigate()
   const { tab: tabParam } = useParams<{ tab?: string }>()
 
@@ -55,14 +58,17 @@ export function InvestmentsPage() {
 
   return (
     <Stack gap="md">
-      <Stack gap={4}>
-        <Title order={2} size="h3">
-          {t("investments.title")}
-        </Title>
-        <Text size="sm" c="dimmed">
-          {t("investments.subtitle")}
-        </Text>
-      </Stack>
+      <Group justify="space-between" align="flex-start">
+        <Stack gap={4}>
+          <Title order={2} size="h3">
+            {t("investments.title")}
+          </Title>
+          <Text size="sm" c="dimmed">
+            {t("investments.subtitle")}
+          </Text>
+        </Stack>
+        {!isPaywalled && <TourTriggerButton onClick={startTour} />}
+      </Group>
 
       {isPaywalled ? (
         <InvestingPaywall />
@@ -70,31 +76,43 @@ export function InvestmentsPage() {
         <Alert color="red">{error.message}</Alert>
       ) : (
         <Tabs value={activeTab} onChange={setTab} keepMounted={false}>
-          <Tabs.List mb="md">
-            <Tabs.Tab value="journal" leftSection={<IconNotebook size={16} />}>
+          <Tabs.List mb="md" data-tour="inv-tabs">
+            <Tabs.Tab
+              value="journal"
+              leftSection={<IconNotebook size={16} />}
+              data-tour="inv-tab-journal"
+            >
               <Box component="span" visibleFrom="sm">
                 {t("investments.tab_journal")}
               </Box>
             </Tabs.Tab>
-            <Tabs.Tab value="portfolio" leftSection={<IconBriefcase size={16} />}>
+            <Tabs.Tab
+              value="portfolio"
+              leftSection={<IconBriefcase size={16} />}
+              data-tour="inv-tab-portfolio"
+            >
               <Box component="span" visibleFrom="sm">
                 {t("investments.tab_portfolio")}
               </Box>
             </Tabs.Tab>
-            <Tabs.Tab value="accounts" leftSection={<IconPlugConnected size={16} />}>
+            <Tabs.Tab
+              value="accounts"
+              leftSection={<IconPlugConnected size={16} />}
+              data-tour="inv-tab-accounts"
+            >
               <Box component="span" visibleFrom="sm">
                 {t("investments.tab_accounts")}
               </Box>
             </Tabs.Tab>
           </Tabs.List>
 
-          <Tabs.Panel value="journal">
+          <Tabs.Panel value="journal" data-tour="inv-journal">
             <PositionsSection accounts={accounts ?? []} />
           </Tabs.Panel>
-          <Tabs.Panel value="portfolio">
+          <Tabs.Panel value="portfolio" data-tour="inv-portfolio">
             <HoldingsSection />
           </Tabs.Panel>
-          <Tabs.Panel value="accounts">
+          <Tabs.Panel value="accounts" data-tour="inv-accounts">
             <AccountsSection accounts={accounts ?? []} isLoading={isLoading} />
           </Tabs.Panel>
         </Tabs>

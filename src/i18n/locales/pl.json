@@ -95,7 +95,11 @@
     "currency_not_found": "Nic nie znaleziono",
     "save": "Zapisz",
     "saved": "Ustawienia zapisane",
-    "error": "Nie udało się zapisać ustawień"
+    "error": "Nie udało się zapisać ustawień",
+    "tour_tabs_title": "Ogólne, bezpieczeństwo, Telegram",
+    "tour_tabs_desc": "Przełączaj się tutaj między profilem, e-mailem/hasłem i ustawieniami Telegrama.",
+    "tour_form_title": "Twoje ustawienia",
+    "tour_form_desc": "Zaktualizuj ustawienia wybranej karty w tym formularzu."
   },
   "app": {
     "name": "LimeBalance"
@@ -186,7 +190,15 @@
     "recent_subtitle_many": "Ostatnie {{count}} transakcji",
     "recent_show_all": "Pokaż wszystkie →",
     "recent_empty": "Brak transakcji",
-    "goals_all": "Wszystkie →"
+    "goals_all": "Wszystkie →",
+    "tour_kpis_title": "Kluczowe liczby",
+    "tour_kpis_desc": "Twoje aktualne saldo, przychody i wydatki w tym miesiącu na pierwszy rzut oka.",
+    "tour_chart_title": "Wykres przepływów pieniężnych",
+    "tour_chart_desc": "Zobacz, jak zmieniają się Twoje przychody i wydatki dzień po dniu.",
+    "tour_goals_title": "Twoje cele",
+    "tour_goals_desc": "Śledź tutaj postępy w realizacji celów oszczędnościowych.",
+    "tour_transactions_title": "Ostatnie transakcje",
+    "tour_transactions_desc": "Szybki dostęp do najnowszych transakcji."
   },
   "alerts": {
     "account_needs_email": "Zalogowano przez Telegram. Dodaj e-mail i hasło w ustawieniach, aby nie utracić dostępu do konta.",
@@ -248,7 +260,11 @@
     "categories_selected_many": "{{count}} kategorii",
     "currencies_selected_one": "{{count}} waluta",
     "currencies_selected_few": "{{count}} waluty",
-    "currencies_selected_many": "{{count}} walut"
+    "currencies_selected_many": "{{count}} walut",
+    "tour_add_title": "Dodaj transakcję",
+    "tour_add_desc": "Już ustawiona jako przychód/wydatek — dodaj ją jednym kliknięciem.",
+    "tour_list_title": "Filtrowanie i wyszukiwanie",
+    "tour_list_desc": "Filtruj według typu, kategorii, waluty lub daty i wyszukuj tutaj swoje transakcje."
   },
   "categories": {
     "title": "Kategorie",
@@ -289,7 +305,13 @@
     "count_income_few": "{{count}} kategorie przychodów",
     "count_income_many": "{{count}} kategorii przychodów",
     "load_error": "Nie udało się załadować kategorii",
-    "empty": "Brak kategorii"
+    "empty": "Brak kategorii",
+    "tour_toggle_title": "Wydatek czy przychód",
+    "tour_toggle_desc": "Przełączaj się między kategoriami wydatków i przychodów.",
+    "tour_add_title": "Nowa kategoria",
+    "tour_add_desc": "Utwórz kategorię z własnym emoji i kolorem.",
+    "tour_grid_title": "Twoje kategorie",
+    "tour_grid_desc": "Każda karta pokazuje postęp wydatków — kliknij, aby dodać transakcję, edytować lub usunąć."
   },
   "analytics": {
     "title": "Analityka",
@@ -317,7 +339,13 @@
     "comparison_title": "Porównanie z poprzednim okresem",
     "comparison_subtitle": "Gdzie zmieniły się wydatki",
     "details_title": "Szczegóły transakcji",
-    "details_empty": "Brak transakcji w tym okresie"
+    "details_empty": "Brak transakcji w tym okresie",
+    "tour_period_title": "Wybierz okres",
+    "tour_period_desc": "Przełączaj się między predefiniowanymi okresami lub wybierz niestandardowy zakres dat.",
+    "tour_kpis_title": "Kluczowe liczby",
+    "tour_kpis_desc": "Oszczędności i stopa oszczędności dla wybranego okresu.",
+    "tour_charts_title": "Podział i trendy",
+    "tour_charts_desc": "Zobacz, dokąd trafiają Twoje pieniądze według kategorii i co zmieniło się od poprzedniego okresu."
   },
   "add_modal": {
     "title_transaction": "Nowa transakcja",
@@ -406,7 +434,13 @@
     "completed_confirm": "Osiągnąłeś ten cel. Zamknąć go teraz? Zaoszczędzone pieniądze wrócą do Twojego wolnego salda, a historia wpłat zostanie zachowana.",
     "completed_keep": "Pozostaw otwarty",
     "active_count_few": "{{count}} aktywne cele",
-    "active_count_many": "{{count}} aktywnych celów"
+    "active_count_many": "{{count}} aktywnych celów",
+    "tour_add_title": "Nowy cel",
+    "tour_add_desc": "Ustaw docelową kwotę i termin — LimeBalance zasugeruje, ile odkładać co miesiąc.",
+    "tour_summary_title": "Ogólny postęp",
+    "tour_summary_desc": "Łączna kwota zaoszczędzona we wszystkich celach i ile pozostało.",
+    "tour_cards_title": "Twoje cele",
+    "tour_cards_desc": "Wpłacaj, wypłacaj lub sprawdzaj tutaj historię wpłat dla każdego celu."
   },
   "investments": {
     "title": "Inwestycje i krypto",
@@ -538,7 +572,17 @@
     "spot_fifo_hint": "Pozycja spot jest tworzona z zakupów i sprzedaży metodą FIFO: sprzedaż zamyka najstarsze zakupy, cena wejścia jest średnią ważoną wolumenem, a data otwarcia to data najstarszego zamkniętego zakupu. Monety kupione poza Bybit (wpłaty) nie stają się transakcjami.",
     "pos_opened_from": "otwarta {{date}}",
     "equity_title": "Krzywa kapitału",
-    "kpi_capped": "pierwsze {{max}}"
+    "kpi_capped": "pierwsze {{max}}",
+    "tour_tabs_title": "Dziennik, portfel, konta",
+    "tour_tabs_desc": "Rejestruj transakcje w dzienniku, śledź swoje aktywa w portfelu i podłączaj konta giełdowe tutaj.",
+    "tour_journal_filters_title": "Filtruj swoje transakcje",
+    "tour_journal_filters_desc": "Filtruj według symbolu, okresu, konta, statusu lub typu — zsynchronizuj teraz lub dodaj transakcję ręczną stąd.",
+    "tour_journal_title": "Dziennik transakcji",
+    "tour_journal_desc": "Twoje otwarte i zamknięte pozycje, z PnL, procentem wygranych i liczbą transakcji.",
+    "tour_portfolio_title": "Portfel",
+    "tour_portfolio_desc": "Twoje aktywa kryptowalutowe wycenione po aktualnych cenach, z niezrealizowanym zyskiem i stratą.",
+    "tour_accounts_title": "Konta giełdowe",
+    "tour_accounts_desc": "Podłączaj i zarządzaj swoimi kontami Bybit oraz uruchamiaj ręczną synchronizację."
   },
   "telegram": {
     "linked_success": "Telegram połączony",
@@ -595,5 +639,20 @@
     "transactions_soft_many": "Zostało {{count}} transakcji w tym miesiącu. Potem — przejdź na Pro.",
     "transactions_blocked": "Osiągnięto miesięczny limit transakcji. Przejdź na wyższy plan lub poczekaj do następnego miesiąca.",
     "blocked_button_tooltip": "Osiągnięto limit — przejdź na wyższy plan"
+  },
+  "tour": {
+    "start": "Pokaż wycieczkę",
+    "hint_title": "Wycieczka z przewodnikiem",
+    "hint_desc": "Kliknij tutaj w dowolnym momencie, aby ponownie obejrzeć krótką wycieczkę po tej stronie.",
+    "next": "Dalej",
+    "prev": "Wstecz",
+    "done": "Gotowe",
+    "progress": "{{current}} z {{total}}",
+    "nav_title": "Nawigacja",
+    "nav_desc": "Wszystkie sekcje są tutaj: transakcje, kategorie, cele, inwestycje i analizy.",
+    "nav_mobile_title": "Menu",
+    "nav_mobile_desc": "Dotknij tutaj, aby otworzyć nawigację: transakcje, kategorie, cele, inwestycje i analizy.",
+    "add_title": "Szybkie dodawanie",
+    "add_desc": "Dodaj przychód, wydatek lub cel jednym kliknięciem — ten przycisk jest dostępny na każdej stronie."
   }
 }

@@ -57,7 +57,7 @@ export function RecentTransactions() {
   const items = data?.items ?? []
 
   return (
-    <Paper>
+    <Paper data-tour="transactions">
       <Group
         justify="space-between"
         p="md"

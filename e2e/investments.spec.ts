@@ -62,7 +62,7 @@ test.describe("Investments — access by plan", () => {
 
       // Guard redirects free users back to the overview.
       await expect(page).toHaveURL(/\/$/)
-      await expect(page.getByRole("heading", { name: "Hi 👋" })).toBeVisible()
+      await expect(page.getByRole("heading", { name: "Hi, Alex Morgan 👋" })).toBeVisible()
       // The investments page heading must never render for a free user.
       await expect(page.getByRole("heading", { name: PAGE_HEADING })).toHaveCount(0)
     })

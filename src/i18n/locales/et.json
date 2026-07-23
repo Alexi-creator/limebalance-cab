@@ -95,7 +95,11 @@
     "currency_not_found": "Midagi ei leitud",
     "save": "Salvesta",
     "saved": "Seaded salvestatud",
-    "error": "Seadete salvestamine ebaõnnestus"
+    "error": "Seadete salvestamine ebaõnnestus",
+    "tour_tabs_title": "Üldine, turvalisus, Telegram",
+    "tour_tabs_desc": "Lülitu siin profiili, e-posti/parooli ja Telegrami seadete vahel.",
+    "tour_form_title": "Sinu seaded",
+    "tour_form_desc": "Uuenda valitud vahekaardi seadeid selles vormis."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Viimased {{count}} tehingut",
     "recent_show_all": "Näita kõiki →",
     "recent_empty": "Tehinguid pole veel",
-    "goals_all": "Kõik →"
+    "goals_all": "Kõik →",
+    "tour_kpis_title": "Põhinäitajad",
+    "tour_kpis_desc": "Sinu praegune saldo, tulud ja kulud selle kuu kohta ühe pilguga.",
+    "tour_chart_title": "Rahavoogude graafik",
+    "tour_chart_desc": "Vaata, kuidas sinu tulud ja kulud päev-päevalt muutuvad.",
+    "tour_goals_title": "Sinu eesmärgid",
+    "tour_goals_desc": "Jälgi siin oma säästueesmärkide edenemist.",
+    "tour_transactions_title": "Viimased tehingud",
+    "tour_transactions_desc": "Kiire juurdepääs sinu uusimatele tehingutele."
   },
   "alerts": {
     "account_needs_email": "Logisid sisse Telegrami kaudu. Lisa seadetes e-post ja parool, et mitte kaotada juurdepääsu oma kontole.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} kategooria",
     "categories_selected_other": "{{count}} kategooriat",
     "currencies_selected_one": "{{count}} valuuta",
-    "currencies_selected_other": "{{count}} valuutat"
+    "currencies_selected_other": "{{count}} valuutat",
+    "tour_add_title": "Lisa tehing",
+    "tour_add_desc": "Juba seatud tulule/kulule — lisa see ühe klõpsuga.",
+    "tour_list_title": "Filtreeri ja otsi",
+    "tour_list_desc": "Filtreeri tüübi, kategooria, valuuta või kuupäeva järgi ning otsi siit oma tehinguid."
   },
   "categories": {
     "title": "Kategooriad",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} tulukategooria",
     "count_income_other": "{{count}} tulukategooriat",
     "load_error": "Kategooriate laadimine ebaõnnestus",
-    "empty": "Kategooriaid pole veel"
+    "empty": "Kategooriaid pole veel",
+    "tour_toggle_title": "Kulu või tulu",
+    "tour_toggle_desc": "Lülitu kulu- ja tulukategooriate vahel.",
+    "tour_add_title": "Uus kategooria",
+    "tour_add_desc": "Loo kategooria oma emoji ja värviga.",
+    "tour_grid_title": "Sinu kategooriad",
+    "tour_grid_desc": "Iga kaart näitab kulude edenemist — klõpsa sellel, et lisada tehing, muuta või kustutada."
   },
   "analytics": {
     "title": "Analüütika",
@@ -306,7 +328,13 @@
     "comparison_title": "Võrdlus eelmise perioodiga",
     "comparison_subtitle": "Kus kulud muutusid",
     "details_title": "Tehingute üksikasjad",
-    "details_empty": "Perioodil tehinguid pole"
+    "details_empty": "Perioodil tehinguid pole",
+    "tour_period_title": "Vali periood",
+    "tour_period_desc": "Lülitu eelseadistatud perioodide vahel või vali kohandatud kuupäevavahemik.",
+    "tour_kpis_title": "Põhinäitajad",
+    "tour_kpis_desc": "Säästud ja säästumäär valitud perioodi kohta.",
+    "tour_charts_title": "Jaotus ja trendid",
+    "tour_charts_desc": "Vaata, kuhu sinu raha kategooriate kaupa läheb ja mis on muutunud võrreldes eelmise perioodiga."
   },
   "add_modal": {
     "title_transaction": "Uus tehing",
@@ -394,7 +422,13 @@
     "close_success": "Eesmärk suletud",
     "completed_title": "Eesmärk saavutatud!",
     "completed_confirm": "Saavutasid selle eesmärgi. Kas sulgeda see nüüd? Kogutud raha läheb tagasi vabasse saldosse ja sissemaksete ajalugu säilib.",
-    "completed_keep": "Jäta avatuks"
+    "completed_keep": "Jäta avatuks",
+    "tour_add_title": "Uus eesmärk",
+    "tour_add_desc": "Määra sihtsumma ja tähtaeg — LimeBalance soovitab, kui palju igal kuul kõrvale panna.",
+    "tour_summary_title": "Üldine edenemine",
+    "tour_summary_desc": "Kokku säästetu kõigi sinu eesmärkide lõikes ja kui palju on veel vaja.",
+    "tour_cards_title": "Sinu eesmärgid",
+    "tour_cards_desc": "Tee siin sissemakseid, väljamakseid või vaata iga eesmärgi sissemaksete ajalugu."
   },
   "investments": {
     "title": "Investeeringud ja krüpto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Spot-positsioon pannakse kokku ostudest ja müükidest FIFO põhimõttel: müük sulgeb kõige vanemad ostud, sisenemishind on mahuga kaalutud ja avamiskuupäev on kõige vanem suletud ost. Väljaspool Bybitit ostetud mündid (deposiidid) ei muutu tehinguteks.",
     "pos_opened_from": "avatud {{date}}",
     "equity_title": "Kapitalikõver",
-    "kpi_capped": "esimesed {{max}}"
+    "kpi_capped": "esimesed {{max}}",
+    "tour_tabs_title": "Päevik, portfell, kontod",
+    "tour_tabs_desc": "Registreeri tehingud päevikus, jälgi oma varasid portfellis ja ühenda börsikontod siin.",
+    "tour_journal_filters_title": "Filtreeri oma tehinguid",
+    "tour_journal_filters_desc": "Filtreeri sümboli, perioodi, konto, staatuse või tüübi järgi — sünkrooni kohe või lisa siit käsitsi tehing.",
+    "tour_journal_title": "Tehingupäevik",
+    "tour_journal_desc": "Sinu avatud ja suletud positsioonid koos PnL-i, võiduprotsendi ja tehingute arvuga.",
+    "tour_portfolio_title": "Portfell",
+    "tour_portfolio_desc": "Sinu krüptovarad hinnatuna reaalaja hindades, koos realiseerimata kasumi ja kahjumiga.",
+    "tour_accounts_title": "Börsikontod",
+    "tour_accounts_desc": "Ühenda ja halda oma Bybiti kontosid ning käivita käsitsi sünkroonimine."
   },
   "telegram": {
     "linked_success": "Telegram ühendatud",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "Sel kuul jäänud {{count}} tehingut. Seejärel — uuenda Pro-le.",
     "transactions_blocked": "Kuu tehingute limiit täis. Uuenda paketti või oota järgmise kuuni.",
     "blocked_button_tooltip": "Limiit täis — uuenda paketti"
+  },
+  "tour": {
+    "start": "Näita tuuri",
+    "hint_title": "Juhitud tuur",
+    "hint_desc": "Klõpsa siia igal ajal, et vaadata seda lehte tutvustavat lühikest tuuri uuesti.",
+    "next": "Edasi",
+    "prev": "Tagasi",
+    "done": "Valmis",
+    "progress": "{{current}}/{{total}}",
+    "nav_title": "Navigeerimine",
+    "nav_desc": "Kõik jaotised on siin: tehingud, kategooriad, eesmärgid, investeeringud ja analüütika.",
+    "nav_mobile_title": "Menüü",
+    "nav_mobile_desc": "Puuduta siia, et avada navigeerimine: tehingud, kategooriad, eesmärgid, investeeringud ja analüütika.",
+    "add_title": "Kiire lisamine",
+    "add_desc": "Lisa tulu, kulu või eesmärk ühe klõpsuga — see nupp on saadaval igal lehel."
   }
 }

@@ -78,7 +78,7 @@ export function HomeKpis() {
   })
 
   return (
-    <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="md">
+    <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="md" data-tour="kpis">
       {kpis.map(({ key, loading, ...card }) => (
         <Skeleton key={key} visible={loading ?? false} radius="md">
           <KpiCard {...card} />

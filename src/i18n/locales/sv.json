@@ -95,7 +95,11 @@
     "currency_not_found": "Inget hittades",
     "save": "Spara",
     "saved": "Inställningarna sparades",
-    "error": "Det gick inte att spara inställningarna"
+    "error": "Det gick inte att spara inställningarna",
+    "tour_tabs_title": "Allmänt, säkerhet, Telegram",
+    "tour_tabs_desc": "Växla mellan profil, e-post/lösenord och Telegram-inställningar här.",
+    "tour_form_title": "Dina inställningar",
+    "tour_form_desc": "Uppdatera inställningarna för den valda fliken i detta formulär."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Senaste {{count}} transaktioner",
     "recent_show_all": "Visa alla →",
     "recent_empty": "Inga transaktioner ännu",
-    "goals_all": "Alla →"
+    "goals_all": "Alla →",
+    "tour_kpis_title": "Nyckeltal",
+    "tour_kpis_desc": "Ditt aktuella saldo, inkomster och utgifter för denna månad på ett ögonblick.",
+    "tour_chart_title": "Kassaflödesdiagram",
+    "tour_chart_desc": "Se hur dina inkomster och utgifter förändras dag för dag.",
+    "tour_goals_title": "Dina mål",
+    "tour_goals_desc": "Följ framstegen mot dina sparmål här.",
+    "tour_transactions_title": "Senaste transaktioner",
+    "tour_transactions_desc": "Snabb åtkomst till dina senaste transaktioner."
   },
   "alerts": {
     "account_needs_email": "Du loggade in via Telegram. Lägg till e-post och lösenord i inställningarna så att du inte förlorar åtkomsten till ditt konto.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} kategori",
     "categories_selected_other": "{{count}} kategorier",
     "currencies_selected_one": "{{count}} valuta",
-    "currencies_selected_other": "{{count}} valutor"
+    "currencies_selected_other": "{{count}} valutor",
+    "tour_add_title": "Lägg till en transaktion",
+    "tour_add_desc": "Redan inställd på inkomst/utgift — lägg till en med ett klick.",
+    "tour_list_title": "Filtrera och sök",
+    "tour_list_desc": "Filtrera efter typ, kategori, valuta eller datum, och sök i dina transaktioner här."
   },
   "categories": {
     "title": "Kategorier",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} inkomstkategori",
     "count_income_other": "{{count}} inkomstkategorier",
     "load_error": "Det gick inte att läsa in kategorier",
-    "empty": "Inga kategorier ännu"
+    "empty": "Inga kategorier ännu",
+    "tour_toggle_title": "Utgift eller inkomst",
+    "tour_toggle_desc": "Växla mellan utgifts- och inkomstkategorier.",
+    "tour_add_title": "Ny kategori",
+    "tour_add_desc": "Skapa en kategori med egen emoji och färg.",
+    "tour_grid_title": "Dina kategorier",
+    "tour_grid_desc": "Varje kort visar utgiftsförlopp — klicka för att lägga till en transaktion, redigera eller ta bort."
   },
   "analytics": {
     "title": "Analys",
@@ -306,7 +328,13 @@
     "comparison_title": "Jämförelse med föregående period",
     "comparison_subtitle": "Var utgifterna ändrades",
     "details_title": "Transaktionsdetaljer",
-    "details_empty": "Inga transaktioner under perioden"
+    "details_empty": "Inga transaktioner under perioden",
+    "tour_period_title": "Välj en period",
+    "tour_period_desc": "Växla mellan förinställda perioder eller välj ett anpassat datumintervall.",
+    "tour_kpis_title": "Nyckeltal",
+    "tour_kpis_desc": "Besparingar och sparkvot för den valda perioden.",
+    "tour_charts_title": "Uppdelning och trender",
+    "tour_charts_desc": "Se vart dina pengar går per kategori och vad som har förändrats sedan föregående period."
   },
   "add_modal": {
     "title_transaction": "Ny transaktion",
@@ -394,7 +422,13 @@
     "close_success": "Mål stängt",
     "completed_title": "Mål uppnått!",
     "completed_confirm": "Du har nått detta mål. Vill du stänga det nu? De sparade pengarna återförs till ditt fria saldo och insättningshistoriken behålls.",
-    "completed_keep": "Behåll öppet"
+    "completed_keep": "Behåll öppet",
+    "tour_add_title": "Nytt mål",
+    "tour_add_desc": "Ange ett målbelopp och en deadline — LimeBalance föreslår hur mycket du bör spara varje månad.",
+    "tour_summary_title": "Total förlopp",
+    "tour_summary_desc": "Totalt sparat i alla dina mål och hur mycket som återstår.",
+    "tour_cards_title": "Dina mål",
+    "tour_cards_desc": "Sätt in, ta ut eller kontrollera insättningshistoriken för varje mål här."
   },
   "investments": {
     "title": "Investeringar och krypto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "En spotposition byggs upp av köp och sälj enligt FIFO: en försäljning stänger de äldsta köpen, ingångspriset är volymviktat och öppningsdatumet är det äldsta stängda köpet. Mynt köpta utanför Bybit (insättningar) blir inte affärer.",
     "pos_opened_from": "öppnad {{date}}",
     "equity_title": "Kapitalkurva",
-    "kpi_capped": "första {{max}}"
+    "kpi_capped": "första {{max}}",
+    "tour_tabs_title": "Journal, portfölj, konton",
+    "tour_tabs_desc": "Registrera affärer i journalen, följ dina innehav i portföljen och anslut börskonton här.",
+    "tour_journal_filters_title": "Filtrera dina affärer",
+    "tour_journal_filters_desc": "Filtrera efter symbol, period, konto, status eller typ — synkronisera nu eller lägg till en manuell affär härifrån.",
+    "tour_journal_title": "Handelsjournal",
+    "tour_journal_desc": "Dina öppna och stängda positioner, med PnL, vinstandel och antal affärer.",
+    "tour_portfolio_title": "Portfölj",
+    "tour_portfolio_desc": "Dina kryptotillgångar värderade till realtidspriser, med orealiserade vinster och förluster.",
+    "tour_accounts_title": "Börskonton",
+    "tour_accounts_desc": "Anslut och hantera dina Bybit-konton och starta en manuell synkronisering."
   },
   "telegram": {
     "linked_success": "Telegram anslutet",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "{{count}} transaktioner kvar denna månad. Därefter — uppgradera till Pro.",
     "transactions_blocked": "Månadsgränsen för transaktioner är nådd. Uppgradera ditt abonnemang eller vänta till nästa månad.",
     "blocked_button_tooltip": "Gränsen är nådd — uppgradera ditt abonnemang"
+  },
+  "tour": {
+    "start": "Visa rundtur",
+    "hint_title": "Guidad rundtur",
+    "hint_desc": "Klicka här när som helst för att se en kort rundtur på den här sidan igen.",
+    "next": "Nästa",
+    "prev": "Tillbaka",
+    "done": "Klar",
+    "progress": "{{current}} av {{total}}",
+    "nav_title": "Navigering",
+    "nav_desc": "Alla avsnitt finns här: transaktioner, kategorier, mål, investeringar och analys.",
+    "nav_mobile_title": "Meny",
+    "nav_mobile_desc": "Tryck här för att öppna navigeringen: transaktioner, kategorier, mål, investeringar och analys.",
+    "add_title": "Snabbtillägg",
+    "add_desc": "Lägg till inkomst, utgift eller ett mål med ett klick — den här knappen finns tillgänglig på alla sidor."
   }
 }

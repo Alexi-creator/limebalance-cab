@@ -95,7 +95,11 @@
     "currency_not_found": "Tidak ada hasil",
     "save": "Simpan",
     "saved": "Pengaturan disimpan",
-    "error": "Gagal menyimpan pengaturan"
+    "error": "Gagal menyimpan pengaturan",
+    "tour_tabs_title": "Umum, keamanan, Telegram",
+    "tour_tabs_desc": "Beralih antara profil, email/kata sandi, dan pengaturan Telegram di sini.",
+    "tour_form_title": "Pengaturan Anda",
+    "tour_form_desc": "Perbarui pengaturan tab yang dipilih di formulir ini."
   },
   "app": {
     "name": "LimeBalance"
@@ -182,7 +186,15 @@
     "recent_subtitle_other": "{{count}} transaksi terbaru",
     "recent_show_all": "Tampilkan semua →",
     "recent_empty": "Belum ada transaksi",
-    "goals_all": "Semua →"
+    "goals_all": "Semua →",
+    "tour_kpis_title": "Angka utama",
+    "tour_kpis_desc": "Saldo, pemasukan, dan pengeluaran Anda bulan ini sekilas.",
+    "tour_chart_title": "Grafik arus kas",
+    "tour_chart_desc": "Lihat bagaimana pemasukan dan pengeluaran Anda berubah dari hari ke hari.",
+    "tour_goals_title": "Tujuan Anda",
+    "tour_goals_desc": "Pantau kemajuan menuju tujuan tabungan Anda di sini.",
+    "tour_transactions_title": "Transaksi terbaru",
+    "tour_transactions_desc": "Akses cepat ke transaksi terbaru Anda."
   },
   "alerts": {
     "account_needs_email": "Anda masuk lewat Telegram. Tambahkan email dan kata sandi di pengaturan agar tidak kehilangan akses ke akun Anda.",
@@ -234,7 +246,11 @@
     "income_added": "Pemasukan ditambahkan",
     "save_error": "Gagal menyimpan transaksi",
     "categories_selected_other": "{{count}} kategori",
-    "currencies_selected_other": "{{count}} mata uang"
+    "currencies_selected_other": "{{count}} mata uang",
+    "tour_add_title": "Tambah transaksi",
+    "tour_add_desc": "Sudah diatur sebagai pemasukan/pengeluaran — tambahkan dengan satu klik.",
+    "tour_list_title": "Filter dan cari",
+    "tour_list_desc": "Filter berdasarkan jenis, kategori, mata uang, atau tanggal, dan cari transaksi Anda di sini."
   },
   "categories": {
     "title": "Kategori",
@@ -267,7 +283,13 @@
     "count_expense_other": "{{count}} kategori pengeluaran",
     "count_income_other": "{{count}} kategori pemasukan",
     "load_error": "Gagal memuat kategori",
-    "empty": "Belum ada kategori"
+    "empty": "Belum ada kategori",
+    "tour_toggle_title": "Pengeluaran atau pemasukan",
+    "tour_toggle_desc": "Beralih antara kategori pengeluaran dan pemasukan.",
+    "tour_add_title": "Kategori baru",
+    "tour_add_desc": "Buat kategori dengan emoji dan warna sendiri.",
+    "tour_grid_title": "Kategori Anda",
+    "tour_grid_desc": "Setiap kartu menampilkan kemajuan pengeluaran — klik untuk menambah transaksi, mengedit, atau menghapus."
   },
   "analytics": {
     "title": "Analitik",
@@ -295,7 +317,13 @@
     "comparison_title": "Perbandingan dengan periode sebelumnya",
     "comparison_subtitle": "Di mana pengeluaran berubah",
     "details_title": "Rincian transaksi",
-    "details_empty": "Tidak ada transaksi pada periode ini"
+    "details_empty": "Tidak ada transaksi pada periode ini",
+    "tour_period_title": "Pilih periode",
+    "tour_period_desc": "Beralih antara periode yang telah ditentukan atau pilih rentang tanggal kustom.",
+    "tour_kpis_title": "Angka utama",
+    "tour_kpis_desc": "Tabungan dan tingkat tabungan untuk periode yang dipilih.",
+    "tour_charts_title": "Rincian dan tren",
+    "tour_charts_desc": "Lihat ke mana uang Anda pergi berdasarkan kategori dan apa yang berubah sejak periode sebelumnya."
   },
   "add_modal": {
     "title_transaction": "Transaksi baru",
@@ -382,7 +410,13 @@
     "close_success": "Tujuan ditutup",
     "completed_title": "Tujuan tercapai!",
     "completed_confirm": "Anda telah mencapai tujuan ini. Tutup sekarang? Uang yang ditabung dikembalikan ke saldo bebas Anda dan riwayat kontribusi tetap tersimpan.",
-    "completed_keep": "Biarkan terbuka"
+    "completed_keep": "Biarkan terbuka",
+    "tour_add_title": "Tujuan baru",
+    "tour_add_desc": "Tetapkan jumlah target dan tenggat waktu — LimeBalance akan menyarankan berapa banyak yang harus disisihkan setiap bulan.",
+    "tour_summary_title": "Kemajuan keseluruhan",
+    "tour_summary_desc": "Total tabungan di semua tujuan Anda dan berapa yang tersisa.",
+    "tour_cards_title": "Tujuan Anda",
+    "tour_cards_desc": "Setor, tarik, atau lihat riwayat kontribusi untuk setiap tujuan di sini."
   },
   "investments": {
     "title": "Investasi dan kripto",
@@ -514,7 +548,17 @@
     "spot_fifo_hint": "Posisi spot disusun dari pembelian dan penjualan dengan metode FIFO: penjualan menutup pembelian terlama, harga masuk dihitung rata-rata tertimbang volume, dan tanggal buka adalah pembelian tertutup tertua. Koin yang dibeli di luar Bybit (deposit) tidak menjadi transaksi.",
     "pos_opened_from": "dibuka {{date}}",
     "equity_title": "Kurva ekuitas",
-    "kpi_capped": "{{max}} pertama"
+    "kpi_capped": "{{max}} pertama",
+    "tour_tabs_title": "Jurnal, portofolio, akun",
+    "tour_tabs_desc": "Catat transaksi di jurnal, pantau kepemilikan Anda di portofolio, dan hubungkan akun bursa di sini.",
+    "tour_journal_filters_title": "Filter transaksi Anda",
+    "tour_journal_filters_desc": "Filter berdasarkan simbol, periode, akun, status, atau jenis — sinkronkan sekarang atau tambahkan transaksi manual dari sini.",
+    "tour_journal_title": "Jurnal perdagangan",
+    "tour_journal_desc": "Posisi terbuka dan tertutup Anda, dengan PnL, tingkat kemenangan, dan jumlah transaksi.",
+    "tour_portfolio_title": "Portofolio",
+    "tour_portfolio_desc": "Aset kripto Anda dinilai dengan harga langsung, dengan untung dan rugi yang belum terealisasi.",
+    "tour_accounts_title": "Akun bursa",
+    "tour_accounts_desc": "Hubungkan dan kelola akun Bybit Anda, serta picu sinkronisasi manual."
   },
   "telegram": {
     "linked_success": "Telegram terhubung",
@@ -567,5 +611,20 @@
     "transactions_soft_other": "Tersisa {{count}} transaksi bulan ini. Setelah itu — tingkatkan ke Pro.",
     "transactions_blocked": "Batas transaksi bulanan tercapai. Tingkatkan paket Anda atau tunggu bulan depan.",
     "blocked_button_tooltip": "Batas tercapai — tingkatkan paket Anda"
+  },
+  "tour": {
+    "start": "Tampilkan tur",
+    "hint_title": "Tur berpemandu",
+    "hint_desc": "Klik di sini kapan saja untuk memutar ulang tur singkat halaman ini.",
+    "next": "Berikutnya",
+    "prev": "Kembali",
+    "done": "Selesai",
+    "progress": "{{current}} dari {{total}}",
+    "nav_title": "Navigasi",
+    "nav_desc": "Semua bagian ada di sini: transaksi, kategori, tujuan, investasi, dan analitik.",
+    "nav_mobile_title": "Menu",
+    "nav_mobile_desc": "Ketuk di sini untuk membuka navigasi: transaksi, kategori, tujuan, investasi, dan analitik.",
+    "add_title": "Tambah cepat",
+    "add_desc": "Tambahkan pemasukan, pengeluaran, atau tujuan hanya dengan satu klik — tombol ini tersedia di halaman mana pun."
   }
 }

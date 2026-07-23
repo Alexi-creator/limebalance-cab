@@ -95,7 +95,11 @@
     "currency_not_found": "결과 없음",
     "save": "저장",
     "saved": "설정이 저장되었습니다",
-    "error": "설정을 저장하지 못했습니다"
+    "error": "설정을 저장하지 못했습니다",
+    "tour_tabs_title": "일반, 보안, Telegram",
+    "tour_tabs_desc": "여기서 프로필, 이메일/비밀번호, Telegram 설정 간에 전환하세요.",
+    "tour_form_title": "내 설정",
+    "tour_form_desc": "이 양식에서 선택한 탭의 설정을 업데이트하세요."
   },
   "app": {
     "name": "LimeBalance"
@@ -182,7 +186,15 @@
     "recent_subtitle_other": "최근 거래 {{count}}건",
     "recent_show_all": "전체 보기 →",
     "recent_empty": "아직 거래가 없습니다",
-    "goals_all": "전체 →"
+    "goals_all": "전체 →",
+    "tour_kpis_title": "주요 수치",
+    "tour_kpis_desc": "이번 달 현재 잔액, 수입, 지출을 한눈에 확인하세요.",
+    "tour_chart_title": "현금 흐름 차트",
+    "tour_chart_desc": "수입과 지출이 매일 어떻게 변하는지 확인하세요.",
+    "tour_goals_title": "내 목표",
+    "tour_goals_desc": "여기서 저축 목표를 향한 진행 상황을 추적하세요.",
+    "tour_transactions_title": "최근 거래",
+    "tour_transactions_desc": "최신 거래에 빠르게 액세스하세요."
   },
   "alerts": {
     "account_needs_email": "Telegram으로 로그인했습니다. 계정 접근 권한을 잃지 않도록 설정에서 이메일과 비밀번호를 추가하세요.",
@@ -234,7 +246,11 @@
     "income_added": "수입이 추가되었습니다",
     "save_error": "거래를 저장하지 못했습니다",
     "categories_selected_other": "카테고리 {{count}}개",
-    "currencies_selected_other": "통화 {{count}}개"
+    "currencies_selected_other": "통화 {{count}}개",
+    "tour_add_title": "거래 추가",
+    "tour_add_desc": "이미 수입/지출로 설정되어 있습니다 — 클릭 한 번으로 추가하세요.",
+    "tour_list_title": "필터 및 검색",
+    "tour_list_desc": "유형, 카테고리, 통화 또는 날짜로 필터링하고 여기서 거래를 검색하세요."
   },
   "categories": {
     "title": "카테고리",
@@ -267,7 +283,13 @@
     "count_expense_other": "지출 카테고리 {{count}}개",
     "count_income_other": "수입 카테고리 {{count}}개",
     "load_error": "카테고리를 불러오지 못했습니다",
-    "empty": "아직 카테고리가 없습니다"
+    "empty": "아직 카테고리가 없습니다",
+    "tour_toggle_title": "지출 또는 수입",
+    "tour_toggle_desc": "지출 카테고리와 수입 카테고리를 전환하세요.",
+    "tour_add_title": "새 카테고리",
+    "tour_add_desc": "고유한 이모지와 색상으로 카테고리를 만드세요.",
+    "tour_grid_title": "내 카테고리",
+    "tour_grid_desc": "각 카드는 지출 진행 상황을 보여줍니다 — 클릭하여 거래를 추가, 수정 또는 삭제하세요."
   },
   "analytics": {
     "title": "분석",
@@ -295,7 +317,13 @@
     "comparison_title": "이전 기간과 비교",
     "comparison_subtitle": "지출이 변한 부분",
     "details_title": "거래 내역",
-    "details_empty": "기간 내 거래가 없습니다"
+    "details_empty": "기간 내 거래가 없습니다",
+    "tour_period_title": "기간 선택",
+    "tour_period_desc": "미리 설정된 기간을 전환하거나 사용자 지정 날짜 범위를 선택하세요.",
+    "tour_kpis_title": "주요 수치",
+    "tour_kpis_desc": "선택한 기간의 저축액과 저축률.",
+    "tour_charts_title": "세부 분석 및 추세",
+    "tour_charts_desc": "카테고리별로 돈이 어디로 가는지, 이전 기간과 비교해 무엇이 변했는지 확인하세요."
   },
   "add_modal": {
     "title_transaction": "새 거래",
@@ -382,7 +410,13 @@
     "close_success": "목표가 종료되었습니다",
     "completed_title": "목표 달성!",
     "completed_confirm": "이 목표를 달성했습니다. 지금 종료할까요? 모은 돈은 자유 잔액으로 돌아가고 입금 내역은 유지됩니다.",
-    "completed_keep": "열어 두기"
+    "completed_keep": "열어 두기",
+    "tour_add_title": "새 목표",
+    "tour_add_desc": "목표 금액과 기한을 설정하면 LimeBalance가 매달 얼마를 저축해야 할지 제안합니다.",
+    "tour_summary_title": "전체 진행 상황",
+    "tour_summary_desc": "모든 목표에서 저축한 총액과 남은 금액.",
+    "tour_cards_title": "내 목표",
+    "tour_cards_desc": "여기서 입금, 출금 또는 각 목표의 납입 내역을 확인하세요."
   },
   "investments": {
     "title": "투자 및 암호화폐",
@@ -514,7 +548,17 @@
     "spot_fifo_hint": "현물 포지션은 매수와 매도를 FIFO 방식으로 조합해 구성됩니다: 매도는 가장 오래된 매수부터 청산하며, 진입 가격은 거래량 가중 평균, 진입일은 청산된 매수 중 가장 오래된 날짜입니다. Bybit 외부에서 구매한 코인(입금)은 거래로 집계되지 않습니다.",
     "pos_opened_from": "{{date}} 진입",
     "equity_title": "자본 곡선",
-    "kpi_capped": "처음 {{max}}건"
+    "kpi_capped": "처음 {{max}}건",
+    "tour_tabs_title": "저널, 포트폴리오, 계좌",
+    "tour_tabs_desc": "저널에서 거래를 기록하고, 포트폴리오에서 보유 자산을 추적하고, 여기서 거래소 계좌를 연결하세요.",
+    "tour_journal_filters_title": "거래 필터링",
+    "tour_journal_filters_desc": "심볼, 기간, 계좌, 상태 또는 유형으로 필터링하세요 — 여기서 지금 동기화하거나 수동으로 거래를 추가할 수 있습니다.",
+    "tour_journal_title": "거래 저널",
+    "tour_journal_desc": "손익, 승률, 거래 횟수가 포함된 오픈 및 클로즈 포지션.",
+    "tour_portfolio_title": "포트폴리오",
+    "tour_portfolio_desc": "실시간 가격으로 평가된 암호화폐 보유 자산과 미실현 손익.",
+    "tour_accounts_title": "거래소 계좌",
+    "tour_accounts_desc": "Bybit 계좌를 연결 및 관리하고 수동 동기화를 실행하세요."
   },
   "telegram": {
     "linked_success": "Telegram이 연결되었습니다",
@@ -567,5 +611,20 @@
     "transactions_soft_other": "이번 달 {{count}}건 남았습니다. 이후에는 Pro로 업그레이드하세요.",
     "transactions_blocked": "월간 거래 한도에 도달했습니다. 요금제를 업그레이드하거나 다음 달까지 기다리세요.",
     "blocked_button_tooltip": "한도 도달 — 요금제를 업그레이드하세요"
+  },
+  "tour": {
+    "start": "투어 보기",
+    "hint_title": "가이드 투어",
+    "hint_desc": "언제든지 여기를 클릭하여 이 페이지의 짧은 투어를 다시 볼 수 있습니다.",
+    "next": "다음",
+    "prev": "뒤로",
+    "done": "완료",
+    "progress": "{{total}} 중 {{current}}",
+    "nav_title": "내비게이션",
+    "nav_desc": "거래, 카테고리, 목표, 투자, 분석 등 모든 섹션이 여기에 있습니다.",
+    "nav_mobile_title": "메뉴",
+    "nav_mobile_desc": "여기를 탭하여 내비게이션을 엽니다: 거래, 카테고리, 목표, 투자, 분석.",
+    "add_title": "빠른 추가",
+    "add_desc": "클릭 한 번으로 수입, 지출 또는 목표를 추가하세요 — 이 버튼은 모든 페이지에서 사용할 수 있습니다."
   }
 }

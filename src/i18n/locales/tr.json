@@ -95,7 +95,11 @@
     "currency_not_found": "Hiçbir şey bulunamadı",
     "save": "Kaydet",
     "saved": "Ayarlar kaydedildi",
-    "error": "Ayarlar kaydedilemedi"
+    "error": "Ayarlar kaydedilemedi",
+    "tour_tabs_title": "Genel, güvenlik, Telegram",
+    "tour_tabs_desc": "Burada profil, e-posta/şifre ve Telegram ayarları arasında geçiş yapın.",
+    "tour_form_title": "Ayarlarınız",
+    "tour_form_desc": "Bu formda seçili sekmenin ayarlarını güncelleyin."
   },
   "app": {
     "name": "LimeBalance"
@@ -184,7 +188,15 @@
     "recent_subtitle_other": "Son {{count}} işlem",
     "recent_show_all": "Tümünü göster →",
     "recent_empty": "Henüz işlem yok",
-    "goals_all": "Tümü →"
+    "goals_all": "Tümü →",
+    "tour_kpis_title": "Temel rakamlar",
+    "tour_kpis_desc": "Bu ayki mevcut bakiyeniz, gelirleriniz ve giderleriniz bir bakışta.",
+    "tour_chart_title": "Nakit akışı grafiği",
+    "tour_chart_desc": "Gelir ve giderlerinizin günden güne nasıl değiştiğini görün.",
+    "tour_goals_title": "Hedefleriniz",
+    "tour_goals_desc": "Tasarruf hedeflerinize doğru ilerlemeyi burada takip edin.",
+    "tour_transactions_title": "Son işlemler",
+    "tour_transactions_desc": "En son işlemlerinize hızlı erişim."
   },
   "alerts": {
     "account_needs_email": "Telegram ile giriş yaptınız. Hesabınıza erişimi kaybetmemek için ayarlardan bir e-posta ve şifre ekleyin.",
@@ -241,7 +253,11 @@
     "categories_selected_one": "{{count}} kategori",
     "categories_selected_other": "{{count}} kategori",
     "currencies_selected_one": "{{count}} para birimi",
-    "currencies_selected_other": "{{count}} para birimi"
+    "currencies_selected_other": "{{count}} para birimi",
+    "tour_add_title": "İşlem ekle",
+    "tour_add_desc": "Zaten gelir/gider olarak ayarlandı — tek tıklamayla ekleyin.",
+    "tour_list_title": "Filtrele ve ara",
+    "tour_list_desc": "Türe, kategoriye, para birimine veya tarihe göre filtreleyin ve işlemlerinizi burada arayın."
   },
   "categories": {
     "title": "Kategoriler",
@@ -278,7 +294,13 @@
     "count_income_one": "{{count}} gelir kategorisi",
     "count_income_other": "{{count}} gelir kategorisi",
     "load_error": "Kategoriler yüklenemedi",
-    "empty": "Henüz kategori yok"
+    "empty": "Henüz kategori yok",
+    "tour_toggle_title": "Gider mi gelir mi",
+    "tour_toggle_desc": "Gider ve gelir kategorileri arasında geçiş yapın.",
+    "tour_add_title": "Yeni kategori",
+    "tour_add_desc": "Kendi emojisi ve rengiyle bir kategori oluşturun.",
+    "tour_grid_title": "Kategorileriniz",
+    "tour_grid_desc": "Her kart harcama ilerlemesini gösterir — işlem eklemek, düzenlemek veya silmek için tıklayın."
   },
   "analytics": {
     "title": "Analiz",
@@ -306,7 +328,13 @@
     "comparison_title": "Önceki dönemle karşılaştırma",
     "comparison_subtitle": "Giderlerin değiştiği yerler",
     "details_title": "İşlem detayları",
-    "details_empty": "Dönem için işlem yok"
+    "details_empty": "Dönem için işlem yok",
+    "tour_period_title": "Bir dönem seçin",
+    "tour_period_desc": "Önceden ayarlanmış dönemler arasında geçiş yapın veya özel bir tarih aralığı seçin.",
+    "tour_kpis_title": "Temel rakamlar",
+    "tour_kpis_desc": "Seçilen dönem için birikimler ve birikim oranı.",
+    "tour_charts_title": "Döküm ve eğilimler",
+    "tour_charts_desc": "Paranızın kategoriye göre nereye gittiğini ve önceki dönemden bu yana neyin değiştiğini görün."
   },
   "add_modal": {
     "title_transaction": "Yeni işlem",
@@ -394,7 +422,13 @@
     "close_success": "Hedef kapatıldı",
     "completed_title": "Hedefe ulaşıldı!",
     "completed_confirm": "Bu hedefe ulaştınız. Şimdi kapatılsın mı? Biriktirilen para serbest bakiyenize geri döner ve katkı geçmişi saklanır.",
-    "completed_keep": "Açık bırak"
+    "completed_keep": "Açık bırak",
+    "tour_add_title": "Yeni hedef",
+    "tour_add_desc": "Bir hedef tutar ve son tarih belirleyin — LimeBalance her ay ne kadar ayırmanız gerektiğini önerecektir.",
+    "tour_summary_title": "Genel ilerleme",
+    "tour_summary_desc": "Tüm hedeflerinizde biriken toplam tutar ve ne kadar kaldığı.",
+    "tour_cards_title": "Hedefleriniz",
+    "tour_cards_desc": "Burada her hedef için para yatırın, çekin veya katkı geçmişini kontrol edin."
   },
   "investments": {
     "title": "Yatırımlar ve kripto",
@@ -526,7 +560,17 @@
     "spot_fifo_hint": "Spot pozisyon, alışlardan ve satışlardan FIFO yöntemiyle oluşturulur: bir satış en eski alışları kapatır, giriş fiyatı hacim ağırlıklıdır ve açılış tarihi en eski kapanan alıştır. Bybit dışında satın alınan coinler (yatırmalar) işlem haline gelmez.",
     "pos_opened_from": "{{date}} tarihinde açıldı",
     "equity_title": "Sermaye eğrisi",
-    "kpi_capped": "ilk {{max}}"
+    "kpi_capped": "ilk {{max}}",
+    "tour_tabs_title": "Günlük, portföy, hesaplar",
+    "tour_tabs_desc": "İşlemleri günlüğe kaydedin, portföyünüzdeki varlıkları takip edin ve borsa hesaplarını burada bağlayın.",
+    "tour_journal_filters_title": "İşlemlerinizi filtreleyin",
+    "tour_journal_filters_desc": "Sembol, dönem, hesap, durum veya türe göre filtreleyin — şimdi senkronize edin veya buradan manuel işlem ekleyin.",
+    "tour_journal_title": "İşlem günlüğü",
+    "tour_journal_desc": "PnL, kazanma oranı ve işlem sayısıyla açık ve kapalı pozisyonlarınız.",
+    "tour_portfolio_title": "Portföy",
+    "tour_portfolio_desc": "Anlık fiyatlarla değerlenmiş kripto varlıklarınız, gerçekleşmemiş kâr ve zararla birlikte.",
+    "tour_accounts_title": "Borsa hesapları",
+    "tour_accounts_desc": "Bybit hesaplarınızı bağlayın ve yönetin, manuel senkronizasyon başlatın."
   },
   "telegram": {
     "linked_success": "Telegram bağlandı",
@@ -581,5 +625,20 @@
     "transactions_soft_other": "Bu ay {{count}} işlem kaldı. Sonrasında — Pro'ya geçin.",
     "transactions_blocked": "Aylık işlem sınırına ulaşıldı. Planınızı yükseltin veya gelecek ayı bekleyin.",
     "blocked_button_tooltip": "Sınıra ulaşıldı — planınızı yükseltin"
+  },
+  "tour": {
+    "start": "Turu göster",
+    "hint_title": "Rehberli tur",
+    "hint_desc": "Bu sayfanın kısa bir turunu tekrar izlemek için istediğiniz zaman buraya tıklayın.",
+    "next": "İleri",
+    "prev": "Geri",
+    "done": "Bitti",
+    "progress": "{{total}} üzerinden {{current}}",
+    "nav_title": "Gezinme",
+    "nav_desc": "Tüm bölümler burada: işlemler, kategoriler, hedefler, yatırımlar ve analizler.",
+    "nav_mobile_title": "Menü",
+    "nav_mobile_desc": "Gezinmeyi açmak için buraya dokunun: işlemler, kategoriler, hedefler, yatırımlar ve analizler.",
+    "add_title": "Hızlı ekle",
+    "add_desc": "Tek tıklamayla gelir, gider veya hedef ekleyin — bu düğme her sayfadan kullanılabilir."
   }
 }

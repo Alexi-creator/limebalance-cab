@@ -95,7 +95,11 @@
     "currency_not_found": "見つかりません",
     "save": "保存",
     "saved": "設定を保存しました",
-    "error": "設定を保存できませんでした"
+    "error": "設定を保存できませんでした",
+    "tour_tabs_title": "一般、セキュリティ、Telegram",
+    "tour_tabs_desc": "ここでプロフィール、メール/パスワード、Telegram設定を切り替えられます。",
+    "tour_form_title": "あなたの設定",
+    "tour_form_desc": "このフォームで選択したタブの設定を更新できます。"
   },
   "app": {
     "name": "LimeBalance"
@@ -182,7 +186,15 @@
     "recent_subtitle_other": "直近 {{count}} 件の取引",
     "recent_show_all": "すべて表示 →",
     "recent_empty": "まだ取引がありません",
-    "goals_all": "すべて →"
+    "goals_all": "すべて →",
+    "tour_kpis_title": "主要な数値",
+    "tour_kpis_desc": "今月の現在の残高、収入、支出を一目で確認できます。",
+    "tour_chart_title": "キャッシュフローグラフ",
+    "tour_chart_desc": "日々の収入と支出の変化を確認できます。",
+    "tour_goals_title": "あなたの目標",
+    "tour_goals_desc": "ここで貯蓄目標への進捗を確認できます。",
+    "tour_transactions_title": "最近の取引",
+    "tour_transactions_desc": "最新の取引にすばやくアクセスできます。"
   },
   "alerts": {
     "account_needs_email": "Telegram でログインしました。アカウントへのアクセスを失わないよう、設定でメールとパスワードを追加してください。",
@@ -234,7 +246,11 @@
     "income_added": "収入を追加しました",
     "save_error": "取引を保存できませんでした",
     "categories_selected_other": "{{count}} カテゴリ",
-    "currencies_selected_other": "{{count}} 通貨"
+    "currencies_selected_other": "{{count}} 通貨",
+    "tour_add_title": "取引を追加",
+    "tour_add_desc": "すでに収入/支出が設定されています — ワンクリックで追加できます。",
+    "tour_list_title": "絞り込みと検索",
+    "tour_list_desc": "種類、カテゴリー、通貨、日付で絞り込み、ここで取引を検索できます。"
   },
   "categories": {
     "title": "カテゴリ",
@@ -267,7 +283,13 @@
     "count_expense_other": "{{count}} 件の支出カテゴリ",
     "count_income_other": "{{count}} 件の収入カテゴリ",
     "load_error": "カテゴリを読み込めませんでした",
-    "empty": "まだカテゴリがありません"
+    "empty": "まだカテゴリがありません",
+    "tour_toggle_title": "支出か収入か",
+    "tour_toggle_desc": "支出カテゴリーと収入カテゴリーを切り替えます。",
+    "tour_add_title": "新しいカテゴリー",
+    "tour_add_desc": "独自の絵文字と色でカテゴリーを作成します。",
+    "tour_grid_title": "あなたのカテゴリー",
+    "tour_grid_desc": "各カードは支出の進捗を表示します — クリックして取引の追加、編集、削除ができます。"
   },
   "analytics": {
     "title": "分析",
@@ -295,7 +317,13 @@
     "comparison_title": "前期間との比較",
     "comparison_subtitle": "支出が変化した箇所",
     "details_title": "取引の詳細",
-    "details_empty": "期間内の取引はありません"
+    "details_empty": "期間内の取引はありません",
+    "tour_period_title": "期間を選択",
+    "tour_period_desc": "プリセット期間を切り替えるか、カスタムの日付範囲を選択します。",
+    "tour_kpis_title": "主要な数値",
+    "tour_kpis_desc": "選択した期間の貯蓄額と貯蓄率。",
+    "tour_charts_title": "内訳と傾向",
+    "tour_charts_desc": "カテゴリー別のお金の流れと前期からの変化を確認できます。"
   },
   "add_modal": {
     "title_transaction": "新しい取引",
@@ -382,7 +410,13 @@
     "close_success": "目標を終了しました",
     "completed_title": "目標を達成しました！",
     "completed_confirm": "この目標を達成しました。今すぐ終了しますか？貯めたお金は自由残高に戻り、入金履歴は保持されます。",
-    "completed_keep": "開いたままにする"
+    "completed_keep": "開いたままにする",
+    "tour_add_title": "新しい目標",
+    "tour_add_desc": "目標金額と期限を設定すると、LimeBalanceが毎月の積立額を提案します。",
+    "tour_summary_title": "全体の進捗",
+    "tour_summary_desc": "すべての目標の合計貯蓄額と残りの金額。",
+    "tour_cards_title": "あなたの目標",
+    "tour_cards_desc": "ここで入金、出金、または各目標の入金履歴を確認できます。"
   },
   "investments": {
     "title": "投資と暗号資産",
@@ -514,7 +548,17 @@
     "spot_fifo_hint": "現物ポジションは購入と売却からFIFO方式で組み立てられます。売却は最も古い購入から決済され、エントリー価格は出来高加重平均、建玉日は決済された最も古い購入日となります。Bybit以外で購入したコイン（入金分）は取引にはなりません。",
     "pos_opened_from": "{{date}}に建玉",
     "equity_title": "資産推移曲線",
-    "kpi_capped": "最初の{{max}}件"
+    "kpi_capped": "最初の{{max}}件",
+    "tour_tabs_title": "ジャーナル、ポートフォリオ、口座",
+    "tour_tabs_desc": "ジャーナルで取引を記録し、ポートフォリオで保有資産を追跡し、ここで取引所口座を接続できます。",
+    "tour_journal_filters_title": "取引を絞り込む",
+    "tour_journal_filters_desc": "銘柄、期間、口座、ステータス、種類で絞り込めます — ここから今すぐ同期するか、手動で取引を追加できます。",
+    "tour_journal_title": "取引ジャーナル",
+    "tour_journal_desc": "損益、勝率、取引数を含む、オープンおよびクローズしたポジション。",
+    "tour_portfolio_title": "ポートフォリオ",
+    "tour_portfolio_desc": "リアルタイム価格で評価された暗号資産と、未実現の損益。",
+    "tour_accounts_title": "取引所口座",
+    "tour_accounts_desc": "Bybitアカウントの接続と管理、手動同期の実行ができます。"
   },
   "telegram": {
     "linked_success": "Telegram を接続しました",
@@ -567,5 +611,20 @@
     "transactions_soft_other": "今月の残りは{{count}}件です。その後は Pro にアップグレードしてください。",
     "transactions_blocked": "今月の取引上限に達しました。プランをアップグレードするか、翌月までお待ちください。",
     "blocked_button_tooltip": "上限に達しました — プランをアップグレードしてください"
+  },
+  "tour": {
+    "start": "ツアーを表示",
+    "hint_title": "ガイド付きツアー",
+    "hint_desc": "このページの簡単なツアーをいつでもここをクリックして再生できます。",
+    "next": "次へ",
+    "prev": "戻る",
+    "done": "完了",
+    "progress": "{{total}}件中{{current}}件目",
+    "nav_title": "ナビゲーション",
+    "nav_desc": "取引、カテゴリー、目標、投資、分析など、すべてのセクションはここにあります。",
+    "nav_mobile_title": "メニュー",
+    "nav_mobile_desc": "ここをタップしてナビゲーションを開きます：取引、カテゴリー、目標、投資、分析。",
+    "add_title": "クイック追加",
+    "add_desc": "ワンクリックで収入、支出、目標を追加できます — このボタンはどのページからも利用できます。"
   }
 }

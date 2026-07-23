@@ -98,6 +98,7 @@ export async function mockApi(page: Page, options: MockApiOptions = {}): Promise
   const { authenticated = true, user = MOCK_USER, usage } = options
 
   await blockThirdParty(page)
+  await skipTourHint(page)
 
   // Match only real API calls (path starts with `/api/`). A glob like `**/api/**`
   // would also swallow Vite's own source modules served from `/src/api/*`.
@@ -145,4 +146,19 @@ export async function blockThirdParty(page: Page): Promise<void> {
     /(telegram\.org|accounts\.google\.com|gstatic\.com|apis\.google\.com|googleapis\.com)/,
     (route) => route.abort(),
   )
+}
+
+/**
+ * Every test starts with fresh, empty localStorage, which looks exactly like a real
+ * user's first-ever visit — so the guided-tour hint (see `useTour`) auto-highlights the
+ * "?" button on the first authenticated page load. Its full-viewport overlay then fails
+ * Playwright's actionability check on whatever the test clicks next (a real user's click
+ * would just dismiss it, but Playwright refuses to click through an obscuring element),
+ * hanging the test until its timeout. The hint is unrelated to what these tests verify,
+ * so mark it seen up front, same as a returning user.
+ */
+async function skipTourHint(page: Page): Promise<void> {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("tour-hint-seen", "1")
+  })
 }

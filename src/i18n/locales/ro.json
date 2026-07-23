@@ -95,7 +95,11 @@
     "currency_not_found": "Nimic găsit",
     "save": "Salvează",
     "saved": "Setări salvate",
-    "error": "Setările nu au putut fi salvate"
+    "error": "Setările nu au putut fi salvate",
+    "tour_tabs_title": "General, securitate, Telegram",
+    "tour_tabs_desc": "Comutați aici între profil, e-mail/parolă și setările Telegram.",
+    "tour_form_title": "Setările dvs.",
+    "tour_form_desc": "Actualizați setările filei selectate în acest formular."
   },
   "app": {
     "name": "LimeBalance"
@@ -186,7 +190,15 @@
     "recent_subtitle_other": "Ultimele {{count}} de tranzacții",
     "recent_show_all": "Arată toate →",
     "recent_empty": "Încă nu există tranzacții",
-    "goals_all": "Toate →"
+    "goals_all": "Toate →",
+    "tour_kpis_title": "Cifre cheie",
+    "tour_kpis_desc": "Soldul dvs. curent, veniturile și cheltuielile din această lună dintr-o privire.",
+    "tour_chart_title": "Grafic al fluxului de numerar",
+    "tour_chart_desc": "Vedeți cum se schimbă veniturile și cheltuielile dvs. zi de zi.",
+    "tour_goals_title": "Obiectivele dvs.",
+    "tour_goals_desc": "Urmăriți aici progresul către obiectivele dvs. de economisire.",
+    "tour_transactions_title": "Tranzacții recente",
+    "tour_transactions_desc": "Acces rapid la cele mai recente tranzacții ale dvs."
   },
   "alerts": {
     "account_needs_email": "Te-ai autentificat prin Telegram. Adaugă un e-mail și o parolă în setări ca să nu pierzi accesul la cont.",
@@ -248,7 +260,11 @@
     "categories_selected_other": "{{count}} de categorii",
     "currencies_selected_one": "{{count}} monedă",
     "currencies_selected_few": "{{count}} monede",
-    "currencies_selected_other": "{{count}} de monede"
+    "currencies_selected_other": "{{count}} de monede",
+    "tour_add_title": "Adăugați o tranzacție",
+    "tour_add_desc": "Deja setată pe venit/cheltuială — adăugați una dintr-un clic.",
+    "tour_list_title": "Filtrare și căutare",
+    "tour_list_desc": "Filtrați după tip, categorie, monedă sau dată și căutați tranzacțiile dvs. aici."
   },
   "categories": {
     "title": "Categorii",
@@ -289,7 +305,13 @@
     "count_income_few": "{{count}} categorii de venituri",
     "count_income_other": "{{count}} de categorii de venituri",
     "load_error": "Categoriile nu au putut fi încărcate",
-    "empty": "Încă nu există categorii"
+    "empty": "Încă nu există categorii",
+    "tour_toggle_title": "Cheltuială sau venit",
+    "tour_toggle_desc": "Comutați între categoriile de cheltuieli și venituri.",
+    "tour_add_title": "Categorie nouă",
+    "tour_add_desc": "Creați o categorie cu propriul emoji și culoare.",
+    "tour_grid_title": "Categoriile dvs.",
+    "tour_grid_desc": "Fiecare card arată progresul cheltuielilor — faceți clic pentru a adăuga o tranzacție, edita sau șterge."
   },
   "analytics": {
     "title": "Analiză",
@@ -317,7 +339,13 @@
     "comparison_title": "Comparație cu perioada anterioară",
     "comparison_subtitle": "Unde s-au schimbat cheltuielile",
     "details_title": "Detalii tranzacții",
-    "details_empty": "Nicio tranzacție în perioadă"
+    "details_empty": "Nicio tranzacție în perioadă",
+    "tour_period_title": "Alegeți o perioadă",
+    "tour_period_desc": "Comutați între perioade prestabilite sau alegeți un interval de date personalizat.",
+    "tour_kpis_title": "Cifre cheie",
+    "tour_kpis_desc": "Economii și rata de economisire pentru perioada selectată.",
+    "tour_charts_title": "Defalcare și tendințe",
+    "tour_charts_desc": "Vedeți unde se duc banii dvs. pe categorii și ce s-a schimbat față de perioada anterioară."
   },
   "add_modal": {
     "title_transaction": "Tranzacție nouă",
@@ -406,7 +434,13 @@
     "completed_title": "Obiectiv atins!",
     "completed_confirm": "Ai atins acest obiectiv. Îl închizi acum? Banii economisiți revin în soldul tău liber, iar istoricul contribuțiilor este păstrat.",
     "completed_keep": "Păstrează deschis",
-    "active_count_few": "{{count}} obiective active"
+    "active_count_few": "{{count}} obiective active",
+    "tour_add_title": "Obiectiv nou",
+    "tour_add_desc": "Setați o sumă țintă și un termen limită — LimeBalance va sugera cât să puneți deoparte în fiecare lună.",
+    "tour_summary_title": "Progres general",
+    "tour_summary_desc": "Total economisit în toate obiectivele dvs. și cât a mai rămas.",
+    "tour_cards_title": "Obiectivele dvs.",
+    "tour_cards_desc": "Depuneți, retrageți sau verificați istoricul contribuțiilor pentru fiecare obiectiv aici."
   },
   "investments": {
     "title": "Investiții și cripto",
@@ -538,7 +572,17 @@
     "spot_fifo_hint": "O poziție spot este asamblată din cumpărări și vânzări prin metoda FIFO: o vânzare închide cele mai vechi cumpărări, prețul de intrare este ponderat cu volumul, iar data deschiderii este a celei mai vechi cumpărări închise. Monedele cumpărate în afara Bybit (depozite) nu devin tranzacții.",
     "pos_opened_from": "deschisă {{date}}",
     "equity_title": "Curba capitalului",
-    "kpi_capped": "primele {{max}}"
+    "kpi_capped": "primele {{max}}",
+    "tour_tabs_title": "Jurnal, portofoliu, conturi",
+    "tour_tabs_desc": "Înregistrați tranzacțiile în jurnal, urmăriți activele în portofoliu și conectați conturi de schimb aici.",
+    "tour_journal_filters_title": "Filtrați tranzacțiile dvs.",
+    "tour_journal_filters_desc": "Filtrați după simbol, perioadă, cont, stare sau tip — sincronizați acum sau adăugați o tranzacție manuală de aici.",
+    "tour_journal_title": "Jurnal de tranzacționare",
+    "tour_journal_desc": "Pozițiile dvs. deschise și închise, cu PnL, rata de câștig și numărul de tranzacții.",
+    "tour_portfolio_title": "Portofoliu",
+    "tour_portfolio_desc": "Activele dvs. cripto evaluate la prețuri live, cu câștiguri și pierderi nerealizate.",
+    "tour_accounts_title": "Conturi de schimb",
+    "tour_accounts_desc": "Conectați și gestionați conturile dvs. Bybit și declanșați o sincronizare manuală."
   },
   "telegram": {
     "linked_success": "Telegram conectat",
@@ -595,5 +639,20 @@
     "transactions_soft_other": "Au mai rămas {{count}} de tranzacții luna aceasta. Apoi — treci la Pro.",
     "transactions_blocked": "Ai atins limita lunară de tranzacții. Fă upgrade la plan sau așteaptă luna viitoare.",
     "blocked_button_tooltip": "Limită atinsă — fă upgrade la plan"
+  },
+  "tour": {
+    "start": "Afișează turul",
+    "hint_title": "Tur ghidat",
+    "hint_desc": "Faceți clic aici oricând pentru a revedea un scurt tur al acestei pagini.",
+    "next": "Următorul",
+    "prev": "Înapoi",
+    "done": "Gata",
+    "progress": "{{current}} din {{total}}",
+    "nav_title": "Navigare",
+    "nav_desc": "Toate secțiunile sunt aici: tranzacții, categorii, obiective, investiții și analize.",
+    "nav_mobile_title": "Meniu",
+    "nav_mobile_desc": "Atingeți aici pentru a deschide navigarea: tranzacții, categorii, obiective, investiții și analize.",
+    "add_title": "Adăugare rapidă",
+    "add_desc": "Adăugați venituri, cheltuieli sau un obiectiv dintr-un clic — acest buton este disponibil de pe orice pagină."
   }
 }
