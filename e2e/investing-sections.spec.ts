@@ -143,11 +143,34 @@ test.describe("Investments — trade journal", () => {
     const dialog = page.getByRole("dialog")
     await expect(dialog.getByText("Breakout above the range high", { exact: false })).toBeVisible()
 
+    // Trade context above the notes list — which position this actually is, since the
+    // dialog title only carries the symbol (ambiguous with several ADAUSDT positions).
+    await expect(dialog.getByText("Futures")).toBeVisible()
+    await expect(dialog.getByText("still open").first()).toBeVisible()
+
     // The stub doesn't persist mutations — the field clearing on success is the observable signal.
     const noteField = dialog.getByLabel("Note")
     await noteField.fill("Added context")
     await dialog.getByRole("button", { name: "Add note" }).click()
     await expect(noteField).toHaveValue("")
+  })
+
+  test("a note's image shows as a clickable thumbnail that opens a lightbox", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
+
+    const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
+    await row.getByRole("button", { name: /Notes/ }).click()
+
+    const dialog = page.getByRole("dialog")
+    const thumb = dialog.getByRole("img", { name: "View screenshot" })
+    await expect(thumb).toBeVisible()
+
+    await thumb.click()
+    await expect(page.getByRole("dialog")).toHaveCount(2)
   })
 
   test("logging a trade as still open hides exit price, closed at and PnL", async ({

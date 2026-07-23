@@ -561,7 +561,8 @@ const INVESTING_ACCOUNTS = [
 const INVESTING_POSITIONS = [
   // OPEN linear position: avgExitPrice/closedPnl/closedAt are null and stay that way until the
   // backend closes it — sorts first regardless of date, per GET /investing/positions. Carries a
-  // note to exercise the notes list (both bybit and manual positions can have notes).
+  // note (with an image, to exercise the thumbnail/lightbox) to exercise the notes list (both
+  // bybit and manual positions can have notes).
   {
     id: "pos-linear-open",
     accountId: "acc-bybit-1",
@@ -583,7 +584,8 @@ const INVESTING_POSITIONS = [
       {
         id: "note-1",
         body: "Breakout above the range high, entering with a tight stop.",
-        imageUrl: null,
+        imageUrl:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
         createdAt: "2026-07-18T09:05:00.000Z",
       },
     ],

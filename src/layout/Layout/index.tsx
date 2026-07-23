@@ -1,3 +1,4 @@
+import { usePageTracking } from "@hooks/usePageTracking"
 import { Header } from "@layout/Header"
 import { Main } from "@layout/Main"
 import { NavBar } from "@layout/NavBar"
@@ -31,8 +32,14 @@ function AppShellFrame({ children }: { children: ReactNode }) {
  * Static composition of Header, NavBar, and Main; the mobile menu state lives
  * in `sidebarStore`, so the Layout itself does not re-render when it toggles.
  * Takes no props.
+ *
+ * `usePageTracking` lives here (not just on `PublicLayout`) — without it, GA4 never sees
+ * anything past the login screen, since a returning user's persisted session skips the
+ * public routes entirely and lands straight in the authenticated app.
  */
 export function Layout() {
+  usePageTracking()
+
   return (
     <AppShellFrame>
       <Header />
