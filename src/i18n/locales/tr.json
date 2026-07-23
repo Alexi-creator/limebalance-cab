@@ -99,7 +99,14 @@
     "tour_tabs_title": "Genel, güvenlik, Telegram",
     "tour_tabs_desc": "Burada profil, e-posta/şifre ve Telegram ayarları arasında geçiş yapın.",
     "tour_form_title": "Ayarlarınız",
-    "tour_form_desc": "Bu formda seçili sekmenin ayarlarını güncelleyin."
+    "tour_form_desc": "Bu formda seçili sekmenin ayarlarını güncelleyin.",
+    "notifications": {
+      "title": "Bot bildirimleri",
+      "subtitle": "Telegram botunun size hangi proaktif mesajları göndereceğini seçin",
+      "type_monthly_digest": "Aylık özet",
+      "type_trade_closed": "İşlem kapatıldı",
+      "error": "Bildirim ayarları güncellenemedi"
+    }
   },
   "app": {
     "name": "LimeBalance"

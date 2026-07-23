@@ -99,7 +99,14 @@
     "tour_tabs_title": "通用、安全、Telegram",
     "tour_tabs_desc": "在此处切换个人资料、邮箱/密码和 Telegram 设置。",
     "tour_form_title": "您的设置",
-    "tour_form_desc": "在此表单中更新所选标签页的设置。"
+    "tour_form_desc": "在此表单中更新所选标签页的设置。",
+    "notifications": {
+      "title": "机器人通知",
+      "subtitle": "选择 Telegram 机器人会主动发送给你的消息类型",
+      "type_monthly_digest": "月度总结",
+      "type_trade_closed": "交易平仓",
+      "error": "更新通知设置失败"
+    }
   },
   "app": {
     "name": "LimeBalance"

@@ -351,17 +351,21 @@ export function PositionsSection({ accounts }: Props) {
           { value: "manual", label: t("investments.cat_manual") },
         ]}
       />
-      <Tooltip label={t("common.reset")}>
-        <ActionIcon
-          variant="light"
-          color="red"
-          size="lg"
-          aria-label={t("common.reset")}
-          onClick={resetFilters}
-        >
-          <IconX size={16} />
-        </ActionIcon>
-      </Tooltip>
+      {/* On the mobile sheet the reset lives in its header instead (next to close) — inline here
+          it would be a lone unlabeled icon at the end of a vertical field list. */}
+      {!vertical && (
+        <Tooltip label={t("common.reset")}>
+          <ActionIcon
+            variant="light"
+            color="red"
+            size="lg"
+            aria-label={t("common.reset")}
+            onClick={resetFilters}
+          >
+            <IconX size={16} />
+          </ActionIcon>
+        </Tooltip>
+      )}
     </>
   )
 
@@ -440,6 +444,8 @@ export function PositionsSection({ accounts }: Props) {
             title={t("investments.filters_title")}
             closeLabel={t("common.close")}
             activeCount={activeFilterCount}
+            onReset={resetFilters}
+            resetLabel={t("common.reset")}
           >
             <Stack gap="sm">{filterControls(true)}</Stack>
           </MobileFilterSheet>

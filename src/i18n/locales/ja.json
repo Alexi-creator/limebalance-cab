@@ -99,7 +99,14 @@
     "tour_tabs_title": "一般、セキュリティ、Telegram",
     "tour_tabs_desc": "ここでプロフィール、メール/パスワード、Telegram設定を切り替えられます。",
     "tour_form_title": "あなたの設定",
-    "tour_form_desc": "このフォームで選択したタブの設定を更新できます。"
+    "tour_form_desc": "このフォームで選択したタブの設定を更新できます。",
+    "notifications": {
+      "title": "ボット通知",
+      "subtitle": "Telegramボットが送信するプッシュ通知の種類を選択してください",
+      "type_monthly_digest": "月次サマリー",
+      "type_trade_closed": "取引決済",
+      "error": "通知設定の更新に失敗しました"
+    }
   },
   "app": {
     "name": "LimeBalance"

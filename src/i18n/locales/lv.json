@@ -99,7 +99,14 @@
     "tour_tabs_title": "Vispārīgi, drošība, Telegram",
     "tour_tabs_desc": "Šeit pārslēdzieties starp profilu, e-pastu/paroli un Telegram iestatījumiem.",
     "tour_form_title": "Jūsu iestatījumi",
-    "tour_form_desc": "Atjauniniet izvēlētās cilnes iestatījumus šajā formā."
+    "tour_form_desc": "Atjauniniet izvēlētās cilnes iestatījumus šajā formā.",
+    "notifications": {
+      "title": "Bota paziņojumi",
+      "subtitle": "Izvēlieties, kurus proaktīvos ziņojumus sūtīs Telegram bots",
+      "type_monthly_digest": "Mēneša kopsavilkums",
+      "type_trade_closed": "Darījums slēgts",
+      "error": "Neizdevās atjaunināt paziņojumu iestatījumus"
+    }
   },
   "app": {
     "name": "LimeBalance"

@@ -99,7 +99,14 @@
     "tour_tabs_title": "Všeobecné, zabezpečenie, Telegram",
     "tour_tabs_desc": "Prepínajte tu medzi profilom, e-mailom/heslom a nastaveniami Telegramu.",
     "tour_form_title": "Vaše nastavenia",
-    "tour_form_desc": "Aktualizujte nastavenia vybranej karty v tomto formulári."
+    "tour_form_desc": "Aktualizujte nastavenia vybranej karty v tomto formulári.",
+    "notifications": {
+      "title": "Oznámenia bota",
+      "subtitle": "Vyberte, aké proaktívne správy vám má bot na Telegrame posielať",
+      "type_monthly_digest": "Mesačný prehľad",
+      "type_trade_closed": "Uzavretie obchodu",
+      "error": "Nepodarilo sa aktualizovať nastavenia oznámení"
+    }
   },
   "app": {
     "name": "LimeBalance"

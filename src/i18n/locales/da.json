@@ -99,7 +99,14 @@
     "tour_tabs_title": "Generelt, sikkerhed, Telegram",
     "tour_tabs_desc": "Skift mellem profil, e-mail/adgangskode og Telegram-indstillinger her.",
     "tour_form_title": "Dine indstillinger",
-    "tour_form_desc": "Opdater indstillingerne for den valgte fane i denne formular."
+    "tour_form_desc": "Opdater indstillingerne for den valgte fane i denne formular.",
+    "notifications": {
+      "title": "Bot-notifikationer",
+      "subtitle": "Vælg hvilke proaktive beskeder Telegram-botten skal sende dig",
+      "type_monthly_digest": "Månedligt overblik",
+      "type_trade_closed": "Handel lukket",
+      "error": "Kunne ikke opdatere notifikationsindstillinger"
+    }
   },
   "app": {
     "name": "LimeBalance"

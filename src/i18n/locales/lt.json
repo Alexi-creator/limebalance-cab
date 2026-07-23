@@ -99,7 +99,14 @@
     "tour_tabs_title": "Bendra, saugumas, Telegram",
     "tour_tabs_desc": "Čia perjunkite tarp profilio, el. pašto / slaptažodžio ir Telegram nustatymų.",
     "tour_form_title": "Jūsų nustatymai",
-    "tour_form_desc": "Atnaujinkite pasirinkto skirtuko nustatymus šioje formoje."
+    "tour_form_desc": "Atnaujinkite pasirinkto skirtuko nustatymus šioje formoje.",
+    "notifications": {
+      "title": "Boto pranešimai",
+      "subtitle": "Pasirinkite, kokius aktyvius pranešimus siųs Telegram botas",
+      "type_monthly_digest": "Mėnesio suvestinė",
+      "type_trade_closed": "Sandoris uždarytas",
+      "error": "Nepavyko atnaujinti pranešimų nustatymų"
+    }
   },
   "app": {
     "name": "LimeBalance"

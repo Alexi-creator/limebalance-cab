@@ -1,7 +1,9 @@
 import { request } from "@api/request"
+import { botNotificationPreferenceSchema } from "@appTypes/botNotificationPreference"
 import { notificationsResponseSchema, unreadCountSchema } from "@appTypes/notification"
 import { API_URLS } from "@constants/apiUrls"
 import { HttpMethods } from "@constants/httpMethods"
+import { z } from "zod"
 
 /**
  * Notifications for the bell dropdown. The backend recomputes the current-month summary from the
@@ -24,5 +26,19 @@ export function markAllNotificationsRead() {
   return request(API_URLS.notifications.readAll, {
     method: HttpMethods.POST,
     schema: unreadCountSchema,
+  })
+}
+
+/** Per-type opt-in/out for proactive Telegram bot pushes. Types not in the response default to enabled. */
+export function getBotNotificationPreferences() {
+  return request(API_URLS.notifications.preferences, {
+    schema: z.array(botNotificationPreferenceSchema),
+  })
+}
+
+export function setBotNotificationPreference(type: string, enabled: boolean) {
+  return request(`${API_URLS.notifications.preferences}/${type}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify({ enabled }),
   })
 }

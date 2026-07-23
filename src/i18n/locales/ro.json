@@ -99,7 +99,14 @@
     "tour_tabs_title": "General, securitate, Telegram",
     "tour_tabs_desc": "Comutați aici între profil, e-mail/parolă și setările Telegram.",
     "tour_form_title": "Setările dvs.",
-    "tour_form_desc": "Actualizați setările filei selectate în acest formular."
+    "tour_form_desc": "Actualizați setările filei selectate în acest formular.",
+    "notifications": {
+      "title": "Notificări bot",
+      "subtitle": "Alegeți ce mesaje proactive vă trimite botul de Telegram",
+      "type_monthly_digest": "Rezumat lunar",
+      "type_trade_closed": "Tranzacție închisă",
+      "error": "Actualizarea setărilor de notificare a eșuat"
+    }
   },
   "app": {
     "name": "LimeBalance"

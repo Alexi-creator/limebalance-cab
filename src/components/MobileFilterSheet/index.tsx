@@ -1,4 +1,14 @@
-import { ActionIcon, Badge, Box, Group, Overlay, Portal, Text, UnstyledButton } from "@mantine/core"
+import {
+  ActionIcon,
+  Anchor,
+  Badge,
+  Box,
+  Group,
+  Overlay,
+  Portal,
+  Text,
+  UnstyledButton,
+} from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { useSidebarStore } from "@store/sidebarStore"
 import { IconChevronUp, IconFilter, IconX } from "@tabler/icons-react"
@@ -9,6 +19,10 @@ interface Props {
   closeLabel: string
   /** Shown as a badge on the handle; omit or 0 to hide it. */
   activeCount?: number
+  /** Clears all filters. Shown as a text link in the sheet header, next to the close button —
+   * only when `activeCount` is > 0, so it doesn't clutter the field list itself. */
+  onReset?: () => void
+  resetLabel?: string
   /** The filter controls, laid out vertically (full width) for the sheet. */
   children: ReactNode
 }
@@ -19,7 +33,14 @@ interface Props {
  * Only mount this once already below that breakpoint — it measures/positions unconditionally,
  * same as the original this was extracted from (see TransactionsFilters).
  */
-export function MobileFilterSheet({ title, closeLabel, activeCount = 0, children }: Props) {
+export function MobileFilterSheet({
+  title,
+  closeLabel,
+  activeCount = 0,
+  onReset,
+  resetLabel,
+  children,
+}: Props) {
   // While the mobile nav menu is open it covers the screen — hide the fixed handle/sheet so
   // they don't paint over the menu's content.
   const menuOpened = useSidebarStore((s) => s.opened)
@@ -121,14 +142,21 @@ export function MobileFilterSheet({ title, closeLabel, activeCount = 0, children
             >
               <Group justify="space-between" mb="sm">
                 <Text fw={600}>{title}</Text>
-                <ActionIcon
-                  variant="subtle"
-                  color="gray"
-                  onClick={drawer.close}
-                  aria-label={closeLabel}
-                >
-                  <IconX size={18} />
-                </ActionIcon>
+                <Group gap="sm" wrap="nowrap">
+                  {activeCount > 0 && onReset && (
+                    <Anchor component="button" type="button" size="sm" c="red" onClick={onReset}>
+                      {resetLabel}
+                    </Anchor>
+                  )}
+                  <ActionIcon
+                    variant="subtle"
+                    color="gray"
+                    onClick={drawer.close}
+                    aria-label={closeLabel}
+                  >
+                    <IconX size={18} />
+                  </ActionIcon>
+                </Group>
               </Group>
               {children}
             </Box>

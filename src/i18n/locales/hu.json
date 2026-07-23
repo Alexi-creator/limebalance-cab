@@ -99,7 +99,14 @@
     "tour_tabs_title": "Általános, biztonság, Telegram",
     "tour_tabs_desc": "Váltson itt a profil, az e-mail/jelszó és a Telegram beállítások között.",
     "tour_form_title": "Beállításai",
-    "tour_form_desc": "Frissítse a kiválasztott lap beállításait ebben az űrlapban."
+    "tour_form_desc": "Frissítse a kiválasztott lap beállításait ebben az űrlapban.",
+    "notifications": {
+      "title": "Bot értesítések",
+      "subtitle": "Válaszd ki, mely proaktív üzeneteket küldje a Telegram-bot",
+      "type_monthly_digest": "Havi összesítő",
+      "type_trade_closed": "Lezárt ügylet",
+      "error": "Nem sikerült frissíteni az értesítési beállításokat"
+    }
   },
   "app": {
     "name": "LimeBalance"

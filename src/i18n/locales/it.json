@@ -99,7 +99,14 @@
     "tour_tabs_title": "Generale, sicurezza, Telegram",
     "tour_tabs_desc": "Passa qui tra profilo, email/password e impostazioni Telegram.",
     "tour_form_title": "Le tue impostazioni",
-    "tour_form_desc": "Aggiorna le impostazioni della scheda selezionata in questo modulo."
+    "tour_form_desc": "Aggiorna le impostazioni della scheda selezionata in questo modulo.",
+    "notifications": {
+      "title": "Notifiche del bot",
+      "subtitle": "Scegli quali messaggi proattivi ti invia il bot Telegram",
+      "type_monthly_digest": "Riepilogo mensile",
+      "type_trade_closed": "Posizione chiusa",
+      "error": "Impossibile aggiornare le impostazioni delle notifiche"
+    }
   },
   "app": {
     "name": "LimeBalance"

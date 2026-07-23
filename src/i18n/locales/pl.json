@@ -99,7 +99,14 @@
     "tour_tabs_title": "Ogólne, bezpieczeństwo, Telegram",
     "tour_tabs_desc": "Przełączaj się tutaj między profilem, e-mailem/hasłem i ustawieniami Telegrama.",
     "tour_form_title": "Twoje ustawienia",
-    "tour_form_desc": "Zaktualizuj ustawienia wybranej karty w tym formularzu."
+    "tour_form_desc": "Zaktualizuj ustawienia wybranej karty w tym formularzu.",
+    "notifications": {
+      "title": "Powiadomienia bota",
+      "subtitle": "Wybierz, jakie proaktywne wiadomości ma wysyłać bot na Telegramie",
+      "type_monthly_digest": "Podsumowanie miesięczne",
+      "type_trade_closed": "Zamknięcie transakcji",
+      "error": "Nie udało się zaktualizować ustawień powiadomień"
+    }
   },
   "app": {
     "name": "LimeBalance"

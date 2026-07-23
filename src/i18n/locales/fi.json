@@ -99,7 +99,14 @@
     "tour_tabs_title": "Yleiset, tietoturva, Telegram",
     "tour_tabs_desc": "Vaihda täällä profiilin, sähköpostin/salasanan ja Telegram-asetusten välillä.",
     "tour_form_title": "Asetuksesi",
-    "tour_form_desc": "Päivitä valitun välilehden asetukset tässä lomakkeessa."
+    "tour_form_desc": "Päivitä valitun välilehden asetukset tässä lomakkeessa.",
+    "notifications": {
+      "title": "Botin ilmoitukset",
+      "subtitle": "Valitse, mitä ennakoivia viestejä Telegram-botti lähettää sinulle",
+      "type_monthly_digest": "Kuukausikooste",
+      "type_trade_closed": "Kauppa suljettu",
+      "error": "Ilmoitusasetusten päivitys epäonnistui"
+    }
   },
   "app": {
     "name": "LimeBalance"

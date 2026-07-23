@@ -99,7 +99,14 @@
     "tour_tabs_title": "Chung, bảo mật, Telegram",
     "tour_tabs_desc": "Chuyển đổi giữa hồ sơ, email/mật khẩu và cài đặt Telegram tại đây.",
     "tour_form_title": "Cài đặt của bạn",
-    "tour_form_desc": "Cập nhật cài đặt của tab đã chọn trong biểu mẫu này."
+    "tour_form_desc": "Cập nhật cài đặt của tab đã chọn trong biểu mẫu này.",
+    "notifications": {
+      "title": "Thông báo bot",
+      "subtitle": "Chọn những tin nhắn chủ động mà bot Telegram sẽ gửi cho bạn",
+      "type_monthly_digest": "Tổng kết hàng tháng",
+      "type_trade_closed": "Đóng giao dịch",
+      "error": "Cập nhật cài đặt thông báo không thành công"
+    }
   },
   "app": {
     "name": "LimeBalance"

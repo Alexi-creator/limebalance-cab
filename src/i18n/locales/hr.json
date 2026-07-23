@@ -99,7 +99,14 @@
     "tour_tabs_title": "Opće, sigurnost, Telegram",
     "tour_tabs_desc": "Ovdje se prebacujte između profila, e-pošte/lozinke i postavki Telegrama.",
     "tour_form_title": "Vaše postavke",
-    "tour_form_desc": "Ažurirajte postavke odabrane kartice u ovom obrascu."
+    "tour_form_desc": "Ažurirajte postavke odabrane kartice u ovom obrascu.",
+    "notifications": {
+      "title": "Obavijesti bota",
+      "subtitle": "Odaberite koje će vam proaktivne poruke bot na Telegramu slati",
+      "type_monthly_digest": "Mjesečni sažetak",
+      "type_trade_closed": "Zatvorena transakcija",
+      "error": "Ažuriranje postavki obavijesti nije uspjelo"
+    }
   },
   "app": {
     "name": "LimeBalance"

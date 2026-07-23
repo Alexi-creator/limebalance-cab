@@ -99,7 +99,14 @@
     "tour_tabs_title": "Üldine, turvalisus, Telegram",
     "tour_tabs_desc": "Lülitu siin profiili, e-posti/parooli ja Telegrami seadete vahel.",
     "tour_form_title": "Sinu seaded",
-    "tour_form_desc": "Uuenda valitud vahekaardi seadeid selles vormis."
+    "tour_form_desc": "Uuenda valitud vahekaardi seadeid selles vormis.",
+    "notifications": {
+      "title": "Roboti teavitused",
+      "subtitle": "Vali, milliseid ennetavaid sõnumeid Telegrami robot sulle saadab",
+      "type_monthly_digest": "Kuukokkuvõte",
+      "type_trade_closed": "Tehing suletud",
+      "error": "Teavituste seadete uuendamine ebaõnnestus"
+    }
   },
   "app": {
     "name": "LimeBalance"

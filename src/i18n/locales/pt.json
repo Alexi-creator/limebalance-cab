@@ -99,7 +99,14 @@
     "tour_tabs_title": "Geral, segurança, Telegram",
     "tour_tabs_desc": "Alterne aqui entre perfil, e-mail/senha e configurações do Telegram.",
     "tour_form_title": "Suas configurações",
-    "tour_form_desc": "Atualize as configurações da aba selecionada neste formulário."
+    "tour_form_desc": "Atualize as configurações da aba selecionada neste formulário.",
+    "notifications": {
+      "title": "Notificações do bot",
+      "subtitle": "Escolha quais mensagens proativas o bot do Telegram deve enviar",
+      "type_monthly_digest": "Resumo mensal",
+      "type_trade_closed": "Negociação encerrada",
+      "error": "Falha ao atualizar as configurações de notificação"
+    }
   },
   "app": {
     "name": "LimeBalance"

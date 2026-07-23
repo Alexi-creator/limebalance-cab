@@ -99,7 +99,14 @@
     "tour_tabs_title": "Splošno, varnost, Telegram",
     "tour_tabs_desc": "Tukaj preklapljajte med profilom, e-pošto/geslom in nastavitvami Telegrama.",
     "tour_form_title": "Vaše nastavitve",
-    "tour_form_desc": "Posodobite nastavitve izbranega zavihka v tem obrazcu."
+    "tour_form_desc": "Posodobite nastavitve izbranega zavihka v tem obrazcu.",
+    "notifications": {
+      "title": "Obvestila bota",
+      "subtitle": "Izberite, katera proaktivna sporočila naj vam pošilja Telegram bot",
+      "type_monthly_digest": "Mesečni povzetek",
+      "type_trade_closed": "Zaprta trgovina",
+      "error": "Posodobitev nastavitev obvestil ni uspela"
+    }
   },
   "app": {
     "name": "LimeBalance"

@@ -99,7 +99,14 @@
     "tour_tabs_title": "Allmänt, säkerhet, Telegram",
     "tour_tabs_desc": "Växla mellan profil, e-post/lösenord och Telegram-inställningar här.",
     "tour_form_title": "Dina inställningar",
-    "tour_form_desc": "Uppdatera inställningarna för den valda fliken i detta formulär."
+    "tour_form_desc": "Uppdatera inställningarna för den valda fliken i detta formulär.",
+    "notifications": {
+      "title": "Bot-aviseringar",
+      "subtitle": "Välj vilka proaktiva meddelanden Telegram-boten ska skicka till dig",
+      "type_monthly_digest": "Månadssammanfattning",
+      "type_trade_closed": "Affär stängd",
+      "error": "Det gick inte att uppdatera aviseringsinställningarna"
+    }
   },
   "app": {
     "name": "LimeBalance"

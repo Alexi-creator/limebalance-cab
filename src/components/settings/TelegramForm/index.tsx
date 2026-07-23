@@ -1,6 +1,7 @@
 import { getMe, linkTelegram } from "@api/auth"
+import { BotNotificationsForm } from "@components/settings/BotNotificationsForm"
 import { TELEGRAM_BOT_URL, TELEGRAM_BOT_USERNAME } from "@constants/telegram"
-import { Alert, Anchor, Button, Stack, Text } from "@mantine/core"
+import { Alert, Anchor, Button, Divider, Stack, Text } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useAuthStore } from "@store/authStore"
 import { IconBrandTelegram, IconCheck, IconExternalLink } from "@tabler/icons-react"
@@ -59,6 +60,10 @@ export function TelegramForm() {
         >
           {t("telegram.open_bot", { username: TELEGRAM_BOT_USERNAME })}
         </Button>
+
+        <Divider />
+
+        <BotNotificationsForm />
       </Stack>
     )
   }

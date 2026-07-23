@@ -99,7 +99,14 @@
     "tour_tabs_title": "Allgemein, Sicherheit, Telegram",
     "tour_tabs_desc": "Wechseln Sie hier zwischen Profil-, E-Mail-/Passwort- und Telegram-Einstellungen.",
     "tour_form_title": "Ihre Einstellungen",
-    "tour_form_desc": "Aktualisieren Sie die Einstellungen des ausgewählten Tabs in diesem Formular."
+    "tour_form_desc": "Aktualisieren Sie die Einstellungen des ausgewählten Tabs in diesem Formular.",
+    "notifications": {
+      "title": "Bot-Benachrichtigungen",
+      "subtitle": "Wählen Sie, welche proaktiven Nachrichten der Telegram-Bot Ihnen sendet",
+      "type_monthly_digest": "Monatsübersicht",
+      "type_trade_closed": "Trade geschlossen",
+      "error": "Benachrichtigungseinstellungen konnten nicht aktualisiert werden"
+    }
   },
   "app": {
     "name": "LimeBalance"

@@ -99,7 +99,14 @@
     "currency_not_found": "Nothing found",
     "save": "Save",
     "saved": "Settings saved",
-    "error": "Failed to save settings"
+    "error": "Failed to save settings",
+    "notifications": {
+      "title": "Bot notifications",
+      "subtitle": "Choose which proactive messages the Telegram bot sends you",
+      "type_monthly_digest": "Monthly digest",
+      "type_trade_closed": "Trade closed",
+      "error": "Failed to update notification settings"
+    }
   },
   "app": {
     "name": "LimeBalance"

@@ -29,7 +29,10 @@ export async function commonRequest<T>(url: string, options: RequestOptions<T> =
     throw new ApiError(response.status, data?.message ?? `HTTP error ${response.status}`)
   }
 
-  const data = await response.json()
+  // Some endpoints answer 200 with an empty body (e.g. PATCH /notifications/preferences/:type) —
+  // response.json() throws on an empty string, so read as text first and only parse if non-empty.
+  const text = await response.text()
+  const data = text ? JSON.parse(text) : undefined
 
   if (options.schema) {
     const result = options.schema.safeParse(data)

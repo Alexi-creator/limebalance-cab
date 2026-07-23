@@ -99,7 +99,14 @@
     "tour_tabs_title": "Algemeen, beveiliging, Telegram",
     "tour_tabs_desc": "Schakel hier tussen profiel, e-mail/wachtwoord en Telegram-instellingen.",
     "tour_form_title": "Uw instellingen",
-    "tour_form_desc": "Werk de instellingen van het geselecteerde tabblad bij in dit formulier."
+    "tour_form_desc": "Werk de instellingen van het geselecteerde tabblad bij in dit formulier.",
+    "notifications": {
+      "title": "Bot-meldingen",
+      "subtitle": "Kies welke proactieve berichten de Telegram-bot je stuurt",
+      "type_monthly_digest": "Maandoverzicht",
+      "type_trade_closed": "Transactie gesloten",
+      "error": "Meldingsinstellingen bijwerken mislukt"
+    }
   },
   "app": {
     "name": "LimeBalance"

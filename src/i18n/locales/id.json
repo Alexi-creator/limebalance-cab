@@ -99,7 +99,14 @@
     "tour_tabs_title": "Umum, keamanan, Telegram",
     "tour_tabs_desc": "Beralih antara profil, email/kata sandi, dan pengaturan Telegram di sini.",
     "tour_form_title": "Pengaturan Anda",
-    "tour_form_desc": "Perbarui pengaturan tab yang dipilih di formulir ini."
+    "tour_form_desc": "Perbarui pengaturan tab yang dipilih di formulir ini.",
+    "notifications": {
+      "title": "Notifikasi bot",
+      "subtitle": "Pilih pesan proaktif mana yang akan dikirim oleh bot Telegram",
+      "type_monthly_digest": "Ringkasan bulanan",
+      "type_trade_closed": "Transaksi ditutup",
+      "error": "Gagal memperbarui pengaturan notifikasi"
+    }
   },
   "app": {
     "name": "LimeBalance"
