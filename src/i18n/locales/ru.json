@@ -527,6 +527,7 @@
     "kpi_period_from": "С {{date}}",
     "kpi_period_to": "По {{date}}",
     "filter_period": "Период",
+    "filter_symbol_clear": "Очистить пару",
     "filters_title": "Фильтры",
     "filter_account": "Аккаунт",
     "filter_status": "Статус",

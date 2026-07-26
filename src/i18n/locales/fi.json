@@ -478,6 +478,7 @@
     "kpi_period_from": "Alkaen {{date}}",
     "kpi_period_to": "Asti {{date}}",
     "filter_period": "Ajanjakso",
+    "filter_symbol_clear": "Tyhjennä pari",
     "filters_title": "Suodattimet",
     "filter_account": "Tili",
     "filter_status": "Tila",

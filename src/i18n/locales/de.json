@@ -478,6 +478,7 @@
     "kpi_period_from": "Seit {{date}}",
     "kpi_period_to": "Bis {{date}}",
     "filter_period": "Zeitraum",
+    "filter_symbol_clear": "Paar löschen",
     "filters_title": "Filter",
     "filter_account": "Konto",
     "filter_status": "Status",

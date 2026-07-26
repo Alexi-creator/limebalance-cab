@@ -32,18 +32,21 @@ import {
 } from "@components/investments/PositionsSection/config"
 import { MobileFilterSheet } from "@components/MobileFilterSheet"
 import { StickyScrollbarX } from "@components/StickyScrollbarX"
-import { investingKeys } from "@constants/queries/investing"
+import { investingKeys, POSITIONS_STALE_TIME } from "@constants/queries/investing"
+import { usePositionSymbols } from "@hooks/usePositionSymbols"
 import { useUrlParams } from "@hooks/useUrlParams"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
   ActionIcon,
   Alert,
+  Autocomplete,
   Badge,
   Box,
   Button,
   Center,
   Group,
   Loader,
+  LoadingOverlay,
   Pagination,
   Paper,
   SegmentedControl,
@@ -52,7 +55,6 @@ import {
   Stack,
   Table,
   Text,
-  TextInput,
   Tooltip,
   useMantineTheme,
 } from "@mantine/core"
@@ -137,11 +139,14 @@ export function PositionsSection({ accounts }: Props) {
     offset: (urlParams.page - 1) * urlParams.limit,
   }
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, isFetching, error } = useQuery({
     queryKey: investingKeys.positions(params),
     queryFn: () => getPositions(params),
     placeholderData: keepPreviousData,
+    staleTime: POSITIONS_STALE_TIME,
   })
+  const { data: symbolsData } = usePositionSymbols()
+  const symbolOptions = symbolsData?.items ?? []
   const total = data?.total ?? 0
   const totalPages = Math.ceil(total / urlParams.limit)
   const items = data?.items ?? []
@@ -157,6 +162,7 @@ export function PositionsSection({ accounts }: Props) {
     queryKey: investingKeys.positionsSummary(filterParams),
     queryFn: () => getPositionsSummary(filterParams),
     placeholderData: keepPreviousData,
+    staleTime: POSITIONS_STALE_TIME,
   })
   const closedCount = summaryData?.closedCount ?? 0
   const totalPnl = summaryData?.totalPnl ?? 0
@@ -177,6 +183,7 @@ export function PositionsSection({ accounts }: Props) {
   const { data: equityData } = useQuery({
     queryKey: investingKeys.equityCurve(chartParams),
     queryFn: () => getEquityCurve(chartParams),
+    staleTime: POSITIONS_STALE_TIME,
   })
   const earliestClosedAt = equityData?.items[0]?.closedAt
 
@@ -274,7 +281,7 @@ export function PositionsSection({ accounts }: Props) {
     (urlParams.status !== "all" ? 1 : 0)
 
   // Back to the schema defaults — status included, so this also restores the default
-  // "Closed" view rather than clearing it to "All".
+  // "Open" view rather than clearing it to "All".
   const resetFilters = () => {
     setSymbolInput("")
     setParams({
@@ -292,14 +299,30 @@ export function PositionsSection({ accounts }: Props) {
   // widths used on desktop. Same split as TransactionsFilters' `controls(vertical)`.
   const filterControls = (vertical: boolean) => (
     <>
-      <TextInput
+      <Autocomplete
         size={vertical ? "sm" : "xs"}
         label={t("investments.col_symbol")}
         w={vertical ? "100%" : 140}
         placeholder="BTCUSDT"
+        data={symbolOptions}
+        limit={20}
         leftSection={<IconSearch size={14} />}
+        rightSection={
+          symbolInput ? (
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              size="sm"
+              onClick={() => setSymbolInput("")}
+              aria-label={t("investments.filter_symbol_clear")}
+            >
+              <IconX size={14} />
+            </ActionIcon>
+          ) : null
+        }
+        rightSectionPointerEvents="auto"
         value={symbolInput}
-        onChange={(e) => setSymbolInput(e.currentTarget.value)}
+        onChange={setSymbolInput}
       />
       <DatePickerInput
         size={vertical ? "sm" : "xs"}
@@ -453,326 +476,342 @@ export function PositionsSection({ accounts }: Props) {
           </MobileFilterSheet>
         )}
 
-        {error ? (
-          <Alert color="red" m="md">
-            {error.message}
-          </Alert>
-        ) : isLoading ? (
-          <Center py="xl">
-            <Loader size="sm" />
-          </Center>
-        ) : items.length === 0 && firstSyncPending ? (
-          <Center py="xl">
-            <Stack align="center" gap={6}>
+        <Box pos="relative">
+          {/* Covers the table + footer while a filter/page change refetches — the query keeps
+              the previous page's rows visible in the meantime (placeholderData), so without
+              this the UI otherwise looks like the filter did nothing. */}
+          <LoadingOverlay
+            visible={isFetching && !isLoading}
+            overlayProps={{ radius: "sm", blur: 1 }}
+            loaderProps={{ size: "sm" }}
+          />
+          {error ? (
+            <Alert color="red" m="md">
+              {error.message}
+            </Alert>
+          ) : isLoading ? (
+            <Center py="xl">
               <Loader size="sm" />
-              <Text size="sm" c="dimmed">
-                {t("investments.pos_syncing")}
-              </Text>
-            </Stack>
-          </Center>
-        ) : items.length === 0 ? (
-          <Text size="sm" c="dimmed" ta="center" py="xl">
-            {t("investments.pos_empty")}
-          </Text>
-        ) : (
-          <Box ref={setTableScrollEl} style={{ overflowX: "auto" }}>
-            {/* The table defaults to width:100%, which lets the browser's auto layout squeeze
+            </Center>
+          ) : items.length === 0 && firstSyncPending ? (
+            <Center py="xl">
+              <Stack align="center" gap={6}>
+                <Loader size="sm" />
+                <Text size="sm" c="dimmed">
+                  {t("investments.pos_syncing")}
+                </Text>
+              </Stack>
+            </Center>
+          ) : items.length === 0 ? (
+            <Text size="sm" c="dimmed" ta="center" py="xl">
+              {t("investments.pos_empty")}
+            </Text>
+          ) : (
+            <Box ref={setTableScrollEl} style={{ overflowX: "auto" }}>
+              {/* The table defaults to width:100%, which lets the browser's auto layout squeeze
                 columns (badges ellipsize) instead of scrolling. max-content forces it to size to
                 its natural content and overflow into the Box's scrollbar instead. */}
-            <Table verticalSpacing="sm" highlightOnHover style={{ minWidth: "max-content" }}>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>{t("investments.col_symbol")}</Table.Th>
-                  <Table.Th miw={140} style={{ whiteSpace: "nowrap" }}>
-                    {t("investments.col_direction")}
-                  </Table.Th>
-                  <Table.Th ta="right">{t("investments.col_qty")}</Table.Th>
-                  <Table.Th ta="center">{t("investments.col_entry_exit")}</Table.Th>
-                  <Table.Th ta="center">{t("investments.col_tp_sl")}</Table.Th>
-                  <Table.Th ta="right" miw={130}>
-                    {t("investments.col_volume")}
-                  </Table.Th>
-                  <Table.Th ta="right" miw={110}>
-                    {t("investments.col_fee")}
-                  </Table.Th>
-                  <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
-                  <Table.Th ta="right">{t("investments.col_current_price")}</Table.Th>
-                  <Table.Th ta="right">PnL</Table.Th>
-                  <Table.Th ta="right">ROI, %</Table.Th>
-                  <Table.Th>{t("investments.col_account")}</Table.Th>
-                  <Table.Th>{t("investments.col_opened_at")}</Table.Th>
-                  <Table.Th>{t("investments.col_closed_at")}</Table.Th>
-                  <Table.Th ta="right">{t("investments.col_days")}</Table.Th>
-                  <Table.Th w={122} ta="right" className="pinned-col">
-                    {t("investments.col_actions")}
-                  </Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {items.map((p) => {
-                  const long = positionDirection(p) === "long"
-                  const roi = positionRoi(p)
-                  return (
-                    <Table.Tr key={p.id}>
-                      <Table.Td>
-                        <Text ff="monospace" size="sm" fw={500}>
-                          {p.symbol}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td>
-                        <Group gap={4} wrap="nowrap">
-                          <Badge variant="light" color={long ? "green" : "red"} size="sm">
-                            {t(long ? "investments.pos_long" : "investments.pos_short")}
-                          </Badge>
-                          <CategoryBadge category={p.category} />
-                          {p.status === "OPEN" && (
-                            <Badge variant="light" color="green" size="sm">
-                              {t("investments.pos_status_open")}
-                            </Badge>
-                          )}
-                        </Group>
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        <Text ff="monospace" size="sm">
-                          {formatQty(unleveragedQty(p), i18n.language)}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="center">
-                        <Text ff="monospace" size="sm" c="dimmed" style={{ whiteSpace: "nowrap" }}>
-                          {formatUsd(p.avgEntryPrice, i18n.language)} →{" "}
-                          {p.avgExitPrice == null
-                            ? t("investments.pos_in_trade")
-                            : formatUsd(p.avgExitPrice, i18n.language)}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="center">
-                        {p.takeProfitPrice == null && p.stopLossPrice == null ? (
-                          <Text size="sm" c="dimmed">
-                            —
+              <Table verticalSpacing="sm" highlightOnHover style={{ minWidth: "max-content" }}>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>{t("investments.col_symbol")}</Table.Th>
+                    <Table.Th miw={140} style={{ whiteSpace: "nowrap" }}>
+                      {t("investments.col_direction")}
+                    </Table.Th>
+                    <Table.Th ta="right">{t("investments.col_qty")}</Table.Th>
+                    <Table.Th ta="center">{t("investments.col_entry_exit")}</Table.Th>
+                    <Table.Th ta="center">{t("investments.col_tp_sl")}</Table.Th>
+                    <Table.Th ta="right" miw={130}>
+                      {t("investments.col_volume")}
+                    </Table.Th>
+                    <Table.Th ta="right" miw={110}>
+                      {t("investments.col_fee")}
+                    </Table.Th>
+                    <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
+                    <Table.Th ta="right">{t("investments.col_current_price")}</Table.Th>
+                    <Table.Th ta="right">PnL</Table.Th>
+                    <Table.Th ta="right">ROI, %</Table.Th>
+                    <Table.Th>{t("investments.col_account")}</Table.Th>
+                    <Table.Th>{t("investments.col_opened_at")}</Table.Th>
+                    <Table.Th>{t("investments.col_closed_at")}</Table.Th>
+                    <Table.Th ta="right">{t("investments.col_days")}</Table.Th>
+                    <Table.Th w={122} ta="right" className="pinned-col">
+                      {t("investments.col_actions")}
+                    </Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {items.map((p) => {
+                    const long = positionDirection(p) === "long"
+                    const roi = positionRoi(p)
+                    return (
+                      <Table.Tr key={p.id}>
+                        <Table.Td>
+                          <Text ff="monospace" size="sm" fw={500}>
+                            {p.symbol}
                           </Text>
-                        ) : (
-                          <Stack gap={0} align="center">
-                            <Text ff="monospace" size="xs" c="green.6">
-                              {p.takeProfitPrice == null
-                                ? "—"
-                                : formatUsd(p.takeProfitPrice, i18n.language)}
-                            </Text>
-                            <Text ff="monospace" size="xs" c="red.6">
-                              {p.stopLossPrice == null
-                                ? "—"
-                                : formatUsd(p.stopLossPrice, i18n.language)}
-                            </Text>
-                          </Stack>
-                        )}
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        <Text ff="monospace" size="sm">
-                          {formatUsd(p.entryVolumeUsd, i18n.language)}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        <Text
-                          ff="monospace"
-                          size="sm"
-                          c={pnlColor(p.totalFeeUsd == null ? null : -p.totalFeeUsd)}
-                        >
-                          {/* Fee sign is flipped for display: paying (positive fee) reads as a
-                              loss, a rebate (negative fee) reads as a gain — same convention as PnL. */}
-                          {p.totalFeeUsd == null ? "—" : formatPnl(-p.totalFeeUsd, i18n.language)}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        <Text ff="monospace" size="sm" c="dimmed">
-                          {p.leverage == null ? "—" : `${p.leverage}x`}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        <Text
-                          ff="monospace"
-                          size="sm"
-                          c={p.currentPrice == null ? "dimmed" : undefined}
-                        >
-                          {p.status === "OPEN" && p.currentPrice != null
-                            ? formatUsd(p.currentPrice, i18n.language)
-                            : "—"}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        {positionPnl(p) == null ? (
-                          <Text size="sm" c="dimmed">
-                            —
-                          </Text>
-                        ) : (
-                          <Group gap={4} justify="flex-end" wrap="nowrap">
-                            {p.status === "OPEN" && (
-                              <Tooltip label={t("investments.pos_pnl_live")}>
-                                <IconBolt
-                                  size={12}
-                                  className="pulse-live"
-                                  color="var(--mantine-color-yellow-6)"
-                                />
-                              </Tooltip>
-                            )}
-                            <Text ff="monospace" size="sm" fw={500} c={pnlColor(positionPnl(p))}>
-                              {formatPnl(positionPnl(p)!, i18n.language)}
-                            </Text>
-                          </Group>
-                        )}
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        {roi == null ? (
-                          <Text size="sm" c="dimmed">
-                            —
-                          </Text>
-                        ) : (
-                          <Text ff="monospace" size="sm" fw={500} c={pnlColor(roi)}>
-                            {formatPct(roi, i18n.language)}
-                          </Text>
-                        )}
-                      </Table.Td>
-                      <Table.Td>
-                        {p.accountId && accountById.get(p.accountId) ? (
+                        </Table.Td>
+                        <Table.Td>
                           <Group gap={4} wrap="nowrap">
-                            <Text size="sm" truncate="end" maw={140}>
-                              {accountById.get(p.accountId)?.label}
-                            </Text>
-                            <Badge variant="light" color="gray" size="xs" tt="none">
-                              {accountById.get(p.accountId)?.exchange}
+                            <Badge variant="light" color={long ? "green" : "red"} size="sm">
+                              {t(long ? "investments.pos_long" : "investments.pos_short")}
                             </Badge>
+                            <CategoryBadge category={p.category} />
+                            {p.status === "OPEN" && (
+                              <Badge variant="light" color="green" size="sm">
+                                {t("investments.pos_status_open")}
+                              </Badge>
+                            )}
                           </Group>
-                        ) : (
-                          <Text size="sm" c="dimmed">
-                            —
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text ff="monospace" size="sm">
+                            {formatQty(unleveragedQty(p), i18n.language)}
                           </Text>
-                        )}
-                      </Table.Td>
-                      <Table.Td>
-                        <Text
-                          ff="monospace"
-                          size="sm"
-                          c={p.openedAt ? undefined : "dimmed"}
-                          style={{ whiteSpace: "nowrap" }}
-                        >
-                          {p.openedAt ? format(p.openedAt, "d MMM yyyy", { locale }) : "—"}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td>
-                        <Text
-                          ff="monospace"
-                          size="sm"
-                          c={p.closedAt ? undefined : "dimmed"}
-                          style={{ whiteSpace: "nowrap" }}
-                        >
-                          {p.closedAt ? format(p.closedAt, "d MMM yyyy", { locale }) : "—"}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td ta="right">
-                        <Text ff="monospace" size="sm" c="dimmed">
-                          {holdingDays(p) === null ? "—" : holdingDays(p)}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td className="pinned-col">
-                        <Group gap={4} justify="flex-end" wrap="nowrap">
-                          <Tooltip label={t("investments.note_title", { symbol: p.symbol })}>
-                            <ActionIcon
-                              variant="subtle"
-                              size="sm"
-                              color={p.notes.length > 0 ? "blue" : "gray"}
-                              aria-label={t("investments.note_title", { symbol: p.symbol })}
-                              onClick={() => openNotes(p)}
-                            >
-                              <IconNotes size={14} />
-                            </ActionIcon>
-                          </Tooltip>
-                          <Tooltip label={t("common.change")}>
-                            <ActionIcon
-                              variant="subtle"
-                              size="sm"
-                              color={p.source === "manual" ? "blue" : "gray"}
-                              aria-label={t("common.change")}
-                              disabled={p.source !== "manual"}
-                              onClick={() => openEdit(p)}
-                            >
-                              <IconEdit size={14} />
-                            </ActionIcon>
-                          </Tooltip>
-                          <Tooltip label={t("common.delete")}>
-                            <ActionIcon
-                              variant="subtle"
-                              size="sm"
-                              color={p.source === "manual" ? "red" : "gray"}
-                              aria-label={t("common.delete")}
-                              disabled={p.source !== "manual"}
-                              onClick={() => openDelete(p)}
-                            >
-                              <IconTrash size={14} />
-                            </ActionIcon>
-                          </Tooltip>
-                        </Group>
-                      </Table.Td>
-                    </Table.Tr>
-                  )
-                })}
-              </Table.Tbody>
-            </Table>
-          </Box>
-        )}
+                        </Table.Td>
+                        <Table.Td ta="center">
+                          <Text
+                            ff="monospace"
+                            size="sm"
+                            c="dimmed"
+                            style={{ whiteSpace: "nowrap" }}
+                          >
+                            {formatUsd(p.avgEntryPrice, i18n.language)} →{" "}
+                            {p.avgExitPrice == null
+                              ? t("investments.pos_in_trade")
+                              : formatUsd(p.avgExitPrice, i18n.language)}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="center">
+                          {p.takeProfitPrice == null && p.stopLossPrice == null ? (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          ) : (
+                            <Stack gap={0} align="center">
+                              <Text ff="monospace" size="xs" c="green.6">
+                                {p.takeProfitPrice == null
+                                  ? "—"
+                                  : formatUsd(p.takeProfitPrice, i18n.language)}
+                              </Text>
+                              <Text ff="monospace" size="xs" c="red.6">
+                                {p.stopLossPrice == null
+                                  ? "—"
+                                  : formatUsd(p.stopLossPrice, i18n.language)}
+                              </Text>
+                            </Stack>
+                          )}
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text ff="monospace" size="sm">
+                            {formatUsd(p.entryVolumeUsd, i18n.language)}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text
+                            ff="monospace"
+                            size="sm"
+                            c={pnlColor(p.totalFeeUsd == null ? null : -p.totalFeeUsd)}
+                          >
+                            {/* Fee sign is flipped for display: paying (positive fee) reads as a
+                              loss, a rebate (negative fee) reads as a gain — same convention as PnL. */}
+                            {p.totalFeeUsd == null ? "—" : formatPnl(-p.totalFeeUsd, i18n.language)}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text ff="monospace" size="sm" c="dimmed">
+                            {p.leverage == null ? "—" : `${p.leverage}x`}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text
+                            ff="monospace"
+                            size="sm"
+                            c={p.currentPrice == null ? "dimmed" : undefined}
+                          >
+                            {p.status === "OPEN" && p.currentPrice != null
+                              ? formatUsd(p.currentPrice, i18n.language)
+                              : "—"}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          {positionPnl(p) == null ? (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          ) : (
+                            <Group gap={4} justify="flex-end" wrap="nowrap">
+                              {p.status === "OPEN" && (
+                                <Tooltip label={t("investments.pos_pnl_live")}>
+                                  <IconBolt
+                                    size={12}
+                                    className="pulse-live"
+                                    color="var(--mantine-color-yellow-6)"
+                                  />
+                                </Tooltip>
+                              )}
+                              <Text ff="monospace" size="sm" fw={500} c={pnlColor(positionPnl(p))}>
+                                {formatPnl(positionPnl(p)!, i18n.language)}
+                              </Text>
+                            </Group>
+                          )}
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          {roi == null ? (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          ) : (
+                            <Text ff="monospace" size="sm" fw={500} c={pnlColor(roi)}>
+                              {formatPct(roi, i18n.language)}
+                            </Text>
+                          )}
+                        </Table.Td>
+                        <Table.Td>
+                          {p.accountId && accountById.get(p.accountId) ? (
+                            <Group gap={4} wrap="nowrap">
+                              <Text size="sm" truncate="end" maw={140}>
+                                {accountById.get(p.accountId)?.label}
+                              </Text>
+                              <Badge variant="light" color="gray" size="xs" tt="none">
+                                {accountById.get(p.accountId)?.exchange}
+                              </Badge>
+                            </Group>
+                          ) : (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          )}
+                        </Table.Td>
+                        <Table.Td>
+                          <Text
+                            ff="monospace"
+                            size="sm"
+                            c={p.openedAt ? undefined : "dimmed"}
+                            style={{ whiteSpace: "nowrap" }}
+                          >
+                            {p.openedAt ? format(p.openedAt, "d MMM yyyy", { locale }) : "—"}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td>
+                          <Text
+                            ff="monospace"
+                            size="sm"
+                            c={p.closedAt ? undefined : "dimmed"}
+                            style={{ whiteSpace: "nowrap" }}
+                          >
+                            {p.closedAt ? format(p.closedAt, "d MMM yyyy", { locale }) : "—"}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text ff="monospace" size="sm" c="dimmed">
+                            {holdingDays(p) === null ? "—" : holdingDays(p)}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td className="pinned-col">
+                          <Group gap={4} justify="flex-end" wrap="nowrap">
+                            <Tooltip label={t("investments.note_title", { symbol: p.symbol })}>
+                              <ActionIcon
+                                variant="subtle"
+                                size="sm"
+                                color={p.notes.length > 0 ? "blue" : "gray"}
+                                aria-label={t("investments.note_title", { symbol: p.symbol })}
+                                onClick={() => openNotes(p)}
+                              >
+                                <IconNotes size={14} />
+                              </ActionIcon>
+                            </Tooltip>
+                            <Tooltip label={t("common.change")}>
+                              <ActionIcon
+                                variant="subtle"
+                                size="sm"
+                                color={p.source === "manual" ? "blue" : "gray"}
+                                aria-label={t("common.change")}
+                                disabled={p.source !== "manual"}
+                                onClick={() => openEdit(p)}
+                              >
+                                <IconEdit size={14} />
+                              </ActionIcon>
+                            </Tooltip>
+                            <Tooltip label={t("common.delete")}>
+                              <ActionIcon
+                                variant="subtle"
+                                size="sm"
+                                color={p.source === "manual" ? "red" : "gray"}
+                                aria-label={t("common.delete")}
+                                disabled={p.source !== "manual"}
+                                onClick={() => openDelete(p)}
+                              >
+                                <IconTrash size={14} />
+                              </ActionIcon>
+                            </Tooltip>
+                          </Group>
+                        </Table.Td>
+                      </Table.Tr>
+                    )
+                  })}
+                </Table.Tbody>
+              </Table>
+            </Box>
+          )}
 
-        {/* Table can be wider than the viewport (many columns) — its own scrollbar sits at
+          {/* Table can be wider than the viewport (many columns) — its own scrollbar sits at
             its bottom edge, which is off-screen until you scroll the whole page down. This
             mirrors it at the viewport's bottom edge instead, right above the mobile filter
             handle when that's showing. */}
-        <StickyScrollbarX target={tableScrollEl} bottomOffset={isDesktop ? 0 : 48} />
+          <StickyScrollbarX target={tableScrollEl} bottomOffset={isDesktop ? 0 : 48} />
 
-        {total > 0 && (
-          <Group justify="space-between" p="md" wrap="wrap" gap="md">
-            <Group gap="md" wrap="wrap">
-              <Select
-                size="xs"
-                w={140}
-                label={t("investments.pos_page_size")}
-                data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
-                value={String(urlParams.limit)}
-                onChange={(v) => v && setParams({ limit: Number(v), page: 1 })}
-                allowDeselect={false}
-                checkIconPosition="right"
-                comboboxProps={{ width: 80 }}
-              />
-              {/* Sums just the rows on this page — same idea as the transactions table's
+          {total > 0 && (
+            <Group justify="space-between" p="md" wrap="wrap" gap="md">
+              <Group gap="md" wrap="wrap">
+                <Select
+                  size="xs"
+                  w={140}
+                  label={t("investments.pos_page_size")}
+                  data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
+                  value={String(urlParams.limit)}
+                  onChange={(v) => v && setParams({ limit: Number(v), page: 1 })}
+                  allowDeselect={false}
+                  checkIconPosition="right"
+                  comboboxProps={{ width: 80 }}
+                />
+                {/* Sums just the rows on this page — same idea as the transactions table's
                   footer, so it stays honest when the top KPI row covers the whole filter. */}
-              {items.length > 0 && (
-                <Group gap={6} wrap="nowrap">
-                  <Text size="xs" c="dimmed">
-                    {t("investments.kpi_page_summary")}
-                  </Text>
-                  <Text size="xs" fw={600} c={pnlColor(pageTotalPnl)}>
-                    {formatPnl(pageTotalPnl, i18n.language)}
-                  </Text>
-                  <Text size="xs" c="dimmed">
-                    ·
-                  </Text>
-                  <Text size="xs">
-                    {t("investments.kpi_winrate")}: {pageWinrate === null ? "—" : `${pageWinrate}%`}
-                  </Text>
-                  <Text size="xs" c="dimmed">
-                    ·
-                  </Text>
-                  <Text size="xs">
-                    {t("investments.kpi_trades")}: {items.length}
-                  </Text>
-                </Group>
+                {items.length > 0 && (
+                  <Group gap={6} wrap="nowrap">
+                    <Text size="xs" c="dimmed">
+                      {t("investments.kpi_page_summary")}
+                    </Text>
+                    <Text size="xs" fw={600} c={pnlColor(pageTotalPnl)}>
+                      {formatPnl(pageTotalPnl, i18n.language)}
+                    </Text>
+                    <Text size="xs" c="dimmed">
+                      ·
+                    </Text>
+                    <Text size="xs">
+                      {t("investments.kpi_winrate")}:{" "}
+                      {pageWinrate === null ? "—" : `${pageWinrate}%`}
+                    </Text>
+                    <Text size="xs" c="dimmed">
+                      ·
+                    </Text>
+                    <Text size="xs">
+                      {t("investments.kpi_trades")}: {items.length}
+                    </Text>
+                  </Group>
+                )}
+              </Group>
+              {totalPages > 1 && (
+                <Pagination
+                  size="sm"
+                  total={totalPages}
+                  value={urlParams.page}
+                  onChange={(page) => setParams({ page })}
+                />
               )}
             </Group>
-            {totalPages > 1 && (
-              <Pagination
-                size="sm"
-                total={totalPages}
-                value={urlParams.page}
-                onChange={(page) => setParams({ page })}
-              />
-            )}
-          </Group>
-        )}
+          )}
+        </Box>
       </Paper>
     </Stack>
   )

@@ -490,6 +490,7 @@
     "kpi_period_from": "Nuo {{date}}",
     "kpi_period_to": "Iki {{date}}",
     "filter_period": "Laikotarpis",
+    "filter_symbol_clear": "Išvalyti porą",
     "filters_title": "Filtrai",
     "filter_account": "Paskyra",
     "filter_status": "Būsena",

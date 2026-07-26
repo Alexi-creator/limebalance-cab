@@ -478,6 +478,7 @@
     "kpi_period_from": "Siden {{date}}",
     "kpi_period_to": "Til {{date}}",
     "filter_period": "Periode",
+    "filter_symbol_clear": "Fjern par",
     "filters_title": "Filtre",
     "filter_account": "Konto",
     "filter_status": "Status",

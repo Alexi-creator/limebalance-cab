@@ -3,6 +3,7 @@ import {
   equityCurveResponseSchema,
   exchangeAccountSchema,
   holdingsResponseSchema,
+  positionSymbolsResponseSchema,
   positionsResponseSchema,
   positionsSummarySchema,
 } from "@appTypes/investing"
@@ -87,6 +88,11 @@ export function getPositions(params: PositionsParams = {}) {
   return request(`${API_URLS.investing.positions}${positionsQuery(params)}`, {
     schema: positionsResponseSchema,
   })
+}
+
+/** Every distinct symbol the user has ever traded — powers the Pair filter's autocomplete. */
+export function getPositionSymbols() {
+  return request(API_URLS.investing.positionSymbols, { schema: positionSymbolsResponseSchema })
 }
 
 /** Aggregated over every position matching the filters — no page cap, unlike getPositions. */

@@ -21,6 +21,9 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
+    // The journal defaults to Open — switch to All to see the closed ones asserted below too.
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
 
@@ -56,7 +59,10 @@ test.describe("Investments — trade journal", () => {
   }) => {
     await gotoInvestments(page)
 
-    await page.getByLabel("Pair").fill("BTCUSDT")
+    // The Pair field is a Mantine Autocomplete now — its (hidden-when-closed) options listbox
+    // shares the "Pair" label, so `getByLabel` alone is ambiguous; the input is the combobox role.
+    const pairInput = page.getByRole("combobox", { name: "Pair" })
+    await pairInput.fill("BTCUSDT")
     await page
       .locator("label")
       .filter({ hasText: /^Spot$/ })
@@ -65,16 +71,20 @@ test.describe("Investments — trade journal", () => {
 
     await page.getByRole("button", { name: "Reset" }).click()
 
-    await expect(page.getByLabel("Pair")).toHaveValue("")
-    await expect(page.getByPlaceholder("Status")).toHaveValue("Closed")
-    // Back to the default Closed view: linear/spot/manual, ADAUSDT (OPEN) still excluded.
-    await expect(page.locator("table tbody tr")).toHaveCount(3)
+    await expect(pairInput).toHaveValue("")
+    await expect(page.getByPlaceholder("Status")).toHaveValue("Open")
+    // Back to the default Open view: only ADAUSDT.
+    const rows = page.locator("table tbody tr")
+    await expect(rows).toHaveCount(1)
+    await expect(rows.getByText("ADAUSDT")).toBeVisible()
   })
 
   test("the Opened column shows the open date, or a dash when it's unavailable", async ({
     authedPage: page,
   }) => {
     await gotoInvestments(page)
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     // Opened/Closed/Days are the last three data columns, right before the actions column.
@@ -90,6 +100,8 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     // Fee is the 7th data column: Pair, Direction, Qty, Entry → Exit, TP/SL, Volume, Fee.
@@ -104,6 +116,9 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
+    // The journal defaults to Open — All brings every stubbed position into view at once.
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     // TP/SL is the 5th data column: Pair, Direction, Qty, Entry → Exit, TP/SL.
@@ -115,8 +130,6 @@ test.describe("Investments — trade journal", () => {
     await expect(tpSlCell(rows.filter({ hasText: "SOLUSDT" }))).toHaveText("—")
 
     // ADAUSDT (OPEN): both set.
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "Open" }).click()
     const ada = tpSlCell(rows.filter({ hasText: "ADAUSDT" }))
     await expect(ada).toContainText("$0.85")
     await expect(ada).toContainText("$0.60")
@@ -124,6 +137,8 @@ test.describe("Investments — trade journal", () => {
 
   test("edit and delete are only enabled on manual positions", async ({ authedPage: page }) => {
     await gotoInvestments(page)
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     await expect(
@@ -138,9 +153,7 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    // The journal defaults to Closed — ADAUSDT is the OPEN one, so it needs Open/All picked first.
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "Open" }).click()
+    // The journal defaults to Open — ADAUSDT (the OPEN one) is already visible.
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     await expect(row.getByText("Open", { exact: true })).toBeVisible()
@@ -160,9 +173,7 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    // ADAUSDT is OPEN and the journal defaults to Closed — switch to All to see it.
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
+    // ADAUSDT is OPEN — already visible under the journal's default Open filter.
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     // Edit/delete stay off-limits for a bybit-sourced position — notes don't.
@@ -190,8 +201,6 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     await row.getByRole("button", { name: /Notes/ }).click()
@@ -227,53 +236,79 @@ test.describe("Investments — trade journal", () => {
 
   test("the category filter narrows the table server-side", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    // The journal defaults to Closed: linear/spot/manual (ADAUSDT, the open one, is excluded).
-    await expect(page.locator("table tbody tr")).toHaveCount(3)
+    // Switch off the Open-only default so category filtering is exercised over every position.
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
+    await expect(page.locator("table tbody tr")).toHaveCount(4)
 
     await page
       .locator("label")
       .filter({ hasText: /^Spot$/ })
       .click()
 
-    await expect(page.locator("table tbody tr")).toHaveCount(1)
-    await expect(page.getByText("SOLUSDT")).toBeVisible()
-    await expect(page.getByText("BTCUSDT")).toHaveCount(0)
+    // Scoped to the table — the Pair Autocomplete's options listbox also carries these symbols
+    // in its (hidden-when-closed) DOM, so a page-wide text search collides with it.
+    const rows = page.locator("table tbody tr")
+    await expect(rows).toHaveCount(1)
+    await expect(rows.getByText("SOLUSDT")).toBeVisible()
+    await expect(rows.getByText("BTCUSDT")).toHaveCount(0)
   })
 
   test("the status filter narrows the table server-side", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    // Defaults to Closed (3 positions) — ADAUSDT (OPEN) only shows up once Open/All is picked.
-    await expect(page.locator("table tbody tr")).toHaveCount(3)
-
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "Open" }).click()
-    await expect(page.locator("table tbody tr")).toHaveCount(1)
-    await expect(page.getByText("ADAUSDT")).toBeVisible()
+    // Defaults to Open (1 position) — closed trades only show up once Closed/All is picked.
+    const rows = page.locator("table tbody tr")
+    await expect(rows).toHaveCount(1)
+    await expect(rows.getByText("ADAUSDT")).toBeVisible()
 
     await page.getByPlaceholder("Status").click()
     await page.getByRole("option", { name: "Closed" }).click()
-    await expect(page.locator("table tbody tr")).toHaveCount(3)
-    await expect(page.getByText("ADAUSDT")).toHaveCount(0)
+    await expect(rows).toHaveCount(3)
+    await expect(rows.getByText("ADAUSDT")).toHaveCount(0)
   })
 
-  test("the journal defaults to the Closed status filter on first load", async ({
+  test("the Pair field autocompletes from previously traded symbols", async ({
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    await expect(page.getByPlaceholder("Status")).toHaveValue("Closed")
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "All", exact: true }).click()
+
+    const pairInput = page.getByRole("combobox", { name: "Pair" })
+    await pairInput.fill("BTC")
+    await expect(page.getByRole("option", { name: "BTCUSDT" })).toBeVisible()
+    // Typing something no stubbed position ever traded stays a free-text value — the
+    // dropdown just has nothing to suggest, unlike a Select it isn't forced back to a known one.
+    await expect(page.getByRole("option", { name: "SOLUSDT" })).toHaveCount(0)
+
+    await page.getByRole("option", { name: "BTCUSDT" }).click()
+    await expect(pairInput).toHaveValue("BTCUSDT")
+    await expect(page).toHaveURL(/symbol=BTCUSDT/)
+
+    const rows = page.locator("table tbody tr")
+    await expect(rows).toHaveCount(1)
+    await expect(rows.getByText("BTCUSDT")).toBeVisible()
+  })
+
+  test("the journal defaults to the Open status filter on first load", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+    await expect(page.getByPlaceholder("Status")).toHaveValue("Open")
   })
 
   test("filters persist in the URL across a reload", async ({ authedPage: page }) => {
     await gotoInvestments(page)
 
     await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "Open" }).click()
-    await expect(page).toHaveURL(/status=OPEN/)
+    await page.getByRole("option", { name: "Closed" }).click()
+    await expect(page).toHaveURL(/status=CLOSED/)
 
     await page.reload()
     await expect(page.getByRole("heading", { name: "Investments and crypto" })).toBeVisible()
-    await expect(page.locator("table tbody tr")).toHaveCount(1)
-    await expect(page.getByText("ADAUSDT")).toBeVisible()
+    const rows = page.locator("table tbody tr")
+    await expect(rows).toHaveCount(3)
+    await expect(rows.getByText("ADAUSDT")).toHaveCount(0)
   })
 
   test("draws the equity curve; a filter leaving one trade hides it", async ({

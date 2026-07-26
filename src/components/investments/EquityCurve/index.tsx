@@ -1,7 +1,7 @@
 import { getEquityCurve, type PositionsParams } from "@api/investing"
 import { formatPnl, formatUsd, pnlColor } from "@components/investments/format"
 import { INCOME_COLOR } from "@constants/chartColors"
-import { investingKeys } from "@constants/queries/investing"
+import { investingKeys, POSITIONS_STALE_TIME } from "@constants/queries/investing"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import { Paper, Text } from "@mantine/core"
 import { useElementSize } from "@mantine/hooks"
@@ -57,6 +57,7 @@ export function EquityCurve({ params }: Props) {
   const { data } = useQuery({
     queryKey: investingKeys.equityCurve(chartParams),
     queryFn: () => getEquityCurve(chartParams),
+    staleTime: POSITIONS_STALE_TIME,
   })
 
   const points = useMemo<EquityPoint[]>(() => {

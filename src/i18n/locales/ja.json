@@ -466,6 +466,7 @@
     "kpi_period_from": "{{date}}から",
     "kpi_period_to": "{{date}}まで",
     "filter_period": "期間",
+    "filter_symbol_clear": "ペアをクリア",
     "filters_title": "フィルター",
     "filter_account": "アカウント",
     "filter_status": "ステータス",

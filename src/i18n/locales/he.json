@@ -502,6 +502,7 @@
     "kpi_period_from": "מאז {{date}}",
     "kpi_period_to": "עד {{date}}",
     "filter_period": "תקופה",
+    "filter_symbol_clear": "נקה זוג",
     "filters_title": "מסננים",
     "filter_account": "חשבון",
     "filter_status": "סטטוס",

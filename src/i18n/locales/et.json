@@ -478,6 +478,7 @@
     "kpi_period_from": "Alates {{date}}",
     "kpi_period_to": "Kuni {{date}}",
     "filter_period": "Periood",
+    "filter_symbol_clear": "Tühjenda paar",
     "filters_title": "Filtrid",
     "filter_account": "Konto",
     "filter_status": "Olek",

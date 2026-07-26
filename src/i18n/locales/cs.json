@@ -490,6 +490,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Období",
+    "filter_symbol_clear": "Vymazat pár",
     "filters_title": "Filtry",
     "filter_account": "Účet",
     "filter_status": "Stav",

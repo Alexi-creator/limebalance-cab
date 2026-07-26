@@ -478,6 +478,7 @@
     "kpi_period_from": "Dal {{date}}",
     "kpi_period_to": "Al {{date}}",
     "filter_period": "Periodo",
+    "filter_symbol_clear": "Cancella coppia",
     "filters_title": "Filtri",
     "filter_account": "Account",
     "filter_status": "Stato",

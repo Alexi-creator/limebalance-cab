@@ -478,6 +478,7 @@
     "kpi_period_from": "Desde {{date}}",
     "kpi_period_to": "Hasta {{date}}",
     "filter_period": "Período",
+    "filter_symbol_clear": "Borrar par",
     "filters_title": "Filtros",
     "filter_account": "Cuenta",
     "filter_status": "Estado",

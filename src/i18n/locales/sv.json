@@ -478,6 +478,7 @@
     "kpi_period_from": "Sedan {{date}}",
     "kpi_period_to": "Till {{date}}",
     "filter_period": "Period",
+    "filter_symbol_clear": "Rensa par",
     "filters_title": "Filter",
     "filter_account": "Konto",
     "filter_status": "Status",

@@ -478,6 +478,7 @@
     "kpi_period_from": "{{date}} tarihinden itibaren",
     "kpi_period_to": "{{date}} tarihine kadar",
     "filter_period": "Dönem",
+    "filter_symbol_clear": "Pariteyi temizle",
     "filters_title": "Filtreler",
     "filter_account": "Hesap",
     "filter_status": "Durum",

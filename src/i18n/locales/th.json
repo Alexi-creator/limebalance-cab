@@ -466,6 +466,7 @@
     "kpi_period_from": "ตั้งแต่ {{date}}",
     "kpi_period_to": "จนถึง {{date}}",
     "filter_period": "ช่วงเวลา",
+    "filter_symbol_clear": "ล้างคู่เหรียญ",
     "filters_title": "ตัวกรอง",
     "filter_account": "บัญชี",
     "filter_status": "สถานะ",

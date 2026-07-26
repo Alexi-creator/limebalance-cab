@@ -478,6 +478,7 @@
     "kpi_period_from": "Από {{date}}",
     "kpi_period_to": "Έως {{date}}",
     "filter_period": "Περίοδος",
+    "filter_symbol_clear": "Εκκαθάριση ζεύγους",
     "filters_title": "Φίλτρα",
     "filter_account": "Λογαριασμός",
     "filter_status": "Κατάσταση",

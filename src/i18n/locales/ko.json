@@ -466,6 +466,7 @@
     "kpi_period_from": "{{date}}부터",
     "kpi_period_to": "{{date}}까지",
     "filter_period": "기간",
+    "filter_symbol_clear": "페어 지우기",
     "filters_title": "필터",
     "filter_account": "계정",
     "filter_status": "상태",

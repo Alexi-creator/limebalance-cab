@@ -466,6 +466,7 @@
     "kpi_period_from": "Sejak {{date}}",
     "kpi_period_to": "Hingga {{date}}",
     "filter_period": "Periode",
+    "filter_symbol_clear": "Hapus pasangan",
     "filters_title": "Filter",
     "filter_account": "Akun",
     "filter_status": "Status",

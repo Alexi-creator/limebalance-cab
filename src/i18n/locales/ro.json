@@ -490,6 +490,7 @@
     "kpi_period_from": "Din {{date}}",
     "kpi_period_to": "Până la {{date}}",
     "filter_period": "Perioadă",
+    "filter_symbol_clear": "Șterge perechea",
     "filters_title": "Filtre",
     "filter_account": "Cont",
     "filter_status": "Stare",

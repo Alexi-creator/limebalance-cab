@@ -513,6 +513,7 @@
     "kpi_period_from": "Since {{date}}",
     "kpi_period_to": "Until {{date}}",
     "filter_period": "Period",
+    "filter_symbol_clear": "Clear pair",
     "filters_title": "Filters",
     "filter_account": "Account",
     "filter_status": "Status",

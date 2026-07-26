@@ -466,6 +466,7 @@
     "kpi_period_from": "自 {{date}}",
     "kpi_period_to": "至 {{date}}",
     "filter_period": "时间段",
+    "filter_symbol_clear": "清除交易对",
     "filters_title": "筛选",
     "filter_account": "账户",
     "filter_status": "状态",

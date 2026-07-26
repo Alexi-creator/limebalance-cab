@@ -526,6 +526,7 @@
     "kpi_period_from": "منذ {{date}}",
     "kpi_period_to": "حتى {{date}}",
     "filter_period": "الفترة",
+    "filter_symbol_clear": "مسح الزوج",
     "filters_title": "التصفية",
     "filter_account": "الحساب",
     "filter_status": "الحالة",

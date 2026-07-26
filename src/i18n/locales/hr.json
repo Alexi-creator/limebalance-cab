@@ -490,6 +490,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Razdoblje",
+    "filter_symbol_clear": "Očisti par",
     "filters_title": "Filtri",
     "filter_account": "Račun",
     "filter_status": "Status",

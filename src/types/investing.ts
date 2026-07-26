@@ -80,6 +80,12 @@ export const positionsResponseSchema = z.object({
   total: z.number(),
 })
 
+/** GET /investing/positions/symbols — every distinct symbol the user has ever traded (bybit or
+ *  manual), for the Pair filter's autocomplete. */
+export const positionSymbolsResponseSchema = z.object({
+  items: z.array(z.string()),
+})
+
 /** GET /investing/positions/summary — aggregated over the whole filtered history, not just
  *  one page. Unlike `positionsResponseSchema.items`, this isn't capped at the API's page limit.
  *  winCount/lossCount/breakevenCount partition closedCount (closedPnl >/</= 0). */
@@ -131,6 +137,7 @@ export type ExchangeAccount = z.infer<typeof exchangeAccountSchema>
 export type PositionNote = z.infer<typeof positionNoteSchema>
 export type Position = z.infer<typeof positionSchema>
 export type PositionsResponse = z.infer<typeof positionsResponseSchema>
+export type PositionSymbolsResponse = z.infer<typeof positionSymbolsResponseSchema>
 export type PositionsSummary = z.infer<typeof positionsSummarySchema>
 export type EquityCurveResponse = z.infer<typeof equityCurveResponseSchema>
 export type Holding = z.infer<typeof holdingSchema>

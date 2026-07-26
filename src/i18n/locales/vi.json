@@ -466,6 +466,7 @@
     "kpi_period_from": "Từ {{date}}",
     "kpi_period_to": "Đến {{date}}",
     "filter_period": "Khoảng thời gian",
+    "filter_symbol_clear": "Xóa cặp",
     "filters_title": "Bộ lọc",
     "filter_account": "Tài khoản",
     "filter_status": "Trạng thái",

@@ -1,4 +1,5 @@
 import {
+  Autocomplete,
   createTheme,
   InputBase,
   Modal,
@@ -50,6 +51,7 @@ export const theme = createTheme({
       },
     }),
     TextInput: TextInput.extend({ styles: floatingLabel }),
+    Autocomplete: Autocomplete.extend({ styles: floatingLabel }),
     PasswordInput: PasswordInput.extend({ styles: floatingLabel }),
     NumberInput: NumberInput.extend({ styles: floatingLabel }),
     Textarea: Textarea.extend({ styles: floatingLabel }),

@@ -478,6 +478,7 @@
     "kpi_period_from": "От {{date}}",
     "kpi_period_to": "До {{date}}",
     "filter_period": "Период",
+    "filter_symbol_clear": "Изчисти двойката",
     "filters_title": "Филтри",
     "filter_account": "Акаунт",
     "filter_status": "Статус",

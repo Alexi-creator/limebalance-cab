@@ -796,6 +796,8 @@ export function getStub(url: string, method: string): unknown {
   if (path.endsWith("/investing/accounts")) return INVESTING_ACCOUNTS
   if (path.endsWith("/investing/positions/summary")) return positionsSummary(INVESTING_POSITIONS, q)
   if (path.endsWith("/investing/positions/equity-curve")) return equityCurve(INVESTING_POSITIONS, q)
+  if (path.endsWith("/investing/positions/symbols"))
+    return { items: [...new Set(INVESTING_POSITIONS.map((p) => p.symbol))] }
   if (path.endsWith("/investing/positions")) return paged(INVESTING_POSITIONS, q)
   if (path.endsWith("/investing/holdings")) return INVESTING_HOLDINGS
   if (path.endsWith("/transactions/balance")) return buildBalance()

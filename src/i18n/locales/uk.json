@@ -490,6 +490,7 @@
     "kpi_period_from": "З {{date}}",
     "kpi_period_to": "До {{date}}",
     "filter_period": "Період",
+    "filter_symbol_clear": "Очистити пару",
     "filters_title": "Фільтри",
     "filter_account": "Акаунт",
     "filter_status": "Статус",

@@ -490,6 +490,7 @@
     "kpi_period_from": "No {{date}}",
     "kpi_period_to": "Līdz {{date}}",
     "filter_period": "Periods",
+    "filter_symbol_clear": "Notīrīt pāri",
     "filters_title": "Filtri",
     "filter_account": "Konts",
     "filter_status": "Statuss",

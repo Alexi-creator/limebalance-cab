@@ -490,6 +490,7 @@
     "kpi_period_from": "Od {{date}}",
     "kpi_period_to": "Do {{date}}",
     "filter_period": "Okres",
+    "filter_symbol_clear": "Wyczyść parę",
     "filters_title": "Filtry",
     "filter_account": "Konto",
     "filter_status": "Status",

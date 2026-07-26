@@ -478,6 +478,7 @@
     "kpi_period_from": "{{date}} óta",
     "kpi_period_to": "{{date}}-ig",
     "filter_period": "Időszak",
+    "filter_symbol_clear": "Pár törlése",
     "filters_title": "Szűrők",
     "filter_account": "Fiók",
     "filter_status": "Állapot",
