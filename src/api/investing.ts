@@ -116,6 +116,8 @@ export interface ManualPositionPayload {
   closedAt?: string
   openedAt?: string
   leverage?: number
+  takeProfitPrice?: number
+  stopLossPrice?: number
   /** Where the trade happened — MEXC, an exchanger… */
   venue?: string
   /** Omitted → the backend computes it from the prices. */

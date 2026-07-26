@@ -488,6 +488,7 @@ export function PositionsSection({ accounts }: Props) {
                   </Table.Th>
                   <Table.Th ta="right">{t("investments.col_qty")}</Table.Th>
                   <Table.Th ta="center">{t("investments.col_entry_exit")}</Table.Th>
+                  <Table.Th ta="center">{t("investments.col_tp_sl")}</Table.Th>
                   <Table.Th ta="right" miw={130}>
                     {t("investments.col_volume")}
                   </Table.Th>
@@ -543,6 +544,26 @@ export function PositionsSection({ accounts }: Props) {
                             ? t("investments.pos_in_trade")
                             : formatUsd(p.avgExitPrice, i18n.language)}
                         </Text>
+                      </Table.Td>
+                      <Table.Td ta="center">
+                        {p.takeProfitPrice == null && p.stopLossPrice == null ? (
+                          <Text size="sm" c="dimmed">
+                            —
+                          </Text>
+                        ) : (
+                          <Stack gap={0} align="center">
+                            <Text ff="monospace" size="xs" c="green.6">
+                              {p.takeProfitPrice == null
+                                ? "—"
+                                : formatUsd(p.takeProfitPrice, i18n.language)}
+                            </Text>
+                            <Text ff="monospace" size="xs" c="red.6">
+                              {p.stopLossPrice == null
+                                ? "—"
+                                : formatUsd(p.stopLossPrice, i18n.language)}
+                            </Text>
+                          </Stack>
+                        )}
                       </Table.Td>
                       <Table.Td ta="right">
                         <Text ff="monospace" size="sm">

@@ -63,6 +63,10 @@ export function PositionForm({ position }: Props) {
   const [entryPrice, setEntryPrice] = useState<number | string>(position?.avgEntryPrice ?? "")
   const [exitPrice, setExitPrice] = useState<number | string>(position?.avgExitPrice ?? "")
   const [leverage, setLeverage] = useState<number | string>(position?.leverage ?? "")
+  const [takeProfitPrice, setTakeProfitPrice] = useState<number | string>(
+    position?.takeProfitPrice ?? "",
+  )
+  const [stopLossPrice, setStopLossPrice] = useState<number | string>(position?.stopLossPrice ?? "")
   const [venue, setVenue] = useState("")
   // Editing an OPEN position starts with no closedAt to fill in — "now" is only a sensible
   // default once the user actually decides to close it (unchecks stillOpen below).
@@ -103,6 +107,8 @@ export function PositionForm({ position }: Props) {
         closedAt: stillOpen || !closedAt ? undefined : pickerValueToIso(closedAt),
         openedAt: openedAt ? pickerValueToIso(openedAt) : undefined,
         leverage: Number(leverage) > 0 ? Number(leverage) : undefined,
+        takeProfitPrice: Number(takeProfitPrice) > 0 ? Number(takeProfitPrice) : undefined,
+        stopLossPrice: Number(stopLossPrice) > 0 ? Number(stopLossPrice) : undefined,
         venue: venue.trim() || undefined,
         // Untouched → let the backend compute it from the prices.
         closedPnl: !stillOpen && pnlTouched && pnl !== "" ? Number(pnl) : undefined,
@@ -209,6 +215,25 @@ export function PositionForm({ position }: Props) {
               prefix="$"
             />
           )}
+        </Group>
+
+        <Group grow align="flex-start">
+          <NumberInput
+            label={t("investments.pos_take_profit")}
+            value={takeProfitPrice}
+            onChange={setTakeProfitPrice}
+            min={0}
+            decimalScale={8}
+            prefix="$"
+          />
+          <NumberInput
+            label={t("investments.pos_stop_loss")}
+            value={stopLossPrice}
+            onChange={setStopLossPrice}
+            min={0}
+            decimalScale={8}
+            prefix="$"
+          />
         </Group>
 
         <Checkbox

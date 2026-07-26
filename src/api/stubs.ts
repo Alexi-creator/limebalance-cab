@@ -584,6 +584,8 @@ const INVESTING_POSITIONS = [
     // same (exit − entry) × qty formula the backend uses for closedPnl once a trade closes.
     currentPrice: 0.75,
     unrealizedPnl: 140,
+    takeProfitPrice: "0.85",
+    stopLossPrice: "0.6",
     notes: [
       {
         id: "note-1",
@@ -616,6 +618,9 @@ const INVESTING_POSITIONS = [
     status: "CLOSED",
     currentPrice: null,
     unrealizedPnl: null,
+    // TP/SL isn't cleared on close — the last known level at exit stays; SL was never set here.
+    takeProfitPrice: "60000",
+    stopLossPrice: null,
     notes: [],
   },
   // spot: always Long, no leverage (entryVolumeUsd = full notional), openedAt = oldest closed
@@ -639,6 +644,8 @@ const INVESTING_POSITIONS = [
     status: "CLOSED",
     currentPrice: null,
     unrealizedPnl: null,
+    takeProfitPrice: null,
+    stopLossPrice: null,
     notes: [],
   },
   // manual: user-entered, editable, side Buy → Short. No synced fills → totalFeeUsd is always null.
@@ -661,6 +668,8 @@ const INVESTING_POSITIONS = [
     status: "CLOSED",
     currentPrice: null,
     unrealizedPnl: null,
+    takeProfitPrice: null,
+    stopLossPrice: null,
     notes: [],
   },
 ]

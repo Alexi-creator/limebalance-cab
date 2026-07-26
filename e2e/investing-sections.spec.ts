@@ -92,12 +92,34 @@ test.describe("Investments — trade journal", () => {
     await gotoInvestments(page)
 
     const rows = page.locator("table tbody tr")
-    // Fee is the 6th data column: Pair, Direction, Qty, Entry → Exit, Volume, Fee.
-    const feeCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(5)
+    // Fee is the 7th data column: Pair, Direction, Qty, Entry → Exit, TP/SL, Volume, Fee.
+    const feeCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(6)
     await expect(feeCell(rows.filter({ hasText: "SOLUSDT" }))).toHaveText("−$2.83")
     // No known open time (linear) / no synced fills (manual) → fee can't be totalled.
     await expect(feeCell(rows.filter({ hasText: "BTCUSDT" }))).toHaveText("—")
     await expect(feeCell(rows.filter({ hasText: "ETHUSDT" }))).toHaveText("—")
+  })
+
+  test("the TP/SL column shows both, one, or a dash when neither is set", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+
+    const rows = page.locator("table tbody tr")
+    // TP/SL is the 5th data column: Pair, Direction, Qty, Entry → Exit, TP/SL.
+    const tpSlCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(4)
+    // BTCUSDT (CLOSED): TP set, no SL — carries the last known level from before it closed.
+    await expect(tpSlCell(rows.filter({ hasText: "BTCUSDT" }))).toContainText("$60,000.00")
+    await expect(tpSlCell(rows.filter({ hasText: "BTCUSDT" }))).toContainText("—")
+    // SOLUSDT (CLOSED): neither set → a single dash, not two.
+    await expect(tpSlCell(rows.filter({ hasText: "SOLUSDT" }))).toHaveText("—")
+
+    // ADAUSDT (OPEN): both set.
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "Open" }).click()
+    const ada = tpSlCell(rows.filter({ hasText: "ADAUSDT" }))
+    await expect(ada).toContainText("$0.85")
+    await expect(ada).toContainText("$0.60")
   })
 
   test("edit and delete are only enabled on manual positions", async ({ authedPage: page }) => {

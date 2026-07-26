@@ -69,6 +69,10 @@ export const positionSchema = z.object({
   currentPrice: z.number().nullable(),
   /** Unrealized PnL against currentPrice while OPEN; null when CLOSED or price unavailable. */
   unrealizedPnl: z.number().nullable(),
+  /** Last known TP/SL at exchange sync time (bybit) or as entered (manual). Not cleared on
+   *  close — a closed linear position still carries whatever TP/SL it had at exit. */
+  takeProfitPrice: nullableDecimal(),
+  stopLossPrice: nullableDecimal(),
 })
 
 export const positionsResponseSchema = z.object({
