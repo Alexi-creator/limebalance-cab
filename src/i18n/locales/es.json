@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Meta alcanzada 🎉",
       "body": "Has ahorrado para la meta «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Operación cerrada",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Cant.",
     "col_entry_exit": "Entrada → Salida",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volumen, USD",
-    "col_fee": "Comisiones, USD",
+    "col_volume": "Volumen",
+    "col_fee": "Comisiones",
     "col_leverage": "Apalancamiento",
     "col_current_price": "Precio actual",
     "col_account": "Cuenta",

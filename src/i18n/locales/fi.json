@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Tavoite saavutettu 🎉",
       "body": "Säästit tavoitteeseen «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Kauppa suljettu",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Määrä",
     "col_entry_exit": "Sisään → Ulos",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volyymi, USD",
-    "col_fee": "Palkkiot, USD",
+    "col_volume": "Volyymi",
+    "col_fee": "Palkkiot",
     "col_leverage": "Vipu",
     "col_current_price": "Nykyhinta",
     "col_account": "Tili",

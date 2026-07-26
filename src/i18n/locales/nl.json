@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Doel bereikt 🎉",
       "body": "Je hebt gespaard voor het doel «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Trade gesloten",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Aantal",
     "col_entry_exit": "Instap → Uitstap",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volume, USD",
-    "col_fee": "Kosten, USD",
+    "col_volume": "Volume",
+    "col_fee": "Kosten",
     "col_leverage": "Hefboom",
     "col_current_price": "Huidige prijs",
     "col_account": "Account",

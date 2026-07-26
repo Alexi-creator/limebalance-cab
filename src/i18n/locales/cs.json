@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Cíl splněn 🎉",
       "body": "Naspořili jste na cíl «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Obchod uzavřen",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Množ.",
     "col_entry_exit": "Vstup → Výstup",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Objem, USD",
-    "col_fee": "Poplatky, USD",
+    "col_volume": "Objem",
+    "col_fee": "Poplatky",
     "col_leverage": "Páka",
     "col_current_price": "Aktuální cena",
     "col_account": "Účet",

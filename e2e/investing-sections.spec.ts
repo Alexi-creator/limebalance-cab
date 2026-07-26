@@ -123,16 +123,20 @@ test.describe("Investments — trade journal", () => {
     const rows = page.locator("table tbody tr")
     // TP/SL is the 5th data column: Pair, Direction, Qty, Entry → Exit, TP/SL.
     const tpSlCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(4)
-    // BTCUSDT (CLOSED): TP set, no SL — carries the last known level from before it closed.
-    await expect(tpSlCell(rows.filter({ hasText: "BTCUSDT" }))).toContainText("$60,000.00")
+    // BTCUSDT (CLOSED, long): TP set, no SL — carries the last known level from before it
+    // closed. Hypothetical PnL at TP: (60000 − 58000) × 0.1 qty = +$200.
+    await expect(tpSlCell(rows.filter({ hasText: "BTCUSDT" }))).toContainText(
+      "$60,000.00 (+$200.00)",
+    )
     await expect(tpSlCell(rows.filter({ hasText: "BTCUSDT" }))).toContainText("—")
     // SOLUSDT (CLOSED): neither set → a single dash, not two.
     await expect(tpSlCell(rows.filter({ hasText: "SOLUSDT" }))).toHaveText("—")
 
-    // ADAUSDT (OPEN): both set.
+    // ADAUSDT (OPEN, long): both set. TP: (0.85 − 0.68) × 2000 = +$340.
+    // SL: (0.6 − 0.68) × 2000 = −$160 (a real loss, priced out next to the level).
     const ada = tpSlCell(rows.filter({ hasText: "ADAUSDT" }))
-    await expect(ada).toContainText("$0.85")
-    await expect(ada).toContainText("$0.60")
+    await expect(ada).toContainText("$0.85 (+$340.00)")
+    await expect(ada).toContainText("$0.60 (−$160.00)")
   })
 
   test("edit and delete are only enabled on manual positions", async ({ authedPage: page }) => {

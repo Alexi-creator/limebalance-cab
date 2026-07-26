@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Целта е постигната 🎉",
       "body": "Спестихте за целта «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Сделката е затворена",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Количество",
     "col_entry_exit": "Вход → Изход",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Обем, USD",
-    "col_fee": "Такси, USD",
+    "col_volume": "Обем",
+    "col_fee": "Такси",
     "col_leverage": "Ливъридж",
     "col_current_price": "Текуща цена",
     "col_account": "Акаунт",

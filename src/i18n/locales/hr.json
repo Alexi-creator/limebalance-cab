@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Cilj postignut 🎉",
       "body": "Uštedjeli ste za cilj «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Trgovina zatvorena",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Kol.",
     "col_entry_exit": "Ulaz → Izlaz",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volumen, USD",
-    "col_fee": "Naknade, USD",
+    "col_volume": "Volumen",
+    "col_fee": "Naknade",
     "col_leverage": "Poluga",
     "col_current_price": "Trenutna cijena",
     "col_account": "Račun",

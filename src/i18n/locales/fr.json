@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Objectif atteint 🎉",
       "body": "Vous avez épargné pour l’objectif «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Trade clôturé",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Qté",
     "col_entry_exit": "Entrée → Sortie",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volume, USD",
-    "col_fee": "Frais, USD",
+    "col_volume": "Volume",
+    "col_fee": "Frais",
     "col_leverage": "Effet de levier",
     "col_current_price": "Prix actuel",
     "col_account": "Compte",

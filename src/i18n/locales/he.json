@@ -169,6 +169,10 @@
     "goal_completed": {
       "title": "המטרה הושגה 🎉",
       "body": "חסכת למטרה «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "העסקה נסגרה",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -532,8 +536,8 @@
     "col_qty": "כמות",
     "col_entry_exit": "כניסה → יציאה",
     "col_tp_sl": "TP / SL",
-    "col_volume": "נפח, USD",
-    "col_fee": "עמלות, USD",
+    "col_volume": "נפח",
+    "col_fee": "עמלות",
     "col_leverage": "מינוף",
     "col_current_price": "מחיר נוכחי",
     "col_account": "חשבון",

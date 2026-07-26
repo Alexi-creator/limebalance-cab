@@ -166,6 +166,10 @@
     "goal_completed": {
       "title": "Đã đạt mục tiêu 🎉",
       "body": "Bạn đã tiết kiệm đủ cho mục tiêu «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Đã đóng lệnh",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -496,8 +500,8 @@
     "col_qty": "Số lượng",
     "col_entry_exit": "Vào → Ra",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Khối lượng, USD",
-    "col_fee": "Phí, USD",
+    "col_volume": "Khối lượng",
+    "col_fee": "Phí",
     "col_leverage": "Đòn bẩy",
     "col_current_price": "Giá hiện tại",
     "col_account": "Tài khoản",

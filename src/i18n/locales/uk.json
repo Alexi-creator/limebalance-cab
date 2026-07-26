@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Ціль досягнута 🎉",
       "body": "Ви накопичили на ціль «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Угоду закрито",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Обсяг",
     "col_entry_exit": "Вхід → Вихід",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Обсяг, USD",
-    "col_fee": "Комісії, USD",
+    "col_volume": "Обсяг",
+    "col_fee": "Комісії",
     "col_leverage": "Плече",
     "col_current_price": "Поточна ціна",
     "col_account": "Акаунт",

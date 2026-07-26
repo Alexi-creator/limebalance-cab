@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Tikslas pasiektas 🎉",
       "body": "Sutaupėte tikslui «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Sandoris uždarytas",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Kiekis",
     "col_entry_exit": "Įėjimas → Išėjimas",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Apimtis, USD",
-    "col_fee": "Mokesčiai, USD",
+    "col_volume": "Apimtis",
+    "col_fee": "Mokesčiai",
     "col_leverage": "Svertas",
     "col_current_price": "Dabartinė kaina",
     "col_account": "Paskyra",

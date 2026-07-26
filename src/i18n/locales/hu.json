@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Cél elérve 🎉",
       "body": "Összegyűjtötted a «{{name}}» célra."
+    },
+    "trade_closed": {
+      "title": "Ügylet lezárva",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Menny.",
     "col_entry_exit": "Belépés → Kilépés",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volumen, USD",
-    "col_fee": "Díjak, USD",
+    "col_volume": "Volumen",
+    "col_fee": "Díjak",
     "col_leverage": "Tőkeáttétel",
     "col_current_price": "Aktuális ár",
     "col_account": "Fiók",

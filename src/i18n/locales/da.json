@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Mål nået 🎉",
       "body": "Du har sparet op til målet «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Handel lukket",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Antal",
     "col_entry_exit": "Indgang → Udgang",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volumen, USD",
-    "col_fee": "Gebyrer, USD",
+    "col_volume": "Volumen",
+    "col_fee": "Gebyrer",
     "col_leverage": "Gearing",
     "col_current_price": "Aktuel pris",
     "col_account": "Konto",

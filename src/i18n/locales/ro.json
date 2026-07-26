@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Obiectiv atins 🎉",
       "body": "Ai economisit pentru obiectivul «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Tranzacție închisă",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Cant.",
     "col_entry_exit": "Intrare → Ieșire",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volum, USD",
-    "col_fee": "Comisioane, USD",
+    "col_volume": "Volum",
+    "col_fee": "Comisioane",
     "col_leverage": "Leverage",
     "col_current_price": "Preț curent",
     "col_account": "Cont",

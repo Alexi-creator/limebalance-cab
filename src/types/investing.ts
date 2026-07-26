@@ -182,3 +182,25 @@ export function positionRoi(position: Position): number | null {
   if (pnl == null || !position.entryVolumeUsd) return null
   return (pnl / position.entryVolumeUsd) * 100
 }
+
+/** Hypothetical PnL if the position were to exit exactly at `exitPrice` — same
+ *  (exit − entry) × qty formula the backend uses for closedPnl/unrealizedPnl (full, leveraged
+ *  qty, not {@link unleveragedQty}). Used to price out the TP/SL levels below. */
+function pnlAtPrice(position: Position, exitPrice: number): number {
+  const long = positionDirection(position) === "long"
+  const raw = long
+    ? (exitPrice - position.avgEntryPrice) * position.qty
+    : (position.avgEntryPrice - exitPrice) * position.qty
+  return Math.round(raw * 100) / 100
+}
+
+/** What closing at the take-profit level would net — null while it isn't set. */
+export function takeProfitPnl(position: Position): number | null {
+  return position.takeProfitPrice == null ? null : pnlAtPrice(position, position.takeProfitPrice)
+}
+
+/** What closing at the stop-loss level would net (a loss, unless it's set on the wrong side of
+ *  entry) — null while it isn't set. */
+export function stopLossPnl(position: Position): number | null {
+  return position.stopLossPrice == null ? null : pnlAtPrice(position, position.stopLossPrice)
+}

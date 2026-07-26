@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Hedefe ulaşıldı 🎉",
       "body": "«{{name}}» hedefi için biriktirdiniz."
+    },
+    "trade_closed": {
+      "title": "İşlem kapatıldı",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Miktar",
     "col_entry_exit": "Giriş → Çıkış",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Hacim, USD",
-    "col_fee": "Komisyonlar, USD",
+    "col_volume": "Hacim",
+    "col_fee": "Komisyonlar",
     "col_leverage": "Kaldıraç",
     "col_current_price": "Güncel fiyat",
     "col_account": "Hesap",

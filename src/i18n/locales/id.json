@@ -166,6 +166,10 @@
     "goal_completed": {
       "title": "Target tercapai 🎉",
       "body": "Kamu telah menabung untuk target «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Trade ditutup",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -496,8 +500,8 @@
     "col_qty": "Jml",
     "col_entry_exit": "Masuk → Keluar",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Volume, USD",
-    "col_fee": "Biaya, USD",
+    "col_volume": "Volume",
+    "col_fee": "Biaya",
     "col_leverage": "Leverage",
     "col_current_price": "Harga saat ini",
     "col_account": "Akun",

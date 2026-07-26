@@ -12,6 +12,8 @@ import {
   positionDirection,
   positionPnl,
   positionRoi,
+  stopLossPnl,
+  takeProfitPnl,
   unleveragedQty,
 } from "@appTypes/investing"
 import { CategoryBadge } from "@components/investments/CategoryBadge"
@@ -589,15 +591,25 @@ export function PositionsSection({ accounts }: Props) {
                             </Text>
                           ) : (
                             <Stack gap={0} align="center">
-                              <Text ff="monospace" size="xs" c="green.6">
+                              <Text
+                                ff="monospace"
+                                size="xs"
+                                c="green.6"
+                                style={{ whiteSpace: "nowrap" }}
+                              >
                                 {p.takeProfitPrice == null
                                   ? "—"
-                                  : formatUsd(p.takeProfitPrice, i18n.language)}
+                                  : `${formatUsd(p.takeProfitPrice, i18n.language)} (${formatPnl(takeProfitPnl(p)!, i18n.language)})`}
                               </Text>
-                              <Text ff="monospace" size="xs" c="red.6">
+                              <Text
+                                ff="monospace"
+                                size="xs"
+                                c="red.6"
+                                style={{ whiteSpace: "nowrap" }}
+                              >
                                 {p.stopLossPrice == null
                                   ? "—"
-                                  : formatUsd(p.stopLossPrice, i18n.language)}
+                                  : `${formatUsd(p.stopLossPrice, i18n.language)} (${formatPnl(stopLossPnl(p)!, i18n.language)})`}
                               </Text>
                             </Stack>
                           )}

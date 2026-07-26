@@ -166,6 +166,10 @@
     "goal_completed": {
       "title": "目標達成 🎉",
       "body": "目標「{{name}}」の貯金を達成しました。"
+    },
+    "trade_closed": {
+      "title": "トレードがクローズしました",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -496,8 +500,8 @@
     "col_qty": "数量",
     "col_entry_exit": "エントリー → エグジット",
     "col_tp_sl": "TP / SL",
-    "col_volume": "出来高, USD",
-    "col_fee": "手数料, USD",
+    "col_volume": "出来高",
+    "col_fee": "手数料",
     "col_leverage": "レバレッジ",
     "col_current_price": "現在価格",
     "col_account": "アカウント",

@@ -23,6 +23,24 @@ export const goalCompletedPayloadSchema = z.object({
 })
 export type GoalCompletedPayload = z.infer<typeof goalCompletedPayloadSchema>
 
+/** Structured data behind a `trade_closed` notification — mirrors the payload built in
+ *  trade-close-notifier.service.ts on the backend. */
+export const tradeClosedPayloadSchema = z.object({
+  symbol: z.string(),
+  side: z.string(),
+  direction: z.enum(["long", "short"]),
+  qty: z.number(),
+  avgEntryPrice: z.number(),
+  avgExitPrice: z.number(),
+  closedPnl: z.number(),
+  entryVolumeUsd: z.number(),
+  roiPercent: z.number(),
+  leverage: z.number().nullable(),
+  openedAt: z.string().nullable(),
+  closedAt: z.string().nullable(),
+})
+export type TradeClosedPayload = z.infer<typeof tradeClosedPayloadSchema>
+
 /**
  * A notification from `GET /notifications`. `type` drives the icon and whether the card is rendered
  * from {@link monthlySummaryPayloadSchema} (`monthly_summary`) or from the server `title`/`body`

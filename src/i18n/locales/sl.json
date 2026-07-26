@@ -169,6 +169,10 @@
     "goal_completed": {
       "title": "Cilj dosežen 🎉",
       "body": "Prihranili ste za cilj «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Posel zaprt",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -532,8 +536,8 @@
     "col_qty": "Količina",
     "col_entry_exit": "Vstop → Izstop",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Obseg, USD",
-    "col_fee": "Provizije, USD",
+    "col_volume": "Obseg",
+    "col_fee": "Provizije",
     "col_leverage": "Vzvod",
     "col_current_price": "Trenutna cena",
     "col_account": "Račun",

@@ -171,6 +171,10 @@
     "goal_completed": {
       "title": "تم تحقيق الهدف 🎉",
       "body": "لقد ادّخرت ما يكفي لهدف «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "تم إغلاق الصفقة",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -556,8 +560,8 @@
     "col_qty": "الكمية",
     "col_entry_exit": "الدخول ← الخروج",
     "col_tp_sl": "TP / SL",
-    "col_volume": "الحجم، دولار",
-    "col_fee": "الرسوم، دولار",
+    "col_volume": "الحجم",
+    "col_fee": "الرسوم",
     "col_leverage": "الرافعة",
     "col_current_price": "السعر الحالي",
     "col_account": "الحساب",

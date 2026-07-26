@@ -4,7 +4,7 @@ import {
   markNotificationRead,
 } from "@api/notifications"
 import type { AppNotification, NotificationsResponse } from "@appTypes/notification"
-import { monthlySummaryPayloadSchema } from "@appTypes/notification"
+import { monthlySummaryPayloadSchema, tradeClosedPayloadSchema } from "@appTypes/notification"
 import { NOTIFICATIONS_STALE_TIME, notificationKeys } from "@constants/queries/notifications"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
@@ -19,7 +19,15 @@ import {
   ThemeIcon,
   UnstyledButton,
 } from "@mantine/core"
-import { IconBell, IconReportMoney, IconSparkles, IconTargetArrow } from "@tabler/icons-react"
+import {
+  IconArrowsExchange,
+  IconBell,
+  IconReportMoney,
+  IconSparkles,
+  IconTargetArrow,
+  IconTrendingDown,
+  IconTrendingUp,
+} from "@tabler/icons-react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { formatCurrency } from "@utils/formatCurrency"
 import type { Locale } from "date-fns"
@@ -46,13 +54,29 @@ function capitalize(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
+/** Icon/color for a notification row. `trade_closed` reflects win/loss (green/red), mirroring the
+ *  🟢/🔴 the Telegram bot puts on the same event, instead of a single static color like other types. */
+function getTypeVisual(n: AppNotification): { Icon: typeof IconBell; color: string } {
+  if (n.type === "trade_closed") {
+    const parsed = tradeClosedPayloadSchema.safeParse(n.payload)
+    if (parsed.success) {
+      return parsed.data.closedPnl >= 0
+        ? { Icon: IconTrendingUp, color: "green" }
+        : { Icon: IconTrendingDown, color: "red" }
+    }
+    return { Icon: IconArrowsExchange, color: "blue" }
+  }
+  return { Icon: TYPE_ICON[n.type] ?? IconBell, color: TYPE_COLOR[n.type] ?? "gray" }
+}
+
 /**
  * Localized title/body for a notification, keyed by `type` via the convention
  * `notifications.<type>.{title,body}`. New simple types need only locale strings — no code here.
  *
- * `monthly_summary` is the one exception: its card needs real client-side work (month name from
- * `period`, currency formatting, optional net/top-category clauses), so it gets a dedicated branch.
- * Anything without a matching template falls back to the server-rendered `title`/`body`.
+ * `monthly_summary` and `trade_closed` are exceptions: they need real client-side work (month name
+ * from `period` / signed PnL and ROI formatting) that a plain interpolated string can't do, so they
+ * get dedicated branches. Anything without a matching template falls back to the server-rendered
+ * `title`/`body`.
  */
 function renderNotification(
   n: AppNotification,
@@ -91,6 +115,24 @@ function renderNotification(
       }
 
       return { title: t("notifications.monthly_summary.title"), message }
+    }
+  }
+
+  if (n.type === "trade_closed") {
+    const parsed = tradeClosedPayloadSchema.safeParse(n.payload)
+    if (parsed.success) {
+      const p = parsed.data
+      const direction = t(p.direction === "long" ? "investments.pos_long" : "investments.pos_short")
+      const signed = (v: number, digits: number) => `${v >= 0 ? "+" : ""}${v.toFixed(digits)}`
+      return {
+        title: t("notifications.trade_closed.title"),
+        message: t("notifications.trade_closed.body", {
+          symbol: p.symbol,
+          direction,
+          pnl: `${signed(p.closedPnl, 2)} USDT`,
+          roi: `${signed(p.roiPercent, 1)}%`,
+        }),
+      }
     }
   }
 
@@ -220,8 +262,7 @@ export function NotificationsMenu() {
         ) : (
           <ScrollArea.Autosize mah={360}>
             {rendered.map(({ notification: n, title, message }) => {
-              const Icon = TYPE_ICON[n.type] ?? IconBell
-              const color = TYPE_COLOR[n.type] ?? "gray"
+              const { Icon, color } = getTypeVisual(n)
               return (
                 <UnstyledButton
                   key={n.id}

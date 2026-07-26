@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Cel osiągnięty 🎉",
       "body": "Odłożyłeś na cel «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Transakcja zamknięta",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Ilość",
     "col_entry_exit": "Wejście → Wyjście",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Wolumen, USD",
-    "col_fee": "Opłaty, USD",
+    "col_volume": "Wolumen",
+    "col_fee": "Opłaty",
     "col_leverage": "Dźwignia",
     "col_current_price": "Aktualna cena",
     "col_account": "Konto",

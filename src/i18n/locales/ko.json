@@ -166,6 +166,10 @@
     "goal_completed": {
       "title": "목표 달성 🎉",
       "body": "목표 «{{name}}»에 필요한 금액을 모았습니다."
+    },
+    "trade_closed": {
+      "title": "거래가 종료되었습니다",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -496,8 +500,8 @@
     "col_qty": "수량",
     "col_entry_exit": "진입 → 청산",
     "col_tp_sl": "TP / SL",
-    "col_volume": "거래대금, USD",
-    "col_fee": "수수료, USD",
+    "col_volume": "거래대금",
+    "col_fee": "수수료",
     "col_leverage": "레버리지",
     "col_current_price": "현재가",
     "col_account": "계정",

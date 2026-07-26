@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Ο στόχος επιτεύχθηκε 🎉",
       "body": "Αποταμιεύσατε για τον στόχο «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Η συναλλαγή έκλεισε",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Ποσότ.",
     "col_entry_exit": "Είσοδος → Έξοδος",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Όγκος, USD",
-    "col_fee": "Προμήθειες, USD",
+    "col_volume": "Όγκος",
+    "col_fee": "Προμήθειες",
     "col_leverage": "Μόχλευση",
     "col_current_price": "Τρέχουσα τιμή",
     "col_account": "Λογαριασμός",

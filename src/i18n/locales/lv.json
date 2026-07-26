@@ -168,6 +168,10 @@
     "goal_completed": {
       "title": "Mērķis sasniegts 🎉",
       "body": "Jūs uzkrājāt mērķim «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Darījums slēgts",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -520,8 +524,8 @@
     "col_qty": "Daudzums",
     "col_entry_exit": "Ieeja → Izeja",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Apjoms, USD",
-    "col_fee": "Komisijas, USD",
+    "col_volume": "Apjoms",
+    "col_fee": "Komisijas",
     "col_leverage": "Svira",
     "col_current_price": "Pašreizējā cena",
     "col_account": "Konts",

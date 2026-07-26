@@ -167,6 +167,10 @@
     "goal_completed": {
       "title": "Eesmärk saavutatud 🎉",
       "body": "Kogusid raha eesmärgiks «{{name}}»."
+    },
+    "trade_closed": {
+      "title": "Tehing suletud",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -508,8 +512,8 @@
     "col_qty": "Kogus",
     "col_entry_exit": "Sisenemine → Väljumine",
     "col_tp_sl": "TP / SL",
-    "col_volume": "Maht, USD",
-    "col_fee": "Tasud, USD",
+    "col_volume": "Maht",
+    "col_fee": "Tasud",
     "col_leverage": "Finantsvõimendus",
     "col_current_price": "Praegune hind",
     "col_account": "Konto",

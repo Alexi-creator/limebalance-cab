@@ -166,6 +166,10 @@
     "goal_completed": {
       "title": "บรรลุเป้าหมายแล้ว 🎉",
       "body": "คุณออมเงินครบสำหรับเป้าหมาย «{{name}}» แล้ว"
+    },
+    "trade_closed": {
+      "title": "ปิดการเทรดแล้ว",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -496,8 +500,8 @@
     "col_qty": "จำนวน",
     "col_entry_exit": "เข้า → ออก",
     "col_tp_sl": "TP / SL",
-    "col_volume": "ปริมาณ, USD",
-    "col_fee": "ค่าธรรมเนียม, USD",
+    "col_volume": "ปริมาณ",
+    "col_fee": "ค่าธรรมเนียม",
     "col_leverage": "เลเวอเรจ",
     "col_current_price": "ราคาปัจจุบัน",
     "col_account": "บัญชี",

@@ -166,6 +166,10 @@
     "goal_completed": {
       "title": "目标达成 🎉",
       "body": "您已为目标「{{name}}」攒够了钱。"
+    },
+    "trade_closed": {
+      "title": "交易已平仓",
+      "body": "{{symbol}} ({{direction}}) · PnL {{pnl}} · ROI {{roi}}"
     }
   },
   "sidebar": {
@@ -496,8 +500,8 @@
     "col_qty": "数量",
     "col_entry_exit": "开仓 → 平仓",
     "col_tp_sl": "TP / SL",
-    "col_volume": "成交额, USD",
-    "col_fee": "手续费, USD",
+    "col_volume": "成交额",
+    "col_fee": "手续费",
     "col_leverage": "杠杆",
     "col_current_price": "当前价格",
     "col_account": "账户",
