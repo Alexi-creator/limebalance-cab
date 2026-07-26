@@ -10,6 +10,7 @@ import {
   holdingDays,
   type Position,
   positionDirection,
+  positionPnl,
   positionRoi,
   unleveragedQty,
 } from "@appTypes/investing"
@@ -60,6 +61,7 @@ import { useDebouncedValue, useMediaQuery } from "@mantine/hooks"
 import { notifications } from "@mantine/notifications"
 import { useModalStore } from "@store/modalStore"
 import {
+  IconBolt,
   IconEdit,
   IconNotes,
   IconPlus,
@@ -493,6 +495,7 @@ export function PositionsSection({ accounts }: Props) {
                     {t("investments.col_fee")}
                   </Table.Th>
                   <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
+                  <Table.Th ta="right">{t("investments.col_current_price")}</Table.Th>
                   <Table.Th ta="right">PnL</Table.Th>
                   <Table.Th ta="right">ROI, %</Table.Th>
                   <Table.Th>{t("investments.col_account")}</Table.Th>
@@ -563,14 +566,36 @@ export function PositionsSection({ accounts }: Props) {
                         </Text>
                       </Table.Td>
                       <Table.Td ta="right">
-                        {p.closedPnl == null ? (
+                        <Text
+                          ff="monospace"
+                          size="sm"
+                          c={p.currentPrice == null ? "dimmed" : undefined}
+                        >
+                          {p.status === "OPEN" && p.currentPrice != null
+                            ? formatUsd(p.currentPrice, i18n.language)
+                            : "—"}
+                        </Text>
+                      </Table.Td>
+                      <Table.Td ta="right">
+                        {positionPnl(p) == null ? (
                           <Text size="sm" c="dimmed">
                             —
                           </Text>
                         ) : (
-                          <Text ff="monospace" size="sm" fw={500} c={pnlColor(p.closedPnl)}>
-                            {formatPnl(p.closedPnl, i18n.language)}
-                          </Text>
+                          <Group gap={4} justify="flex-end" wrap="nowrap">
+                            {p.status === "OPEN" && (
+                              <Tooltip label={t("investments.pos_pnl_live")}>
+                                <IconBolt
+                                  size={12}
+                                  className="pulse-live"
+                                  color="var(--mantine-color-yellow-6)"
+                                />
+                              </Tooltip>
+                            )}
+                            <Text ff="monospace" size="sm" fw={500} c={pnlColor(positionPnl(p))}>
+                              {formatPnl(positionPnl(p)!, i18n.language)}
+                            </Text>
+                          </Group>
                         )}
                       </Table.Td>
                       <Table.Td ta="right">

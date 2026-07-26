@@ -83,3 +83,18 @@ body {
 tbody tr:hover .pinned-col {
   background-color: var(--table-hover-color);
 }
+
+/* Marks an unrealized (live) value, e.g. the "still open" PnL bolt icon — a slow, gentle
+ * fade rather than a hard blink so it reads as "live" without being distracting in a table. */
+@keyframes pulse-live {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-live {
+  animation: pulse-live 1.8s ease-in-out infinite;
+}

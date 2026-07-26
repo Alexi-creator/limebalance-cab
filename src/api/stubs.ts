@@ -580,6 +580,10 @@ const INVESTING_POSITIONS = [
     entryVolumeUsd: 272,
     totalFeeUsd: null,
     status: "OPEN",
+    // Live price up from the 0.68 entry — long, so (0.75 − 0.68) × 2000 = +140 unrealized,
+    // same (exit − entry) × qty formula the backend uses for closedPnl once a trade closes.
+    currentPrice: 0.75,
+    unrealizedPnl: 140,
     notes: [
       {
         id: "note-1",
@@ -610,6 +614,8 @@ const INVESTING_POSITIONS = [
     entryVolumeUsd: 580,
     totalFeeUsd: null,
     status: "CLOSED",
+    currentPrice: null,
+    unrealizedPnl: null,
     notes: [],
   },
   // spot: always Long, no leverage (entryVolumeUsd = full notional), openedAt = oldest closed
@@ -631,6 +637,8 @@ const INVESTING_POSITIONS = [
     entryVolumeUsd: 2800,
     totalFeeUsd: 2.83,
     status: "CLOSED",
+    currentPrice: null,
+    unrealizedPnl: null,
     notes: [],
   },
   // manual: user-entered, editable, side Buy → Short. No synced fills → totalFeeUsd is always null.
@@ -651,6 +659,8 @@ const INVESTING_POSITIONS = [
     entryVolumeUsd: 1600,
     totalFeeUsd: null,
     status: "CLOSED",
+    currentPrice: null,
+    unrealizedPnl: null,
     notes: [],
   },
 ]

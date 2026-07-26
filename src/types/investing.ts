@@ -64,6 +64,11 @@ export const positionSchema = z.object({
   totalFeeUsd: z.number().nullable(),
   status: z.enum(["OPEN", "CLOSED"]),
   notes: z.array(positionNoteSchema),
+  /** Live price while OPEN (from the same Bybit spot-ticker feed as Holdings); null when
+   *  unavailable or the position is CLOSED. */
+  currentPrice: z.number().nullable(),
+  /** Unrealized PnL against currentPrice while OPEN; null when CLOSED or price unavailable. */
+  unrealizedPnl: z.number().nullable(),
 })
 
 export const positionsResponseSchema = z.object({
@@ -154,9 +159,15 @@ export function holdingDays(position: Position): number | null {
   return Math.floor(ms / (24 * 60 * 60 * 1000))
 }
 
-/** closedPnl against the capital actually committed (entryVolumeUsd), as a percentage.
- *  Null while the position is still OPEN (closedPnl isn't known yet). */
+/** Realized PnL once CLOSED, unrealized (live) PnL while still OPEN — whichever is known. */
+export function positionPnl(position: Position): number | null {
+  return position.closedPnl ?? position.unrealizedPnl
+}
+
+/** PnL (realized or, while OPEN, unrealized) against the capital actually committed
+ *  (entryVolumeUsd), as a percentage. Null when neither PnL nor entryVolumeUsd is known. */
 export function positionRoi(position: Position): number | null {
-  if (position.closedPnl == null || !position.entryVolumeUsd) return null
-  return (position.closedPnl / position.entryVolumeUsd) * 100
+  const pnl = positionPnl(position)
+  if (pnl == null || !position.entryVolumeUsd) return null
+  return (pnl / position.entryVolumeUsd) * 100
 }

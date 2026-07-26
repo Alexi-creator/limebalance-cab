@@ -112,7 +112,7 @@ test.describe("Investments — trade journal", () => {
     ).toBeDisabled()
   })
 
-  test("an OPEN position shows a status badge and dashes where PnL/ROI/Closed would be", async ({
+  test("an OPEN position shows a status badge, a dash where Closed would be, and live PnL/ROI/current price", async ({
     authedPage: page,
   }) => {
     await gotoInvestments(page)
@@ -123,6 +123,15 @@ test.describe("Investments — trade journal", () => {
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     await expect(row.getByText("Open", { exact: true })).toBeVisible()
     await expect(row.getByText("still open")).toBeVisible()
+
+    // Stubbed: entry 0.68 → currentPrice 0.75, long, qty 2000 → unrealizedPnl +140,
+    // ROI = 140 / entryVolumeUsd(272) × 100 ≈ +51.47%.
+    await expect(row.getByText("$0.75")).toBeVisible()
+    await expect(row.getByText("+$140.00")).toBeVisible()
+    await expect(row.getByText("+51.47%")).toBeVisible()
+    // The live PnL is flagged with a "live" bolt icon (tooltip on hover), unlike a realized one.
+    await row.locator(".pulse-live").hover()
+    await expect(page.getByText("Unrealized — position still open")).toBeVisible()
   })
 
   test("notes are available on every position, including bybit ones", async ({
