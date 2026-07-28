@@ -87,8 +87,9 @@ test.describe("Investments — trade journal", () => {
     await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
-    // Opened/Closed/Days are the last three data columns, right before the actions column.
-    const openedCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(-4)
+    // Opened is the 9th data column: Pair, Direction, TP/SL, PnL, ROI, Volume, Entry → Exit,
+    // Current price, Opened.
+    const openedCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(8)
     // Formatted in the runner's local timezone, same as the closedAt cell next to it.
     await expect(openedCell(rows.filter({ hasText: "SOLUSDT" }))).not.toHaveText("—")
     await expect(openedCell(rows.filter({ hasText: "ETHUSDT" }))).not.toHaveText("—")
@@ -104,8 +105,9 @@ test.describe("Investments — trade journal", () => {
     await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
-    // Fee is the 7th data column: Pair, Direction, Qty, Entry → Exit, TP/SL, Volume, Fee.
-    const feeCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(6)
+    // Fee is the 14th data column: Pair, Direction, TP/SL, PnL, ROI, Volume, Entry → Exit,
+    // Current price, Opened, Closed, Days, Qty, Leverage, Fee.
+    const feeCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(13)
     await expect(feeCell(rows.filter({ hasText: "SOLUSDT" }))).toHaveText("−$2.83")
     // No known open time (linear) / no synced fills (manual) → fee can't be totalled.
     await expect(feeCell(rows.filter({ hasText: "BTCUSDT" }))).toHaveText("—")
@@ -121,8 +123,8 @@ test.describe("Investments — trade journal", () => {
     await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
-    // TP/SL is the 5th data column: Pair, Direction, Qty, Entry → Exit, TP/SL.
-    const tpSlCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(4)
+    // TP/SL is the 4th data column: Pair, Direction, PnL, TP/SL.
+    const tpSlCell = (row: ReturnType<typeof rows.filter>) => row.locator("td").nth(3)
     // BTCUSDT (CLOSED, long): TP set, no SL — carries the last known level from before it
     // closed. Hypothetical PnL at TP: (60000 − 58000) × 0.1 qty = +$200.
     await expect(tpSlCell(rows.filter({ hasText: "BTCUSDT" }))).toContainText(

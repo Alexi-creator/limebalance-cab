@@ -520,23 +520,23 @@ export function PositionsSection({ accounts }: Props) {
                     <Table.Th miw={140} style={{ whiteSpace: "nowrap" }}>
                       {t("investments.col_direction")}
                     </Table.Th>
-                    <Table.Th ta="right">{t("investments.col_qty")}</Table.Th>
-                    <Table.Th ta="center">{t("investments.col_entry_exit")}</Table.Th>
+                    <Table.Th ta="right">PnL</Table.Th>
                     <Table.Th ta="center">{t("investments.col_tp_sl")}</Table.Th>
+                    <Table.Th ta="right">ROI, %</Table.Th>
                     <Table.Th ta="right" miw={130}>
                       {t("investments.col_volume")}
                     </Table.Th>
-                    <Table.Th ta="right" miw={110}>
-                      {t("investments.col_fee")}
-                    </Table.Th>
-                    <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
+                    <Table.Th ta="center">{t("investments.col_entry_exit")}</Table.Th>
                     <Table.Th ta="right">{t("investments.col_current_price")}</Table.Th>
-                    <Table.Th ta="right">PnL</Table.Th>
-                    <Table.Th ta="right">ROI, %</Table.Th>
-                    <Table.Th>{t("investments.col_account")}</Table.Th>
                     <Table.Th>{t("investments.col_opened_at")}</Table.Th>
                     <Table.Th>{t("investments.col_closed_at")}</Table.Th>
                     <Table.Th ta="right">{t("investments.col_days")}</Table.Th>
+                    <Table.Th ta="right">{t("investments.col_qty")}</Table.Th>
+                    <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
+                    <Table.Th ta="right" miw={110}>
+                      {t("investments.col_fee")}
+                    </Table.Th>
+                    <Table.Th>{t("investments.col_account")}</Table.Th>
                     <Table.Th w={122} ta="right" className="pinned-col">
                       {t("investments.col_actions")}
                     </Table.Th>
@@ -567,22 +567,26 @@ export function PositionsSection({ accounts }: Props) {
                           </Group>
                         </Table.Td>
                         <Table.Td ta="right">
-                          <Text ff="monospace" size="sm">
-                            {formatQty(unleveragedQty(p), i18n.language)}
-                          </Text>
-                        </Table.Td>
-                        <Table.Td ta="center">
-                          <Text
-                            ff="monospace"
-                            size="sm"
-                            c="dimmed"
-                            style={{ whiteSpace: "nowrap" }}
-                          >
-                            {formatUsd(p.avgEntryPrice, i18n.language)} →{" "}
-                            {p.avgExitPrice == null
-                              ? t("investments.pos_in_trade")
-                              : formatUsd(p.avgExitPrice, i18n.language)}
-                          </Text>
+                          {positionPnl(p) == null ? (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          ) : (
+                            <Group gap={4} justify="flex-end" wrap="nowrap">
+                              {p.status === "OPEN" && (
+                                <Tooltip label={t("investments.pos_pnl_live")}>
+                                  <IconBolt
+                                    size={12}
+                                    className="pulse-live"
+                                    color="var(--mantine-color-yellow-6)"
+                                  />
+                                </Tooltip>
+                              )}
+                              <Text ff="monospace" size="sm" fw={500} c={pnlColor(positionPnl(p))}>
+                                {formatPnl(positionPnl(p)!, i18n.language)}
+                              </Text>
+                            </Group>
+                          )}
                         </Table.Td>
                         <Table.Td ta="center">
                           {p.takeProfitPrice == null && p.stopLossPrice == null ? (
@@ -615,24 +619,32 @@ export function PositionsSection({ accounts }: Props) {
                           )}
                         </Table.Td>
                         <Table.Td ta="right">
+                          {roi == null ? (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          ) : (
+                            <Text ff="monospace" size="sm" fw={500} c={pnlColor(roi)}>
+                              {formatPct(roi, i18n.language)}
+                            </Text>
+                          )}
+                        </Table.Td>
+                        <Table.Td ta="right">
                           <Text ff="monospace" size="sm">
                             {formatUsd(p.entryVolumeUsd, i18n.language)}
                           </Text>
                         </Table.Td>
-                        <Table.Td ta="right">
+                        <Table.Td ta="center">
                           <Text
                             ff="monospace"
                             size="sm"
-                            c={pnlColor(p.totalFeeUsd == null ? null : -p.totalFeeUsd)}
+                            c="dimmed"
+                            style={{ whiteSpace: "nowrap" }}
                           >
-                            {/* Fee sign is flipped for display: paying (positive fee) reads as a
-                              loss, a rebate (negative fee) reads as a gain — same convention as PnL. */}
-                            {p.totalFeeUsd == null ? "—" : formatPnl(-p.totalFeeUsd, i18n.language)}
-                          </Text>
-                        </Table.Td>
-                        <Table.Td ta="right">
-                          <Text ff="monospace" size="sm" c="dimmed">
-                            {p.leverage == null ? "—" : `${p.leverage}x`}
+                            {formatUsd(p.avgEntryPrice, i18n.language)} →{" "}
+                            {p.avgExitPrice == null
+                              ? t("investments.pos_in_trade")
+                              : formatUsd(p.avgExitPrice, i18n.language)}
                           </Text>
                         </Table.Td>
                         <Table.Td ta="right">
@@ -645,55 +657,6 @@ export function PositionsSection({ accounts }: Props) {
                               ? formatUsd(p.currentPrice, i18n.language)
                               : "—"}
                           </Text>
-                        </Table.Td>
-                        <Table.Td ta="right">
-                          {positionPnl(p) == null ? (
-                            <Text size="sm" c="dimmed">
-                              —
-                            </Text>
-                          ) : (
-                            <Group gap={4} justify="flex-end" wrap="nowrap">
-                              {p.status === "OPEN" && (
-                                <Tooltip label={t("investments.pos_pnl_live")}>
-                                  <IconBolt
-                                    size={12}
-                                    className="pulse-live"
-                                    color="var(--mantine-color-yellow-6)"
-                                  />
-                                </Tooltip>
-                              )}
-                              <Text ff="monospace" size="sm" fw={500} c={pnlColor(positionPnl(p))}>
-                                {formatPnl(positionPnl(p)!, i18n.language)}
-                              </Text>
-                            </Group>
-                          )}
-                        </Table.Td>
-                        <Table.Td ta="right">
-                          {roi == null ? (
-                            <Text size="sm" c="dimmed">
-                              —
-                            </Text>
-                          ) : (
-                            <Text ff="monospace" size="sm" fw={500} c={pnlColor(roi)}>
-                              {formatPct(roi, i18n.language)}
-                            </Text>
-                          )}
-                        </Table.Td>
-                        <Table.Td>
-                          {p.accountId && accountById.get(p.accountId) ? (
-                            <Group gap={4} wrap="nowrap">
-                              <Text size="sm" truncate="end" maw={140}>
-                                {accountById.get(p.accountId)?.label}
-                              </Text>
-                              <Badge variant="light" color="gray" size="xs" tt="none">
-                                {accountById.get(p.accountId)?.exchange}
-                              </Badge>
-                            </Group>
-                          ) : (
-                            <Text size="sm" c="dimmed">
-                              —
-                            </Text>
-                          )}
                         </Table.Td>
                         <Table.Td>
                           <Text
@@ -719,6 +682,43 @@ export function PositionsSection({ accounts }: Props) {
                           <Text ff="monospace" size="sm" c="dimmed">
                             {holdingDays(p) === null ? "—" : holdingDays(p)}
                           </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text ff="monospace" size="sm">
+                            {formatQty(unleveragedQty(p), i18n.language)}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text ff="monospace" size="sm" c="dimmed">
+                            {p.leverage == null ? "—" : `${p.leverage}x`}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td ta="right">
+                          <Text
+                            ff="monospace"
+                            size="sm"
+                            c={pnlColor(p.totalFeeUsd == null ? null : -p.totalFeeUsd)}
+                          >
+                            {/* Fee sign is flipped for display: paying (positive fee) reads as a
+                              loss, a rebate (negative fee) reads as a gain — same convention as PnL. */}
+                            {p.totalFeeUsd == null ? "—" : formatPnl(-p.totalFeeUsd, i18n.language)}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td>
+                          {p.accountId && accountById.get(p.accountId) ? (
+                            <Group gap={4} wrap="nowrap">
+                              <Text size="sm" truncate="end" maw={140}>
+                                {accountById.get(p.accountId)?.label}
+                              </Text>
+                              <Badge variant="light" color="gray" size="xs" tt="none">
+                                {accountById.get(p.accountId)?.exchange}
+                              </Badge>
+                            </Group>
+                          ) : (
+                            <Text size="sm" c="dimmed">
+                              —
+                            </Text>
+                          )}
                         </Table.Td>
                         <Table.Td className="pinned-col">
                           <Group gap={4} justify="flex-end" wrap="nowrap">
