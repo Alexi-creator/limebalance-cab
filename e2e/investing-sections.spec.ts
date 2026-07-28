@@ -21,9 +21,7 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    // The journal defaults to Open — switch to All to see the closed ones asserted below too.
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
+    // The journal defaults to All, so open and closed positions are visible together.
 
     const rows = page.locator("table tbody tr")
 
@@ -72,19 +70,15 @@ test.describe("Investments — trade journal", () => {
     await page.getByRole("button", { name: "Reset" }).click()
 
     await expect(pairInput).toHaveValue("")
-    await expect(page.getByPlaceholder("Status")).toHaveValue("Open")
-    // Back to the default Open view: only ADAUSDT.
-    const rows = page.locator("table tbody tr")
-    await expect(rows).toHaveCount(1)
-    await expect(rows.getByText("ADAUSDT")).toBeVisible()
+    await expect(page.getByPlaceholder("Status")).toHaveValue("All")
+    // Back to the default All view: every stubbed position.
+    await expect(page.locator("table tbody tr")).toHaveCount(4)
   })
 
   test("the Opened column shows the open date, or a dash when it's unavailable", async ({
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     // Opened is the 9th data column: Pair, Direction, TP/SL, PnL, ROI, Volume, Entry → Exit,
@@ -101,8 +95,6 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     // Fee is the 14th data column: Pair, Direction, TP/SL, PnL, ROI, Volume, Entry → Exit,
@@ -118,9 +110,7 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    // The journal defaults to Open — All brings every stubbed position into view at once.
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
+    // The journal defaults to All — every stubbed position is already in view.
 
     const rows = page.locator("table tbody tr")
     // TP/SL is the 4th data column: Pair, Direction, PnL, TP/SL.
@@ -143,8 +133,6 @@ test.describe("Investments — trade journal", () => {
 
   test("edit and delete are only enabled on manual positions", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const rows = page.locator("table tbody tr")
     await expect(
@@ -159,7 +147,7 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    // The journal defaults to Open — ADAUSDT (the OPEN one) is already visible.
+    // The journal defaults to All — ADAUSDT (the OPEN one) is already visible.
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     await expect(row.getByText("Open", { exact: true })).toBeVisible()
@@ -179,7 +167,7 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    // ADAUSDT is OPEN — already visible under the journal's default Open filter.
+    // ADAUSDT is OPEN — already visible under the journal's default All filter.
 
     const row = page.locator("table tbody tr").filter({ hasText: "ADAUSDT" })
     // Edit/delete stay off-limits for a bybit-sourced position — notes don't.
@@ -242,9 +230,7 @@ test.describe("Investments — trade journal", () => {
 
   test("the category filter narrows the table server-side", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    // Switch off the Open-only default so category filtering is exercised over every position.
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
+    // The journal defaults to All — every stubbed position is already in view.
     await expect(page.locator("table tbody tr")).toHaveCount(4)
 
     await page
@@ -262,8 +248,12 @@ test.describe("Investments — trade journal", () => {
 
   test("the status filter narrows the table server-side", async ({ authedPage: page }) => {
     await gotoInvestments(page)
-    // Defaults to Open (1 position) — closed trades only show up once Closed/All is picked.
+    // Defaults to All (4 positions) — every stubbed position, open and closed, at once.
     const rows = page.locator("table tbody tr")
+    await expect(rows).toHaveCount(4)
+
+    await page.getByPlaceholder("Status").click()
+    await page.getByRole("option", { name: "Open" }).click()
     await expect(rows).toHaveCount(1)
     await expect(rows.getByText("ADAUSDT")).toBeVisible()
 
@@ -277,8 +267,6 @@ test.describe("Investments — trade journal", () => {
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    await page.getByPlaceholder("Status").click()
-    await page.getByRole("option", { name: "All", exact: true }).click()
 
     const pairInput = page.getByRole("combobox", { name: "Pair" })
     await pairInput.fill("BTC")
@@ -296,11 +284,11 @@ test.describe("Investments — trade journal", () => {
     await expect(rows.getByText("BTCUSDT")).toBeVisible()
   })
 
-  test("the journal defaults to the Open status filter on first load", async ({
+  test("the journal defaults to the All status filter on first load", async ({
     authedPage: page,
   }) => {
     await gotoInvestments(page)
-    await expect(page.getByPlaceholder("Status")).toHaveValue("Open")
+    await expect(page.getByPlaceholder("Status")).toHaveValue("All")
   })
 
   test("filters persist in the URL across a reload", async ({ authedPage: page }) => {

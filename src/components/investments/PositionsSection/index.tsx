@@ -283,7 +283,7 @@ export function PositionsSection({ accounts }: Props) {
     (urlParams.status !== "all" ? 1 : 0)
 
   // Back to the schema defaults — status included, so this also restores the default
-  // "Open" view rather than clearing it to "All".
+  // "All" view.
   const resetFilters = () => {
     setSymbolInput("")
     setParams({

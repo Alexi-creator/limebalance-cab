@@ -14,10 +14,10 @@ export const positionsParamsSchema = z.object({
   /** YYYY-MM-DD. */
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),
-  // Defaults to OPEN — landing on the journal shows what's still in play first. "all" is a
-  // real, persisted value (like `category` below), not just the param's absence — otherwise
+  // Defaults to "all" — landing on the journal shows everything, open and closed, at once.
+  // A real, persisted value (like `category` below), not just the param's absence — otherwise
   // picking "All" couldn't stick across a reload.
-  status: z.enum(["all", "OPEN", "CLOSED"]).catch("OPEN").default("OPEN"),
+  status: z.enum(["all", "OPEN", "CLOSED"]).catch("all").default("all"),
   /** Client-side only — the API has no category param yet. */
   category: z.enum(["all", "linear", "spot", "manual"]).catch("all").default("all"),
   page: z.coerce.number().int().min(1).catch(1).default(1),
