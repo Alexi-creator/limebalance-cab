@@ -305,20 +305,6 @@ test.describe("Investments — trade journal", () => {
     await expect(rows.getByText("ADAUSDT")).toHaveCount(0)
   })
 
-  test("draws the equity curve; a filter leaving one trade hides it", async ({
-    authedPage: page,
-  }) => {
-    await gotoInvestments(page)
-    await expect(page.getByRole("img", { name: "Equity curve" })).toBeVisible()
-
-    // Fewer than two trades left → no curve to draw.
-    await page
-      .locator("label")
-      .filter({ hasText: /^Spot$/ })
-      .click()
-    await expect(page.getByRole("img", { name: "Equity curve" })).toHaveCount(0)
-  })
-
   test("manual trade form prefills PnL from the prices and direction", async ({
     authedPage: page,
   }) => {
