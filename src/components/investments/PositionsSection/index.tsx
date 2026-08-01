@@ -18,7 +18,6 @@ import {
 } from "@appTypes/investing"
 import { CategoryBadge } from "@components/investments/CategoryBadge"
 import { DeletePositionConfirm } from "@components/investments/DeletePositionConfirm"
-import { EquityCurve } from "@components/investments/EquityCurve"
 import {
   formatPct,
   formatPnl,
@@ -191,13 +190,13 @@ export function PositionsSection({ accounts }: Props) {
   const earliestClosedAt = equityData?.items[0]?.closedAt
 
   // Page summary (bottom row, next to pagination) — over just the rows shown on this page,
-  // same idea as the transactions table's footer. Open trades have no closedPnl yet, so
-  // they're excluded from the PnL/winrate math (they still count toward "trades" below).
-  const pageClosedItems = items.filter((p) => p.status === "CLOSED")
-  const pageTotalPnl = pageClosedItems.reduce((s, p) => s + (p.closedPnl ?? 0), 0)
-  const pageWins = pageClosedItems.filter((p) => (p.closedPnl ?? 0) > 0).length
-  const pageWinrate = pageClosedItems.length
-    ? Math.round((pageWins / pageClosedItems.length) * 100)
+  // same idea as the transactions table's footer. Combines realized PnL for closed trades
+  // with live unrealized PnL for open ones via the same accessor the PnL column itself uses.
+  const pageItemsWithPnl = items.filter((p) => positionPnl(p) !== null)
+  const pageTotalPnl = pageItemsWithPnl.reduce((s, p) => s + (positionPnl(p) ?? 0), 0)
+  const pageWins = pageItemsWithPnl.filter((p) => (positionPnl(p) ?? 0) > 0).length
+  const pageWinrate = pageItemsWithPnl.length
+    ? Math.round((pageWins / pageItemsWithPnl.length) * 100)
     : null
 
   const pnlCaption =
@@ -443,8 +442,6 @@ export function PositionsSection({ accounts }: Props) {
         tradesValue={String(tradesCount)}
         caption={pnlCaption}
       />
-
-      <EquityCurve params={filterParams} />
 
       <Paper>
         <Group
