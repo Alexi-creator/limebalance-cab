@@ -162,11 +162,12 @@ export function unleveragedQty(position: Position): number {
   return position.leverage ? position.qty / position.leverage : position.qty
 }
 
-/** Days held — closedAt minus openedAt. Null when the position is still OPEN, or openedAt
- *  is unknown (see positionSchema). */
+/** Days held — closedAt (or now, while still OPEN) minus openedAt. Null when openedAt is
+ *  unknown (see positionSchema). */
 export function holdingDays(position: Position): number | null {
-  if (!position.openedAt || !position.closedAt) return null
-  const ms = position.closedAt.getTime() - position.openedAt.getTime()
+  if (!position.openedAt) return null
+  const end = position.closedAt ?? new Date()
+  const ms = end.getTime() - position.openedAt.getTime()
   return Math.floor(ms / (24 * 60 * 60 * 1000))
 }
 

@@ -164,6 +164,19 @@
       "body_net": "{{month}}: receitas {{income}}, despesas {{expense}}, poupado {{net}}.",
       "top_category": "Categoria principal — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Resumo do mês — {{month}}",
+      "income": "Receita",
+      "expense": "Despesa",
+      "net": "Saldo",
+      "savings_rate": "Poupado da receita",
+      "vs_prev_month": "vs. mês anterior",
+      "top_category": "Maior categoria de despesa",
+      "biggest_expense": "Maior despesa única",
+      "goals_contributed": "Destinado a metas",
+      "goals_completed": "Metas concluídas",
+      "investing_pnl": "Resultado de trading"
+    },
     "goal_completed": {
       "title": "Meta alcançada 🎉",
       "body": "Você economizou para a meta «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Fechada",
     "pos_in_trade": "ainda aberta",
     "pos_pnl_live": "Não realizado — posição ainda aberta",
+    "pos_days_live": "A contagem continua — posição ainda aberta",
     "col_opened_at": "Aberta",
     "col_closed_at": "Fechada",
     "col_days": "Dias",

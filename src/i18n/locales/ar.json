@@ -168,6 +168,19 @@
       "body_net": "{{month}}: الدخل {{income}}، المصروفات {{expense}}، المدّخر {{net}}.",
       "top_category": "أهم فئة — {{category}}."
     },
+    "monthly_digest": {
+      "title": "ملخص الشهر — {{month}}",
+      "income": "الدخل",
+      "expense": "المصروفات",
+      "net": "الصافي",
+      "savings_rate": "المدخر من الدخل",
+      "vs_prev_month": "مقارنة بالشهر الماضي",
+      "top_category": "أكبر فئة إنفاق",
+      "biggest_expense": "أكبر مصروف فردي",
+      "goals_contributed": "المخصص للأهداف",
+      "goals_completed": "الأهداف المكتملة",
+      "investing_pnl": "نتيجة التداول"
+    },
     "goal_completed": {
       "title": "تم تحقيق الهدف 🎉",
       "body": "لقد ادّخرت ما يكفي لهدف «{{name}}»."
@@ -554,6 +567,7 @@
     "pos_status_closed": "مغلقة",
     "pos_in_trade": "لا تزال مفتوحة",
     "pos_pnl_live": "غير محقق — الصفقة لا تزال مفتوحة",
+    "pos_days_live": "لا يزال العد جاريًا — الصفقة لا تزال مفتوحة",
     "col_opened_at": "الفتح",
     "col_closed_at": "الإغلاق",
     "col_days": "أيام",

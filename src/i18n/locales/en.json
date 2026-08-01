@@ -164,6 +164,19 @@
       "body_net": "{{month}}: income {{income}}, expenses {{expense}}, saved {{net}}.",
       "top_category": "Top category — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Month in review — {{month}}",
+      "income": "Income",
+      "expense": "Expense",
+      "net": "Net",
+      "savings_rate": "Saved of income",
+      "vs_prev_month": "vs. previous month",
+      "top_category": "Biggest spending category",
+      "biggest_expense": "Biggest single expense",
+      "goals_contributed": "Put toward goals",
+      "goals_completed": "Goals completed",
+      "investing_pnl": "Trading result"
+    },
     "goal_completed": {
       "title": "Goal reached 🎉",
       "body": "You’ve saved up for «{{name}}»."
@@ -541,6 +554,7 @@
     "pos_status_closed": "Closed",
     "pos_in_trade": "still open",
     "pos_pnl_live": "Unrealized — position still open",
+    "pos_days_live": "Still counting — position still open",
     "col_opened_at": "Opened",
     "col_closed_at": "Closed",
     "col_days": "Days",

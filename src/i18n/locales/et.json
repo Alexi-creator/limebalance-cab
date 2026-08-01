@@ -164,6 +164,19 @@
       "body_net": "{{month}}: tulu {{income}}, kulud {{expense}}, säästetud {{net}}.",
       "top_category": "Tippkategooria — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Kuu kokkuvõte — {{month}}",
+      "income": "Tulu",
+      "expense": "Kulu",
+      "net": "Saldo",
+      "savings_rate": "Säästetud tulust",
+      "vs_prev_month": "võrreldes eelmise kuuga",
+      "top_category": "Suurim kulukategooria",
+      "biggest_expense": "Suurim üksikkulu",
+      "goals_contributed": "Eesmärkidesse pandud",
+      "goals_completed": "Täidetud eesmärgid",
+      "investing_pnl": "Kauplemistulemus"
+    },
     "goal_completed": {
       "title": "Eesmärk saavutatud 🎉",
       "body": "Kogusid raha eesmärgiks «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Suletud",
     "pos_in_trade": "veel avatud",
     "pos_pnl_live": "Realiseerimata — positsioon on veel avatud",
+    "pos_days_live": "Loendamine jätkub — positsioon on veel avatud",
     "col_opened_at": "Avatud",
     "col_closed_at": "Suletud",
     "col_days": "Päevad",

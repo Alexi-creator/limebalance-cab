@@ -164,6 +164,19 @@
       "body_net": "{{month}}: entrate {{income}}, spese {{expense}}, risparmiato {{net}}.",
       "top_category": "Categoria principale — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Riepilogo del mese — {{month}}",
+      "income": "Entrate",
+      "expense": "Uscite",
+      "net": "Saldo",
+      "savings_rate": "Risparmiato sul reddito",
+      "vs_prev_month": "rispetto al mese scorso",
+      "top_category": "Categoria di spesa maggiore",
+      "biggest_expense": "Spesa singola maggiore",
+      "goals_contributed": "Destinato agli obiettivi",
+      "goals_completed": "Obiettivi completati",
+      "investing_pnl": "Risultato di trading"
+    },
     "goal_completed": {
       "title": "Obiettivo raggiunto 🎉",
       "body": "Hai risparmiato per l’obiettivo «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Chiusa",
     "pos_in_trade": "ancora aperta",
     "pos_pnl_live": "Non realizzato — posizione ancora aperta",
+    "pos_days_live": "Il conteggio continua — posizione ancora aperta",
     "col_opened_at": "Aperta",
     "col_closed_at": "Chiusa",
     "col_days": "Giorni",

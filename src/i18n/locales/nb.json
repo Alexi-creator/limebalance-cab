@@ -164,6 +164,19 @@
       "body_net": "{{month}}: inntekt {{income}}, utgifter {{expense}}, spart {{net}}.",
       "top_category": "Toppkategori — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Månedsoppsummering — {{month}}",
+      "income": "Inntekt",
+      "expense": "Utgift",
+      "net": "Saldo",
+      "savings_rate": "Spart av inntekt",
+      "vs_prev_month": "sammenlignet med forrige måned",
+      "top_category": "Største utgiftskategori",
+      "biggest_expense": "Største enkeltutgift",
+      "goals_contributed": "Satt av til mål",
+      "goals_completed": "Fullførte mål",
+      "investing_pnl": "Handelsresultat"
+    },
     "goal_completed": {
       "title": "Mål nådd 🎉",
       "body": "Du har spart opp til målet «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Lukket",
     "pos_in_trade": "fortsatt åpen",
     "pos_pnl_live": "Urealisert — posisjonen er fortsatt åpen",
+    "pos_days_live": "Teller fortsatt — posisjonen er fortsatt åpen",
     "col_opened_at": "Åpnet",
     "col_closed_at": "Lukket",
     "col_days": "Dager",

@@ -163,6 +163,19 @@
       "body_net": "{{month}}: 수입 {{income}}, 지출 {{expense}}, 저축 {{net}}.",
       "top_category": "주요 카테고리 — {{category}}."
     },
+    "monthly_digest": {
+      "title": "월간 요약 — {{month}}",
+      "income": "수입",
+      "expense": "지출",
+      "net": "순액",
+      "savings_rate": "수입 대비 저축률",
+      "vs_prev_month": "전월 대비",
+      "top_category": "지출이 가장 많은 카테고리",
+      "biggest_expense": "최대 단일 지출",
+      "goals_contributed": "목표에 저축한 금액",
+      "goals_completed": "달성한 목표",
+      "investing_pnl": "트레이딩 결과"
+    },
     "goal_completed": {
       "title": "목표 달성 🎉",
       "body": "목표 «{{name}}»에 필요한 금액을 모았습니다."
@@ -494,6 +507,7 @@
     "pos_status_closed": "종료됨",
     "pos_in_trade": "아직 진행 중",
     "pos_pnl_live": "미실현 — 포지션이 아직 진행 중",
+    "pos_days_live": "계속 집계 중 — 포지션이 아직 진행 중",
     "col_opened_at": "시작일",
     "col_closed_at": "종료일",
     "col_days": "일수",

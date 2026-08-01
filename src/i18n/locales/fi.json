@@ -164,6 +164,19 @@
       "body_net": "{{month}}: tulot {{income}}, menot {{expense}}, säästetty {{net}}.",
       "top_category": "Suurin kategoria — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Kuukauden yhteenveto — {{month}}",
+      "income": "Tulot",
+      "expense": "Menot",
+      "net": "Saldo",
+      "savings_rate": "Säästetty tuloista",
+      "vs_prev_month": "vs. edellinen kuukausi",
+      "top_category": "Suurin kulukategoria",
+      "biggest_expense": "Suurin yksittäinen kulu",
+      "goals_contributed": "Säästetty tavoitteisiin",
+      "goals_completed": "Saavutetut tavoitteet",
+      "investing_pnl": "Kaupankäyntitulos"
+    },
     "goal_completed": {
       "title": "Tavoite saavutettu 🎉",
       "body": "Säästit tavoitteeseen «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Suljettu",
     "pos_in_trade": "vielä avoinna",
     "pos_pnl_live": "Realisoitumaton — positio on yhä avoinna",
+    "pos_days_live": "Laskuri käynnissä — positio on yhä avoinna",
     "col_opened_at": "Avattu",
     "col_closed_at": "Suljettu",
     "col_days": "Päivät",

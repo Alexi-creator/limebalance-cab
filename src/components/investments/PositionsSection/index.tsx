@@ -30,6 +30,7 @@ import { PositionNotes } from "@components/investments/PositionNotes"
 import {
   POSITIONS_PAGE_SIZE_OPTIONS,
   positionsParamsSchema,
+  storePageSize,
 } from "@components/investments/PositionsSection/config"
 import { MobileFilterSheet } from "@components/MobileFilterSheet"
 import { StickyScrollbarX } from "@components/StickyScrollbarX"
@@ -693,9 +694,17 @@ export function PositionsSection({ accounts }: Props) {
                           </Text>
                         </Table.Td>
                         <Table.Td ta="right">
-                          <Text ff="monospace" size="sm" c="dimmed">
-                            {holdingDays(p) === null ? "—" : holdingDays(p)}
-                          </Text>
+                          {p.status === "OPEN" ? (
+                            <Tooltip label={t("investments.pos_days_live")}>
+                              <Text ff="monospace" size="sm" c="dimmed" className="pulse-live">
+                                {holdingDays(p) ?? "—"}
+                              </Text>
+                            </Tooltip>
+                          ) : (
+                            <Text ff="monospace" size="sm" c="dimmed">
+                              {holdingDays(p) ?? "—"}
+                            </Text>
+                          )}
                         </Table.Td>
                         <Table.Td ta="right">
                           <Text ff="monospace" size="sm">
@@ -796,7 +805,11 @@ export function PositionsSection({ accounts }: Props) {
                   label={t("investments.pos_page_size")}
                   data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
                   value={String(urlParams.limit)}
-                  onChange={(v) => v && setParams({ limit: Number(v), page: 1 })}
+                  onChange={(v) => {
+                    if (!v) return
+                    storePageSize(Number(v))
+                    setParams({ limit: Number(v), page: 1 })
+                  }}
                   allowDeselect={false}
                   checkIconPosition="right"
                   comboboxProps={{ width: 80 }}

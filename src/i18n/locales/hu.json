@@ -164,6 +164,19 @@
       "body_net": "{{month}}: bevétel {{income}}, kiadás {{expense}}, megtakarítva {{net}}.",
       "top_category": "Top kategória — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Havi összesítés — {{month}}",
+      "income": "Bevétel",
+      "expense": "Kiadás",
+      "net": "Egyenleg",
+      "savings_rate": "Megtakarított a bevételből",
+      "vs_prev_month": "az előző hónaphoz képest",
+      "top_category": "Legnagyobb kiadási kategória",
+      "biggest_expense": "Legnagyobb egyedi kiadás",
+      "goals_contributed": "Célokra félretett",
+      "goals_completed": "Teljesített célok",
+      "investing_pnl": "Kereskedési eredmény"
+    },
     "goal_completed": {
       "title": "Cél elérve 🎉",
       "body": "Összegyűjtötted a «{{name}}» célra."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Zárt",
     "pos_in_trade": "még nyitva",
     "pos_pnl_live": "Nem realizált — a pozíció még nyitva van",
+    "pos_days_live": "A számlálás folytatódik — a pozíció még nyitva van",
     "col_opened_at": "Nyitva",
     "col_closed_at": "Lezárva",
     "col_days": "Napok",

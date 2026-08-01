@@ -164,6 +164,19 @@
       "body_net": "{{month}}: inkomsten {{income}}, uitgaven {{expense}}, gespaard {{net}}.",
       "top_category": "Topcategorie — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Maandoverzicht — {{month}}",
+      "income": "Inkomsten",
+      "expense": "Uitgaven",
+      "net": "Saldo",
+      "savings_rate": "Gespaard van inkomen",
+      "vs_prev_month": "t.o.v. vorige maand",
+      "top_category": "Grootste uitgavecategorie",
+      "biggest_expense": "Grootste eenmalige uitgave",
+      "goals_contributed": "Ingelegd voor doelen",
+      "goals_completed": "Doelen behaald",
+      "investing_pnl": "Handelsresultaat"
+    },
     "goal_completed": {
       "title": "Doel bereikt 🎉",
       "body": "Je hebt gespaard voor het doel «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Gesloten",
     "pos_in_trade": "nog open",
     "pos_pnl_live": "Ongerealiseerd — positie nog open",
+    "pos_days_live": "Telt nog door — positie nog open",
     "col_opened_at": "Geopend",
     "col_closed_at": "Gesloten",
     "col_days": "Dagen",

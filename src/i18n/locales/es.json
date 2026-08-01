@@ -164,6 +164,19 @@
       "body_net": "{{month}}: ingresos {{income}}, gastos {{expense}}, ahorrado {{net}}.",
       "top_category": "Categoría principal — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Resumen del mes — {{month}}",
+      "income": "Ingresos",
+      "expense": "Gastos",
+      "net": "Balance",
+      "savings_rate": "Ahorrado del ingreso",
+      "vs_prev_month": "vs. mes anterior",
+      "top_category": "Categoría de mayor gasto",
+      "biggest_expense": "Mayor gasto individual",
+      "goals_contributed": "Destinado a metas",
+      "goals_completed": "Metas completadas",
+      "investing_pnl": "Resultado de trading"
+    },
     "goal_completed": {
       "title": "Meta alcanzada 🎉",
       "body": "Has ahorrado para la meta «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Cerrada",
     "pos_in_trade": "aún abierta",
     "pos_pnl_live": "No realizado — la posición sigue abierta",
+    "pos_days_live": "Sigue contando — la posición sigue abierta",
     "col_opened_at": "Abierta",
     "col_closed_at": "Cerrada",
     "col_days": "Días",

@@ -164,6 +164,19 @@
       "body_net": "{{month}}: gelir {{income}}, gider {{expense}}, biriken {{net}}.",
       "top_category": "En çok harcanan kategori — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Ay özeti — {{month}}",
+      "income": "Gelir",
+      "expense": "Gider",
+      "net": "Net",
+      "savings_rate": "Gelirden biriktirilen",
+      "vs_prev_month": "önceki aya göre",
+      "top_category": "En yüksek harcama kategorisi",
+      "biggest_expense": "En büyük tekil harcama",
+      "goals_contributed": "Hedeflere ayrılan",
+      "goals_completed": "Tamamlanan hedefler",
+      "investing_pnl": "İşlem sonucu"
+    },
     "goal_completed": {
       "title": "Hedefe ulaşıldı 🎉",
       "body": "«{{name}}» hedefi için biriktirdiniz."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Kapalı",
     "pos_in_trade": "hâlâ açık",
     "pos_pnl_live": "Gerçekleşmemiş — pozisyon hâlâ açık",
+    "pos_days_live": "Sayım devam ediyor — pozisyon hâlâ açık",
     "col_opened_at": "Açıldı",
     "col_closed_at": "Kapandı",
     "col_days": "Gün",

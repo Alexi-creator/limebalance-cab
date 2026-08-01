@@ -163,6 +163,19 @@
       "body_net": "{{month}}：収入 {{income}}、支出 {{expense}}、貯蓄 {{net}}。",
       "top_category": "トップカテゴリ — {{category}}。"
     },
+    "monthly_digest": {
+      "title": "月次サマリー — {{month}}",
+      "income": "収入",
+      "expense": "支出",
+      "net": "収支",
+      "savings_rate": "収入からの貯蓄率",
+      "vs_prev_month": "先月比",
+      "top_category": "支出が最も多いカテゴリ",
+      "biggest_expense": "最大の単発支出",
+      "goals_contributed": "目標への積立額",
+      "goals_completed": "達成した目標",
+      "investing_pnl": "トレード損益"
+    },
     "goal_completed": {
       "title": "目標達成 🎉",
       "body": "目標「{{name}}」の貯金を達成しました。"
@@ -494,6 +507,7 @@
     "pos_status_closed": "決済済み",
     "pos_in_trade": "まだ保有中",
     "pos_pnl_live": "未実現 — ポジションはまだ保有中",
+    "pos_days_live": "カウント中 — ポジションはまだ保有中",
     "col_opened_at": "建玉日時",
     "col_closed_at": "決済日時",
     "col_days": "日数",

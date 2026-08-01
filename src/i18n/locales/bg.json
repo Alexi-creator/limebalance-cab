@@ -164,6 +164,19 @@
       "body_net": "{{month}}: приходи {{income}}, разходи {{expense}}, спестени {{net}}.",
       "top_category": "Топ категория — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Обобщение на месеца — {{month}}",
+      "income": "Приход",
+      "expense": "Разход",
+      "net": "Баланс",
+      "savings_rate": "Спестено от прихода",
+      "vs_prev_month": "спрямо предходния месец",
+      "top_category": "Категория с най-големи разходи",
+      "biggest_expense": "Най-голям единичен разход",
+      "goals_contributed": "Заделено за цели",
+      "goals_completed": "Постигнати цели",
+      "investing_pnl": "Резултат от търговията"
+    },
     "goal_completed": {
       "title": "Целта е постигната 🎉",
       "body": "Спестихте за целта «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Затворена",
     "pos_in_trade": "все още отворена",
     "pos_pnl_live": "Нереализирана — позицията все още е отворена",
+    "pos_days_live": "Броенето продължава — позицията все още е отворена",
     "col_opened_at": "Отворена",
     "col_closed_at": "Затворена",
     "col_days": "Дни",

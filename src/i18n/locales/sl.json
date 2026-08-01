@@ -166,6 +166,19 @@
       "body_net": "{{month}}: prihodki {{income}}, odhodki {{expense}}, prihranjeno {{net}}.",
       "top_category": "Glavna kategorija — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Mesečni pregled — {{month}}",
+      "income": "Prihodek",
+      "expense": "Odhodek",
+      "net": "Saldo",
+      "savings_rate": "Prihranjeno od prihodka",
+      "vs_prev_month": "glede na prejšnji mesec",
+      "top_category": "Največja kategorija stroškov",
+      "biggest_expense": "Največji posamezni strošek",
+      "goals_contributed": "Namenjeno ciljem",
+      "goals_completed": "Doseženi cilji",
+      "investing_pnl": "Rezultat trgovanja"
+    },
     "goal_completed": {
       "title": "Cilj dosežen 🎉",
       "body": "Prihranili ste za cilj «{{name}}»."
@@ -530,6 +543,7 @@
     "pos_status_closed": "Zaprto",
     "pos_in_trade": "še vedno odprto",
     "pos_pnl_live": "Nerealiziran — pozicija je še vedno odprta",
+    "pos_days_live": "Štetje se nadaljuje — pozicija je še vedno odprta",
     "col_opened_at": "Odprto",
     "col_closed_at": "Zaprto",
     "col_days": "Dni",

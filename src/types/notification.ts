@@ -16,6 +16,24 @@ export const monthlySummaryPayloadSchema = z.object({
 })
 export type MonthlySummaryPayload = z.infer<typeof monthlySummaryPayloadSchema>
 
+/**
+ * Structured data behind a `monthly_digest` notification — the richer, once-a-month recap for a
+ * month that's actually over (see monthly-digest.service.ts on the backend). A superset of
+ * {@link monthlySummaryPayloadSchema} plus a prior-month baseline and a few extra highlights;
+ * `title`/`body` are again left null server-side, same contract as `monthly_summary`.
+ */
+export const monthlyDigestPayloadSchema = monthlySummaryPayloadSchema.extend({
+  baselineIncome: z.number().nullable(),
+  baselineExpense: z.number().nullable(),
+  biggestExpense: z
+    .object({ category: z.string(), emoji: z.string().nullable(), amount: z.number() })
+    .nullable(),
+  goalsContributed: z.number().nullable(),
+  goalsCompleted: z.number(),
+  investingPnl: z.number().nullable(),
+})
+export type MonthlyDigestPayload = z.infer<typeof monthlyDigestPayloadSchema>
+
 /** Structured data behind a `goal_completed` notification (the goal that just hit 100%). */
 export const goalCompletedPayloadSchema = z.object({
   goalId: z.string(),

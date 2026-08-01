@@ -165,6 +165,19 @@
       "body_net": "{{month}}: ienākumi {{income}}, izdevumi {{expense}}, uzkrāts {{net}}.",
       "top_category": "Galvenā kategorija — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Mēneša kopsavilkums — {{month}}",
+      "income": "Ienākumi",
+      "expense": "Izdevumi",
+      "net": "Bilance",
+      "savings_rate": "Ietaupīts no ienākumiem",
+      "vs_prev_month": "salīdzinot ar iepriekšējo mēnesi",
+      "top_category": "Lielākā izdevumu kategorija",
+      "biggest_expense": "Lielākais atsevišķais izdevums",
+      "goals_contributed": "Novirzīts mērķiem",
+      "goals_completed": "Sasniegtie mērķi",
+      "investing_pnl": "Tirdzniecības rezultāts"
+    },
     "goal_completed": {
       "title": "Mērķis sasniegts 🎉",
       "body": "Jūs uzkrājāt mērķim «{{name}}»."
@@ -518,6 +531,7 @@
     "pos_status_closed": "Slēgts",
     "pos_in_trade": "vēl atvērts",
     "pos_pnl_live": "Nerealizēts — pozīcija vēl atvērta",
+    "pos_days_live": "Skaitīšana turpinās — pozīcija vēl atvērta",
     "col_opened_at": "Atvērts",
     "col_closed_at": "Slēgts",
     "col_days": "Dienas",

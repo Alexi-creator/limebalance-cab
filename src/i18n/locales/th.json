@@ -163,6 +163,19 @@
       "body_net": "{{month}}: รายรับ {{income}}, รายจ่าย {{expense}}, ออมได้ {{net}}",
       "top_category": "หมวดหมู่ยอดนิยม — {{category}}"
     },
+    "monthly_digest": {
+      "title": "สรุปประจำเดือน — {{month}}",
+      "income": "รายรับ",
+      "expense": "รายจ่าย",
+      "net": "ยอดสุทธิ",
+      "savings_rate": "เก็บออมจากรายรับ",
+      "vs_prev_month": "เทียบกับเดือนที่แล้ว",
+      "top_category": "หมวดหมู่ที่ใช้จ่ายมากที่สุด",
+      "biggest_expense": "รายจ่ายเดียวที่สูงที่สุด",
+      "goals_contributed": "สมทบเข้าเป้าหมาย",
+      "goals_completed": "เป้าหมายที่สำเร็จ",
+      "investing_pnl": "ผลการเทรด"
+    },
     "goal_completed": {
       "title": "บรรลุเป้าหมายแล้ว 🎉",
       "body": "คุณออมเงินครบสำหรับเป้าหมาย «{{name}}» แล้ว"
@@ -494,6 +507,7 @@
     "pos_status_closed": "ปิดแล้ว",
     "pos_in_trade": "ยังเปิดอยู่",
     "pos_pnl_live": "ยังไม่รับรู้กำไร/ขาดทุน — สถานะยังเปิดอยู่",
+    "pos_days_live": "กำลังนับต่อเนื่อง — สถานะยังเปิดอยู่",
     "col_opened_at": "เปิดเมื่อ",
     "col_closed_at": "ปิดเมื่อ",
     "col_days": "วัน",

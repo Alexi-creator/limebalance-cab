@@ -163,6 +163,19 @@
       "body_net": "{{month}}: pemasukan {{income}}, pengeluaran {{expense}}, ditabung {{net}}.",
       "top_category": "Kategori teratas — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Ringkasan bulan — {{month}}",
+      "income": "Pemasukan",
+      "expense": "Pengeluaran",
+      "net": "Saldo",
+      "savings_rate": "Tabungan dari pemasukan",
+      "vs_prev_month": "vs bulan lalu",
+      "top_category": "Kategori pengeluaran terbesar",
+      "biggest_expense": "Pengeluaran tunggal terbesar",
+      "goals_contributed": "Disisihkan untuk tujuan",
+      "goals_completed": "Tujuan tercapai",
+      "investing_pnl": "Hasil trading"
+    },
     "goal_completed": {
       "title": "Target tercapai 🎉",
       "body": "Kamu telah menabung untuk target «{{name}}»."
@@ -494,6 +507,7 @@
     "pos_status_closed": "Ditutup",
     "pos_in_trade": "masih terbuka",
     "pos_pnl_live": "Belum terealisasi — posisi masih terbuka",
+    "pos_days_live": "Masih menghitung — posisi masih terbuka",
     "col_opened_at": "Dibuka",
     "col_closed_at": "Ditutup",
     "col_days": "Hari",

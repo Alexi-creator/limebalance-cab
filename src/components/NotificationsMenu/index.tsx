@@ -4,7 +4,11 @@ import {
   markNotificationRead,
 } from "@api/notifications"
 import type { AppNotification, NotificationsResponse } from "@appTypes/notification"
-import { monthlySummaryPayloadSchema, tradeClosedPayloadSchema } from "@appTypes/notification"
+import {
+  monthlyDigestPayloadSchema,
+  monthlySummaryPayloadSchema,
+  tradeClosedPayloadSchema,
+} from "@appTypes/notification"
 import { NOTIFICATIONS_STALE_TIME, notificationKeys } from "@constants/queries/notifications"
 import { dateFnsLocales } from "@i18n/languages.ts"
 import {
@@ -22,6 +26,7 @@ import {
 import {
   IconArrowsExchange,
   IconBell,
+  IconCalendarStats,
   IconReportMoney,
   IconSparkles,
   IconTargetArrow,
@@ -39,12 +44,14 @@ import { useTranslation } from "react-i18next"
 /** Icon per notification `type`, with a sensible fallback for unknown/new kinds. */
 const TYPE_ICON: Record<string, typeof IconBell> = {
   monthly_summary: IconReportMoney,
+  monthly_digest: IconCalendarStats,
   goal_completed: IconTargetArrow,
   news: IconSparkles,
 }
 
 const TYPE_COLOR: Record<string, string> = {
   monthly_summary: "lime",
+  monthly_digest: "indigo",
   goal_completed: "green",
   news: "grape",
 }
@@ -73,10 +80,10 @@ function getTypeVisual(n: AppNotification): { Icon: typeof IconBell; color: stri
  * Localized title/body for a notification, keyed by `type` via the convention
  * `notifications.<type>.{title,body}`. New simple types need only locale strings — no code here.
  *
- * `monthly_summary` and `trade_closed` are exceptions: they need real client-side work (month name
- * from `period` / signed PnL and ROI formatting) that a plain interpolated string can't do, so they
- * get dedicated branches. Anything without a matching template falls back to the server-rendered
- * `title`/`body`.
+ * `monthly_summary`, `monthly_digest`, and `trade_closed` are exceptions: they need real
+ * client-side work (month name from `period`, prior-month percent change, signed PnL/ROI
+ * formatting) that a plain interpolated string can't do, so they get dedicated branches.
+ * Anything without a matching template falls back to the server-rendered `title`/`body`.
  */
 function renderNotification(
   n: AppNotification,
@@ -115,6 +122,76 @@ function renderNotification(
       }
 
       return { title: t("notifications.monthly_summary.title"), message }
+    }
+  }
+
+  if (n.type === "monthly_digest") {
+    const parsed = monthlyDigestPayloadSchema.safeParse(n.payload)
+    if (parsed.success) {
+      const p = parsed.data
+      const [year, month] = p.period.split("-").map(Number)
+      const monthName = capitalize(format(new Date(year, month - 1, 1), "LLLL", { locale }))
+      const fmt = (v: number | null) =>
+        v === null ? "—" : formatCurrency(v, i18n.language, p.baseCurrency)
+      const signed = (v: number, digits = 2) => `${v >= 0 ? "+" : ""}${v.toFixed(digits)}`
+      // Null when there's nothing meaningful to compare against — mirrors the backend's
+      // formatPercentChange in monthly-digest.service.ts, so the two stay in sync.
+      const pctChange = (current: number | null, baseline: number | null) => {
+        if (current === null || baseline === null || baseline === 0) return null
+        return `${signed(((current - baseline) / Math.abs(baseline)) * 100, 1)}%`
+      }
+
+      const parts: string[] = []
+      if (p.income !== null) {
+        const change = pctChange(p.income, p.baselineIncome)
+        parts.push(
+          `${t("notifications.monthly_digest.income")}: ${fmt(p.income)}` +
+            (change ? ` (${change} ${t("notifications.monthly_digest.vs_prev_month")})` : ""),
+        )
+      }
+      if (p.expense !== null) {
+        const change = pctChange(p.expense, p.baselineExpense)
+        parts.push(
+          `${t("notifications.monthly_digest.expense")}: ${fmt(p.expense)}` +
+            (change ? ` (${change} ${t("notifications.monthly_digest.vs_prev_month")})` : ""),
+        )
+      }
+      if (p.net !== null) parts.push(`${t("notifications.monthly_digest.net")}: ${fmt(p.net)}`)
+      if (p.income && p.income > 0 && p.net !== null) {
+        parts.push(
+          `${t("notifications.monthly_digest.savings_rate")}: ${((p.net / p.income) * 100).toFixed(1)}%`,
+        )
+      }
+      if (p.topCategory) {
+        const emoji = p.topCategory.emoji ? `${p.topCategory.emoji} ` : ""
+        parts.push(
+          `${t("notifications.monthly_digest.top_category")}: ${emoji}${p.topCategory.name}`,
+        )
+      }
+      if (p.biggestExpense) {
+        const emoji = p.biggestExpense.emoji ? `${p.biggestExpense.emoji} ` : ""
+        parts.push(
+          `${t("notifications.monthly_digest.biggest_expense")}: ${emoji}${p.biggestExpense.category} — ${fmt(p.biggestExpense.amount)}`,
+        )
+      }
+      if (p.goalsContributed !== null && p.goalsContributed > 0) {
+        parts.push(
+          `${t("notifications.monthly_digest.goals_contributed")}: ${fmt(p.goalsContributed)}`,
+        )
+      }
+      if (p.goalsCompleted > 0) {
+        parts.push(`${t("notifications.monthly_digest.goals_completed")}: ${p.goalsCompleted}`)
+      }
+      if (p.investingPnl !== null) {
+        parts.push(
+          `${t("notifications.monthly_digest.investing_pnl")}: ${signed(p.investingPnl)} USDT`,
+        )
+      }
+
+      return {
+        title: t("notifications.monthly_digest.title", { month: monthName }),
+        message: parts.join(" · "),
+      }
     }
   }
 

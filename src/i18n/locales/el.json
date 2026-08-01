@@ -164,6 +164,19 @@
       "body_net": "{{month}}: έσοδα {{income}}, έξοδα {{expense}}, αποταμίευση {{net}}.",
       "top_category": "Κορυφαία κατηγορία — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Σύνοψη μήνα — {{month}}",
+      "income": "Έσοδα",
+      "expense": "Έξοδα",
+      "net": "Υπόλοιπο",
+      "savings_rate": "Αποταμιεύτηκε από το εισόδημα",
+      "vs_prev_month": "σε σχέση με τον προηγούμενο μήνα",
+      "top_category": "Μεγαλύτερη κατηγορία εξόδων",
+      "biggest_expense": "Μεγαλύτερο μεμονωμένο έξοδο",
+      "goals_contributed": "Διατέθηκε για στόχους",
+      "goals_completed": "Ολοκληρωμένοι στόχοι",
+      "investing_pnl": "Αποτέλεσμα συναλλαγών"
+    },
     "goal_completed": {
       "title": "Ο στόχος επιτεύχθηκε 🎉",
       "body": "Αποταμιεύσατε για τον στόχο «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Κλειστή",
     "pos_in_trade": "ακόμη ανοιχτή",
     "pos_pnl_live": "Μη πραγματοποιηθέν — η θέση είναι ακόμη ανοιχτή",
+    "pos_days_live": "Η μέτρηση συνεχίζεται — η θέση είναι ακόμη ανοιχτή",
     "col_opened_at": "Άνοιξε",
     "col_closed_at": "Έκλεισε",
     "col_days": "Ημέρες",

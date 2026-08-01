@@ -165,6 +165,19 @@
       "body_net": "{{month}}: pajamos {{income}}, išlaidos {{expense}}, sutaupyta {{net}}.",
       "top_category": "Pagrindinė kategorija — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Mėnesio suvestinė — {{month}}",
+      "income": "Pajamos",
+      "expense": "Išlaidos",
+      "net": "Balansas",
+      "savings_rate": "Sutaupyta nuo pajamų",
+      "vs_prev_month": "palyginti su praėjusiu mėnesiu",
+      "top_category": "Didžiausia išlaidų kategorija",
+      "biggest_expense": "Didžiausia pavienė išlaida",
+      "goals_contributed": "Skirta tikslams",
+      "goals_completed": "Pasiekti tikslai",
+      "investing_pnl": "Prekybos rezultatas"
+    },
     "goal_completed": {
       "title": "Tikslas pasiektas 🎉",
       "body": "Sutaupėte tikslui «{{name}}»."
@@ -518,6 +531,7 @@
     "pos_status_closed": "Uždarytas",
     "pos_in_trade": "vis dar atviras",
     "pos_pnl_live": "Nerealizuotas — pozicija vis dar atvira",
+    "pos_days_live": "Skaičiavimas tęsiasi — pozicija vis dar atvira",
     "col_opened_at": "Atidaryta",
     "col_closed_at": "Uždaryta",
     "col_days": "Dienos",

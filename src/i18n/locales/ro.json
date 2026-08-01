@@ -165,6 +165,19 @@
       "body_net": "{{month}}: venituri {{income}}, cheltuieli {{expense}}, economisit {{net}}.",
       "top_category": "Categoria principală — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Rezumatul lunii — {{month}}",
+      "income": "Venit",
+      "expense": "Cheltuieli",
+      "net": "Sold",
+      "savings_rate": "Economisit din venit",
+      "vs_prev_month": "față de luna trecută",
+      "top_category": "Cea mai mare categorie de cheltuieli",
+      "biggest_expense": "Cea mai mare cheltuială unică",
+      "goals_contributed": "Alocat pentru obiective",
+      "goals_completed": "Obiective finalizate",
+      "investing_pnl": "Rezultat tranzacționare"
+    },
     "goal_completed": {
       "title": "Obiectiv atins 🎉",
       "body": "Ai economisit pentru obiectivul «{{name}}»."
@@ -518,6 +531,7 @@
     "pos_status_closed": "Închisă",
     "pos_in_trade": "încă deschisă",
     "pos_pnl_live": "Nerealizat — poziția este încă deschisă",
+    "pos_days_live": "Numărătoarea continuă — poziția este încă deschisă",
     "col_opened_at": "Deschisă",
     "col_closed_at": "Închisă",
     "col_days": "Zile",

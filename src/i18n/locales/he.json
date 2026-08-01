@@ -166,6 +166,19 @@
       "body_net": "{{month}}: הכנסות {{income}}, הוצאות {{expense}}, נחסך {{net}}.",
       "top_category": "קטגוריה מובילה — {{category}}."
     },
+    "monthly_digest": {
+      "title": "סיכום החודש — {{month}}",
+      "income": "הכנסה",
+      "expense": "הוצאה",
+      "net": "יתרה",
+      "savings_rate": "נחסך מההכנסה",
+      "vs_prev_month": "לעומת החודש הקודם",
+      "top_category": "קטגוריית ההוצאה הגדולה ביותר",
+      "biggest_expense": "ההוצאה הבודדת הגדולה ביותר",
+      "goals_contributed": "הופקד למטרות",
+      "goals_completed": "מטרות שהושגו",
+      "investing_pnl": "תוצאת מסחר"
+    },
     "goal_completed": {
       "title": "המטרה הושגה 🎉",
       "body": "חסכת למטרה «{{name}}»."
@@ -530,6 +543,7 @@
     "pos_status_closed": "סגורה",
     "pos_in_trade": "עדיין פתוחה",
     "pos_pnl_live": "לא ממומש — הפוזיציה עדיין פתוחה",
+    "pos_days_live": "הספירה עדיין רצה — הפוזיציה עדיין פתוחה",
     "col_opened_at": "נפתחה",
     "col_closed_at": "נסגרה",
     "col_days": "ימים",

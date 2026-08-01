@@ -165,6 +165,19 @@
       "body_net": "{{month}}: przychody {{income}}, wydatki {{expense}}, odłożono {{net}}.",
       "top_category": "Główna kategoria — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Podsumowanie miesiąca — {{month}}",
+      "income": "Przychód",
+      "expense": "Wydatki",
+      "net": "Bilans",
+      "savings_rate": "Zaoszczędzone z przychodu",
+      "vs_prev_month": "vs poprzedni miesiąc",
+      "top_category": "Największa kategoria wydatków",
+      "biggest_expense": "Największy pojedynczy wydatek",
+      "goals_contributed": "Odłożone na cele",
+      "goals_completed": "Ukończone cele",
+      "investing_pnl": "Wynik tradingowy"
+    },
     "goal_completed": {
       "title": "Cel osiągnięty 🎉",
       "body": "Odłożyłeś na cel «{{name}}»."
@@ -518,6 +531,7 @@
     "pos_status_closed": "Zamknięta",
     "pos_in_trade": "wciąż otwarta",
     "pos_pnl_live": "Niezrealizowany — pozycja wciąż otwarta",
+    "pos_days_live": "Liczenie trwa — pozycja wciąż otwarta",
     "col_opened_at": "Otwarta",
     "col_closed_at": "Zamknięta",
     "col_days": "Dni",

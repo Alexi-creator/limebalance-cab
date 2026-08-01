@@ -159,8 +159,12 @@ test.describe("Investments — trade journal", () => {
     await expect(row.getByText("+$140.00")).toBeVisible()
     await expect(row.getByText("+51.47%")).toBeVisible()
     // The live PnL is flagged with a "live" bolt icon (tooltip on hover), unlike a realized one.
-    await row.locator(".pulse-live").hover()
+    await row.locator(".tabler-icon-bolt.pulse-live").hover()
     await expect(page.getByText("Unrealized — position still open")).toBeVisible()
+
+    // The Days column keeps counting for an open position too, pulsing to distinguish it
+    // from a closed trade's fixed day count.
+    await expect(row.locator("td").nth(10).locator(".pulse-live")).toBeVisible()
   })
 
   test("notes are available on every position, including bybit ones", async ({

@@ -164,6 +164,19 @@
       "body_net": "{{month}}: inkomster {{income}}, utgifter {{expense}}, sparat {{net}}.",
       "top_category": "Toppkategori — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Månadssammanfattning — {{month}}",
+      "income": "Inkomst",
+      "expense": "Utgift",
+      "net": "Saldo",
+      "savings_rate": "Sparat av inkomst",
+      "vs_prev_month": "jämfört med förra månaden",
+      "top_category": "Största utgiftskategorin",
+      "biggest_expense": "Största enskilda utgift",
+      "goals_contributed": "Avsatt till mål",
+      "goals_completed": "Uppnådda mål",
+      "investing_pnl": "Handelsresultat"
+    },
     "goal_completed": {
       "title": "Mål uppnått 🎉",
       "body": "Du har sparat ihop till målet «{{name}}»."
@@ -506,6 +519,7 @@
     "pos_status_closed": "Stängd",
     "pos_in_trade": "fortfarande öppen",
     "pos_pnl_live": "Orealiserad — positionen är fortfarande öppen",
+    "pos_days_live": "Räknar fortfarande — positionen är fortfarande öppen",
     "col_opened_at": "Öppnad",
     "col_closed_at": "Stängd",
     "col_days": "Dagar",

@@ -165,6 +165,19 @@
       "body_net": "{{month}}: príjmy {{income}}, výdavky {{expense}}, ušetrené {{net}}.",
       "top_category": "Hlavná kategória — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Zhrnutie mesiaca — {{month}}",
+      "income": "Príjem",
+      "expense": "Výdavky",
+      "net": "Bilancia",
+      "savings_rate": "Usporené z príjmu",
+      "vs_prev_month": "oproti minulému mesiacu",
+      "top_category": "Najväčšia výdavková kategória",
+      "biggest_expense": "Najväčší jednotlivý výdavok",
+      "goals_contributed": "Vložené do cieľov",
+      "goals_completed": "Splnené ciele",
+      "investing_pnl": "Výsledok obchodovania"
+    },
     "goal_completed": {
       "title": "Cieľ splnený 🎉",
       "body": "Nasporili ste na cieľ «{{name}}»."
@@ -518,6 +531,7 @@
     "pos_status_closed": "Uzavretý",
     "pos_in_trade": "stále otvorená",
     "pos_pnl_live": "Nerealizovaný — pozícia je stále otvorená",
+    "pos_days_live": "Počítanie pokračuje — pozícia je stále otvorená",
     "col_opened_at": "Otvorená",
     "col_closed_at": "Uzavretá",
     "col_days": "Dni",

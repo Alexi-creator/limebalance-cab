@@ -1,7 +1,20 @@
 import { z } from "zod"
 
 export const POSITIONS_PAGE_SIZE_OPTIONS = [20, 50, 100]
-export const POSITIONS_DEFAULT_PAGE_SIZE = 20
+export const POSITIONS_DEFAULT_PAGE_SIZE = 100
+
+const PAGE_SIZE_STORAGE_KEY = "investments.pageSize"
+
+/** Falls back to the default when nothing's stored yet, or the stored value is stale (an
+ *  option since removed from POSITIONS_PAGE_SIZE_OPTIONS). */
+function getStoredPageSize(): number {
+  const stored = Number(localStorage.getItem(PAGE_SIZE_STORAGE_KEY))
+  return POSITIONS_PAGE_SIZE_OPTIONS.includes(stored) ? stored : POSITIONS_DEFAULT_PAGE_SIZE
+}
+
+export function storePageSize(limit: number) {
+  localStorage.setItem(PAGE_SIZE_STORAGE_KEY, String(limit))
+}
 
 /**
  * URL params for the trade journal's filters/pagination — same idea as
@@ -26,8 +39,8 @@ export const positionsParamsSchema = z.object({
   limit: z.coerce
     .number()
     .refine((v) => POSITIONS_PAGE_SIZE_OPTIONS.includes(v))
-    .catch(POSITIONS_DEFAULT_PAGE_SIZE)
-    .default(POSITIONS_DEFAULT_PAGE_SIZE),
+    .catch(getStoredPageSize)
+    .default(getStoredPageSize),
 })
 
 export type PositionsUrlParams = z.infer<typeof positionsParamsSchema>

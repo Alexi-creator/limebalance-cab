@@ -163,6 +163,19 @@
       "body_net": "{{month}}：收入 {{income}}，支出 {{expense}}，结余 {{net}}。",
       "top_category": "最高类别 — {{category}}。"
     },
+    "monthly_digest": {
+      "title": "月度总结 — {{month}}",
+      "income": "收入",
+      "expense": "支出",
+      "net": "结余",
+      "savings_rate": "收入储蓄率",
+      "vs_prev_month": "较上月",
+      "top_category": "支出最多的类别",
+      "biggest_expense": "单笔最大支出",
+      "goals_contributed": "存入目标的金额",
+      "goals_completed": "已完成的目标",
+      "investing_pnl": "交易结果"
+    },
     "goal_completed": {
       "title": "目标达成 🎉",
       "body": "您已为目标「{{name}}」攒够了钱。"
@@ -494,6 +507,7 @@
     "pos_status_closed": "已平仓",
     "pos_in_trade": "仍在持仓",
     "pos_pnl_live": "未实现 — 仓位仍在持仓",
+    "pos_days_live": "仍在计算中 — 仓位仍在持仓",
     "col_opened_at": "开仓时间",
     "col_closed_at": "平仓时间",
     "col_days": "天数",

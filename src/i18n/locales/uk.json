@@ -165,6 +165,19 @@
       "body_net": "{{month}}: дохід {{income}}, витрати {{expense}}, відкладено {{net}}.",
       "top_category": "Топ-категорія — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Підсумки місяця — {{month}}",
+      "income": "Дохід",
+      "expense": "Витрати",
+      "net": "Баланс",
+      "savings_rate": "Заощаджено від доходу",
+      "vs_prev_month": "порівняно з минулим місяцем",
+      "top_category": "Найбільша категорія витрат",
+      "biggest_expense": "Найбільша окрема витрата",
+      "goals_contributed": "Відкладено на цілі",
+      "goals_completed": "Досягнуті цілі",
+      "investing_pnl": "Результат торгівлі"
+    },
     "goal_completed": {
       "title": "Ціль досягнута 🎉",
       "body": "Ви накопичили на ціль «{{name}}»."
@@ -518,6 +531,7 @@
     "pos_status_closed": "Закрита",
     "pos_in_trade": "ще відкрита",
     "pos_pnl_live": "Нереалізований — позиція ще відкрита",
+    "pos_days_live": "Лічильник ще працює — позиція ще відкрита",
     "col_opened_at": "Відкрита",
     "col_closed_at": "Закрита",
     "col_days": "Дні",

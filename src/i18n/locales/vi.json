@@ -163,6 +163,19 @@
       "body_net": "{{month}}: thu nhập {{income}}, chi tiêu {{expense}}, tiết kiệm {{net}}.",
       "top_category": "Danh mục hàng đầu — {{category}}."
     },
+    "monthly_digest": {
+      "title": "Tổng kết tháng — {{month}}",
+      "income": "Thu nhập",
+      "expense": "Chi tiêu",
+      "net": "Số dư",
+      "savings_rate": "Tiết kiệm từ thu nhập",
+      "vs_prev_month": "so với tháng trước",
+      "top_category": "Danh mục chi tiêu nhiều nhất",
+      "biggest_expense": "Khoản chi lớn nhất",
+      "goals_contributed": "Đã đóng góp cho mục tiêu",
+      "goals_completed": "Mục tiêu hoàn thành",
+      "investing_pnl": "Kết quả giao dịch"
+    },
     "goal_completed": {
       "title": "Đã đạt mục tiêu 🎉",
       "body": "Bạn đã tiết kiệm đủ cho mục tiêu «{{name}}»."
@@ -494,6 +507,7 @@
     "pos_status_closed": "Đã đóng",
     "pos_in_trade": "vẫn đang mở",
     "pos_pnl_live": "Chưa thực hiện — vị thế vẫn đang mở",
+    "pos_days_live": "Vẫn đang đếm — vị thế vẫn đang mở",
     "col_opened_at": "Đã mở",
     "col_closed_at": "Đã đóng",
     "col_days": "Số ngày",
