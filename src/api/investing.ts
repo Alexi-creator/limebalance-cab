@@ -67,6 +67,9 @@ export interface PositionsParams {
   /** Omitted → both, open pinned on top and closed below by close date (server default). */
   status?: "OPEN" | "CLOSED"
   category?: "linear" | "spot" | "manual"
+  /** Currently in profit/loss — realized closedPnl for CLOSED rows, live PnL (currentPrice vs
+   *  avgEntryPrice) for OPEN ones. */
+  pnl?: "positive" | "negative"
   limit?: number
   offset?: number
 }
@@ -79,6 +82,7 @@ function positionsQuery(params: PositionsParams): string {
   if (params.to) q.set("to", format(params.to, "yyyy-MM-dd"))
   if (params.status) q.set("status", params.status)
   if (params.category) q.set("category", params.category)
+  if (params.pnl) q.set("pnl", params.pnl)
   if (params.limit != null) q.set("limit", String(params.limit))
   if (params.offset) q.set("offset", String(params.offset))
   return q.size ? `?${q}` : ""

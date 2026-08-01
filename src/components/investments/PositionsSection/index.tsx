@@ -134,6 +134,7 @@ export function PositionsSection({ accounts }: Props) {
     to: urlParams.to ? new Date(urlParams.to) : undefined,
     status: urlParams.status === "all" ? undefined : urlParams.status,
     category: urlParams.category === "all" ? undefined : urlParams.category,
+    pnl: urlParams.pnl === "all" ? undefined : urlParams.pnl,
   }
   const params: PositionsParams = {
     ...filterParams,
@@ -280,7 +281,8 @@ export function PositionsSection({ accounts }: Props) {
     (range[0] || range[1] ? 1 : 0) +
     (urlParams.accountId ? 1 : 0) +
     (urlParams.category !== "all" ? 1 : 0) +
-    (urlParams.status !== "all" ? 1 : 0)
+    (urlParams.status !== "all" ? 1 : 0) +
+    (urlParams.pnl !== "all" ? 1 : 0)
 
   // Back to the schema defaults — status included, so this also restores the default
   // "All" view.
@@ -293,6 +295,7 @@ export function PositionsSection({ accounts }: Props) {
       to: undefined,
       status: undefined,
       category: "all",
+      pnl: "all",
       page: 1,
     })
   }
@@ -365,6 +368,20 @@ export function PositionsSection({ accounts }: Props) {
         ]}
         value={urlParams.status}
         onChange={(v) => v && setParams({ status: v as "all" | "OPEN" | "CLOSED", page: 1 })}
+      />
+      <Select
+        size={vertical ? "sm" : "xs"}
+        w={vertical ? "100%" : 140}
+        label={t("investments.filter_pnl")}
+        placeholder={t("investments.filter_pnl")}
+        allowDeselect={false}
+        data={[
+          { value: "all", label: t("common.all") },
+          { value: "positive", label: t("investments.pnl_positive") },
+          { value: "negative", label: t("investments.pnl_negative") },
+        ]}
+        value={urlParams.pnl}
+        onChange={(v) => v && setParams({ pnl: v as "all" | "positive" | "negative", page: 1 })}
       />
       <SegmentedControl
         size={vertical ? "sm" : "xs"}

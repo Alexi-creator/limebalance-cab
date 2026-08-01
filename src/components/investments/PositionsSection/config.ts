@@ -20,6 +20,8 @@ export const positionsParamsSchema = z.object({
   status: z.enum(["all", "OPEN", "CLOSED"]).catch("all").default("all"),
   /** Client-side only — the API has no category param yet. */
   category: z.enum(["all", "linear", "spot", "manual"]).catch("all").default("all"),
+  // Defaults to "all" — same reasoning as `status` above.
+  pnl: z.enum(["all", "positive", "negative"]).catch("all").default("all"),
   page: z.coerce.number().int().min(1).catch(1).default(1),
   limit: z.coerce
     .number()
