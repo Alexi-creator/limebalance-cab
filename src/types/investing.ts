@@ -133,6 +133,11 @@ export const holdingsResponseSchema = z.object({
   totalValue: z.number(),
 })
 
+/** GET /investing/coin-icons — ticker -> icon URLs, cached long client-side (see CoinIcon). */
+export const coinIconsResponseSchema = z.object({
+  items: z.record(z.string(), z.object({ icon: z.string(), iconNight: z.string() })),
+})
+
 export type ExchangeAccount = z.infer<typeof exchangeAccountSchema>
 export type PositionNote = z.infer<typeof positionNoteSchema>
 export type Position = z.infer<typeof positionSchema>
@@ -142,6 +147,7 @@ export type PositionsSummary = z.infer<typeof positionsSummarySchema>
 export type EquityCurveResponse = z.infer<typeof equityCurveResponseSchema>
 export type Holding = z.infer<typeof holdingSchema>
 export type HoldingsResponse = z.infer<typeof holdingsResponseSchema>
+export type CoinIconsResponse = z.infer<typeof coinIconsResponseSchema>
 
 /**
  * Human-readable direction of a position (`side` is the closing/current order's side,
@@ -204,4 +210,28 @@ export function takeProfitPnl(position: Position): number | null {
  *  entry) — null while it isn't set. */
 export function stopLossPnl(position: Position): number | null {
   return position.stopLossPrice == null ? null : pnlAtPrice(position, position.stopLossPrice)
+}
+
+const QUOTE_SUFFIXES = ["USDT", "USDC", "BUSD", "USD", "EUR", "BTC", "ETH"]
+const MULTIPLIERS = ["1000000", "100000", "10000", "1000"]
+
+/**
+ * Best-effort coin ticker from an exchange pair symbol (BTCUSDT -> BTC), for the CoinIcon
+ * lookup. Bybit's multiplier tickers prefix or suffix a scale factor (1000PEPEUSDT,
+ * SHIB1000USDT) — stripped by exact match only, so real digit-leading tickers (1INCH) are left
+ * alone. A miss here just falls back to CoinIcon's letter avatar, so this doesn't need to cover
+ * every case.
+ */
+export function baseAssetFromSymbol(symbol: string): string {
+  let base = symbol.toUpperCase()
+  const quote = QUOTE_SUFFIXES.find((q) => base.length > q.length && base.endsWith(q))
+  if (quote) base = base.slice(0, -quote.length)
+
+  const prefix = MULTIPLIERS.find((m) => base.startsWith(m) && base.length > m.length)
+  if (prefix) return base.slice(prefix.length)
+
+  const suffix = MULTIPLIERS.find((m) => base.endsWith(m) && base.length > m.length)
+  if (suffix) return base.slice(0, -suffix.length)
+
+  return base
 }

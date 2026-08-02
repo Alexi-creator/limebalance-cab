@@ -11,6 +11,7 @@ export const investingKeys = {
   equityCurve: (params: PositionsParams) =>
     ["investing", "positions", "equity-curve", params] as const,
   holdings: ["investing", "holdings"] as const,
+  coinIcons: ["investing", "coin-icons"] as const,
 }
 
 /** Holdings prices are cached for a minute on the backend — no point refetching sooner. */
@@ -27,3 +28,7 @@ export const POSITION_SYMBOLS_STALE_TIME = 30 * 60 * 1000
 
 /** Poll the accounts list this often while an account's first sync is still running. */
 export const ACCOUNTS_FIRST_SYNC_POLL_MS = 12 * 1000
+
+/** Coin icons are already cached ~24h server-side and practically never change — cache client-
+ *  side just as long, no invalidation needed. */
+export const COIN_ICONS_STALE_TIME = 24 * 60 * 60 * 1000

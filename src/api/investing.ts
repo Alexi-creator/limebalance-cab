@@ -1,5 +1,6 @@
 import { request } from "@api/request"
 import {
+  coinIconsResponseSchema,
   equityCurveResponseSchema,
   exchangeAccountSchema,
   holdingsResponseSchema,
@@ -221,4 +222,12 @@ export function updateHolding(id: string, payload: Partial<HoldingPayload>) {
 
 export function deleteHolding(id: string) {
   return request(`${API_URLS.investing.holdings}/${id}`, { method: HttpMethods.DELETE })
+}
+
+// ── coin icons ──────────────────────────────────────────────────────────────────
+
+/** Ticker -> icon URLs, cached ~24h server-side — safe to cache long client-side too (see
+ *  useCoinIcons). Missing tickers just mean CoinIcon falls back to its letter avatar. */
+export function getCoinIcons() {
+  return request(API_URLS.investing.coinIcons, { schema: coinIconsResponseSchema })
 }

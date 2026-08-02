@@ -68,5 +68,6 @@ export const API_URLS = {
     equityCurve: `${API_URL}/investing/positions/equity-curve`,
     trades: `${API_URL}/investing/trades`,
     holdings: `${API_URL}/investing/holdings`,
+    coinIcons: `${API_URL}/investing/coin-icons`,
   },
 }

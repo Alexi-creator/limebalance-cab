@@ -1,5 +1,6 @@
 import { getHoldings } from "@api/investing"
 import type { Holding } from "@appTypes/investing"
+import { CoinIcon } from "@components/investments/CoinIcon"
 import { DeleteHoldingConfirm } from "@components/investments/DeleteHoldingConfirm"
 import { formatPnl, formatQty, formatUsd, pnlColor } from "@components/investments/format"
 import { HoldingForm } from "@components/investments/HoldingForm"
@@ -121,23 +122,7 @@ export function HoldingsSection() {
                   <Table.Tr key={h.id}>
                     <Table.Td>
                       <Group gap="sm" wrap="nowrap">
-                        <Box
-                          w={32}
-                          h={32}
-                          style={{
-                            borderRadius: 999,
-                            background: "var(--mantine-color-default)",
-                            border: "1px solid var(--mantine-color-default-border)",
-                            display: "grid",
-                            placeItems: "center",
-                            fontFamily: "var(--mantine-font-family-monospace)",
-                            fontWeight: 600,
-                            fontSize: 10,
-                            flexShrink: 0,
-                          }}
-                        >
-                          {h.asset.slice(0, 4)}
-                        </Box>
+                        <CoinIcon ticker={h.asset} />
                         <Stack gap={0}>
                           <Text size="sm" fw={500}>
                             {h.asset}

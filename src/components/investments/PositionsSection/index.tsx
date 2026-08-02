@@ -6,6 +6,7 @@ import {
   syncExchangeAccount,
 } from "@api/investing"
 import {
+  baseAssetFromSymbol,
   type ExchangeAccount,
   holdingDays,
   type Position,
@@ -17,6 +18,7 @@ import {
   unleveragedQty,
 } from "@appTypes/investing"
 import { CategoryBadge } from "@components/investments/CategoryBadge"
+import { CoinIcon } from "@components/investments/CoinIcon"
 import { DeletePositionConfirm } from "@components/investments/DeletePositionConfirm"
 import {
   formatPct,
@@ -564,9 +566,12 @@ export function PositionsSection({ accounts }: Props) {
                     return (
                       <Table.Tr key={p.id}>
                         <Table.Td>
-                          <Text ff="monospace" size="sm" fw={500}>
-                            {p.symbol}
-                          </Text>
+                          <Group gap={8} wrap="nowrap">
+                            <CoinIcon ticker={baseAssetFromSymbol(p.symbol)} size={20} />
+                            <Text ff="monospace" size="sm" fw={500}>
+                              {p.symbol}
+                            </Text>
+                          </Group>
                         </Table.Td>
                         <Table.Td>
                           <Group gap={4} wrap="nowrap">
