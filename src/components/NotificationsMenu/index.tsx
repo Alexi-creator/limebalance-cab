@@ -374,7 +374,7 @@ export function NotificationsMenu() {
                           />
                         )}
                       </Group>
-                      <Text size="xs" c="dimmed" lineClamp={2}>
+                      <Text size="xs" c="dimmed">
                         {message}
                       </Text>
                       <Text size="xs" c="dimmed">

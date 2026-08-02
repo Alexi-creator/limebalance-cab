@@ -1,3 +1,4 @@
+import { useLastVisitedPage } from "@hooks/useLastVisitedPage"
 import { usePageTracking } from "@hooks/usePageTracking"
 import { Header } from "@layout/Header"
 import { Main } from "@layout/Main"
@@ -39,6 +40,7 @@ function AppShellFrame({ children }: { children: ReactNode }) {
  */
 export function Layout() {
   usePageTracking()
+  useLastVisitedPage()
 
   return (
     <AppShellFrame>
