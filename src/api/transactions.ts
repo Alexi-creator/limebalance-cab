@@ -41,6 +41,7 @@ export function getTransactions(params: GetTransactionsParams) {
 export interface UpdateTransactionPayload {
   amount?: number
   description?: string
+  categoryId?: string
   /** Currency code (ISO 4217), e.g. "USD". */
   currency?: string
   /** Transaction date in `YYYY-MM-DD` format (the backend stores it in @db.Date without time). */
