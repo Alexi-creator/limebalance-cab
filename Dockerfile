@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-# --- deps/dev stage: для локального dev через docker compose ---
+# --- deps/dev stage: for local dev via docker compose ---
 FROM oven/bun:1.4-alpine AS dev
 WORKDIR /app
 COPY package.json bun.lock ./
@@ -9,7 +9,7 @@ COPY . .
 EXPOSE 5173
 CMD ["bun", "run", "dev", "--host"]
 
-# --- builder stage: сборка статики ---
+# --- builder stage: build the static assets ---
 FROM oven/bun:1.4-alpine AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
@@ -17,8 +17,8 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# --- production stage: nginx отдаёт статику SPA ---
-# Бандл собран, дальше рантайм не нужен: прод-образ несёт только файлы и nginx.
+# --- production stage: nginx serves the SPA static files ---
+# The bundle is built, so no runtime is needed: the prod image carries only files and nginx.
 FROM nginx:alpine AS production
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf

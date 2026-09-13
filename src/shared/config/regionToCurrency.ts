@@ -71,5 +71,28 @@ export const regionToCurrency: Record<string, string> = {
 /** Unique currency codes from the map, alphabetized — the option list for choosing currency in settings. */
 export const CURRENCY_CODES = [...new Set(Object.values(regionToCurrency))].sort()
 
-/** Options for the currency Select: value and label are just the code (`THB`), without a description. */
-export const CURRENCY_OPTIONS = CURRENCY_CODES.map((code) => ({ value: code, label: code }))
+/**
+ * The currency's symbol, or null when there isn't a distinct one. A fixed locale is used on purpose:
+ * the symbol should read the same whatever the interface language is, and `narrowSymbol` picks the
+ * short local form ($, not US$). For currencies without a symbol CLDR returns the code itself — those
+ * keep just the code instead of repeating it.
+ */
+function currencySymbol(code: string): string | null {
+  const symbol = new Intl.NumberFormat("en", {
+    style: "currency",
+    currency: code,
+    currencyDisplay: "narrowSymbol",
+  })
+    .formatToParts(0)
+    .find((part) => part.type === "currency")?.value
+  return symbol && symbol !== code ? symbol : null
+}
+
+/**
+ * Options for the currency Select: the code with its symbol (`THB ฿`), or the bare code where there
+ * is none (`AED`). The code comes first so that typing it still filters the list from the first letter.
+ */
+export const CURRENCY_OPTIONS = CURRENCY_CODES.map((code) => {
+  const symbol = currencySymbol(code)
+  return { value: code, label: symbol ? `${code} ${symbol}` : code }
+})

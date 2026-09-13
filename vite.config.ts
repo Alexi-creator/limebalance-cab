@@ -27,8 +27,8 @@ export default defineConfig({
     allowedHosts: true,
     proxy: {
       "/api": {
-        // В контейнере (docker compose) хостовый бэкенд недоступен по localhost —
-        // переопределяем target через env на host.docker.internal.
+        // Inside the container (docker compose) the host backend is not reachable via localhost —
+        // override the target through env to host.docker.internal.
         target: process.env.VITE_DEV_PROXY_TARGET ?? "http://localhost:3000",
         changeOrigin: true,
       },

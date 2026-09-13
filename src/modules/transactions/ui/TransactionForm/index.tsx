@@ -6,7 +6,6 @@ import {
   Group,
   NumberInput,
   SegmentedControl,
-  Select,
   Stack,
   Text,
   Textarea,
@@ -24,8 +23,8 @@ import { useCategories } from "@/modules/categories/api/useCategories"
 import { useUsage } from "@/modules/subscription/api/useUsage"
 import { isLimitBlocked } from "@/modules/subscription/lib/plan"
 import { LimitAlert } from "@/modules/subscription/ui"
-import { CURRENCY_OPTIONS } from "@/shared/config/regionToCurrency"
 import { RouteNames } from "@/shared/config/routeNames"
+import { CurrencySelect } from "@/shared/ui/CurrencySelect"
 import { useCreateTransaction } from "../../api/useCreateTransaction"
 
 const FOOTER_STYLE = { borderTop: "1px solid var(--mantine-color-default-border)" }
@@ -188,17 +187,13 @@ export function TransactionForm({ onSubmit, onCancel, initialKind, initialCatego
             name="currency"
             control={control}
             render={({ field }) => (
-              <Select
+              <CurrencySelect
                 {...field}
                 label={t("common.currency")}
                 size="md"
                 w={140}
-                data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
-                searchable
-                allowDeselect={false}
-                nothingFoundMessage={t("common.nothing_found")}
                 error={errors.currency?.message}
               />
             )}

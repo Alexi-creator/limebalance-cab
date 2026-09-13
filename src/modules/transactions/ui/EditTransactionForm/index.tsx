@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Box, Button, Group, NumberInput, Select, Stack, Text, Textarea } from "@mantine/core"
+import { Box, Button, Group, NumberInput, Stack, Text, Textarea } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { notifications } from "@mantine/notifications"
 import { format } from "date-fns"
@@ -8,8 +8,8 @@ import { useTranslation } from "react-i18next"
 import { z } from "zod"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
 import { useCategories } from "@/modules/categories/api/useCategories"
-import { CURRENCY_OPTIONS } from "@/shared/config/regionToCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
+import { CurrencySelect } from "@/shared/ui/CurrencySelect"
 import { useUpdateTransaction } from "../../api/useUpdateTransaction"
 import type { Transaction } from "../../model"
 
@@ -116,16 +116,12 @@ export function EditTransactionForm({ transaction }: Props) {
             name="currency"
             control={control}
             render={({ field }) => (
-              <Select
+              <CurrencySelect
                 {...field}
                 label={t("common.currency")}
                 w={140}
-                data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
-                searchable
-                allowDeselect={false}
-                nothingFoundMessage={t("common.nothing_found")}
                 error={errors.currency?.message}
               />
             )}

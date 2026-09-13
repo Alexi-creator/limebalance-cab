@@ -6,6 +6,7 @@ import {
   Input,
   InputBase,
   ScrollArea,
+  Text,
   useCombobox,
 } from "@mantine/core"
 import { IconX } from "@tabler/icons-react"
@@ -15,6 +16,8 @@ import { useTranslation } from "react-i18next"
 interface Option {
   value: string
   label: string
+  /** Optional second line of meaning, shown dimmed next to the label and searchable too (currency names). */
+  description?: string
 }
 
 interface Props {
@@ -57,22 +60,44 @@ export function MultiSelectFilter({
   const toggle = (val: string) =>
     onChange(value.includes(val) ? value.filter((v) => v !== val) : [...value, val])
 
+  const query = search.trim().toLowerCase()
   const options = data
-    .filter((o) => o.label.toLowerCase().includes(search.trim().toLowerCase()))
+    .filter(
+      (o) =>
+        o.label.toLowerCase().includes(query) ||
+        (o.description ?? "").toLowerCase().includes(query),
+    )
     .map((o) => {
       const selected = value.includes(o.value)
       return (
         <Combobox.Option value={o.value} key={o.value} active={selected}>
-          <Group gap="sm" wrap="nowrap">
-            <CheckIcon size={12} style={{ opacity: selected ? 1 : 0 }} />
-            <span>{o.label}</span>
+          <Group gap="sm" wrap="nowrap" justify="space-between">
+            <Group gap="sm" wrap="nowrap" style={{ flexShrink: 0 }}>
+              <CheckIcon size={12} style={{ opacity: selected ? 1 : 0 }} />
+              <span>{o.label}</span>
+            </Group>
+            {o.description ? (
+              // minWidth lets the description shrink and ellipsize instead of overflowing
+              <Text size="sm" c="dimmed" truncate style={{ minWidth: 0 }}>
+                {o.description}
+              </Text>
+            ) : null}
           </Group>
         </Combobox.Option>
       )
     })
 
+  // the trigger is only as wide as its neighbouring filters, which the descriptions would not fit
+  const hasDescriptions = data.some((o) => o.description)
+
   return (
-    <Combobox store={combobox} onOptionSubmit={toggle} withinPortal>
+    <Combobox
+      store={combobox}
+      onOptionSubmit={toggle}
+      withinPortal
+      width={hasDescriptions ? 280 : undefined}
+      position="bottom-end"
+    >
       <Combobox.Target>
         <InputBase
           label={label}

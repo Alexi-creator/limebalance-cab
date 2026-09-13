@@ -1,6 +1,6 @@
 #!/bin/sh
-# Генерит env-config.js из env-переменных контейнера перед стартом nginx.
-# Официальный образ nginx прогоняет все /docker-entrypoint.d/*.sh при старте.
+# Generates env-config.js from the container env vars before nginx starts.
+# The official nginx image runs every /docker-entrypoint.d/*.sh on startup.
 set -e
 
 cat > /usr/share/nginx/html/env-config.js <<EOF

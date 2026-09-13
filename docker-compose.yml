@@ -10,8 +10,8 @@ services:
       - "5173:5173"
     env_file: .env
     environment:
-      # бэкенд крутится на хосте → проксируем /api туда, а не в localhost контейнера
+      # the backend runs on the host, so proxy /api there instead of the container localhost
       - VITE_DEV_PROXY_TARGET=http://host.docker.internal:3000
     extra_hosts:
-      # нужно на Linux-хостах; на Docker Desktop (Mac/Win) уже резолвится
+      # needed on Linux hosts; Docker Desktop (Mac/Win) already resolves it
       - "host.docker.internal:host-gateway"

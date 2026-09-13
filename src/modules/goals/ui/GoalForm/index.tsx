@@ -5,7 +5,6 @@ import {
   Group,
   NumberInput,
   Paper,
-  Select,
   SimpleGrid,
   Stack,
   Text,
@@ -17,8 +16,8 @@ import { format } from "date-fns"
 import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
-import { CURRENCY_OPTIONS } from "@/shared/config/regionToCurrency"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
+import { CurrencySelect } from "@/shared/ui/CurrencySelect"
 import { useSaveGoal } from "../../api/useSaveGoal"
 import type { Goal } from "../../model"
 
@@ -197,14 +196,10 @@ export function GoalForm({ onSubmit, onCancel, goal }: Props) {
             thousandSeparator=" "
           />
           {isEdit ? (
-            <Select
+            <CurrencySelect
               label={t("common.currency")}
-              data={CURRENCY_OPTIONS}
               value={currency}
               onChange={(v) => setCurrency(v ?? currency)}
-              searchable
-              allowDeselect={false}
-              nothingFoundMessage={t("common.nothing_found")}
             />
           ) : (
             <NumberInput
@@ -218,14 +213,12 @@ export function GoalForm({ onSubmit, onCancel, goal }: Props) {
         </SimpleGrid>
 
         {!isEdit && (
-          <Select
+          <CurrencySelect
             label={t("common.currency")}
-            data={CURRENCY_OPTIONS}
             value={currency}
             onChange={(v) => setCurrency(v ?? currency)}
-            searchable
-            allowDeselect={false}
-            nothingFoundMessage={t("common.nothing_found")}
+            // full-width field here, so the dropdown follows it instead of the narrower default
+            comboboxProps={{ width: "target" }}
           />
         )}
 

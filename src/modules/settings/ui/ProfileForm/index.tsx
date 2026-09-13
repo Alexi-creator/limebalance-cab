@@ -1,14 +1,14 @@
-import { Button, Group, Select, Stack, TextInput } from "@mantine/core"
+import { Button, Group, Stack, TextInput } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
-import { CURRENCY_OPTIONS } from "@/shared/config/regionToCurrency"
+import { CurrencySelect } from "@/shared/ui/CurrencySelect"
 import { useSaveProfile } from "../../api/useSaveProfile"
 
 /**
  * General settings form: name and currency. Initial values come from the user's data,
- * currency options — codes from regionToCurrency.
+ * currency options — codes from regionToCurrency, rendered by CurrencySelect.
  * We save via PATCH /auth/me and update the user in the store with the server response.
  * Email and password are moved to a separate tab (SecurityForm).
  */
@@ -39,18 +39,17 @@ export function ProfileForm() {
         onChange={(e) => setName(e.currentTarget.value)}
       />
 
-      <Select
+      <CurrencySelect
         label={t("settings.currency_label")}
         description={t("settings.currency_description")}
         // the label in the theme is "floating" (absolute) and removed from flow — without moving it the description
         // would take its place and overlap; so we render the hint under the field
         inputWrapperOrder={["label", "input", "description", "error"]}
         placeholder={t("settings.currency_placeholder")}
-        data={CURRENCY_OPTIONS}
         value={currency || null}
         onChange={(v) => setCurrency(v ?? "")}
-        searchable
-        allowDeselect={false}
+        // the field spans the form here, so the dropdown follows it instead of the narrower default
+        comboboxProps={{ width: "target" }}
         nothingFoundMessage={t("settings.currency_not_found")}
       />
 

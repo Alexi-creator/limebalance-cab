@@ -13,18 +13,18 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core"
-import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue, useDisclosure, useMediaQuery } from "@mantine/hooks"
 import { IconChevronUp, IconFilter, IconSearch, IconX } from "@tabler/icons-react"
 import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "@/modules/categories/api/useCategories"
-import { CURRENCY_OPTIONS } from "@/shared/config/regionToCurrency"
+import { useCurrencyOptions } from "@/shared/hooks/useCurrencyOptions"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
 import { getTypeOptions, type TransactionsParams } from "../../config"
 import { buildFilterChipGroups } from "../../lib/filterChips"
 import { ActiveFilterChips } from "../ActiveFilterChips"
 import { MultiSelectFilter } from "../MultiSelectFilter"
+import { PeriodFilter } from "../PeriodFilter"
 
 interface Props {
   params: TransactionsParams
@@ -105,6 +105,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
     label: c.emoji ? `${c.emoji} ${c.name}` : c.name,
   }))
 
+  const currencyOptions = useCurrencyOptions()
+
   // removable chips for the active multi-select filters — surfaced inside the drawer so the
   // selection is visible there too (categories are resolved against the full union, not the
   // type-filtered list, so a selected id still shows after switching the type tab)
@@ -122,6 +124,7 @@ export function TransactionsFilters({ params, setParams }: Props) {
       categoryId: [],
       currency: [],
       search: undefined,
+      period: "all",
       from: undefined,
       to: undefined,
       page: 1,
@@ -189,25 +192,19 @@ export function TransactionsFilters({ params, setParams }: Props) {
       <MultiSelectFilter
         label={t("common.currency")}
         placeholder={t("common.all")}
-        data={CURRENCY_OPTIONS}
+        data={currencyOptions}
         value={params.currency}
         onChange={(v) => setParams({ currency: v, page: 1 })}
         summary={(count) => t("transactions.currencies_selected", { count })}
         w={vertical ? "100%" : 160}
       />
 
-      <DatePickerInput
-        type="range"
-        label={t("transactions.period")}
-        placeholder={t("transactions.date_range_placeholder")}
-        valueFormat="DD MMM YYYY"
-        value={[params.from ?? null, params.to ?? null]}
-        onChange={([from, to]) =>
-          setParams({ from: from ?? undefined, to: to ?? undefined, page: 1 })
-        }
-        clearable
-        allowSingleDateInRange
-        w={vertical ? "100%" : 240}
+      <PeriodFilter
+        period={params.period}
+        from={params.from}
+        to={params.to}
+        onChange={(update) => setParams({ ...update, page: 1 })}
+        vertical={vertical}
       />
 
       <Button

@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Alert, Button, Group, NumberInput, Select, Stack, Text, Textarea } from "@mantine/core"
+import { Alert, Button, Group, NumberInput, Stack, Text, Textarea } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { notifications } from "@mantine/notifications"
 import { IconInfoCircle } from "@tabler/icons-react"
@@ -9,8 +9,8 @@ import { useTranslation } from "react-i18next"
 import { z } from "zod"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
 import { useBalance } from "@/modules/transactions/api/useBalance"
-import { CURRENCY_OPTIONS } from "@/shared/config/regionToCurrency"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
+import { CurrencySelect } from "@/shared/ui/CurrencySelect"
 import { useSaveExchange } from "../../api/useSaveExchange"
 import type { Exchange } from "../../model"
 
@@ -178,17 +178,13 @@ export function ExchangeForm({ onSubmit, onCancel, exchange }: Props) {
             name="fromCurrency"
             control={control}
             render={({ field }) => (
-              <Select
+              <CurrencySelect
                 {...field}
                 label={t("common.currency")}
                 size="md"
                 w={140}
-                data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
-                searchable
-                allowDeselect={false}
-                nothingFoundMessage={t("common.nothing_found")}
                 error={errors.fromCurrency?.message}
               />
             )}
@@ -217,17 +213,13 @@ export function ExchangeForm({ onSubmit, onCancel, exchange }: Props) {
             name="toCurrency"
             control={control}
             render={({ field }) => (
-              <Select
+              <CurrencySelect
                 {...field}
                 label={t("common.currency")}
                 size="md"
                 w={140}
-                data={CURRENCY_OPTIONS}
                 value={field.value || null}
                 onChange={(v) => field.onChange(v ?? "")}
-                searchable
-                allowDeselect={false}
-                nothingFoundMessage={t("common.nothing_found")}
                 error={errors.toCurrency?.message}
               />
             )}

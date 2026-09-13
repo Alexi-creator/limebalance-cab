@@ -108,43 +108,51 @@ interface LangConfig {
   label: string
   dateFnsLocale: Locale
   translation: Record<string, unknown>
+  /**
+   * Country whose flag stands for the language in the switcher (ISO 3166-1 alpha-2, lowercase —
+   * it is also the icon's filename in `public/flags`). A language is not a country, so a few of
+   * these are conventions rather than facts: English is shown with the US flag because the app's
+   * default currency for it is USD, Portuguese with Portugal's (not Brazil's), Arabic with Saudi
+   * Arabia's. Every value here must have a matching file in `public/flags`.
+   */
+  region: string
 }
 
 export const languages: Record<string, LangConfig> = {
-  en: { label: "English", dateFnsLocale: enUS, translation: en },
-  ru: { label: "Русский", dateFnsLocale: ru, translation: ruTranslation },
-  de: { label: "Deutsch", dateFnsLocale: de, translation: de_ },
-  fr: { label: "Français", dateFnsLocale: fr, translation: fr_ },
-  es: { label: "Español", dateFnsLocale: es, translation: es_ },
-  it: { label: "Italiano", dateFnsLocale: it, translation: it_ },
-  pt: { label: "Português", dateFnsLocale: pt, translation: pt_ },
-  nl: { label: "Nederlands", dateFnsLocale: nl, translation: nl_ },
-  sv: { label: "Svenska", dateFnsLocale: sv, translation: sv_ },
-  nb: { label: "Norsk", dateFnsLocale: nb, translation: nb_ },
-  da: { label: "Dansk", dateFnsLocale: da, translation: da_ },
-  fi: { label: "Suomi", dateFnsLocale: fi, translation: fi_ },
-  et: { label: "Eesti", dateFnsLocale: et, translation: et_ },
-  el: { label: "Ελληνικά", dateFnsLocale: el, translation: el_ },
-  hu: { label: "Magyar", dateFnsLocale: hu, translation: hu_ },
-  tr: { label: "Türkçe", dateFnsLocale: tr, translation: tr_ },
-  bg: { label: "Български", dateFnsLocale: bg, translation: bg_ },
-  pl: { label: "Polski", dateFnsLocale: pl, translation: pl_ },
-  cs: { label: "Čeština", dateFnsLocale: cs, translation: cs_ },
-  sk: { label: "Slovenčina", dateFnsLocale: sk, translation: sk_ },
-  uk: { label: "Українська", dateFnsLocale: uk, translation: uk_ },
-  ro: { label: "Română", dateFnsLocale: ro, translation: ro_ },
-  hr: { label: "Hrvatski", dateFnsLocale: hr, translation: hr_ },
-  lt: { label: "Lietuvių", dateFnsLocale: lt, translation: lt_ },
-  sl: { label: "Slovenščina", dateFnsLocale: sl, translation: sl_ },
-  lv: { label: "Latviešu", dateFnsLocale: lv, translation: lv_ },
-  he: { label: "עברית", dateFnsLocale: he, translation: he_ },
-  ar: { label: "العربية", dateFnsLocale: ar, translation: ar_ },
-  ja: { label: "日本語", dateFnsLocale: ja, translation: ja_ },
-  zh: { label: "中文", dateFnsLocale: zhCN, translation: zh_ },
-  ko: { label: "한국어", dateFnsLocale: ko, translation: ko_ },
-  id: { label: "Bahasa Indonesia", dateFnsLocale: id, translation: id_ },
-  th: { label: "ไทย", dateFnsLocale: th, translation: th_ },
-  vi: { label: "Tiếng Việt", dateFnsLocale: vi, translation: vi_ },
+  en: { label: "English", dateFnsLocale: enUS, translation: en, region: "us" },
+  ru: { label: "Русский", dateFnsLocale: ru, translation: ruTranslation, region: "ru" },
+  de: { label: "Deutsch", dateFnsLocale: de, translation: de_, region: "de" },
+  fr: { label: "Français", dateFnsLocale: fr, translation: fr_, region: "fr" },
+  es: { label: "Español", dateFnsLocale: es, translation: es_, region: "es" },
+  it: { label: "Italiano", dateFnsLocale: it, translation: it_, region: "it" },
+  pt: { label: "Português", dateFnsLocale: pt, translation: pt_, region: "pt" },
+  nl: { label: "Nederlands", dateFnsLocale: nl, translation: nl_, region: "nl" },
+  sv: { label: "Svenska", dateFnsLocale: sv, translation: sv_, region: "se" },
+  nb: { label: "Norsk", dateFnsLocale: nb, translation: nb_, region: "no" },
+  da: { label: "Dansk", dateFnsLocale: da, translation: da_, region: "dk" },
+  fi: { label: "Suomi", dateFnsLocale: fi, translation: fi_, region: "fi" },
+  et: { label: "Eesti", dateFnsLocale: et, translation: et_, region: "ee" },
+  el: { label: "Ελληνικά", dateFnsLocale: el, translation: el_, region: "gr" },
+  hu: { label: "Magyar", dateFnsLocale: hu, translation: hu_, region: "hu" },
+  tr: { label: "Türkçe", dateFnsLocale: tr, translation: tr_, region: "tr" },
+  bg: { label: "Български", dateFnsLocale: bg, translation: bg_, region: "bg" },
+  pl: { label: "Polski", dateFnsLocale: pl, translation: pl_, region: "pl" },
+  cs: { label: "Čeština", dateFnsLocale: cs, translation: cs_, region: "cz" },
+  sk: { label: "Slovenčina", dateFnsLocale: sk, translation: sk_, region: "sk" },
+  uk: { label: "Українська", dateFnsLocale: uk, translation: uk_, region: "ua" },
+  ro: { label: "Română", dateFnsLocale: ro, translation: ro_, region: "ro" },
+  hr: { label: "Hrvatski", dateFnsLocale: hr, translation: hr_, region: "hr" },
+  lt: { label: "Lietuvių", dateFnsLocale: lt, translation: lt_, region: "lt" },
+  sl: { label: "Slovenščina", dateFnsLocale: sl, translation: sl_, region: "si" },
+  lv: { label: "Latviešu", dateFnsLocale: lv, translation: lv_, region: "lv" },
+  he: { label: "עברית", dateFnsLocale: he, translation: he_, region: "il" },
+  ar: { label: "العربية", dateFnsLocale: ar, translation: ar_, region: "sa" },
+  ja: { label: "日本語", dateFnsLocale: ja, translation: ja_, region: "jp" },
+  zh: { label: "中文", dateFnsLocale: zhCN, translation: zh_, region: "cn" },
+  ko: { label: "한국어", dateFnsLocale: ko, translation: ko_, region: "kr" },
+  id: { label: "Bahasa Indonesia", dateFnsLocale: id, translation: id_, region: "id" },
+  th: { label: "ไทย", dateFnsLocale: th, translation: th_, region: "th" },
+  vi: { label: "Tiếng Việt", dateFnsLocale: vi, translation: vi_, region: "vn" },
 }
 
 export const dateFnsLocales: Record<string, Locale> = Object.fromEntries(

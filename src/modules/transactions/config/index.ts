@@ -1,5 +1,6 @@
 import type { TFunction } from "i18next"
 import { z } from "zod"
+import { PERIOD_VALUES } from "../lib/periods"
 
 /** Default page size. */
 export const PAGE_LIMIT = 20
@@ -34,6 +35,12 @@ export const transactionsParamsSchema = z.object({
     .catch([])
     .default([]),
   search: z.string().optional().catch(undefined),
+  /**
+   * Which option the period filter shows. The dates below are always written alongside it, so the
+   * request itself never depends on this — it only keeps a preset recognizable as a preset after a
+   * reload (`from`/`to` alone cannot tell "this month" from a range typed by hand).
+   */
+  period: z.enum(PERIOD_VALUES).catch("all").default("all"),
   /** Transaction date range, format `YYYY-MM-DD`. */
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),
