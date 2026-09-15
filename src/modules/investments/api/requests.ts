@@ -4,13 +4,20 @@ import { API_URLS } from "@/shared/api/apiUrls"
 import { HttpMethods } from "@/shared/api/httpMethods"
 import { request } from "@/shared/api/request"
 import {
+  adjustmentSchema,
+  adjustmentsResponseSchema,
   coinIconsResponseSchema,
   equityCurveResponseSchema,
   exchangeAccountSchema,
-  holdingsResponseSchema,
   positionSymbolsResponseSchema,
   positionsResponseSchema,
   positionsSummarySchema,
+  transferSchema,
+  transfersResponseSchema,
+  venueHoldingSchema,
+  venueHoldingsResponseSchema,
+  venueSchema,
+  venuesResponseSchema,
 } from "../model"
 
 // ── exchange accounts ──────────────────────────────────────────────────────────
@@ -189,45 +196,176 @@ export function deletePositionNote(positionId: string, noteId: string) {
   })
 }
 
-// ── holdings (portfolio) ───────────────────────────────────────────────────────
-
-export interface HoldingPayload {
-  /** 1–15 letters/digits; the backend uppercases it. */
-  asset: string
-  amount: number
-  avgBuyPrice?: number | null
-  location?: string
-  note?: string | null
-}
-
-export function getHoldings() {
-  return request(API_URLS.investing.holdings, { schema: holdingsResponseSchema })
-}
-
-// POST/PATCH responses are not validated: they return the bare row without the
-// live-price fields of the GET shape; the lists are refetched after each mutation anyway.
-export function createHolding(payload: HoldingPayload) {
-  return request(API_URLS.investing.holdings, {
-    method: HttpMethods.POST,
-    body: JSON.stringify(payload),
-  })
-}
-
-export function updateHolding(id: string, payload: Partial<HoldingPayload>) {
-  return request(`${API_URLS.investing.holdings}/${id}`, {
-    method: HttpMethods.PATCH,
-    body: JSON.stringify(payload),
-  })
-}
-
-export function deleteHolding(id: string) {
-  return request(`${API_URLS.investing.holdings}/${id}`, { method: HttpMethods.DELETE })
-}
-
 // ── coin icons ──────────────────────────────────────────────────────────────────
 
 /** Ticker -> icon URLs, cached ~24h server-side — safe to cache long client-side too (see
  *  useCoinIcons). Missing tickers just mean CoinIcon falls back to its letter avatar. */
 export function getCoinIcons() {
   return request(API_URLS.investing.coinIcons, { schema: coinIconsResponseSchema })
+}
+
+// ── venues and transfers ──────────────────────────────────────────────────────
+
+export interface TransfersParams {
+  venueId?: string
+  from?: Date
+  to?: Date
+  limit?: number
+  offset?: number
+}
+
+function transfersQuery(params: TransfersParams): string {
+  const q = new URLSearchParams()
+  if (params.venueId) q.set("venueId", params.venueId)
+  if (params.from) q.set("from", format(params.from, "yyyy-MM-dd"))
+  if (params.to) q.set("to", format(params.to, "yyyy-MM-dd"))
+  if (params.limit != null) q.set("limit", String(params.limit))
+  if (params.offset) q.set("offset", String(params.offset))
+  return q.size ? `?${q}` : ""
+}
+
+/** Tickers we can price — the only ones a coin picker is allowed to offer. */
+export function getAssets() {
+  return request(API_URLS.investing.assets, { schema: z.array(z.string()) })
+}
+
+/** Every venue with what went in, what it is worth now, and the result between them. */
+export function getVenues() {
+  return request(API_URLS.investing.venues, { schema: venuesResponseSchema })
+}
+
+/** Adds a place kept by hand — a cold wallet, an exchange with no API key. */
+export function createVenue(name: string) {
+  return request(API_URLS.investing.venues, {
+    method: HttpMethods.POST,
+    body: JSON.stringify({ name }),
+    schema: venueSchema.partial({ coins: true }),
+  })
+}
+
+export function updateVenue(id: string, payload: { name?: string; archived?: boolean }) {
+  return request(`${API_URLS.investing.venues}/${id}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+    schema: venueSchema.partial({ coins: true }),
+  })
+}
+
+/** Refused by the backend while the venue still has transfers on record. */
+export function deleteVenue(id: string) {
+  return request(`${API_URLS.investing.venues}/${id}`, { method: HttpMethods.DELETE })
+}
+
+export function getTransfers(params: TransfersParams = {}) {
+  return request(`${API_URLS.investing.transfers}${transfersQuery(params)}`, {
+    schema: transfersResponseSchema,
+  })
+}
+
+export interface TransferPayload {
+  venueId: string
+  /** IN: the venue gained the money. OUT: it left. */
+  direction: "IN" | "OUT"
+  /** LEDGER moves your free balance; VENUE moves between venues; EXTERNAL is gone for good. */
+  peer: "LEDGER" | "VENUE" | "EXTERNAL"
+  /** Required when peer is VENUE. */
+  peerVenueId?: string
+  /** Always positive — the sign lives in `direction`. Omit when moving a coin. */
+  amount?: number
+  /** The currency that actually left or reached your wallet; only meaningful for peer LEDGER. */
+  currency?: string
+  /** Ticker, when the move is a coin rather than money. Never against the ledger. */
+  asset?: string
+  assetAmount?: number
+  /** `YYYY-MM-DD` — the backend stores it in @db.Date without time. */
+  date?: string
+  note?: string
+}
+
+export function createTransfer(payload: TransferPayload) {
+  return request(API_URLS.investing.transfers, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+    schema: transferSchema,
+  })
+}
+
+/** The venue and its peer cannot be moved — only the figures and the note. */
+export type UpdateTransferPayload = Partial<
+  Pick<TransferPayload, "direction" | "amount" | "currency" | "date" | "note">
+>
+
+export function updateTransfer(id: string, payload: UpdateTransferPayload) {
+  return request(`${API_URLS.investing.transfers}/${id}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+    schema: transferSchema,
+  })
+}
+
+export function deleteTransfer(id: string) {
+  return request(`${API_URLS.investing.transfers}/${id}`, { method: HttpMethods.DELETE })
+}
+
+// ── venue corrections and tracked coins ───────────────────────────────────────
+
+export function getAdjustments(venueId: string) {
+  return request(`${API_URLS.investing.venues}/${venueId}/adjustments`, {
+    schema: adjustmentsResponseSchema,
+  })
+}
+
+export interface AdjustmentPayload {
+  /** Signed USD: negative when the venue holds less than the records say. Never zero. */
+  amountUsd: number
+  /** Required — a correction without a reason is unreadable a month later. */
+  note: string
+  date?: string
+}
+
+export function createAdjustment(venueId: string, payload: AdjustmentPayload) {
+  return request(`${API_URLS.investing.venues}/${venueId}/adjustments`, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+    schema: adjustmentSchema,
+  })
+}
+
+export function deleteAdjustment(id: string) {
+  return request(`${API_URLS.investing.adjustments}/${id}`, { method: HttpMethods.DELETE })
+}
+
+/** The coins tracked by hand inside one venue. */
+export function getVenueHoldings(venueId: string) {
+  return request(`${API_URLS.investing.holdings}?venueId=${venueId}`, {
+    schema: venueHoldingsResponseSchema,
+  })
+}
+
+export interface VenueHoldingPayload {
+  venueId: string
+  asset: string
+  amount: number
+  avgBuyPrice?: number | null
+  note?: string | null
+}
+
+export function createVenueHolding(payload: VenueHoldingPayload) {
+  return request(API_URLS.investing.holdings, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+    schema: venueHoldingSchema.partial({ price: true, value: true, pnlUsd: true, pnlPct: true }),
+  })
+}
+
+export function updateVenueHolding(id: string, payload: Partial<VenueHoldingPayload>) {
+  return request(`${API_URLS.investing.holdings}/${id}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify(payload),
+    schema: venueHoldingSchema.partial({ price: true, value: true, pnlUsd: true, pnlPct: true }),
+  })
+}
+
+export function deleteVenueHolding(id: string) {
+  return request(`${API_URLS.investing.holdings}/${id}`, { method: HttpMethods.DELETE })
 }

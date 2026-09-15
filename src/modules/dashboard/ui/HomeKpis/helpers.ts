@@ -7,7 +7,7 @@ export interface Kpi {
   key: string
   label: string
   value: string
-  sub?: string
+  sub?: string | string[]
   /** Rendered among the card's top-right controls — used for the "an exchange looks unrecorded"
    *  marker, which must not make the card taller than its neighbours. */
   alert?: ReactNode
@@ -42,6 +42,8 @@ export interface BalanceMetric {
   byCurrency?: { currency: string; amount: number }[]
   /** Whether `total` required converting a foreign holding at today's rate. */
   isApproximate?: boolean
+  /** Worth of everything sitting on exchanges and wallets, base currency; 0 or absent when none. */
+  inExchanges?: number | null
   loading: boolean
 }
 
@@ -106,19 +108,32 @@ export function buildKpis({
       ? "—"
       : `${balance.isApproximate ? "≈ " : ""}${formatCurrency(balance.total, language, balance.baseCurrency)}`
 
-  // Under the value: what is actually held in each currency — the figures that answer "how much
-  // have I not converted yet". Shown only while every bucket is plausible; a negative one means
-  // some of that foreign money is already spent and the split would be fiction, so the card falls
-  // back to the USD equivalent and the hint below explains what to record.
+  // Under the value: every currency actually held, always — the only way to notice money that was
+  // never converted is to see it sitting there. A negative bucket is shown too rather than hidden:
+  // it is the signature of an exchange that was not recorded, and the orange marker beside the
+  // card explains what to do about it. Hiding the split until then meant finding out by going
+  // into the red first.
   const held = (balance.byCurrency ?? []).filter((c) => c.amount !== 0)
-  const splitIsTrustworthy = held.length > 1 && findUnrecordedExchange(balance.byCurrency) === null
-  const balanceSub = balance.loading
+  const currencyLine = balance.loading
     ? t("home.kpi_balance_sub_all")
-    : splitIsTrustworthy
+    : held.length > 0
       ? held.map((c) => formatCurrency(c.amount, language, c.currency)).join("  +  ")
       : balance.usd != null
         ? `≈ ${formatCurrency(balance.usd, language, "USD")}`
         : t("home.kpi_balance_sub_all")
+
+  // Money that left the balance to work elsewhere, at what it is worth today. Kept on its own line
+  // rather than folded into the figure above: it is not free money, but it is still yours, and a
+  // balance that simply omits it reads as if it disappeared.
+  const balanceSub =
+    !balance.loading && balance.inExchanges
+      ? [
+          currencyLine,
+          t("home.kpi_balance_in_exchanges", {
+            amount: formatCurrency(balance.inExchanges, language, balance.baseCurrency),
+          }),
+        ]
+      : currencyLine
 
   return [
     {

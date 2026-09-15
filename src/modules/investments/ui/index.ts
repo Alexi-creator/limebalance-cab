@@ -1,7 +1,11 @@
 /** Public surface of the module's ui segment. */
 export { AccountsSection } from "./AccountsSection"
-export { HoldingsSection } from "./HoldingsSection"
 export { InvestmentsGuard } from "./InvestmentsGuard"
 export { InvestingPaywall } from "./Paywall"
 export { PortfolioSnippet } from "./PortfolioSnippet"
 export { PositionsSection } from "./PositionsSection"
+export { TransferForm } from "./TransferForm"
+export { TransfersHistory } from "./TransfersHistory"
+export { VenueDetails } from "./VenueDetails"
+export { VenueForm } from "./VenueForm"
+export { VenuesBlock } from "./VenuesBlock"

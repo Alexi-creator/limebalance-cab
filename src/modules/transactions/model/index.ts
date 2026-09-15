@@ -60,6 +60,12 @@ export const balanceSchema = z.object({
   inGoals: z.coerce.number().nullable().optional(),
   /** Reserved in active goals, USD; null without rates. */
   inGoalsUsd: z.coerce.number().nullable().optional(),
+  /** Sent off to invest and not brought back yet (funded exchange accounts, cold wallets), at
+   *  what was sent. Already subtracted from `balance`; what it is worth today only the portfolio
+   *  can say. */
+  inExchanges: z.coerce.number().nullable().optional(),
+  /** The same figure in USD. */
+  inExchangesUsd: z.coerce.number().nullable().optional(),
 })
 export type Balance = z.infer<typeof balanceSchema>
 

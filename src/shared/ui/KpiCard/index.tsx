@@ -7,8 +7,9 @@ interface Props {
   label: string
   /** Main value displayed in large font */
   value: string
-  /** Additional caption under the value */
-  sub?: string
+  /** Caption under the value. An array renders one line per entry — used by the balance card,
+   *  which has to say both what is held in each currency and what is out working. */
+  sub?: string | string[]
   /** Attention marker for the card's top-right controls, next to the trend badge and the refresh
    *  button. Lives in the header rather than under the value so that a card with something to say
    *  stays exactly as tall as the cards beside it. */
@@ -66,11 +67,11 @@ export function KpiCard({
       <Text ff="monospace" fz={28} fw={500} mt="sm" c={accent} style={{ letterSpacing: "-0.02em" }}>
         {value}
       </Text>
-      {sub && (
-        <Text size="xs" c="dimmed" mt={4}>
-          {sub}
+      {(Array.isArray(sub) ? sub : sub ? [sub] : []).map((line, i) => (
+        <Text key={line} size="xs" c="dimmed" mt={i === 0 ? 4 : 2}>
+          {line}
         </Text>
-      )}
+      ))}
     </Paper>
   )
 }

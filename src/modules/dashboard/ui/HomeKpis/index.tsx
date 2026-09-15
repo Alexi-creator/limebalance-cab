@@ -72,6 +72,7 @@ export function HomeKpis() {
       baseCurrency: balanceQuery.data?.baseCurrency,
       byCurrency: balanceQuery.data?.byCurrency,
       isApproximate: balanceQuery.data?.isApproximate,
+      inExchanges: balanceQuery.data?.inExchanges,
       loading: balanceQuery.isLoading,
     },
     income: {

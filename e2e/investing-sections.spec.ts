@@ -4,8 +4,8 @@ import { expect, test } from "./fixtures"
 /**
  * Investing section against the stubbed /api/investing/* endpoints (see
  * src/api/stubs.ts — one bybit account, four positions: an OPEN linear (ADAUSDT, with a
- * note) plus three CLOSED ones (linear/spot/manual), holdings with a missing price and a
- * missing buy price). All copy asserted here is the English fallback.
+ * note) plus three CLOSED ones (linear/spot/manual). All copy asserted here is the English
+ * fallback.
  */
 
 const path = (url: URL, suffix: string) => url.pathname.endsWith(suffix)
@@ -331,27 +331,6 @@ test.describe("Investments — trade journal", () => {
 
     await dialog.getByRole("button", { name: "Save" }).click()
     await expect(page.getByText("Trade added")).toBeVisible()
-  })
-})
-
-test.describe("Investments — portfolio", () => {
-  test("shows totalValue and degrades gracefully without price / buy price", async ({
-    authedPage: page,
-  }) => {
-    await gotoInvestments(page)
-    await page.getByRole("tab", { name: "Portfolio" }).click()
-
-    await expect(page.getByText("$30,100.00")).toBeVisible()
-
-    const rows = page.locator("table tbody tr")
-    // Priced asset with a buy price → value + green PnL.
-    const btc = rows.filter({ hasText: "BTC" }).first()
-    await expect(btc.getByText("+$5,000.00")).toBeVisible()
-    await expect(btc.getByText("(+20.00%)")).toBeVisible()
-    // No ticker on Bybit → "no price", stays in the list.
-    await expect(rows.filter({ hasText: "RARECOIN" }).getByText("no price")).toBeVisible()
-    // No buy price → value is shown but PnL is a dash.
-    await expect(rows.filter({ hasText: "USDT" }).getByText("—")).toBeVisible()
   })
 })
 

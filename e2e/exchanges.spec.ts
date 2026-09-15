@@ -52,7 +52,12 @@ test.describe("Currency exchanges", () => {
 
     // The "Add" button is a split control: the caret opens the record-type menu.
     await page.locator('[data-tour="add-button"]').getByRole("button").last().click()
-    await page.getByRole("menuitem", { name: "Exchange" }).click()
+    // The "Deposit or withdrawal" item mentions an exchange in its description, so it is caught by
+    // a substring match on the accessible name — the item is picked by its label alone instead.
+    await page
+      .getByRole("menuitem")
+      .filter({ has: page.getByText("Exchange", { exact: true }) })
+      .click()
 
     await expect(
       page.getByText("An exchange is neither an income nor an expense", { exact: false }),

@@ -1,7 +1,9 @@
 import { AppShell, Box, Burger, Group } from "@mantine/core"
 import { IconPlus } from "@tabler/icons-react"
 import { useTranslation } from "react-i18next"
+import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
 import { NotificationsMenu } from "@/modules/notifications/ui"
+import { hasInvestmentsAccess } from "@/modules/subscription/lib/plan"
 import { useModalStore } from "@/shared/store/modalStore"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
 import { LangSwitcher } from "@/shared/ui/LangSwitcher"
@@ -20,6 +22,7 @@ import classes from "./styles.module.css"
 export function Header() {
   const { t } = useTranslation()
   const { open } = useModalStore()
+  const user = useAuthStore((s) => s.user)
   const opened = useSidebarStore((s) => s.opened)
   const toggle = useSidebarStore((s) => s.toggle)
 
@@ -48,7 +51,7 @@ export function Header() {
               onClick={() =>
                 open({ size: "lg", centered: true, children: <AddModal type="transaction" /> })
               }
-              options={getAddOptions(t)}
+              options={getAddOptions(t, hasInvestmentsAccess(user))}
               menuWidth={260}
             />
           </Box>

@@ -1,14 +1,14 @@
 import { Alert, Box, Group, Stack, Tabs, Text, Title } from "@mantine/core"
-import { IconBriefcase, IconNotebook, IconPlugConnected } from "@tabler/icons-react"
+import { IconArrowsUpDown, IconNotebook, IconPlugConnected } from "@tabler/icons-react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useExchangeAccounts } from "@/modules/investments/api/useExchangeAccounts"
 import { useInvestmentsTour } from "@/modules/investments/hooks/useInvestmentsTour"
 import {
   AccountsSection,
-  HoldingsSection,
   InvestingPaywall,
   PositionsSection,
+  VenuesBlock,
 } from "@/modules/investments/ui"
 import { ApiError } from "@/shared/api/apiError"
 import { HttpStatus } from "@/shared/api/httpStatus"
@@ -74,7 +74,7 @@ export function InvestmentsPage() {
             </Tabs.Tab>
             <Tabs.Tab
               value="portfolio"
-              leftSection={<IconBriefcase size={16} />}
+              leftSection={<IconArrowsUpDown size={16} />}
               data-tour="inv-tab-portfolio"
             >
               <Box component="span" visibleFrom="sm">
@@ -96,7 +96,7 @@ export function InvestmentsPage() {
             <PositionsSection accounts={accounts ?? []} />
           </Tabs.Panel>
           <Tabs.Panel value="portfolio" data-tour="inv-portfolio">
-            <HoldingsSection />
+            <VenuesBlock />
           </Tabs.Panel>
           <Tabs.Panel value="accounts" data-tour="inv-accounts">
             <AccountsSection accounts={accounts ?? []} isLoading={isLoading} />

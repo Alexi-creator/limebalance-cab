@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { wallClockDate } from "@/shared/lib/wallClock"
 
 /**
  * Backend Decimals arrive as strings ("0.184"); coerce them to numbers for display.
@@ -109,28 +110,122 @@ export const equityCurveResponseSchema = z.object({
   ),
 })
 
-export const holdingSchema = z.object({
+export const transferDirectionSchema = z.enum(["IN", "OUT"])
+export type TransferDirection = z.infer<typeof transferDirectionSchema>
+
+/**
+ * Who is on the other side of a transfer — the one thing that decides what it does to your money:
+ *
+ * - `LEDGER` — your own free balance. The only peer that moves it.
+ * - `VENUE` — another venue. Nothing leaves your net worth, two venues change.
+ * - `EXTERNAL` — someone else. The money is gone for good and net worth drops with it.
+ */
+export const transferPeerSchema = z.enum(["LEDGER", "VENUE", "EXTERNAL"])
+export type TransferPeer = z.infer<typeof transferPeerSchema>
+
+export const transferSchema = z.object({
+  id: z.string(),
+  venueId: z.string(),
+  venueName: z.string(),
+  /** From the venue's point of view: IN means it gained the money. */
+  direction: transferDirectionSchema,
+  peer: transferPeerSchema,
+  peerVenueId: z.string().nullable(),
+  peerVenueName: z.string().nullable(),
+  /** Always positive — the sign lives in `direction`. */
+  amount: decimal(),
+  currency: z.string(),
+  /** At the rate of the transfer's own day; null when no rate was available for it. */
+  amountUsd: nullableDecimal(),
+  /** Set when the move was made in a coin — then `amount` is that coin priced in USD. */
+  asset: z.string().nullable(),
+  assetAmount: nullableDecimal(),
+  note: z.string().nullable(),
+  // A @db.Date field — wall-clock, like a transaction's own date.
+  date: wallClockDate(),
+})
+
+export const transfersResponseSchema = z.object({
+  items: z.array(transferSchema),
+  total: z.number(),
+})
+
+export const venueCoinSchema = z.object({
+  coin: z.string(),
+  amount: decimal(),
+  usdValue: nullableDecimal(),
+})
+
+/**
+ * A place money sits once it has left the ledger.
+ *
+ * LIVE means the exchange itself is asked what it is worth on every sync — open positions marked
+ * to market included — so `valueUsd` matches what you see on the exchange rather than being
+ * reconstructed from deposits. MANUAL means it is worth what you say it is.
+ */
+export const venueSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  accountId: z.string().nullable(),
+  mode: z.enum(["LIVE", "MANUAL"]),
+  archived: z.boolean(),
+  /** Net moved in since tracking started, USD. */
+  transferredUsd: decimal(),
+  /** What it is worth now; null when the exchange has not been read yet. */
+  valueUsd: nullableDecimal(),
+  /** value − (opening + transferred): the result since tracking began. */
+  resultUsd: nullableDecimal(),
+  /** What was already here when tracking started — never counted as a result. */
+  openingUsd: nullableDecimal(),
+  /** Net of the manual corrections applied to this venue, USD. */
+  adjustmentsUsd: decimal().default(0),
+  /** When the value was last read. Its age is worth showing next to the figure. */
+  valueAt: nullableDate(),
+  coins: z.array(venueCoinSchema).default([]),
+})
+
+/** "This venue holds X more/less than we think, and here is why." Manual venues only. */
+export const adjustmentSchema = z.object({
+  id: z.string(),
+  venueId: z.string(),
+  /** Signed: negative when the venue holds less than the records say. */
+  amountUsd: decimal(),
+  note: z.string(),
+  date: wallClockDate(),
+})
+
+export const adjustmentsResponseSchema = z.array(adjustmentSchema)
+
+/** A coin tracked by hand inside a manual venue, valued at the live Bybit spot price. */
+export const venueHoldingSchema = z.object({
   id: z.string(),
   asset: z.string(),
   amount: decimal(),
   avgBuyPrice: nullableDecimal(),
+  venueId: z.string().nullable(),
   location: z.string(),
   note: z.string().nullable(),
-  /** Live spot price in USD; null when the asset has no USDT ticker on Bybit. */
+  /** null when the asset has no USDT ticker on Bybit — then it is left out of every total. */
   price: z.number().nullable(),
-  /** amount × price; null when the price is unavailable (excluded from totalValue). */
   value: z.number().nullable(),
-  /** Against avgBuyPrice; null when either the price or the buy price is missing. */
   pnlUsd: z.number().nullable(),
   pnlPct: z.number().nullable(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
 })
 
-export const holdingsResponseSchema = z.object({
-  items: z.array(holdingSchema),
-  /** Sum of `value` over priced positions only, USD. */
+export const venueHoldingsResponseSchema = z.object({
+  items: z.array(venueHoldingSchema),
   totalValue: z.number(),
+})
+
+export const venuesResponseSchema = z.object({
+  items: z.array(venueSchema),
+  baseCurrency: z.string(),
+  totalUsd: decimal(),
+  totalBase: nullableDecimal(),
+  investedUsd: decimal(),
+  resultUsd: decimal(),
+  /** A venue could not be valued, so every total is a lower bound. */
+  isPartial: z.boolean(),
 })
 
 /** GET /investing/coin-icons — ticker -> icon URLs, cached long client-side (see CoinIcon). */
@@ -139,14 +234,18 @@ export const coinIconsResponseSchema = z.object({
 })
 
 export type ExchangeAccount = z.infer<typeof exchangeAccountSchema>
+export type Transfer = z.infer<typeof transferSchema>
+export type Venue = z.infer<typeof venueSchema>
+export type VenueCoin = z.infer<typeof venueCoinSchema>
+export type Adjustment = z.infer<typeof adjustmentSchema>
+export type VenueHolding = z.infer<typeof venueHoldingSchema>
+export type VenuesResponse = z.infer<typeof venuesResponseSchema>
 export type PositionNote = z.infer<typeof positionNoteSchema>
 export type Position = z.infer<typeof positionSchema>
 export type PositionsResponse = z.infer<typeof positionsResponseSchema>
 export type PositionSymbolsResponse = z.infer<typeof positionSymbolsResponseSchema>
 export type PositionsSummary = z.infer<typeof positionsSummarySchema>
 export type EquityCurveResponse = z.infer<typeof equityCurveResponseSchema>
-export type Holding = z.infer<typeof holdingSchema>
-export type HoldingsResponse = z.infer<typeof holdingsResponseSchema>
 export type CoinIconsResponse = z.infer<typeof coinIconsResponseSchema>
 
 /**

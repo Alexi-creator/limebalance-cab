@@ -70,7 +70,11 @@ export const API_URLS = {
     positionsSummary: `${API_URL}/investing/positions/summary`,
     equityCurve: `${API_URL}/investing/positions/equity-curve`,
     trades: `${API_URL}/investing/trades`,
-    holdings: `${API_URL}/investing/holdings`,
     coinIcons: `${API_URL}/investing/coin-icons`,
+    venues: `${API_URL}/investing/venues`,
+    transfers: `${API_URL}/investing/transfers`,
+    adjustments: `${API_URL}/investing/adjustments`,
+    holdings: `${API_URL}/investing/holdings`,
+    assets: `${API_URL}/investing/assets`,
   },
 }

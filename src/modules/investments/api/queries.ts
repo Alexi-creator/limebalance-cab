@@ -1,4 +1,4 @@
-import type { PositionsParams } from "./requests"
+import type { PositionsParams, TransfersParams } from "./requests"
 
 export const investingKeys = {
   all: ["investing"] as const,
@@ -10,11 +10,16 @@ export const investingKeys = {
     ["investing", "positions", "summary", params] as const,
   equityCurve: (params: PositionsParams) =>
     ["investing", "positions", "equity-curve", params] as const,
-  holdings: ["investing", "holdings"] as const,
   coinIcons: ["investing", "coin-icons"] as const,
+  venues: ["investing", "venues"] as const,
+  assets: ["investing", "assets"] as const,
+  venueHoldings: (venueId: string) => ["investing", "holdings", venueId] as const,
+  adjustments: (venueId: string) => ["investing", "adjustments", venueId] as const,
+  transfers: (params: TransfersParams) => ["investing", "transfers", params] as const,
+  allTransfers: ["investing", "transfers"] as const,
 }
 
-/** Holdings prices are cached for a minute on the backend — no point refetching sooner. */
+/** Coin prices are cached for a minute on the backend — no point refetching sooner. */
 export const HOLDINGS_STALE_TIME = 60 * 1000
 
 /** Positions/summary/equity-curve are keyed by their filter params, so this caches per filter
