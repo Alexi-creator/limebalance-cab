@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { ApiError } from "@/shared/api/apiError"
 import { wallClockDate } from "@/shared/lib/wallClock"
 
 /**
@@ -183,6 +184,32 @@ export const venueSchema = z.object({
   valueAt: nullableDate(),
   coins: z.array(venueCoinSchema).default([]),
 })
+
+/**
+ * Why a venue refused to delete: what is still recorded against it.
+ *
+ * Deleting a card never moves money anywhere, so the backend refuses while anything is in there
+ * and names it. The counts arrive as data rather than only inside an English sentence, so the form
+ * can say it in the user's language and offer the two real ways out — send the money somewhere, or
+ * archive the card and keep its history.
+ */
+export const venueNotEmptySchema = z.object({
+  code: z.literal("VENUE_NOT_EMPTY"),
+  blockers: z.object({
+    transfers: z.number(),
+    holdings: z.number(),
+    adjustments: z.number(),
+  }),
+})
+
+export type VenueBlockers = z.infer<typeof venueNotEmptySchema>["blockers"]
+
+/** The refusal behind a failed delete, or null when the failure was something else entirely. */
+export function venueBlockersOf(error: unknown): VenueBlockers | null {
+  if (!(error instanceof ApiError)) return null
+  const parsed = venueNotEmptySchema.safeParse(error.body)
+  return parsed.success ? parsed.data.blockers : null
+}
 
 /** "This venue holds X more/less than we think, and here is why." Manual venues only. */
 export const adjustmentSchema = z.object({

@@ -15,8 +15,10 @@ import {
   IconArrowUpRight,
   IconCoins,
   IconHistory,
+  IconPencil,
   IconPlugConnected,
   IconPlus,
+  IconTrash,
 } from "@tabler/icons-react"
 import type { Locale } from "date-fns"
 import { formatDistanceToNow } from "date-fns"
@@ -193,8 +195,21 @@ function VenueCard({
   const usd = (n: number | null) => (n == null ? "—" : formatCurrency(n, language, "USD"))
   const result = venue.resultUsd
 
+  // Deleting opens the same form as editing, already asking for confirmation: the refusal when the
+  // venue is not empty, and the two ways out of it, are written once and live there.
+  const openEdit = (intent?: "delete") =>
+    open({
+      centered: true,
+      title: intent === "delete" ? t("common.delete") : t("investments.venue_edit"),
+      children: <VenueForm venue={venue} intent={intent} />,
+    })
+
   return (
-    <Paper p="md" opacity={venue.archived ? 0.6 : 1}>
+    <Paper
+      p="md"
+      opacity={venue.archived ? 0.6 : 1}
+      style={{ display: "flex", flexDirection: "column", height: "100%" }}
+    >
       <Group justify="space-between" wrap="nowrap" mb="xs" gap="xs">
         <Group gap={6} wrap="nowrap" style={{ minWidth: 0 }}>
           <Text
@@ -202,13 +217,7 @@ function VenueCard({
             fw={600}
             truncate="end"
             style={{ cursor: "pointer" }}
-            onClick={() =>
-              open({
-                centered: true,
-                title: t("investments.venue_edit"),
-                children: <VenueForm venue={venue} />,
-              })
-            }
+            onClick={() => openEdit()}
           >
             {venue.name}
           </Text>
@@ -256,6 +265,31 @@ function VenueCard({
               <IconHistory size={14} />
             </ActionIcon>
           </Tooltip>
+          <Tooltip label={t("investments.venue_edit")} withinPortal>
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              size="sm"
+              aria-label={t("investments.venue_edit")}
+              onClick={() => openEdit()}
+            >
+              <IconPencil size={14} />
+            </ActionIcon>
+          </Tooltip>
+          {/* Only a card of our own: a connected exchange's venue goes away with its API key. */}
+          {!venue.accountId && (
+            <Tooltip label={t("common.delete")} withinPortal>
+              <ActionIcon
+                variant="subtle"
+                color="red"
+                size="sm"
+                aria-label={t("common.delete")}
+                onClick={() => openEdit("delete")}
+              >
+                <IconTrash size={14} />
+              </ActionIcon>
+            </Tooltip>
+          )}
         </Group>
       </Group>
 
@@ -307,7 +341,8 @@ function VenueCard({
         </Text>
       )}
 
-      <Group gap="xs" mt="md" grow>
+      {/* Cards in a row differ in height; the actions line up only if they hang off the bottom. */}
+      <Group gap="xs" pt="md" grow style={{ marginTop: "auto" }}>
         <Button size="xs" variant="light" onClick={onDeposit}>
           {t("investments.tr_deposit")}
         </Button>

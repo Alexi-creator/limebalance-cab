@@ -26,7 +26,7 @@ export async function commonRequest<T>(url: string, options: RequestOptions<T> =
 
   if (!response.ok) {
     const data = await response.json().catch(() => ({}))
-    throw new ApiError(response.status, data?.message ?? `HTTP error ${response.status}`)
+    throw new ApiError(response.status, data?.message ?? `HTTP error ${response.status}`, data)
   }
 
   // Some endpoints answer 200 with an empty body (e.g. PATCH /notifications/preferences/:type) —

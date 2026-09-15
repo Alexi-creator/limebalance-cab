@@ -4,7 +4,10 @@ import { useInvalidateTransferData } from "./useInvalidateTransferData"
 
 interface Options {
   onSuccess?: () => void
-  /** 400 means the venue still has transfers on record — surface the message as-is. */
+  /**
+   * 400 means the venue is not empty. It carries a VENUE_NOT_EMPTY code and the counts behind it
+   * (see `venueBlockersOf`), so the caller can answer with a way out rather than a message.
+   */
   onError?: (error: Error) => void
 }
 
