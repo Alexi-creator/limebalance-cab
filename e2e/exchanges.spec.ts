@@ -156,6 +156,66 @@ test.describe("Multicurrency balance", () => {
     await expect(page.locator('[data-tour="balance-hint"]')).toHaveCount(0)
   })
 
+  test("explains the split and the money out working, without growing the card", async ({
+    page,
+  }) => {
+    // Two currencies held and money sitting on an exchange — the state where every figure on the
+    // card is correct and none of them is self-evident.
+    await mockApi(page, {
+      user: { ...MOCK_USER, currency: "THB" },
+      balance: {
+        baseCurrency: "THB",
+        balance: 15518,
+        balanceUsd: 466,
+        byCurrency: [
+          { currency: "THB", amount: 15305 },
+          { currency: "USD", amount: 6 },
+        ],
+        isApproximate: true,
+        inExchanges: 21066,
+      },
+    })
+    await page.goto("/")
+
+    const card = page.locator('[data-tour="balance"]')
+    const hints = card.getByRole("button", { name: /currency|exchange|wallet/i })
+    await expect(hints).toHaveCount(2)
+
+    // The split says outright that the figures beside it are the exact ones and the total is not.
+    await hints.first().hover()
+    // Filtered rather than asserted on the only tooltip: the previous one lingers through its
+    // close delay, so a bare getByRole would match two elements as soon as the second is opened.
+    await expect(
+      page.getByRole("tooltip").filter({ hasText: "these amounts are exact" }),
+    ).toBeVisible()
+
+    // And the money out working says it is not part of the value above — the question the line
+    // provokes in everyone who reads it.
+    await hints.last().hover()
+    await expect(
+      page.getByRole("tooltip").filter({ hasText: "already left the balance above" }),
+    ).toBeVisible()
+  })
+
+  test("leaves a single-currency balance unexplained", async ({ page }) => {
+    // Nothing was converted, so the caption merely repeats the value — a hint there is noise.
+    await mockApi(page, {
+      user: { ...MOCK_USER, currency: "THB" },
+      balance: {
+        baseCurrency: "THB",
+        balance: 15305,
+        balanceUsd: 460,
+        byCurrency: [{ currency: "THB", amount: 15305 }],
+        isApproximate: false,
+      },
+    })
+    await page.goto("/")
+
+    await expect(
+      page.locator('[data-tour="balance"]').getByRole("button", { name: /currency/i }),
+    ).toHaveCount(0)
+  })
+
   test("hides the split while it would be fiction, and explains why instead", async ({ page }) => {
     // Earned in RUB, spent in THB, never recorded the conversion — THB cannot really be negative,
     // and the RUB figure is no longer "what is left", so neither may be shown as a holding.

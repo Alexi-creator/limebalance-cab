@@ -229,7 +229,9 @@
     "tour_balance_desc": "如果你以一种货币收入、另一种货币支出，请记录兑换 — 这样余额才准确。兑换既不是收入也不是支出，它只是在你的各币种之间移动资金。",
     "balance_missing_exchange": "{{currency}} 余额为负，而其他币种不是 — 看起来有一笔兑换没有记录。",
     "balance_record_exchange": "去记录",
-    "kpi_balance_in_exchanges": "在平台运作中：{{amount}}"
+    "kpi_balance_in_exchanges": "在平台运作中：{{amount}}",
+    "kpi_balance_currencies_hint": "每种货币单独计算，从不换算，这些金额是精确的。上方数字按今日汇率折算成 {{currency}} 汇总，因此只是估算。",
+    "kpi_balance_in_exchanges_hint": "已转到平台或钱包的资金。它已从上方余额中扣除，这里按今日价值显示，包含交易结果。"
   },
   "alerts": {
     "account_needs_email": "您通过 Telegram 登录。请在设置中添加邮箱和密码，以免失去对账户的访问权限。",

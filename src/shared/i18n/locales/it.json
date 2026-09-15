@@ -231,7 +231,9 @@
     "tour_balance_desc": "Se guadagni in una valuta e spendi in un'altra, registra il cambio: così il saldo resta esatto. Un cambio non è un'entrata né un'uscita, sposta solo denaro tra le tue valute.",
     "balance_missing_exchange": "Il saldo in {{currency}} è negativo mentre le altre valute no — sembra mancare un cambio.",
     "balance_record_exchange": "Registra",
-    "kpi_balance_in_exchanges": "al lavoro sulle piattaforme: {{amount}}"
+    "kpi_balance_in_exchanges": "al lavoro sulle piattaforme: {{amount}}",
+    "kpi_balance_currencies_hint": "Ogni valuta è contata a sé e non viene mai convertita: questi importi sono esatti. La cifra sopra le somma in {{currency}} al cambio di oggi, quindi è una stima.",
+    "kpi_balance_in_exchanges_hint": "Denaro inviato a una piattaforma o a un wallet. Dal saldo sopra è già stato sottratto; qui è mostrato per quanto vale oggi, risultato del trading incluso."
   },
   "alerts": {
     "account_needs_email": "Hai effettuato l'accesso tramite Telegram. Aggiungi email e password nelle impostazioni per non perdere l'accesso al tuo account.",

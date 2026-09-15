@@ -231,7 +231,9 @@
     "tour_balance_desc": "Wenn Sie in einer Währung verdienen und in einer anderen ausgeben, erfassen Sie den Tausch — dann bleibt der Saldo exakt. Ein Tausch ist weder Einnahme noch Ausgabe: Er verschiebt nur Geld zwischen Ihren Währungen.",
     "balance_missing_exchange": "Ihr {{currency}}-Saldo ist negativ, andere Währungen dagegen nicht — offenbar fehlt ein Tausch.",
     "balance_record_exchange": "Erfassen",
-    "kpi_balance_in_exchanges": "auf Plattformen im Einsatz: {{amount}}"
+    "kpi_balance_in_exchanges": "auf Plattformen im Einsatz: {{amount}}",
+    "kpi_balance_currencies_hint": "Jede Währung wird für sich gezählt und nie umgerechnet — diese Beträge sind exakt. Der Wert oben addiert sie zum heutigen Kurs in {{currency}} und ist deshalb eine Schätzung.",
+    "kpi_balance_in_exchanges_hint": "Geld, das auf eine Plattform oder in eine Wallet geschickt wurde. Vom Saldo oben ist es bereits abgezogen; hier steht, was es heute wert ist — Handelsergebnis inklusive."
   },
   "alerts": {
     "account_needs_email": "Sie haben sich über Telegram angemeldet. Fügen Sie in den Einstellungen E-Mail und Passwort hinzu, um den Zugriff auf Ihr Konto nicht zu verlieren.",

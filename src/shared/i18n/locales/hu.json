@@ -231,7 +231,9 @@
     "tour_balance_desc": "Ha az egyik valutában keres és egy másikban költ, rögzítse a váltást — így az egyenleg pontos marad. A váltás nem bevétel és nem kiadás: csak a valutái között mozgatja a pénzt.",
     "balance_missing_exchange": "A(z) {{currency}} egyenlege negatív, a többi valutáé nem — úgy tűnik, hiányzik egy váltás.",
     "balance_record_exchange": "Rögzítés",
-    "kpi_balance_in_exchanges": "platformokon dolgozik: {{amount}}"
+    "kpi_balance_in_exchanges": "platformokon dolgozik: {{amount}}",
+    "kpi_balance_currencies_hint": "Minden pénznem külön számít, és sosem váltjuk át — ezek az összegek pontosak. A fenti szám a mai árfolyamon összesíti őket ({{currency}}), ezért csak becslés.",
+    "kpi_balance_in_exchanges_hint": "Platformra vagy tárcába küldött pénz. A fenti egyenlegből már levontuk; itt a mai értéke látszik, a kereskedés eredményével együtt."
   },
   "alerts": {
     "account_needs_email": "Telegramon keresztül jelentkeztél be. Adj hozzá e-mailt és jelszót a beállításokban, hogy ne veszítsd el a hozzáférést a fiókodhoz.",

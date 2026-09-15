@@ -231,7 +231,9 @@
     "tour_balance_desc": "Si vous gagnez dans une devise et dépensez dans une autre, enregistrez le change — le solde restera exact. Un change n'est ni un revenu ni une dépense : il déplace seulement l'argent entre vos devises.",
     "balance_missing_exchange": "Votre solde en {{currency}} est négatif alors que les autres devises ne le sont pas — un change semble manquer.",
     "balance_record_exchange": "Enregistrer",
-    "kpi_balance_in_exchanges": "au travail sur les plateformes : {{amount}}"
+    "kpi_balance_in_exchanges": "au travail sur les plateformes : {{amount}}",
+    "kpi_balance_currencies_hint": "Chaque devise est comptée séparément et n'est jamais convertie — ces montants sont exacts. Le chiffre ci-dessus les additionne en {{currency}} au cours du jour, il s'agit donc d'une estimation.",
+    "kpi_balance_in_exchanges_hint": "L'argent envoyé sur une plateforme ou un portefeuille. Il est déjà déduit du solde ci-dessus ; ici il apparaît à sa valeur du jour, résultat de trading compris."
   },
   "alerts": {
     "account_needs_email": "Vous vous êtes connecté via Telegram. Ajoutez un e-mail et un mot de passe dans les paramètres pour ne pas perdre l'accès à votre compte.",

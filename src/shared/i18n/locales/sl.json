@@ -235,7 +235,9 @@
     "tour_balance_desc": "Če zaslužite v eni valuti in trošite v drugi, zabeležite menjavo — stanje bo tako ostalo natančno. Menjava ni prihodek ne odhodek: le premakne denar med vašimi valutami.",
     "balance_missing_exchange": "Stanje v {{currency}} je negativno, v drugih valutah pa ne — videti je, da manjka menjava.",
     "balance_record_exchange": "Zabeleži",
-    "kpi_balance_in_exchanges": "dela na platformah: {{amount}}"
+    "kpi_balance_in_exchanges": "dela na platformah: {{amount}}",
+    "kpi_balance_currencies_hint": "Vsaka valuta se šteje posebej in se nikoli ne pretvarja — ti zneski so točni. Številka zgoraj jih sešteje v {{currency}} po današnjem tečaju, zato je ocena.",
+    "kpi_balance_in_exchanges_hint": "Denar, poslan na platformo ali v denarnico. Od stanja zgoraj je že odštet; tu je prikazan po današnji vrednosti, skupaj z rezultatom trgovanja."
   },
   "alerts": {
     "account_needs_email": "Prijavili ste se prek Telegrama. V nastavitvah dodajte e-pošto in geslo, da ne izgubite dostopa do računa.",

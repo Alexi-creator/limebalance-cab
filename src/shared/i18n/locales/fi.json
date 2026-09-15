@@ -231,7 +231,9 @@
     "tour_balance_desc": "Jos ansaitset yhdessä valuutassa ja kulutat toisessa, kirjaa vaihto — silloin saldo pysyy tarkkana. Vaihto ei ole tulo eikä meno: se vain siirtää rahaa valuuttojesi välillä.",
     "balance_missing_exchange": "Saldosi valuutassa {{currency}} on miinuksella, muissa ei — vaihto näyttää jääneen kirjaamatta.",
     "balance_record_exchange": "Kirjaa",
-    "kpi_balance_in_exchanges": "töissä alustoilla: {{amount}}"
+    "kpi_balance_in_exchanges": "töissä alustoilla: {{amount}}",
+    "kpi_balance_currencies_hint": "Jokainen valuutta lasketaan erikseen eikä sitä muunneta — nämä summat ovat tarkkoja. Yllä oleva luku laskee ne yhteen valuutassa {{currency}} päivän kurssilla, joten se on arvio.",
+    "kpi_balance_in_exchanges_hint": "Alustalle tai lompakkoon lähetetyt rahat. Ne on jo vähennetty yllä olevasta saldosta; tässä ne näkyvät tämän päivän arvossa — kaupankäynnin tulos mukaan lukien."
   },
   "alerts": {
     "account_needs_email": "Kirjauduit Telegramilla. Lisää sähköposti ja salasana asetuksiin, jotta et menetä pääsyä tiliisi.",

@@ -234,7 +234,9 @@
     "tour_balance_desc": "If you earn in one currency and spend in another, record the exchange — then the balance stays exact. An exchange is not an income or an expense: it only moves money between your currencies.",
     "balance_missing_exchange": "Your {{currency}} balance is negative while other currencies are not — an exchange looks unrecorded.",
     "balance_record_exchange": "Record it",
-    "kpi_balance_in_exchanges": "working on exchanges: {{amount}}"
+    "kpi_balance_in_exchanges": "working on exchanges: {{amount}}",
+    "kpi_balance_currencies_hint": "Each currency is counted separately and never converted — these amounts are exact. The figure above adds them up in {{currency}} at today's rate, so it is an estimate.",
+    "kpi_balance_in_exchanges_hint": "Money you moved to an exchange or wallet. It has already left the balance above; here it is shown at what it is worth today, trading results included."
   },
   "tour": {
     "start": "Show tour",

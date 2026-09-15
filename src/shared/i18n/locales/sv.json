@@ -231,7 +231,9 @@
     "tour_balance_desc": "Tjänar du i en valuta och spenderar i en annan — registrera växlingen, då förblir saldot exakt. En växling är varken inkomst eller utgift: den flyttar bara pengar mellan dina valutor.",
     "balance_missing_exchange": "Ditt saldo i {{currency}} är negativt medan andra valutor inte är det — en växling verkar saknas.",
     "balance_record_exchange": "Registrera",
-    "kpi_balance_in_exchanges": "arbetar på plattformar: {{amount}}"
+    "kpi_balance_in_exchanges": "arbetar på plattformar: {{amount}}",
+    "kpi_balance_currencies_hint": "Varje valuta räknas för sig och växlas aldrig om — de här beloppen är exakta. Siffran ovan summerar dem i {{currency}} till dagens kurs och är därför en uppskattning.",
+    "kpi_balance_in_exchanges_hint": "Pengar som skickats till en plattform eller plånbok. De är redan avdragna från saldot ovan; här visas vad de är värda i dag — handelsresultat inräknat."
   },
   "alerts": {
     "account_needs_email": "Du loggade in via Telegram. Lägg till e-post och lösenord i inställningarna så att du inte förlorar åtkomsten till ditt konto.",

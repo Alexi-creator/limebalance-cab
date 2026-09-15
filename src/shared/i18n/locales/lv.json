@@ -233,7 +233,9 @@
     "tour_balance_desc": "Ja pelni vienā valūtā un tērē citā, reģistrē maiņu — tad atlikums paliks precīzs. Maiņa nav ne ienākums, ne izdevums: tā tikai pārvieto naudu starp tavām valūtām.",
     "balance_missing_exchange": "Atlikums {{currency}} ir negatīvs, bet citās valūtās nav — šķiet, maiņa nav reģistrēta.",
     "balance_record_exchange": "Reģistrēt",
-    "kpi_balance_in_exchanges": "strādā platformās: {{amount}}"
+    "kpi_balance_in_exchanges": "strādā platformās: {{amount}}",
+    "kpi_balance_currencies_hint": "Katra valūta tiek skaitīta atsevišķi un netiek konvertēta — šīs summas ir precīzas. Skaitlis augstāk tās saskaita {{currency}} pēc šodienas kursa, tāpēc tas ir aptuvens.",
+    "kpi_balance_in_exchanges_hint": "Nauda, kas nosūtīta uz platformu vai maku. No augstāk redzamā atlikuma tā jau ir atskaitīta; šeit parādīta šodienas vērtība kopā ar tirdzniecības rezultātu."
   },
   "alerts": {
     "account_needs_email": "Jūs pieteicāties caur Telegram. Pievienojiet iestatījumos e-pastu un paroli, lai nezaudētu piekļuvi kontam.",

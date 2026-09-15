@@ -233,7 +233,9 @@
     "tour_balance_desc": "Dacă încasezi într-o valută și cheltuiești în alta, înregistrează schimbul — atunci soldul rămâne exact. Un schimb nu este venit și nu este cheltuială: doar mută banii între valutele tale.",
     "balance_missing_exchange": "Soldul în {{currency}} este negativ, iar celelalte valute nu — pare că lipsește un schimb.",
     "balance_record_exchange": "Înregistrează",
-    "kpi_balance_in_exchanges": "la lucru pe platforme: {{amount}}"
+    "kpi_balance_in_exchanges": "la lucru pe platforme: {{amount}}",
+    "kpi_balance_currencies_hint": "Fiecare monedă se numără separat și nu se convertește — aceste sume sunt exacte. Cifra de mai sus le adună în {{currency}} la cursul de azi, deci este o estimare.",
+    "kpi_balance_in_exchanges_hint": "Bani trimiși către o platformă sau un portofel. Din soldul de mai sus sunt deja scăzuți; aici apar la valoarea de azi, inclusiv rezultatul tranzacționării."
   },
   "alerts": {
     "account_needs_email": "Te-ai autentificat prin Telegram. Adaugă un e-mail și o parolă în setări ca să nu pierzi accesul la cont.",

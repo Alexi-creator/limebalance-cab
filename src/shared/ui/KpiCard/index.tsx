@@ -1,6 +1,17 @@
-import { ActionIcon, Badge, Group, Paper, Text } from "@mantine/core"
-import { IconRefresh } from "@tabler/icons-react"
+import { ActionIcon, Badge, Group, Paper, Text, Tooltip } from "@mantine/core"
+import { IconInfoCircle, IconRefresh } from "@tabler/icons-react"
 import type { ReactNode } from "react"
+
+/** A caption line that can carry an explanation of its own. */
+export interface KpiSubLine {
+  text: string
+  /** Shown behind a small info icon at the end of the line. For a figure that is correct but not
+   *  self-evident — where it came from, or why it is not part of the value above. */
+  hint?: string
+}
+
+/** Caption under the value: one line, or several — each optionally explained. */
+export type KpiSub = string | KpiSubLine | (string | KpiSubLine)[]
 
 interface Props {
   /** Metric title (e.g. "Income for the month") */
@@ -9,7 +20,7 @@ interface Props {
   value: string
   /** Caption under the value. An array renders one line per entry — used by the balance card,
    *  which has to say both what is held in each currency and what is out working. */
-  sub?: string | string[]
+  sub?: KpiSub
   /** Attention marker for the card's top-right controls, next to the trend badge and the refresh
    *  button. Lives in the header rather than under the value so that a card with something to say
    *  stays exactly as tall as the cards beside it. */
@@ -38,6 +49,10 @@ export function KpiCard({
   onRefresh,
   isRefreshing,
 }: Props) {
+  const subLines = (Array.isArray(sub) ? sub : sub ? [sub] : []).map((line) =>
+    typeof line === "string" ? { text: line } : line,
+  )
+
   return (
     <Paper p="lg">
       <Group justify="space-between" align="flex-start">
@@ -67,9 +82,34 @@ export function KpiCard({
       <Text ff="monospace" fz={28} fw={500} mt="sm" c={accent} style={{ letterSpacing: "-0.02em" }}>
         {value}
       </Text>
-      {(Array.isArray(sub) ? sub : sub ? [sub] : []).map((line, i) => (
-        <Text key={line} size="xs" c="dimmed" mt={i === 0 ? 4 : 2}>
-          {line}
+      {subLines.map(({ text, hint }, i) => (
+        <Text key={text} size="xs" c="dimmed" mt={i === 0 ? 4 : 2}>
+          {text}
+          {hint && (
+            <Tooltip
+              label={hint}
+              multiline
+              w={280}
+              withArrow
+              events={{ hover: true, focus: true, touch: true }}
+            >
+              {/* Inline, inside the sentence rather than beside it: a caption that wraps to two
+                  lines would otherwise leave the icon stranded at the far right of the card.
+                  A button and not a bare icon, so the explanation is reachable by keyboard and by
+                  tap and not only by hovering a mouse. */}
+              <ActionIcon
+                variant="subtle"
+                color="gray"
+                size="xs"
+                aria-label={hint}
+                ml={4}
+                display="inline-flex"
+                style={{ verticalAlign: "text-bottom" }}
+              >
+                <IconInfoCircle size={13} />
+              </ActionIcon>
+            </Tooltip>
+          )}
         </Text>
       ))}
     </Paper>

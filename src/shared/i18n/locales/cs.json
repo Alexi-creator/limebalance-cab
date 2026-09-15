@@ -233,7 +233,9 @@
     "tour_balance_desc": "Pokud vyděláváte v jedné měně a utrácíte v jiné, zaznamenejte směnu — zůstatek pak zůstane přesný. Směna není příjem ani výdaj: pouze přesouvá peníze mezi vašimi měnami.",
     "balance_missing_exchange": "Zůstatek v {{currency}} je záporný, zatímco v jiných měnách ne — zřejmě chybí směna.",
     "balance_record_exchange": "Zaznamenat",
-    "kpi_balance_in_exchanges": "pracuje na platformách: {{amount}}"
+    "kpi_balance_in_exchanges": "pracuje na platformách: {{amount}}",
+    "kpi_balance_currencies_hint": "Každá měna se počítá zvlášť a nikam se nepřevádí — tyto částky jsou přesné. Číslo nahoře je sečte v {{currency}} dnešním kurzem, takže je to jen odhad.",
+    "kpi_balance_in_exchanges_hint": "Peníze poslané na burzu nebo do peněženky. Z bilance nahoře už jsou odečtené, tady jsou v dnešní hodnotě — včetně výsledku obchodování."
   },
   "alerts": {
     "account_needs_email": "Přihlásili jste se přes Telegram. Přidejte v nastavení e-mail a heslo, abyste neztratili přístup ke svému účtu.",

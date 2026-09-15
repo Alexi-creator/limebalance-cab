@@ -233,7 +233,9 @@
     "tour_balance_desc": "Jeśli zarabiasz w jednej walucie, a wydajesz w innej — zapisz wymianę, wtedy saldo pozostanie dokładne. Wymiana to nie przychód ani wydatek: przenosi tylko pieniądze między Twoimi walutami.",
     "balance_missing_exchange": "Saldo w {{currency}} jest ujemne, choć w innych walutach pieniądze są — wygląda na brak wymiany.",
     "balance_record_exchange": "Zapisz",
-    "kpi_balance_in_exchanges": "pracuje na platformach: {{amount}}"
+    "kpi_balance_in_exchanges": "pracuje na platformach: {{amount}}",
+    "kpi_balance_currencies_hint": "Każda waluta liczona jest osobno i nie jest przeliczana — te kwoty są dokładne. Liczba powyżej sumuje je w {{currency}} po dzisiejszym kursie, więc jest szacunkowa.",
+    "kpi_balance_in_exchanges_hint": "Pieniądze wysłane na giełdę lub do portfela. Z salda powyżej są już odjęte, a tutaj pokazane w dzisiejszej wartości — razem z wynikiem handlu."
   },
   "alerts": {
     "account_needs_email": "Zalogowano przez Telegram. Dodaj e-mail i hasło w ustawieniach, aby nie utracić dostępu do konta.",

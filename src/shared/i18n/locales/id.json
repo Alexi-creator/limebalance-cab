@@ -229,7 +229,9 @@
     "tour_balance_desc": "Jika Anda menerima dalam satu mata uang dan membelanjakan dalam mata uang lain, catat penukarannya — dengan begitu saldo tetap akurat. Penukaran bukan pemasukan dan bukan pengeluaran: ia hanya memindahkan uang antar mata uang Anda.",
     "balance_missing_exchange": "Saldo {{currency}} Anda negatif sementara mata uang lain tidak — sepertinya ada penukaran yang belum dicatat.",
     "balance_record_exchange": "Catat",
-    "kpi_balance_in_exchanges": "bekerja di platform: {{amount}}"
+    "kpi_balance_in_exchanges": "bekerja di platform: {{amount}}",
+    "kpi_balance_currencies_hint": "Setiap mata uang dihitung terpisah dan tidak pernah dikonversi — jumlah ini akurat. Angka di atas menjumlahkannya dalam {{currency}} dengan kurs hari ini, jadi sifatnya perkiraan.",
+    "kpi_balance_in_exchanges_hint": "Uang yang dikirim ke platform atau dompet. Sudah dikurangkan dari saldo di atas; di sini ditampilkan sesuai nilainya hari ini, termasuk hasil trading."
   },
   "alerts": {
     "account_needs_email": "Anda masuk lewat Telegram. Tambahkan email dan kata sandi di pengaturan agar tidak kehilangan akses ke akun Anda.",

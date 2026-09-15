@@ -233,7 +233,9 @@
     "tour_balance_desc": "Jei uždirbi viena valiuta, o išleidi kita — užrašyk keitimą, tada likutis liks tikslus. Keitimas nėra nei pajamos, nei išlaidos: jis tik perkelia pinigus tarp tavo valiutų.",
     "balance_missing_exchange": "Likutis {{currency}} yra neigiamas, o kitomis valiutomis ne — atrodo, keitimas neužrašytas.",
     "balance_record_exchange": "Užrašyti",
-    "kpi_balance_in_exchanges": "dirba platformose: {{amount}}"
+    "kpi_balance_in_exchanges": "dirba platformose: {{amount}}",
+    "kpi_balance_currencies_hint": "Kiekviena valiuta skaičiuojama atskirai ir niekur nekonvertuojama — šios sumos yra tikslios. Skaičius viršuje jas sudeda {{currency}} pagal šiandienos kursą, todėl jis apytikslis.",
+    "kpi_balance_in_exchanges_hint": "Pinigai, išsiųsti į platformą ar piniginę. Iš likučio viršuje jie jau atimti; čia rodoma šiandienos vertė kartu su prekybos rezultatu."
   },
   "alerts": {
     "account_needs_email": "Prisijungėte per Telegram. Nustatymuose pridėkite el. paštą ir slaptažodį, kad neprarastumėte prieigos prie paskyros.",

@@ -1,13 +1,14 @@
 import type { TFunction } from "i18next"
 import type { ReactNode } from "react"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
+import type { KpiSub, KpiSubLine } from "@/shared/ui/KpiCard"
 
 export interface Kpi {
   /** Stable key for the list. */
   key: string
   label: string
   value: string
-  sub?: string | string[]
+  sub?: KpiSub
   /** Rendered among the card's top-right controls — used for the "an exchange looks unrecorded"
    *  marker, which must not make the card taller than its neighbours. */
   alert?: ReactNode
@@ -114,10 +115,20 @@ export function buildKpis({
   // card explains what to do about it. Hiding the split until then meant finding out by going
   // into the red first.
   const held = (balance.byCurrency ?? []).filter((c) => c.amount !== 0)
-  const currencyLine = balance.loading
+  const currencyLine: string | KpiSubLine = balance.loading
     ? t("home.kpi_balance_sub_all")
     : held.length > 0
-      ? held.map((c) => formatCurrency(c.amount, language, c.currency)).join("  +  ")
+      ? {
+          text: held.map((c) => formatCurrency(c.amount, language, c.currency)).join("  +  "),
+          // Explained only once there is more than one bucket. A split is the moment the card
+          // stops being self-evident: the exact figures here and the converted total above are
+          // answering different questions, and a second currency appearing out of nowhere is
+          // usually the first sign of a move recorded in the wrong one.
+          hint:
+            held.length > 1
+              ? t("home.kpi_balance_currencies_hint", { currency: balance.baseCurrency })
+              : undefined,
+        }
       : balance.usd != null
         ? `≈ ${formatCurrency(balance.usd, language, "USD")}`
         : t("home.kpi_balance_sub_all")
@@ -125,13 +136,18 @@ export function buildKpis({
   // Money that left the balance to work elsewhere, at what it is worth today. Kept on its own line
   // rather than folded into the figure above: it is not free money, but it is still yours, and a
   // balance that simply omits it reads as if it disappeared.
-  const balanceSub =
+  const balanceSub: KpiSub =
     !balance.loading && balance.inExchanges
       ? [
           currencyLine,
-          t("home.kpi_balance_in_exchanges", {
-            amount: formatCurrency(balance.inExchanges, language, balance.baseCurrency),
-          }),
+          {
+            text: t("home.kpi_balance_in_exchanges", {
+              amount: formatCurrency(balance.inExchanges, language, balance.baseCurrency),
+            }),
+            // The line every reader tries to add to the value above. Say outright that it is
+            // already out of it, and that the figure is today's worth rather than what was sent.
+            hint: t("home.kpi_balance_in_exchanges_hint"),
+          },
         ]
       : currencyLine
 

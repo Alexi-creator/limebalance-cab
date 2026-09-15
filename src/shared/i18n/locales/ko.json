@@ -229,7 +229,9 @@
     "tour_balance_desc": "한 통화로 벌고 다른 통화로 쓴다면 환전을 기록하세요. 그래야 잔액이 정확하게 유지됩니다. 환전은 수입도 지출도 아니며, 보유 통화 사이에서 돈을 옮길 뿐입니다.",
     "balance_missing_exchange": "{{currency}} 잔액이 마이너스인데 다른 통화는 그렇지 않습니다 — 환전이 기록되지 않은 것 같습니다.",
     "balance_record_exchange": "기록하기",
-    "kpi_balance_in_exchanges": "플랫폼에서 운용 중: {{amount}}"
+    "kpi_balance_in_exchanges": "플랫폼에서 운용 중: {{amount}}",
+    "kpi_balance_currencies_hint": "통화별로 따로 계산하며 환산하지 않습니다. 이 금액들은 정확합니다. 위의 숫자는 오늘 환율로 {{currency}}로 합산한 값이라 어림치입니다.",
+    "kpi_balance_in_exchanges_hint": "거래소나 지갑으로 보낸 돈입니다. 위 잔액에서는 이미 빠져 있고, 여기에는 매매 결과를 포함한 현재 가치가 표시됩니다."
   },
   "alerts": {
     "account_needs_email": "Telegram으로 로그인했습니다. 계정 접근 권한을 잃지 않도록 설정에서 이메일과 비밀번호를 추가하세요.",

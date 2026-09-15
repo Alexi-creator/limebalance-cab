@@ -231,7 +231,9 @@
     "tour_balance_desc": "Kui teenid ühes valuutas ja kulutad teises, märgi vahetus üles — siis jääb saldo täpseks. Vahetus pole tulu ega kulu: see üksnes liigutab raha sinu valuutade vahel.",
     "balance_missing_exchange": "Sinu {{currency}} saldo on miinuses, teistes valuutades mitte — vahetus näib olevat lisamata.",
     "balance_record_exchange": "Lisa",
-    "kpi_balance_in_exchanges": "töötab platvormidel: {{amount}}"
+    "kpi_balance_in_exchanges": "töötab platvormidel: {{amount}}",
+    "kpi_balance_currencies_hint": "Iga valuutat arvestatakse eraldi ja seda ei konverteerita — need summad on täpsed. Ülal olev number liidab need kokku valuutas {{currency}} tänase kursiga, seega on see hinnang.",
+    "kpi_balance_in_exchanges_hint": "Platvormile või rahakotti saadetud raha. Ülal olevast saldost on see juba maha arvatud; siin on näidatud tänane väärtus koos kauplemistulemusega."
   },
   "alerts": {
     "account_needs_email": "Logisid sisse Telegrami kaudu. Lisa seadetes e-post ja parool, et mitte kaotada juurdepääsu oma kontole.",

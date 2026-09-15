@@ -229,7 +229,9 @@
     "tour_balance_desc": "Nếu bạn nhận tiền bằng một loại tiền và chi tiêu bằng loại khác, hãy ghi lại giao dịch đổi — số dư sẽ luôn chính xác. Đổi tiền không phải thu nhập cũng không phải chi tiêu: nó chỉ chuyển tiền giữa các loại tiền của bạn.",
     "balance_missing_exchange": "Số dư {{currency}} đang âm trong khi các loại tiền khác thì không — có vẻ thiếu một giao dịch đổi.",
     "balance_record_exchange": "Ghi lại",
-    "kpi_balance_in_exchanges": "đang hoạt động trên các nền tảng: {{amount}}"
+    "kpi_balance_in_exchanges": "đang hoạt động trên các nền tảng: {{amount}}",
+    "kpi_balance_currencies_hint": "Mỗi loại tiền được tính riêng và không bao giờ quy đổi — các số này là chính xác. Con số phía trên cộng chúng lại theo {{currency}} với tỷ giá hôm nay nên chỉ là ước tính.",
+    "kpi_balance_in_exchanges_hint": "Tiền đã chuyển sang sàn hoặc ví. Số này đã được trừ khỏi số dư phía trên; ở đây hiển thị theo giá trị hôm nay, gồm cả kết quả giao dịch."
   },
   "alerts": {
     "account_needs_email": "Bạn đã đăng nhập qua Telegram. Hãy thêm email và mật khẩu trong cài đặt để không mất quyền truy cập tài khoản.",

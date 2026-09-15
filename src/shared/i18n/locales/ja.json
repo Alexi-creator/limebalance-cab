@@ -229,7 +229,9 @@
     "tour_balance_desc": "ある通貨で受け取り、別の通貨で使っているなら、両替を記録してください。そうすれば残高が正確に保たれます。両替は収入でも支出でもなく、自分の通貨間で資金を移すだけです。",
     "balance_missing_exchange": "{{currency}} の残高がマイナスで、他の通貨はそうではありません。両替が未記録のようです。",
     "balance_record_exchange": "記録する",
-    "kpi_balance_in_exchanges": "プラットフォームで運用中: {{amount}}"
+    "kpi_balance_in_exchanges": "プラットフォームで運用中: {{amount}}",
+    "kpi_balance_currencies_hint": "通貨ごとに別々に計算し、換算は行いません。これらの金額は正確です。上の数字は今日のレートで {{currency}} に合算したもので、目安です。",
+    "kpi_balance_in_exchanges_hint": "取引所やウォレットに送った資金です。上の残高からはすでに差し引かれており、ここでは取引結果を含む現在の評価額を表示しています。"
   },
   "alerts": {
     "account_needs_email": "Telegram でログインしました。アカウントへのアクセスを失わないよう、設定でメールとパスワードを追加してください。",

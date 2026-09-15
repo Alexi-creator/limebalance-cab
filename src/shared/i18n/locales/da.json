@@ -231,7 +231,9 @@
     "tour_balance_desc": "Tjener du i én valuta og bruger i en anden, så registrér vekslingen — så bliver saldoen ved med at være præcis. En veksling er hverken indtægt eller udgift: den flytter kun penge mellem dine valutaer.",
     "balance_missing_exchange": "Din saldo i {{currency}} er negativ, mens andre valutaer ikke er det — der mangler vist en veksling.",
     "balance_record_exchange": "Registrér",
-    "kpi_balance_in_exchanges": "i arbejde på platforme: {{amount}}"
+    "kpi_balance_in_exchanges": "i arbejde på platforme: {{amount}}",
+    "kpi_balance_currencies_hint": "Hver valuta tælles for sig og omregnes aldrig — disse beløb er præcise. Tallet ovenfor lægger dem sammen i {{currency}} til dagens kurs og er derfor et skøn.",
+    "kpi_balance_in_exchanges_hint": "Penge sendt til en platform eller wallet. De er allerede trukket fra saldoen ovenfor; her vises, hvad de er værd i dag — handelsresultat inklusive."
   },
   "alerts": {
     "account_needs_email": "Du loggede ind via Telegram. Tilføj en e-mail og adgangskode i indstillingerne, så du ikke mister adgangen til din konto.",

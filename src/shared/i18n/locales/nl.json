@@ -231,7 +231,9 @@
     "tour_balance_desc": "Verdien je in de ene valuta en geef je uit in de andere, leg de wissel dan vast — zo blijft het saldo exact. Een wissel is geen inkomst en geen uitgave: het verplaatst alleen geld tussen je valuta's.",
     "balance_missing_exchange": "Je saldo in {{currency}} is negatief terwijl andere valuta's dat niet zijn — er lijkt een wissel te ontbreken.",
     "balance_record_exchange": "Vastleggen",
-    "kpi_balance_in_exchanges": "aan het werk op platforms: {{amount}}"
+    "kpi_balance_in_exchanges": "aan het werk op platforms: {{amount}}",
+    "kpi_balance_currencies_hint": "Elke valuta telt apart en wordt nooit omgerekend — deze bedragen zijn exact. Het cijfer hierboven telt ze op in {{currency}} tegen de koers van vandaag en is dus een schatting.",
+    "kpi_balance_in_exchanges_hint": "Geld dat naar een platform of wallet is gestuurd. Het is al van het saldo hierboven af; hier staat wat het vandaag waard is, handelsresultaat inbegrepen."
   },
   "alerts": {
     "account_needs_email": "Je bent ingelogd via Telegram. Voeg een e-mailadres en wachtwoord toe in de instellingen om de toegang tot je account niet te verliezen.",

@@ -231,7 +231,9 @@
     "tour_balance_desc": "Bir para biriminde kazanıp başka birinde harcıyorsanız, döviz işlemini kaydedin — böylece bakiye tam kalır. Döviz işlemi gelir de gider de değildir: yalnızca parayı para birimleriniz arasında taşır.",
     "balance_missing_exchange": "{{currency}} bakiyeniz eksiye düşmüş, diğer para birimleri ise değil — bir döviz işlemi eksik görünüyor.",
     "balance_record_exchange": "Kaydet",
-    "kpi_balance_in_exchanges": "platformlarda çalışıyor: {{amount}}"
+    "kpi_balance_in_exchanges": "platformlarda çalışıyor: {{amount}}",
+    "kpi_balance_currencies_hint": "Her para birimi ayrı sayılır ve hiç çevrilmez — bu tutarlar kesindir. Yukarıdaki rakam onları bugünkü kurla {{currency}} cinsinden toplar, bu yüzden tahminidir.",
+    "kpi_balance_in_exchanges_hint": "Bir platforma veya cüzdana gönderilen para. Yukarıdaki bakiyeden zaten düşüldü; burada bugünkü değeriyle, işlem sonucu dâhil gösteriliyor."
   },
   "alerts": {
     "account_needs_email": "Telegram ile giriş yaptınız. Hesabınıza erişimi kaybetmemek için ayarlardan bir e-posta ve şifre ekleyin.",
