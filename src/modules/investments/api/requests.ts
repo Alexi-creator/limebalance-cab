@@ -292,8 +292,8 @@ export function createTransfer(payload: TransferPayload) {
 
 /** The venue and its peer cannot be moved — only the figures and the note. */
 export type UpdateTransferPayload = Partial<
-  Pick<TransferPayload, "direction" | "amount" | "currency" | "date" | "note">
->
+  Pick<TransferPayload, "direction" | "amount" | "currency" | "date">
+> & { note?: string | null }
 
 export function updateTransfer(id: string, payload: UpdateTransferPayload) {
   return request(`${API_URLS.investing.transfers}/${id}`, {

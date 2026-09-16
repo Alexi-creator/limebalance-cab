@@ -59,7 +59,12 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
   )
   const [peer, setPeer] = useState<TransferPeer>(transfer?.peer ?? "LEDGER")
   const [peerVenueId, setPeerVenueId] = useState<string | null>(transfer?.peerVenueId ?? null)
-  const [amount, setAmount] = useState<number | string>(transfer?.amount ?? "")
+  // A coin move is edited in the coin it was made in, not in the USD it was priced at.
+  const [amount, setAmount] = useState<number | string>(
+    (transfer?.asset ? transfer.assetAmount : transfer?.amount) ?? "",
+  )
+  // Its size and direction are fixed once recorded — only the date and the note can change.
+  const coinLocked = !!transfer?.asset
   const [currency, setCurrency] = useState<string | null>(
     transfer?.currency ?? userCurrency ?? "USD",
   )
@@ -132,6 +137,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
           fullWidth
           value={mode}
           onChange={switchMode}
+          disabled={coinLocked}
           data={[
             { value: "deposit", label: t("investments.tr_deposit") },
             { value: "withdraw", label: t("investments.tr_withdraw") },
@@ -223,6 +229,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
               clearable
               value={asset}
               onChange={setAsset}
+              disabled={!!transfer}
               data={assetOptions}
               placeholder={t("investments.tr_asset_or_usd")}
               nothingFoundMessage={t("common.nothing_found")}
@@ -232,6 +239,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
               required
               value={amount}
               onChange={setAmount}
+              disabled={coinLocked}
               min={0}
               decimalScale={asset ? 8 : 2}
               suffix={asset ? undefined : " USD"}
