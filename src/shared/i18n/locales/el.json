@@ -658,6 +658,8 @@
     "tr_venue_worth": "Αυτή η πλατφόρμα αξίζει {{amount}} αυτή τη στιγμή",
     "tr_venue_locked": "Μια μεταφορά δεν αλλάζει πλατφόρμα — κατάγραψε καινούργια",
     "tr_value_age": "διαβάστηκε {{ago}}",
+    "tr_coins_all": "Όλα τα νομίσματα",
+    "tr_coins_dust": "+{{count}} κάτω από {{amount}}",
     "tr_peer_from": "Από πού",
     "tr_peer_to": "Πού",
     "tr_peer_ledger": "Το υπόλοιπό σου",

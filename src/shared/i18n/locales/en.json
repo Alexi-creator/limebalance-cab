@@ -687,6 +687,8 @@
     "tr_venue_worth": "This venue is worth {{amount}} right now",
     "tr_venue_locked": "A transfer cannot move to another venue — record a new one instead",
     "tr_value_age": "read {{ago}}",
+    "tr_coins_all": "All coins",
+    "tr_coins_dust": "+{{count}} more under {{amount}}",
     "tr_peer_from": "Where from",
     "tr_peer_to": "Where to",
     "tr_peer_ledger": "Your balance",

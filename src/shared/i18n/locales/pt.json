@@ -658,6 +658,8 @@
     "tr_venue_worth": "Esta plataforma vale {{amount}} neste momento",
     "tr_venue_locked": "Uma transferência não muda de plataforma — registra uma nova",
     "tr_value_age": "lido {{ago}}",
+    "tr_coins_all": "Todas as moedas",
+    "tr_coins_dust": "+{{count}} abaixo de {{amount}}",
     "tr_peer_from": "De onde",
     "tr_peer_to": "Para onde",
     "tr_peer_ledger": "Teu saldo",

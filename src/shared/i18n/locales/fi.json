@@ -658,6 +658,8 @@
     "tr_venue_worth": "Tämä alusta on juuri nyt {{amount}} arvoinen",
     "tr_venue_locked": "Siirtoa ei voi siirtää toiselle alustalle — kirjaa uusi",
     "tr_value_age": "luettu {{ago}}",
+    "tr_coins_all": "Kaikki kolikot",
+    "tr_coins_dust": "+{{count}} alle {{amount}}",
     "tr_peer_from": "Mistä",
     "tr_peer_to": "Minne",
     "tr_peer_ledger": "Saldosi",

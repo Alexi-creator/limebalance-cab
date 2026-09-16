@@ -670,6 +670,8 @@
     "tr_venue_worth": "Šī platforma šobrīd ir {{amount}} vērta",
     "tr_venue_locked": "Pārskaitījumu nevar pārcelt uz citu platformu — ieraksti jaunu",
     "tr_value_age": "nolasīts {{ago}}",
+    "tr_coins_all": "Visas monētas",
+    "tr_coins_dust": "+{{count}} zem {{amount}}",
     "tr_peer_from": "No kurienes",
     "tr_peer_to": "Uz kurieni",
     "tr_peer_ledger": "Tavs atlikums",

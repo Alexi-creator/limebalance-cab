@@ -706,6 +706,8 @@
     "tr_venue_worth": "قيمة هذه المنصة الآن {{amount}}",
     "tr_venue_locked": "لا يمكن نقل التحويل إلى منصة أخرى — سجّل تحويلًا جديدًا",
     "tr_value_age": "قُرئ {{ago}}",
+    "tr_coins_all": "كل العملات",
+    "tr_coins_dust": "+{{count}} أقل من {{amount}}",
     "tr_peer_from": "من أين",
     "tr_peer_to": "إلى أين",
     "tr_peer_ledger": "رصيدك",

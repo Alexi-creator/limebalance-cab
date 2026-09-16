@@ -646,6 +646,8 @@
     "tr_venue_worth": "Nền tảng này hiện có giá trị {{amount}}",
     "tr_venue_locked": "Không thể chuyển bản ghi sang nền tảng khác — hãy ghi một cái mới",
     "tr_value_age": "đọc {{ago}}",
+    "tr_coins_all": "Tất cả coin",
+    "tr_coins_dust": "+{{count}} dưới {{amount}}",
     "tr_peer_from": "Từ đâu",
     "tr_peer_to": "Đến đâu",
     "tr_peer_ledger": "Số dư của bạn",

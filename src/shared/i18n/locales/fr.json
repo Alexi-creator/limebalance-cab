@@ -658,6 +658,8 @@
     "tr_venue_worth": "Cette plateforme vaut {{amount}} en ce moment",
     "tr_venue_locked": "Un transfert ne peut pas changer de plateforme — enregistres-en un nouveau",
     "tr_value_age": "lu {{ago}}",
+    "tr_coins_all": "Toutes les cryptos",
+    "tr_coins_dust": "+{{count}} autres sous {{amount}}",
     "tr_peer_from": "D'où",
     "tr_peer_to": "Vers où",
     "tr_peer_ledger": "Ton solde",

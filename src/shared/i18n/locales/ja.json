@@ -646,6 +646,8 @@
     "tr_venue_worth": "このプラットフォームは今 {{amount}} の価値です",
     "tr_venue_locked": "入出金は別のプラットフォームへ移せません — 新しく記録してください",
     "tr_value_age": "{{ago}}に取得",
+    "tr_coins_all": "すべてのコイン",
+    "tr_coins_dust": "{{amount}}未満 +{{count}}",
     "tr_peer_from": "どこから",
     "tr_peer_to": "どこへ",
     "tr_peer_ledger": "あなたの残高",

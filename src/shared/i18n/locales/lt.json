@@ -670,6 +670,8 @@
     "tr_venue_worth": "Ši platforma dabar verta {{amount}}",
     "tr_venue_locked": "Pervedimo negalima perkelti į kitą platformą — įrašyk naują",
     "tr_value_age": "nuskaityta {{ago}}",
+    "tr_coins_all": "Visos monetos",
+    "tr_coins_dust": "+{{count}} mažiau nei {{amount}}",
     "tr_peer_from": "Iš kur",
     "tr_peer_to": "Kur",
     "tr_peer_ledger": "Tavo likutis",

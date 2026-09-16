@@ -658,6 +658,8 @@
     "tr_venue_worth": "Bu platform şu anda {{amount}} değerinde",
     "tr_venue_locked": "Bir transfer başka platforma taşınamaz — yenisini kaydet",
     "tr_value_age": "{{ago}} okundu",
+    "tr_coins_all": "Tüm coinler",
+    "tr_coins_dust": "{{amount}} altında +{{count}}",
     "tr_peer_from": "Nereden",
     "tr_peer_to": "Nereye",
     "tr_peer_ledger": "Bakiyen",

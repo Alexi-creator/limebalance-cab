@@ -670,6 +670,8 @@
     "tr_venue_worth": "Platforma asta valorează {{amount}} chiar acum",
     "tr_venue_locked": "Un transfer nu poate trece pe altă platformă — înregistrează unul nou",
     "tr_value_age": "citit {{ago}}",
+    "tr_coins_all": "Toate monedele",
+    "tr_coins_dust": "+{{count}} sub {{amount}}",
     "tr_peer_from": "De unde",
     "tr_peer_to": "Unde",
     "tr_peer_ledger": "Soldul tău",

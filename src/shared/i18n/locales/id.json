@@ -646,6 +646,8 @@
     "tr_venue_worth": "Platform ini sekarang bernilai {{amount}}",
     "tr_venue_locked": "Transfer tidak bisa dipindah ke platform lain — catat yang baru",
     "tr_value_age": "dibaca {{ago}}",
+    "tr_coins_all": "Semua koin",
+    "tr_coins_dust": "+{{count}} di bawah {{amount}}",
     "tr_peer_from": "Dari mana",
     "tr_peer_to": "Ke mana",
     "tr_peer_ledger": "Saldomu",

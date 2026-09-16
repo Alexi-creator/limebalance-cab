@@ -646,6 +646,8 @@
     "tr_venue_worth": "แพลตฟอร์มนี้มีมูลค่า {{amount}} ในตอนนี้",
     "tr_venue_locked": "ย้ายรายการโอนไปแพลตฟอร์มอื่นไม่ได้ — บันทึกรายการใหม่แทน",
     "tr_value_age": "อ่านเมื่อ {{ago}}",
+    "tr_coins_all": "เหรียญทั้งหมด",
+    "tr_coins_dust": "อีก {{count}} ต่ำกว่า {{amount}}",
     "tr_peer_from": "จากที่ไหน",
     "tr_peer_to": "ไปที่ไหน",
     "tr_peer_ledger": "ยอดคงเหลือของคุณ",

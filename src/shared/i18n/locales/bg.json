@@ -658,6 +658,8 @@
     "tr_venue_worth": "Тази площадка струва {{amount}} в момента",
     "tr_venue_locked": "Преводът не може да се премести на друга площадка — запиши нов",
     "tr_value_age": "прочетено {{ago}}",
+    "tr_coins_all": "Всички монети",
+    "tr_coins_dust": "още {{count}} под {{amount}}",
     "tr_peer_from": "Откъде",
     "tr_peer_to": "Накъде",
     "tr_peer_ledger": "Твоят баланс",

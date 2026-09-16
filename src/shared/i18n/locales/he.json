@@ -682,6 +682,8 @@
     "tr_venue_worth": "הפלטפורמה הזאת שווה כרגע {{amount}}",
     "tr_venue_locked": "אי אפשר להעביר רישום לפלטפורמה אחרת — רשום חדש",
     "tr_value_age": "נקרא {{ago}}",
+    "tr_coins_all": "כל המטבעות",
+    "tr_coins_dust": "+{{count}} מתחת ל-{{amount}}",
     "tr_peer_from": "מאיפה",
     "tr_peer_to": "לאן",
     "tr_peer_ledger": "היתרה שלך",

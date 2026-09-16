@@ -670,6 +670,8 @@
     "tr_venue_worth": "Ova platforma trenutno vrijedi {{amount}}",
     "tr_venue_locked": "Prijenos se ne može premjestiti na drugu platformu — zabilježi novi",
     "tr_value_age": "očitano {{ago}}",
+    "tr_coins_all": "Svi coinovi",
+    "tr_coins_dust": "+{{count}} ispod {{amount}}",
     "tr_peer_from": "Odakle",
     "tr_peer_to": "Kamo",
     "tr_peer_ledger": "Tvoje stanje",

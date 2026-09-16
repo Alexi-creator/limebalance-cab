@@ -646,6 +646,8 @@
     "tr_venue_worth": "这个平台目前价值 {{amount}}",
     "tr_venue_locked": "转账不能改到别的平台 — 请新记一笔",
     "tr_value_age": "{{ago}}读取",
+    "tr_coins_all": "全部币种",
+    "tr_coins_dust": "另有 {{count}} 个低于 {{amount}}",
     "tr_peer_from": "来自哪里",
     "tr_peer_to": "去往哪里",
     "tr_peer_ledger": "你的余额",

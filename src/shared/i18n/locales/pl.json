@@ -670,6 +670,8 @@
     "tr_venue_worth": "Ta platforma jest teraz warta {{amount}}",
     "tr_venue_locked": "Przelewu nie da się przenieść na inną platformę — zapisz nowy",
     "tr_value_age": "odczytano {{ago}}",
+    "tr_coins_all": "Wszystkie monety",
+    "tr_coins_dust": "+{{count}} poniżej {{amount}}",
     "tr_peer_from": "Skąd",
     "tr_peer_to": "Dokąd",
     "tr_peer_ledger": "Twoje saldo",

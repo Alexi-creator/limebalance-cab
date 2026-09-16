@@ -54,8 +54,11 @@ export function KpiCard({
   )
 
   return (
-    <Paper p="lg">
-      <Group justify="space-between" align="flex-start">
+    // Full height of the grid cell, so a card with an extra caption line doesn't stick out of the row.
+    <Paper p="lg" h="100%">
+      {/* Always as tall as the controls (ActionIcon sm), present or not — otherwise the value sits
+          lower in a card with a refresh button than in one without, and the row stops lining up. */}
+      <Group justify="space-between" align="flex-start" mih="1.375rem">
         <Text size="xs" c="dimmed">
           {label}
         </Text>

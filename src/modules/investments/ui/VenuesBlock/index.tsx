@@ -5,10 +5,12 @@ import {
   Button,
   Group,
   Paper,
+  Popover,
   SimpleGrid,
   Stack,
   Text,
   Tooltip,
+  UnstyledButton,
 } from "@mantine/core"
 import {
   IconArrowDownLeft,
@@ -30,7 +32,9 @@ import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
 import { useVenues } from "../../api/useVenues"
+import { formatQty } from "../../lib/format"
 import type { Venue } from "../../model"
+import { CoinIcon } from "../CoinIcon"
 import { TransferForm } from "../TransferForm"
 import { TransfersHistory } from "../TransfersHistory"
 import { VenueDetails } from "../VenueDetails"
@@ -397,15 +401,7 @@ function VenueCard({
         </Text>
       )}
 
-      {venue.coins.length > 0 && (
-        <Text size="xs" c="dimmed" mt={6} truncate="end">
-          {venue.coins
-            .slice(0, 4)
-            .map((c) => c.coin)
-            .join(" · ")}
-          {venue.coins.length > 4 ? ` +${venue.coins.length - 4}` : ""}
-        </Text>
-      )}
+      {venue.coins.length > 0 && <CoinsLine venue={venue} language={language} usd={usd} />}
 
       {/* Cards in a row differ in height; the actions line up only if they hang off the bottom. */}
       <Group gap="xs" pt="md" grow style={{ marginTop: "auto" }}>
@@ -417,5 +413,73 @@ function VenueCard({
         </Button>
       </Group>
     </Paper>
+  )
+}
+
+/** Below this a balance is leftover change from trades, not something the user holds on purpose. */
+const DUST_USD = 1
+
+/**
+ * The first few tickers on the card, opening into the full wallet on click.
+ *
+ * The journal only knows trades; the wallet also holds what never was one — idle USDT, an airdrop,
+ * an Earn payout — so this list is the one place those show up. The exchange already sends coins
+ * sorted by value, so the card's first four are the ones that matter. Dust is folded into one
+ * line: seventeen rows where thirteen are cents bury the four that are money.
+ */
+function CoinsLine({
+  venue,
+  language,
+  usd,
+}: {
+  venue: Venue
+  language: string
+  usd: (n: number | null) => string
+}) {
+  const { t } = useTranslation()
+  const coins = venue.coins
+  // An unpriced coin is unknown, not worthless — it stays visible.
+  const shown = coins.filter((c) => c.usdValue == null || c.usdValue >= DUST_USD)
+  const dust = coins.length - shown.length
+
+  return (
+    <Popover position="bottom-start" shadow="md" withinPortal>
+      <Popover.Target>
+        <UnstyledButton mt={6} aria-label={t("investments.tr_coins_all")} style={{ minWidth: 0 }}>
+          <Text size="xs" c="dimmed" truncate="end" td="underline dotted">
+            {coins
+              .slice(0, 4)
+              .map((c) => c.coin)
+              .join(" · ")}
+            {coins.length > 4 ? ` +${coins.length - 4}` : ""}
+          </Text>
+        </UnstyledButton>
+      </Popover.Target>
+      <Popover.Dropdown p="xs" miw={240} mah={320} style={{ overflowY: "auto" }}>
+        <Stack gap={6}>
+          {shown.map((c) => (
+            <Group key={c.coin} gap="xs" wrap="nowrap" justify="space-between">
+              <Group gap={6} wrap="nowrap" style={{ minWidth: 0 }}>
+                <CoinIcon ticker={c.coin} size={16} />
+                <Text size="xs" fw={500}>
+                  {c.coin}
+                </Text>
+                <Text size="xs" c="dimmed" ff="monospace" truncate="end">
+                  {formatQty(c.amount, language)}
+                </Text>
+              </Group>
+              <Text size="xs" ff="monospace">
+                {usd(c.usdValue)}
+              </Text>
+            </Group>
+          ))}
+          {dust > 0 && (
+            <Text size="xs" c="dimmed">
+              {t("investments.tr_coins_dust", { count: dust, amount: usd(DUST_USD) })}
+            </Text>
+          )}
+        </Stack>
+      </Popover.Dropdown>
+    </Popover>
   )
 }

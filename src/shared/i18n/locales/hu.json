@@ -658,6 +658,8 @@
     "tr_venue_worth": "Ez a platform most {{amount}} értékű",
     "tr_venue_locked": "Egy átvezetés nem tehető át másik platformra — rögzíts újat",
     "tr_value_age": "lekérve {{ago}}",
+    "tr_coins_all": "Összes érme",
+    "tr_coins_dust": "+{{count}} {{amount}} alatt",
     "tr_peer_from": "Honnan",
     "tr_peer_to": "Hová",
     "tr_peer_ledger": "Az egyenleged",

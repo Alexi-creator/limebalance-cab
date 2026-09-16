@@ -670,6 +670,8 @@
     "tr_venue_worth": "Táto platforma má práve teraz hodnotu {{amount}}",
     "tr_venue_locked": "Prevod sa nedá presunúť na inú platformu — zapíš nový",
     "tr_value_age": "načítané {{ago}}",
+    "tr_coins_all": "Všetky mince",
+    "tr_coins_dust": "+{{count}} pod {{amount}}",
     "tr_peer_from": "Odkiaľ",
     "tr_peer_to": "Kam",
     "tr_peer_ledger": "Tvoj zostatok",

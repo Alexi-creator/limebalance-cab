@@ -646,6 +646,8 @@
     "tr_venue_worth": "이 플랫폼은 지금 {{amount}} 가치입니다",
     "tr_venue_locked": "입출금은 다른 플랫폼으로 옮길 수 없습니다 — 새로 기록하세요",
     "tr_value_age": "{{ago}} 읽음",
+    "tr_coins_all": "모든 코인",
+    "tr_coins_dust": "{{amount}} 미만 +{{count}}",
     "tr_peer_from": "어디서",
     "tr_peer_to": "어디로",
     "tr_peer_ledger": "내 잔액",

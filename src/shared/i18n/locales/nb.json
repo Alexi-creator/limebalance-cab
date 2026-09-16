@@ -658,6 +658,8 @@
     "tr_venue_worth": "Denne plattformen er akkurat nå verdt {{amount}}",
     "tr_venue_locked": "En overføring kan ikke flyttes til en annen plattform — registrer en ny",
     "tr_value_age": "lest {{ago}}",
+    "tr_coins_all": "Alle mynter",
+    "tr_coins_dust": "+{{count}} under {{amount}}",
     "tr_peer_from": "Hvorfra",
     "tr_peer_to": "Hvor",
     "tr_peer_ledger": "Saldoen din",

@@ -99,6 +99,7 @@ export function HomeKpis() {
           key={key}
           visible={loading ?? false}
           radius="md"
+          h="100%"
           // The balance card gets its own tour step: it is the one that needs the multicurrency
           // explanation.
           data-tour={key === "balance" ? "balance" : undefined}

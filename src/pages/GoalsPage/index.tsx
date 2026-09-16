@@ -35,6 +35,7 @@ import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
 import { TourTriggerButton } from "@/shared/ui/TourTriggerButton"
+import { TruncatedText } from "@/shared/ui/TruncatedText"
 
 /**
  * Progress-bar color (frontend rule, per the spec):
@@ -239,7 +240,10 @@ export function GoalsPage() {
                 ref={(el) => {
                   goalRefs.current[g.id] = el
                 }}
+                // A column the height of the row, so the buttons can sit at the bottom of every card.
                 style={{
+                  display: "flex",
+                  flexDirection: "column",
                   transition: "box-shadow 300ms ease",
                   boxShadow:
                     highlightedGoalId === g.id
@@ -247,12 +251,14 @@ export function GoalsPage() {
                       : undefined,
                 }}
               >
-                <Group justify="space-between" align="flex-start" mb="md">
-                  <Group gap="sm">
+                <Group justify="space-between" align="flex-start" mb="md" wrap="nowrap">
+                  {/* Shrinks instead of pushing the actions out, so a long name gets cut, not wrapped. */}
+                  <Group gap="sm" wrap="nowrap" style={{ minWidth: 0 }}>
                     <Box
                       w={48}
                       h={48}
                       style={{
+                        flexShrink: 0,
                         borderRadius: 12,
                         background: "var(--mantine-color-default-hover)",
                         display: "grid",
@@ -262,14 +268,14 @@ export function GoalsPage() {
                     >
                       {g.emoji ?? "🎯"}
                     </Box>
-                    <Stack gap={2}>
-                      <Text fw={600}>{g.name}</Text>
-                      <Text size="xs" c="dimmed">
+                    <Stack gap={2} style={{ minWidth: 0 }}>
+                      <TruncatedText fw={600}>{g.name}</TruncatedText>
+                      <TruncatedText size="xs" c="dimmed">
                         {deadlineLabel(g)}
-                      </Text>
+                      </TruncatedText>
                     </Stack>
                   </Group>
-                  <Group gap={4}>
+                  <Group gap={4} wrap="nowrap">
                     <Tooltip
                       label={g.isCompleted ? t("goals.close_title") : t("goals.close_early")}
                     >
@@ -305,13 +311,13 @@ export function GoalsPage() {
                   </Group>
                 </Group>
 
-                <Group justify="space-between" align="baseline" mb="xs">
-                  <Text ff="monospace" fz={24} fw={500} c={`${color}.5`}>
+                <Group justify="space-between" align="baseline" mb="xs" wrap="nowrap" gap="sm">
+                  <Text ff="monospace" fz={24} fw={500} c={`${color}.5`} style={{ flexShrink: 0 }}>
                     {g.progress}%
                   </Text>
-                  <Text ff="monospace" size="sm" c="dimmed">
-                    {money(g.currentAmount, g.currency)} / {money(g.targetAmount, g.currency)}
-                  </Text>
+                  <TruncatedText ff="monospace" size="sm" c="dimmed">
+                    {`${money(g.currentAmount, g.currency)} / ${money(g.targetAmount, g.currency)}`}
+                  </TruncatedText>
                 </Group>
                 <Progress value={g.progress} color={color} size="md" mb="md" />
 
@@ -324,7 +330,7 @@ export function GoalsPage() {
                   <Tiny label={t("goals.tiny_term")} value={remainingLabel(g, t)} />
                 </SimpleGrid>
 
-                <Group mt="md" gap="xs" grow>
+                <Group pt="md" gap="xs" grow style={{ marginTop: "auto" }}>
                   <Button color="green" size="sm" onClick={() => openDeposit(g)}>
                     {t("goals.deposit")}
                   </Button>
@@ -387,8 +393,8 @@ export function GoalsPage() {
 
 function Tiny({ label, value }: { label: string; value: string }) {
   return (
-    <Box p="xs" bg="var(--mantine-color-default)" style={{ borderRadius: 8 }}>
-      <Text
+    <Box p="xs" bg="var(--mantine-color-default)" style={{ borderRadius: 8, minWidth: 0 }}>
+      <TruncatedText
         ff="monospace"
         size="xs"
         c="dimmed"
@@ -397,10 +403,10 @@ function Tiny({ label, value }: { label: string; value: string }) {
         style={{ letterSpacing: "0.06em" }}
       >
         {label}
-      </Text>
-      <Text ff="monospace" size="sm">
+      </TruncatedText>
+      <TruncatedText ff="monospace" size="sm">
         {value}
-      </Text>
+      </TruncatedText>
     </Box>
   )
 }

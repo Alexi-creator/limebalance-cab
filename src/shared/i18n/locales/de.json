@@ -658,6 +658,8 @@
     "tr_venue_worth": "Diese Plattform ist gerade {{amount}} wert",
     "tr_venue_locked": "Ein Transfer lässt sich nicht auf eine andere Plattform verschieben — erfasse stattdessen einen neuen",
     "tr_value_age": "abgerufen {{ago}}",
+    "tr_coins_all": "Alle Coins",
+    "tr_coins_dust": "+{{count}} weitere unter {{amount}}",
     "tr_peer_from": "Woher",
     "tr_peer_to": "Wohin",
     "tr_peer_ledger": "Dein Guthaben",

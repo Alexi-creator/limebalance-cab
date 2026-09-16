@@ -701,6 +701,8 @@
     "tr_venue_worth": "Сейчас на площадке {{amount}}",
     "tr_venue_locked": "Перевод нельзя перенести на другую площадку — запиши новый",
     "tr_value_age": "прочитано {{ago}}",
+    "tr_coins_all": "Все монеты",
+    "tr_coins_dust": "ещё {{count}} дешевле {{amount}}",
     "tr_peer_from": "Откуда",
     "tr_peer_to": "Куда",
     "tr_peer_ledger": "Твой баланс",

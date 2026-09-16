@@ -658,6 +658,8 @@
     "tr_venue_worth": "See platvorm on praegu {{amount}} väärt",
     "tr_venue_locked": "Ülekannet ei saa teisele platvormile tõsta — salvesta uus",
     "tr_value_age": "loetud {{ago}}",
+    "tr_coins_all": "Kõik mündid",
+    "tr_coins_dust": "+{{count}} alla {{amount}}",
     "tr_peer_from": "Kust",
     "tr_peer_to": "Kuhu",
     "tr_peer_ledger": "Sinu jääk",

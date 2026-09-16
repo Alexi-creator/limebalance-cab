@@ -658,6 +658,8 @@
     "tr_venue_worth": "Dit platform is op dit moment {{amount}} waard",
     "tr_venue_locked": "Een overboeking kan niet naar een ander platform — leg een nieuwe vast",
     "tr_value_age": "opgehaald {{ago}}",
+    "tr_coins_all": "Alle munten",
+    "tr_coins_dust": "+{{count}} meer onder {{amount}}",
     "tr_peer_from": "Waarvandaan",
     "tr_peer_to": "Waarheen",
     "tr_peer_ledger": "Je saldo",
