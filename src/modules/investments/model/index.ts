@@ -178,6 +178,8 @@ export const venueSchema = z.object({
   resultUsd: nullableDecimal(),
   /** What was already here when tracking started — never counted as a result. */
   openingUsd: nullableDecimal(),
+  /** When that baseline was taken: the date the result is measured from. */
+  openingAt: nullableDate(),
   /** Net of the manual corrections applied to this venue, USD. */
   adjustmentsUsd: decimal().default(0),
   /** When the value was last read. Its age is worth showing next to the figure. */
@@ -250,6 +252,8 @@ export const venuesResponseSchema = z.object({
   totalUsd: decimal(),
   totalBase: nullableDecimal(),
   investedUsd: decimal(),
+  /** The opening half of investedUsd — what was already there, not what anyone put in. */
+  openingUsd: decimal().default(0),
   resultUsd: decimal(),
   /** A venue could not be valued, so every total is a lower bound. */
   isPartial: z.boolean(),

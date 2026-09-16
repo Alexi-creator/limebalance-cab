@@ -15,14 +15,16 @@ import {
   IconArrowUpRight,
   IconCoins,
   IconHistory,
+  IconInfoCircle,
   IconPencil,
   IconPlugConnected,
   IconPlus,
   IconTrash,
 } from "@tabler/icons-react"
 import type { Locale } from "date-fns"
-import { formatDistanceToNow } from "date-fns"
+import { format, formatDistanceToNow } from "date-fns"
 import { enUS } from "date-fns/locale"
+import type { TFunction } from "i18next"
 import { useTranslation } from "react-i18next"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
@@ -33,6 +35,31 @@ import { TransferForm } from "../TransferForm"
 import { TransfersHistory } from "../TransfersHistory"
 import { VenueDetails } from "../VenueDetails"
 import { VenueForm } from "../VenueForm"
+
+/**
+ * Where a venue's money came from, said in the words that are actually true of it.
+ *
+ * These are two different stories and only one of them is anybody putting money in: a balance that
+ * was already on the exchange when tracking began was never deposited through this app, and a
+ * connected account whose whole equity is baseline would otherwise claim the user paid it in.
+ * Both are shown when both happened, because the result is measured against their sum.
+ */
+function investedParts(
+  t: TFunction,
+  usd: (n: number | null) => string,
+  openingUsd: number,
+  transferredUsd: number,
+): string {
+  const parts: string[] = []
+  if (openingUsd !== 0) parts.push(t("investments.tr_venue_opening", { amount: usd(openingUsd) }))
+  if (transferredUsd !== 0) {
+    parts.push(t("investments.tr_venue_added", { amount: usd(transferredUsd) }))
+  }
+  // Nothing either way is still worth saying: an empty venue reads as empty, not as unknown.
+  return parts.length > 0
+    ? parts.join(" · ")
+    : t("investments.tr_venue_invested", { amount: usd(0) })
+}
 
 /**
  * What the invested money is worth, per place.
@@ -82,14 +109,41 @@ export function VenuesBlock() {
               {usd(data?.totalUsd)}
             </Text>
             <Text size="xs" c="dimmed">
-              {t("investments.tr_total_invested", { amount: usd(data?.investedUsd) })}
+              {investedParts(
+                t,
+                usd,
+                data?.openingUsd ?? 0,
+                (data?.investedUsd ?? 0) - (data?.openingUsd ?? 0),
+              )}
             </Text>
           </Stack>
 
           <Box ta="right">
-            <Text size="xs" c="dimmed">
-              {t("investments.tr_total_result")}
-            </Text>
+            {/* The figure people read first, and the one that misleads hardest: it is how much
+                these venues have moved since the app first read them, which on an account that
+                predates it by years is not the same thing as how the trading went. */}
+            <Group gap={4} justify="flex-end" wrap="nowrap">
+              <Text size="xs" c="dimmed">
+                {t("investments.tr_total_result")}
+              </Text>
+              <Tooltip
+                label={t("investments.tr_result_hint")}
+                multiline
+                w={280}
+                withArrow
+                withinPortal
+                events={{ hover: true, focus: true, touch: true }}
+              >
+                <ActionIcon
+                  variant="subtle"
+                  color="gray"
+                  size="xs"
+                  aria-label={t("investments.tr_result_hint")}
+                >
+                  <IconInfoCircle size={13} />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
             <Text
               ff="monospace"
               fz={24}
@@ -298,22 +352,34 @@ function VenueCard({
           {usd(venue.valueUsd)}
         </Text>
         {result !== null && (
-          <Text
-            ff="monospace"
-            size="sm"
-            fw={500}
-            c={result === 0 ? "dimmed" : result > 0 ? "green.5" : "red.5"}
-          >
-            {result >= 0 ? "+" : "−"}
-            {usd(Math.abs(result))}
-          </Text>
+          <Box ta="right">
+            <Text
+              ff="monospace"
+              size="sm"
+              fw={500}
+              c={result === 0 ? "dimmed" : result > 0 ? "green.5" : "red.5"}
+            >
+              {result >= 0 ? "+" : "−"}
+              {usd(Math.abs(result))}
+            </Text>
+            {/* An undated result reads as a lifetime verdict. On an account that existed long
+                before this app, three dollars over two days is noise, and saying since when is
+                what turns it back into information. No baseline, no line: a venue made by hand
+                has no moment its measuring started from. fz and not size, because `size` takes a
+                Mantine token and an unknown one resolves to a 100px line-height. */}
+            {venue.openingAt && (
+              <Text fz={10} lh={1.3} c="dimmed" mt={2}>
+                {t("investments.tr_result_since", {
+                  date: format(venue.openingAt, "d MMM yyyy", { locale }),
+                })}
+              </Text>
+            )}
+          </Box>
         )}
       </Group>
 
       <Text size="xs" c="dimmed" mt={2}>
-        {t("investments.tr_venue_invested", {
-          amount: usd((venue.openingUsd ?? 0) + venue.transferredUsd),
-        })}
+        {investedParts(t, usd, venue.openingUsd ?? 0, venue.transferredUsd)}
       </Text>
 
       {venue.adjustmentsUsd !== 0 && (

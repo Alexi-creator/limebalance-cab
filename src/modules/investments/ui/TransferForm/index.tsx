@@ -117,16 +117,13 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
     })
   }
 
-  // Who can be on the other side depends on the direction: money can only arrive from your balance
-  // or another venue, and only leave to your balance, another venue or someone else.
-  const peerOptions: TransferPeer[] =
-    mode === "deposit" ? ["LEDGER", "VENUE"] : ["LEDGER", "VENUE", "EXTERNAL"]
+  // The same three whichever way the money goes. Arriving from outside is as real as leaving to
+  // it — coins someone sent you, or a holding that predates the app — and offering it only on the
+  // way out left no way to describe a venue that was never funded from this wallet: its whole
+  // value would have read as profit made out of nothing.
+  const peerOptions: TransferPeer[] = ["LEDGER", "VENUE", "EXTERNAL"]
 
-  const switchMode = (v: string) => {
-    const next = v as "deposit" | "withdraw"
-    setMode(next)
-    if (next === "deposit" && peer === "EXTERNAL") setPeer("LEDGER")
-  }
+  const switchMode = (v: string) => setMode(v as "deposit" | "withdraw")
 
   return (
     <form onSubmit={submit}>
@@ -161,7 +158,13 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
           disabled={!!transfer}
           data={peerOptions.map((p) => ({
             value: p,
-            label: t(`investments.tr_peer_${p.toLowerCase()}`),
+            // The outside world is the one peer that reads differently by direction: money goes
+            // *to* a third party and arrives *from* one. Your balance and your other venues are
+            // the same place whichever way it moves.
+            label:
+              p === "EXTERNAL" && mode === "deposit"
+                ? t("investments.tr_peer_external_in")
+                : t(`investments.tr_peer_${p.toLowerCase()}`),
           }))}
         />
 
@@ -181,7 +184,11 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
 
         {peer === "EXTERNAL" && (
           <Text size="xs" c="dimmed">
-            {t("investments.tr_external_hint")}
+            {t(
+              mode === "deposit"
+                ? "investments.tr_external_in_hint"
+                : "investments.tr_external_hint",
+            )}
           </Text>
         )}
 
@@ -276,7 +283,15 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
           autosize
           minRows={1}
           maxRows={3}
-          placeholder={peer === "EXTERNAL" ? t("investments.tr_external_note") : undefined}
+          placeholder={
+            peer === "EXTERNAL"
+              ? t(
+                  mode === "deposit"
+                    ? "investments.tr_external_note_in"
+                    : "investments.tr_external_note",
+                )
+              : undefined
+          }
         />
 
         <Group justify="flex-end">
