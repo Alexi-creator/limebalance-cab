@@ -708,7 +708,10 @@
     "venue_adj_applied": "Korrekturen: {{amount}}",
     "venue_coin_amount": "Menge",
     "tr_asset_or_usd": "leer lassen für USD",
-    "tr_asset_worth": "≈ {{amount}} zum zuletzt bekannten Kurs"
+    "tr_asset_worth": "≈ {{amount}} zum zuletzt bekannten Kurs",
+    "tr_asset_available": "Verfügbar: {{amount}} {{asset}}",
+    "tr_asset_all": "alles",
+    "tr_asset_too_much": "Mehr als hier vorhanden"
   },
   "telegram": {
     "linked_success": "Telegram verbunden",

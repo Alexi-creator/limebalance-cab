@@ -732,7 +732,10 @@
     "venue_adj_applied": "תיקונים: {{amount}}",
     "venue_coin_amount": "כמות",
     "tr_asset_or_usd": "השאר ריק להעברה בדולרים",
-    "tr_asset_worth": "≈ {{amount}} לפי המחיר האחרון הידוע"
+    "tr_asset_worth": "≈ {{amount}} לפי המחיר האחרון הידוע",
+    "tr_asset_available": "זמין: {{amount}} {{asset}}",
+    "tr_asset_all": "הכול",
+    "tr_asset_too_much": "יותר ממה שיש כאן"
   },
   "telegram": {
     "linked_success": "טלגרם חובר",

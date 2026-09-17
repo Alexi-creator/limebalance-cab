@@ -696,7 +696,10 @@
     "venue_adj_applied": "koreksi: {{amount}}",
     "venue_coin_amount": "Jumlah",
     "tr_asset_or_usd": "kosongkan untuk memindahkan USD",
-    "tr_asset_worth": "≈ {{amount}} pada harga terakhir yang diketahui"
+    "tr_asset_worth": "≈ {{amount}} pada harga terakhir yang diketahui",
+    "tr_asset_available": "Tersedia: {{amount}} {{asset}}",
+    "tr_asset_all": "semua",
+    "tr_asset_too_much": "Lebih dari yang ada di sini"
   },
   "telegram": {
     "linked_success": "Telegram terhubung",

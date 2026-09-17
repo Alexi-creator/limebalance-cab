@@ -720,7 +720,10 @@
     "venue_adj_applied": "коригування: {{amount}}",
     "venue_coin_amount": "Кількість",
     "tr_asset_or_usd": "порожньо — переказ у USD",
-    "tr_asset_worth": "≈ {{amount}} за останньою відомою ціною"
+    "tr_asset_worth": "≈ {{amount}} за останньою відомою ціною",
+    "tr_asset_available": "Доступно: {{amount}} {{asset}}",
+    "tr_asset_all": "усе",
+    "tr_asset_too_much": "Більше, ніж є на майданчику"
   },
   "telegram": {
     "linked_success": "Telegram прив'язано",

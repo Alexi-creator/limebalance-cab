@@ -708,7 +708,10 @@
     "venue_adj_applied": "korrekciók: {{amount}}",
     "venue_coin_amount": "Mennyiség",
     "tr_asset_or_usd": "hagyd üresen USD átvezetéshez",
-    "tr_asset_worth": "≈ {{amount}} a legutóbbi ismert áron"
+    "tr_asset_worth": "≈ {{amount}} a legutóbbi ismert áron",
+    "tr_asset_available": "Elérhető: {{amount}} {{asset}}",
+    "tr_asset_all": "mind",
+    "tr_asset_too_much": "Több, mint ami itt van"
   },
   "telegram": {
     "linked_success": "Telegram csatlakoztatva",

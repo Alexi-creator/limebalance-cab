@@ -708,7 +708,10 @@
     "venue_adj_applied": "διορθώσεις: {{amount}}",
     "venue_coin_amount": "Ποσότητα",
     "tr_asset_or_usd": "άφησέ το κενό για μεταφορά σε USD",
-    "tr_asset_worth": "≈ {{amount}} στην τελευταία γνωστή τιμή"
+    "tr_asset_worth": "≈ {{amount}} στην τελευταία γνωστή τιμή",
+    "tr_asset_available": "Διαθέσιμα: {{amount}} {{asset}}",
+    "tr_asset_all": "όλα",
+    "tr_asset_too_much": "Περισσότερα από όσα υπάρχουν εδώ"
   },
   "telegram": {
     "linked_success": "Το Telegram συνδέθηκε",

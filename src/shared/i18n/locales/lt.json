@@ -720,7 +720,10 @@
     "venue_adj_applied": "pataisymai: {{amount}}",
     "venue_coin_amount": "Kiekis",
     "tr_asset_or_usd": "palik tuščią, kad pervestum USD",
-    "tr_asset_worth": "≈ {{amount}} pagal paskutinę žinomą kainą"
+    "tr_asset_worth": "≈ {{amount}} pagal paskutinę žinomą kainą",
+    "tr_asset_available": "Prieinama: {{amount}} {{asset}}",
+    "tr_asset_all": "viską",
+    "tr_asset_too_much": "Daugiau, nei čia yra"
   },
   "telegram": {
     "linked_success": "Telegram prijungtas",

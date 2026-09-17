@@ -737,7 +737,10 @@
     "venue_adj_applied": "corrections: {{amount}}",
     "venue_coin_amount": "Quantity",
     "tr_asset_or_usd": "leave empty to move USD",
-    "tr_asset_worth": "≈ {{amount}} by the last known price"
+    "tr_asset_worth": "≈ {{amount}} by the last known price",
+    "tr_asset_available": "Available: {{amount}} {{asset}}",
+    "tr_asset_all": "all",
+    "tr_asset_too_much": "More than this venue holds"
   },
   "telegram": {
     "linked_success": "Telegram linked",

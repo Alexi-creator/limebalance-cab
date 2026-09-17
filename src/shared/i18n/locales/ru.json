@@ -751,7 +751,10 @@
     "venue_adj_applied": "корректировки: {{amount}}",
     "venue_coin_amount": "Количество",
     "tr_asset_or_usd": "пусто — перевод в USD",
-    "tr_asset_worth": "≈ {{amount}} по последней известной цене"
+    "tr_asset_worth": "≈ {{amount}} по последней известной цене",
+    "tr_asset_available": "Доступно: {{amount}} {{asset}}",
+    "tr_asset_all": "всё",
+    "tr_asset_too_much": "Больше, чем есть на площадке"
   },
   "telegram": {
     "linked_success": "Telegram привязан",

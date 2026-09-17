@@ -708,7 +708,10 @@
     "venue_adj_applied": "korrigeringer: {{amount}}",
     "venue_coin_amount": "Antall",
     "tr_asset_or_usd": "la stå tomt for å flytte USD",
-    "tr_asset_worth": "≈ {{amount}} til sist kjente pris"
+    "tr_asset_worth": "≈ {{amount}} til sist kjente pris",
+    "tr_asset_available": "Tilgjengelig: {{amount}} {{asset}}",
+    "tr_asset_all": "alt",
+    "tr_asset_too_much": "Mer enn det som finnes her"
   },
   "telegram": {
     "linked_success": "Telegram tilkoblet",

@@ -708,7 +708,10 @@
     "venue_adj_applied": "корекции: {{amount}}",
     "venue_coin_amount": "Количество",
     "tr_asset_or_usd": "остави празно за превод в USD",
-    "tr_asset_worth": "≈ {{amount}} по последната известна цена"
+    "tr_asset_worth": "≈ {{amount}} по последната известна цена",
+    "tr_asset_available": "Налични: {{amount}} {{asset}}",
+    "tr_asset_all": "всичко",
+    "tr_asset_too_much": "Повече от наличното тук"
   },
   "telegram": {
     "linked_success": "Telegram е свързан",

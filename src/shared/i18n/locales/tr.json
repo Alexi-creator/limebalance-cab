@@ -708,7 +708,10 @@
     "venue_adj_applied": "düzeltmeler: {{amount}}",
     "venue_coin_amount": "Miktar",
     "tr_asset_or_usd": "USD taşımak için boş bırak",
-    "tr_asset_worth": "≈ {{amount}} son bilinen fiyattan"
+    "tr_asset_worth": "≈ {{amount}} son bilinen fiyattan",
+    "tr_asset_available": "Kullanılabilir: {{amount}} {{asset}}",
+    "tr_asset_all": "tümü",
+    "tr_asset_too_much": "Burada olandan fazla"
   },
   "telegram": {
     "linked_success": "Telegram bağlandı",

@@ -720,7 +720,10 @@
     "venue_adj_applied": "korekce: {{amount}}",
     "venue_coin_amount": "Množství",
     "tr_asset_or_usd": "nech prázdné pro převod v USD",
-    "tr_asset_worth": "≈ {{amount}} podle poslední známé ceny"
+    "tr_asset_worth": "≈ {{amount}} podle poslední známé ceny",
+    "tr_asset_available": "K dispozici: {{amount}} {{asset}}",
+    "tr_asset_all": "vše",
+    "tr_asset_too_much": "Více, než je zde k dispozici"
   },
   "telegram": {
     "linked_success": "Telegram připojen",

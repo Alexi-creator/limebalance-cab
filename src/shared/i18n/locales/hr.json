@@ -720,7 +720,10 @@
     "venue_adj_applied": "ispravci: {{amount}}",
     "venue_coin_amount": "Količina",
     "tr_asset_or_usd": "ostavi prazno za prijenos u USD",
-    "tr_asset_worth": "≈ {{amount}} po zadnjoj poznatoj cijeni"
+    "tr_asset_worth": "≈ {{amount}} po zadnjoj poznatoj cijeni",
+    "tr_asset_available": "Dostupno: {{amount}} {{asset}}",
+    "tr_asset_all": "sve",
+    "tr_asset_too_much": "Više nego što ovdje ima"
   },
   "telegram": {
     "linked_success": "Telegram povezan",

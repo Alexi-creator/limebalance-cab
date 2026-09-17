@@ -720,7 +720,10 @@
     "venue_adj_applied": "corecții: {{amount}}",
     "venue_coin_amount": "Cantitate",
     "tr_asset_or_usd": "lasă gol pentru transfer în USD",
-    "tr_asset_worth": "≈ {{amount}} la ultimul preț cunoscut"
+    "tr_asset_worth": "≈ {{amount}} la ultimul preț cunoscut",
+    "tr_asset_available": "Disponibil: {{amount}} {{asset}}",
+    "tr_asset_all": "tot",
+    "tr_asset_too_much": "Mai mult decât există aici"
   },
   "telegram": {
     "linked_success": "Telegram conectat",

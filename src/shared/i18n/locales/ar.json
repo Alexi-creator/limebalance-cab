@@ -756,7 +756,10 @@
     "venue_adj_applied": "التصحيحات: {{amount}}",
     "venue_coin_amount": "الكمية",
     "tr_asset_or_usd": "اتركه فارغًا للتحويل بالدولار",
-    "tr_asset_worth": "≈ {{amount}} بآخر سعر معروف"
+    "tr_asset_worth": "≈ {{amount}} بآخر سعر معروف",
+    "tr_asset_available": "المتاح: {{amount}} {{asset}}",
+    "tr_asset_all": "الكل",
+    "tr_asset_too_much": "أكثر مما هو موجود هنا"
   },
   "telegram": {
     "linked_success": "تم ربط تيليجرام",

@@ -696,7 +696,10 @@
     "venue_adj_applied": "보정: {{amount}}",
     "venue_coin_amount": "수량",
     "tr_asset_or_usd": "비워두면 USD로 이동",
-    "tr_asset_worth": "마지막으로 확인된 가격 기준 ≈ {{amount}}"
+    "tr_asset_worth": "마지막으로 확인된 가격 기준 ≈ {{amount}}",
+    "tr_asset_available": "사용 가능: {{amount}} {{asset}}",
+    "tr_asset_all": "전체",
+    "tr_asset_too_much": "보유량보다 많습니다"
   },
   "telegram": {
     "linked_success": "Telegram이 연결되었습니다",

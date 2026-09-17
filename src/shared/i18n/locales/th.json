@@ -696,7 +696,10 @@
     "venue_adj_applied": "การปรับแก้: {{amount}}",
     "venue_coin_amount": "จำนวน",
     "tr_asset_or_usd": "เว้นว่างเพื่อโอนเป็น USD",
-    "tr_asset_worth": "≈ {{amount}} ตามราคาล่าสุดที่ทราบ"
+    "tr_asset_worth": "≈ {{amount}} ตามราคาล่าสุดที่ทราบ",
+    "tr_asset_available": "ใช้ได้: {{amount}} {{asset}}",
+    "tr_asset_all": "ทั้งหมด",
+    "tr_asset_too_much": "มากกว่าที่มีอยู่ที่นี่"
   },
   "telegram": {
     "linked_success": "เชื่อมต่อ Telegram แล้ว",

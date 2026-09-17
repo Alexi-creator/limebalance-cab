@@ -708,7 +708,10 @@
     "venue_adj_applied": "correcties: {{amount}}",
     "venue_coin_amount": "Aantal",
     "tr_asset_or_usd": "laat leeg om USD te verplaatsen",
-    "tr_asset_worth": "≈ {{amount}} tegen de laatst bekende koers"
+    "tr_asset_worth": "≈ {{amount}} tegen de laatst bekende koers",
+    "tr_asset_available": "Beschikbaar: {{amount}} {{asset}}",
+    "tr_asset_all": "alles",
+    "tr_asset_too_much": "Meer dan hier aanwezig is"
   },
   "telegram": {
     "linked_success": "Telegram verbonden",

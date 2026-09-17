@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Box,
   Button,
   Group,
@@ -21,8 +22,9 @@ import { useModalStore } from "@/shared/store/modalStore"
 import { CurrencySelect } from "@/shared/ui/CurrencySelect"
 import { useAssets } from "../../api/useAssets"
 import { useSaveTransfer } from "../../api/useSaveTransfer"
+import { useVenueHoldings } from "../../api/useVenueDetails"
 import { useVenues } from "../../api/useVenues"
-import type { Transfer, TransferPeer, Venue } from "../../model"
+import type { Transfer, TransferPeer, Venue, VenueCoin, VenueHolding } from "../../model"
 
 interface Props {
   /** Which direction the form opens on. */
@@ -68,22 +70,37 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
   const [currency, setCurrency] = useState<string | null>(
     transfer?.currency ?? userCurrency ?? "USD",
   )
-  const [asset, setAsset] = useState<string | null>(transfer?.asset ?? null)
+  const [pickedAsset, setAsset] = useState<string | null>(transfer?.asset ?? null)
   const [note, setNote] = useState(transfer?.note ?? "")
   const [day, setDay] = useState<string | null>(format(transfer?.date ?? new Date(), "yyyy-MM-dd"))
 
   const venue = venues.find((v) => v.id === venueId)
-  // Only coins the source actually holds are offered, falling back to every priceable ticker when
-  // the venue's contents are unknown — picking from what is there beats typing a ticker blind.
   const sourceVenue = mode === "withdraw" ? venue : venues.find((v) => v.id === peerVenueId)
-  const sourceCoins = sourceVenue?.coins ?? []
-  const assetOptions =
-    sourceCoins.length > 0 ? sourceCoins.map((c) => c.coin) : (allAssets.data ?? [])
+  // A manual venue's coins live in its holdings, not in the exchange snapshot — asked for only when
+  // coins are actually leaving one.
+  const manualSource = peer !== "LEDGER" && sourceVenue?.mode === "MANUAL" ? sourceVenue : null
+  const sourceHoldings = useVenueHoldings(manualSource?.id ?? "", !!manualSource)
+  const sourceCoins = manualSource
+    ? heldCoins(sourceHoldings.data?.items ?? [])
+    : (sourceVenue?.coins ?? [])
+  // Only coins the source actually holds are offered. A manual venue holds exactly what it says, so
+  // nothing else can leave it; an exchange not read yet falls back to every priceable ticker —
+  // picking from what is there beats typing a ticker blind.
+  const coinsKnown = !!manualSource || sourceCoins.length > 0
+  const assetOptions = coinsKnown ? sourceCoins.map((c) => c.coin) : (allAssets.data ?? [])
+  // A coin picked before the source changed does not carry over to a source that has none of it.
+  const asset =
+    pickedAsset && (coinLocked || !coinsKnown || assetOptions.includes(pickedAsset))
+      ? pickedAsset
+      : null
   // Rough preview of what the quantity is worth, from the venue's own snapshot. The backend prices
   // the move properly off the live feed — this is only here so the figure is not a surprise.
   const held = sourceCoins.find((c) => c.coin === asset)
   const unitPrice = held?.usdValue != null && held.amount > 0 ? held.usdValue / held.amount : null
   const coinValue = unitPrice !== null && Number(amount) > 0 ? Number(amount) * unitPrice : null
+  // The most that can leave. A recorded transfer is already out of the source, so its own size is
+  // not checked against what is left — it cannot change anyway.
+  const maxCoin = held && !coinLocked && coinsKnown ? roundCoin(held.amount) : null
   const otherVenues = venues.filter((v) => v.id !== venueId && !v.archived)
   // What the ledger says is free in the chosen currency — the figure you need to decide how much
   // to send, and the one that is painful to copy by hand.
@@ -103,7 +120,10 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
     onError: (err) => notifications.show({ color: "red", message: err.message }),
   })
 
-  const valid = Number(amount) > 0 && !!currency && !!venueId && (peer !== "VENUE" || !!peerVenueId)
+  const coinFits = peer === "LEDGER" || maxCoin === null || Number(amount) <= maxCoin
+
+  const valid =
+    Number(amount) > 0 && !!currency && !!venueId && (peer !== "VENUE" || !!peerVenueId) && coinFits
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -241,11 +261,26 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
               onChange={setAmount}
               disabled={coinLocked}
               min={0}
+              max={maxCoin ?? undefined}
+              error={
+                maxCoin !== null && Number(amount) > maxCoin
+                  ? t("investments.tr_asset_too_much")
+                  : undefined
+              }
               decimalScale={asset ? 8 : 2}
               suffix={asset ? undefined : " USD"}
               hideControls={!!asset}
             />
           </Group>
+        )}
+
+        {maxCoin !== null && (
+          <Text size="xs" c="dimmed">
+            {t("investments.tr_asset_available", { amount: maxCoin, asset })}{" "}
+            <Anchor component="button" type="button" size="xs" onClick={() => setAmount(maxCoin)}>
+              {t("investments.tr_asset_all")}
+            </Anchor>
+          </Text>
         )}
 
         {asset && coinValue !== null && (
@@ -313,4 +348,22 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
       </Stack>
     </form>
   )
+}
+
+/** A manual venue's holdings folded into one row per coin, largest first — the snapshot's shape. */
+function heldCoins(holdings: VenueHolding[]): VenueCoin[] {
+  const byCoin = new Map<string, VenueCoin>()
+  for (const h of holdings) {
+    if (h.amount <= 0) continue
+    const row = byCoin.get(h.asset) ?? { coin: h.asset, amount: 0, usdValue: null }
+    row.amount += h.amount
+    if (h.value !== null) row.usdValue = (row.usdValue ?? 0) + h.value
+    byCoin.set(h.asset, row)
+  }
+  return [...byCoin.values()].sort((a, b) => (b.usdValue ?? 0) - (a.usdValue ?? 0))
+}
+
+/** Summed holdings pick up float dust; eight places is as fine as a coin amount is entered. */
+function roundCoin(n: number): number {
+  return Math.round(n * 1e8) / 1e8
 }

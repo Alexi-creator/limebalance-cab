@@ -720,7 +720,10 @@
     "venue_adj_applied": "korekcijas: {{amount}}",
     "venue_coin_amount": "Daudzums",
     "tr_asset_or_usd": "atstāj tukšu, lai pārskaitītu USD",
-    "tr_asset_worth": "≈ {{amount}} pēc pēdējās zināmās cenas"
+    "tr_asset_worth": "≈ {{amount}} pēc pēdējās zināmās cenas",
+    "tr_asset_available": "Pieejams: {{amount}} {{asset}}",
+    "tr_asset_all": "visu",
+    "tr_asset_too_much": "Vairāk, nekā šeit ir"
   },
   "telegram": {
     "linked_success": "Telegram savienots",

@@ -696,7 +696,10 @@
     "venue_adj_applied": "修正：{{amount}}",
     "venue_coin_amount": "数量",
     "tr_asset_or_usd": "留空则转移 USD",
-    "tr_asset_worth": "按最近已知价格约 {{amount}}"
+    "tr_asset_worth": "按最近已知价格约 {{amount}}",
+    "tr_asset_available": "可用：{{amount}} {{asset}}",
+    "tr_asset_all": "全部",
+    "tr_asset_too_much": "超过此处持有的数量"
   },
   "telegram": {
     "linked_success": "已连接 Telegram",

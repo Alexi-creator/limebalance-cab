@@ -708,7 +708,10 @@
     "venue_adj_applied": "parandused: {{amount}}",
     "venue_coin_amount": "Kogus",
     "tr_asset_or_usd": "jäta tühjaks USD ülekandeks",
-    "tr_asset_worth": "≈ {{amount}} viimase teadaoleva hinnaga"
+    "tr_asset_worth": "≈ {{amount}} viimase teadaoleva hinnaga",
+    "tr_asset_available": "Saadaval: {{amount}} {{asset}}",
+    "tr_asset_all": "kõik",
+    "tr_asset_too_much": "Rohkem, kui siin on"
   },
   "telegram": {
     "linked_success": "Telegram ühendatud",

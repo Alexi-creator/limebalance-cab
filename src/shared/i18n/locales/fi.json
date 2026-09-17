@@ -708,7 +708,10 @@
     "venue_adj_applied": "korjaukset: {{amount}}",
     "venue_coin_amount": "Määrä",
     "tr_asset_or_usd": "jätä tyhjäksi siirtääksesi USD",
-    "tr_asset_worth": "≈ {{amount}} viimeisimmällä tunnetulla hinnalla"
+    "tr_asset_worth": "≈ {{amount}} viimeisimmällä tunnetulla hinnalla",
+    "tr_asset_available": "Saatavilla: {{amount}} {{asset}}",
+    "tr_asset_all": "kaikki",
+    "tr_asset_too_much": "Enemmän kuin täällä on"
   },
   "telegram": {
     "linked_success": "Telegram yhdistetty",

@@ -696,7 +696,10 @@
     "venue_adj_applied": "補正: {{amount}}",
     "venue_coin_amount": "数量",
     "tr_asset_or_usd": "空にすると USD で移動",
-    "tr_asset_worth": "最後に取得した価格で ≈ {{amount}}"
+    "tr_asset_worth": "最後に取得した価格で ≈ {{amount}}",
+    "tr_asset_available": "利用可能: {{amount}} {{asset}}",
+    "tr_asset_all": "全額",
+    "tr_asset_too_much": "ここにある量を超えています"
   },
   "telegram": {
     "linked_success": "Telegram を接続しました",

@@ -696,7 +696,10 @@
     "venue_adj_applied": "điều chỉnh: {{amount}}",
     "venue_coin_amount": "Số lượng",
     "tr_asset_or_usd": "để trống để chuyển USD",
-    "tr_asset_worth": "≈ {{amount}} theo giá biết gần nhất"
+    "tr_asset_worth": "≈ {{amount}} theo giá biết gần nhất",
+    "tr_asset_available": "Khả dụng: {{amount}} {{asset}}",
+    "tr_asset_all": "tất cả",
+    "tr_asset_too_much": "Nhiều hơn số đang có ở đây"
   },
   "telegram": {
     "linked_success": "Đã kết nối Telegram",
