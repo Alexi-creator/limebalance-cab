@@ -26,7 +26,23 @@ import { useVenueHoldings } from "../../api/useVenueDetails"
 import { useVenues } from "../../api/useVenues"
 import type { Transfer, TransferPeer, Venue, VenueCoin, VenueHolding } from "../../model"
 
+/**
+ * A transfer the form opens already filled in — recording a P2P order, where the exchange knows
+ * every figure and the user only confirms. Always against the balance: that is what P2P is.
+ */
+export interface TransferPreset {
+  mode: "deposit" | "withdraw"
+  venueId: string
+  amount: number
+  currency: string
+  date: Date
+  note: string
+  p2pOrderId: string
+}
+
 interface Props {
+  /** Prefilled figures to confirm; ties the saved transfer to the P2P order it records. */
+  preset?: TransferPreset
   /** Which direction the form opens on. */
   initialMode?: "deposit" | "withdraw"
   /** Venue preselected from the card the user pressed. */
@@ -45,7 +61,7 @@ interface Props {
  *
  * Editing never moves a transfer to another venue: that is a different event, not an edit.
  */
-export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }: Props) {
+export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, preset }: Props) {
   const { t, i18n } = useTranslation()
   const close = useModalStore((s) => s.close)
   const userCurrency = useAuthStore((s) => s.user?.currency)
@@ -54,25 +70,31 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
   const allAssets = useAssets()
 
   const [venueId, setVenueId] = useState<string | null>(
-    transfer?.venueId ?? defaultVenue?.id ?? venues[0]?.id ?? null,
+    transfer?.venueId ?? preset?.venueId ?? defaultVenue?.id ?? venues[0]?.id ?? null,
   )
   const [mode, setMode] = useState<"deposit" | "withdraw">(
-    transfer ? (transfer.direction === "IN" ? "deposit" : "withdraw") : initialMode,
+    transfer
+      ? transfer.direction === "IN"
+        ? "deposit"
+        : "withdraw"
+      : (preset?.mode ?? initialMode),
   )
   const [peer, setPeer] = useState<TransferPeer>(transfer?.peer ?? "LEDGER")
   const [peerVenueId, setPeerVenueId] = useState<string | null>(transfer?.peerVenueId ?? null)
   // A coin move is edited in the coin it was made in, not in the USD it was priced at.
   const [amount, setAmount] = useState<number | string>(
-    (transfer?.asset ? transfer.assetAmount : transfer?.amount) ?? "",
+    (transfer?.asset ? transfer.assetAmount : transfer?.amount) ?? preset?.amount ?? "",
   )
   // Its size and direction are fixed once recorded — only the date and the note can change.
   const coinLocked = !!transfer?.asset
   const [currency, setCurrency] = useState<string | null>(
-    transfer?.currency ?? userCurrency ?? "USD",
+    transfer?.currency ?? preset?.currency ?? userCurrency ?? "USD",
   )
   const [pickedAsset, setAsset] = useState<string | null>(transfer?.asset ?? null)
-  const [note, setNote] = useState(transfer?.note ?? "")
-  const [day, setDay] = useState<string | null>(format(transfer?.date ?? new Date(), "yyyy-MM-dd"))
+  const [note, setNote] = useState(transfer?.note ?? preset?.note ?? "")
+  const [day, setDay] = useState<string | null>(
+    format(transfer?.date ?? preset?.date ?? new Date(), "yyyy-MM-dd"),
+  )
 
   const venue = venues.find((v) => v.id === venueId)
   const sourceVenue = mode === "withdraw" ? venue : venues.find((v) => v.id === peerVenueId)
@@ -139,6 +161,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
         : { amount: Number(amount), currency: (peer === "LEDGER" ? currency : "USD") as string }),
       date: day ?? undefined,
       note: note.trim() || undefined,
+      ...(preset ? { p2pOrderId: preset.p2pOrderId } : {}),
     })
   }
 
@@ -157,7 +180,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
           fullWidth
           value={mode}
           onChange={switchMode}
-          disabled={coinLocked}
+          disabled={coinLocked || !!preset}
           data={[
             { value: "deposit", label: t("investments.tr_deposit") },
             { value: "withdraw", label: t("investments.tr_withdraw") },
@@ -170,7 +193,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
           value={venueId}
           onChange={setVenueId}
           allowDeselect={false}
-          disabled={!!transfer}
+          disabled={!!transfer || !!preset}
           description={transfer ? t("investments.tr_venue_locked") : undefined}
           data={venues.map((v) => ({ value: v.id, label: v.name }))}
         />
@@ -181,7 +204,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer }
           value={peer}
           onChange={(v) => setPeer((v ?? "LEDGER") as TransferPeer)}
           allowDeselect={false}
-          disabled={!!transfer}
+          disabled={!!transfer || !!preset}
           data={peerOptions.map((p) => ({
             value: p,
             // The outside world is the one peer that reads differently by direction: money goes

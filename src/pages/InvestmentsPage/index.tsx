@@ -1,5 +1,10 @@
 import { Alert, Box, Group, Stack, Tabs, Text, Title } from "@mantine/core"
-import { IconArrowsUpDown, IconNotebook, IconPlugConnected } from "@tabler/icons-react"
+import {
+  IconArrowsExchange,
+  IconArrowsUpDown,
+  IconNotebook,
+  IconPlugConnected,
+} from "@tabler/icons-react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useExchangeAccounts } from "@/modules/investments/api/useExchangeAccounts"
@@ -7,6 +12,7 @@ import { useInvestmentsTour } from "@/modules/investments/hooks/useInvestmentsTo
 import {
   AccountsSection,
   InvestingPaywall,
+  P2pSection,
   PositionsSection,
   VenuesBlock,
 } from "@/modules/investments/ui"
@@ -15,7 +21,7 @@ import { HttpStatus } from "@/shared/api/httpStatus"
 import { RouteNames } from "@/shared/config/routeNames"
 import { TourTriggerButton } from "@/shared/ui/TourTriggerButton"
 
-const TAB_VALUES = ["journal", "portfolio", "accounts"]
+const TAB_VALUES = ["journal", "portfolio", "p2p", "accounts"]
 
 /**
  * Investments section: exchange (Bybit) accounts, the trade journal and the
@@ -81,6 +87,11 @@ export function InvestmentsPage() {
                 {t("investments.tab_portfolio")}
               </Box>
             </Tabs.Tab>
+            <Tabs.Tab value="p2p" leftSection={<IconArrowsExchange size={16} />}>
+              <Box component="span" visibleFrom="sm">
+                {t("investments.tab_p2p")}
+              </Box>
+            </Tabs.Tab>
             <Tabs.Tab
               value="accounts"
               leftSection={<IconPlugConnected size={16} />}
@@ -97,6 +108,9 @@ export function InvestmentsPage() {
           </Tabs.Panel>
           <Tabs.Panel value="portfolio" data-tour="inv-portfolio">
             <VenuesBlock />
+          </Tabs.Panel>
+          <Tabs.Panel value="p2p">
+            <P2pSection accounts={accounts ?? []} />
           </Tabs.Panel>
           <Tabs.Panel value="accounts" data-tour="inv-accounts">
             <AccountsSection accounts={accounts ?? []} isLoading={isLoading} />

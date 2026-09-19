@@ -14,6 +14,8 @@ export function useInvalidateTransferData() {
   return useCallback(() => {
     queryClient.invalidateQueries({ queryKey: investingKeys.venues })
     queryClient.invalidateQueries({ queryKey: investingKeys.allTransfers })
+    // A P2P order shows whether it has been recorded yet.
+    queryClient.invalidateQueries({ queryKey: investingKeys.allP2pOrders })
     // Coins and corrections feed a manual venue's value, so both go with it.
     queryClient.invalidateQueries({ queryKey: ["investing", "holdings"] })
     queryClient.invalidateQueries({ queryKey: ["investing", "adjustments"] })

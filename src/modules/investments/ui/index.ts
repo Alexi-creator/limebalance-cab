@@ -1,6 +1,7 @@
 /** Public surface of the module's ui segment. */
 export { AccountsSection } from "./AccountsSection"
 export { InvestmentsGuard } from "./InvestmentsGuard"
+export { P2pSection } from "./P2pSection"
 export { InvestingPaywall } from "./Paywall"
 export { PortfolioSnippet } from "./PortfolioSnippet"
 export { PositionsSection } from "./PositionsSection"

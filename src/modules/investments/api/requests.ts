@@ -9,6 +9,7 @@ import {
   coinIconsResponseSchema,
   equityCurveResponseSchema,
   exchangeAccountSchema,
+  p2pOrdersResponseSchema,
   positionSymbolsResponseSchema,
   positionsResponseSchema,
   positionsSummarySchema,
@@ -208,6 +209,8 @@ export function getCoinIcons() {
 
 export interface TransfersParams {
   venueId?: string
+  /** Only the imported movements still waiting to be explained. */
+  needsReview?: boolean
   from?: Date
   to?: Date
   limit?: number
@@ -217,6 +220,7 @@ export interface TransfersParams {
 function transfersQuery(params: TransfersParams): string {
   const q = new URLSearchParams()
   if (params.venueId) q.set("venueId", params.venueId)
+  if (params.needsReview !== undefined) q.set("needsReview", String(params.needsReview))
   if (params.from) q.set("from", format(params.from, "yyyy-MM-dd"))
   if (params.to) q.set("to", format(params.to, "yyyy-MM-dd"))
   if (params.limit != null) q.set("limit", String(params.limit))
@@ -280,6 +284,8 @@ export interface TransferPayload {
   /** `YYYY-MM-DD` — the backend stores it in @db.Date without time. */
   date?: string
   note?: string
+  /** The Bybit P2P order this transfer records — the order then shows as recorded. */
+  p2pOrderId?: string
 }
 
 export function createTransfer(payload: TransferPayload) {
@@ -303,8 +309,40 @@ export function updateTransfer(id: string, payload: UpdateTransferPayload) {
   })
 }
 
+/** What an imported deposit or withdrawal really was. */
+export interface ClassifyTransferPayload {
+  peer: "LEDGER" | "VENUE" | "EXTERNAL"
+  /** Required when peer is VENUE. */
+  peerVenueId?: string
+  /** peer LEDGER only, required there: what left or reached the wallet, in its own currency. */
+  amount?: number
+  currency?: string
+  note?: string
+  /** A transfer already recorded by hand for this movement — merged in, and its answer taken. */
+  replacesId?: string
+}
+
+export function classifyTransfer(id: string, payload: ClassifyTransferPayload) {
+  return request(`${API_URLS.investing.transfers}/${id}/classify`, {
+    method: HttpMethods.POST,
+    body: JSON.stringify(payload),
+    schema: transferSchema,
+  })
+}
+
+/** Refused by the backend for imported transfers — those are classified, not deleted. */
 export function deleteTransfer(id: string) {
   return request(`${API_URLS.investing.transfers}/${id}`, { method: HttpMethods.DELETE })
+}
+
+// ── P2P ──────────────────────────────────────────────────────────────────────
+
+/** A page of a connected account's P2P orders, read live from the exchange. */
+export function getP2pOrders(accountId: string, page: number, size: number) {
+  return request(
+    `${API_URLS.investing.accounts}/${accountId}/p2p-orders?page=${page}&size=${size}`,
+    { schema: p2pOrdersResponseSchema },
+  )
 }
 
 // ── venue corrections and tracked coins ───────────────────────────────────────

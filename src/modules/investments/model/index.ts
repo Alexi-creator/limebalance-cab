@@ -144,6 +144,16 @@ export const transferSchema = z.object({
   note: z.string().nullable(),
   // A @db.Date field — wall-clock, like a transaction's own date.
   date: wallClockDate(),
+  /** MANUAL: typed in by the user. BYBIT: imported from the exchange's deposit/withdrawal history. */
+  source: z.enum(["MANUAL", "BYBIT"]).default("MANUAL"),
+  /**
+   * Imported and not yet explained. Counts as money from/to someone else until it is — so it never
+   * reads as a trading result, and never touches the balance until the user says it was theirs.
+   */
+  needsReview: z.boolean().default(false),
+  /** Imported only: the sender or recipient as the exchange names them — address, email, UID. */
+  counterparty: z.string().nullable().default(null),
+  txId: z.string().nullable().default(null),
 })
 
 export const transfersResponseSchema = z.object({
@@ -185,6 +195,10 @@ export const venueSchema = z.object({
   /** When the value was last read. Its age is worth showing next to the figure. */
   valueAt: nullableDate(),
   coins: z.array(venueCoinSchema).default([]),
+  /** LIVE only: the part of the value sitting in FUND, where deposits land. */
+  fundUsd: nullableDecimal().default(null),
+  /** Imported movements waiting to be explained — the result is provisional until they are. */
+  pendingReview: z.number().default(0),
 })
 
 /**
@@ -257,6 +271,7 @@ export const venuesResponseSchema = z.object({
   resultUsd: decimal(),
   /** A venue could not be valued, so every total is a lower bound. */
   isPartial: z.boolean(),
+  pendingReview: z.number().default(0),
 })
 
 /** GET /investing/coin-icons — ticker -> icon URLs, cached long client-side (see CoinIcon). */
@@ -264,6 +279,47 @@ export const coinIconsResponseSchema = z.object({
   items: z.record(z.string(), z.object({ icon: z.string(), iconNight: z.string() })),
 })
 
+/**
+ * One P2P order, read live from Bybit. BUY means fiat was paid and the coin received. Only a DONE
+ * order moved money — it can be recorded as a transfer, and `transferId` says it already was.
+ */
+export const p2pOrderSchema = z.object({
+  id: z.string(),
+  side: z.enum(["BUY", "SELL"]),
+  asset: z.string(),
+  quantity: decimal(),
+  fiatAmount: decimal(),
+  fiatCurrency: z.string(),
+  price: decimal(),
+  fee: nullableDecimal(),
+  counterparty: z.string().nullable(),
+  status: z.enum(["DONE", "CANCELLED", "DISPUTE", "ACTIVE"]),
+  createdAt: z.coerce.date(),
+  transferId: z.string().nullable(),
+})
+
+export const p2pOrdersResponseSchema = z.object({
+  items: z.array(p2pOrderSchema),
+  total: z.number(),
+  /** The account's venue — where a recorded order's transfer goes. */
+  venueId: z.string().nullable(),
+})
+
+/** Why the P2P history could not be read — nearly always the key's permissions. */
+export const p2pUnavailableSchema = z.object({
+  code: z.literal("P2P_UNAVAILABLE"),
+  retCode: z.number(),
+  message: z.string(),
+})
+
+/** Bybit's refusal behind a failed P2P read, or null when the failure was something else. */
+export function p2pUnavailableOf(error: unknown) {
+  if (!(error instanceof ApiError)) return null
+  const parsed = p2pUnavailableSchema.safeParse(error.body)
+  return parsed.success ? parsed.data : null
+}
+
+export type P2pOrder = z.infer<typeof p2pOrderSchema>
 export type ExchangeAccount = z.infer<typeof exchangeAccountSchema>
 export type Transfer = z.infer<typeof transferSchema>
 export type Venue = z.infer<typeof venueSchema>

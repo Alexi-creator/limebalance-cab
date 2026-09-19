@@ -1,6 +1,6 @@
-import { ActionIcon, Box, Center, Group, Loader, Stack, Text, Tooltip } from "@mantine/core"
+import { ActionIcon, Badge, Box, Center, Group, Loader, Stack, Text, Tooltip } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
-import { IconPencil, IconTrash } from "@tabler/icons-react"
+import { IconPencil, IconPlugConnected, IconTrash } from "@tabler/icons-react"
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useTranslation } from "react-i18next"
@@ -9,27 +9,45 @@ import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
 import { useDeleteTransfer } from "../../api/useDeleteTransfer"
 import { useTransfers } from "../../api/useTransfers"
-import type { Venue } from "../../model"
+import { formatQty } from "../../lib/format"
+import type { Transfer, Venue } from "../../model"
+import { ReviewTransferForm } from "../ReviewTransferForm"
 import { TransferForm } from "../TransferForm"
 
 interface Props {
   /** Limits the history to one venue; omitted shows everything. */
   venue?: Venue
+  /** Only the imported movements still waiting to be answered. */
+  pendingOnly?: boolean
 }
 
-/** Deposit / withdrawal history, newest first, each row editable and removable. */
-export function TransfersHistory({ venue }: Props) {
+/**
+ * Deposit / withdrawal history, newest first. Rows typed in by hand are editable and removable;
+ * rows imported from the exchange are answered instead — what they were — and never deleted, since
+ * the money moved whether or not it is on record.
+ */
+export function TransfersHistory({ venue, pendingOnly }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const open = useModalStore((s) => s.open)
 
   // Scoped to one venue, or everything — a venue-to-venue move shows up under both sides.
-  const { data, isLoading } = useTransfers(venue ? { venueId: venue.id } : {})
+  const { data, isLoading } = useTransfers({
+    ...(venue ? { venueId: venue.id } : {}),
+    ...(pendingOnly ? { needsReview: true } : {}),
+  })
 
   const mutation = useDeleteTransfer({
     onSuccess: () => notifications.show({ color: "green", message: t("investments.tr_deleted") }),
     onError: (err) => notifications.show({ color: "red", message: err.message }),
   })
+
+  const openReview = (row: Transfer) =>
+    open({
+      centered: true,
+      title: t("investments.rv_title"),
+      children: <ReviewTransferForm transfer={row} />,
+    })
 
   if (isLoading) {
     return (
@@ -52,6 +70,7 @@ export function TransfersHistory({ venue }: Props) {
     <Stack gap={0}>
       {rows.map((row) => {
         const isDeposit = row.direction === "IN"
+        const imported = row.source !== "MANUAL"
         return (
           <Group
             key={row.id}
@@ -62,19 +81,51 @@ export function TransfersHistory({ venue }: Props) {
             style={{ borderBottom: "1px solid var(--mantine-color-default-border)" }}
           >
             <Box style={{ minWidth: 0 }}>
-              <Text size="sm" truncate="end">
-                {isDeposit ? t("investments.tr_deposit") : t("investments.tr_withdraw")}
-                {" · "}
-                <Text component="span" size="sm" c="dimmed">
-                  {row.venueName}
-                  {/* Where the money actually came from or went — the peer is the whole
-                      difference between a move, a withdrawal and money that is simply gone. */}
-                  {row.peer === "VENUE" && row.peerVenueName ? ` ↔ ${row.peerVenueName}` : ""}
-                  {row.peer === "EXTERNAL" ? ` → ${t("investments.tr_peer_external")}` : ""}
+              <Group gap={6} wrap="nowrap">
+                <Text size="sm" truncate="end">
+                  {isDeposit ? t("investments.tr_deposit") : t("investments.tr_withdraw")}
+                  {" · "}
+                  <Text component="span" size="sm" c="dimmed">
+                    {row.venueName}
+                    {/* Where the money actually came from or went — the peer is the whole
+                        difference between a move, a withdrawal and money that is simply gone.
+                        An unanswered import has no peer yet, only a question. */}
+                    {!row.needsReview && row.peer === "VENUE" && row.peerVenueName
+                      ? ` ↔ ${row.peerVenueName}`
+                      : ""}
+                    {!row.needsReview && row.peer === "EXTERNAL"
+                      ? ` → ${t(isDeposit ? "investments.tr_peer_external_in" : "investments.tr_peer_external")}`
+                      : ""}
+                    {!row.needsReview && row.peer === "LEDGER" && imported
+                      ? ` ↔ ${t("investments.tr_peer_ledger")}`
+                      : ""}
+                  </Text>
                 </Text>
-              </Text>
+                {row.needsReview && (
+                  <Badge
+                    size="xs"
+                    color="orange"
+                    variant="light"
+                    style={{ cursor: "pointer", flexShrink: 0 }}
+                    onClick={() => openReview(row)}
+                  >
+                    {t("investments.rv_badge")}
+                  </Badge>
+                )}
+              </Group>
               <Text size="xs" c="dimmed" truncate="end">
+                {imported && (
+                  <Tooltip label={t("investments.rv_imported_hint")} withinPortal>
+                    <IconPlugConnected
+                      size={11}
+                      style={{ verticalAlign: "-1px", marginRight: 4 }}
+                    />
+                  </Tooltip>
+                )}
                 {format(row.date, "d MMM yyyy", { locale })}
+                {row.counterparty
+                  ? ` · ${t(isDeposit ? "investments.rv_from" : "investments.rv_to", { who: row.counterparty })}`
+                  : ""}
                 {row.note ? ` · ${row.note}` : ""}
               </Text>
             </Box>
@@ -84,7 +135,11 @@ export function TransfersHistory({ venue }: Props) {
                   good/bad, and neither direction is either — it is the same money either way. */}
               <Text ff="monospace" size="sm" fw={500} style={{ whiteSpace: "nowrap" }}>
                 {isDeposit ? "+" : "−"}
-                {formatCurrency(Math.abs(row.amount), i18n.language, row.currency)}
+                {/* An imported movement is shown in what actually moved on the exchange — the
+                    coin — until it is tied to the balance, where the wallet's own money counts. */}
+                {imported && row.peer !== "LEDGER" && row.asset && row.assetAmount != null
+                  ? `${formatQty(row.assetAmount, i18n.language)} ${row.asset}`
+                  : formatCurrency(Math.abs(row.amount), i18n.language, row.currency)}
               </Text>
               <Tooltip label={t("common.edit")} withinPortal>
                 <ActionIcon
@@ -93,28 +148,32 @@ export function TransfersHistory({ venue }: Props) {
                   size="sm"
                   aria-label={t("common.edit")}
                   onClick={() =>
-                    open({
-                      centered: true,
-                      title: t("investments.tr_edit_title"),
-                      children: <TransferForm transfer={row} />,
-                    })
+                    imported
+                      ? openReview(row)
+                      : open({
+                          centered: true,
+                          title: t("investments.tr_edit_title"),
+                          children: <TransferForm transfer={row} />,
+                        })
                   }
                 >
                   <IconPencil size={14} />
                 </ActionIcon>
               </Tooltip>
-              <Tooltip label={t("common.delete")} withinPortal>
-                <ActionIcon
-                  variant="subtle"
-                  color="gray"
-                  size="sm"
-                  aria-label={t("common.delete")}
-                  loading={mutation.isPending && mutation.variables === row.id}
-                  onClick={() => mutation.mutate(row.id)}
-                >
-                  <IconTrash size={14} />
-                </ActionIcon>
-              </Tooltip>
+              {!imported && (
+                <Tooltip label={t("common.delete")} withinPortal>
+                  <ActionIcon
+                    variant="subtle"
+                    color="gray"
+                    size="sm"
+                    aria-label={t("common.delete")}
+                    loading={mutation.isPending && mutation.variables === row.id}
+                    onClick={() => mutation.mutate(row.id)}
+                  >
+                    <IconTrash size={14} />
+                  </ActionIcon>
+                </Tooltip>
+              )}
             </Group>
           </Group>
         )

@@ -1,5 +1,6 @@
 import {
   ActionIcon,
+  Alert,
   Badge,
   Box,
   Button,
@@ -17,6 +18,7 @@ import {
   IconArrowUpRight,
   IconCoins,
   IconHistory,
+  IconInbox,
   IconInfoCircle,
   IconPencil,
   IconPlugConnected,
@@ -93,15 +95,35 @@ export function VenuesBlock() {
       children: <TransferForm initialMode={mode} defaultVenue={venue} />,
     })
 
-  const openHistory = (venue?: Venue) =>
+  const openHistory = (venue?: Venue, pendingOnly?: boolean) =>
     open({
       centered: true,
-      title: t("investments.tr_history_title"),
-      children: <TransfersHistory venue={venue} />,
+      title: t(pendingOnly ? "investments.rv_list_title" : "investments.tr_history_title"),
+      children: <TransfersHistory venue={venue} pendingOnly={pendingOnly} />,
     })
+
+  const pending = data?.pendingReview ?? 0
 
   return (
     <Stack gap="md">
+      {/* Money that simply appeared on an exchange is parked as someone else's until explained —
+          it never reads as profit meanwhile, but the balance does not know about it either. */}
+      {pending > 0 && (
+        <Alert color="orange" variant="light" icon={<IconInbox size={18} />} p="sm">
+          <Group justify="space-between" wrap="wrap" gap="xs">
+            <Text size="sm">{t("investments.rv_alert", { count: pending })}</Text>
+            <Button
+              size="xs"
+              variant="light"
+              color="orange"
+              onClick={() => openHistory(undefined, true)}
+            >
+              {t("investments.rv_alert_action")}
+            </Button>
+          </Group>
+        </Alert>
+      )}
+
       <Paper p="lg">
         <Group justify="space-between" align="flex-end" wrap="wrap" gap="md">
           <Stack gap={2}>
@@ -202,6 +224,7 @@ export function VenuesBlock() {
             onDeposit={() => openTransfer("deposit", venue)}
             onWithdraw={() => openTransfer("withdraw", venue)}
             onHistory={() => openHistory(venue)}
+            onReview={() => openHistory(venue, true)}
           />
         ))}
 
@@ -240,6 +263,7 @@ function VenueCard({
   onDeposit,
   onWithdraw,
   onHistory,
+  onReview,
 }: {
   venue: Venue
   language: string
@@ -247,6 +271,7 @@ function VenueCard({
   onDeposit: () => void
   onWithdraw: () => void
   onHistory: () => void
+  onReview: () => void
 }) {
   const { t } = useTranslation()
   const open = useModalStore((s) => s.open)
@@ -288,6 +313,19 @@ function VenueCard({
                 leftSection={<IconPlugConnected size={10} />}
               >
                 API
+              </Badge>
+            </Tooltip>
+          )}
+          {venue.pendingReview > 0 && (
+            <Tooltip label={t("investments.rv_badge_hint")} withinPortal>
+              <Badge
+                size="xs"
+                color="orange"
+                variant="light"
+                style={{ cursor: "pointer" }}
+                onClick={onReview}
+              >
+                {venue.pendingReview}
               </Badge>
             </Tooltip>
           )}
