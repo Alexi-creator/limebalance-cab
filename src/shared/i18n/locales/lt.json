@@ -882,5 +882,19 @@
     "nav_mobile_desc": "Palieskite čia, kad atidarytumėte naršymą: operacijos, kategorijos, tikslai, investicijos ir analizė.",
     "add_title": "Greitas pridėjimas",
     "add_desc": "Vienu paspaudimu pridėkite pajamas, išlaidas ar tikslą — šis mygtukas pasiekiamas bet kuriame puslapyje."
+  },
+  "presets": {
+    "title": "Šablonai",
+    "empty": "Išsaugotų šablonų dar nėra",
+    "name": "Šablono pavadinimas",
+    "name_placeholder": "Šablono pavadinimas",
+    "save_current": "Išsaugoti filtrus kaip šabloną",
+    "saved": "Šablonas „{{name}}“ išsaugotas",
+    "rename": "Pervadinti",
+    "name_taken": "Šablonas tokiu pavadinimu jau yra",
+    "filters_saved": "Toks filtrų rinkinys jau išsaugotas",
+    "already_saved": "Dabartiniai filtrai išsaugoti kaip „{{name}}“",
+    "nothing_to_save": "Pasirinkite filtrus, kad išsaugotumėte juos kaip šabloną",
+    "error": "Nepavyko išsaugoti pakeitimų. Bandykite dar kartą"
   }
 }

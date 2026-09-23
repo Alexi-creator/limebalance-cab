@@ -880,5 +880,19 @@
     "nav_mobile_desc": "Dotaknite ovdje za otvaranje navigacije: transakcije, kategorije, ciljevi, ulaganja i analitika.",
     "add_title": "Brzo dodavanje",
     "add_desc": "Dodajte prihod, trošak ili cilj jednim klikom — ovaj gumb dostupan je na svakoj stranici."
+  },
+  "presets": {
+    "title": "Predlošci",
+    "empty": "Još nema spremljenih predložaka",
+    "name": "Naziv predloška",
+    "name_placeholder": "Naziv predloška",
+    "save_current": "Spremi filtre kao predložak",
+    "saved": "Predložak „{{name}}” spremljen",
+    "rename": "Preimenuj",
+    "name_taken": "Predložak s tim nazivom već postoji",
+    "filters_saved": "Ovaj skup filtara već je spremljen",
+    "already_saved": "Trenutačni filtri spremljeni su kao „{{name}}”",
+    "nothing_to_save": "Odaberite filtre kako biste ih spremili kao predložak",
+    "error": "Promjene nije bilo moguće spremiti. Pokušajte ponovno"
   }
 }

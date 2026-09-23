@@ -850,5 +850,19 @@
     "nav_mobile_desc": "Chạm vào đây để mở điều hướng: giao dịch, danh mục, mục tiêu, đầu tư và phân tích.",
     "add_title": "Thêm nhanh",
     "add_desc": "Thêm thu nhập, chi phí hoặc mục tiêu chỉ trong một cú nhấp — nút này có sẵn ở mọi trang."
+  },
+  "presets": {
+    "title": "Bộ lọc đã lưu",
+    "empty": "Chưa có bộ lọc nào được lưu",
+    "name": "Tên bộ lọc",
+    "name_placeholder": "Tên bộ lọc",
+    "save_current": "Lưu bộ lọc hiện tại",
+    "saved": "Đã lưu bộ lọc “{{name}}”",
+    "rename": "Đổi tên",
+    "name_taken": "Đã có bộ lọc với tên này",
+    "filters_saved": "Tổ hợp bộ lọc này đã được lưu",
+    "already_saved": "Bộ lọc hiện tại đã được lưu với tên “{{name}}”",
+    "nothing_to_save": "Hãy chọn bộ lọc để lưu lại",
+    "error": "Không thể lưu thay đổi. Vui lòng thử lại"
   }
 }

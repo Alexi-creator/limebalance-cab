@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Koppintson ide a navigáció megnyitásához: tranzakciók, kategóriák, célok, befektetések és elemzések.",
     "add_title": "Gyors hozzáadás",
     "add_desc": "Adjon hozzá bevételt, kiadást vagy célt egy kattintással — ez a gomb bármelyik oldalon elérhető."
+  },
+  "presets": {
+    "title": "Sablonok",
+    "empty": "Még nincsenek mentett sablonok",
+    "name": "Sablon neve",
+    "name_placeholder": "Sablon neve",
+    "save_current": "Szűrők mentése sablonként",
+    "saved": "A(z) „{{name}}” sablon mentve",
+    "rename": "Átnevezés",
+    "name_taken": "Már létezik ilyen nevű sablon",
+    "filters_saved": "Ez a szűrőkészlet már el van mentve",
+    "already_saved": "A jelenlegi szűrők „{{name}}” néven vannak mentve",
+    "nothing_to_save": "Válassz szűrőket, hogy sablonként mentsd őket",
+    "error": "Nem sikerült menteni a módosításokat. Próbáld újra"
   }
 }

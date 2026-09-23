@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Tryck här för att öppna navigeringen: transaktioner, kategorier, mål, investeringar och analys.",
     "add_title": "Snabbtillägg",
     "add_desc": "Lägg till inkomst, utgift eller ett mål med ett klick — den här knappen finns tillgänglig på alla sidor."
+  },
+  "presets": {
+    "title": "Förval",
+    "empty": "Inga sparade förval ännu",
+    "name": "Förvalets namn",
+    "name_placeholder": "Förvalets namn",
+    "save_current": "Spara filter som förval",
+    "saved": "Förvalet ”{{name}}” har sparats",
+    "rename": "Byt namn",
+    "name_taken": "Det finns redan ett förval med det här namnet",
+    "filters_saved": "Den här filterkombinationen är redan sparad",
+    "already_saved": "De aktuella filtren är sparade som ”{{name}}”",
+    "nothing_to_save": "Välj filter för att spara dem som förval",
+    "error": "Det gick inte att spara ändringarna. Försök igen"
   }
 }

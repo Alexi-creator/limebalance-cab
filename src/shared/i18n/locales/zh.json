@@ -850,5 +850,19 @@
     "nav_mobile_desc": "点击此处打开导航：交易、分类、目标、投资和分析。",
     "add_title": "快速添加",
     "add_desc": "一键添加收入、支出或目标 — 此按钮在任意页面均可使用。"
+  },
+  "presets": {
+    "title": "预设",
+    "empty": "暂无已保存的预设",
+    "name": "预设名称",
+    "name_placeholder": "预设名称",
+    "save_current": "将筛选条件保存为预设",
+    "saved": "预设“{{name}}”已保存",
+    "rename": "重命名",
+    "name_taken": "已存在同名预设",
+    "filters_saved": "该筛选组合已保存",
+    "already_saved": "当前筛选条件已保存为“{{name}}”",
+    "nothing_to_save": "请选择筛选条件后再保存为预设",
+    "error": "无法保存更改，请重试"
   }
 }

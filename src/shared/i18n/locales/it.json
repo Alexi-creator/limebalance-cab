@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Tocca qui per aprire la navigazione: transazioni, categorie, obiettivi, investimenti e analisi.",
     "add_title": "Aggiunta rapida",
     "add_desc": "Aggiungi entrate, spese o un obiettivo con un clic — questo pulsante è disponibile da qualsiasi pagina."
+  },
+  "presets": {
+    "title": "Preset",
+    "empty": "Nessun preset salvato",
+    "name": "Nome del preset",
+    "name_placeholder": "Nome del preset",
+    "save_current": "Salva i filtri come preset",
+    "saved": "Preset «{{name}}» salvato",
+    "rename": "Rinomina",
+    "name_taken": "Esiste già un preset con questo nome",
+    "filters_saved": "Questa combinazione di filtri è già salvata",
+    "already_saved": "I filtri attuali sono salvati come «{{name}}»",
+    "nothing_to_save": "Scegli dei filtri per salvarli come preset",
+    "error": "Impossibile salvare le modifiche. Riprova"
   }
 }

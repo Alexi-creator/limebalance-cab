@@ -880,5 +880,19 @@
     "nav_mobile_desc": "Atingeți aici pentru a deschide navigarea: tranzacții, categorii, obiective, investiții și analize.",
     "add_title": "Adăugare rapidă",
     "add_desc": "Adăugați venituri, cheltuieli sau un obiectiv dintr-un clic — acest buton este disponibil de pe orice pagină."
+  },
+  "presets": {
+    "title": "Presetări",
+    "empty": "Nicio presetare salvată încă",
+    "name": "Numele presetării",
+    "name_placeholder": "Numele presetării",
+    "save_current": "Salvează filtrele ca presetare",
+    "saved": "Presetarea „{{name}}” a fost salvată",
+    "rename": "Redenumește",
+    "name_taken": "Există deja o presetare cu acest nume",
+    "filters_saved": "Această combinație de filtre este deja salvată",
+    "already_saved": "Filtrele curente sunt salvate ca „{{name}}”",
+    "nothing_to_save": "Alege filtre pentru a le salva ca presetare",
+    "error": "Modificările nu au putut fi salvate. Încearcă din nou"
   }
 }

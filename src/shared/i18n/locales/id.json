@@ -850,5 +850,19 @@
     "nav_mobile_desc": "Ketuk di sini untuk membuka navigasi: transaksi, kategori, tujuan, investasi, dan analitik.",
     "add_title": "Tambah cepat",
     "add_desc": "Tambahkan pemasukan, pengeluaran, atau tujuan hanya dengan satu klik — tombol ini tersedia di halaman mana pun."
+  },
+  "presets": {
+    "title": "Preset",
+    "empty": "Belum ada preset tersimpan",
+    "name": "Nama preset",
+    "name_placeholder": "Nama preset",
+    "save_current": "Simpan filter sebagai preset",
+    "saved": "Preset “{{name}}” disimpan",
+    "rename": "Ganti nama",
+    "name_taken": "Preset dengan nama ini sudah ada",
+    "filters_saved": "Kombinasi filter ini sudah disimpan",
+    "already_saved": "Filter saat ini disimpan sebagai “{{name}}”",
+    "nothing_to_save": "Pilih filter untuk menyimpannya sebagai preset",
+    "error": "Gagal menyimpan perubahan. Silakan coba lagi"
   }
 }

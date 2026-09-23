@@ -880,5 +880,19 @@
     "nav_mobile_desc": "Pieskarieties šeit, lai atvērtu navigāciju: darījumi, kategorijas, mērķi, investīcijas un analītika.",
     "add_title": "Ātrā pievienošana",
     "add_desc": "Pievienojiet ienākumus, izdevumus vai mērķi ar vienu klikšķi — šī poga ir pieejama jebkurā lapā."
+  },
+  "presets": {
+    "title": "Sagataves",
+    "empty": "Vēl nav saglabātu sagatavju",
+    "name": "Sagataves nosaukums",
+    "name_placeholder": "Sagataves nosaukums",
+    "save_current": "Saglabāt filtrus kā sagatavi",
+    "saved": "Sagatave “{{name}}” saglabāta",
+    "rename": "Pārdēvēt",
+    "name_taken": "Sagatave ar šādu nosaukumu jau pastāv",
+    "filters_saved": "Šāds filtru komplekts jau ir saglabāts",
+    "already_saved": "Pašreizējie filtri ir saglabāti kā “{{name}}”",
+    "nothing_to_save": "Izvēlieties filtrus, lai tos saglabātu kā sagatavi",
+    "error": "Neizdevās saglabāt izmaiņas. Mēģiniet vēlreiz"
   }
 }

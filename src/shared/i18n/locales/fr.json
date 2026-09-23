@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Appuyez ici pour ouvrir la navigation : transactions, catégories, objectifs, investissements et analyses.",
     "add_title": "Ajout rapide",
     "add_desc": "Ajoutez un revenu, une dépense ou un objectif en un clic — ce bouton est disponible sur toutes les pages."
+  },
+  "presets": {
+    "title": "Préréglages",
+    "empty": "Aucun préréglage enregistré",
+    "name": "Nom du préréglage",
+    "name_placeholder": "Nom du préréglage",
+    "save_current": "Enregistrer les filtres comme préréglage",
+    "saved": "Préréglage « {{name}} » enregistré",
+    "rename": "Renommer",
+    "name_taken": "Un préréglage portant ce nom existe déjà",
+    "filters_saved": "Cette combinaison de filtres est déjà enregistrée",
+    "already_saved": "Les filtres actuels sont enregistrés sous « {{name}} »",
+    "nothing_to_save": "Choisissez des filtres pour les enregistrer comme préréglage",
+    "error": "Impossible d'enregistrer les modifications. Veuillez réessayer"
   }
 }

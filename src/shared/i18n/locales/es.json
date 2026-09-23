@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Toca aquí para abrir la navegación: transacciones, categorías, metas, inversiones y análisis.",
     "add_title": "Agregar rápido",
     "add_desc": "Agrega ingresos, gastos o una meta con un clic — este botón está disponible en cualquier página."
+  },
+  "presets": {
+    "title": "Ajustes guardados",
+    "empty": "Aún no hay ajustes guardados",
+    "name": "Nombre del ajuste",
+    "name_placeholder": "Nombre del ajuste",
+    "save_current": "Guardar filtros como ajuste",
+    "saved": "Ajuste «{{name}}» guardado",
+    "rename": "Cambiar nombre",
+    "name_taken": "Ya existe un ajuste con este nombre",
+    "filters_saved": "Esta combinación de filtros ya está guardada",
+    "already_saved": "Los filtros actuales están guardados como «{{name}}»",
+    "nothing_to_save": "Elige filtros para guardarlos como ajuste",
+    "error": "No se pudieron guardar los cambios. Inténtalo de nuevo"
   }
 }

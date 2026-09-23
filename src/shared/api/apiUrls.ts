@@ -60,6 +60,9 @@ export const API_URLS = {
   exchanges: {
     exchanges: `${API_URL}/exchanges`,
   },
+  filterPresets: {
+    presets: `${API_URL}/filter-presets`,
+  },
   subscriptions: {
     usage: `${API_URL}/subscriptions/usage`,
   },

@@ -880,5 +880,19 @@
     "nav_mobile_desc": "Klepnutím sem otvorte navigáciu: transakcie, kategórie, ciele, investície a analýzy.",
     "add_title": "Rýchle pridanie",
     "add_desc": "Pridajte príjem, výdavok alebo cieľ jedným kliknutím — toto tlačidlo je dostupné na akejkoľvek stránke."
+  },
+  "presets": {
+    "title": "Predvoľby",
+    "empty": "Zatiaľ žiadne uložené predvoľby",
+    "name": "Názov predvoľby",
+    "name_placeholder": "Názov predvoľby",
+    "save_current": "Uložiť filtre ako predvoľbu",
+    "saved": "Predvoľba „{{name}}“ uložená",
+    "rename": "Premenovať",
+    "name_taken": "Predvoľba s týmto názvom už existuje",
+    "filters_saved": "Táto sada filtrov je už uložená",
+    "already_saved": "Aktuálne filtre sú uložené ako „{{name}}“",
+    "nothing_to_save": "Vyberte filtre, aby ste ich mohli uložiť ako predvoľbu",
+    "error": "Zmeny sa nepodarilo uložiť. Skúste to znova"
   }
 }

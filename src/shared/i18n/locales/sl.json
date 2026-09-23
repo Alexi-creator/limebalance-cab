@@ -895,5 +895,19 @@
     "nav_mobile_desc": "Dotaknite se tukaj, da odprete navigacijo: transakcije, kategorije, cilji, naložbe in analitika.",
     "add_title": "Hitro dodajanje",
     "add_desc": "Dodajte prihodek, odhodek ali cilj z enim klikom — ta gumb je na voljo na kateri koli strani."
+  },
+  "presets": {
+    "title": "Predloge",
+    "empty": "Shranjenih predlog še ni",
+    "name": "Ime predloge",
+    "name_placeholder": "Ime predloge",
+    "save_current": "Shrani filtre kot predlogo",
+    "saved": "Predloga »{{name}}« je shranjena",
+    "rename": "Preimenuj",
+    "name_taken": "Predloga s tem imenom že obstaja",
+    "filters_saved": "Ta nabor filtrov je že shranjen",
+    "already_saved": "Trenutni filtri so shranjeni kot »{{name}}«",
+    "nothing_to_save": "Izberite filtre, da jih shranite kot predlogo",
+    "error": "Sprememb ni bilo mogoče shraniti. Poskusite znova"
   }
 }

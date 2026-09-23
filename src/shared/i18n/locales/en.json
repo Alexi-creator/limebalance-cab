@@ -864,5 +864,19 @@
     "invalid": "The confirmation link is missing its token.",
     "go_settings": "Go to settings",
     "go_login": "Go to sign in"
+  },
+  "presets": {
+    "title": "Presets",
+    "empty": "No saved presets yet",
+    "name": "Preset name",
+    "name_placeholder": "Preset name",
+    "save_current": "Save filters as a preset",
+    "saved": "Preset “{{name}}” saved",
+    "rename": "Rename",
+    "name_taken": "A preset with this name already exists",
+    "filters_saved": "This set of filters is already saved",
+    "already_saved": "Current filters are saved as “{{name}}”",
+    "nothing_to_save": "Pick some filters to save them as a preset",
+    "error": "Couldn't save the changes. Please try again"
   }
 }

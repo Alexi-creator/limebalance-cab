@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Gezinmeyi açmak için buraya dokunun: işlemler, kategoriler, hedefler, yatırımlar ve analizler.",
     "add_title": "Hızlı ekle",
     "add_desc": "Tek tıklamayla gelir, gider veya hedef ekleyin — bu düğme her sayfadan kullanılabilir."
+  },
+  "presets": {
+    "title": "Hazır ayarlar",
+    "empty": "Henüz kayıtlı hazır ayar yok",
+    "name": "Hazır ayar adı",
+    "name_placeholder": "Hazır ayar adı",
+    "save_current": "Filtreleri hazır ayar olarak kaydet",
+    "saved": "“{{name}}” hazır ayarı kaydedildi",
+    "rename": "Yeniden adlandır",
+    "name_taken": "Bu ada sahip bir hazır ayar zaten var",
+    "filters_saved": "Bu filtre kombinasyonu zaten kayıtlı",
+    "already_saved": "Mevcut filtreler “{{name}}” olarak kayıtlı",
+    "nothing_to_save": "Hazır ayar olarak kaydetmek için filtre seçin",
+    "error": "Değişiklikler kaydedilemedi. Lütfen tekrar deneyin"
   }
 }

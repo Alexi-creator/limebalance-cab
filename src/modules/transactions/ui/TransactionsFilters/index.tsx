@@ -18,6 +18,8 @@ import { IconChevronUp, IconFilter, IconSearch, IconX } from "@tabler/icons-reac
 import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "@/modules/categories/api/useCategories"
+import type { PresetFilters } from "@/modules/presets"
+import { FilterPresets } from "@/modules/presets/ui"
 import { useCurrencyOptions } from "@/shared/hooks/useCurrencyOptions"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
 import { SortSelect } from "@/shared/ui/SortSelect"
@@ -28,6 +30,7 @@ import {
   type TransactionsParams,
 } from "../../config"
 import { buildFilterChipGroups } from "../../lib/filterChips"
+import { transactionsFromPreset, transactionsToPreset } from "../../lib/presetFilters"
 import { ActiveFilterChips } from "../ActiveFilterChips"
 import { MultiSelectFilter } from "../MultiSelectFilter"
 import { PeriodFilter } from "../PeriodFilter"
@@ -86,11 +89,14 @@ export function TransactionsFilters({ params, setParams }: Props) {
     }
   }, [isDesktop])
 
-  // debounced search → URL; we write only on an actual change of the search string.
-  // Comparison with params.search is required: the identity of setParams changes on
-  // every URL change (react-router recreates setSearchParams), and without this
-  // check the effect would re-run on page change and reset page to 1.
+  // debounced search → URL; we write only on an actual change of the typed string. The effect
+  // re-runs on every URL change too (setParams' identity changes with it), so it bails unless
+  // `debounced` itself moved: otherwise a page change would reset page to 1, and a search set
+  // from outside (reset, a preset) would be overwritten by the input's still-debouncing value.
+  const lastDebounced = useRef(debounced)
   useEffect(() => {
+    if (debounced === lastDebounced.current) return
+    lastDebounced.current = debounced
     if (debounced === (params.search ?? "")) return
     setParams({ search: debounced || undefined, page: 1 })
   }, [debounced, params.search, setParams])
@@ -137,6 +143,12 @@ export function TransactionsFilters({ params, setParams }: Props) {
     })
   }
 
+  const applyPreset = (filters: PresetFilters) => {
+    const next = transactionsFromPreset(filters)
+    setSearch(next.search ?? "")
+    setParams(next)
+  }
+
   // count of active filters — shown on the mobile handle (period counts as one)
   const activeCount =
     (params.type ? 1 : 0) +
@@ -149,6 +161,13 @@ export function TransactionsFilters({ params, setParams }: Props) {
   // the fixed widths used on desktop.
   const controls = (vertical: boolean) => (
     <>
+      <FilterPresets
+        scope="transactions"
+        current={transactionsToPreset(params)}
+        onApply={applyPreset}
+        fullWidth={vertical}
+      />
+
       <SegmentedControl
         fullWidth={vertical}
         value={params.type ?? "all"}

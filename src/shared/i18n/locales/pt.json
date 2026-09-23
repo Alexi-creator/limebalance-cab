@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Toque aqui para abrir a navegação: transações, categorias, metas, investimentos e análises.",
     "add_title": "Adição rápida",
     "add_desc": "Adicione receitas, despesas ou uma meta com um clique — este botão está disponível em qualquer página."
+  },
+  "presets": {
+    "title": "Predefinições",
+    "empty": "Ainda não há predefinições salvas",
+    "name": "Nome da predefinição",
+    "name_placeholder": "Nome da predefinição",
+    "save_current": "Salvar filtros como predefinição",
+    "saved": "Predefinição “{{name}}” salva",
+    "rename": "Renomear",
+    "name_taken": "Já existe uma predefinição com este nome",
+    "filters_saved": "Esta combinação de filtros já está salva",
+    "already_saved": "Os filtros atuais estão salvos como “{{name}}”",
+    "nothing_to_save": "Escolha filtros para salvá-los como predefinição",
+    "error": "Não foi possível salvar as alterações. Tente novamente"
   }
 }

@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Tik hier om de navigatie te openen: transacties, categorieën, doelen, beleggingen en analyses.",
     "add_title": "Snel toevoegen",
     "add_desc": "Voeg inkomsten, uitgaven of een doel toe met één klik — deze knop is beschikbaar op elke pagina."
+  },
+  "presets": {
+    "title": "Voorinstellingen",
+    "empty": "Nog geen opgeslagen voorinstellingen",
+    "name": "Naam van voorinstelling",
+    "name_placeholder": "Naam van voorinstelling",
+    "save_current": "Filters opslaan als voorinstelling",
+    "saved": "Voorinstelling ‘{{name}}’ opgeslagen",
+    "rename": "Naam wijzigen",
+    "name_taken": "Er bestaat al een voorinstelling met deze naam",
+    "filters_saved": "Deze combinatie van filters is al opgeslagen",
+    "already_saved": "De huidige filters zijn opgeslagen als ‘{{name}}’",
+    "nothing_to_save": "Kies filters om ze als voorinstelling op te slaan",
+    "error": "De wijzigingen konden niet worden opgeslagen. Probeer het opnieuw"
   }
 }

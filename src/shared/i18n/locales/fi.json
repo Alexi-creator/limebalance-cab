@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Napauta tästä avataksesi navigoinnin: tapahtumat, kategoriat, tavoitteet, sijoitukset ja analytiikka.",
     "add_title": "Pikalisäys",
     "add_desc": "Lisää tulo, meno tai tavoite yhdellä napsautuksella — tämä painike on käytettävissä millä tahansa sivulla."
+  },
+  "presets": {
+    "title": "Esiasetukset",
+    "empty": "Ei vielä tallennettuja esiasetuksia",
+    "name": "Esiasetuksen nimi",
+    "name_placeholder": "Esiasetuksen nimi",
+    "save_current": "Tallenna suodattimet esiasetukseksi",
+    "saved": "Esiasetus ”{{name}}” tallennettu",
+    "rename": "Nimeä uudelleen",
+    "name_taken": "Tämänniminen esiasetus on jo olemassa",
+    "filters_saved": "Tämä suodatinyhdistelmä on jo tallennettu",
+    "already_saved": "Nykyiset suodattimet on tallennettu nimellä ”{{name}}”",
+    "nothing_to_save": "Valitse suodattimia tallentaaksesi ne esiasetukseksi",
+    "error": "Muutoksia ei voitu tallentaa. Yritä uudelleen"
   }
 }

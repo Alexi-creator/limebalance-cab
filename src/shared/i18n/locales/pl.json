@@ -880,5 +880,19 @@
     "nav_mobile_desc": "Dotknij tutaj, aby otworzyć nawigację: transakcje, kategorie, cele, inwestycje i analizy.",
     "add_title": "Szybkie dodawanie",
     "add_desc": "Dodaj przychód, wydatek lub cel jednym kliknięciem — ten przycisk jest dostępny na każdej stronie."
+  },
+  "presets": {
+    "title": "Presety",
+    "empty": "Brak zapisanych presetów",
+    "name": "Nazwa presetu",
+    "name_placeholder": "Nazwa presetu",
+    "save_current": "Zapisz filtry jako preset",
+    "saved": "Zapisano preset „{{name}}”",
+    "rename": "Zmień nazwę",
+    "name_taken": "Preset o tej nazwie już istnieje",
+    "filters_saved": "Ten zestaw filtrów jest już zapisany",
+    "already_saved": "Bieżące filtry są zapisane jako „{{name}}”",
+    "nothing_to_save": "Wybierz filtry, aby zapisać je jako preset",
+    "error": "Nie udało się zapisać zmian. Spróbuj ponownie"
   }
 }

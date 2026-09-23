@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Tippen Sie hier, um die Navigation zu öffnen: Transaktionen, Kategorien, Ziele, Investitionen und Analysen.",
     "add_title": "Schnell hinzufügen",
     "add_desc": "Fügen Sie mit einem Klick Einnahmen, Ausgaben oder ein Ziel hinzu — dieser Button ist auf jeder Seite verfügbar."
+  },
+  "presets": {
+    "title": "Vorlagen",
+    "empty": "Noch keine gespeicherten Vorlagen",
+    "name": "Name der Vorlage",
+    "name_placeholder": "Name der Vorlage",
+    "save_current": "Filter als Vorlage speichern",
+    "saved": "Vorlage „{{name}}“ gespeichert",
+    "rename": "Umbenennen",
+    "name_taken": "Eine Vorlage mit diesem Namen existiert bereits",
+    "filters_saved": "Diese Filterkombination ist bereits gespeichert",
+    "already_saved": "Die aktuellen Filter sind als „{{name}}“ gespeichert",
+    "nothing_to_save": "Wähle Filter aus, um sie als Vorlage zu speichern",
+    "error": "Änderungen konnten nicht gespeichert werden. Bitte versuche es erneut"
   }
 }

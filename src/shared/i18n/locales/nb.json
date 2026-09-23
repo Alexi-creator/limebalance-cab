@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Trykk her for å åpne navigasjonen: transaksjoner, kategorier, mål, investeringer og analyse.",
     "add_title": "Hurtig tillegg",
     "add_desc": "Legg til inntekt, utgift eller et mål med ett klikk — denne knappen er tilgjengelig fra hvilken som helst side."
+  },
+  "presets": {
+    "title": "Forhåndsvalg",
+    "empty": "Ingen lagrede forhåndsvalg ennå",
+    "name": "Navn på forhåndsvalg",
+    "name_placeholder": "Navn på forhåndsvalg",
+    "save_current": "Lagre filtre som forhåndsvalg",
+    "saved": "Forhåndsvalget «{{name}}» er lagret",
+    "rename": "Gi nytt navn",
+    "name_taken": "Det finnes allerede et forhåndsvalg med dette navnet",
+    "filters_saved": "Denne kombinasjonen av filtre er allerede lagret",
+    "already_saved": "De gjeldende filtrene er lagret som «{{name}}»",
+    "nothing_to_save": "Velg filtre for å lagre dem som forhåndsvalg",
+    "error": "Kunne ikke lagre endringene. Prøv igjen"
   }
 }

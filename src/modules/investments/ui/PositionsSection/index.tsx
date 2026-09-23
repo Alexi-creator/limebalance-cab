@@ -36,8 +36,10 @@ import {
 } from "@tabler/icons-react"
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
+import type { PresetFilters } from "@/modules/presets"
+import { FilterPresets } from "@/modules/presets/ui"
 import { PeriodFilter } from "@/modules/transactions/ui"
 import { useUrlParams } from "@/shared/hooks/useUrlParams"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
@@ -73,6 +75,7 @@ import { PositionForm } from "../PositionForm"
 import { PositionNotes } from "../PositionNotes"
 import { PositionsMobileList } from "../PositionsMobileList"
 import { POSITIONS_PAGE_SIZE_OPTIONS, positionsParamsSchema, storePageSize } from "./config"
+import { positionsFromPreset, positionsToPreset } from "./presetFilters"
 
 import classes from "./styles.module.css"
 
@@ -117,10 +120,14 @@ export function PositionsSection({ accounts }: Props) {
   const [symbolInput, setSymbolInput] = useState(urlParams.symbol ?? "")
   const [debouncedSymbol] = useDebouncedValue(symbolInput, 400)
 
-  // debounced search → URL; comparison against urlParams.symbol is required: setParams'
-  // identity changes on every URL update, and without this check the effect would re-run
-  // on page change and reset it back to 1 — same guard as TransactionsFilters' search.
+  // debounced search → URL, only when `debouncedSymbol` itself moved: setParams' identity
+  // changes on every URL update, so without this the effect would re-run on page change and
+  // reset it back to 1, or overwrite a symbol set from outside (reset, a preset) with the
+  // input's still-debouncing value — same guard as TransactionsFilters' search.
+  const lastDebouncedSymbol = useRef(debouncedSymbol)
   useEffect(() => {
+    if (debouncedSymbol === lastDebouncedSymbol.current) return
+    lastDebouncedSymbol.current = debouncedSymbol
     const next = debouncedSymbol.trim().toUpperCase() || undefined
     if (next === urlParams.symbol) return
     setParams({ symbol: next, page: 1 })
@@ -304,6 +311,12 @@ export function PositionsSection({ accounts }: Props) {
     })
   }
 
+  const applyPreset = (filters: PresetFilters) => {
+    const next = positionsFromPreset(filters)
+    setSymbolInput(next.symbol ?? "")
+    setParams(next)
+  }
+
   const changePageSize = (limit: number) => {
     storePageSize(limit)
     setParams({ limit, page: 1 })
@@ -313,6 +326,13 @@ export function PositionsSection({ accounts }: Props) {
   // widths used on desktop. Same split as TransactionsFilters' `controls(vertical)`.
   const filterControls = (vertical: boolean) => (
     <>
+      <FilterPresets
+        scope="positions"
+        size={vertical ? "sm" : "xs"}
+        current={positionsToPreset(urlParams)}
+        onApply={applyPreset}
+        fullWidth={vertical}
+      />
       <Autocomplete
         size={vertical ? "sm" : "xs"}
         label={t("investments.col_symbol")}
@@ -437,7 +457,7 @@ export function PositionsSection({ accounts }: Props) {
           <ActionIcon
             variant="light"
             color="red"
-            size="lg"
+            size="input-xs"
             aria-label={t("common.reset")}
             onClick={resetFilters}
           >

@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Tryk her for at åbne navigationen: transaktioner, kategorier, mål, investeringer og analyser.",
     "add_title": "Hurtig tilføjelse",
     "add_desc": "Tilføj indtægt, udgift eller et mål med ét klik — denne knap er tilgængelig fra enhver side."
+  },
+  "presets": {
+    "title": "Forudindstillinger",
+    "empty": "Ingen gemte forudindstillinger endnu",
+    "name": "Navn på forudindstilling",
+    "name_placeholder": "Navn på forudindstilling",
+    "save_current": "Gem filtre som forudindstilling",
+    "saved": "Forudindstillingen “{{name}}” er gemt",
+    "rename": "Omdøb",
+    "name_taken": "Der findes allerede en forudindstilling med dette navn",
+    "filters_saved": "Denne kombination af filtre er allerede gemt",
+    "already_saved": "De aktuelle filtre er gemt som “{{name}}”",
+    "nothing_to_save": "Vælg filtre for at gemme dem som forudindstilling",
+    "error": "Ændringerne kunne ikke gemmes. Prøv igen"
   }
 }

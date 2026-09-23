@@ -865,5 +865,19 @@
     "nav_mobile_desc": "Puuduta siia, et avada navigeerimine: tehingud, kategooriad, eesmärgid, investeeringud ja analüütika.",
     "add_title": "Kiire lisamine",
     "add_desc": "Lisa tulu, kulu või eesmärk ühe klõpsuga — see nupp on saadaval igal lehel."
+  },
+  "presets": {
+    "title": "Eelseadistused",
+    "empty": "Salvestatud eelseadistusi veel pole",
+    "name": "Eelseadistuse nimi",
+    "name_placeholder": "Eelseadistuse nimi",
+    "save_current": "Salvesta filtrid eelseadistusena",
+    "saved": "Eelseadistus „{{name}}“ salvestatud",
+    "rename": "Nimeta ümber",
+    "name_taken": "Selle nimega eelseadistus on juba olemas",
+    "filters_saved": "See filtrite komplekt on juba salvestatud",
+    "already_saved": "Praegused filtrid on salvestatud nimega „{{name}}“",
+    "nothing_to_save": "Vali filtrid, et need eelseadistusena salvestada",
+    "error": "Muudatusi ei õnnestunud salvestada. Proovi uuesti"
   }
 }
