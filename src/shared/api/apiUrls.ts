@@ -76,5 +76,6 @@ export const API_URLS = {
     adjustments: `${API_URL}/investing/adjustments`,
     holdings: `${API_URL}/investing/holdings`,
     assets: `${API_URL}/investing/assets`,
+    p2pOrders: `${API_URL}/investing/p2p-orders`,
   },
 }

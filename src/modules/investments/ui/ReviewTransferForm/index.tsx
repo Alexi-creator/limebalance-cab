@@ -5,6 +5,7 @@ import { enUS } from "date-fns/locale"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
+import { useCategories } from "@/modules/categories/api/useCategories"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
@@ -20,8 +21,11 @@ interface Props {
   transfer: Transfer
 }
 
-/** The answers, plus "I already wrote this one down" — which is not a peer but a merge. */
-type Answer = TransferPeer | "MATCH"
+/**
+ * The answers: the three peers, "I already wrote this one down" (a merge, not a peer), and money
+ * earned or spent right there on the venue (a real income or expense, not a peer either).
+ */
+type Answer = TransferPeer | "MATCH" | "EARNED"
 
 // A hand-recorded duplicate is offered only if it is about this close in time: the day typed in
 // by hand is often the day the money was sent, not the day the exchange credited it.
@@ -44,6 +48,9 @@ export function ReviewTransferForm({ transfer }: Props) {
 
   const isIn = transfer.direction === "IN"
   const answered = !transfer.needsReview
+  // Arrivals can be income, departures an expense — the category list follows the direction.
+  const categories = useCategories(!isIn).data ?? []
+  const wasEarned = answered && transfer.linkedAs !== null
 
   // Hand-recorded transfers of the same venue, direction and rough date — the likely duplicates.
   const candidates = venueTransfers.filter(
@@ -54,7 +61,10 @@ export function ReviewTransferForm({ transfer }: Props) {
       Math.abs(differenceInCalendarDays(r.date, transfer.date)) <= MATCH_WINDOW_DAYS,
   )
 
-  const [answer, setAnswer] = useState<Answer | null>(answered ? transfer.peer : null)
+  const [answer, setAnswer] = useState<Answer | null>(
+    wasEarned ? "EARNED" : answered ? transfer.peer : null,
+  )
+  const [categoryId, setCategoryId] = useState<string | null>(null)
   const [peerVenueId, setPeerVenueId] = useState<string | null>(transfer.peerVenueId)
   const [matchId, setMatchId] = useState<string | null>(null)
   // Against the balance the figure is the wallet's own: prefilled only when that is what it was.
@@ -67,6 +77,14 @@ export function ReviewTransferForm({ transfer }: Props) {
   )
   const [currency, setCurrency] = useState<string | null>(
     answered && transfer.peer === "LEDGER" ? transfer.currency : (userCurrency ?? "USD"),
+  )
+  // Income or expense in a stablecoin is money in dollars: the arrival's own USD figure is the
+  // natural default, whatever currency the wallet is kept in.
+  const [earnedAmount, setEarnedAmount] = useState<number | string>(
+    wasEarned ? transfer.amount : (transfer.amountUsd ?? ""),
+  )
+  const [earnedCurrency, setEarnedCurrency] = useState<string | null>(
+    wasEarned ? transfer.currency : "USD",
   )
   const [note, setNote] = useState(transfer.note ?? "")
 
@@ -85,12 +103,24 @@ export function ReviewTransferForm({ transfer }: Props) {
     answer === "EXTERNAL" ||
     (answer === "LEDGER" && Number(amount) > 0 && !!currency) ||
     (answer === "VENUE" && !!peerVenueId) ||
-    (answer === "MATCH" && !!matchId)
+    (answer === "MATCH" && !!matchId) ||
+    (answer === "EARNED" && !!categoryId && Number(earnedAmount) > 0 && !!earnedCurrency)
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!valid || !answer) return
     const trimmed = note.trim() || undefined
+    if (answer === "EARNED") {
+      mutation.mutate({
+        peer: "LEDGER",
+        as: isIn ? "INCOME" : "EXPENSE",
+        categoryId: categoryId as string,
+        amount: Number(earnedAmount),
+        currency: earnedCurrency as string,
+        note: trimmed,
+      })
+      return
+    }
     if (answer === "MATCH") {
       // The backend takes the peer from the merged transfer; EXTERNAL here is only a placeholder.
       mutation.mutate({ peer: "EXTERNAL", replacesId: matchId as string, note: trimmed })
@@ -105,6 +135,7 @@ export function ReviewTransferForm({ transfer }: Props) {
   }
 
   const answers: { value: Answer; label: string }[] = [
+    { value: "EARNED", label: t(isIn ? "investments.rv_income" : "investments.rv_expense") },
     { value: "LEDGER", label: t(isIn ? "investments.rv_ledger_in" : "investments.rv_ledger_out") },
     { value: "VENUE", label: t(isIn ? "investments.rv_venue_in" : "investments.rv_venue_out") },
     {
@@ -183,6 +214,47 @@ export function ReviewTransferForm({ transfer }: Props) {
             </Group>
             <Text size="xs" c="dimmed">
               {t("investments.rv_ledger_hint")}
+            </Text>
+          </>
+        )}
+
+        {answer === "EARNED" && (
+          <>
+            <Select
+              label={t("investments.rv_category")}
+              required
+              searchable
+              value={categoryId}
+              onChange={setCategoryId}
+              data={categories.map((c) => ({
+                value: c.id,
+                label: c.emoji ? `${c.emoji} ${c.name}` : c.name,
+              }))}
+              placeholder={
+                wasEarned && transfer.linkedCategory ? transfer.linkedCategory.name : undefined
+              }
+              nothingFoundMessage={t("common.nothing_found")}
+            />
+            <Group grow align="flex-start">
+              <NumberInput
+                label={t("common.amount")}
+                required
+                value={earnedAmount}
+                onChange={setEarnedAmount}
+                min={0}
+                thousandSeparator=" "
+                decimalScale={2}
+              />
+              <CurrencySelect
+                label={t("common.currency")}
+                required
+                value={earnedCurrency}
+                onChange={setEarnedCurrency}
+                comboboxProps={{ width: "target" }}
+              />
+            </Group>
+            <Text size="xs" c="dimmed">
+              {t(isIn ? "investments.rv_income_hint" : "investments.rv_expense_hint")}
             </Text>
           </>
         )}

@@ -51,6 +51,18 @@ export function renameExchangeAccount(id: string, label: string) {
   })
 }
 
+/**
+ * Turns P2P auto-recording on or off. On means from now: orders placed earlier are left alone, so
+ * money already accounted for some other way is never taken out of the wallet twice.
+ */
+export function setP2pAutoRecord(id: string, enabled: boolean) {
+  return request(`${API_URLS.investing.accounts}/${id}`, {
+    method: HttpMethods.PATCH,
+    body: JSON.stringify({ p2pAutoRecord: enabled }),
+    schema: exchangeAccountSchema,
+  })
+}
+
 /** Manual sync; resolves with the refreshed account once the sync finishes. */
 export function syncExchangeAccount(id: string) {
   return request(`${API_URLS.investing.accounts}/${id}/sync`, {
@@ -311,7 +323,14 @@ export function updateTransfer(id: string, payload: UpdateTransferPayload) {
 
 /** What an imported deposit or withdrawal really was. */
 export interface ClassifyTransferPayload {
+  /** Ignored when `as` is set. */
   peer: "LEDGER" | "VENUE" | "EXTERNAL"
+  /**
+   * Earned straight onto the venue (INCOME) or spent straight from it (EXPENSE): recorded as a
+   * real income or expense in `categoryId`, for `amount` in `currency`, while the money stays put.
+   */
+  as?: "INCOME" | "EXPENSE"
+  categoryId?: string
   /** Required when peer is VENUE. */
   peerVenueId?: string
   /** peer LEDGER only, required there: what left or reached the wallet, in its own currency. */
@@ -337,12 +356,11 @@ export function deleteTransfer(id: string) {
 
 // ── P2P ──────────────────────────────────────────────────────────────────────
 
-/** A page of a connected account's P2P orders, read live from the exchange. */
-export function getP2pOrders(accountId: string, page: number, size: number) {
-  return request(
-    `${API_URLS.investing.accounts}/${accountId}/p2p-orders?page=${page}&size=${size}`,
-    { schema: p2pOrdersResponseSchema },
-  )
+/** A page of saved P2P orders — of one account, or of all of them when `accountId` is null. */
+export function getP2pOrders(accountId: string | null, page: number, size: number) {
+  const q = new URLSearchParams({ page: String(page), size: String(size) })
+  if (accountId) q.set("accountId", accountId)
+  return request(`${API_URLS.investing.p2pOrders}?${q}`, { schema: p2pOrdersResponseSchema })
 }
 
 // ── venue corrections and tracked coins ───────────────────────────────────────

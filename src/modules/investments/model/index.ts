@@ -25,6 +25,8 @@ export const exchangeAccountSchema = z.object({
   /** null until the very first sync finishes — show "first sync in progress". */
   lastSyncAt: nullableDate(),
   createdAt: z.coerce.date(),
+  /** Since when completed P2P orders are recorded as wallet transfers automatically; null = off. */
+  p2pAutoRecordFrom: nullableDate().default(null),
   /** Only present in the POST response; false → warn that the key has trade permissions. */
   readOnly: z.boolean().optional(),
 })
@@ -154,6 +156,13 @@ export const transferSchema = z.object({
   /** Imported only: the sender or recipient as the exchange names them — address, email, UID. */
   counterparty: z.string().nullable().default(null),
   txId: z.string().nullable().default(null),
+  /** Answered as money earned (INCOME) or spent (EXPENSE) right there on the venue. */
+  linkedAs: z.enum(["INCOME", "EXPENSE"]).nullable().default(null),
+  /** That income's or expense's category, for the history line. */
+  linkedCategory: z
+    .object({ name: z.string(), emoji: z.string().nullable() })
+    .nullable()
+    .default(null),
 })
 
 export const transfersResponseSchema = z.object({
@@ -280,11 +289,16 @@ export const coinIconsResponseSchema = z.object({
 })
 
 /**
- * One P2P order, read live from Bybit. BUY means fiat was paid and the coin received. Only a DONE
- * order moved money — it can be recorded as a transfer, and `transferId` says it already was.
+ * One P2P order, saved on our side from Bybit and kept for good (Bybit itself only goes 180 days
+ * back). BUY means fiat was paid and the coin received. Only a DONE order moved money — it can be
+ * recorded as a transfer, and `transferId` says it already was.
  */
 export const p2pOrderSchema = z.object({
   id: z.string(),
+  /** The account it came through; null once that account is disconnected. */
+  accountId: z.string().nullable(),
+  /** Where recording it sends the transfer; null when there is nowhere to send it any more. */
+  venueId: z.string().nullable(),
   side: z.enum(["BUY", "SELL"]),
   asset: z.string(),
   quantity: decimal(),
@@ -296,13 +310,8 @@ export const p2pOrderSchema = z.object({
   status: z.enum(["DONE", "CANCELLED", "DISPUTE", "ACTIVE"]),
   createdAt: z.coerce.date(),
   transferId: z.string().nullable(),
-})
-
-export const p2pOrdersResponseSchema = z.object({
-  items: z.array(p2pOrderSchema),
-  total: z.number(),
-  /** The account's venue — where a recorded order's transfer goes. */
-  venueId: z.string().nullable(),
+  /** Recorded by the P2P auto-recording rather than by hand. */
+  autoRecorded: z.boolean().default(false),
 })
 
 /** Why the P2P history could not be read — nearly always the key's permissions. */
@@ -310,6 +319,15 @@ export const p2pUnavailableSchema = z.object({
   code: z.literal("P2P_UNAVAILABLE"),
   retCode: z.number(),
   message: z.string(),
+})
+
+export const p2pOrdersResponseSchema = z.object({
+  items: z.array(p2pOrderSchema),
+  total: z.number(),
+  /** When the saved copy was last refreshed from Bybit. */
+  syncedAt: nullableDate(),
+  /** The latest refresh failed — the saved orders are still here, just possibly behind. */
+  syncError: p2pUnavailableSchema.nullable(),
 })
 
 /** Bybit's refusal behind a failed P2P read, or null when the failure was something else. */

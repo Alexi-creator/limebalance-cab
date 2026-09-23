@@ -10,13 +10,15 @@ import {
   Paper,
   Select,
   Stack,
+  Switch,
   Table,
   Text,
   useMantineTheme,
 } from "@mantine/core"
 import { useMediaQuery } from "@mantine/hooks"
-import { IconCheck, IconInfoCircle } from "@tabler/icons-react"
-import { format } from "date-fns"
+import { notifications } from "@mantine/notifications"
+import { IconAlertTriangle, IconCheck, IconInfoCircle } from "@tabler/icons-react"
+import { format, formatDistanceToNow } from "date-fns"
 import { enUS } from "date-fns/locale"
 import type { TFunction } from "i18next"
 import { useState } from "react"
@@ -25,6 +27,7 @@ import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
 import { P2P_PAGE_SIZE, useP2pOrders } from "../../api/useP2pOrders"
+import { useSetP2pAutoRecord } from "../../api/useSetP2pAutoRecord"
 import { formatQty } from "../../lib/format"
 import type { ExchangeAccount, P2pOrder } from "../../model"
 import { p2pUnavailableOf } from "../../model"
@@ -42,8 +45,12 @@ const STATUS_COLOR: Record<P2pOrder["status"], string> = {
   CANCELLED: "gray",
 }
 
+// The "all accounts" choice of the picker; a real account id otherwise.
+const ALL = "all"
+
 /**
- * P2P orders of a connected Bybit account, read live from the exchange.
+ * P2P orders, saved on our side and kept for good — Bybit's own API only reaches 180 days back, so
+ * the table starts there and grows from then on.
  *
  * Mostly a record to look things up in — but also the missing half of the deposit import: coins
  * bought on P2P land on the exchange with no deposit record, so nothing else can tell that they
@@ -60,15 +67,29 @@ export function P2pSection({ accounts }: Props) {
   const open = useModalStore((s) => s.open)
 
   const bybitAccounts = accounts.filter((a) => a.exchange === "bybit")
-  const [pickedAccount, setAccount] = useState<string | null>(null)
-  const accountId = pickedAccount ?? bybitAccounts[0]?.id ?? null
+  const [picked, setPicked] = useState<string>(ALL)
+  const accountId = picked === ALL ? null : picked
   const [page, setPage] = useState(1)
 
   const { data, isLoading, isFetching, error } = useP2pOrders(accountId, page)
+  // Auto-recording is a setting of one account, so it is offered when one account is in view.
+  const settingsAccount =
+    bybitAccounts.find((a) => a.id === accountId) ??
+    (bybitAccounts.length === 1 ? bybitAccounts[0] : undefined)
+  const autoRecord = useSetP2pAutoRecord({
+    onSuccess: (enabled) =>
+      notifications.show({
+        color: "green",
+        message: t(enabled ? "investments.p2p_auto_on" : "investments.p2p_auto_off"),
+      }),
+    onError: (err) => notifications.show({ color: "red", message: err.message }),
+  })
+  // Nothing saved and Bybit refused: the reason is all there is to show. With history saved, the
+  // same refusal only means the table may be behind (data.syncError below).
   const unavailable = p2pUnavailableOf(error)
 
   const record = (order: P2pOrder) => {
-    if (!data?.venueId) return
+    if (!order.venueId) return
     const buy = order.side === "BUY"
     open({
       centered: true,
@@ -77,7 +98,7 @@ export function P2pSection({ accounts }: Props) {
         <TransferForm
           preset={{
             mode: buy ? "deposit" : "withdraw",
-            venueId: data.venueId,
+            venueId: order.venueId,
             amount: order.fiatAmount,
             currency: order.fiatCurrency,
             date: order.createdAt,
@@ -93,7 +114,9 @@ export function P2pSection({ accounts }: Props) {
     })
   }
 
-  if (bybitAccounts.length === 0) {
+  // Saved history outlives a disconnected account, so "no account" is only the empty state when
+  // there is also nothing saved to show.
+  if (bybitAccounts.length === 0 && !isLoading && (data?.total ?? 0) === 0) {
     return (
       <Paper p="xl">
         <Text size="sm" c="dimmed" ta="center">
@@ -109,23 +132,76 @@ export function P2pSection({ accounts }: Props) {
   return (
     <Stack gap="md">
       <Group justify="space-between" align="flex-end" wrap="wrap" gap="sm">
-        <Text size="sm" c="dimmed" maw={640}>
-          {t("investments.p2p_hint")}
-        </Text>
+        <Stack gap={4} maw={640}>
+          <Text size="sm" c="dimmed">
+            {t("investments.p2p_hint")}
+          </Text>
+          <Text size="xs" c="dimmed">
+            {t("investments.p2p_limit_note")}
+            {data?.syncedAt
+              ? ` · ${t("investments.p2p_synced_ago", {
+                  ago: formatDistanceToNow(data.syncedAt, { addSuffix: true, locale }),
+                })}`
+              : ""}
+          </Text>
+        </Stack>
         {bybitAccounts.length > 1 && (
           <Select
             size="xs"
             w={220}
-            value={accountId}
+            value={picked}
             onChange={(v) => {
-              setAccount(v)
+              setPicked(v ?? ALL)
               setPage(1)
             }}
             allowDeselect={false}
-            data={bybitAccounts.map((a) => ({ value: a.id, label: a.label || a.exchange }))}
+            data={[
+              { value: ALL, label: t("investments.p2p_all_accounts") },
+              ...bybitAccounts.map((a) => ({ value: a.id, label: a.label || a.exchange })),
+            ]}
           />
         )}
       </Group>
+
+      {settingsAccount ? (
+        <Paper p="sm" withBorder>
+          <Switch
+            checked={!!settingsAccount.p2pAutoRecordFrom}
+            disabled={autoRecord.isPending}
+            onChange={(e) =>
+              autoRecord.mutate({
+                accountId: settingsAccount.id,
+                enabled: e.currentTarget.checked,
+              })
+            }
+            label={t("investments.p2p_auto_label")}
+            description={
+              settingsAccount.p2pAutoRecordFrom
+                ? t("investments.p2p_auto_since", {
+                    date: format(settingsAccount.p2pAutoRecordFrom, "d MMM yyyy, HH:mm", {
+                      locale,
+                    }),
+                  })
+                : t("investments.p2p_auto_hint")
+            }
+          />
+        </Paper>
+      ) : (
+        bybitAccounts.length > 1 && (
+          <Text size="xs" c="dimmed">
+            {t("investments.p2p_auto_pick_account")}
+          </Text>
+        )
+      )}
+
+      {data?.syncError && (data.total ?? 0) > 0 && (
+        <Alert color="orange" variant="light" icon={<IconAlertTriangle size={18} />} p="sm">
+          <Text size="sm">{t("investments.p2p_sync_failed")}</Text>
+          <Text size="xs" c="dimmed" mt={2}>
+            Bybit {data.syncError.retCode}: {data.syncError.message}
+          </Text>
+        </Alert>
+      )}
 
       <Paper p={isTableView ? "md" : "sm"} pos="relative">
         {isLoading ? (
@@ -192,7 +268,7 @@ export function P2pSection({ accounts }: Props) {
                       <StatusBadge order={o} t={t} />
                     </Table.Td>
                     <Table.Td>
-                      <RecordAction order={o} t={t} canRecord={!!data?.venueId} onRecord={record} />
+                      <RecordAction order={o} t={t} canRecord={!!o.venueId} onRecord={record} />
                     </Table.Td>
                   </Table.Tr>
                 ))}
@@ -226,7 +302,7 @@ export function P2pSection({ accounts }: Props) {
                   </Text>
                   <Group gap={6} wrap="nowrap">
                     {o.status !== "DONE" && <StatusBadge order={o} t={t} />}
-                    <RecordAction order={o} t={t} canRecord={!!data?.venueId} onRecord={record} />
+                    <RecordAction order={o} t={t} canRecord={!!o.venueId} onRecord={record} />
                   </Group>
                 </Group>
               </Stack>
@@ -286,7 +362,7 @@ function RecordAction({
   if (order.transferId) {
     return (
       <Badge size="sm" variant="light" color="gray" leftSection={<IconCheck size={10} />}>
-        {t("investments.p2p_recorded")}
+        {t(order.autoRecorded ? "investments.p2p_auto_recorded" : "investments.p2p_recorded")}
       </Badge>
     )
   }

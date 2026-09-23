@@ -28,9 +28,12 @@ export function useSaveTransfer({ transferId, onSuccess, onError }: Options) {
 /**
  * The edit endpoint rejects anything it cannot change — the venue, the peer, the coin. A coin move
  * also keeps its size and direction: those shifted the venues' composition, so changing them means
- * deleting it and recording a new one. An empty note is sent as null so clearing it sticks.
+ * deleting it and recording a new one. Against the wallet the money side stays editable, since it
+ * never touched the composition. An empty note is sent as null so clearing it sticks.
  */
-function toUpdate({ asset, direction, amount, currency, date, note }: TransferPayload) {
+function toUpdate({ asset, peer, direction, amount, currency, date, note }: TransferPayload) {
   const payload: UpdateTransferPayload = { date, note: note ?? null }
+  if (!asset && peer === "LEDGER") return { ...payload, direction, amount, currency }
+  if (peer === "LEDGER") return { ...payload, amount, currency }
   return asset ? payload : { ...payload, direction, amount, currency }
 }

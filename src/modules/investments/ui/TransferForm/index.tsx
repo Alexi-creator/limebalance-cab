@@ -81,9 +81,16 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
   )
   const [peer, setPeer] = useState<TransferPeer>(transfer?.peer ?? "LEDGER")
   const [peerVenueId, setPeerVenueId] = useState<string | null>(transfer?.peerVenueId ?? null)
-  // A coin move is edited in the coin it was made in, not in the USD it was priced at.
+  // A coin move is edited in the coin it was made in, not in the USD it was priced at — except
+  // against the wallet, where the figure is always the wallet's money and the coin sits beside it.
   const [amount, setAmount] = useState<number | string>(
-    (transfer?.asset ? transfer.assetAmount : transfer?.amount) ?? preset?.amount ?? "",
+    (transfer?.asset && transfer.peer !== "LEDGER" ? transfer.assetAmount : transfer?.amount) ??
+      preset?.amount ??
+      "",
+  )
+  // The coin side of a wallet transfer to a venue kept by hand: sold 1 079 USDT there, got baht.
+  const [coinQty, setCoinQty] = useState<number | string>(
+    transfer?.asset && transfer.peer === "LEDGER" ? (transfer.assetAmount ?? "") : "",
   )
   // Its size and direction are fixed once recorded — only the date and the note can change.
   const coinLocked = !!transfer?.asset
@@ -97,10 +104,20 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
   )
 
   const venue = venues.find((v) => v.id === venueId)
-  const sourceVenue = mode === "withdraw" ? venue : venues.find((v) => v.id === peerVenueId)
+  // Against the wallet, a venue kept by hand has two sides to say: the coin that left or reached
+  // it, and the money that reached or left the wallet. A live exchange reads its own coins, so
+  // there only the money is asked for.
+  const ledgerCoin = peer === "LEDGER" && venue?.mode === "MANUAL"
+  const sourceVenue =
+    mode === "withdraw"
+      ? venue
+      : peer === "LEDGER"
+        ? undefined
+        : venues.find((v) => v.id === peerVenueId)
   // A manual venue's coins live in its holdings, not in the exchange snapshot — asked for only when
   // coins are actually leaving one.
-  const manualSource = peer !== "LEDGER" && sourceVenue?.mode === "MANUAL" ? sourceVenue : null
+  const manualSource =
+    (peer !== "LEDGER" || ledgerCoin) && sourceVenue?.mode === "MANUAL" ? sourceVenue : null
   const sourceHoldings = useVenueHoldings(manualSource?.id ?? "", !!manualSource)
   const sourceCoins = manualSource
     ? heldCoins(sourceHoldings.data?.items ?? [])
@@ -119,7 +136,15 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
   // the move properly off the live feed — this is only here so the figure is not a surprise.
   const held = sourceCoins.find((c) => c.coin === asset)
   const unitPrice = held?.usdValue != null && held.amount > 0 ? held.usdValue / held.amount : null
-  const coinValue = unitPrice !== null && Number(amount) > 0 ? Number(amount) * unitPrice : null
+  // How much of the coin moves: its own field against the wallet, the amount field elsewhere.
+  const qty = ledgerCoin ? coinQty : amount
+  const coinValue =
+    !ledgerCoin && unitPrice !== null && Number(amount) > 0 ? Number(amount) * unitPrice : null
+  // What one coin fetched in the wallet's money — the figure worth checking against the exchange.
+  const rate =
+    ledgerCoin && asset && Number(coinQty) > 0 && Number(amount) > 0
+      ? Number(amount) / Number(coinQty)
+      : null
   // The most that can leave. A recorded transfer is already out of the source, so its own size is
   // not checked against what is left — it cannot change anyway.
   const maxCoin = held && !coinLocked && coinsKnown ? roundCoin(held.amount) : null
@@ -142,10 +167,16 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
     onError: (err) => notifications.show({ color: "red", message: err.message }),
   })
 
-  const coinFits = peer === "LEDGER" || maxCoin === null || Number(amount) <= maxCoin
+  const coinUsed = !!asset && (peer !== "LEDGER" || ledgerCoin)
+  const coinFits = !coinUsed || maxCoin === null || Number(qty) <= maxCoin
 
   const valid =
-    Number(amount) > 0 && !!currency && !!venueId && (peer !== "VENUE" || !!peerVenueId) && coinFits
+    Number(amount) > 0 &&
+    !!currency &&
+    !!venueId &&
+    (peer !== "VENUE" || !!peerVenueId) &&
+    coinFits &&
+    (!ledgerCoin || !asset || Number(coinQty) > 0)
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -155,10 +186,17 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
       direction: mode === "deposit" ? "IN" : "OUT",
       peer,
       ...(peer === "VENUE" ? { peerVenueId: peerVenueId as string } : {}),
-      // A coin move carries the ticker and the quantity; everything else is money.
-      ...(peer !== "LEDGER" && asset
-        ? { asset, assetAmount: Number(amount) }
-        : { amount: Number(amount), currency: (peer === "LEDGER" ? currency : "USD") as string }),
+      // A coin move carries the ticker and the quantity; everything else is money. Against the
+      // wallet both: the money that moved there, and the coin that moved on a venue kept by hand.
+      ...(peer === "LEDGER"
+        ? {
+            amount: Number(amount),
+            currency: currency as string,
+            ...(ledgerCoin && asset && !coinLocked ? { asset, assetAmount: Number(coinQty) } : {}),
+          }
+        : asset
+          ? { asset, assetAmount: Number(amount) }
+          : { amount: Number(amount), currency: "USD" }),
       date: day ?? undefined,
       note: note.trim() || undefined,
       ...(preset ? { p2pOrderId: preset.p2pOrderId } : {}),
@@ -245,25 +283,69 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
             that has to match your bank to the satang. Everywhere else there is no wallet, so the
             move is denominated in the coin itself (or in USD when the venue holds no coins). */}
         {peer === "LEDGER" ? (
-          <Group grow align="flex-start">
-            <NumberInput
-              label={t("common.amount")}
-              required
-              autoFocus
-              value={amount}
-              onChange={setAmount}
-              min={0}
-              thousandSeparator=" "
-              decimalScale={2}
-            />
-            <CurrencySelect
-              label={t("common.currency")}
-              required
-              value={currency}
-              onChange={setCurrency}
-              comboboxProps={{ width: "target" }}
-            />
-          </Group>
+          <Stack gap="xs">
+            {ledgerCoin && mode === "withdraw" && (
+              <CoinSide
+                label={t("investments.tr_coin_leaves")}
+                asset={asset}
+                onAsset={setAsset}
+                options={assetOptions}
+                qty={coinQty}
+                onQty={setCoinQty}
+                max={maxCoin}
+                locked={coinLocked}
+              />
+            )}
+            <Group grow align="flex-start">
+              <NumberInput
+                label={t(
+                  mode === "deposit" ? "investments.tr_wallet_gives" : "investments.tr_wallet_gets",
+                )}
+                required
+                autoFocus={!ledgerCoin}
+                value={amount}
+                onChange={setAmount}
+                // Figures from a P2P order are Bybit's facts, not the user's to adjust.
+                disabled={!!preset}
+                min={0}
+                thousandSeparator=" "
+                decimalScale={2}
+              />
+              <CurrencySelect
+                label={t("common.currency")}
+                required
+                value={currency}
+                onChange={setCurrency}
+                disabled={!!preset}
+                comboboxProps={{ width: "target" }}
+              />
+            </Group>
+            {ledgerCoin && mode === "deposit" && (
+              <CoinSide
+                label={t("investments.tr_coin_arrives")}
+                asset={asset}
+                onAsset={setAsset}
+                options={assetOptions}
+                qty={coinQty}
+                onQty={setCoinQty}
+                max={null}
+                locked={coinLocked}
+              />
+            )}
+            {rate !== null && (
+              <Text size="xs" c="dimmed">
+                {t("investments.tr_rate_preview", {
+                  rate: formatCurrency(rate, i18n.language, currency ?? "USD"),
+                  asset,
+                })}
+              </Text>
+            )}
+            {venue?.mode === "LIVE" && !preset && (
+              <Text size="xs" c="dimmed">
+                {t("investments.tr_live_coins_hint")}
+              </Text>
+            )}
+          </Stack>
         ) : (
           <Group grow align="flex-start">
             <Select
@@ -300,7 +382,12 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
         {maxCoin !== null && (
           <Text size="xs" c="dimmed">
             {t("investments.tr_asset_available", { amount: maxCoin, asset })}{" "}
-            <Anchor component="button" type="button" size="xs" onClick={() => setAmount(maxCoin)}>
+            <Anchor
+              component="button"
+              type="button"
+              size="xs"
+              onClick={() => (ledgerCoin ? setCoinQty(maxCoin) : setAmount(maxCoin))}
+            >
               {t("investments.tr_asset_all")}
             </Anchor>
           </Text>
@@ -337,6 +424,7 @@ export function TransferForm({ initialMode = "deposit", defaultVenue, transfer, 
           value={day}
           onChange={setDay}
           maxDate={format(new Date(), "yyyy-MM-dd")}
+          disabled={!!preset}
           locale={i18n.language}
           valueFormat="DD MMM YYYY"
         />
@@ -389,4 +477,57 @@ function heldCoins(holdings: VenueHolding[]): VenueCoin[] {
 /** Summed holdings pick up float dust; eight places is as fine as a coin amount is entered. */
 function roundCoin(n: number): number {
   return Math.round(n * 1e8) / 1e8
+}
+
+/**
+ * The coin side of a wallet transfer to a venue kept by hand. Optional: a venue whose coins are
+ * not tracked is simply worth what went in, and then only the money matters.
+ */
+function CoinSide({
+  label,
+  asset,
+  onAsset,
+  options,
+  qty,
+  onQty,
+  max,
+  locked,
+}: {
+  label: string
+  asset: string | null
+  onAsset: (asset: string | null) => void
+  options: string[]
+  qty: number | string
+  onQty: (qty: number | string) => void
+  max: number | null
+  locked: boolean
+}) {
+  const { t } = useTranslation()
+  return (
+    <Group grow align="flex-start">
+      <Select
+        label={label}
+        searchable
+        clearable
+        value={asset}
+        onChange={onAsset}
+        disabled={locked}
+        data={options}
+        placeholder={t("investments.tr_coin_optional")}
+        nothingFoundMessage={t("common.nothing_found")}
+      />
+      <NumberInput
+        label={t("investments.venue_coin_amount")}
+        required={!!asset}
+        value={qty}
+        onChange={onQty}
+        disabled={locked || !asset}
+        min={0}
+        max={max ?? undefined}
+        error={max !== null && Number(qty) > max ? t("investments.tr_asset_too_much") : undefined}
+        decimalScale={8}
+        hideControls
+      />
+    </Group>
+  )
 }

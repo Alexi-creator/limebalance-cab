@@ -17,11 +17,12 @@ export const investingKeys = {
   adjustments: (venueId: string) => ["investing", "adjustments", venueId] as const,
   transfers: (params: TransfersParams) => ["investing", "transfers", params] as const,
   allTransfers: ["investing", "transfers"] as const,
-  p2pOrders: (accountId: string, page: number) => ["investing", "p2p", accountId, page] as const,
+  p2pOrders: (accountId: string | null, page: number) =>
+    ["investing", "p2p", accountId ?? "all", page] as const,
   allP2pOrders: ["investing", "p2p"] as const,
 }
 
-/** P2P history is fetched live from Bybit on every read — a minute of cache spares it tab flips. */
+/** A stale read makes the backend refresh from Bybit first — a minute of cache spares tab flips. */
 export const P2P_STALE_TIME = 60 * 1000
 
 /** Coin prices are cached for a minute on the backend — no point refetching sooner. */

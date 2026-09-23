@@ -96,8 +96,16 @@ export function TransfersHistory({ venue, pendingOnly }: Props) {
                     {!row.needsReview && row.peer === "EXTERNAL"
                       ? ` → ${t(isDeposit ? "investments.tr_peer_external_in" : "investments.tr_peer_external")}`
                       : ""}
-                    {!row.needsReview && row.peer === "LEDGER" && imported
+                    {!row.needsReview && row.peer === "LEDGER" && imported && !row.linkedAs
                       ? ` ↔ ${t("investments.tr_peer_ledger")}`
+                      : ""}
+                    {/* Earned or spent right on the venue: say it as what it is in the reports. */}
+                    {row.linkedAs
+                      ? ` · ${t(row.linkedAs === "INCOME" ? "investments.rv_linked_income" : "investments.rv_linked_expense")}${
+                          row.linkedCategory
+                            ? `: ${row.linkedCategory.emoji ? `${row.linkedCategory.emoji} ` : ""}${row.linkedCategory.name}`
+                            : ""
+                        }`
                       : ""}
                   </Text>
                 </Text>
@@ -125,6 +133,10 @@ export function TransfersHistory({ venue, pendingOnly }: Props) {
                 {format(row.date, "d MMM yyyy", { locale })}
                 {row.counterparty
                   ? ` · ${t(isDeposit ? "investments.rv_from" : "investments.rv_to", { who: row.counterparty })}`
+                  : ""}
+                {/* The coin side of a wallet transfer: what was bought or sold for that money. */}
+                {row.peer === "LEDGER" && row.asset && row.assetAmount != null
+                  ? ` · ${formatQty(row.assetAmount, i18n.language)} ${row.asset}`
                   : ""}
                 {row.note ? ` · ${row.note}` : ""}
               </Text>
