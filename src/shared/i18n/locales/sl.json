@@ -582,6 +582,7 @@
     "filter_pnl": "Rezultat",
     "pnl_positive": "Dobičkonosno",
     "pnl_negative": "Izgubljeno",
+    "filter_hide_dust": "Skrij drobiž pod {{amount}}",
     "pos_page_size": "Vrstic na stran",
     "pos_add": "Dodaj posel",
     "pos_add_title": "Dodaj posel",

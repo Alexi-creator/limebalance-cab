@@ -546,6 +546,7 @@
     "filter_pnl": "損益",
     "pnl_positive": "利益",
     "pnl_negative": "損失",
+    "filter_hide_dust": "{{amount}}未満の端数を隠す",
     "pos_page_size": "1ページの行数",
     "pos_add": "取引を追加",
     "pos_add_title": "取引を追加",

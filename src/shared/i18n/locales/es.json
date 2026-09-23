@@ -558,6 +558,7 @@
     "filter_pnl": "Resultado",
     "pnl_positive": "Ganadora",
     "pnl_negative": "Perdedora",
+    "filter_hide_dust": "Ocultar restos por debajo de {{amount}}",
     "pos_page_size": "Filas por página",
     "pos_add": "Añadir operación",
     "pos_add_title": "Añadir operación",

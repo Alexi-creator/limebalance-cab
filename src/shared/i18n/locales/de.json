@@ -558,6 +558,7 @@
     "filter_pnl": "Ergebnis",
     "pnl_positive": "Gewinn",
     "pnl_negative": "Verlust",
+    "filter_hide_dust": "Kleinbeträge unter {{amount}} ausblenden",
     "pos_page_size": "Zeilen pro Seite",
     "pos_add": "Trade hinzufügen",
     "pos_add_title": "Trade hinzufügen",

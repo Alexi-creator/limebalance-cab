@@ -546,6 +546,7 @@
     "filter_pnl": "Kết quả",
     "pnl_positive": "Có lãi",
     "pnl_negative": "Thua lỗ",
+    "filter_hide_dust": "Ẩn số dư lẻ dưới {{amount}}",
     "pos_page_size": "Số dòng mỗi trang",
     "pos_add": "Thêm giao dịch",
     "pos_add_title": "Thêm giao dịch",

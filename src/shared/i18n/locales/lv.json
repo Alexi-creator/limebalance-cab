@@ -570,6 +570,7 @@
     "filter_pnl": "Rezultāts",
     "pnl_positive": "Peļņa",
     "pnl_negative": "Zaudējums",
+    "filter_hide_dust": "Slēpt atlikumus zem {{amount}}",
     "pos_page_size": "Rindas lapā",
     "pos_add": "Pievienot darījumu",
     "pos_add_title": "Pievienot darījumu",

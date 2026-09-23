@@ -558,6 +558,7 @@
     "filter_pnl": "Tulemus",
     "pnl_positive": "Kasumlik",
     "pnl_negative": "Kahjumlik",
+    "filter_hide_dust": "Peida alla {{amount}} jäägid",
     "pos_page_size": "Ridu lehel",
     "pos_add": "Lisa tehing",
     "pos_add_title": "Lisa tehing",

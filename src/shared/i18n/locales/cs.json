@@ -570,6 +570,7 @@
     "filter_pnl": "Výsledek",
     "pnl_positive": "Ziskové",
     "pnl_negative": "Ztrátové",
+    "filter_hide_dust": "Skrýt drobné pod {{amount}}",
     "pos_page_size": "Řádků na stránku",
     "pos_add": "Přidat obchod",
     "pos_add_title": "Přidat obchod",

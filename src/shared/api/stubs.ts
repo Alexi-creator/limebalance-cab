@@ -738,6 +738,31 @@ const INVESTING_POSITIONS = [
     stopLossPrice: null,
     notes: [],
   },
+  // Dust: an OPEN spot leftover worth ~39 cents — what stays behind when a sale can't round off
+  // exactly. Hidden by the journal's default filter (hideDust), visible once it's unchecked.
+  {
+    id: "pos-spot-dust",
+    accountId: "acc-bybit-1",
+    source: "bybit",
+    symbol: "PEPEUSDT",
+    category: "spot",
+    side: "Sell",
+    qty: "1250000",
+    avgEntryPrice: "0.00000031",
+    avgExitPrice: null,
+    closedPnl: null,
+    leverage: null,
+    openedAt: "2026-07-02T08:00:00.000Z",
+    closedAt: null,
+    entryVolumeUsd: 0.39,
+    totalFeeUsd: null,
+    status: "OPEN",
+    currentPrice: null,
+    unrealizedPnl: null,
+    takeProfitPrice: null,
+    stopLossPrice: null,
+    notes: [],
+  },
 ]
 
 const INVESTING_HOLDINGS = {
@@ -791,7 +816,13 @@ const INVESTING_HOLDINGS = {
 }
 
 function filterPositions<
-  T extends { symbol: string; accountId: string | null; status?: string; category: string },
+  T extends {
+    symbol: string
+    accountId: string | null
+    status?: string
+    category: string
+    entryVolumeUsd: number
+  },
 >(rows: T[], params: URLSearchParams) {
   const symbol = params.get("symbol")
   const accountId = params.get("accountId")
@@ -802,11 +833,20 @@ function filterPositions<
   if (accountId) items = items.filter((r) => r.accountId === accountId)
   if (status) items = items.filter((r) => r.status === status)
   if (category) items = items.filter((r) => r.category === category)
+  // The journal sends hideDust=true by default — under a dollar of committed capital is the
+  // change a trade left behind, not a trade (DUST_USD in the investments model).
+  if (params.get("hideDust") === "true") items = items.filter((r) => r.entryVolumeUsd >= 1)
   return items
 }
 
 function paged<
-  T extends { symbol: string; accountId: string | null; status?: string; category: string },
+  T extends {
+    symbol: string
+    accountId: string | null
+    status?: string
+    category: string
+    entryVolumeUsd: number
+  },
 >(rows: T[], params: URLSearchParams) {
   const items = filterPositions(rows, params)
   const total = items.length

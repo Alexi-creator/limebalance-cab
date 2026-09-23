@@ -558,6 +558,7 @@
     "filter_pnl": "Resultaat",
     "pnl_positive": "Winstgevend",
     "pnl_negative": "Verlieslatend",
+    "filter_hide_dust": "Restjes onder {{amount}} verbergen",
     "pos_page_size": "Rijen per pagina",
     "pos_add": "Transactie toevoegen",
     "pos_add_title": "Transactie toevoegen",

@@ -546,6 +546,7 @@
     "filter_pnl": "손익",
     "pnl_positive": "수익",
     "pnl_negative": "손실",
+    "filter_hide_dust": "{{amount}} 미만 잔돈 숨기기",
     "pos_page_size": "페이지당 행 수",
     "pos_add": "거래 추가",
     "pos_add_title": "거래 추가",

@@ -558,6 +558,7 @@
     "filter_pnl": "Resultat",
     "pnl_positive": "Lønnsom",
     "pnl_negative": "Tapsgivende",
+    "filter_hide_dust": "Skjul småbeløp under {{amount}}",
     "pos_page_size": "Rader per side",
     "pos_add": "Legg til handel",
     "pos_add_title": "Legg til handel",

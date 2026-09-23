@@ -592,6 +592,7 @@
     "filter_pnl": "Result",
     "pnl_positive": "Profitable",
     "pnl_negative": "Losing",
+    "filter_hide_dust": "Hide dust under {{amount}}",
     "pos_page_size": "Rows per page",
     "pos_add": "Add trade",
     "pos_add_title": "Add trade",

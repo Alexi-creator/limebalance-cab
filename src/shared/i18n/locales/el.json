@@ -558,6 +558,7 @@
     "filter_pnl": "Αποτέλεσμα",
     "pnl_positive": "Κερδοφόρες",
     "pnl_negative": "Ζημιογόνες",
+    "filter_hide_dust": "Απόκρυψη υπολειμμάτων κάτω από {{amount}}",
     "pos_page_size": "Γραμμές ανά σελίδα",
     "pos_add": "Προσθήκη συναλλαγής",
     "pos_add_title": "Προσθήκη συναλλαγής",

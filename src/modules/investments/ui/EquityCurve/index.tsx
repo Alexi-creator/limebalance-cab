@@ -11,10 +11,10 @@ import { useEquityCurve } from "../../api/useEquityCurve"
 import { formatPnl, formatUsd, pnlColor } from "../../lib/format"
 
 interface Props {
-  /** Journal filters (symbol/account/category) — period (from/to) is intentionally not passed
-   *  through, the curve always covers full history; status is irrelevant, the API always
+  /** Journal filters (symbol/account/category/hideDust) — period (from/to) is intentionally not
+   *  passed through, the curve always covers full history; status is irrelevant, the API always
    *  scopes this endpoint to closed positions. */
-  params: Pick<PositionsParams, "symbol" | "accountId" | "category">
+  params: Pick<PositionsParams, "symbol" | "accountId" | "category" | "hideDust">
 }
 
 /** Chart geometry (viewBox height and inner padding); width follows the container. */
@@ -52,6 +52,7 @@ export function EquityCurve({ params }: Props) {
     symbol: params.symbol,
     accountId: params.accountId,
     category: params.category,
+    hideDust: params.hideDust,
   }
   const { data } = useEquityCurve(chartParams)
 

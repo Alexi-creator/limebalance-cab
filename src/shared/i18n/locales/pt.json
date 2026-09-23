@@ -558,6 +558,7 @@
     "filter_pnl": "Resultado",
     "pnl_positive": "Lucrativa",
     "pnl_negative": "Perdedora",
+    "filter_hide_dust": "Ocultar restos abaixo de {{amount}}",
     "pos_page_size": "Linhas por página",
     "pos_add": "Adicionar operação",
     "pos_add_title": "Adicionar operação",

@@ -546,6 +546,7 @@
     "filter_pnl": "盈亏",
     "pnl_positive": "盈利",
     "pnl_negative": "亏损",
+    "filter_hide_dust": "隐藏低于{{amount}}的零头",
     "pos_page_size": "每页行数",
     "pos_add": "添加交易",
     "pos_add_title": "添加交易",

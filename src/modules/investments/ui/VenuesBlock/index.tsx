@@ -35,7 +35,7 @@ import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { useModalStore } from "@/shared/store/modalStore"
 import { useVenues } from "../../api/useVenues"
 import { formatQty } from "../../lib/format"
-import type { Venue } from "../../model"
+import { DUST_USD, type Venue } from "../../model"
 import { CoinIcon } from "../CoinIcon"
 import { TransferForm } from "../TransferForm"
 import { TransfersHistory } from "../TransfersHistory"
@@ -453,9 +453,6 @@ function VenueCard({
     </Paper>
   )
 }
-
-/** Below this a balance is leftover change from trades, not something the user holds on purpose. */
-const DUST_USD = 1
 
 /**
  * The first few tickers on the card, opening into the full wallet on click.

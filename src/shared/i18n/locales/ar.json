@@ -606,6 +606,7 @@
     "filter_pnl": "النتيجة",
     "pnl_positive": "رابحة",
     "pnl_negative": "خاسرة",
+    "filter_hide_dust": "إخفاء الفتات أقل من {{amount}}",
     "pos_page_size": "صفوف لكل صفحة",
     "pos_add": "إضافة صفقة",
     "pos_add_title": "إضافة صفقة",

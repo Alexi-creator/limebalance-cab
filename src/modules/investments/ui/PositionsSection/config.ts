@@ -35,6 +35,10 @@ export const positionsParamsSchema = z.object({
   category: z.enum(["all", "linear", "spot", "manual"]).catch("all").default("all"),
   // Defaults to "all" — same reasoning as `status` above.
   pnl: z.enum(["all", "positive", "negative"]).catch("all").default("all"),
+  // Sub-dollar leftovers are hidden unless asked for — the default view is trades, not the
+  // unsellable change they left behind (see DUST_USD). "show" is the deliberate choice, so the
+  // journal reads as a journal on a fresh visit.
+  dust: z.enum(["hide", "show"]).catch("hide").default("hide"),
   page: z.coerce.number().int().min(1).catch(1).default(1),
   limit: z.coerce
     .number()

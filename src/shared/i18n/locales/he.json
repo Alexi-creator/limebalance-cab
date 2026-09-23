@@ -582,6 +582,7 @@
     "filter_pnl": "תוצאה",
     "pnl_positive": "רווחיות",
     "pnl_negative": "מפסידות",
+    "filter_hide_dust": "הסתרת שאריות מתחת ל-{{amount}}",
     "pos_page_size": "שורות בעמוד",
     "pos_add": "הוספת עסקה",
     "pos_add_title": "הוספת עסקה",

@@ -570,6 +570,7 @@
     "filter_pnl": "Rezultat",
     "pnl_positive": "Profitabilno",
     "pnl_negative": "Gubitaško",
+    "filter_hide_dust": "Sakrij sitniš ispod {{amount}}",
     "pos_page_size": "Redaka po stranici",
     "pos_add": "Dodaj trgovanje",
     "pos_add_title": "Dodaj trgovanje",

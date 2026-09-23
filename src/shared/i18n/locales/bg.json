@@ -558,6 +558,7 @@
     "filter_pnl": "Резултат",
     "pnl_positive": "Печеливши",
     "pnl_negative": "Губещи",
+    "filter_hide_dust": "Скриване на дребните под {{amount}}",
     "pos_page_size": "Редове на страница",
     "pos_add": "Добавяне на сделка",
     "pos_add_title": "Добавяне на сделка",

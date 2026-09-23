@@ -558,6 +558,7 @@
     "filter_pnl": "Resultat",
     "pnl_positive": "Profitabel",
     "pnl_negative": "Tabsgivende",
+    "filter_hide_dust": "Skjul småbeløb under {{amount}}",
     "pos_page_size": "Rækker pr. side",
     "pos_add": "Tilføj handel",
     "pos_add_title": "Tilføj handel",

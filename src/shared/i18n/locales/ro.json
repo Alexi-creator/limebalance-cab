@@ -570,6 +570,7 @@
     "filter_pnl": "Rezultat",
     "pnl_positive": "Profit",
     "pnl_negative": "Pierdere",
+    "filter_hide_dust": "Ascunde resturile sub {{amount}}",
     "pos_page_size": "Rânduri pe pagină",
     "pos_add": "Adaugă tranzacție",
     "pos_add_title": "Adaugă tranzacție",

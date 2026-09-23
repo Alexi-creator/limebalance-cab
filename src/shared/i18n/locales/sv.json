@@ -558,6 +558,7 @@
     "filter_pnl": "Resultat",
     "pnl_positive": "Vinst",
     "pnl_negative": "Förlust",
+    "filter_hide_dust": "Dölj småposter under {{amount}}",
     "pos_page_size": "Rader per sida",
     "pos_add": "Lägg till affär",
     "pos_add_title": "Lägg till affär",

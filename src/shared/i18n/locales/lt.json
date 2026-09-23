@@ -570,6 +570,7 @@
     "filter_pnl": "Rezultatas",
     "pnl_positive": "Pelningi",
     "pnl_negative": "Nuostolingi",
+    "filter_hide_dust": "Slėpti likučius, mažesnius nei {{amount}}",
     "pos_page_size": "Eilučių puslapyje",
     "pos_add": "Pridėti sandorį",
     "pos_add_title": "Pridėti sandorį",

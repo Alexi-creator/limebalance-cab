@@ -96,7 +96,10 @@ export function TransfersHistory({ venue, pendingOnly }: Props) {
                     {!row.needsReview && row.peer === "EXTERNAL"
                       ? ` → ${t(isDeposit ? "investments.tr_peer_external_in" : "investments.tr_peer_external")}`
                       : ""}
-                    {!row.needsReview && row.peer === "LEDGER" && imported && !row.linkedAs
+                    {/* Said on every row, hand-written ones included: "from my balance" and
+                        "from someone else" look identical otherwise, and only the first moves
+                        the wallet. */}
+                    {!row.needsReview && row.peer === "LEDGER" && !row.linkedAs
                       ? ` ↔ ${t("investments.tr_peer_ledger")}`
                       : ""}
                     {/* Earned or spent right on the venue: say it as what it is in the reports. */}

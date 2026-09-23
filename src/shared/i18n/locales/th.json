@@ -546,6 +546,7 @@
     "filter_pnl": "ผลลัพธ์",
     "pnl_positive": "กำไร",
     "pnl_negative": "ขาดทุน",
+    "filter_hide_dust": "ซ่อนเศษที่ต่ำกว่า {{amount}}",
     "pos_page_size": "แถวต่อหน้า",
     "pos_add": "เพิ่มการเทรด",
     "pos_add_title": "เพิ่มการเทรด",

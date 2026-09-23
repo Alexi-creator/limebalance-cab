@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Center,
+  Checkbox,
   Group,
   Loader,
   LoadingOverlay,
@@ -50,6 +51,7 @@ import { useSyncExchangeAccounts } from "../../api/useSyncExchangeAccounts"
 import { formatPct, formatPnl, formatQty, formatUsd, pnlColor } from "../../lib/format"
 import {
   baseAssetFromSymbol,
+  DUST_USD,
   type ExchangeAccount,
   holdingDays,
   type Position,
@@ -130,6 +132,9 @@ export function PositionsSection({ accounts }: Props) {
     status: urlParams.status === "all" ? undefined : urlParams.status,
     category: urlParams.category === "all" ? undefined : urlParams.category,
     pnl: urlParams.pnl === "all" ? undefined : urlParams.pnl,
+    // Default view: the sub-dollar leftovers are out. The KPI row and the page count come from
+    // the same filtered set, so winrate and "trades" stay about trades (see DUST_USD).
+    hideDust: urlParams.dust === "hide",
   }
   const params: PositionsParams = {
     ...filterParams,
@@ -167,6 +172,7 @@ export function PositionsSection({ accounts }: Props) {
     symbol: filterParams.symbol,
     accountId: filterParams.accountId,
     category: filterParams.category,
+    hideDust: filterParams.hideDust,
   }
   const { data: equityData } = useEquityCurve(chartParams)
   const earliestClosedAt = equityData?.items[0]?.closedAt
@@ -249,7 +255,8 @@ export function PositionsSection({ accounts }: Props) {
     (urlParams.accountId ? 1 : 0) +
     (urlParams.category !== "all" ? 1 : 0) +
     (urlParams.status !== "all" ? 1 : 0) +
-    (urlParams.pnl !== "all" ? 1 : 0)
+    (urlParams.pnl !== "all" ? 1 : 0) +
+    (urlParams.dust === "show" ? 1 : 0)
 
   // Back to the schema defaults — status included, so this also restores the default
   // "All" view.
@@ -263,6 +270,7 @@ export function PositionsSection({ accounts }: Props) {
       status: undefined,
       category: "all",
       pnl: "all",
+      dust: "hide",
       page: 1,
     })
   }
@@ -361,6 +369,15 @@ export function PositionsSection({ accounts }: Props) {
           { value: "spot", label: t("investments.cat_spot") },
           { value: "manual", label: t("investments.cat_manual") },
         ]}
+      />
+      {/* Checked by default (dust="hide"): a wallet accumulates unsellable sub-dollar remainders
+          faster than trades, and a page of those buries the real ones. Unchecking brings them
+          back — they're hidden, not deleted. */}
+      <Checkbox
+        size="xs"
+        label={t("investments.filter_hide_dust", { amount: formatUsd(DUST_USD, i18n.language) })}
+        checked={urlParams.dust === "hide"}
+        onChange={(e) => setParams({ dust: e.currentTarget.checked ? "hide" : "show", page: 1 })}
       />
       {/* On the mobile sheet the reset lives in its header instead (next to close) — inline here
           it would be a lone unlabeled icon at the end of a vertical field list. */}

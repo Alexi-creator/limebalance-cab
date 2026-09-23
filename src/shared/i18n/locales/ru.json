@@ -606,6 +606,7 @@
     "filter_pnl": "Итог",
     "pnl_positive": "Прибыльные",
     "pnl_negative": "Убыточные",
+    "filter_hide_dust": "Скрывать мелочь до {{amount}}",
     "pos_page_size": "Строк на странице",
     "pos_add": "Добавить сделку",
     "pos_add_title": "Добавить сделку",

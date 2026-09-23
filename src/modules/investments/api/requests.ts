@@ -91,6 +91,10 @@ export interface PositionsParams {
   /** Currently in profit/loss — realized closedPnl for CLOSED rows, live PnL (currentPrice vs
    *  avgEntryPrice) for OPEN ones. */
   pnl?: "positive" | "negative"
+  /** Drops rows with under $1 of committed capital — change left over from a trade, not a trade.
+   *  Server-side on purpose: filtering the page here would leave short pages and a winrate still
+   *  counting the cents. */
+  hideDust?: boolean
   limit?: number
   offset?: number
 }
@@ -104,6 +108,7 @@ function positionsQuery(params: PositionsParams): string {
   if (params.status) q.set("status", params.status)
   if (params.category) q.set("category", params.category)
   if (params.pnl) q.set("pnl", params.pnl)
+  if (params.hideDust) q.set("hideDust", "true")
   if (params.limit != null) q.set("limit", String(params.limit))
   if (params.offset) q.set("offset", String(params.offset))
   return q.size ? `?${q}` : ""

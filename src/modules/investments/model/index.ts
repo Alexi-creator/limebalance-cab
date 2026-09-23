@@ -354,6 +354,14 @@ export type EquityCurveResponse = z.infer<typeof equityCurveResponseSchema>
 export type CoinIconsResponse = z.infer<typeof coinIconsResponseSchema>
 
 /**
+ * Under a dollar a balance is leftover change from trades, not something held on purpose — an
+ * unsellable remainder, a rounding tail. The wallet folds coins below this into one line; the
+ * journal hides the trades that left them (see PositionsSection's dust filter), so both places
+ * draw the line in the same spot. Mirrored server-side in InvestingService.
+ */
+export const DUST_USD = 1
+
+/**
  * Human-readable direction of a position (`side` is the closing/current order's side,
  * same convention whether the position is still OPEN or already CLOSED).
  * Spot has no shorts — a spot position is always a Long regardless of `side`.

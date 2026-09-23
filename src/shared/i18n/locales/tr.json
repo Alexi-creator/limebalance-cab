@@ -558,6 +558,7 @@
     "filter_pnl": "Sonuç",
     "pnl_positive": "Kârlı",
     "pnl_negative": "Zararlı",
+    "filter_hide_dust": "{{amount}} altındaki bakiyeleri gizle",
     "pos_page_size": "Sayfa başına satır",
     "pos_add": "İşlem ekle",
     "pos_add_title": "İşlem ekle",

@@ -558,6 +558,7 @@
     "filter_pnl": "Tulos",
     "pnl_positive": "Voitollinen",
     "pnl_negative": "Tappiollinen",
+    "filter_hide_dust": "Piilota alle {{amount}} rippeet",
     "pos_page_size": "Rivejä sivulla",
     "pos_add": "Lisää kauppa",
     "pos_add_title": "Lisää kauppa",

@@ -3,9 +3,9 @@ import { expect, test } from "./fixtures"
 
 /**
  * Investing section against the stubbed /api/investing/* endpoints (see
- * src/api/stubs.ts — one bybit account, four positions: an OPEN linear (ADAUSDT, with a
- * note) plus three CLOSED ones (linear/spot/manual). All copy asserted here is the English
- * fallback.
+ * src/api/stubs.ts — one bybit account, five positions: an OPEN linear (ADAUSDT, with a
+ * note), three CLOSED ones (linear/spot/manual) and an OPEN sub-dollar spot leftover
+ * (PEPEUSDT) the journal hides by default. All copy asserted here is the English fallback.
  */
 
 const path = (url: URL, suffix: string) => url.pathname.endsWith(suffix)
@@ -73,6 +73,23 @@ test.describe("Investments — trade journal", () => {
     await expect(page.getByPlaceholder("Status")).toHaveValue("All")
     // Back to the default All view: every stubbed position.
     await expect(page.locator("table tbody tr")).toHaveCount(4)
+  })
+
+  test("keeps sub-dollar leftovers out of the journal until they're asked for", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+
+    const rows = page.locator("table tbody tr")
+    // The PEPEUSDT leftover is worth 39 cents — change from a sale, not a trade, so the default
+    // view is the other four.
+    await expect(rows).toHaveCount(4)
+    await expect(rows.filter({ hasText: "PEPEUSDT" })).toHaveCount(0)
+
+    await page.getByLabel("Hide dust under $1.00").uncheck()
+
+    await expect(rows).toHaveCount(5)
+    await expect(rows.filter({ hasText: "PEPEUSDT" })).toHaveCount(1)
   })
 
   test("the Opened column shows the open date, or a dash when it's unavailable", async ({

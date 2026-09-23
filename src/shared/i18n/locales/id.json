@@ -546,6 +546,7 @@
     "filter_pnl": "Hasil",
     "pnl_positive": "Untung",
     "pnl_negative": "Rugi",
+    "filter_hide_dust": "Sembunyikan recehan di bawah {{amount}}",
     "pos_page_size": "Baris per halaman",
     "pos_add": "Tambah transaksi",
     "pos_add_title": "Tambah transaksi",

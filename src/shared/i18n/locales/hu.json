@@ -558,6 +558,7 @@
     "filter_pnl": "Eredmény",
     "pnl_positive": "Nyereséges",
     "pnl_negative": "Veszteséges",
+    "filter_hide_dust": "{{amount}} alatti aprók elrejtése",
     "pos_page_size": "Sor / oldal",
     "pos_add": "Kereskedés hozzáadása",
     "pos_add_title": "Kereskedés hozzáadása",
