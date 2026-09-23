@@ -75,3 +75,16 @@ export function resolvePeriod(
   if (period === "all" && (from || to)) return "custom"
   return period
 }
+
+/**
+ * The params for a period picked some time ago (a saved preset, the state a table remembered):
+ * a ready-made range gets today's dates — "this month" saved in September means October in
+ * October — a hand-picked range keeps its own (including a link that carries only dates, see
+ * resolvePeriod), and "all" clears them.
+ */
+export function periodDates(period: PeriodValue, from?: string, to?: string) {
+  const resolved = resolvePeriod(period, from, to)
+  if (resolved === "custom") return { period: resolved, from, to }
+  if (resolved === "all") return { period: resolved, from: undefined, to: undefined }
+  return { period: resolved, ...presetRange(resolved) }
+}

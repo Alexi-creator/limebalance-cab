@@ -27,6 +27,7 @@ import { useTransactions } from "@/modules/transactions/api/useTransactions"
 import { transactionsParamsSchema } from "@/modules/transactions/config"
 import { useTransactionsTour } from "@/modules/transactions/hooks/useTransactionsTour"
 import { buildFilterChipGroups } from "@/modules/transactions/lib/filterChips"
+import { periodDates } from "@/modules/transactions/lib/periods"
 import {
   ActiveFilterChips,
   BulkDeleteModal,
@@ -37,7 +38,7 @@ import {
   TransactionsToolbar,
 } from "@/modules/transactions/ui"
 import { RouteNames } from "@/shared/config/routeNames"
-import { useUrlParams } from "@/shared/hooks/useUrlParams"
+import { usePersistedUrlParams } from "@/shared/hooks/usePersistedUrlParams"
 import { useModalStore } from "@/shared/store/modalStore"
 import { TourTriggerButton } from "@/shared/ui/TourTriggerButton"
 
@@ -56,7 +57,13 @@ export function TransactionsPage() {
   const isTableView = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`, true, {
     getInitialValueInEffect: false,
   })
-  const [params, setParams] = useUrlParams(transactionsParamsSchema)
+  // Remembered between visits (see usePersistedUrlParams) — except the page, and a ready-made
+  // period comes back with today's dates.
+  const [params, setParams] = usePersistedUrlParams(transactionsParamsSchema, {
+    key: "transactions",
+    omit: ["page"],
+    onRestore: (p) => periodDates(p.period, p.from, p.to),
+  })
   const openModal = useModalStore((s) => s.open)
   const { startTour } = useTransactionsTour(params.view)
 

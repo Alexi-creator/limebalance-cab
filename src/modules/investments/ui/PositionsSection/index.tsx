@@ -40,8 +40,9 @@ import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import type { PresetFilters } from "@/modules/presets"
 import { FilterPresets } from "@/modules/presets/ui"
+import { periodDates } from "@/modules/transactions/lib/periods"
 import { PeriodFilter } from "@/modules/transactions/ui"
-import { useUrlParams } from "@/shared/hooks/useUrlParams"
+import { usePersistedUrlParams } from "@/shared/hooks/usePersistedUrlParams"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { useModalStore } from "@/shared/store/modalStore"
 import { MobileFilterSheet } from "@/shared/ui/MobileFilterSheet"
@@ -115,7 +116,13 @@ export function PositionsSection({ accounts }: Props) {
 
   // Filters/pagination live in the URL (like the transactions table) so a reload or a shared
   // link keeps the same view — see PositionsSection/config.ts.
-  const [urlParams, setParams] = useUrlParams(positionsParamsSchema)
+  // Remembered between visits too (see usePersistedUrlParams) — except the page, and a
+  // ready-made period comes back with today's dates.
+  const [urlParams, setParams] = usePersistedUrlParams(positionsParamsSchema, {
+    key: "positions",
+    omit: ["page"],
+    onRestore: (p) => periodDates(p.period, p.from, p.to),
+  })
 
   const [symbolInput, setSymbolInput] = useState(urlParams.symbol ?? "")
   const [debouncedSymbol] = useDebouncedValue(symbolInput, 400)

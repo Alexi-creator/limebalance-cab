@@ -1,5 +1,6 @@
 import { canonicalizeFilters, type PresetFilters } from "@/modules/presets"
-import { periodFromPreset, periodToPreset } from "@/modules/transactions/lib/presetFilters"
+import { periodDates } from "@/modules/transactions/lib/periods"
+import { periodToPreset } from "@/modules/transactions/lib/presetFilters"
 import { type PositionsUrlParams, positionsParamsSchema } from "./config"
 
 /**
@@ -29,7 +30,7 @@ export function positionsFromPreset(filters: PresetFilters): Partial<PositionsUr
     category: p.category,
     pnl: p.pnl,
     dust: p.dust,
-    ...periodFromPreset(p.period, p.from, p.to),
+    ...periodDates(p.period, p.from, p.to),
     page: 1,
   }
 }

@@ -1,6 +1,6 @@
 import { canonicalizeFilters, type PresetFilters } from "@/modules/presets"
 import { type TransactionsParams, transactionsParamsSchema } from "../config"
-import { PERIOD_PRESETS, type PeriodPreset, presetRange, resolvePeriod } from "./periods"
+import { PERIOD_PRESETS, type PeriodPreset, periodDates, resolvePeriod } from "./periods"
 
 const isPeriodPreset = (period: string): period is PeriodPreset =>
   (PERIOD_PRESETS as readonly string[]).includes(period)
@@ -14,13 +14,6 @@ export function periodToPreset(period: string, from?: string, to?: string): Pres
   if (isPeriodPreset(resolved)) return { period: resolved }
   if (resolved === "custom") return canonicalizeFilters({ period: "custom", from, to })
   return {}
-}
-
-/** The inverse of periodToPreset — a ready-made range gets today's dates. */
-export function periodFromPreset(period: TransactionsParams["period"], from?: string, to?: string) {
-  if (isPeriodPreset(period)) return { period, ...presetRange(period) }
-  if (period === "custom") return { period, from, to }
-  return { period, from: undefined, to: undefined }
 }
 
 /** The transactions table's filters as a preset stores them — no sort, page or page size. */
@@ -46,7 +39,7 @@ export function transactionsFromPreset(filters: PresetFilters): Partial<Transact
     categoryId: p.categoryId,
     currency: p.currency,
     search: p.search,
-    ...periodFromPreset(p.period, p.from, p.to),
+    ...periodDates(p.period, p.from, p.to),
     page: 1,
   }
 }

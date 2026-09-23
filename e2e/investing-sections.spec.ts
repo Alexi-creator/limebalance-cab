@@ -67,7 +67,7 @@ test.describe("Investments — trade journal", () => {
       .click()
     await expect(page.locator("table tbody tr")).toHaveCount(0)
 
-    await page.getByRole("button", { name: "Reset" }).click()
+    await page.getByRole("button", { name: "Reset", exact: true }).click()
 
     await expect(pairInput).toHaveValue("")
     await expect(page.getByPlaceholder("Status")).toHaveValue("All")
