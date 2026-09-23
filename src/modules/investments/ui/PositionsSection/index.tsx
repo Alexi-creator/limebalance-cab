@@ -22,7 +22,7 @@ import {
   Tooltip,
   useMantineTheme,
 } from "@mantine/core"
-import { useDebouncedValue, useMediaQuery } from "@mantine/hooks"
+import { useDebouncedValue, useElementSize, useMediaQuery } from "@mantine/hooks"
 import { notifications } from "@mantine/notifications"
 import {
   IconBolt,
@@ -113,6 +113,10 @@ export function PositionsSection({ accounts }: Props) {
   // loading state), and StickyScrollbarX needs its effect to re-run once that actually
   // happens — a plain ref object doesn't change identity when `.current` changes later.
   const [tableScrollEl, setTableScrollEl] = useState<HTMLDivElement | null>(null)
+  // On desktop the footer (page size, page summary, pagination) sticks to the viewport bottom
+  // while the table is on screen — its height lifts the sticky scrollbar to sit right above it.
+  const { ref: footerRef, height: footerHeight } = useElementSize()
+  const stickyFooter = isDesktop && tableScrollEl !== null
 
   // Filters/pagination live in the URL (like the transactions table) so a reload or a shared
   // link keeps the same view — see PositionsSection/config.ts.
@@ -888,63 +892,95 @@ export function PositionsSection({ accounts }: Props) {
             its bottom edge, which is off-screen until you scroll the whole page down. This
             mirrors it at the viewport's bottom edge instead, right above the mobile filter
             handle when that's showing. */}
-          <StickyScrollbarX target={tableScrollEl} bottomOffset={isDesktop ? 0 : 48} />
+          <StickyScrollbarX
+            target={tableScrollEl}
+            bottomOffset={isDesktop ? (stickyFooter ? footerHeight : 0) : 48}
+          />
 
           {total > 0 && (
-            <Group justify="space-between" p="md" wrap="wrap" gap="md">
-              <Group gap="md" wrap="wrap">
-                {isDesktop && (
-                  <Select
-                    size="xs"
-                    w={140}
-                    label={t("investments.pos_page_size")}
-                    data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
-                    value={String(urlParams.limit)}
-                    onChange={(v) => v && changePageSize(Number(v))}
-                    allowDeselect={false}
-                    checkIconPosition="right"
-                    comboboxProps={{ width: 80 }}
+            // Wrapper without padding/border so useElementSize (contentRect) reads the full height.
+            <Box
+              ref={footerRef}
+              style={
+                stickyFooter
+                  ? {
+                      position: "sticky",
+                      // Sticky insets count from Main's padded edge — pull past its bottom
+                      // padding so the footer sits flush with the viewport bottom.
+                      bottom: "calc(-1 * var(--mantine-spacing-md))",
+                      zIndex: 3, // above the table's pinned column (z-index 2)
+                      backgroundColor: "var(--mantine-color-body)",
+                      borderBottomLeftRadius: "var(--mantine-radius-md)",
+                      borderBottomRightRadius: "var(--mantine-radius-md)",
+                    }
+                  : undefined
+              }
+            >
+              <Group
+                justify="space-between"
+                p="md"
+                wrap="wrap"
+                gap="md"
+                style={
+                  stickyFooter
+                    ? { borderTop: "1px solid var(--mantine-color-default-border)" }
+                    : undefined
+                }
+              >
+                <Group gap="md" wrap="wrap">
+                  {isDesktop && (
+                    <Select
+                      size="xs"
+                      w={140}
+                      label={t("investments.pos_page_size")}
+                      data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
+                      value={String(urlParams.limit)}
+                      onChange={(v) => v && changePageSize(Number(v))}
+                      allowDeselect={false}
+                      checkIconPosition="right"
+                      comboboxProps={{ width: 80 }}
+                    />
+                  )}
+                  {/* Sums just the rows on this page — same idea as the transactions table's
+                  footer, so it stays honest when the top KPI row covers the whole filter. */}
+                  {items.length > 0 && (
+                    <Group gap={6} wrap="nowrap">
+                      <Text size="xs" c="dimmed">
+                        {t("investments.kpi_page_summary")}
+                      </Text>
+                      <Text size="xs" fw={600} c={pnlColor(pageTotalPnl)}>
+                        {formatPnl(pageTotalPnl, i18n.language)}
+                      </Text>
+                      <Text size="xs" c="dimmed">
+                        ·
+                      </Text>
+                      <Text size="xs">
+                        {t("investments.kpi_winrate")}:{" "}
+                        {pageWinrate === null ? "—" : `${pageWinrate}%`}
+                      </Text>
+                      <Text size="xs" c="dimmed">
+                        ·
+                      </Text>
+                      <Text size="xs">
+                        {t("investments.kpi_trades")}: {items.length}
+                      </Text>
+                    </Group>
+                  )}
+                </Group>
+                {totalPages > 1 && (
+                  <Pagination
+                    size="sm"
+                    // on a phone the page numbers in between don't fit — prev/next plus the
+                    // current page is the whole usable control there
+                    siblings={isTableView ? 1 : 0}
+                    boundaries={isTableView ? 1 : 0}
+                    total={totalPages}
+                    value={urlParams.page}
+                    onChange={(page) => setParams({ page })}
                   />
                 )}
-                {/* Sums just the rows on this page — same idea as the transactions table's
-                  footer, so it stays honest when the top KPI row covers the whole filter. */}
-                {items.length > 0 && (
-                  <Group gap={6} wrap="nowrap">
-                    <Text size="xs" c="dimmed">
-                      {t("investments.kpi_page_summary")}
-                    </Text>
-                    <Text size="xs" fw={600} c={pnlColor(pageTotalPnl)}>
-                      {formatPnl(pageTotalPnl, i18n.language)}
-                    </Text>
-                    <Text size="xs" c="dimmed">
-                      ·
-                    </Text>
-                    <Text size="xs">
-                      {t("investments.kpi_winrate")}:{" "}
-                      {pageWinrate === null ? "—" : `${pageWinrate}%`}
-                    </Text>
-                    <Text size="xs" c="dimmed">
-                      ·
-                    </Text>
-                    <Text size="xs">
-                      {t("investments.kpi_trades")}: {items.length}
-                    </Text>
-                  </Group>
-                )}
               </Group>
-              {totalPages > 1 && (
-                <Pagination
-                  size="sm"
-                  // on a phone the page numbers in between don't fit — prev/next plus the
-                  // current page is the whole usable control there
-                  siblings={isTableView ? 1 : 0}
-                  boundaries={isTableView ? 1 : 0}
-                  total={totalPages}
-                  value={urlParams.page}
-                  onChange={(page) => setParams({ page })}
-                />
-              )}
-            </Group>
+            </Box>
           )}
         </Box>
       </Paper>

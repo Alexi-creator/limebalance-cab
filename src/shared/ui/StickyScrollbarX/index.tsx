@@ -8,7 +8,8 @@ interface Props {
    *  below; a `RefObject` doesn't change identity when `.current` changes, so an effect
    *  depending on it would never re-run once the node actually appears. */
   target: HTMLElement | null
-  /** Extra space to leave at the viewport bottom — e.g. for a fixed mobile filter handle. */
+  /** Extra space to leave at the viewport bottom — e.g. for a fixed mobile filter handle or a
+   *  sticky table footer. */
   bottomOffset?: number
 }
 
@@ -52,8 +53,9 @@ export function StickyScrollbarX({ target, bottomOffset = 0 }: Props) {
     const updateVisibility = () => {
       const rect = target.getBoundingClientRect()
       const inViewport = rect.top < window.innerHeight && rect.bottom > 0
-      // The target's own scrollbar renders at its bottom edge — visible once that's on screen.
-      const nativeScrollbarBelowFold = rect.bottom > window.innerHeight
+      // The target's own scrollbar renders at its bottom edge — visible once that's on screen
+      // and not covered by whatever occupies the bottom offset (a sticky footer, a handle).
+      const nativeScrollbarBelowFold = rect.bottom > window.innerHeight - bottomOffset
       setShowSticky(
         target.scrollWidth > target.clientWidth + 1 && inViewport && nativeScrollbarBelowFold,
       )
@@ -92,7 +94,7 @@ export function StickyScrollbarX({ target, bottomOffset = 0 }: Props) {
       window.removeEventListener("scroll", onScrollOrResize, true)
       target.removeEventListener("scroll", onTargetScroll)
     }
-  }, [target])
+  }, [target, bottomOffset])
 
   const onProxyScroll = () => {
     if (syncingRef.current === "target") return
