@@ -777,7 +777,8 @@
     "rv_income_hint": "Sẽ hiện trong thu nhập, còn tiền vẫn nằm trên sàn — ví không tăng thêm bởi số tiền chưa từng nhận.",
     "rv_expense_hint": "Sẽ hiện trong chi tiêu, còn tiền đi thẳng từ sàn — ví không bị ảnh hưởng.",
     "rv_linked_income": "thu nhập",
-    "rv_linked_expense": "chi tiêu"
+    "rv_linked_expense": "chi tiêu",
+    "p2p_read_failed": "Lần này Bybit không trả về lịch sử P2P. Mã bên dưới cho biết lý do; nếu liên quan đến quyền, hãy bật Fiat trading → P2P → Orders (chỉ đọc) cho khóa API này."
   },
   "telegram": {
     "linked_success": "Đã kết nối Telegram",

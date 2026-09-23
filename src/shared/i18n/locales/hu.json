@@ -790,7 +790,8 @@
     "rv_income_hint": "Megjelenik a bevételeid között, a pénz pedig a tőzsdén marad — a tárca nem nő olyan pénzzel, amit sosem kapott meg.",
     "rv_expense_hint": "Megjelenik a kiadásaid között, a pénz pedig egyenesen a tőzsdéről megy — a tárcát nem érinti.",
     "rv_linked_income": "bevétel",
-    "rv_linked_expense": "kiadás"
+    "rv_linked_expense": "kiadás",
+    "p2p_read_failed": "A Bybit ezúttal nem adta ki a P2P előzményeket. Az alábbi kód megmondja, miért; ha jogosultságról van szó, kapcsold be ehhez az API-kulcshoz a Fiat trading → P2P → Orders jogot (csak olvasás)."
   },
   "telegram": {
     "linked_success": "Telegram csatlakoztatva",

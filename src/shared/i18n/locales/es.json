@@ -790,7 +790,8 @@
     "rv_income_hint": "Aparecerá en tus ingresos y el dinero se quedará en el exchange: la cartera no crece con dinero que nunca recibió.",
     "rv_expense_hint": "Aparecerá en tus gastos y el dinero saldrá directamente del exchange: la cartera no se toca.",
     "rv_linked_income": "ingreso",
-    "rv_linked_expense": "gasto"
+    "rv_linked_expense": "gasto",
+    "p2p_read_failed": "Bybit no entregó el historial P2P esta vez. El código de abajo dice por qué; si se trata de permisos, activa Fiat trading → P2P → Orders (solo lectura) para esta clave API."
   },
   "telegram": {
     "linked_success": "Telegram conectado",

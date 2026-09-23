@@ -790,7 +790,8 @@
     "rv_income_hint": "Comparirà tra le entrate, mentre il denaro resta sull'exchange: il wallet non cresce di soldi che non ha mai ricevuto.",
     "rv_expense_hint": "Comparirà tra le spese, mentre il denaro esce direttamente dall'exchange: il wallet non viene toccato.",
     "rv_linked_income": "entrata",
-    "rv_linked_expense": "spesa"
+    "rv_linked_expense": "spesa",
+    "p2p_read_failed": "Bybit non ha fornito lo storico P2P questa volta. Il codice qui sotto dice perché; se riguarda i permessi, attiva Fiat trading → P2P → Orders (sola lettura) per questa chiave API."
   },
   "telegram": {
     "linked_success": "Telegram collegato",

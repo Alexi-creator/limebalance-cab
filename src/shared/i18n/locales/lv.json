@@ -803,7 +803,8 @@
     "rv_income_hint": "Parādīsies ienākumos, bet nauda paliks biržā — maks nepieaugs par naudu, ko tas nekad nav saņēmis.",
     "rv_expense_hint": "Parādīsies izdevumos, bet nauda aizies tieši no biržas — maks netiek aizskarts.",
     "rv_linked_income": "ienākumi",
-    "rv_linked_expense": "izdevumi"
+    "rv_linked_expense": "izdevumi",
+    "p2p_read_failed": "Bybit šoreiz neizsniedza P2P vēsturi. Kods zemāk pasaka, kāpēc; ja runa ir par atļaujām, ieslēdz šai API atslēgai Fiat trading → P2P → Orders (tikai lasīšana)."
   },
   "telegram": {
     "linked_success": "Telegram savienots",

@@ -803,7 +803,8 @@
     "rv_income_hint": "Pojawi się w dochodach, a pieniądze zostaną na giełdzie — portfel nie urośnie o pieniądze, których nie dostał.",
     "rv_expense_hint": "Pojawi się w wydatkach, a pieniądze wyjdą prosto z giełdy — portfel pozostaje nietknięty.",
     "rv_linked_income": "dochód",
-    "rv_linked_expense": "wydatek"
+    "rv_linked_expense": "wydatek",
+    "p2p_read_failed": "Bybit tym razem nie udostępnił historii P2P. Kod poniżej mówi dlaczego; jeśli chodzi o uprawnienia, włącz dla tego klucza API Fiat trading → P2P → Orders (tylko odczyt)."
   },
   "telegram": {
     "linked_success": "Telegram połączony",

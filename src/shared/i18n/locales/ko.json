@@ -777,7 +777,8 @@
     "rv_income_hint": "수입에 표시되고 돈은 거래소에 그대로 남습니다. 받은 적 없는 돈으로 지갑이 늘어나지 않습니다.",
     "rv_expense_hint": "지출에 표시되고 돈은 거래소에서 바로 나갑니다. 지갑은 변하지 않습니다.",
     "rv_linked_income": "수입",
-    "rv_linked_expense": "지출"
+    "rv_linked_expense": "지출",
+    "p2p_read_failed": "이번에는 Bybit가 P2P 내역을 주지 않았습니다. 아래 코드에 이유가 있습니다. 권한 문제라면 이 API 키에 Fiat trading → P2P → Orders(읽기 전용)를 켜세요."
   },
   "telegram": {
     "linked_success": "Telegram이 연결되었습니다",

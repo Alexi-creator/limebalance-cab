@@ -48,6 +48,9 @@ const STATUS_COLOR: Record<P2pOrder["status"], string> = {
 // The "all accounts" choice of the picker; a real account id otherwise.
 const ALL = "all"
 
+/** Bybit's code for "this key may not do that" — the one refusal the user can fix themselves. */
+const PERMISSION_DENIED = 10005
+
 /**
  * P2P orders, saved on our side and kept for good — Bybit's own API only reaches 180 days back, so
  * the table starts there and grows from then on.
@@ -210,7 +213,15 @@ export function P2pSection({ accounts }: Props) {
           </Center>
         ) : unavailable ? (
           <Alert color="orange" variant="light" icon={<IconInfoCircle size={18} />}>
-            <Text size="sm">{t("investments.p2p_unavailable")}</Text>
+            {/* Only Bybit's permission refusal is worth sending the user to the key settings;
+                anything else (a bad window, maintenance) would send them on a wrong errand. */}
+            <Text size="sm">
+              {t(
+                unavailable.retCode === PERMISSION_DENIED
+                  ? "investments.p2p_unavailable"
+                  : "investments.p2p_read_failed",
+              )}
+            </Text>
             <Text size="xs" c="dimmed" mt={4}>
               Bybit {unavailable.retCode}: {unavailable.message}
             </Text>

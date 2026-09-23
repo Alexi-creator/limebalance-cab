@@ -803,7 +803,8 @@
     "rv_income_hint": "Pojavit će se u prihodima, a novac ostaje na burzi — novčanik ne raste za novac koji nikad nije dobio.",
     "rv_expense_hint": "Pojavit će se u troškovima, a novac odlazi ravno s burze — novčanik se ne dira.",
     "rv_linked_income": "prihod",
-    "rv_linked_expense": "trošak"
+    "rv_linked_expense": "trošak",
+    "p2p_read_failed": "Bybit ovaj put nije dao povijest P2P-a. Kod ispod govori zašto; ako je riječ o dopuštenjima, uključi za ovaj API ključ Fiat trading → P2P → Orders (samo čitanje)."
   },
   "telegram": {
     "linked_success": "Telegram povezan",

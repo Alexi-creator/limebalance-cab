@@ -813,7 +813,8 @@
     "rv_income_hint": "It shows up in your income, while the money stays on the exchange — the wallet does not grow by money it never received.",
     "rv_expense_hint": "It shows up in your expenses, while the money leaves straight from the exchange — the wallet is not touched.",
     "rv_linked_income": "income",
-    "rv_linked_expense": "expense"
+    "rv_linked_expense": "expense",
+    "p2p_read_failed": "Bybit did not give the P2P history this time. The code below says why; if it mentions permissions, turn on Fiat trading → P2P → Orders (read-only) for this API key."
   },
   "telegram": {
     "linked_success": "Telegram linked",

@@ -777,7 +777,8 @@
     "rv_income_hint": "収入として記録され、お金は取引所に残ります。受け取っていないお金でウォレットが増えることはありません。",
     "rv_expense_hint": "支出として記録され、お金は取引所から直接出ていきます。ウォレットは変わりません。",
     "rv_linked_income": "収入",
-    "rv_linked_expense": "支出"
+    "rv_linked_expense": "支出",
+    "p2p_read_failed": "今回は Bybit が P2P 履歴を返しませんでした。理由は下のコードに表示されます。権限が原因の場合は、この API キーに Fiat trading → P2P → Orders（読み取り専用）を有効にしてください。"
   },
   "telegram": {
     "linked_success": "Telegram を接続しました",

@@ -790,7 +790,8 @@
     "rv_income_hint": "Apparaît dans tes revenus, mais l'argent reste sur la plateforme — le portefeuille n'augmente pas d'un argent qu'il n'a jamais reçu.",
     "rv_expense_hint": "Apparaît dans tes dépenses, l'argent part directement de la plateforme — le portefeuille n'est pas touché.",
     "rv_linked_income": "revenu",
-    "rv_linked_expense": "dépense"
+    "rv_linked_expense": "dépense",
+    "p2p_read_failed": "Bybit n'a pas fourni l'historique P2P cette fois. Le code ci-dessous en donne la raison ; s'il s'agit des autorisations, active Fiat trading → P2P → Orders (lecture seule) pour cette clé API."
   },
   "telegram": {
     "linked_success": "Telegram connecté",

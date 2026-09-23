@@ -790,7 +790,8 @@
     "rv_income_hint": "Ilmub sinu tulude alla, aga raha jääb börsile — rahakott ei kasva raha võrra, mida ta kunagi ei saanud.",
     "rv_expense_hint": "Ilmub sinu kulude alla ja raha läheb otse börsilt — rahakotti ei puudutata.",
     "rv_linked_income": "tulu",
-    "rv_linked_expense": "kulu"
+    "rv_linked_expense": "kulu",
+    "p2p_read_failed": "Bybit ei andnud seekord P2P ajalugu. Allolev kood ütleb, miks; kui asi on õigustes, lülita sellele API-võtmele sisse Fiat trading → P2P → Orders (ainult lugemine)."
   },
   "telegram": {
     "linked_success": "Telegram ühendatud",

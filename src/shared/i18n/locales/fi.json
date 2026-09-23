@@ -790,7 +790,8 @@
     "rv_income_hint": "Näkyy tuloissasi, mutta rahat jäävät pörssiin — lompakko ei kasva rahalla, jota se ei koskaan saanut.",
     "rv_expense_hint": "Näkyy menoissasi, ja rahat lähtevät suoraan pörssistä — lompakkoon ei kosketa.",
     "rv_linked_income": "tulo",
-    "rv_linked_expense": "meno"
+    "rv_linked_expense": "meno",
+    "p2p_read_failed": "Bybit ei antanut P2P-historiaa tällä kertaa. Alla oleva koodi kertoo syyn; jos kyse on oikeuksista, ota tälle API-avaimelle käyttöön Fiat trading → P2P → Orders (vain luku)."
   },
   "telegram": {
     "linked_success": "Telegram yhdistetty",

@@ -777,7 +777,8 @@
     "rv_income_hint": "Muncul di pemasukan, sementara uangnya tetap di bursa — dompet tidak bertambah dengan uang yang tidak pernah diterimanya.",
     "rv_expense_hint": "Muncul di pengeluaran, sementara uangnya keluar langsung dari bursa — dompet tidak tersentuh.",
     "rv_linked_income": "pemasukan",
-    "rv_linked_expense": "pengeluaran"
+    "rv_linked_expense": "pengeluaran",
+    "p2p_read_failed": "Kali ini Bybit tidak memberikan riwayat P2P. Kode di bawah menjelaskan alasannya; jika soal izin, aktifkan Fiat trading → P2P → Orders (hanya baca) untuk kunci API ini."
   },
   "telegram": {
     "linked_success": "Telegram terhubung",

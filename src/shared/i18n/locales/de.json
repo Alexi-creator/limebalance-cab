@@ -790,7 +790,8 @@
     "rv_income_hint": "Erscheint bei deinen Einnahmen, das Geld bleibt aber auf der Börse — das Wallet wächst nicht um Geld, das es nie bekommen hat.",
     "rv_expense_hint": "Erscheint bei deinen Ausgaben, das Geld geht direkt von der Börse — das Wallet bleibt unberührt.",
     "rv_linked_income": "Einnahme",
-    "rv_linked_expense": "Ausgabe"
+    "rv_linked_expense": "Ausgabe",
+    "p2p_read_failed": "Bybit hat den P2P-Verlauf diesmal nicht herausgegeben. Der Code unten sagt warum; geht es um Berechtigungen, aktiviere für diesen API-Schlüssel Fiat trading → P2P → Orders (nur lesen)."
   },
   "telegram": {
     "linked_success": "Telegram verbunden",

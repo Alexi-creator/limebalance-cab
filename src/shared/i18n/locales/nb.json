@@ -790,7 +790,8 @@
     "rv_income_hint": "Vises i inntektene dine mens pengene blir liggende på børsen — lommeboken vokser ikke med penger den aldri fikk.",
     "rv_expense_hint": "Vises i utgiftene dine mens pengene går rett fra børsen — lommeboken berøres ikke.",
     "rv_linked_income": "inntekt",
-    "rv_linked_expense": "utgift"
+    "rv_linked_expense": "utgift",
+    "p2p_read_failed": "Bybit ga ikke P2P-historikken denne gangen. Koden under sier hvorfor; handler det om rettigheter, slå på Fiat trading → P2P → Orders (kun lesing) for denne API-nøkkelen."
   },
   "telegram": {
     "linked_success": "Telegram tilkoblet",

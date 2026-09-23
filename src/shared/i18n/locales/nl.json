@@ -790,7 +790,8 @@
     "rv_income_hint": "Verschijnt bij je inkomsten, terwijl het geld op de exchange blijft — de wallet groeit niet met geld dat hij nooit kreeg.",
     "rv_expense_hint": "Verschijnt bij je uitgaven, terwijl het geld direct van de exchange gaat — de wallet blijft onaangeroerd.",
     "rv_linked_income": "inkomen",
-    "rv_linked_expense": "uitgave"
+    "rv_linked_expense": "uitgave",
+    "p2p_read_failed": "Bybit gaf de P2P-geschiedenis deze keer niet. De code hieronder zegt waarom; gaat het om rechten, zet dan Fiat trading → P2P → Orders (alleen lezen) aan voor deze API-sleutel."
   },
   "telegram": {
     "linked_success": "Telegram verbonden",

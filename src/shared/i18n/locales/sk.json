@@ -803,7 +803,8 @@
     "rv_income_hint": "Objaví sa v príjmoch a peniaze zostanú na burze — peňaženka nenarastie o peniaze, ktoré nikdy nedostala.",
     "rv_expense_hint": "Objaví sa vo výdavkoch a peniaze odídu priamo z burzy — peňaženky sa to nedotkne.",
     "rv_linked_income": "príjem",
-    "rv_linked_expense": "výdavok"
+    "rv_linked_expense": "výdavok",
+    "p2p_read_failed": "Bybit tentoraz históriu P2P nevydal. Kód nižšie hovorí prečo; ak ide o oprávnenia, zapni pre tento API kľúč Fiat trading → P2P → Orders (len čítanie)."
   },
   "telegram": {
     "linked_success": "Telegram pripojený",

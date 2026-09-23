@@ -790,7 +790,8 @@
     "rv_income_hint": "Gelirlerinde görünür, para ise borsada kalır — cüzdan hiç almadığı parayla büyümez.",
     "rv_expense_hint": "Harcamalarında görünür, para doğrudan borsadan çıkar — cüzdana dokunulmaz.",
     "rv_linked_income": "gelir",
-    "rv_linked_expense": "harcama"
+    "rv_linked_expense": "harcama",
+    "p2p_read_failed": "Bybit bu sefer P2P geçmişini vermedi. Aşağıdaki kod nedenini söylüyor; izinlerle ilgiliyse bu API anahtarı için Fiat trading → P2P → Orders (salt okunur) iznini aç."
   },
   "telegram": {
     "linked_success": "Telegram bağlandı",

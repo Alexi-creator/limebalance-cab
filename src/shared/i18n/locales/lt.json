@@ -803,7 +803,8 @@
     "rv_income_hint": "Atsiras pajamose, o pinigai liks biržoje — piniginė neišaugs pinigais, kurių niekada negavo.",
     "rv_expense_hint": "Atsiras išlaidose, o pinigai išeis tiesiai iš biržos — piniginė neliečiama.",
     "rv_linked_income": "pajamos",
-    "rv_linked_expense": "išlaidos"
+    "rv_linked_expense": "išlaidos",
+    "p2p_read_failed": "Bybit šįkart nepateikė P2P istorijos. Kodas žemiau paaiškina kodėl; jei kalba apie teises, įjunk šiam API raktui Fiat trading → P2P → Orders (tik skaitymas)."
   },
   "telegram": {
     "linked_success": "Telegram prijungtas",

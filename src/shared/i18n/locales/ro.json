@@ -803,7 +803,8 @@
     "rv_income_hint": "Apare la venituri, iar banii rămân pe bursă — portofelul nu crește cu bani pe care nu i-a primit niciodată.",
     "rv_expense_hint": "Apare la cheltuieli, iar banii pleacă direct de pe bursă — portofelul nu este atins.",
     "rv_linked_income": "venit",
-    "rv_linked_expense": "cheltuială"
+    "rv_linked_expense": "cheltuială",
+    "p2p_read_failed": "Bybit nu a dat istoricul P2P de data aceasta. Codul de mai jos spune de ce; dacă e vorba de permisiuni, activează Fiat trading → P2P → Orders (doar citire) pentru această cheie API."
   },
   "telegram": {
     "linked_success": "Telegram conectat",

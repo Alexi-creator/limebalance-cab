@@ -816,7 +816,8 @@
     "rv_income_hint": "Pojavi se med prihodki, denar pa ostane na borzi — denarnica ne zraste za denar, ki ga ni nikoli dobila.",
     "rv_expense_hint": "Pojavi se med izdatki, denar pa gre naravnost z borze — denarnica ostane nedotaknjena.",
     "rv_linked_income": "prihodek",
-    "rv_linked_expense": "izdatek"
+    "rv_linked_expense": "izdatek",
+    "p2p_read_failed": "Bybit tokrat ni dal zgodovine P2P. Koda spodaj pove, zakaj; če gre za dovoljenja, za ta API ključ vklopi Fiat trading → P2P → Orders (samo branje)."
   },
   "telegram": {
     "linked_success": "Telegram povezan",

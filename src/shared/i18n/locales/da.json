@@ -790,7 +790,8 @@
     "rv_income_hint": "Vises i dine indtægter, mens pengene bliver på børsen — tegnebogen vokser ikke med penge, den aldrig har fået.",
     "rv_expense_hint": "Vises i dine udgifter, mens pengene går direkte fra børsen — tegnebogen berøres ikke.",
     "rv_linked_income": "indtægt",
-    "rv_linked_expense": "udgift"
+    "rv_linked_expense": "udgift",
+    "p2p_read_failed": "Bybit udleverede ikke P2P-historikken denne gang. Koden nedenfor siger hvorfor; handler det om rettigheder, så slå Fiat trading → P2P → Orders (kun læsning) til for denne API-nøgle."
   },
   "telegram": {
     "linked_success": "Telegram forbundet",

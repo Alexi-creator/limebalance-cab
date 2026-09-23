@@ -777,7 +777,8 @@
     "rv_income_hint": "会出现在收入里，而钱留在交易所——钱包不会因为从未收到的钱而增加。",
     "rv_expense_hint": "会出现在支出里，而钱直接从交易所转出——钱包不受影响。",
     "rv_linked_income": "收入",
-    "rv_linked_expense": "支出"
+    "rv_linked_expense": "支出",
+    "p2p_read_failed": "这次 Bybit 没有返回 P2P 历史。下面的代码说明了原因；如果与权限有关，请为此 API 密钥开启 Fiat trading → P2P → Orders（只读）。"
   },
   "telegram": {
     "linked_success": "已连接 Telegram",
