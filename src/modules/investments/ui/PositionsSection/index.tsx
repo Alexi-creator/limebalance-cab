@@ -42,6 +42,8 @@ import { useUrlParams } from "@/shared/hooks/useUrlParams"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { useModalStore } from "@/shared/store/modalStore"
 import { MobileFilterSheet } from "@/shared/ui/MobileFilterSheet"
+import { SortableTh, type SortDir } from "@/shared/ui/SortableTh"
+import { SortSelect } from "@/shared/ui/SortSelect"
 import { StickyScrollbarX } from "@/shared/ui/StickyScrollbarX"
 import type { PositionsParams } from "../../api/requests"
 import { useEquityCurve } from "../../api/useEquityCurve"
@@ -55,6 +57,7 @@ import {
   type ExchangeAccount,
   holdingDays,
   type Position,
+  type PositionSortField,
   positionDirection,
   positionPnl,
   positionRoi,
@@ -136,13 +139,37 @@ export function PositionsSection({ accounts }: Props) {
     // the same filtered set, so winrate and "trades" stay about trades (see DUST_USD).
     hideDust: urlParams.dust === "hide",
   }
+  // Sort only orders the page — the KPI row reads filterParams, so a re-sort doesn't refetch it.
+  // The default order goes unsent: it is the server's own default anyway.
+  const isDefaultSort = urlParams.sortBy === "openedAt" && urlParams.sortDir === "desc"
   const params: PositionsParams = {
     ...filterParams,
+    ...(isDefaultSort ? {} : { sortBy: urlParams.sortBy, sortDir: urlParams.sortDir }),
     limit: urlParams.limit,
     offset: (urlParams.page - 1) * urlParams.limit,
   }
 
   const { data, isLoading, isFetching, error } = usePositions(params)
+
+  // the default order leaves the URL rather than being spelled out in it
+  const onSort = (sortBy: PositionSortField, sortDir: SortDir) =>
+    sortBy === "openedAt" && sortDir === "desc"
+      ? setParams({ sortBy: undefined, sortDir: undefined, page: 1 })
+      : setParams({ sortBy, sortDir, page: 1 })
+  const sortProps = {
+    sortBy: urlParams.sortBy,
+    sortDir: urlParams.sortDir,
+    defaultField: "openedAt" as const,
+    onSort,
+  }
+  const sortFields: { value: PositionSortField; label: string }[] = [
+    { value: "openedAt", label: t("investments.col_opened_at") },
+    { value: "closedAt", label: t("investments.col_closed_at") },
+    { value: "pnl", label: "PnL" },
+    { value: "roi", label: "ROI, %" },
+    { value: "volume", label: t("investments.col_volume") },
+    { value: "duration", label: t("investments.col_days") },
+  ]
   const { data: symbolsData } = usePositionSymbols()
   const symbolOptions = symbolsData?.items ?? []
   const total = data?.total ?? 0
@@ -374,6 +401,15 @@ export function PositionsSection({ accounts }: Props) {
         checked={urlParams.dust === "hide"}
         onChange={(e) => setParams({ dust: e.currentTarget.checked ? "hide" : "show", page: 1 })}
       />
+      {/* the card list has no headers to click — in the sheet, the sort gets a picker of its own */}
+      {vertical && (
+        <SortSelect
+          fields={sortFields}
+          sortBy={urlParams.sortBy}
+          sortDir={urlParams.sortDir}
+          onChange={onSort}
+        />
+      )}
       {/* On the mobile sheet the reset lives in its header instead (next to close) — inline here
           it would be a lone unlabeled icon at the end of a vertical field list. */}
       {!vertical && (
@@ -523,17 +559,27 @@ export function PositionsSection({ accounts }: Props) {
                     <Table.Th miw={140} style={{ whiteSpace: "nowrap" }}>
                       {t("investments.col_direction")}
                     </Table.Th>
-                    <Table.Th ta="right">PnL</Table.Th>
+                    <SortableTh field="pnl" ta="right" {...sortProps}>
+                      PnL
+                    </SortableTh>
                     <Table.Th ta="center">{t("investments.col_tp_sl")}</Table.Th>
-                    <Table.Th ta="right">ROI, %</Table.Th>
-                    <Table.Th ta="right" miw={130}>
+                    <SortableTh field="roi" ta="right" {...sortProps}>
+                      ROI, %
+                    </SortableTh>
+                    <SortableTh field="volume" ta="right" miw={130} {...sortProps}>
                       {t("investments.col_volume")}
-                    </Table.Th>
+                    </SortableTh>
                     <Table.Th ta="center">{t("investments.col_entry_exit")}</Table.Th>
                     <Table.Th ta="right">{t("investments.col_current_price")}</Table.Th>
-                    <Table.Th>{t("investments.col_opened_at")}</Table.Th>
-                    <Table.Th>{t("investments.col_closed_at")}</Table.Th>
-                    <Table.Th ta="right">{t("investments.col_days")}</Table.Th>
+                    <SortableTh field="openedAt" {...sortProps}>
+                      {t("investments.col_opened_at")}
+                    </SortableTh>
+                    <SortableTh field="closedAt" {...sortProps}>
+                      {t("investments.col_closed_at")}
+                    </SortableTh>
+                    <SortableTh field="duration" ta="right" {...sortProps}>
+                      {t("investments.col_days")}
+                    </SortableTh>
                     <Table.Th ta="right">{t("investments.col_qty")}</Table.Th>
                     <Table.Th ta="right">{t("investments.col_leverage")}</Table.Th>
                     <Table.Th ta="right" miw={110}>

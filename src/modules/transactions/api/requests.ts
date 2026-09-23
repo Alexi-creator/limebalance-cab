@@ -3,6 +3,8 @@ import { z } from "zod"
 import { API_URLS } from "@/shared/api/apiUrls"
 import { HttpMethods } from "@/shared/api/httpMethods"
 import { request } from "@/shared/api/request"
+import type { SortDir } from "@/shared/ui/SortableTh"
+import type { TransactionSortField } from "../config"
 import type { TransactionType } from "../model"
 import {
   balanceSchema,
@@ -25,6 +27,9 @@ export interface GetTransactionsParams {
   search?: string
   from?: string
   to?: string
+  /** Omitted → date, newest first (server default). */
+  sortBy?: TransactionSortField
+  sortDir?: SortDir
   page: number
   limit: number
 }
@@ -39,6 +44,8 @@ export function getTransactions(params: GetTransactionsParams) {
   if (params.search) qs.set("search", params.search)
   if (params.from) qs.set("from", params.from)
   if (params.to) qs.set("to", params.to)
+  if (params.sortBy) qs.set("sortBy", params.sortBy)
+  if (params.sortDir) qs.set("sortDir", params.sortDir)
   qs.set("page", String(params.page))
   qs.set("limit", String(params.limit))
 

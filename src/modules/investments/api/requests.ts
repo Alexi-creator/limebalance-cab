@@ -3,12 +3,14 @@ import { z } from "zod"
 import { API_URLS } from "@/shared/api/apiUrls"
 import { HttpMethods } from "@/shared/api/httpMethods"
 import { request } from "@/shared/api/request"
+import type { SortDir } from "@/shared/ui/SortableTh"
 import {
   adjustmentSchema,
   adjustmentsResponseSchema,
   coinIconsResponseSchema,
   equityCurveResponseSchema,
   exchangeAccountSchema,
+  type PositionSortField,
   p2pOrdersResponseSchema,
   positionSymbolsResponseSchema,
   positionsResponseSchema,
@@ -95,6 +97,10 @@ export interface PositionsParams {
    *  Server-side on purpose: filtering the page here would leave short pages and a winrate still
    *  counting the cents. */
   hideDust?: boolean
+  /** Omitted → openedAt desc (server default). pnl/roi/duration are realized figures, so OPEN
+   *  positions sort last in either direction. */
+  sortBy?: PositionSortField
+  sortDir?: SortDir
   limit?: number
   offset?: number
 }
@@ -109,6 +115,8 @@ function positionsQuery(params: PositionsParams): string {
   if (params.category) q.set("category", params.category)
   if (params.pnl) q.set("pnl", params.pnl)
   if (params.hideDust) q.set("hideDust", "true")
+  if (params.sortBy) q.set("sortBy", params.sortBy)
+  if (params.sortDir) q.set("sortDir", params.sortDir)
   if (params.limit != null) q.set("limit", String(params.limit))
   if (params.offset) q.set("offset", String(params.offset))
   return q.size ? `?${q}` : ""

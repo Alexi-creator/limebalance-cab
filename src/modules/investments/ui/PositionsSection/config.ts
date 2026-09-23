@@ -1,5 +1,6 @@
 import { z } from "zod"
 import { PERIOD_VALUES } from "@/modules/transactions/lib/periods"
+import { POSITION_SORT_FIELDS } from "../../model"
 
 export const POSITIONS_PAGE_SIZE_OPTIONS = [20, 50, 100]
 export const POSITIONS_DEFAULT_PAGE_SIZE = 100
@@ -42,6 +43,8 @@ export const positionsParamsSchema = z.object({
   // unsellable change they left behind (see DUST_USD). "show" is the deliberate choice, so the
   // journal reads as a journal on a fresh visit.
   dust: z.enum(["hide", "show"]).catch("hide").default("hide"),
+  sortBy: z.enum(POSITION_SORT_FIELDS).catch("openedAt").default("openedAt"),
+  sortDir: z.enum(["asc", "desc"]).catch("desc").default("desc"),
   page: z.coerce.number().int().min(1).catch(1).default(1),
   limit: z.coerce
     .number()

@@ -20,7 +20,8 @@ import { useTranslation } from "react-i18next"
 import { useCategories } from "@/modules/categories/api/useCategories"
 import { useCurrencyOptions } from "@/shared/hooks/useCurrencyOptions"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
-import { getTypeOptions, type TransactionsParams } from "../../config"
+import { SortSelect } from "@/shared/ui/SortSelect"
+import { getTransactionSortFields, getTypeOptions, type TransactionsParams } from "../../config"
 import { buildFilterChipGroups } from "../../lib/filterChips"
 import { ActiveFilterChips } from "../ActiveFilterChips"
 import { MultiSelectFilter } from "../MultiSelectFilter"
@@ -206,6 +207,20 @@ export function TransactionsFilters({ params, setParams }: Props) {
         onChange={(update) => setParams({ ...update, page: 1 })}
         vertical={vertical}
       />
+
+      {/* the card list has no headers to click — in the drawer, the sort gets a picker of its own */}
+      {vertical && (
+        <SortSelect
+          fields={getTransactionSortFields(t)}
+          sortBy={params.sortBy}
+          sortDir={params.sortDir}
+          onChange={(sortBy, sortDir) =>
+            sortBy === "date" && sortDir === "desc"
+              ? setParams({ sortBy: undefined, sortDir: undefined, page: 1 })
+              : setParams({ sortBy, sortDir, page: 1 })
+          }
+        />
+      )}
 
       <Button
         variant="light"

@@ -15,6 +15,16 @@ export const getTypeOptions = (t: TFunction) => [
   { value: "income", label: t("common.income_plural") },
 ]
 
+/** Columns the table can be sorted by, the default first. */
+export const TRANSACTION_SORT_FIELDS = ["date", "amount"] as const
+export type TransactionSortField = (typeof TRANSACTION_SORT_FIELDS)[number]
+
+/** Sortable columns with their titles — the mobile sort picker lists them in this order. */
+export const getTransactionSortFields = (t: TFunction) => [
+  { value: "date" as const, label: t("transactions.col_date") },
+  { value: "amount" as const, label: t("transactions.col_amount") },
+]
+
 /**
  * URL params schema for the transactions table. `.catch()`/`.default()` guarantee that
  * `useUrlParams` never crashes on malformed values in the link.
@@ -44,6 +54,9 @@ export const transactionsParamsSchema = z.object({
   /** Transaction date range, format `YYYY-MM-DD`. */
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),
+  /** Amount sorts by the value at the time of the transaction, across currencies (server-side). */
+  sortBy: z.enum(TRANSACTION_SORT_FIELDS).catch("date").default("date"),
+  sortDir: z.enum(["asc", "desc"]).catch("desc").default("desc"),
   page: z.coerce.number().int().min(1).catch(1).default(1),
   limit: z.coerce
     .number()

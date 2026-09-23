@@ -100,6 +100,7 @@ export function getTransactionColumns(
       accessor: "date",
       title: t("transactions.col_date"),
       width: 150,
+      sortable: true,
       render: (t) => (
         <Text size="sm" c="dimmed">
           {format(t.date, "dd MMM yyyy", { locale })}
@@ -110,6 +111,7 @@ export function getTransactionColumns(
       accessor: "amount",
       title: t("transactions.col_amount"),
       width: 170,
+      sortable: true,
       textAlign: "right",
       render: (t) => (
         <Text ff="monospace" size="sm" fw={500} c={t.type === "income" ? "green.5" : "red.5"}>

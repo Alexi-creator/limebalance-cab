@@ -67,6 +67,11 @@ export function TransactionsPage() {
     search: params.search,
     from: params.from,
     to: params.to,
+    // the default order goes unsent — the server's own default, and a server that predates
+    // sorting would reject the params outright
+    ...(params.sortBy === "date" && params.sortDir === "desc"
+      ? {}
+      : { sortBy: params.sortBy, sortDir: params.sortDir }),
     page: params.page,
     limit: params.limit,
   }
@@ -272,6 +277,14 @@ export function TransactionsPage() {
                 onPageChange={goToPage}
                 recordsPerPage={params.limit}
                 onRecordsPerPageChange={(limit) => setParams({ limit, page: 1 })}
+                sortBy={params.sortBy}
+                sortDir={params.sortDir}
+                onSortChange={(sortBy, sortDir) =>
+                  // the default order leaves the URL rather than being spelled out in it
+                  sortBy === "date" && sortDir === "desc"
+                    ? setParams({ sortBy: undefined, sortDir: undefined, page: 1 })
+                    : setParams({ sortBy, sortDir, page: 1 })
+                }
                 fetching={isLoading || isPlaceholderData}
                 isError={isError}
                 selectedRecords={selectedRecords}

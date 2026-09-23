@@ -4,7 +4,8 @@ import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useCategories } from "@/modules/categories/api/useCategories"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
-import { PAGE_SIZE_OPTIONS } from "../../config"
+import { nextSort, SORT_ICONS, type SortDir } from "@/shared/ui/SortableTh"
+import { PAGE_SIZE_OPTIONS, type TransactionSortField } from "../../config"
 import type { Transaction, TransactionsSummary, TransactionType } from "../../model"
 import { getTransactionColumns } from "./settings"
 
@@ -17,6 +18,10 @@ interface Props {
   /** Current page size and its change (20/50/100 selector). */
   recordsPerPage: number
   onRecordsPerPageChange: (limit: number) => void
+  /** Server-side sort — the page only shows what the server ordered. */
+  sortBy: TransactionSortField
+  sortDir: SortDir
+  onSortChange: (sortBy: TransactionSortField, sortDir: SortDir) => void
   /** Loading/page change in progress — an overlay is shown. */
   fetching: boolean
   isError: boolean
@@ -36,6 +41,9 @@ export function TransactionsTable({
   onPageChange,
   recordsPerPage,
   onRecordsPerPageChange,
+  sortBy,
+  sortDir,
+  onSortChange,
   fetching,
   isError,
   selectedRecords,
@@ -74,6 +82,14 @@ export function TransactionsTable({
       recordsPerPageOptions={PAGE_SIZE_OPTIONS}
       onRecordsPerPageChange={onRecordsPerPageChange}
       recordsPerPageLabel={t("transactions.records_per_page")}
+      sortStatus={{ columnAccessor: sortBy, direction: sortDir }}
+      // DataTable's own cycle is asc ⇄ desc; ours starts descending and a third click returns to
+      // the default date order — the same as the journal's headers (see nextSort)
+      onSortStatusChange={({ columnAccessor }) => {
+        const next = nextSort(columnAccessor as TransactionSortField, { sortBy, sortDir }, "date")
+        onSortChange(next.sortBy, next.sortDir)
+      }}
+      sortIcons={SORT_ICONS}
       noRecordsText={isError ? t("transactions.load_error") : t("common.nothing_found")}
       striped
       highlightOnHover

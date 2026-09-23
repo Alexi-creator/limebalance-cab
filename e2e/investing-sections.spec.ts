@@ -86,10 +86,46 @@ test.describe("Investments — trade journal", () => {
     await expect(rows).toHaveCount(4)
     await expect(rows.filter({ hasText: "PEPEUSDT" })).toHaveCount(0)
 
-    await page.getByLabel("Hide dust under $1.00").uncheck()
+    // Not `.uncheck()`: the checkbox mirrors the URL, which the router updates a tick after the
+    // click — uncheck() checks the state synchronously and gives up. The assertion retries.
+    const hideDust = page.getByLabel("Hide dust under $1.00")
+    await hideDust.click()
+    await expect(hideDust).not.toBeChecked()
 
     await expect(rows).toHaveCount(5)
     await expect(rows.filter({ hasText: "PEPEUSDT" })).toHaveCount(1)
+  })
+
+  test("a sortable header cycles descending → ascending → back to the default order", async ({
+    authedPage: page,
+  }) => {
+    await gotoInvestments(page)
+    const pnl = page.locator("thead th").filter({ hasText: /^PnL$/ })
+    const positionsRequest = () =>
+      page.waitForRequest((r) => new URL(r.url()).pathname.endsWith("/investing/positions"))
+
+    // default: newest entry first, and none of it spelled out in the URL or the request
+    await expect(pnl).toHaveAttribute("aria-sort", "none")
+
+    let request = positionsRequest()
+    await pnl.getByRole("button").click()
+    expect(new URL((await request).url()).searchParams.get("sortDir")).toBe("desc")
+    await expect(pnl).toHaveAttribute("aria-sort", "descending")
+    expect(new URL(page.url()).searchParams.get("sortBy")).toBe("pnl")
+
+    request = positionsRequest()
+    await pnl.getByRole("button").click()
+    expect(new URL((await request).url()).searchParams.get("sortDir")).toBe("asc")
+    await expect(pnl).toHaveAttribute("aria-sort", "ascending")
+
+    // back to the default — served from the query cache of the first load, so no request to await
+    await pnl.getByRole("button").click()
+    await expect(pnl).toHaveAttribute("aria-sort", "none")
+    await expect(page.locator("thead th").filter({ hasText: /^Opened$/ })).toHaveAttribute(
+      "aria-sort",
+      "descending",
+    )
+    expect(new URL(page.url()).searchParams.has("sortBy")).toBe(false)
   })
 
   test("the Opened column shows the open date, or a dash when it's unavailable", async ({

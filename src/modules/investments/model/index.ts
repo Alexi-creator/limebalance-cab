@@ -380,6 +380,17 @@ export function unleveragedQty(position: Position): number {
   return position.leverage ? position.qty / position.leverage : position.qty
 }
 
+/** Columns the journal can be sorted by, the default first — mirrors the API's sortBy. */
+export const POSITION_SORT_FIELDS = [
+  "openedAt",
+  "closedAt",
+  "pnl",
+  "roi",
+  "volume",
+  "duration",
+] as const
+export type PositionSortField = (typeof POSITION_SORT_FIELDS)[number]
+
 /** Days held — closedAt (or now, while still OPEN) minus openedAt. Null when openedAt is
  *  unknown (see positionSchema). */
 export function holdingDays(position: Position): number | null {
