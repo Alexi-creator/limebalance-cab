@@ -1,5 +1,5 @@
 import { Badge, Group, Stack, Text, UnstyledButton } from "@mantine/core"
-import { IconBolt } from "@tabler/icons-react"
+import { IconBolt, IconNotes } from "@tabler/icons-react"
 import { format, type Locale } from "date-fns"
 import { useTranslation } from "react-i18next"
 import { formatPct, formatPnl, formatUsd, pnlColor } from "../../lib/format"
@@ -67,6 +67,14 @@ export function PositionCard({ position, locale, onPress }: Props) {
               <Badge variant="light" color="green" size="xs" style={{ flexShrink: 0 }}>
                 {t("investments.pos_status_open")}
               </Badge>
+            )}
+            {position.notes.length > 0 && (
+              <IconNotes
+                size={14}
+                color="var(--mantine-color-yellow-6)"
+                aria-label={t("common.note")}
+                style={{ flexShrink: 0 }}
+              />
             )}
           </Group>
 

@@ -29,7 +29,12 @@ export function StickyScrollbarX({ target, bottomOffset = 0 }: Props) {
   const syncingRef = useRef<"target" | "proxy" | null>(null)
 
   useEffect(() => {
-    if (!target) return
+    // The target unmounted (e.g. the journal swapped its table for the card list, or the
+    // filter left no rows) — drop the last measurement, or the bar lingers over nothing.
+    if (!target) {
+      setShowSticky(false)
+      return
+    }
 
     const updateSize = () => {
       setScrollWidth(target.scrollWidth)

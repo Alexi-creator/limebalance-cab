@@ -8,6 +8,7 @@ import {
   Center,
   Checkbox,
   Group,
+  Indicator,
   Loader,
   LoadingOverlay,
   Pagination,
@@ -303,6 +304,11 @@ export function PositionsSection({ accounts }: Props) {
     })
   }
 
+  const changePageSize = (limit: number) => {
+    storePageSize(limit)
+    setParams({ limit, page: 1 })
+  }
+
   // `vertical` stacks the controls full-width for the drawer; the row layout keeps the fixed
   // widths used on desktop. Same split as TransactionsFilters' `controls(vertical)`.
   const filterControls = (vertical: boolean) => (
@@ -409,6 +415,20 @@ export function PositionsSection({ accounts }: Props) {
           sortDir={urlParams.sortDir}
           onChange={onSort}
         />
+      )}
+      {/* same for the page size — below `md` it moves out of the footer into the sheet */}
+      {vertical && (
+        <Stack gap={4}>
+          <Text size="sm" fw={500}>
+            {t("investments.pos_page_size")}
+          </Text>
+          <SegmentedControl
+            fullWidth
+            value={String(urlParams.limit)}
+            onChange={(v) => changePageSize(Number(v))}
+            data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
+          />
+        </Stack>
       )}
       {/* On the mobile sheet the reset lives in its header instead (next to close) — inline here
           it would be a lone unlabeled icon at the end of a vertical field list. */}
@@ -783,15 +803,25 @@ export function PositionsSection({ accounts }: Props) {
                         <Table.Td className="pinned-col">
                           <Group gap={4} justify="flex-end" wrap="nowrap">
                             <Tooltip label={t("investments.note_title", { symbol: p.symbol })}>
-                              <ActionIcon
-                                variant="subtle"
-                                size="sm"
-                                color={p.notes.length > 0 ? "blue" : "gray"}
-                                aria-label={t("investments.note_title", { symbol: p.symbol })}
-                                onClick={() => openNotes(p)}
+                              {/* Filled + counter when the trade has notes — most don't, so the few
+                                that do have to stand out from the plain gray icon at a glance. */}
+                              <Indicator
+                                label={p.notes.length}
+                                size={14}
+                                color="yellow"
+                                disabled={p.notes.length === 0}
+                                styles={{ indicator: { fontSize: 9, fontWeight: 700 } }}
                               >
-                                <IconNotes size={14} />
-                              </ActionIcon>
+                                <ActionIcon
+                                  variant={p.notes.length > 0 ? "light" : "subtle"}
+                                  size="sm"
+                                  color={p.notes.length > 0 ? "yellow" : "gray"}
+                                  aria-label={t("investments.note_title", { symbol: p.symbol })}
+                                  onClick={() => openNotes(p)}
+                                >
+                                  <IconNotes size={14} />
+                                </ActionIcon>
+                              </Indicator>
                             </Tooltip>
                             <Tooltip label={t("common.change")}>
                               <ActionIcon
@@ -836,21 +866,19 @@ export function PositionsSection({ accounts }: Props) {
           {total > 0 && (
             <Group justify="space-between" p="md" wrap="wrap" gap="md">
               <Group gap="md" wrap="wrap">
-                <Select
-                  size="xs"
-                  w={140}
-                  label={t("investments.pos_page_size")}
-                  data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
-                  value={String(urlParams.limit)}
-                  onChange={(v) => {
-                    if (!v) return
-                    storePageSize(Number(v))
-                    setParams({ limit: Number(v), page: 1 })
-                  }}
-                  allowDeselect={false}
-                  checkIconPosition="right"
-                  comboboxProps={{ width: 80 }}
-                />
+                {isDesktop && (
+                  <Select
+                    size="xs"
+                    w={140}
+                    label={t("investments.pos_page_size")}
+                    data={POSITIONS_PAGE_SIZE_OPTIONS.map(String)}
+                    value={String(urlParams.limit)}
+                    onChange={(v) => v && changePageSize(Number(v))}
+                    allowDeselect={false}
+                    checkIconPosition="right"
+                    comboboxProps={{ width: 80 }}
+                  />
+                )}
                 {/* Sums just the rows on this page — same idea as the transactions table's
                   footer, so it stays honest when the top KPI row covers the whole filter. */}
                 {items.length > 0 && (

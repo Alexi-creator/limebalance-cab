@@ -184,7 +184,7 @@ export function VenuesBlock() {
           <Group gap="xs">
             <Button
               size="sm"
-              leftSection={<IconArrowUpRight size={14} />}
+              leftSection={<IconArrowDownLeft size={14} />}
               disabled={isLoading || venues.length === 0}
               onClick={() => openTransfer("deposit")}
             >
@@ -193,7 +193,7 @@ export function VenuesBlock() {
             <Button
               size="sm"
               variant="default"
-              leftSection={<IconArrowDownLeft size={14} />}
+              leftSection={<IconArrowUpRight size={14} />}
               disabled={isLoading || venues.length === 0}
               onClick={() => openTransfer("withdraw")}
             >

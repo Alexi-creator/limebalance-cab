@@ -241,11 +241,10 @@ test.describe("Investments — trade journal", () => {
     await expect(dialog.getByText("Futures")).toBeVisible()
     await expect(dialog.getByText("still open").first()).toBeVisible()
 
-    // The stub doesn't persist mutations — the field clearing on success is the observable signal.
-    const noteField = dialog.getByLabel("Note")
-    await noteField.fill("Added context")
+    // The stub doesn't persist mutations — the dialog closing on success is the observable signal.
+    await dialog.getByLabel("Note").fill("Added context")
     await dialog.getByRole("button", { name: "Add note" }).click()
-    await expect(noteField).toHaveValue("")
+    await expect(dialog).toBeHidden()
   })
 
   test("a note's image shows as a clickable thumbnail that opens a lightbox", async ({

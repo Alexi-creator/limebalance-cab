@@ -23,6 +23,7 @@ import { enUS } from "date-fns/locale"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
+import { useModalStore } from "@/shared/store/modalStore"
 import { usePositionNotes } from "../../api/usePositionNotes"
 import { formatUsd } from "../../lib/format"
 import type { Position } from "../../model"
@@ -41,6 +42,8 @@ interface Props {
 export function PositionNotes({ position }: Props) {
   const { t, i18n } = useTranslation()
   const locale = dateFnsLocales[i18n.language] ?? enUS
+
+  const close = useModalStore((s) => s.close)
 
   const [body, setBody] = useState("")
   const [imageUrl, setImageUrl] = useState("")
@@ -67,10 +70,9 @@ export function PositionNotes({ position }: Props) {
     create.mutate(
       { body: body.trim(), imageUrl: imageUrl.trim() || undefined },
       {
-        onSuccess: () => {
-          setBody("")
-          setImageUrl("")
-        },
+        // The modal holds a snapshot of the position, so the new note wouldn't show up in
+        // the list anyway — close, and the refetched row shows the note marker.
+        onSuccess: close,
       },
     )
   }

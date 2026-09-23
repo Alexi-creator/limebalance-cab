@@ -21,7 +21,12 @@ import { useCategories } from "@/modules/categories/api/useCategories"
 import { useCurrencyOptions } from "@/shared/hooks/useCurrencyOptions"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
 import { SortSelect } from "@/shared/ui/SortSelect"
-import { getTransactionSortFields, getTypeOptions, type TransactionsParams } from "../../config"
+import {
+  getTransactionSortFields,
+  getTypeOptions,
+  PAGE_SIZE_OPTIONS,
+  type TransactionsParams,
+} from "../../config"
 import { buildFilterChipGroups } from "../../lib/filterChips"
 import { ActiveFilterChips } from "../ActiveFilterChips"
 import { MultiSelectFilter } from "../MultiSelectFilter"
@@ -220,6 +225,21 @@ export function TransactionsFilters({ params, setParams }: Props) {
               : setParams({ sortBy, sortDir, page: 1 })
           }
         />
+      )}
+
+      {/* same for the page size — the card list's pagination has no picker of its own */}
+      {vertical && (
+        <Stack gap={4}>
+          <Text size="sm" fw={500}>
+            {t("transactions.records_per_page")}
+          </Text>
+          <SegmentedControl
+            fullWidth
+            value={String(params.limit)}
+            onChange={(v) => setParams({ limit: Number(v), page: 1 })}
+            data={PAGE_SIZE_OPTIONS.map(String)}
+          />
+        </Stack>
       )}
 
       <Button
