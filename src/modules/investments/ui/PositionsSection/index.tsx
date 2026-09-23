@@ -21,7 +21,6 @@ import {
   Tooltip,
   useMantineTheme,
 } from "@mantine/core"
-import { DatePickerInput } from "@mantine/dates"
 import { useDebouncedValue, useMediaQuery } from "@mantine/hooks"
 import { notifications } from "@mantine/notifications"
 import {
@@ -38,6 +37,7 @@ import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { PeriodFilter } from "@/modules/transactions/ui"
 import { useUrlParams } from "@/shared/hooks/useUrlParams"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { useModalStore } from "@/shared/store/modalStore"
@@ -265,6 +265,7 @@ export function PositionsSection({ accounts }: Props) {
     setParams({
       symbol: undefined,
       accountId: undefined,
+      period: "all",
       from: undefined,
       to: undefined,
       status: undefined,
@@ -304,19 +305,13 @@ export function PositionsSection({ accounts }: Props) {
         value={symbolInput}
         onChange={setSymbolInput}
       />
-      <DatePickerInput
+      <PeriodFilter
         size={vertical ? "sm" : "xs"}
-        w={vertical ? "100%" : 220}
-        type="range"
-        label={t("investments.filter_period")}
-        clearable
-        placeholder={t("investments.filter_period")}
-        value={range}
-        onChange={([from, to]) =>
-          setParams({ from: from ?? undefined, to: to ?? undefined, page: 1 })
-        }
-        locale={i18n.language}
-        valueFormat="DD MMM YYYY"
+        vertical={vertical}
+        period={urlParams.period}
+        from={urlParams.from}
+        to={urlParams.to}
+        onChange={(update) => setParams({ ...update, page: 1 })}
       />
       {accounts.length > 0 && (
         <Select

@@ -1,6 +1,7 @@
 /** Public surface of the module's ui segment. */
 export { ActiveFilterChips } from "./ActiveFilterChips"
 export { BulkDeleteModal } from "./BulkDeleteModal"
+export { PeriodFilter } from "./PeriodFilter"
 export { TransactionForm } from "./TransactionForm"
 export { TransactionFormModal } from "./TransactionFormModal"
 export { TransactionsFilters } from "./TransactionsFilters"

@@ -1,4 +1,4 @@
-import { Select } from "@mantine/core"
+import { type MantineSize, Select } from "@mantine/core"
 import { DatePickerInput } from "@mantine/dates"
 import { useTranslation } from "react-i18next"
 import {
@@ -16,6 +16,8 @@ interface Props {
   onChange: (update: { period: PeriodValue; from?: string; to?: string }) => void
   /** Stacked layout of the mobile drawer — the controls take the full width there. */
   vertical: boolean
+  /** Control size — the trade journal's filter row runs on `xs`. */
+  size?: MantineSize
 }
 
 /**
@@ -26,8 +28,8 @@ interface Props {
  * A preset resolves to concrete dates the moment it is chosen, so the link stays reproducible:
  * a URL shared in March still shows March after April starts.
  */
-export function PeriodFilter({ period, from, to, onChange, vertical }: Props) {
-  const { t } = useTranslation()
+export function PeriodFilter({ period, from, to, onChange, vertical, size }: Props) {
+  const { t, i18n } = useTranslation()
   const value = resolvePeriod(period, from, to)
 
   const options = [
@@ -51,6 +53,7 @@ export function PeriodFilter({ period, from, to, onChange, vertical }: Props) {
   return (
     <>
       <Select
+        size={size}
         label={t("transactions.period")}
         data={options}
         value={value}
@@ -61,10 +64,12 @@ export function PeriodFilter({ period, from, to, onChange, vertical }: Props) {
 
       {value === "custom" && (
         <DatePickerInput
+          size={size}
           type="range"
           label={t("transactions.period_dates")}
           placeholder={t("transactions.date_range_placeholder")}
           valueFormat="DD MMM YYYY"
+          locale={i18n.language}
           value={[from ?? null, to ?? null]}
           onChange={([nextFrom, nextTo]) =>
             onChange({

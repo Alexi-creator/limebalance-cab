@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { PERIOD_VALUES } from "@/modules/transactions/lib/periods"
 
 export const POSITIONS_PAGE_SIZE_OPTIONS = [20, 50, 100]
 export const POSITIONS_DEFAULT_PAGE_SIZE = 100
@@ -24,6 +25,8 @@ export function storePageSize(limit: number) {
 export const positionsParamsSchema = z.object({
   symbol: z.string().optional().catch(undefined),
   accountId: z.string().optional().catch(undefined),
+  /** Which option the period filter shows — see the same param in transactionsParamsSchema. */
+  period: z.enum(PERIOD_VALUES).catch("all").default("all"),
   /** YYYY-MM-DD. */
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),
