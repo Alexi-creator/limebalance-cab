@@ -157,7 +157,11 @@
     "today": "اليوم",
     "yesterday": "أمس",
     "select": "تحديد",
-    "done": "تم"
+    "done": "تم",
+    "favorites": "المفضلة",
+    "all_currencies": "كل العملات",
+    "add_to_favorites": "إضافة إلى المفضلة",
+    "remove_from_favorites": "إزالة من المفضلة"
   },
   "header": {
     "add": "إضافة",

@@ -154,7 +154,11 @@
     "today": "Dziś",
     "yesterday": "Wczoraj",
     "select": "Wybierz",
-    "done": "Gotowe"
+    "done": "Gotowe",
+    "favorites": "Ulubione",
+    "all_currencies": "Wszystkie waluty",
+    "add_to_favorites": "Dodaj do ulubionych",
+    "remove_from_favorites": "Usuń z ulubionych"
   },
   "header": {
     "add": "Dodaj",

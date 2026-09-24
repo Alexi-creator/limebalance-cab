@@ -21,6 +21,7 @@ import { useCategories } from "@/modules/categories/api/useCategories"
 import type { PresetFilters } from "@/modules/presets"
 import { FilterPresets } from "@/modules/presets/ui"
 import { useCurrencyOptions } from "@/shared/hooks/useCurrencyOptions"
+import { useFavoriteCurrencies } from "@/shared/hooks/useFavoriteCurrencies"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
 import { SortSelect } from "@/shared/ui/SortSelect"
 import {
@@ -119,6 +120,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
   }))
 
   const currencyOptions = useCurrencyOptions()
+  const { favorites: favoriteCurrencies, toggleFavorite: toggleFavoriteCurrency } =
+    useFavoriteCurrencies()
 
   // removable chips for the active multi-select filters — surfaced inside the drawer so the
   // selection is visible there too (categories are resolved against the full union, not the
@@ -222,6 +225,12 @@ export function TransactionsFilters({ params, setParams }: Props) {
         value={params.currency}
         onChange={(v) => setParams({ currency: v, page: 1 })}
         summary={(count) => t("transactions.currencies_selected", { count })}
+        favorites={{
+          values: favoriteCurrencies,
+          onToggle: toggleFavoriteCurrency,
+          label: t("common.favorites"),
+          restLabel: t("common.all_currencies"),
+        }}
         w={vertical ? "100%" : 160}
       />
 

@@ -153,7 +153,11 @@
     "today": "Today",
     "yesterday": "Yesterday",
     "select": "Select",
-    "done": "Done"
+    "done": "Done",
+    "favorites": "Favorites",
+    "all_currencies": "All currencies",
+    "add_to_favorites": "Add to favorites",
+    "remove_from_favorites": "Remove from favorites"
   },
   "header": {
     "add": "Add",

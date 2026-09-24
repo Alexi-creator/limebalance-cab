@@ -152,7 +152,11 @@
     "today": "วันนี้",
     "yesterday": "เมื่อวาน",
     "select": "เลือก",
-    "done": "เสร็จสิ้น"
+    "done": "เสร็จสิ้น",
+    "favorites": "รายการโปรด",
+    "all_currencies": "สกุลเงินทั้งหมด",
+    "add_to_favorites": "เพิ่มในรายการโปรด",
+    "remove_from_favorites": "นำออกจากรายการโปรด"
   },
   "header": {
     "add": "เพิ่ม",

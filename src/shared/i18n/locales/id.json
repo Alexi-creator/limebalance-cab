@@ -152,7 +152,11 @@
     "today": "Hari ini",
     "yesterday": "Kemarin",
     "select": "Pilih",
-    "done": "Selesai"
+    "done": "Selesai",
+    "favorites": "Favorit",
+    "all_currencies": "Semua mata uang",
+    "add_to_favorites": "Tambahkan ke favorit",
+    "remove_from_favorites": "Hapus dari favorit"
   },
   "header": {
     "add": "Tambah",

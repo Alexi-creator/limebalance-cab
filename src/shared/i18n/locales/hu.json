@@ -153,7 +153,11 @@
     "today": "Ma",
     "yesterday": "Tegnap",
     "select": "Kiválasztás",
-    "done": "Kész"
+    "done": "Kész",
+    "favorites": "Kedvencek",
+    "all_currencies": "Összes pénznem",
+    "add_to_favorites": "Hozzáadás a kedvencekhez",
+    "remove_from_favorites": "Eltávolítás a kedvencek közül"
   },
   "header": {
     "add": "Hozzáadás",

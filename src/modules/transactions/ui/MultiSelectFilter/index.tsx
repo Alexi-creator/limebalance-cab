@@ -12,6 +12,7 @@ import {
 import { IconX } from "@tabler/icons-react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { FavoriteStar } from "@/shared/ui/FavoriteStar"
 
 interface Option {
   value: string
@@ -31,6 +32,13 @@ interface Props {
   summary: (count: number) => string
   /** Control width — matches the sibling filter inputs. */
   w: number | string
+  /** Adds a star to each option; starred ones are listed first under `label`, the rest under `restLabel`. */
+  favorites?: {
+    values: string[]
+    onToggle: (value: string) => void
+    label: string
+    restLabel: string
+  }
 }
 
 /**
@@ -47,6 +55,7 @@ export function MultiSelectFilter({
   onChange,
   summary,
   w,
+  favorites,
 }: Props) {
   const { t } = useTranslation()
   const [search, setSearch] = useState("")
@@ -61,41 +70,67 @@ export function MultiSelectFilter({
     onChange(value.includes(val) ? value.filter((v) => v !== val) : [...value, val])
 
   const query = search.trim().toLowerCase()
-  const options = data
-    .filter(
-      (o) =>
-        o.label.toLowerCase().includes(query) ||
-        (o.description ?? "").toLowerCase().includes(query),
-    )
-    .map((o) => {
+  const matched = data.filter(
+    (o) =>
+      o.label.toLowerCase().includes(query) || (o.description ?? "").toLowerCase().includes(query),
+  )
+  const renderOptions = (list: Option[]) =>
+    list.map((o) => {
       const selected = value.includes(o.value)
       return (
         <Combobox.Option value={o.value} key={o.value} active={selected}>
-          <Group gap="sm" wrap="nowrap" justify="space-between">
-            <Group gap="sm" wrap="nowrap" style={{ flexShrink: 0 }}>
-              <CheckIcon size={12} style={{ opacity: selected ? 1 : 0 }} />
-              <span>{o.label}</span>
-            </Group>
+          <Group gap="sm" wrap="nowrap">
+            <span style={{ flexShrink: 0 }}>{o.label}</span>
             {o.description ? (
               // minWidth lets the description shrink and ellipsize instead of overflowing
-              <Text size="sm" c="dimmed" truncate style={{ minWidth: 0 }}>
+              <Text size="sm" c="dimmed" truncate ml="auto" style={{ minWidth: 0 }}>
                 {o.description}
               </Text>
+            ) : null}
+            {/* on the right so labels sit flush left; kept in the layout when unchecked so the
+                descriptions stay aligned */}
+            <CheckIcon
+              size={12}
+              style={{
+                opacity: selected ? 1 : 0,
+                flexShrink: 0,
+                marginLeft: o.description ? 0 : "auto",
+              }}
+            />
+            {favorites ? (
+              <FavoriteStar
+                active={favorites.values.includes(o.value)}
+                onToggle={() => favorites.onToggle(o.value)}
+              />
             ) : null}
           </Group>
         </Combobox.Option>
       )
     })
 
-  // the trigger is only as wide as its neighbouring filters, which the descriptions would not fit
-  const hasDescriptions = data.some((o) => o.description)
+  const starred = favorites ? matched.filter((o) => favorites.values.includes(o.value)) : []
+  const options =
+    favorites && starred.length > 0 ? (
+      <>
+        <Combobox.Group label={favorites.label}>{renderOptions(starred)}</Combobox.Group>
+        {matched.length > starred.length ? (
+          <Combobox.Group label={favorites.restLabel}>
+            {renderOptions(matched.filter((o) => !favorites.values.includes(o.value)))}
+          </Combobox.Group>
+        ) : null}
+      </>
+    ) : (
+      renderOptions(matched)
+    )
 
   return (
     <Combobox
       store={combobox}
       onOptionSubmit={toggle}
       withinPortal
-      width={hasDescriptions ? 280 : undefined}
+      // sized to the longest option (currency names) rather than the narrow trigger, never
+      // narrower than the trigger and capped so an odd long name ellipsizes instead
+      width="max-content"
       position="bottom-end"
     >
       <Combobox.Target>
@@ -134,15 +169,15 @@ export function MultiSelectFilter({
         </InputBase>
       </Combobox.Target>
 
-      <Combobox.Dropdown>
+      <Combobox.Dropdown miw={w} maw={360}>
         <Combobox.Search
           value={search}
           onChange={(e) => setSearch(e.currentTarget.value)}
           placeholder={t("common.search")}
         />
         <Combobox.Options>
-          <ScrollArea.Autosize mah={240} type="scroll">
-            {options.length > 0 ? (
+          <ScrollArea.Autosize mah={240} type="scroll" scrollbars="y">
+            {matched.length > 0 ? (
               options
             ) : (
               <Combobox.Empty>{t("common.nothing_found")}</Combobox.Empty>

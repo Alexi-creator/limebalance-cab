@@ -153,7 +153,11 @@
     "today": "Днес",
     "yesterday": "Вчера",
     "select": "Избери",
-    "done": "Готово"
+    "done": "Готово",
+    "favorites": "Любими",
+    "all_currencies": "Всички валути",
+    "add_to_favorites": "Добави в любими",
+    "remove_from_favorites": "Премахни от любими"
   },
   "header": {
     "add": "Добавяне",

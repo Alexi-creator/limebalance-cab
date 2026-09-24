@@ -152,7 +152,11 @@
     "today": "오늘",
     "yesterday": "어제",
     "select": "선택",
-    "done": "완료"
+    "done": "완료",
+    "favorites": "즐겨찾기",
+    "all_currencies": "모든 통화",
+    "add_to_favorites": "즐겨찾기에 추가",
+    "remove_from_favorites": "즐겨찾기에서 제거"
   },
   "header": {
     "add": "추가",

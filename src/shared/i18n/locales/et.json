@@ -153,7 +153,11 @@
     "today": "Täna",
     "yesterday": "Eile",
     "select": "Vali",
-    "done": "Valmis"
+    "done": "Valmis",
+    "favorites": "Lemmikud",
+    "all_currencies": "Kõik valuutad",
+    "add_to_favorites": "Lisa lemmikutesse",
+    "remove_from_favorites": "Eemalda lemmikutest"
   },
   "header": {
     "add": "Lisa",

@@ -153,7 +153,11 @@
     "today": "I dag",
     "yesterday": "I går",
     "select": "Vælg",
-    "done": "Færdig"
+    "done": "Færdig",
+    "favorites": "Favoritter",
+    "all_currencies": "Alle valutaer",
+    "add_to_favorites": "Tilføj til favoritter",
+    "remove_from_favorites": "Fjern fra favoritter"
   },
   "header": {
     "add": "Tilføj",

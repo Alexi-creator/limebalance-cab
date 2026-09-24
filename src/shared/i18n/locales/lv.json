@@ -154,7 +154,11 @@
     "today": "Šodien",
     "yesterday": "Vakar",
     "select": "Atlasīt",
-    "done": "Gatavs"
+    "done": "Gatavs",
+    "favorites": "Izlase",
+    "all_currencies": "Visas valūtas",
+    "add_to_favorites": "Pievienot izlasei",
+    "remove_from_favorites": "Noņemt no izlases"
   },
   "header": {
     "add": "Pievienot",

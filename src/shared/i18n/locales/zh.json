@@ -152,7 +152,11 @@
     "today": "今天",
     "yesterday": "昨天",
     "select": "选择",
-    "done": "完成"
+    "done": "完成",
+    "favorites": "收藏",
+    "all_currencies": "全部货币",
+    "add_to_favorites": "添加到收藏",
+    "remove_from_favorites": "从收藏中移除"
   },
   "header": {
     "add": "添加",

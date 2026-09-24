@@ -154,7 +154,11 @@
     "today": "Azi",
     "yesterday": "Ieri",
     "select": "Selectează",
-    "done": "Gata"
+    "done": "Gata",
+    "favorites": "Favorite",
+    "all_currencies": "Toate monedele",
+    "add_to_favorites": "Adaugă la favorite",
+    "remove_from_favorites": "Elimină din favorite"
   },
   "header": {
     "add": "Adaugă",

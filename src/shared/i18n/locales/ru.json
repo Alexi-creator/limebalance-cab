@@ -154,7 +154,11 @@
     "today": "Сегодня",
     "yesterday": "Вчера",
     "select": "Выбрать",
-    "done": "Готово"
+    "done": "Готово",
+    "favorites": "Избранное",
+    "all_currencies": "Все валюты",
+    "add_to_favorites": "Добавить в избранное",
+    "remove_from_favorites": "Убрать из избранного"
   },
   "header": {
     "add": "Добавить",

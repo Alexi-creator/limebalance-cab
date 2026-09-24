@@ -154,7 +154,11 @@
     "today": "Dnes",
     "yesterday": "Včera",
     "select": "Vybrať",
-    "done": "Hotovo"
+    "done": "Hotovo",
+    "favorites": "Obľúbené",
+    "all_currencies": "Všetky meny",
+    "add_to_favorites": "Pridať do obľúbených",
+    "remove_from_favorites": "Odstrániť z obľúbených"
   },
   "header": {
     "add": "Pridať",

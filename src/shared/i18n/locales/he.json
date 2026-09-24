@@ -155,7 +155,11 @@
     "today": "היום",
     "yesterday": "אתמול",
     "select": "בחירה",
-    "done": "סיום"
+    "done": "סיום",
+    "favorites": "מועדפים",
+    "all_currencies": "כל המטבעות",
+    "add_to_favorites": "הוספה למועדפים",
+    "remove_from_favorites": "הסרה מהמועדפים"
   },
   "header": {
     "add": "הוסף",

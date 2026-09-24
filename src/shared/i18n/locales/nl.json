@@ -153,7 +153,11 @@
     "today": "Vandaag",
     "yesterday": "Gisteren",
     "select": "Selecteren",
-    "done": "Klaar"
+    "done": "Klaar",
+    "favorites": "Favorieten",
+    "all_currencies": "Alle valuta's",
+    "add_to_favorites": "Toevoegen aan favorieten",
+    "remove_from_favorites": "Verwijderen uit favorieten"
   },
   "header": {
     "add": "Toevoegen",

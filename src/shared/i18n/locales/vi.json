@@ -152,7 +152,11 @@
     "today": "Hôm nay",
     "yesterday": "Hôm qua",
     "select": "Chọn",
-    "done": "Xong"
+    "done": "Xong",
+    "favorites": "Yêu thích",
+    "all_currencies": "Tất cả tiền tệ",
+    "add_to_favorites": "Thêm vào yêu thích",
+    "remove_from_favorites": "Xóa khỏi yêu thích"
   },
   "header": {
     "add": "Thêm",

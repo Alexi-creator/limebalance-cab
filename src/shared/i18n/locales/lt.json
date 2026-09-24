@@ -154,7 +154,11 @@
     "today": "Šiandien",
     "yesterday": "Vakar",
     "select": "Pasirinkti",
-    "done": "Baigta"
+    "done": "Baigta",
+    "favorites": "Mėgstamiausios",
+    "all_currencies": "Visos valiutos",
+    "add_to_favorites": "Pridėti prie mėgstamiausių",
+    "remove_from_favorites": "Pašalinti iš mėgstamiausių"
   },
   "header": {
     "add": "Pridėti",

@@ -153,7 +153,11 @@
     "today": "I dag",
     "yesterday": "I går",
     "select": "Välj",
-    "done": "Klar"
+    "done": "Klar",
+    "favorites": "Favoriter",
+    "all_currencies": "Alla valutor",
+    "add_to_favorites": "Lägg till i favoriter",
+    "remove_from_favorites": "Ta bort från favoriter"
   },
   "header": {
     "add": "Lägg till",

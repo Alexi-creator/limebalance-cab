@@ -155,7 +155,11 @@
     "today": "Danes",
     "yesterday": "Včeraj",
     "select": "Izberi",
-    "done": "Končano"
+    "done": "Končano",
+    "favorites": "Priljubljene",
+    "all_currencies": "Vse valute",
+    "add_to_favorites": "Dodaj med priljubljene",
+    "remove_from_favorites": "Odstrani iz priljubljenih"
   },
   "header": {
     "add": "Dodaj",

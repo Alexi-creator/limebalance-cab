@@ -153,7 +153,11 @@
     "today": "Tänään",
     "yesterday": "Eilen",
     "select": "Valitse",
-    "done": "Valmis"
+    "done": "Valmis",
+    "favorites": "Suosikit",
+    "all_currencies": "Kaikki valuutat",
+    "add_to_favorites": "Lisää suosikkeihin",
+    "remove_from_favorites": "Poista suosikeista"
   },
   "header": {
     "add": "Lisää",
