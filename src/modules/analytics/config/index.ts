@@ -5,9 +5,6 @@ export const ANALYTICS_PERIODS = ["week", "month", "quarter", "year"] as const
 
 export type AnalyticsPeriod = (typeof ANALYTICS_PERIODS)[number]
 
-/** How many comparison rows we show (top by absolute change). */
-export const COMPARISON_LIMIT = 8
-
 /**
  * URL params schema for the analytics page. `.catch()`/`.default()` guarantee that
  * `useUrlParams` does not crash on a malformed `?period=` in the link.

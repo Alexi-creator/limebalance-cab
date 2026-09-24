@@ -30,6 +30,7 @@ import {
   type TransactionsParams,
 } from "../../config"
 import { buildFilterChipGroups } from "../../lib/filterChips"
+import { DEFAULT_PERIOD, periodDates } from "../../lib/periods"
 import { transactionsFromPreset, transactionsToPreset } from "../../lib/presetFilters"
 import { ActiveFilterChips } from "../ActiveFilterChips"
 import { MultiSelectFilter } from "../MultiSelectFilter"
@@ -136,9 +137,8 @@ export function TransactionsFilters({ params, setParams }: Props) {
       categoryId: [],
       currency: [],
       search: undefined,
-      period: "all",
-      from: undefined,
-      to: undefined,
+      // back to the default period, not to all dates
+      ...periodDates(DEFAULT_PERIOD),
       page: 1,
     })
   }
@@ -149,13 +149,14 @@ export function TransactionsFilters({ params, setParams }: Props) {
     setParams(next)
   }
 
-  // count of active filters — shown on the mobile handle (period counts as one)
+  // count of active filters — shown on the mobile handle (period counts as one, unless it is
+  // the default one the table opens on)
   const activeCount =
     (params.type ? 1 : 0) +
     (params.categoryId.length > 0 ? 1 : 0) +
     (params.currency.length > 0 ? 1 : 0) +
     (params.search ? 1 : 0) +
-    (params.from || params.to ? 1 : 0)
+    ((params.from || params.to) && params.period !== DEFAULT_PERIOD ? 1 : 0)
 
   // `vertical` stacks the controls full-width inside the drawer; the row layout keeps
   // the fixed widths used on desktop.

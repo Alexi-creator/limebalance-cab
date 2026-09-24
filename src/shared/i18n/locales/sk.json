@@ -61,7 +61,8 @@
     "menu": "Ponuka",
     "account": "Účet",
     "logout": "Odhlásiť sa",
-    "auth": "Overenie"
+    "auth": "Overenie",
+    "faq": "Pomocník a FAQ"
   },
   "settings": {
     "title": "Nastavenia",
@@ -118,8 +119,7 @@
     "period_6m": "6 mes.",
     "period_1y": "1 rok",
     "income": "Príjmy",
-    "expense": "Výdavky",
-    "day": "Deň"
+    "expense": "Výdavky"
   },
   "common": {
     "notifications": "Upozornenia",
@@ -383,15 +383,11 @@
     "savings_of_income": "{{rate}} % príjmu",
     "kpi_savings_rate": "Miera úspor",
     "savings_share": "podiel na príjme",
-    "donut_empty": "V období žiadne výdavky",
-    "donut_aria": "Graf výdavkov podľa kategórií",
-    "donut_center": "výdavok",
-    "comparison_empty": "V období žiadne zmeny",
     "chart_aria": "Graf príjmov a výdavkov podľa obdobia",
     "income_vs_expense": "Príjmy vs výdavky",
     "expenses_by_category": "Výdavky podľa kategórií",
-    "comparison_title": "Porovnanie s predchádzajúcim obdobím",
-    "comparison_subtitle": "Kde sa výdavky zmenili",
+    "incomes_by_category": "Príjmy podľa kategórií",
+    "prev_period_value": "Predchádzajúce obdobie: {{amount}}",
     "details_title": "Podrobnosti transakcií",
     "details_empty": "Žiadne transakcie za obdobie",
     "tour_period_title": "Vyberte obdobie",
@@ -894,5 +890,132 @@
     "already_saved": "Aktuálne filtre sú uložené ako „{{name}}“",
     "nothing_to_save": "Vyberte filtre, aby ste ich mohli uložiť ako predvoľbu",
     "error": "Zmeny sa nepodarilo uložiť. Skúste to znova"
+  },
+  "faq": {
+    "title": "Pomocník a FAQ",
+    "subtitle": "Ako LimeBalance funguje, na čo slúži každá sekcia a ako spolu tvoria váš zostatok",
+    "search_placeholder": "Hľadať v otázkach",
+    "search_empty": "Nič sa nenašlo — skúste iné slovo",
+    "open_page": "Otvoriť sekciu",
+    "sections": {
+      "start": "Začíname",
+      "pages": "Sekcie aplikácie",
+      "balance": "Ako sa všetko sčíta do zostatku",
+      "common": "Časté otázky"
+    },
+    "formula": {
+      "balance": "Zostatok",
+      "income": "Príjmy",
+      "expense": "Výdavky",
+      "goals": "Odložené v cieľoch",
+      "venues": "Poslané na burzy a do peňaženiek",
+      "note": "Výmeny mien vo vzorci nie sú: len presúvajú peniaze medzi vašimi menami a súčet nikdy nemenia."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Kde začať?",
+        "a": "1. V Nastaveniach zvoľte základnú menu — v nej sa zobrazujú súčty v celej aplikácii.\n2. Vytvorte kategórie príjmov a výdavkov (napríklad Mzda, Potraviny, Nájom).\n3. Zapisujte transakcie tlačidlom „Pridať“ v hlavičke alebo cez Telegram bota.\n4. Nastavte si ciele, na ktoré sporíte.\n5. Po pár týždňoch otvorte Analýzu a uvidíte, kam idú peniaze."
+      },
+      "quick_add": {
+        "q": "Ako rýchlo pridať záznam?",
+        "a": "Tlačidlo „Pridať“ v hlavičke je dostupné na každej stránke. Vytvoríte ním transakciu (príjem alebo výdavok), cieľ, výmenu mien alebo vklad/výber na burzu či do peňaženky. Keď je pripojený Telegram bot, transakcie môžete pridávať aj priamo v chate."
+      },
+      "tours": {
+        "q": "Existuje sprievodca rozhraním?",
+        "a": "Áno. Na každej stránke je vedľa nadpisu tlačidlo sprievodcu — ukáže krátky návod k stránke krok za krokom. Môžete ho kedykoľvek spustiť znova."
+      },
+      "page_home": {
+        "q": "Prehľad — čo je na hlavnej stránke?",
+        "a": "Aktuálny zostatok, príjmy, výdavky a rozdiel za tento mesiac, graf peňažných tokov po dňoch, posledné transakcie a prehľad cieľov. Je to súhrn: všetko, čo tu vidíte, pochádza z ostatných sekcií."
+      },
+      "page_transactions": {
+        "q": "Transakcie — ako pracovať so zoznamom?",
+        "a": "Všetky príjmy a výdavky v jednej tabuľke: triedenie, vyhľadávanie podľa popisu, filtre podľa typu, kategórie, meny a obdobia. Označte riadky a zmažte ich viac naraz. Filtre sa ukladajú do adresného riadka, takže odkaz alebo záložka otvorí rovnaké zobrazenie, a súbor filtrov možno uložiť ako predvoľbu. Na karte „Výmena“ sú vaše výmeny mien."
+      },
+      "page_categories": {
+        "q": "Kategórie — načo sú?",
+        "a": "Každá transakcia patrí do kategórie, preto pred prvou transakciou potrebujete aspoň jednu kategóriu. Kategórie sa delia na výdavkové a príjmové, každá má vlastné emoji a farbu. Karta ukazuje súčet za celé obdobie; priamo z nej môžete pridať transakciu do tejto kategórie."
+      },
+      "page_analytics": {
+        "q": "Analýza — čo ukazuje?",
+        "a": "Príjmy a výdavky podľa obdobia (týždeň, mesiac, štvrťrok, rok alebo vlastné dátumy), koľko sa podarilo ušetriť a mieru úspor, rozdelenie podľa kategórií a čo sa zmenilo oproti predchádzajúcemu obdobiu."
+      },
+      "page_goals": {
+        "q": "Ciele — ako funguje sporenie?",
+        "a": "Zadajte sumu a prípadne termín — LimeBalance vypočíta, koľko mesačne odkladať. Do cieľa môžete vkladať aj z neho vyberať a prezerať históriu vkladov. Pruh je červený, keď cieľ zaostáva alebo je pod 25 %, žltý, keď sa blíži termín, inak zelený."
+      },
+      "page_investments": {
+        "q": "Investície — čo je v tejto sekcii?",
+        "a": "Obchodný denník s PnL a úspešnosťou, vklady a výbery na burzy a do peňaženiek, P2P príkazy z Bybitu a pripojené burzové účty. Sekcia je dostupná v každom platenom pláne."
+      },
+      "page_settings": {
+        "q": "Nastavenia — čo môžem zmeniť?",
+        "a": "Meno a základnú menu, e-mail a heslo, prepojenie s Telegram botom a aké upozornenia vám bot posiela."
+      },
+      "balance_formula": {
+        "q": "Ako sa počíta zostatok?",
+        "a": "Zostatok sú vaše voľné peniaze: všetky príjmy mínus všetky výdavky, mínus to, čo je odložené v aktívnych cieľoch, mínus to, čo ste poslali na burzy a do peňaženiek. Nezávisí od obdobia — je to vždy celá história. Zmazanie alebo úprava ktorejkoľvek transakcie ho hneď zmení."
+      },
+      "balance_currencies": {
+        "q": "Prečo je zostatok rozdelený podľa mien a má „≈“?",
+        "a": "Každá mena sa počíta samostatne a nikdy sa neprevádza — sumy podľa mien pod zostatkom sú presné. Veľké číslo ich sčíta v základnej mene podľa dnešného kurzu, takže ak držíte viac mien, je približné a označené „≈“."
+      },
+      "balance_goals": {
+        "q": "Čo sa stane s peniazmi vloženými do cieľa?",
+        "a": "Zostávajú vaše, ale sú rezervované: odchádzajú z voľného zostatku a zobrazujú sa v cieli. Výber z cieľa, jeho uzavretie alebo zmazanie vráti peniaze do zostatku. Vklad do cieľa nie je výdavok a v analýze sa neobjaví."
+      },
+      "balance_exchange": {
+        "q": "Prečo zapisovať výmeny mien?",
+        "a": "Ak dostávate peniaze v jednej mene a míňate v inej, zapíšte výmenu — inak sa mena výdavkov dostane do mínusu, zatiaľ čo druhá sa bude hromadiť. Výmena nie je príjem ani výdavok, len presúva peniaze medzi vašimi menami. Ak sa niektorá mena dostane do mínusu, Prehľad zobrazí upozornenie s tlačidlom na zapísanie výmeny."
+      },
+      "balance_transfer": {
+        "q": "Čo je vklad alebo výber na burzu?",
+        "a": "Peniaze, ktoré ste poslali na burzu alebo do peňaženky, aby ste investovali. Odchádzajú z voľného zostatku, ale nie sú výdavkom: Prehľad ich ukazuje samostatne ako „na platformách“ v dnešnej hodnote. Keď peniaze vrátite, zapíšte výber a vrátia sa do zostatku."
+      },
+      "balance_analytics": {
+        "q": "Prečo analýza nesedí so zostatkom?",
+        "a": "Analýza počíta len príjmy a výdavky za zvolené obdobie. Zostatok je celá história a zahŕňa aj ciele, vklady na burzy a výmeny mien — ktoré nie sú príjmami ani výdavkami."
+      },
+      "base_currency": {
+        "q": "Ako zmeniť základnú menu?",
+        "a": "V Nastaveniach → Všeobecné. Súčty v celej aplikácii sa prepočítajú na novú menu podľa aktuálneho kurzu. Transakcie zostávajú v mene, v ktorej boli zapísané."
+      },
+      "delete_category": {
+        "q": "Čo sa stane, keď zmažem kategóriu?",
+        "a": "Spolu s kategóriou sa nenávratne zmažú všetky jej transakcie. Zostatok aj analýza sa prepočítajú bez nich. Ak ju chcete len premenovať, kategóriu radšej upravte."
+      },
+      "limits": {
+        "q": "Aké limity má bezplatný plán?",
+        "a": "Bezplatný plán obmedzuje počet kategórií a transakcií za mesiac — aplikácia upozorní, keď zostáva len pár. Počítadlo transakcií sa nuluje na začiatku každého mesiaca. Platené plány limity rušia a odomykajú sekciu Investície."
+      },
+      "telegram_bot": {
+        "q": "Ako pripojiť Telegram bota?",
+        "a": "Kliknite na „Pripojiť Telegram“ v bočnom menu alebo otvorte Nastavenia → Telegram. Po prepojení sa transakcie pridané v chate s botom automaticky objavia tu. V Nastaveniach môžete tiež zvoliť, aké správy bot posiela, napríklad mesačný súhrn."
+      },
+      "telegram_login": {
+        "q": "Prihlásil som sa cez Telegram — potrebujem e-mail?",
+        "a": "Odporúčame to. Pridajte e-mail a heslo v Nastaveniach → E-mail a heslo a potvrďte adresu odkazom z e-mailu — neprídete tak o prístup k účtu a budete sa môcť prihlásiť aj bez Telegramu."
+      },
+      "forgot_password": {
+        "q": "Zabudol som heslo",
+        "a": "Na prihlasovacej stránke kliknite na „Zabudli ste heslo?“ a zadajte e-mail — pošleme odkaz na nastavenie nového hesla. Ak ste sa prihlasovali cez Telegram alebo Google, stačí použiť rovnaký spôsob."
+      },
+      "filters_presets": {
+        "q": "Ako uložiť často používané filtre?",
+        "a": "Na stránke Transakcie nastavte potrebné filtre a uložte ich ako predvoľbu — potom ju použijete jedným kliknutím. Filtre sa tiež ukladajú do adresného riadka: stránka sa s nimi znova otvorí a odkaz si môžete uložiť do záložiek."
+      },
+      "exchange_connect": {
+        "q": "Ako pripojiť burzu a je to bezpečné?",
+        "a": "Investície → Burzové účty → Pridať účet. Na Bybite vytvorte API kľúč s oprávnením Read-Only — kľúče s oprávnením obchodovať sa odmietajú. Taký kľúč vie len čítať históriu: obchodovať alebo vyberať prostriedky s ním nie je možné. Obchody sa do denníka synchronizujú automaticky."
+      },
+      "p2p": {
+        "q": "Kúpil som kryptomeny cez P2P — ako to zapísať?",
+        "a": "Mince kúpené cez P2P prichádzajú bez záznamu o vklade. Zapíšte dokončený príkaz ako prevod zo zostatku (na karte P2P), inak sa započíta ako zisk z obchodovania."
+      },
+      "theme_language": {
+        "q": "Ako zmeniť tému alebo jazyk?",
+        "a": "Prepínače sú v hlavičke. Na mobile ich nájdete v menu pod tlačidlom hamburgera."
+      }
+    }
   }
 }

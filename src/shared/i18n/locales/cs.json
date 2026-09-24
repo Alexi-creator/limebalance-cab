@@ -61,7 +61,8 @@
     "menu": "Nabídka",
     "account": "Účet",
     "logout": "Odhlásit se",
-    "auth": "Ověření"
+    "auth": "Ověření",
+    "faq": "Nápověda a FAQ"
   },
   "settings": {
     "title": "Nastavení",
@@ -118,8 +119,7 @@
     "period_6m": "6 měs.",
     "period_1y": "1 rok",
     "income": "Příjmy",
-    "expense": "Výdaje",
-    "day": "Den"
+    "expense": "Výdaje"
   },
   "common": {
     "notifications": "Oznámení",
@@ -383,15 +383,11 @@
     "savings_of_income": "{{rate}} % příjmu",
     "kpi_savings_rate": "Míra úspor",
     "savings_share": "podíl na příjmu",
-    "donut_empty": "V období žádné výdaje",
-    "donut_aria": "Graf výdajů podle kategorií",
-    "donut_center": "výdaj",
-    "comparison_empty": "V období žádné změny",
     "chart_aria": "Graf příjmů a výdajů podle období",
     "income_vs_expense": "Příjmy vs výdaje",
     "expenses_by_category": "Výdaje podle kategorií",
-    "comparison_title": "Srovnání s předchozím obdobím",
-    "comparison_subtitle": "Kde se výdaje změnily",
+    "incomes_by_category": "Příjmy podle kategorií",
+    "prev_period_value": "Předchozí období: {{amount}}",
     "details_title": "Podrobnosti transakcí",
     "details_empty": "Žádné transakce za období",
     "tour_period_title": "Vyberte období",
@@ -894,5 +890,132 @@
     "already_saved": "Aktuální filtry jsou uloženy jako „{{name}}“",
     "nothing_to_save": "Vyberte filtry, abyste je mohli uložit jako předvolbu",
     "error": "Změny se nepodařilo uložit. Zkuste to znovu"
+  },
+  "faq": {
+    "title": "Nápověda a FAQ",
+    "subtitle": "Jak LimeBalance funguje, k čemu slouží jednotlivé sekce a jak spolu tvoří váš zůstatek",
+    "search_placeholder": "Hledat v otázkách",
+    "search_empty": "Nic nenalezeno — zkuste jiné slovo",
+    "open_page": "Otevřít sekci",
+    "sections": {
+      "start": "Začínáme",
+      "pages": "Sekce aplikace",
+      "balance": "Jak se vše sčítá do zůstatku",
+      "common": "Časté dotazy"
+    },
+    "formula": {
+      "balance": "Zůstatek",
+      "income": "Příjmy",
+      "expense": "Výdaje",
+      "goals": "Odloženo v cílech",
+      "venues": "Posláno na burzy a do peněženek",
+      "note": "Směny měn ve vzorci nejsou: jen přesouvají peníze mezi vašimi měnami a součet nikdy nemění."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Kde začít?",
+        "a": "1. V Nastavení zvolte základní měnu — v ní se zobrazují součty v celé aplikaci.\n2. Vytvořte kategorie příjmů a výdajů (například Mzda, Potraviny, Nájem).\n3. Zapisujte transakce tlačítkem „Přidat“ v záhlaví nebo přes Telegram bota.\n4. Nastavte si cíle, na které spoříte.\n5. Po pár týdnech otevřete Analýzu a uvidíte, kam peníze odcházejí."
+      },
+      "quick_add": {
+        "q": "Jak rychle přidat záznam?",
+        "a": "Tlačítko „Přidat“ v záhlaví je dostupné na každé stránce. Vytvoříte jím transakci (příjem nebo výdaj), cíl, směnu měn nebo vklad/výběr na burzu či do peněženky. Když je připojen Telegram bot, můžete transakce přidávat i přímo v chatu."
+      },
+      "tours": {
+        "q": "Existuje průvodce rozhraním?",
+        "a": "Ano. Na každé stránce je vedle nadpisu tlačítko průvodce — ukáže krátký návod k dané stránce krok za krokem. Můžete ho kdykoli spustit znovu."
+      },
+      "page_home": {
+        "q": "Přehled — co je na hlavní stránce?",
+        "a": "Aktuální zůstatek, příjmy, výdaje a rozdíl za tento měsíc, graf peněžních toků po dnech, poslední transakce a přehled cílů. Je to souhrn: vše, co zde vidíte, pochází z ostatních sekcí."
+      },
+      "page_transactions": {
+        "q": "Transakce — jak pracovat se seznamem?",
+        "a": "Všechny příjmy a výdaje v jedné tabulce: řazení, vyhledávání podle popisu, filtry podle typu, kategorie, měny a období. Označte řádky, abyste jich smazali více najednou. Filtry se ukládají do adresního řádku, takže odkaz nebo záložka otevře stejné zobrazení, a sadu filtrů lze uložit jako předvolbu. Na kartě „Směna“ jsou vaše směny měn."
+      },
+      "page_categories": {
+        "q": "Kategorie — k čemu jsou?",
+        "a": "Každá transakce patří do kategorie, proto před první transakcí potřebujete alespoň jednu kategorii. Kategorie se dělí na výdajové a příjmové, každá má vlastní emoji a barvu. Karta ukazuje součet za celou dobu; přímo z ní můžete přidat transakci do této kategorie."
+      },
+      "page_analytics": {
+        "q": "Analýza — co ukazuje?",
+        "a": "Příjmy a výdaje podle období (týden, měsíc, čtvrtletí, rok nebo vlastní data), kolik se podařilo ušetřit a míru úspor, rozdělení podle kategorií a co se změnilo oproti předchozímu období."
+      },
+      "page_goals": {
+        "q": "Cíle — jak funguje spoření?",
+        "a": "Zadejte částku a případně termín — LimeBalance spočítá, kolik měsíčně odkládat. Do cíle můžete vkládat i z něj vybírat a prohlížet historii vkladů. Pruh je červený, když cíl zaostává nebo je pod 25 %, žlutý, když se blíží termín, jinak zelený."
+      },
+      "page_investments": {
+        "q": "Investice — co v této sekci najdu?",
+        "a": "Obchodní deník s PnL a úspěšností, vklady a výběry na burzy a do peněženek, P2P příkazy z Bybitu a připojené burzovní účty. Sekce je dostupná v každém placeném tarifu."
+      },
+      "page_settings": {
+        "q": "Nastavení — co mohu změnit?",
+        "a": "Jméno a základní měnu, e-mail a heslo, propojení s Telegram botem a jaká oznámení vám bot posílá."
+      },
+      "balance_formula": {
+        "q": "Jak se počítá zůstatek?",
+        "a": "Zůstatek jsou vaše volné peníze: všechny příjmy mínus všechny výdaje, mínus to, co je odloženo v aktivních cílech, mínus to, co jste poslali na burzy a do peněženek. Nezávisí na období — je to vždy celá historie. Smazání nebo úprava jakékoli transakce ho okamžitě změní."
+      },
+      "balance_currencies": {
+        "q": "Proč je zůstatek rozdělen podle měn a má „≈“?",
+        "a": "Každá měna se počítá zvlášť a nikdy se nepřevádí — částky podle měn pod zůstatkem jsou přesné. Velké číslo je sčítá v základní měně podle dnešního kurzu, takže pokud držíte více měn, je přibližné a označené „≈“."
+      },
+      "balance_goals": {
+        "q": "Co se stane s penězi vloženými do cíle?",
+        "a": "Zůstávají vaše, ale jsou rezervované: odcházejí z volného zůstatku a zobrazují se v cíli. Výběr z cíle, jeho uzavření nebo smazání vrátí peníze do zůstatku. Vklad do cíle není výdaj a v analýze se neobjeví."
+      },
+      "balance_exchange": {
+        "q": "Proč zapisovat směny měn?",
+        "a": "Pokud dostáváte peníze v jedné měně a utrácíte v jiné, zapište směnu — jinak se měna výdajů dostane do mínusu, zatímco druhá se bude hromadit. Směna není příjem ani výdaj, jen přesouvá peníze mezi vašimi měnami. Pokud se některá měna dostane do mínusu, Přehled zobrazí upozornění s tlačítkem pro zapsání směny."
+      },
+      "balance_transfer": {
+        "q": "Co je vklad nebo výběr na burzu?",
+        "a": "Peníze, které jste poslali na burzu nebo do peněženky, abyste investovali. Odcházejí z volného zůstatku, ale nejsou výdajem: Přehled je zobrazuje zvlášť jako „na platformách“ v dnešní hodnotě. Až peníze vrátíte, zapište výběr a vrátí se do zůstatku."
+      },
+      "balance_analytics": {
+        "q": "Proč analýza nesouhlasí se zůstatkem?",
+        "a": "Analýza počítá jen příjmy a výdaje za zvolené období. Zůstatek je celá historie a zahrnuje navíc cíle, vklady na burzy a směny měn — které nejsou příjmy ani výdaji."
+      },
+      "base_currency": {
+        "q": "Jak změnit základní měnu?",
+        "a": "V Nastavení → Obecné. Součty v celé aplikaci se přepočítají na novou měnu podle aktuálního kurzu. Transakce zůstávají v měně, ve které byly zapsány."
+      },
+      "delete_category": {
+        "q": "Co se stane, když smažu kategorii?",
+        "a": "Spolu s kategorií se nevratně smažou všechny její transakce. Zůstatek i analýza se přepočítají bez nich. Pokud ji chcete jen přejmenovat, kategorii raději upravte."
+      },
+      "limits": {
+        "q": "Jaké limity má bezplatný tarif?",
+        "a": "Bezplatný tarif omezuje počet kategorií a transakcí za měsíc — aplikace upozorní, když zbývá jen pár. Počítadlo transakcí se nuluje na začátku každého měsíce. Placené tarify limity ruší a odemykají sekci Investice."
+      },
+      "telegram_bot": {
+        "q": "Jak připojit Telegram bota?",
+        "a": "Klikněte na „Připojit Telegram“ v postranním menu nebo otevřete Nastavení → Telegram. Po propojení se transakce přidané v chatu s botem automaticky objeví zde. V Nastavení můžete také zvolit, jaké zprávy bot posílá, například měsíční souhrn."
+      },
+      "telegram_login": {
+        "q": "Přihlásil jsem se přes Telegram — potřebuji e-mail?",
+        "a": "Doporučujeme to. Přidejte e-mail a heslo v Nastavení → E-mail a heslo a potvrďte adresu odkazem z e-mailu — nepřijdete tak o přístup k účtu a budete se moci přihlásit i bez Telegramu."
+      },
+      "forgot_password": {
+        "q": "Zapomněl jsem heslo",
+        "a": "Na přihlašovací stránce klikněte na „Zapomněli jste heslo?“ a zadejte e-mail — pošleme odkaz pro nastavení nového hesla. Pokud jste se přihlašovali přes Telegram nebo Google, stačí použít stejný způsob."
+      },
+      "filters_presets": {
+        "q": "Jak uložit často používané filtry?",
+        "a": "Na stránce Transakce nastavte potřebné filtry a uložte je jako předvolbu — poté ji použijete jedním kliknutím. Filtry se také ukládají do adresního řádku: stránka se s nimi znovu otevře a odkaz si můžete uložit do záložek."
+      },
+      "exchange_connect": {
+        "q": "Jak připojit burzu a je to bezpečné?",
+        "a": "Investice → Burzovní účty → Přidat účet. Na Bybitu vytvořte API klíč s oprávněním Read-Only — klíče s oprávněním k obchodování jsou odmítnuty. Takový klíč umí jen číst historii: obchodovat nebo vybírat prostředky s ním nelze. Obchody se do deníku synchronizují automaticky."
+      },
+      "p2p": {
+        "q": "Koupil jsem kryptoměny přes P2P — jak to zapsat?",
+        "a": "Mince koupené přes P2P přicházejí bez záznamu o vkladu. Zapište dokončený příkaz jako převod ze zůstatku (na kartě P2P), jinak se započítá jako zisk z obchodování."
+      },
+      "theme_language": {
+        "q": "Jak změnit motiv nebo jazyk?",
+        "a": "Přepínače jsou v záhlaví. Na mobilu je najdete v menu pod tlačítkem hamburgeru."
+      }
+    }
   }
 }

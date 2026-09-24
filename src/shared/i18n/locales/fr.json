@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Compte",
     "logout": "Se déconnecter",
-    "auth": "Authentification"
+    "auth": "Authentification",
+    "faq": "Aide et FAQ"
   },
   "settings": {
     "title": "Paramètres",
@@ -118,8 +119,7 @@
     "period_6m": "6 mois",
     "period_1y": "1 an",
     "income": "Revenus",
-    "expense": "Dépenses",
-    "day": "Jour"
+    "expense": "Dépenses"
   },
   "common": {
     "notifications": "Notifications",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % du revenu",
     "kpi_savings_rate": "Taux d'épargne",
     "savings_share": "part du revenu",
-    "donut_empty": "Aucune dépense sur la période",
-    "donut_aria": "Diagramme des dépenses par catégorie",
-    "donut_center": "dépense",
-    "comparison_empty": "Aucun changement sur la période",
     "chart_aria": "Graphique des revenus et dépenses par période",
     "income_vs_expense": "Revenus vs dépenses",
     "expenses_by_category": "Dépenses par catégorie",
-    "comparison_title": "Comparaison avec la période précédente",
-    "comparison_subtitle": "Où les dépenses ont changé",
+    "incomes_by_category": "Revenus par catégorie",
+    "prev_period_value": "Période précédente : {{amount}}",
     "details_title": "Détail des transactions",
     "details_empty": "Aucune transaction sur la période",
     "tour_period_title": "Choisissez une période",
@@ -879,5 +875,132 @@
     "already_saved": "Les filtres actuels sont enregistrés sous « {{name}} »",
     "nothing_to_save": "Choisissez des filtres pour les enregistrer comme préréglage",
     "error": "Impossible d'enregistrer les modifications. Veuillez réessayer"
+  },
+  "faq": {
+    "title": "Aide et FAQ",
+    "subtitle": "Comment fonctionne LimeBalance, à quoi sert chaque section et comment elles forment ensemble votre solde",
+    "search_placeholder": "Rechercher une question",
+    "search_empty": "Aucun résultat — essayez un autre mot",
+    "open_page": "Ouvrir la section",
+    "sections": {
+      "start": "Pour commencer",
+      "pages": "Sections de l'application",
+      "balance": "Comment tout s'additionne dans le solde",
+      "common": "Questions fréquentes"
+    },
+    "formula": {
+      "balance": "Solde",
+      "income": "Revenus",
+      "expense": "Dépenses",
+      "goals": "Mis de côté dans les objectifs",
+      "venues": "Envoyé sur les plateformes et portefeuilles",
+      "note": "Les changes de devises ne figurent pas dans la formule : ils déplacent seulement l'argent entre vos devises et ne modifient jamais le total."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Par où commencer ?",
+        "a": "1. Choisissez votre devise de base dans les Paramètres — les totaux de toute l'application y sont affichés.\n2. Créez des catégories de revenus et de dépenses (par exemple Salaire, Courses, Loyer).\n3. Enregistrez vos transactions avec le bouton « Ajouter » de l'en-tête ou via le bot Telegram.\n4. Créez des objectifs pour ce que vous épargnez.\n5. Au bout de quelques semaines, ouvrez l'Analyse pour voir où part l'argent."
+      },
+      "quick_add": {
+        "q": "Comment ajouter rapidement une entrée ?",
+        "a": "Le bouton « Ajouter » de l'en-tête est disponible sur toutes les pages. Il crée une transaction (revenu ou dépense), un objectif, un change de devises, ou un dépôt/retrait vers une plateforme ou un portefeuille. Une fois le bot Telegram connecté, vous pouvez aussi ajouter des transactions directement dans le chat."
+      },
+      "tours": {
+        "q": "Existe-t-il une visite guidée de l'interface ?",
+        "a": "Oui. Chaque page a un bouton de visite à côté de son titre — il affiche un court guide pas à pas de la page. Vous pouvez le relancer à tout moment."
+      },
+      "page_home": {
+        "q": "Aperçu — que trouve-t-on sur l'accueil ?",
+        "a": "Votre solde actuel, les revenus, les dépenses et la différence du mois, un graphique des flux par jour, vos dernières transactions et un aperçu de vos objectifs. C'est une synthèse : tout ce qui s'y affiche provient des autres sections."
+      },
+      "page_transactions": {
+        "q": "Transactions — comment utiliser la liste ?",
+        "a": "Tous les revenus et dépenses dans un seul tableau : tri, recherche par description, filtres par type, catégorie, devise et période. Sélectionnez des lignes pour en supprimer plusieurs à la fois. Les filtres sont conservés dans la barre d'adresse : un lien ou un favori rouvre la même vue, et un ensemble de filtres peut être enregistré comme préréglage. L'onglet « Change » liste vos changes de devises."
+      },
+      "page_categories": {
+        "q": "Catégories — à quoi servent-elles ?",
+        "a": "Chaque transaction appartient à une catégorie : il faut donc au moins une catégorie avant la première transaction. Les catégories sont réparties entre dépenses et revenus, chacune avec son emoji et sa couleur. La carte affiche le total depuis le début ; depuis celle-ci, vous pouvez ajouter directement une transaction dans cette catégorie."
+      },
+      "page_analytics": {
+        "q": "Analyse — que montre-t-elle ?",
+        "a": "Revenus et dépenses par période (semaine, mois, trimestre, année ou dates personnalisées), combien vous avez épargné et votre taux d'épargne, la répartition par catégorie et ce qui a changé par rapport à la période précédente."
+      },
+      "page_goals": {
+        "q": "Objectifs — comment fonctionne l'épargne ?",
+        "a": "Fixez un montant et, si vous le souhaitez, une échéance — LimeBalance calcule combien mettre de côté chaque mois. Vous pouvez verser dans un objectif ou en retirer, et consulter l'historique des versements. La barre est rouge si l'objectif est en retard ou sous 25 %, jaune quand l'échéance approche, verte sinon."
+      },
+      "page_investments": {
+        "q": "Investissements — que contient cette section ?",
+        "a": "Un journal de trading avec PnL et taux de réussite, les dépôts et retraits vers les plateformes et portefeuilles, les ordres P2P Bybit et les comptes d'échange connectés. La section est disponible avec n'importe quelle offre payante."
+      },
+      "page_settings": {
+        "q": "Paramètres — que puis-je modifier ?",
+        "a": "Votre nom et votre devise de base, l'e-mail et le mot de passe, la liaison avec le bot Telegram et les notifications que le bot vous envoie."
+      },
+      "balance_formula": {
+        "q": "Comment le solde est-il calculé ?",
+        "a": "Le solde, c'est votre argent disponible : tous les revenus moins toutes les dépenses, moins ce qui est mis de côté dans les objectifs actifs, moins ce que vous avez envoyé sur des plateformes et portefeuilles. Il ne dépend pas de la période — c'est toujours tout l'historique. Supprimer ou modifier une transaction le change immédiatement."
+      },
+      "balance_currencies": {
+        "q": "Pourquoi le solde est-il affiché par devise et avec « ≈ » ?",
+        "a": "Chaque devise est comptée séparément et n'est jamais convertie — les montants par devise sous le solde sont exacts. Le grand chiffre les additionne dans votre devise de base au cours du jour : si vous détenez plusieurs devises, il est donc approximatif et marqué « ≈ »."
+      },
+      "balance_goals": {
+        "q": "Que devient l'argent versé dans un objectif ?",
+        "a": "Il reste à vous mais devient réservé : il sort du solde disponible et apparaît dans l'objectif. Un retrait, la clôture ou la suppression de l'objectif le remettent dans le solde. Un versement dans un objectif n'est pas une dépense et n'apparaît pas dans l'analyse."
+      },
+      "balance_exchange": {
+        "q": "Pourquoi enregistrer les changes de devises ?",
+        "a": "Si vous êtes payé dans une devise et dépensez dans une autre, enregistrez le change — sinon la devise dépensée passe en négatif pendant que l'autre s'accumule. Un change n'est ni un revenu ni une dépense, il déplace seulement l'argent entre vos devises. Si une devise passe en négatif, l'Aperçu affiche un avertissement avec un bouton pour enregistrer le change."
+      },
+      "balance_transfer": {
+        "q": "Qu'est-ce qu'un dépôt ou un retrait vers une plateforme ?",
+        "a": "De l'argent envoyé sur une plateforme ou un portefeuille pour investir. Il sort du solde disponible mais n'est pas une dépense : l'Aperçu l'affiche à part, « sur les plateformes », à sa valeur du jour. Quand vous récupérez l'argent, enregistrez un retrait et il revient dans le solde."
+      },
+      "balance_analytics": {
+        "q": "Pourquoi l'analyse ne correspond-elle pas au solde ?",
+        "a": "L'analyse ne compte que les revenus et dépenses de la période choisie. Le solde couvre tout l'historique et tient compte aussi des objectifs, des dépôts sur les plateformes et des changes de devises — qui ne sont ni des revenus ni des dépenses."
+      },
+      "base_currency": {
+        "q": "Comment changer la devise de base ?",
+        "a": "Dans Paramètres → Général. Les totaux de toute l'application seront recalculés dans la nouvelle devise au cours actuel. Vos transactions restent dans la devise où elles ont été enregistrées."
+      },
+      "delete_category": {
+        "q": "Que se passe-t-il si je supprime une catégorie ?",
+        "a": "Toutes les transactions de cette catégorie sont supprimées avec elle, de manière irréversible. Le solde et l'analyse sont recalculés sans elles. Si vous voulez seulement la renommer, modifiez plutôt la catégorie."
+      },
+      "limits": {
+        "q": "Quelles sont les limites de l'offre gratuite ?",
+        "a": "L'offre gratuite limite le nombre de catégories et de transactions par mois — l'application vous prévient quand il n'en reste que quelques-unes. Le compteur de transactions est remis à zéro au début de chaque mois. Les offres payantes suppriment les limites et débloquent la section Investissements."
+      },
+      "telegram_bot": {
+        "q": "Comment connecter le bot Telegram ?",
+        "a": "Cliquez sur « Connecter Telegram » dans le menu latéral ou ouvrez Paramètres → Telegram. Une fois lié, les transactions ajoutées dans le chat du bot apparaissent ici automatiquement. Dans les Paramètres, vous pouvez aussi choisir les messages envoyés par le bot, comme le bilan mensuel."
+      },
+      "telegram_login": {
+        "q": "Je me suis connecté avec Telegram — ai-je besoin d'un e-mail ?",
+        "a": "C'est recommandé. Ajoutez un e-mail et un mot de passe dans Paramètres → E-mail et mot de passe et confirmez l'adresse via le lien reçu — vous ne perdrez pas l'accès à votre compte et pourrez vous connecter sans Telegram."
+      },
+      "forgot_password": {
+        "q": "J'ai oublié mon mot de passe",
+        "a": "Sur la page de connexion, cliquez sur « Mot de passe oublié ? » et saisissez votre e-mail — nous vous enverrons un lien pour définir un nouveau mot de passe. Si vous vous êtes connecté avec Telegram ou Google, utilisez simplement la même méthode."
+      },
+      "filters_presets": {
+        "q": "Comment enregistrer des filtres que j'utilise souvent ?",
+        "a": "Sur la page Transactions, réglez les filtres voulus et enregistrez-les comme préréglage — il s'applique ensuite en un clic. Les filtres sont aussi conservés dans la barre d'adresse : la page se rouvre avec eux et le lien peut être ajouté aux favoris."
+      },
+      "exchange_connect": {
+        "q": "Comment connecter une plateforme d'échange, et est-ce sûr ?",
+        "a": "Investissements → Comptes d'échange → Ajouter un compte. Sur Bybit, créez une clé API en lecture seule (Read-Only) — les clés avec des droits de trading sont refusées. Une telle clé ne peut que lire votre historique : trader ou retirer des fonds avec elle est impossible. Les trades se synchronisent automatiquement dans le journal."
+      },
+      "p2p": {
+        "q": "J'ai acheté des cryptos en P2P — comment l'enregistrer ?",
+        "a": "Les coins achetés en P2P arrivent sans enregistrement de dépôt. Enregistrez l'ordre terminé comme un transfert depuis votre solde (dans l'onglet P2P), sinon il sera compté comme un gain de trading."
+      },
+      "theme_language": {
+        "q": "Comment changer le thème ou la langue ?",
+        "a": "Les commandes se trouvent dans l'en-tête. Sur mobile, elles sont dans le menu du bouton burger."
+      }
+    }
   }
 }

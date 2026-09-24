@@ -48,9 +48,10 @@ export const transactionsParamsSchema = z.object({
   /**
    * Which option the period filter shows. The dates below are always written alongside it, so the
    * request itself never depends on this — it only keeps a preset recognizable as a preset after a
-   * reload (`from`/`to` alone cannot tell "this month" from a range typed by hand).
+   * reload (`from`/`to` alone cannot tell "this month" from a range typed by hand). Absent means
+   * the default period (DEFAULT_PERIOD), so "all" is written out explicitly.
    */
-  period: z.enum(PERIOD_VALUES).catch("all").default("all"),
+  period: z.enum(PERIOD_VALUES).optional().catch(undefined),
   /** Transaction date range, format `YYYY-MM-DD`. */
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),

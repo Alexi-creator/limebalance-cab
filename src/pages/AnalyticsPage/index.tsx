@@ -16,9 +16,9 @@ import { useTranslation } from "react-i18next"
 import { useAnalyticsData } from "@/modules/analytics/api/useAnalyticsData"
 import { ANALYTICS_PERIODS, analyticsParamsSchema } from "@/modules/analytics/config"
 import { useAnalyticsTour } from "@/modules/analytics/hooks/useAnalyticsTour"
+import { useCategoryBreakdown } from "@/modules/analytics/hooks/useCategoryBreakdown"
 import {
   AnalyticsKpis,
-  CategoryComparison,
   CategoryDonut,
   DetailedStats,
   IncomeExpenseChart,
@@ -36,8 +36,15 @@ export function AnalyticsPage() {
   // custom datepicker range; when both dates are set, it overrides the period presets
   const isCustom = Boolean(params.from && params.to)
   const locale = dateFnsLocales[i18n.language] ?? enUS
-  const { metrics, series, donut, comparison, range, baseCurrency, isLoading, isError } =
-    useAnalyticsData(period, locale, params.from, params.to)
+  const { metrics, series, range, baseCurrency, isLoading, isError } = useAnalyticsData(
+    period,
+    locale,
+    params.from,
+    params.to,
+  )
+
+  // shared by the donut and the details list: same categories, colors, hovered category
+  const breakdown = useCategoryBreakdown(range)
 
   const rangeLabel = `${format(range.from, "d MMM", { locale })} – ${format(range.to, "d MMM yyyy", { locale })}`
   const periodLabel = isCustom ? rangeLabel : t(`analytics.period_${period}`)
@@ -109,31 +116,23 @@ export function AnalyticsPage() {
             />
           </Box>
 
-          <DetailedStats from={range.from} to={range.to} subtitle={rangeLabel} locale={locale} />
-
-          <IncomeExpenseChart
-            series={series}
-            title={t("analytics.income_vs_expense")}
-            subtitle={isCustom ? rangeLabel : periodLabel.toLowerCase()}
-            baseCurrency={baseCurrency}
-          />
-
+          {/* desktop: compact charts row, then the details list (with the comparison to the
+              previous period built in) — still on the first screen;
+              phone: the details list goes right after the KPIs, the charts below it */}
           <Grid gap="md" data-tour="an-charts">
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <CategoryDonut
-                slices={donut}
-                title={t("analytics.expenses_by_category")}
-                subtitle={rangeLabel}
+            <Grid.Col span={{ base: 12, md: 8 }} order={{ base: 2, md: 1 }}>
+              <IncomeExpenseChart
+                series={series}
+                title={t("analytics.income_vs_expense")}
+                subtitle={isCustom ? rangeLabel : periodLabel.toLowerCase()}
                 baseCurrency={baseCurrency}
               />
             </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <CategoryComparison
-                rows={comparison}
-                title={t("analytics.comparison_title")}
-                subtitle={t("analytics.comparison_subtitle")}
-                baseCurrency={baseCurrency}
-              />
+            <Grid.Col span={{ base: 12, md: 4 }} order={{ base: 3, md: 2 }}>
+              <CategoryDonut breakdown={breakdown} subtitle={rangeLabel} />
+            </Grid.Col>
+            <Grid.Col span={12} order={{ base: 1, md: 3 }}>
+              <DetailedStats breakdown={breakdown} subtitle={rangeLabel} locale={locale} />
             </Grid.Col>
           </Grid>
         </>

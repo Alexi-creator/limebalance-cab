@@ -4,12 +4,11 @@ import { EXPENSE_COLOR, INCOME_COLOR } from "@/shared/config/chartColors"
 export const ACCENT = INCOME_COLOR
 export const NEG = EXPENSE_COLOR
 
-/** Geometry of the chart's SVG area (viewBox and inner padding). */
+/** Geometry of the chart's SVG area (viewBox and inner padding; the left one fits the Y labels). */
 export const CHART = {
   W: 640,
   H: 240,
-  PAD_L: 30,
-  PAD_R: 10,
+  PAD_R: 16,
   PAD_T: 10,
   PAD_B: 30,
 } as const

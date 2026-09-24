@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Account",
     "logout": "Uitloggen",
-    "auth": "Authenticatie"
+    "auth": "Authenticatie",
+    "faq": "Hulp & FAQ"
   },
   "settings": {
     "title": "Instellingen",
@@ -118,8 +119,7 @@
     "period_6m": "6 mnd",
     "period_1y": "1 jr",
     "income": "Inkomsten",
-    "expense": "Uitgaven",
-    "day": "Dag"
+    "expense": "Uitgaven"
   },
   "common": {
     "notifications": "Meldingen",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % van de inkomsten",
     "kpi_savings_rate": "Spaarquote",
     "savings_share": "aandeel van de inkomsten",
-    "donut_empty": "Geen uitgaven in de periode",
-    "donut_aria": "Diagram van uitgaven per categorie",
-    "donut_center": "uitgave",
-    "comparison_empty": "Geen wijzigingen in de periode",
     "chart_aria": "Grafiek van inkomsten en uitgaven per periode",
     "income_vs_expense": "Inkomsten vs uitgaven",
     "expenses_by_category": "Uitgaven per categorie",
-    "comparison_title": "Vergelijking met de vorige periode",
-    "comparison_subtitle": "Waar de uitgaven zijn veranderd",
+    "incomes_by_category": "Inkomsten per categorie",
+    "prev_period_value": "Vorige periode: {{amount}}",
     "details_title": "Transactiedetails",
     "details_empty": "Geen transacties in de periode",
     "tour_period_title": "Kies een periode",
@@ -879,5 +875,132 @@
     "already_saved": "De huidige filters zijn opgeslagen als ‘{{name}}’",
     "nothing_to_save": "Kies filters om ze als voorinstelling op te slaan",
     "error": "De wijzigingen konden niet worden opgeslagen. Probeer het opnieuw"
+  },
+  "faq": {
+    "title": "Hulp & FAQ",
+    "subtitle": "Hoe LimeBalance werkt, waar elk onderdeel voor dient en hoe ze samen je saldo vormen",
+    "search_placeholder": "Zoek in vragen",
+    "search_empty": "Niets gevonden — probeer een ander woord",
+    "open_page": "Onderdeel openen",
+    "sections": {
+      "start": "Aan de slag",
+      "pages": "Onderdelen van de app",
+      "balance": "Hoe alles optelt tot het saldo",
+      "common": "Veelgestelde vragen"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Inkomsten",
+      "expense": "Uitgaven",
+      "goals": "Opzij gezet in doelen",
+      "venues": "Naar exchanges en wallets gestuurd",
+      "note": "Valutawissels staan niet in de formule: ze verplaatsen alleen geld tussen je valuta's en veranderen het totaal nooit."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Waar begin ik?",
+        "a": "1. Kies je basisvaluta in Instellingen — totalen in de hele app worden daarin getoond.\n2. Maak inkomsten- en uitgavencategorieën aan (bijvoorbeeld Salaris, Boodschappen, Huur).\n3. Leg transacties vast met de knop „Toevoegen” in de kopbalk of via de Telegram-bot.\n4. Stel doelen in voor waar je voor spaart.\n5. Open na een paar weken Analyse om te zien waar het geld naartoe gaat."
+      },
+      "quick_add": {
+        "q": "Hoe voeg ik snel iets toe?",
+        "a": "De knop „Toevoegen” in de kopbalk is op elke pagina beschikbaar. Daarmee maak je een transactie (inkomst of uitgave), een doel, een valutawissel of een storting/opname naar een exchange of wallet. Is de Telegram-bot gekoppeld, dan kun je transacties ook direct in de chat toevoegen."
+      },
+      "tours": {
+        "q": "Is er een rondleiding door de interface?",
+        "a": "Ja. Elke pagina heeft naast de titel een rondleidingsknop — die toont een korte stapsgewijze uitleg van die pagina. Je kunt hem altijd opnieuw starten."
+      },
+      "page_home": {
+        "q": "Overzicht — wat staat er op de startpagina?",
+        "a": "Je huidige saldo, inkomsten, uitgaven en het verschil van deze maand, een cashflowgrafiek per dag, je laatste transacties en een blik op je doelen. Het is een samenvatting: alles hier komt uit de andere onderdelen."
+      },
+      "page_transactions": {
+        "q": "Transacties — hoe werk ik met de lijst?",
+        "a": "Alle inkomsten en uitgaven in één tabel: sorteren, zoeken op omschrijving, filteren op type, categorie, valuta en periode. Selecteer rijen om er meerdere tegelijk te verwijderen. Filters blijven in de adresbalk staan, dus een link of bladwijzer opent dezelfde weergave, en een set filters kun je als preset opslaan. Het tabblad „Wissel” toont je valutawissels."
+      },
+      "page_categories": {
+        "q": "Categorieën — waarom heb ik die nodig?",
+        "a": "Elke transactie hoort bij een categorie, dus vóór je eerste transactie heb je minstens één categorie nodig. Er zijn uitgaven- en inkomstencategorieën, elk met een eigen emoji en kleur. De kaart toont het totaal over alle tijd; van daaruit voeg je direct een transactie in die categorie toe."
+      },
+      "page_analytics": {
+        "q": "Analyse — wat laat het zien?",
+        "a": "Inkomsten tegenover uitgaven per periode (week, maand, kwartaal, jaar of eigen data), hoeveel je hebt gespaard en je spaarquote, de verdeling per categorie en wat er is veranderd ten opzichte van de vorige periode."
+      },
+      "page_goals": {
+        "q": "Doelen — hoe werkt sparen?",
+        "a": "Stel een bedrag en eventueel een deadline in — LimeBalance berekent hoeveel je per maand opzij moet zetten. Je kunt in een doel storten of eruit opnemen en de stortingsgeschiedenis bekijken. De balk is rood als een doel achterloopt of onder 25% zit, geel als de deadline nadert en anders groen."
+      },
+      "page_investments": {
+        "q": "Beleggingen — wat zit er in dit onderdeel?",
+        "a": "Een tradingjournaal met PnL en winrate, stortingen en opnames naar exchanges en wallets, Bybit P2P-orders en gekoppelde exchange-accounts. Het onderdeel is beschikbaar in elk betaald abonnement."
+      },
+      "page_settings": {
+        "q": "Instellingen — wat kan ik wijzigen?",
+        "a": "Je naam en basisvaluta, e-mail en wachtwoord, de koppeling met de Telegram-bot en welke meldingen de bot je stuurt."
+      },
+      "balance_formula": {
+        "q": "Hoe wordt het saldo berekend?",
+        "a": "Het saldo is je vrije geld: alle inkomsten min alle uitgaven, min wat opzij staat in actieve doelen, min wat je naar exchanges en wallets hebt gestuurd. Het hangt niet af van de periode — het is altijd de hele geschiedenis. Een transactie verwijderen of bewerken verandert het meteen."
+      },
+      "balance_currencies": {
+        "q": "Waarom staat het saldo per valuta en met „≈”?",
+        "a": "Elke valuta wordt apart geteld en nooit omgerekend — de bedragen per valuta onder het saldo zijn exact. Het grote getal telt ze op in je basisvaluta tegen de koers van vandaag; heb je meer dan één valuta, dan is het dus een benadering, gemarkeerd met „≈”."
+      },
+      "balance_goals": {
+        "q": "Wat gebeurt er met geld dat ik in een doel stort?",
+        "a": "Het blijft van jou maar wordt gereserveerd: het verlaat het vrije saldo en staat in het doel. Opnemen uit het doel, het sluiten of verwijderen brengt het geld terug naar het saldo. Een storting in een doel is geen uitgave en verschijnt niet in de analyse."
+      },
+      "balance_exchange": {
+        "q": "Waarom valutawissels vastleggen?",
+        "a": "Als je in de ene valuta wordt betaald en in een andere uitgeeft, leg dan de wissel vast — anders zakt de valuta waarin je uitgeeft onder nul terwijl de andere zich opstapelt. Een wissel is geen inkomst of uitgave, hij verplaatst alleen geld tussen je valuta's. Staat een valuta onder nul, dan toont het Overzicht een waarschuwing met een knop om de wissel vast te leggen."
+      },
+      "balance_transfer": {
+        "q": "Wat is een storting of opname naar een exchange?",
+        "a": "Geld dat je naar een exchange of wallet hebt gestuurd om te beleggen. Het verlaat het vrije saldo maar is geen uitgave: het Overzicht toont het apart als „op platforms” tegen de huidige waarde. Haal je het geld terug, leg dan een opname vast en het komt terug in het saldo."
+      },
+      "balance_analytics": {
+        "q": "Waarom komt de analyse niet overeen met mijn saldo?",
+        "a": "De analyse telt alleen inkomsten en uitgaven in de gekozen periode. Het saldo is de hele geschiedenis en houdt ook rekening met doelen, stortingen naar exchanges en valutawissels — die geen inkomsten of uitgaven zijn."
+      },
+      "base_currency": {
+        "q": "Hoe wijzig ik de basisvaluta?",
+        "a": "In Instellingen → Algemeen. Totalen in de hele app worden tegen de huidige koers omgerekend naar de nieuwe valuta. Je transacties blijven in de valuta waarin ze zijn vastgelegd."
+      },
+      "delete_category": {
+        "q": "Wat gebeurt er als ik een categorie verwijder?",
+        "a": "Alle transacties in die categorie worden onherroepelijk mee verwijderd. Saldo en analyse worden zonder die transacties herberekend. Wil je hem alleen hernoemen, bewerk de categorie dan."
+      },
+      "limits": {
+        "q": "Welke limieten heeft het gratis abonnement?",
+        "a": "Het gratis abonnement beperkt het aantal categorieën en transacties per maand — de app waarschuwt je als er nog maar een paar over zijn. De transactieteller wordt aan het begin van elke maand gereset. Betaalde abonnementen heffen de limieten op en ontgrendelen het onderdeel Beleggingen."
+      },
+      "telegram_bot": {
+        "q": "Hoe koppel ik de Telegram-bot?",
+        "a": "Klik op „Telegram verbinden” in de zijbalk of open Instellingen → Telegram. Na het koppelen verschijnen transacties die je in de chat met de bot toevoegt automatisch hier. In Instellingen kies je ook welke berichten de bot stuurt, zoals het maandoverzicht."
+      },
+      "telegram_login": {
+        "q": "Ik ben ingelogd met Telegram — heb ik een e-mail nodig?",
+        "a": "Dat is aan te raden. Voeg een e-mail en wachtwoord toe in Instellingen → E-mail en wachtwoord en bevestig het adres via de link in de mail — zo verlies je de toegang tot je account niet en kun je ook zonder Telegram inloggen."
+      },
+      "forgot_password": {
+        "q": "Ik ben mijn wachtwoord vergeten",
+        "a": "Klik op de inlogpagina op „Wachtwoord vergeten?” en vul je e-mail in — we sturen je een link om een nieuw wachtwoord in te stellen. Ben je ingelogd via Telegram of Google, gebruik dan gewoon dezelfde methode."
+      },
+      "filters_presets": {
+        "q": "Hoe sla ik vaak gebruikte filters op?",
+        "a": "Stel op de pagina Transacties de gewenste filters in en sla ze op als preset — daarna pas je die met één klik toe. Filters blijven ook in de adresbalk staan: de pagina opent opnieuw met die filters en je kunt de link als bladwijzer bewaren."
+      },
+      "exchange_connect": {
+        "q": "Hoe koppel ik een exchange en is dat veilig?",
+        "a": "Beleggingen → Exchange-accounts → Account toevoegen. Maak op Bybit een API-sleutel met Read-Only-rechten — sleutels met handelsrechten worden geweigerd. Zo'n sleutel kan alleen je geschiedenis lezen: handelen of geld opnemen ermee is onmogelijk. Trades worden automatisch naar het journaal gesynchroniseerd."
+      },
+      "p2p": {
+        "q": "Ik heb crypto via P2P gekocht — hoe leg ik dat vast?",
+        "a": "Via P2P gekochte munten komen binnen zonder stortingsrecord. Leg de voltooide order vast als overboeking vanaf je saldo (op het tabblad P2P), anders telt hij als handelswinst."
+      },
+      "theme_language": {
+        "q": "Hoe wissel ik van thema of taal?",
+        "a": "De schakelaars staan in de kopbalk. Op mobiel vind je ze in het menu achter de hamburgerknop."
+      }
+    }
   }
 }

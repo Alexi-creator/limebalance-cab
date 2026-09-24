@@ -22,6 +22,7 @@ const InvestmentsPage = lazy(() =>
 const SettingsPage = lazy(() =>
   import("@/pages/SettingsPage").then((m) => ({ default: m.SettingsPage })),
 )
+const FaqPage = lazy(() => import("@/pages/FaqPage").then((m) => ({ default: m.FaqPage })))
 const AuthPage = lazy(() => import("@/pages/AuthPage").then((m) => ({ default: m.AuthPage })))
 const RegisterPage = lazy(() =>
   import("@/pages/RegisterPage").then((m) => ({ default: m.RegisterPage })),
@@ -47,6 +48,7 @@ export const appRoutes: RouteConfig[] = [
   { path: RouteNames.Settings, element: <SettingsPage /> },
   { path: RouteNames.SettingsSecurity, element: <SettingsPage /> },
   { path: RouteNames.SettingsTelegram, element: <SettingsPage /> },
+  { path: RouteNames.Faq, element: <FaqPage /> },
 ]
 
 export const publicRoutes: RouteConfig[] = [

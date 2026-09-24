@@ -61,7 +61,8 @@
     "menu": "Meniu",
     "account": "Paskyra",
     "logout": "Atsijungti",
-    "auth": "Autentifikavimas"
+    "auth": "Autentifikavimas",
+    "faq": "Pagalba ir DUK"
   },
   "settings": {
     "title": "Nustatymai",
@@ -118,8 +119,7 @@
     "period_6m": "6 mėn.",
     "period_1y": "1 m.",
     "income": "Pajamos",
-    "expense": "Išlaidos",
-    "day": "Diena"
+    "expense": "Išlaidos"
   },
   "common": {
     "notifications": "Pranešimai",
@@ -383,15 +383,11 @@
     "savings_of_income": "{{rate}} % pajamų",
     "kpi_savings_rate": "Taupymo norma",
     "savings_share": "pajamų dalis",
-    "donut_empty": "Per laikotarpį išlaidų nėra",
-    "donut_aria": "Išlaidų pagal kategorijas diagrama",
-    "donut_center": "išlaidos",
-    "comparison_empty": "Per laikotarpį pakeitimų nėra",
     "chart_aria": "Pajamų ir išlaidų pagal laikotarpį diagrama",
     "income_vs_expense": "Pajamos ir išlaidos",
     "expenses_by_category": "Išlaidos pagal kategorijas",
-    "comparison_title": "Palyginimas su ankstesniu laikotarpiu",
-    "comparison_subtitle": "Kur pasikeitė išlaidos",
+    "incomes_by_category": "Pajamos pagal kategorijas",
+    "prev_period_value": "Ankstesnis laikotarpis: {{amount}}",
     "details_title": "Operacijų detalės",
     "details_empty": "Laikotarpiu operacijų nėra",
     "tour_period_title": "Pasirinkite laikotarpį",
@@ -896,5 +892,132 @@
     "already_saved": "Dabartiniai filtrai išsaugoti kaip „{{name}}“",
     "nothing_to_save": "Pasirinkite filtrus, kad išsaugotumėte juos kaip šabloną",
     "error": "Nepavyko išsaugoti pakeitimų. Bandykite dar kartą"
+  },
+  "faq": {
+    "title": "Pagalba ir DUK",
+    "subtitle": "Kaip veikia LimeBalance, kam skirta kiekviena skiltis ir kaip jos kartu sudaro jūsų balansą",
+    "search_placeholder": "Ieškoti klausimų",
+    "search_empty": "Nieko nerasta — pabandykite kitą žodį",
+    "open_page": "Atidaryti skiltį",
+    "sections": {
+      "start": "Pradžia",
+      "pages": "Programėlės skiltys",
+      "balance": "Kaip viskas susideda į balansą",
+      "common": "Dažni klausimai"
+    },
+    "formula": {
+      "balance": "Balansas",
+      "income": "Pajamos",
+      "expense": "Išlaidos",
+      "goals": "Atidėta tikslams",
+      "venues": "Išsiųsta į biržas ir pinigines",
+      "note": "Valiutų keitimų formulėje nėra: jie tik perkelia pinigus tarp jūsų valiutų ir niekada nekeičia sumos."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Nuo ko pradėti?",
+        "a": "1. Nustatymuose pasirinkite bazinę valiutą — joje rodomos sumos visoje programėlėje.\n2. Sukurkite pajamų ir išlaidų kategorijas (pvz., Atlyginimas, Maistas, Nuoma).\n3. Registruokite operacijas antraštės mygtuku „Pridėti“ arba per Telegram botą.\n4. Nusistatykite tikslus, kuriems taupote.\n5. Po kelių savaičių atidarykite Analitiką ir pamatysite, kur išeina pinigai."
+      },
+      "quick_add": {
+        "q": "Kaip greitai pridėti įrašą?",
+        "a": "Antraštės mygtukas „Pridėti“ pasiekiamas kiekviename puslapyje. Juo sukuriate operaciją (pajamas ar išlaidas), tikslą, valiutos keitimą arba įnešimą/išėmimą į biržą ar piniginę. Prijungę Telegram botą, operacijas galite pridėti ir tiesiai pokalbyje."
+      },
+      "tours": {
+        "q": "Ar yra sąsajos gidas?",
+        "a": "Taip. Kiekviename puslapyje šalia pavadinimo yra gido mygtukas — jis parodo trumpą žingsnis po žingsnio puslapio apžvalgą. Galite paleisti jį bet kada iš naujo."
+      },
+      "page_home": {
+        "q": "Apžvalga — kas yra pradiniame puslapyje?",
+        "a": "Dabartinis balansas, šio mėnesio pajamos, išlaidos ir skirtumas, pinigų srautų grafikas pagal dienas, paskutinės operacijos ir tikslų apžvalga. Tai santrauka: viskas, kas čia matoma, ateina iš kitų skilčių."
+      },
+      "page_transactions": {
+        "q": "Operacijos — kaip dirbti su sąrašu?",
+        "a": "Visos pajamos ir išlaidos vienoje lentelėje: rikiavimas, paieška pagal aprašymą, filtrai pagal tipą, kategoriją, valiutą ir laikotarpį. Pažymėkite eilutes, kad ištrintumėte kelias iš karto. Filtrai saugomi adreso juostoje, todėl nuoroda ar žymė atidaro tą patį vaizdą, o filtrų rinkinį galima išsaugoti kaip šabloną. Skirtuke „Keitimas“ — jūsų valiutų keitimai."
+      },
+      "page_categories": {
+        "q": "Kategorijos — kam jų reikia?",
+        "a": "Kiekviena operacija priklauso kategorijai, todėl prieš pirmąją operaciją reikia bent vienos kategorijos. Kategorijos skirstomos į išlaidų ir pajamų, kiekviena turi savo jaustuką ir spalvą. Kortelėje rodoma viso laikotarpio suma; iš jos galite iškart pridėti operaciją į tą kategoriją."
+      },
+      "page_analytics": {
+        "q": "Analitika — ką ji rodo?",
+        "a": "Pajamas ir išlaidas pagal laikotarpius (savaitė, mėnuo, ketvirtis, metai ar savos datos), kiek sutaupėte ir taupymo normą, pasiskirstymą pagal kategorijas ir kas pasikeitė, palyginti su ankstesniu laikotarpiu."
+      },
+      "page_goals": {
+        "q": "Tikslai — kaip veikia taupymas?",
+        "a": "Nustatykite sumą ir, jei norite, terminą — LimeBalance apskaičiuos, kiek atidėti kas mėnesį. Į tikslą galima įnešti ir iš jo išimti, matyti įnašų istoriją. Juosta raudona, jei tikslas atsilieka ar yra žemiau 25 %, geltona, kai artėja terminas, kitais atvejais — žalia."
+      },
+      "page_investments": {
+        "q": "Investicijos — kas šioje skiltyje?",
+        "a": "Prekybos dienoraštis su PnL ir laimėjimų procentu, įnešimai ir išėmimai į biržas ir pinigines, Bybit P2P pavedimai bei prijungtos biržų paskyros. Skiltis prieinama bet kuriame mokamame plane."
+      },
+      "page_settings": {
+        "q": "Nustatymai — ką galiu pakeisti?",
+        "a": "Vardą ir bazinę valiutą, el. paštą ir slaptažodį, Telegram boto susiejimą ir tai, kokius pranešimus botas siunčia."
+      },
+      "balance_formula": {
+        "q": "Kaip skaičiuojamas balansas?",
+        "a": "Balansas — tai jūsų laisvi pinigai: visos pajamos minus visos išlaidos, minus tai, kas atidėta aktyviems tikslams, minus tai, kas išsiųsta į biržas ir pinigines. Jis nepriklauso nuo laikotarpio — tai visada visa istorija. Ištrynus ar pakeitus bet kurią operaciją, jis iškart pasikeičia."
+      },
+      "balance_currencies": {
+        "q": "Kodėl balansas rodomas pagal valiutas ir su „≈“?",
+        "a": "Kiekviena valiuta skaičiuojama atskirai ir niekada nekonvertuojama — sumos pagal valiutas po balansu yra tikslios. Didelis skaičius jas sudeda bazine valiuta pagal šiandienos kursą, todėl turint daugiau nei vieną valiutą jis apytikslis ir pažymėtas „≈“."
+      },
+      "balance_goals": {
+        "q": "Kas nutinka pinigams, įneštiems į tikslą?",
+        "a": "Jie lieka jūsų, bet rezervuojami: išeina iš laisvo balanso ir rodomi tiksle. Išėmimas iš tikslo, jo uždarymas ar ištrynimas grąžina pinigus į balansą. Įnašas į tikslą nėra išlaida ir analitikoje nerodomas."
+      },
+      "balance_exchange": {
+        "q": "Kam registruoti valiutų keitimus?",
+        "a": "Jei pajamas gaunate viena valiuta, o išleidžiate kita, užregistruokite keitimą — kitaip išlaidų valiuta nueis į minusą, o kita kaupsis. Keitimas nėra nei pajamos, nei išlaidos, jis tik perkelia pinigus tarp jūsų valiutų. Jei kuri nors valiuta nuėjo į minusą, Apžvalgoje atsiras įspėjimas su mygtuku užregistruoti keitimą."
+      },
+      "balance_transfer": {
+        "q": "Kas yra įnešimas ar išėmimas į biržą?",
+        "a": "Tai pinigai, kuriuos išsiuntėte į biržą ar piniginę investuoti. Jie išeina iš laisvo balanso, bet nėra išlaidos: Apžvalgoje jie rodomi atskirai kaip „platformose“ šiandienos verte. Kai pinigus susigrąžinsite, užregistruokite išėmimą ir jie grįš į balansą."
+      },
+      "balance_analytics": {
+        "q": "Kodėl analitika nesutampa su balansu?",
+        "a": "Analitika skaičiuoja tik pasirinkto laikotarpio pajamas ir išlaidas. Balansas — visa istorija, jame įskaičiuoti ir tikslai, įnešimai į biržas bei valiutų keitimai, kurie nėra nei pajamos, nei išlaidos."
+      },
+      "base_currency": {
+        "q": "Kaip pakeisti bazinę valiutą?",
+        "a": "Nustatymai → Bendra. Sumos visoje programėlėje bus perskaičiuotos nauja valiuta pagal dabartinį kursą. Pačios operacijos lieka ta valiuta, kuria buvo užregistruotos."
+      },
+      "delete_category": {
+        "q": "Kas bus, jei ištrinsiu kategoriją?",
+        "a": "Kartu su kategorija negrįžtamai ištrinamos visos jos operacijos. Balansas ir analitika perskaičiuojami be jų. Jei norite tik pervadinti — redaguokite kategoriją."
+      },
+      "limits": {
+        "q": "Kokie nemokamo plano apribojimai?",
+        "a": "Nemokamame plane ribojamas kategorijų ir operacijų per mėnesį skaičius — programėlė įspės, kai liks vos kelios. Operacijų skaitiklis nunulinamas kiekvieno mėnesio pradžioje. Mokami planai panaikina apribojimus ir atrakina skiltį Investicijos."
+      },
+      "telegram_bot": {
+        "q": "Kaip prijungti Telegram botą?",
+        "a": "Šoniniame meniu spustelėkite „Prijungti Telegram“ arba atidarykite Nustatymai → Telegram. Susiejus, pokalbyje su botu pridėtos operacijos čia atsiras automatiškai. Nustatymuose taip pat galite pasirinkti, kokias žinutes siunčia botas, pvz., mėnesio suvestinę."
+      },
+      "telegram_login": {
+        "q": "Prisijungiau per Telegram — ar reikia el. pašto?",
+        "a": "Rekomenduojama. Pridėkite el. paštą ir slaptažodį skiltyje Nustatymai → El. paštas ir slaptažodis ir patvirtinkite adresą nuoroda iš laiško — taip neprarasite prieigos prie paskyros ir galėsite prisijungti be Telegram."
+      },
+      "forgot_password": {
+        "q": "Pamiršau slaptažodį",
+        "a": "Prisijungimo puslapyje spustelėkite „Pamiršote slaptažodį?“ ir įveskite el. paštą — atsiųsime nuorodą naujam slaptažodžiui nustatyti. Jei jungėtės per Telegram ar Google, tiesiog naudokite tą patį būdą."
+      },
+      "filters_presets": {
+        "q": "Kaip išsaugoti dažnai naudojamus filtrus?",
+        "a": "Puslapyje Operacijos nustatykite reikiamus filtrus ir išsaugokite juos kaip šabloną — vėliau jis pritaikomas vienu paspaudimu. Be to, filtrai saugomi adreso juostoje: puslapis vėl atsidarys su jais, o nuorodą galima įtraukti į žymes."
+      },
+      "exchange_connect": {
+        "q": "Kaip prijungti biržą ir ar tai saugu?",
+        "a": "Investicijos → Biržų paskyros → Pridėti paskyrą. Bybit sukurkite API raktą su Read-Only teisėmis — raktai su prekybos teisėmis atmetami. Toks raktas gali tik skaityti istoriją: prekiauti ar išimti lėšų juo neįmanoma. Sandoriai į dienoraštį sinchronizuojami automatiškai."
+      },
+      "p2p": {
+        "q": "Pirkau kriptovaliutą per P2P — kaip tai užregistruoti?",
+        "a": "Per P2P pirktos monetos ateina be įnešimo įrašo. Užbaigtą pavedimą užregistruokite kaip pervedimą iš balanso (skirtuke P2P), kitaip jis bus įskaičiuotas kaip prekybos pelnas."
+      },
+      "theme_language": {
+        "q": "Kaip pakeisti temą ar kalbą?",
+        "a": "Jungikliai yra antraštėje. Telefone jie meniu po „mėsainio“ mygtuku."
+      }
+    }
   }
 }

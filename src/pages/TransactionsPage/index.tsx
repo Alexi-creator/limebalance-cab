@@ -14,7 +14,7 @@ import {
 } from "@mantine/core"
 import { useMediaQuery } from "@mantine/hooks"
 import { IconPlus } from "@tabler/icons-react"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { useCategories } from "@/modules/categories/api/useCategories"
@@ -27,7 +27,7 @@ import { useTransactions } from "@/modules/transactions/api/useTransactions"
 import { transactionsParamsSchema } from "@/modules/transactions/config"
 import { useTransactionsTour } from "@/modules/transactions/hooks/useTransactionsTour"
 import { buildFilterChipGroups } from "@/modules/transactions/lib/filterChips"
-import { periodDates } from "@/modules/transactions/lib/periods"
+import { DEFAULT_PERIOD, periodDates } from "@/modules/transactions/lib/periods"
 import {
   ActiveFilterChips,
   BulkDeleteModal,
@@ -58,12 +58,23 @@ export function TransactionsPage() {
     getInitialValueInEffect: false,
   })
   // Remembered between visits (see usePersistedUrlParams) — except the page, and a ready-made
-  // period comes back with today's dates.
-  const [params, setParams] = usePersistedUrlParams(transactionsParamsSchema, {
+  // period comes back with today's dates. A first visit opens on the default period, written
+  // into the URL.
+  const [urlParams, setParams] = usePersistedUrlParams(transactionsParamsSchema, {
     key: "transactions",
     omit: ["page"],
     onRestore: (p) => periodDates(p.period, p.from, p.to),
+    defaults: () => periodDates(DEFAULT_PERIOD),
   })
+  // A link with other params but no period (e.g. ?type=income) is on the default one too —
+  // it carries no dates, so they are worked out here, for the request and for the filter alike.
+  const params = useMemo(
+    () =>
+      urlParams.period
+        ? urlParams
+        : { ...urlParams, ...periodDates(undefined, urlParams.from, urlParams.to) },
+    [urlParams],
+  )
   const openModal = useModalStore((s) => s.open)
   const { startTour } = useTransactionsTour(params.view)
 

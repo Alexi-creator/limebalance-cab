@@ -2,6 +2,7 @@ import type { Icon } from "@tabler/icons-react"
 import {
   IconChartHistogram,
   IconCoin,
+  IconHelpCircle,
   IconHome,
   IconListDetails,
   IconSettings,
@@ -45,6 +46,9 @@ export const getNavGroups = (t: TFunction): NavGroup[] => [
   },
   {
     title: t("nav.account"),
-    items: [{ to: RouteNames.Settings, label: t("nav.settings"), icon: IconSettings }],
+    items: [
+      { to: RouteNames.Settings, label: t("nav.settings"), icon: IconSettings },
+      { to: RouteNames.Faq, label: t("nav.faq"), icon: IconHelpCircle },
+    ],
   },
 ]

@@ -61,7 +61,8 @@
     "menu": "Menüü",
     "account": "Konto",
     "logout": "Logi välja",
-    "auth": "Autentimine"
+    "auth": "Autentimine",
+    "faq": "Abi ja KKK"
   },
   "settings": {
     "title": "Seaded",
@@ -118,8 +119,7 @@
     "period_6m": "6 kuud",
     "period_1y": "1 aasta",
     "income": "Tulud",
-    "expense": "Kulud",
-    "day": "Päev"
+    "expense": "Kulud"
   },
   "common": {
     "notifications": "Teavitused",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % tulust",
     "kpi_savings_rate": "Säästumäär",
     "savings_share": "osa tulust",
-    "donut_empty": "Perioodil kulud puuduvad",
-    "donut_aria": "Kulude diagramm kategooriate kaupa",
-    "donut_center": "kulu",
-    "comparison_empty": "Perioodil muutusi pole",
     "chart_aria": "Tulude ja kulude diagramm perioodide kaupa",
     "income_vs_expense": "Tulud vs kulud",
     "expenses_by_category": "Kulud kategooriate kaupa",
-    "comparison_title": "Võrdlus eelmise perioodiga",
-    "comparison_subtitle": "Kus kulud muutusid",
+    "incomes_by_category": "Tulud kategooriate kaupa",
+    "prev_period_value": "Eelmine periood: {{amount}}",
     "details_title": "Tehingute üksikasjad",
     "details_empty": "Perioodil tehinguid pole",
     "tour_period_title": "Vali periood",
@@ -879,5 +875,132 @@
     "already_saved": "Praegused filtrid on salvestatud nimega „{{name}}“",
     "nothing_to_save": "Vali filtrid, et need eelseadistusena salvestada",
     "error": "Muudatusi ei õnnestunud salvestada. Proovi uuesti"
+  },
+  "faq": {
+    "title": "Abi ja KKK",
+    "subtitle": "Kuidas LimeBalance töötab, milleks iga jaotis on ja kuidas need koos moodustavad sinu saldo",
+    "search_placeholder": "Otsi küsimustest",
+    "search_empty": "Midagi ei leitud — proovi teist sõna",
+    "open_page": "Ava jaotis",
+    "sections": {
+      "start": "Alustamine",
+      "pages": "Rakenduse jaotised",
+      "balance": "Kuidas kõik saldoks kokku liitub",
+      "common": "Korduma kippuvad küsimused"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Tulud",
+      "expense": "Kulud",
+      "goals": "Eesmärkidesse kõrvale pandud",
+      "venues": "Börsidele ja rahakottidesse saadetud",
+      "note": "Valuutavahetusi valemis ei ole: need ainult liigutavad raha sinu valuutade vahel ega muuda kunagi kogusummat."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Kust alustada?",
+        "a": "1. Vali Seadetes põhivaluuta — selles kuvatakse kogu rakenduse summad.\n2. Loo tulu- ja kulukategooriad (näiteks Palk, Toidukaubad, Üür).\n3. Salvesta tehinguid päise nupuga „Lisa” või Telegrami boti kaudu.\n4. Sea eesmärgid, milleks säästad.\n5. Paari nädala pärast ava Analüütika ja vaata, kuhu raha läheb."
+      },
+      "quick_add": {
+        "q": "Kuidas kiiresti kirjet lisada?",
+        "a": "Päise nupp „Lisa” on saadaval igal lehel. Sellega lood tehingu (tulu või kulu), eesmärgi, valuutavahetuse või sisse-/väljamakse börsile või rahakotti. Kui Telegrami bot on ühendatud, saad tehinguid lisada ka otse vestluses."
+      },
+      "tours": {
+        "q": "Kas liidese kohta on juhend?",
+        "a": "Jah. Igal lehel on pealkirja kõrval tuuri nupp — see näitab lehe kohta lühikest samm-sammulist juhendit. Saad selle igal ajal uuesti käivitada."
+      },
+      "page_home": {
+        "q": "Ülevaade — mis on avalehel?",
+        "a": "Praegune saldo, selle kuu tulud, kulud ja vahe, rahavoogude graafik päevade kaupa, viimased tehingud ja eesmärkide ülevaade. See on kokkuvõte: kõik siin nähtav pärineb teistest jaotistest."
+      },
+      "page_transactions": {
+        "q": "Tehingud — kuidas nimekirjaga töötada?",
+        "a": "Kõik tulud ja kulud ühes tabelis: sortimine, otsing kirjelduse järgi, filtrid tüübi, kategooria, valuuta ja perioodi järgi. Märgi read, et kustutada mitu korraga. Filtrid salvestuvad aadressiribale, nii et link või järjehoidja avab sama vaate, ja filtrite komplekti saab salvestada eelseadistusena. Vahekaardil „Vahetus” on sinu valuutavahetused."
+      },
+      "page_categories": {
+        "q": "Kategooriad — milleks neid vaja on?",
+        "a": "Iga tehing kuulub kategooriasse, seega enne esimest tehingut on vaja vähemalt ühte kategooriat. Kategooriad jagunevad kulu- ja tulukategooriateks, igaühel oma emoji ja värv. Kaart näitab kogu aja summat; sealt saad lisada tehingu otse sellesse kategooriasse."
+      },
+      "page_analytics": {
+        "q": "Analüütika — mida see näitab?",
+        "a": "Tulud ja kulud perioodide kaupa (nädal, kuu, kvartal, aasta või oma kuupäevad), kui palju oled säästnud ja säästumäära, jaotust kategooriate kaupa ning mis on eelmise perioodiga võrreldes muutunud."
+      },
+      "page_goals": {
+        "q": "Eesmärgid — kuidas säästmine toimib?",
+        "a": "Määra summa ja soovi korral tähtaeg — LimeBalance arvutab, kui palju kuus kõrvale panna. Eesmärki saab raha sisse maksta ja sealt välja võtta ning vaadata sissemaksete ajalugu. Riba on punane, kui eesmärk jääb maha või on alla 25%, kollane, kui tähtaeg läheneb, muidu roheline."
+      },
+      "page_investments": {
+        "q": "Investeeringud — mis selles jaotises on?",
+        "a": "Kauplemispäevik PnL-i ja võiduprotsendiga, sisse- ja väljamaksed börsidele ja rahakottidesse, Bybiti P2P-orderid ning ühendatud börsikontod. Jaotis on saadaval igas tasulises paketis."
+      },
+      "page_settings": {
+        "q": "Seaded — mida saan muuta?",
+        "a": "Nime ja põhivaluutat, e-posti ja parooli, Telegrami boti sidumist ning seda, milliseid teavitusi bot saadab."
+      },
+      "balance_formula": {
+        "q": "Kuidas saldo arvutatakse?",
+        "a": "Saldo on sinu vaba raha: kõik tulud miinus kõik kulud, miinus aktiivsetesse eesmärkidesse kõrvale pandu, miinus börsidele ja rahakottidesse saadetu. See ei sõltu perioodist — alati on see kogu ajalugu. Mis tahes tehingu kustutamine või muutmine muudab seda kohe."
+      },
+      "balance_currencies": {
+        "q": "Miks saldo on valuutade kaupa ja märgiga „≈”?",
+        "a": "Iga valuutat arvestatakse eraldi ja seda ei konverteerita kunagi — saldo all olevad valuutapõhised summad on täpsed. Suur number liidab need tänase kursiga põhivaluutasse, nii et kui sul on rohkem kui üks valuuta, on see ligikaudne ja tähistatud märgiga „≈”."
+      },
+      "balance_goals": {
+        "q": "Mis juhtub rahaga, mille eesmärki maksan?",
+        "a": "See jääb sinu omaks, kuid broneeritakse: see lahkub vabast saldost ja kuvatakse eesmärgis. Eesmärgist väljavõtmine, selle sulgemine või kustutamine toob raha saldosse tagasi. Sissemakse eesmärki ei ole kulu ega ilmu analüütikasse."
+      },
+      "balance_exchange": {
+        "q": "Miks valuutavahetusi salvestada?",
+        "a": "Kui saad raha ühes valuutas ja kulutad teises, salvesta vahetus — muidu läheb kuluvaluuta miinusesse, samal ajal kui teine koguneb. Vahetus ei ole tulu ega kulu, see ainult liigutab raha sinu valuutade vahel. Kui mõni valuuta läheb miinusesse, näitab Ülevaade hoiatust ja nuppu vahetuse salvestamiseks."
+      },
+      "balance_transfer": {
+        "q": "Mis on sisse- või väljamakse börsile?",
+        "a": "Raha, mille saatsid investeerimiseks börsile või rahakotti. See lahkub vabast saldost, kuid ei ole kulu: Ülevaade näitab seda eraldi kui „platvormidel” tänase väärtusega. Kui raha tagasi tood, salvesta väljamakse ja see naaseb saldosse."
+      },
+      "balance_analytics": {
+        "q": "Miks analüütika ei ühti saldoga?",
+        "a": "Analüütika arvestab ainult valitud perioodi tulusid ja kulusid. Saldo on kogu ajalugu ning arvestab ka eesmärke, sissemakseid börsidele ja valuutavahetusi — mis ei ole ei tulud ega kulud."
+      },
+      "base_currency": {
+        "q": "Kuidas põhivaluutat muuta?",
+        "a": "Seaded → Üldine. Kogu rakenduse summad arvutatakse praeguse kursiga uude valuutasse ümber. Tehingud jäävad sellesse valuutasse, milles need salvestati."
+      },
+      "delete_category": {
+        "q": "Mis juhtub, kui kustutan kategooria?",
+        "a": "Kõik selle kategooria tehingud kustutatakse koos sellega jäädavalt. Saldo ja analüütika arvutatakse ilma nendeta ümber. Kui soovid seda ainult ümber nimetada, muuda kategooriat."
+      },
+      "limits": {
+        "q": "Millised piirangud on tasuta paketil?",
+        "a": "Tasuta pakett piirab kategooriate ja kuu tehingute arvu — rakendus hoiatab, kui alles on vaid paar. Tehingute loendur nullitakse iga kuu alguses. Tasulised paketid eemaldavad piirangud ja avavad jaotise Investeeringud."
+      },
+      "telegram_bot": {
+        "q": "Kuidas ühendada Telegrami bot?",
+        "a": "Klõpsa külgmenüüs „Ühenda Telegram” või ava Seaded → Telegram. Pärast sidumist ilmuvad boti vestluses lisatud tehingud siia automaatselt. Seadetes saad valida ka, milliseid sõnumeid bot saadab, näiteks kuu kokkuvõtte."
+      },
+      "telegram_login": {
+        "q": "Logisin sisse Telegramiga — kas vajan e-posti?",
+        "a": "Soovitatav on. Lisa e-post ja parool jaotises Seaded → E-post ja parool ning kinnita aadress kirjas oleva lingiga — nii ei kaota sa ligipääsu kontole ja saad sisse logida ka ilma Telegramita."
+      },
+      "forgot_password": {
+        "q": "Unustasin parooli",
+        "a": "Klõpsa sisselogimislehel „Unustasid parooli?” ja sisesta oma e-post — saadame lingi uue parooli määramiseks. Kui logisid sisse Telegrami või Google'iga, kasuta lihtsalt sama viisi."
+      },
+      "filters_presets": {
+        "q": "Kuidas salvestada sageli kasutatavaid filtreid?",
+        "a": "Sea lehel Tehingud vajalikud filtrid ja salvesta need eelseadistusena — hiljem rakendub see ühe klõpsuga. Lisaks salvestuvad filtrid aadressiribale: leht avaneb nendega uuesti ja lingi saab järjehoidjasse lisada."
+      },
+      "exchange_connect": {
+        "q": "Kuidas börsi ühendada ja kas see on turvaline?",
+        "a": "Investeeringud → Börsikontod → Lisa konto. Loo Bybitis Read-Only õigustega API-võti — kauplemisõigustega võtmed lükatakse tagasi. Selline võti saab ainult sinu ajalugu lugeda: sellega kaubelda või raha välja võtta on võimatu. Tehingud sünkroniseeritakse päevikusse automaatselt."
+      },
+      "p2p": {
+        "q": "Ostsin krüptot P2P kaudu — kuidas seda salvestada?",
+        "a": "P2P kaudu ostetud mündid saabuvad ilma sissemakse kirjeta. Salvesta lõpetatud order ülekandena saldost (vahekaardil P2P), muidu loetakse see kauplemiskasumiks."
+      },
+      "theme_language": {
+        "q": "Kuidas teemat või keelt vahetada?",
+        "a": "Lülitid asuvad päises. Mobiilis leiad need hamburgerinupu menüüst."
+      }
+    }
   }
 }

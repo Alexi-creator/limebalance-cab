@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Account",
     "logout": "Esci",
-    "auth": "Autenticazione"
+    "auth": "Autenticazione",
+    "faq": "Aiuto e FAQ"
   },
   "settings": {
     "title": "Impostazioni",
@@ -118,8 +119,7 @@
     "period_6m": "6 mesi",
     "period_1y": "1 anno",
     "income": "Entrate",
-    "expense": "Uscite",
-    "day": "Giorno"
+    "expense": "Uscite"
   },
   "common": {
     "notifications": "Notifiche",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % del reddito",
     "kpi_savings_rate": "Tasso di risparmio",
     "savings_share": "quota del reddito",
-    "donut_empty": "Nessuna uscita nel periodo",
-    "donut_aria": "Grafico delle uscite per categoria",
-    "donut_center": "uscita",
-    "comparison_empty": "Nessuna variazione nel periodo",
     "chart_aria": "Grafico delle entrate e uscite per periodo",
     "income_vs_expense": "Entrate vs uscite",
     "expenses_by_category": "Uscite per categoria",
-    "comparison_title": "Confronto con il periodo precedente",
-    "comparison_subtitle": "Dove sono cambiate le uscite",
+    "incomes_by_category": "Entrate per categoria",
+    "prev_period_value": "Periodo precedente: {{amount}}",
     "details_title": "Dettaglio delle transazioni",
     "details_empty": "Nessuna transazione nel periodo",
     "tour_period_title": "Scegli un periodo",
@@ -879,5 +875,132 @@
     "already_saved": "I filtri attuali sono salvati come «{{name}}»",
     "nothing_to_save": "Scegli dei filtri per salvarli come preset",
     "error": "Impossibile salvare le modifiche. Riprova"
+  },
+  "faq": {
+    "title": "Aiuto e FAQ",
+    "subtitle": "Come funziona LimeBalance, a cosa serve ogni sezione e come insieme formano il tuo saldo",
+    "search_placeholder": "Cerca tra le domande",
+    "search_empty": "Nessun risultato — prova un'altra parola",
+    "open_page": "Apri sezione",
+    "sections": {
+      "start": "Per iniziare",
+      "pages": "Sezioni dell'app",
+      "balance": "Come tutto si somma nel saldo",
+      "common": "Domande frequenti"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Entrate",
+      "expense": "Spese",
+      "goals": "Accantonato negli obiettivi",
+      "venues": "Inviato a exchange e wallet",
+      "note": "I cambi valuta non sono nella formula: spostano solo denaro tra le tue valute e non cambiano mai il totale."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Da dove comincio?",
+        "a": "1. Scegli la valuta base nelle Impostazioni — i totali di tutta l'app vengono mostrati in questa valuta.\n2. Crea categorie di entrate e spese (ad esempio Stipendio, Spesa, Affitto).\n3. Registra le transazioni con il pulsante «Aggiungi» nell'intestazione o tramite il bot Telegram.\n4. Crea obiettivi per ciò per cui stai risparmiando.\n5. Dopo un paio di settimane apri l'Analisi per vedere dove va il denaro."
+      },
+      "quick_add": {
+        "q": "Come aggiungo velocemente una voce?",
+        "a": "Il pulsante «Aggiungi» nell'intestazione è disponibile in ogni pagina. Crea una transazione (entrata o spesa), un obiettivo, un cambio valuta o un deposito/prelievo verso un exchange o un wallet. Se il bot Telegram è collegato, puoi aggiungere transazioni anche direttamente in chat."
+      },
+      "tours": {
+        "q": "C'è una guida all'interfaccia?",
+        "a": "Sì. Ogni pagina ha un pulsante tour accanto al titolo: mostra una breve guida passo passo alla pagina. Puoi riavviarla in qualsiasi momento."
+      },
+      "page_home": {
+        "q": "Panoramica — cosa c'è nella home?",
+        "a": "Il saldo attuale, entrate, spese e differenza del mese, un grafico del flusso di cassa per giorno, le ultime transazioni e un riepilogo degli obiettivi. È una sintesi: tutto ciò che vedi qui proviene dalle altre sezioni."
+      },
+      "page_transactions": {
+        "q": "Transazioni — come si usa l'elenco?",
+        "a": "Tutte le entrate e le spese in un'unica tabella: ordina, cerca per descrizione, filtra per tipo, categoria, valuta e periodo. Seleziona le righe per eliminarne più d'una alla volta. I filtri restano nella barra degli indirizzi, quindi un link o un segnalibro apre la stessa vista, e un insieme di filtri si può salvare come preset. La scheda «Cambio» elenca i tuoi cambi valuta."
+      },
+      "page_categories": {
+        "q": "Categorie — a cosa servono?",
+        "a": "Ogni transazione appartiene a una categoria, quindi prima della prima transazione serve almeno una categoria. Le categorie si dividono in spese ed entrate, ognuna con emoji e colore propri. La scheda mostra il totale di sempre; da lì puoi aggiungere una transazione direttamente in quella categoria."
+      },
+      "page_analytics": {
+        "q": "Analisi — cosa mostra?",
+        "a": "Entrate e spese per periodo (settimana, mese, trimestre, anno o date personalizzate), quanto hai risparmiato e il tasso di risparmio, la suddivisione per categoria e cosa è cambiato rispetto al periodo precedente."
+      },
+      "page_goals": {
+        "q": "Obiettivi — come funzionano i risparmi?",
+        "a": "Imposta un importo e, se vuoi, una scadenza — LimeBalance calcola quanto mettere da parte ogni mese. Puoi versare in un obiettivo o prelevarne e vedere lo storico dei versamenti. La barra è rossa se l'obiettivo è in ritardo o sotto il 25%, gialla quando la scadenza è vicina, verde negli altri casi."
+      },
+      "page_investments": {
+        "q": "Investimenti — cosa c'è in questa sezione?",
+        "a": "Un diario di trading con PnL e win rate, depositi e prelievi verso exchange e wallet, ordini P2P di Bybit e account exchange collegati. La sezione è disponibile con qualsiasi piano a pagamento."
+      },
+      "page_settings": {
+        "q": "Impostazioni — cosa posso modificare?",
+        "a": "Il tuo nome e la valuta base, email e password, il collegamento al bot Telegram e quali notifiche ti invia il bot."
+      },
+      "balance_formula": {
+        "q": "Come viene calcolato il saldo?",
+        "a": "Il saldo è il tuo denaro disponibile: tutte le entrate meno tutte le spese, meno quanto accantonato negli obiettivi attivi, meno quanto inviato a exchange e wallet. Non dipende dal periodo: è sempre l'intero storico. Eliminare o modificare una transazione lo cambia subito."
+      },
+      "balance_currencies": {
+        "q": "Perché il saldo è mostrato per valuta e con «≈»?",
+        "a": "Ogni valuta è contata separatamente e non viene mai convertita: gli importi per valuta sotto il saldo sono esatti. La cifra grande li somma nella valuta base al cambio di oggi, quindi se possiedi più valute è approssimativa e contrassegnata con «≈»."
+      },
+      "balance_goals": {
+        "q": "Cosa succede al denaro versato in un obiettivo?",
+        "a": "Resta tuo ma viene riservato: esce dal saldo disponibile e appare nell'obiettivo. Prelevare dall'obiettivo, chiuderlo o eliminarlo riporta il denaro nel saldo. Un versamento in un obiettivo non è una spesa e non compare nell'analisi."
+      },
+      "balance_exchange": {
+        "q": "Perché registrare i cambi valuta?",
+        "a": "Se vieni pagato in una valuta e spendi in un'altra, registra il cambio: altrimenti la valuta che spendi va in negativo mentre l'altra si accumula. Un cambio non è né entrata né spesa, sposta solo denaro tra le tue valute. Se una valuta va in negativo, la Panoramica mostra un avviso con un pulsante per registrare il cambio."
+      },
+      "balance_transfer": {
+        "q": "Cos'è un deposito o prelievo verso un exchange?",
+        "a": "Denaro inviato a un exchange o a un wallet per investire. Esce dal saldo disponibile ma non è una spesa: la Panoramica lo mostra a parte, «sulle piattaforme», al valore di oggi. Quando riporti indietro il denaro, registra un prelievo e tornerà nel saldo."
+      },
+      "balance_analytics": {
+        "q": "Perché l'analisi non corrisponde al saldo?",
+        "a": "L'analisi conta solo entrate e spese del periodo scelto. Il saldo è l'intero storico e tiene conto anche di obiettivi, depositi sugli exchange e cambi valuta, che non sono né entrate né spese."
+      },
+      "base_currency": {
+        "q": "Come cambio la valuta base?",
+        "a": "In Impostazioni → Generali. I totali di tutta l'app verranno ricalcolati nella nuova valuta al cambio attuale. Le transazioni restano nella valuta in cui sono state registrate."
+      },
+      "delete_category": {
+        "q": "Cosa succede se elimino una categoria?",
+        "a": "Tutte le transazioni di quella categoria vengono eliminate con essa, in modo irreversibile. Saldo e analisi vengono ricalcolati senza di esse. Se vuoi solo rinominarla, modifica la categoria."
+      },
+      "limits": {
+        "q": "Quali limiti ha il piano gratuito?",
+        "a": "Il piano gratuito limita il numero di categorie e di transazioni al mese: l'app ti avvisa quando ne restano poche. Il contatore delle transazioni si azzera all'inizio di ogni mese. I piani a pagamento rimuovono i limiti e sbloccano la sezione Investimenti."
+      },
+      "telegram_bot": {
+        "q": "Come collego il bot Telegram?",
+        "a": "Fai clic su «Collega Telegram» nel menu laterale oppure apri Impostazioni → Telegram. Dopo il collegamento, le transazioni aggiunte nella chat del bot compaiono qui automaticamente. Nelle Impostazioni puoi anche scegliere quali messaggi invia il bot, come il riepilogo mensile."
+      },
+      "telegram_login": {
+        "q": "Ho effettuato l'accesso con Telegram — mi serve un'email?",
+        "a": "È consigliato. Aggiungi email e password in Impostazioni → Email e password e conferma l'indirizzo dal link ricevuto: così non perderai l'accesso all'account e potrai entrare anche senza Telegram."
+      },
+      "forgot_password": {
+        "q": "Ho dimenticato la password",
+        "a": "Nella pagina di accesso fai clic su «Password dimenticata?» e inserisci la tua email: ti invieremo un link per impostarne una nuova. Se hai effettuato l'accesso con Telegram o Google, usa semplicemente lo stesso metodo."
+      },
+      "filters_presets": {
+        "q": "Come salvo i filtri che uso spesso?",
+        "a": "Nella pagina Transazioni imposta i filtri che ti servono e salvali come preset: poi si applicano con un clic. Inoltre i filtri restano nella barra degli indirizzi: la pagina si riapre con loro e il link si può salvare nei segnalibri."
+      },
+      "exchange_connect": {
+        "q": "Come collego un exchange ed è sicuro?",
+        "a": "Investimenti → Account exchange → Aggiungi account. Su Bybit crea una chiave API di sola lettura (Read-Only): le chiavi con permessi di trading vengono rifiutate. Una chiave del genere può solo leggere lo storico: fare trading o prelevare fondi con essa è impossibile. Le operazioni si sincronizzano automaticamente nel diario."
+      },
+      "p2p": {
+        "q": "Ho comprato cripto in P2P — come lo registro?",
+        "a": "Le monete comprate in P2P arrivano senza un record di deposito. Registra l'ordine completato come trasferimento dal saldo (nella scheda P2P), altrimenti verrà contato come profitto di trading."
+      },
+      "theme_language": {
+        "q": "Come cambio tema o lingua?",
+        "a": "I comandi si trovano nell'intestazione. Su mobile sono nel menu del pulsante hamburger."
+      }
+    }
   }
 }

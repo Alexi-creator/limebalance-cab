@@ -61,7 +61,8 @@
     "menu": "Izvēlne",
     "account": "Konts",
     "logout": "Iziet",
-    "auth": "Autentifikācija"
+    "auth": "Autentifikācija",
+    "faq": "Palīdzība un BUJ"
   },
   "settings": {
     "title": "Iestatījumi",
@@ -118,8 +119,7 @@
     "period_6m": "6 mēn.",
     "period_1y": "1 gads",
     "income": "Ieņēmumi",
-    "expense": "Izdevumi",
-    "day": "Diena"
+    "expense": "Izdevumi"
   },
   "common": {
     "notifications": "Paziņojumi",
@@ -383,15 +383,11 @@
     "savings_of_income": "{{rate}} % no ieņēmumiem",
     "kpi_savings_rate": "Uzkrājumu likme",
     "savings_share": "daļa no ieņēmumiem",
-    "donut_empty": "Periodā nav izdevumu",
-    "donut_aria": "Izdevumu diagramma pa kategorijām",
-    "donut_center": "izdevumi",
-    "comparison_empty": "Periodā nav izmaiņu",
     "chart_aria": "Ieņēmumu un izdevumu diagramma pa periodiem",
     "income_vs_expense": "Ieņēmumi pret izdevumiem",
     "expenses_by_category": "Izdevumi pa kategorijām",
-    "comparison_title": "Salīdzinājums ar iepriekšējo periodu",
-    "comparison_subtitle": "Kur izdevumi mainījās",
+    "incomes_by_category": "Ieņēmumi pa kategorijām",
+    "prev_period_value": "Iepriekšējais periods: {{amount}}",
     "details_title": "Darījumu detaļas",
     "details_empty": "Periodā nav darījumu",
     "tour_period_title": "Izvēlieties periodu",
@@ -894,5 +890,132 @@
     "already_saved": "Pašreizējie filtri ir saglabāti kā “{{name}}”",
     "nothing_to_save": "Izvēlieties filtrus, lai tos saglabātu kā sagatavi",
     "error": "Neizdevās saglabāt izmaiņas. Mēģiniet vēlreiz"
+  },
+  "faq": {
+    "title": "Palīdzība un BUJ",
+    "subtitle": "Kā darbojas LimeBalance, kam paredzēta katra sadaļa un kā tās kopā veido jūsu bilanci",
+    "search_placeholder": "Meklēt jautājumos",
+    "search_empty": "Nekas netika atrasts — mēģiniet citu vārdu",
+    "open_page": "Atvērt sadaļu",
+    "sections": {
+      "start": "Darba sākšana",
+      "pages": "Lietotnes sadaļas",
+      "balance": "Kā viss saskaitās bilancē",
+      "common": "Biežāk uzdotie jautājumi"
+    },
+    "formula": {
+      "balance": "Bilance",
+      "income": "Ienākumi",
+      "expense": "Izdevumi",
+      "goals": "Atlikts mērķos",
+      "venues": "Nosūtīts uz biržām un makiem",
+      "note": "Valūtas maiņas formulā nav: tās tikai pārvieto naudu starp jūsu valūtām un nekad nemaina kopsummu."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Ar ko sākt?",
+        "a": "1. Iestatījumos izvēlieties bāzes valūtu — tajā tiek rādītas kopsummas visā lietotnē.\n2. Izveidojiet ienākumu un izdevumu kategorijas (piemēram, Alga, Pārtika, Īre).\n3. Reģistrējiet darījumus ar galvenes pogu „Pievienot“ vai ar Telegram bota palīdzību.\n4. Izveidojiet mērķus, kuriem krājat.\n5. Pēc pāris nedēļām atveriet Analītiku un redziet, kur aiziet nauda."
+      },
+      "quick_add": {
+        "q": "Kā ātri pievienot ierakstu?",
+        "a": "Galvenes poga „Pievienot“ ir pieejama katrā lapā. Ar to izveidojat darījumu (ienākumu vai izdevumu), mērķi, valūtas maiņu vai iemaksu/izņemšanu uz biržu vai maku. Ja Telegram bots ir savienots, darījumus var pievienot arī tieši tērzēšanā."
+      },
+      "tours": {
+        "q": "Vai ir saskarnes ceļvedis?",
+        "a": "Jā. Katrā lapā blakus virsrakstam ir ceļveža poga — tā parāda īsu soli pa solim lapas aprakstu. To var palaist atkārtoti jebkurā laikā."
+      },
+      "page_home": {
+        "q": "Pārskats — kas ir sākumlapā?",
+        "a": "Pašreizējā bilance, šī mēneša ienākumi, izdevumi un starpība, naudas plūsmas grafiks pa dienām, pēdējie darījumi un mērķu pārskats. Tas ir kopsavilkums: viss, kas šeit redzams, nāk no citām sadaļām."
+      },
+      "page_transactions": {
+        "q": "Darījumi — kā strādāt ar sarakstu?",
+        "a": "Visi ienākumi un izdevumi vienā tabulā: kārtošana, meklēšana pēc apraksta, filtri pēc veida, kategorijas, valūtas un perioda. Atzīmējiet rindas, lai dzēstu vairākas uzreiz. Filtri tiek saglabāti adreses joslā, tāpēc saite vai grāmatzīme atver to pašu skatu, un filtru kopu var saglabāt kā sagatavi. Cilnē „Maiņa“ ir jūsu valūtas maiņas."
+      },
+      "page_categories": {
+        "q": "Kategorijas — kam tās vajadzīgas?",
+        "a": "Katrs darījums pieder kategorijai, tāpēc pirms pirmā darījuma vajag vismaz vienu kategoriju. Kategorijas iedalās izdevumu un ienākumu, katrai ir sava emocijzīme un krāsa. Kartītē redzama visa laika summa; no tās var uzreiz pievienot darījumu šajā kategorijā."
+      },
+      "page_analytics": {
+        "q": "Analītika — ko tā rāda?",
+        "a": "Ienākumus un izdevumus pa periodiem (nedēļa, mēnesis, ceturksnis, gads vai savi datumi), cik izdevās uzkrāt un uzkrājumu likmi, sadalījumu pa kategorijām un to, kas mainījies salīdzinājumā ar iepriekšējo periodu."
+      },
+      "page_goals": {
+        "q": "Mērķi — kā darbojas uzkrāšana?",
+        "a": "Norādiet summu un, ja vēlaties, termiņu — LimeBalance aprēķinās, cik atlikt katru mēnesi. Mērķī var iemaksāt un no tā izņemt, var skatīt iemaksu vēsturi. Josla ir sarkana, ja mērķis atpaliek vai ir zem 25%, dzeltena, kad termiņš tuvojas, citādi zaļa."
+      },
+      "page_investments": {
+        "q": "Investīcijas — kas ir šajā sadaļā?",
+        "a": "Darījumu žurnāls ar PnL un veiksmīgo darījumu īpatsvaru, iemaksas un izņemšana uz biržām un makiem, Bybit P2P rīkojumi un savienotie biržas konti. Sadaļa pieejama jebkurā maksas plānā."
+      },
+      "page_settings": {
+        "q": "Iestatījumi — ko varu mainīt?",
+        "a": "Vārdu un bāzes valūtu, e-pastu un paroli, Telegram bota sasaisti un to, kādus paziņojumus bots sūta."
+      },
+      "balance_formula": {
+        "q": "Kā tiek aprēķināta bilance?",
+        "a": "Bilance ir jūsu brīvā nauda: visi ienākumi mīnus visi izdevumi, mīnus tas, kas atlikts aktīvajos mērķos, mīnus tas, kas nosūtīts uz biržām un makiem. Tā nav atkarīga no perioda — tā vienmēr ir visa vēsture. Jebkura darījuma dzēšana vai labošana to uzreiz maina."
+      },
+      "balance_currencies": {
+        "q": "Kāpēc bilance ir sadalīta pa valūtām un ar „≈“?",
+        "a": "Katra valūta tiek skaitīta atsevišķi un nekad netiek konvertēta — summas pa valūtām zem bilances ir precīzas. Lielais skaitlis tās saskaita bāzes valūtā pēc šodienas kursa, tāpēc, ja valūtu ir vairāk par vienu, tas ir aptuvens un apzīmēts ar „≈“."
+      },
+      "balance_goals": {
+        "q": "Kas notiek ar naudu, kas iemaksāta mērķī?",
+        "a": "Tā paliek jūsu, taču tiek rezervēta: tā iziet no brīvās bilances un tiek rādīta mērķī. Izņemšana no mērķa, tā slēgšana vai dzēšana atgriež naudu bilancē. Iemaksa mērķī nav izdevums un analītikā neparādās."
+      },
+      "balance_exchange": {
+        "q": "Kāpēc reģistrēt valūtas maiņu?",
+        "a": "Ja naudu saņemat vienā valūtā, bet tērējat citā, reģistrējiet maiņu — citādi tēriņu valūta aizies mīnusā, bet otra krāsies. Maiņa nav ne ienākums, ne izdevums, tā tikai pārvieto naudu starp jūsu valūtām. Ja kāda valūta aizgājusi mīnusā, Pārskatā parādīsies brīdinājums ar pogu maiņas reģistrēšanai."
+      },
+      "balance_transfer": {
+        "q": "Kas ir iemaksa vai izņemšana uz biržu?",
+        "a": "Tā ir nauda, ko nosūtījāt uz biržu vai maku, lai investētu. Tā iziet no brīvās bilances, bet nav izdevums: Pārskatā tā redzama atsevišķi kā „platformās“ pēc šodienas vērtības. Kad naudu atgūsiet, reģistrējiet izņemšanu, un tā atgriezīsies bilancē."
+      },
+      "balance_analytics": {
+        "q": "Kāpēc analītika nesakrīt ar bilanci?",
+        "a": "Analītika skaita tikai izvēlētā perioda ienākumus un izdevumus. Bilance ir visa vēsture, un tajā ņemti vērā arī mērķi, iemaksas biržās un valūtas maiņas, kas nav ne ienākumi, ne izdevumi."
+      },
+      "base_currency": {
+        "q": "Kā mainīt bāzes valūtu?",
+        "a": "Iestatījumi → Vispārīgi. Kopsummas visā lietotnē tiks pārrēķinātas jaunajā valūtā pēc pašreizējā kursa. Paši darījumi paliek tajā valūtā, kurā tie tika reģistrēti."
+      },
+      "delete_category": {
+        "q": "Kas notiks, ja izdzēsīšu kategoriju?",
+        "a": "Kopā ar kategoriju neatgriezeniski tiks dzēsti visi tās darījumi. Bilance un analītika tiks pārrēķinātas bez tiem. Ja vēlaties tikai pārdēvēt, labāk rediģējiet kategoriju."
+      },
+      "limits": {
+        "q": "Kādi ir bezmaksas plāna ierobežojumi?",
+        "a": "Bezmaksas plānā ierobežots kategoriju un mēneša darījumu skaits — lietotne brīdinās, kad paliks tikai daži. Darījumu skaitītājs tiek nonullēts katra mēneša sākumā. Maksas plāni noņem ierobežojumus un atver sadaļu Investīcijas."
+      },
+      "telegram_bot": {
+        "q": "Kā savienot Telegram botu?",
+        "a": "Sānu izvēlnē noklikšķiniet „Savienot Telegram“ vai atveriet Iestatījumi → Telegram. Pēc sasaistes darījumi, kas pievienoti tērzēšanā ar botu, šeit parādīsies automātiski. Iestatījumos var arī izvēlēties, kādas ziņas bots sūta, piemēram, mēneša kopsavilkumu."
+      },
+      "telegram_login": {
+        "q": "Pieteicos ar Telegram — vai vajag e-pastu?",
+        "a": "Ieteicams. Pievienojiet e-pastu un paroli sadaļā Iestatījumi → E-pasts un parole un apstipriniet adresi ar saiti no vēstules — tā nezaudēsiet piekļuvi kontam un varēsiet pieteikties arī bez Telegram."
+      },
+      "forgot_password": {
+        "q": "Aizmirsu paroli",
+        "a": "Pieteikšanās lapā noklikšķiniet „Aizmirsāt paroli?“ un ievadiet e-pastu — nosūtīsim saiti jaunas paroles iestatīšanai. Ja pieteicāties ar Telegram vai Google, vienkārši izmantojiet to pašu veidu."
+      },
+      "filters_presets": {
+        "q": "Kā saglabāt bieži lietotus filtrus?",
+        "a": "Lapā Darījumi iestatiet vajadzīgos filtrus un saglabājiet tos kā sagatavi — pēc tam to var lietot ar vienu klikšķi. Turklāt filtri tiek saglabāti adreses joslā: lapa atkal atvērsies ar tiem, un saiti var pievienot grāmatzīmēm."
+      },
+      "exchange_connect": {
+        "q": "Kā savienot biržu un vai tas ir droši?",
+        "a": "Investīcijas → Biržas konti → Pievienot kontu. Bybit izveidojiet API atslēgu ar Read-Only tiesībām — atslēgas ar tirdzniecības tiesībām tiek noraidītas. Šāda atslēga var tikai lasīt vēsturi: tirgoties vai izņemt līdzekļus ar to nav iespējams. Darījumi žurnālā sinhronizējas automātiski."
+      },
+      "p2p": {
+        "q": "Nopirku kriptovalūtu P2P — kā to reģistrēt?",
+        "a": "P2P nopirktās monētas pienāk bez iemaksas ieraksta. Reģistrējiet pabeigto rīkojumu kā pārskaitījumu no bilances (cilnē P2P), citādi tas tiks ieskaitīts kā tirdzniecības peļņa."
+      },
+      "theme_language": {
+        "q": "Kā mainīt tēmu vai valodu?",
+        "a": "Pārslēgi atrodas galvenē. Tālrunī tie ir izvēlnē aiz „burgera“ pogas."
+      }
+    }
   }
 }

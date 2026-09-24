@@ -61,7 +61,8 @@
     "menu": "Meni",
     "account": "Račun",
     "logout": "Odjava",
-    "auth": "Avtentikacija"
+    "auth": "Avtentikacija",
+    "faq": "Pomoč in FAQ"
   },
   "settings": {
     "title": "Nastavitve",
@@ -118,8 +119,7 @@
     "period_6m": "6 mes.",
     "period_1y": "1 leto",
     "income": "Prihodki",
-    "expense": "Odhodki",
-    "day": "Dan"
+    "expense": "Odhodki"
   },
   "common": {
     "notifications": "Obvestila",
@@ -394,15 +394,11 @@
     "savings_of_income": "{{rate}} % prihodka",
     "kpi_savings_rate": "Stopnja varčevanja",
     "savings_share": "delež prihodka",
-    "donut_empty": "V obdobju ni odhodkov",
-    "donut_aria": "Grafikon odhodkov po kategorijah",
-    "donut_center": "odhodek",
-    "comparison_empty": "V obdobju ni sprememb",
     "chart_aria": "Grafikon prihodkov in odhodkov po obdobju",
     "income_vs_expense": "Prihodki proti odhodkom",
     "expenses_by_category": "Odhodki po kategorijah",
-    "comparison_title": "Primerjava s prejšnjim obdobjem",
-    "comparison_subtitle": "Kje so se odhodki spremenili",
+    "incomes_by_category": "Prihodki po kategorijah",
+    "prev_period_value": "Prejšnje obdobje: {{amount}}",
     "details_title": "Podrobnosti transakcij",
     "details_empty": "Ni transakcij za obdobje",
     "tour_period_title": "Izberite obdobje",
@@ -909,5 +905,132 @@
     "already_saved": "Trenutni filtri so shranjeni kot »{{name}}«",
     "nothing_to_save": "Izberite filtre, da jih shranite kot predlogo",
     "error": "Sprememb ni bilo mogoče shraniti. Poskusite znova"
+  },
+  "faq": {
+    "title": "Pomoč in FAQ",
+    "subtitle": "Kako deluje LimeBalance, čemu je namenjen vsak razdelek in kako skupaj tvorijo vaše stanje",
+    "search_placeholder": "Iskanje po vprašanjih",
+    "search_empty": "Ni zadetkov — poskusite z drugo besedo",
+    "open_page": "Odpri razdelek",
+    "sections": {
+      "start": "Prvi koraki",
+      "pages": "Razdelki aplikacije",
+      "balance": "Kako se vse sešteje v stanje",
+      "common": "Pogosta vprašanja"
+    },
+    "formula": {
+      "balance": "Stanje",
+      "income": "Prihodki",
+      "expense": "Odhodki",
+      "goals": "Prihranjeno v ciljih",
+      "venues": "Poslano na borze in denarnice",
+      "note": "Menjav valut ni v formuli: le premikajo denar med vašimi valutami in nikoli ne spremenijo vsote."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Kje začeti?",
+        "a": "1. V Nastavitvah izberite osnovno valuto — v njej so prikazane vsote v celotni aplikaciji.\n2. Ustvarite kategorije prihodkov in odhodkov (npr. Plača, Živila, Najemnina).\n3. Beležite transakcije z gumbom »Dodaj« v glavi ali prek Telegram bota.\n4. Nastavite cilje, za katere varčujete.\n5. Čez nekaj tednov odprite Analitiko in poglejte, kam gre denar."
+      },
+      "quick_add": {
+        "q": "Kako hitro dodam zapis?",
+        "a": "Gumb »Dodaj« v glavi je na voljo na vsaki strani. Z njim ustvarite transakcijo (prihodek ali odhodek), cilj, menjavo valut ali polog/dvig na borzo ali denarnico. Ko je Telegram bot povezan, lahko transakcije dodajate tudi neposredno v klepetu."
+      },
+      "tours": {
+        "q": "Ali obstaja vodič po vmesniku?",
+        "a": "Da. Na vsaki strani je poleg naslova gumb za vodič — prikaže kratka navodila za stran po korakih. Kadar koli ga lahko zaženete znova."
+      },
+      "page_home": {
+        "q": "Pregled — kaj je na začetni strani?",
+        "a": "Trenutno stanje, prihodki, odhodki in razlika za ta mesec, graf denarnega toka po dnevih, zadnje transakcije in pregled ciljev. Gre za povzetek: vse, kar vidite tukaj, prihaja iz drugih razdelkov."
+      },
+      "page_transactions": {
+        "q": "Transakcije — kako delati s seznamom?",
+        "a": "Vsi prihodki in odhodki v eni tabeli: razvrščanje, iskanje po opisu, filtri po vrsti, kategoriji, valuti in obdobju. Označite vrstice, da jih izbrišete več hkrati. Filtri se shranijo v naslovno vrstico, zato povezava ali zaznamek odpre enak pogled, nabor filtrov pa lahko shranite kot prednastavitev. Zavihek »Menjava« prikazuje vaše menjave valut."
+      },
+      "page_categories": {
+        "q": "Kategorije — čemu služijo?",
+        "a": "Vsaka transakcija spada v kategorijo, zato pred prvo transakcijo potrebujete vsaj eno kategorijo. Kategorije so odhodkovne in prihodkovne, vsaka ima svoj emoji in barvo. Kartica prikazuje vsoto za ves čas; z nje lahko neposredno dodate transakcijo v to kategorijo."
+      },
+      "page_analytics": {
+        "q": "Analitika — kaj prikazuje?",
+        "a": "Prihodke in odhodke po obdobjih (teden, mesec, četrtletje, leto ali lastni datumi), koliko ste prihranili in stopnjo varčevanja, razčlenitev po kategorijah ter kaj se je spremenilo v primerjavi s prejšnjim obdobjem."
+      },
+      "page_goals": {
+        "q": "Cilji — kako deluje varčevanje?",
+        "a": "Določite znesek in po želji rok — LimeBalance izračuna, koliko naj odložite vsak mesec. V cilj lahko vplačujete in iz njega dvigujete ter si ogledate zgodovino vplačil. Vrstica je rdeča, če cilj zaostaja ali je pod 25 %, rumena, ko se rok bliža, sicer zelena."
+      },
+      "page_investments": {
+        "q": "Naložbe — kaj je v tem razdelku?",
+        "a": "Trgovalni dnevnik s PnL in deležem uspešnih poslov, pologi in dvigi na borze in denarnice, Bybit P2P naročila ter povezani borzni računi. Razdelek je na voljo v vsakem plačljivem paketu."
+      },
+      "page_settings": {
+        "q": "Nastavitve — kaj lahko spremenim?",
+        "a": "Ime in osnovno valuto, e-pošto in geslo, povezavo s Telegram botom ter katera obvestila vam bot pošilja."
+      },
+      "balance_formula": {
+        "q": "Kako se izračuna stanje?",
+        "a": "Stanje je vaš prosti denar: vsi prihodki minus vsi odhodki, minus to, kar je prihranjeno v aktivnih ciljih, minus to, kar ste poslali na borze in denarnice. Ni odvisno od obdobja — vedno je to celotna zgodovina. Brisanje ali urejanje katere koli transakcije ga takoj spremeni."
+      },
+      "balance_currencies": {
+        "q": "Zakaj je stanje prikazano po valutah in z »≈«?",
+        "a": "Vsaka valuta se šteje posebej in se nikoli ne pretvarja — zneski po valutah pod stanjem so točni. Velika številka jih sešteje v osnovni valuti po današnjem tečaju, zato je pri več valutah približna in označena z »≈«."
+      },
+      "balance_goals": {
+        "q": "Kaj se zgodi z denarjem, vplačanim v cilj?",
+        "a": "Ostane vaš, vendar je rezerviran: zapusti prosto stanje in je prikazan v cilju. Dvig iz cilja, njegovo zaprtje ali izbris vrne denar v stanje. Vplačilo v cilj ni odhodek in se ne pojavi v analitiki."
+      },
+      "balance_exchange": {
+        "q": "Zakaj beležiti menjave valut?",
+        "a": "Če prejemate denar v eni valuti in trošite v drugi, zabeležite menjavo — sicer gre valuta, v kateri trošite, v minus, druga pa se kopiči. Menjava ni ne prihodek ne odhodek, le premakne denar med vašimi valutami. Če gre katera valuta v minus, Pregled prikaže opozorilo z gumbom za beleženje menjave."
+      },
+      "balance_transfer": {
+        "q": "Kaj je polog ali dvig na borzo?",
+        "a": "Denar, ki ste ga poslali na borzo ali v denarnico, da bi vlagali. Zapusti prosto stanje, a ni odhodek: Pregled ga prikaže ločeno kot »na platformah« po današnji vrednosti. Ko denar vrnete, zabeležite dvig in se vrne v stanje."
+      },
+      "balance_analytics": {
+        "q": "Zakaj se analitika ne ujema s stanjem?",
+        "a": "Analitika šteje le prihodke in odhodke v izbranem obdobju. Stanje je celotna zgodovina in upošteva tudi cilje, pologe na borze in menjave valut — ki niso ne prihodki ne odhodki."
+      },
+      "base_currency": {
+        "q": "Kako spremenim osnovno valuto?",
+        "a": "V Nastavitve → Splošno. Vsote v celotni aplikaciji se preračunajo v novo valuto po trenutnem tečaju. Transakcije ostanejo v valuti, v kateri so bile zabeležene."
+      },
+      "delete_category": {
+        "q": "Kaj se zgodi, če izbrišem kategorijo?",
+        "a": "Skupaj s kategorijo se nepovratno izbrišejo vse njene transakcije. Stanje in analitika se preračunata brez njih. Če jo želite le preimenovati, kategorijo raje uredite."
+      },
+      "limits": {
+        "q": "Kakšne omejitve ima brezplačni paket?",
+        "a": "Brezplačni paket omejuje število kategorij in transakcij na mesec — aplikacija opozori, ko jih ostane le nekaj. Števec transakcij se ponastavi na začetku vsakega meseca. Plačljivi paketi odpravijo omejitve in odklenejo razdelek Naložbe."
+      },
+      "telegram_bot": {
+        "q": "Kako povežem Telegram bota?",
+        "a": "Kliknite »Poveži Telegram« v stranskem meniju ali odprite Nastavitve → Telegram. Po povezavi se transakcije, dodane v klepetu z botom, samodejno prikažejo tukaj. V Nastavitvah lahko izberete tudi, katera sporočila bot pošilja, npr. mesečni povzetek."
+      },
+      "telegram_login": {
+        "q": "Prijavil sem se prek Telegrama — ali potrebujem e-pošto?",
+        "a": "Priporočljivo je. Dodajte e-pošto in geslo v Nastavitve → E-pošta in geslo ter potrdite naslov prek povezave v sporočilu — tako ne boste izgubili dostopa do računa in se boste lahko prijavili tudi brez Telegrama."
+      },
+      "forgot_password": {
+        "q": "Pozabil sem geslo",
+        "a": "Na strani za prijavo kliknite »Ste pozabili geslo?« in vnesite e-pošto — poslali vam bomo povezavo za nastavitev novega gesla. Če ste se prijavljali prek Telegrama ali Googla, preprosto uporabite isti način."
+      },
+      "filters_presets": {
+        "q": "Kako shranim pogosto uporabljene filtre?",
+        "a": "Na strani Transakcije nastavite potrebne filtre in jih shranite kot prednastavitev — nato jo uporabite z enim klikom. Filtri se shranijo tudi v naslovno vrstico: stran se znova odpre z njimi, povezavo pa lahko shranite med zaznamke."
+      },
+      "exchange_connect": {
+        "q": "Kako povežem borzo in ali je to varno?",
+        "a": "Naložbe → Borzni računi → Dodaj račun. Na Bybitu ustvarite API ključ s pravicami Read-Only — ključi s pravicami trgovanja so zavrnjeni. Tak ključ lahko le bere zgodovino: trgovanje ali dvig sredstev z njim ni mogoč. Posli se samodejno sinhronizirajo v dnevnik."
+      },
+      "p2p": {
+        "q": "Kupil sem kripto prek P2P — kako to zabeležim?",
+        "a": "Kovanci, kupljeni prek P2P, prispejo brez zapisa o pologu. Zaključeno naročilo zabeležite kot prenos s stanja (na zavihku P2P), sicer se bo štelo kot dobiček od trgovanja."
+      },
+      "theme_language": {
+        "q": "Kako spremenim temo ali jezik?",
+        "a": "Stikala so v glavi. Na telefonu so v meniju pod gumbom hamburger."
+      }
+    }
   }
 }

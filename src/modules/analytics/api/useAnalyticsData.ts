@@ -3,8 +3,6 @@ import type { Locale } from "date-fns"
 import { format, parseISO } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useMemo } from "react"
-import { expenseCategoryKeys } from "@/modules/categories/api/queries"
-import { getExpenseCategoriesStats } from "@/modules/categories/api/requests"
 import {
   EXPENSE_STALE_TIME,
   expenseSummaryKeys,
@@ -12,14 +10,12 @@ import {
   incomeSummaryKeys,
 } from "../api/queries"
 import { getExpensesSummary, getIncomesSummary } from "../api/requests"
-import { type AnalyticsPeriod, COMPARISON_LIMIT } from "../config"
+import type { AnalyticsPeriod } from "../config"
 import {
   buildSeries,
-  compareCategories,
   computeMetricsFromSummaries,
   customRange,
   GRANULARITY,
-  groupByCategory,
   periodToRange,
   rangeGranularity,
 } from "../lib/helpers"
@@ -28,8 +24,9 @@ const key = (d: Date) => format(d, "yyyy-MM-dd")
 
 /**
  * Analytics page data. KPIs and the time series come from the `/summary` summaries (current and
- * previous period, base currency); the pie and category comparison come from `/stats`
- * with comparison params. Query keys are shared — react-query deduplicates.
+ * previous period, base currency). The category breakdown (donut, details, comparison with
+ * the previous period) lives in `useCategoryBreakdown`. Query keys are shared — react-query
+ * deduplicates.
  *
  * `customFrom`/`customTo` (`YYYY-MM-DD`) — a custom date range from the datepicker; when both
  * are set, it overrides `period` (granularity is derived from the range length).
@@ -75,15 +72,6 @@ export function useAnalyticsData(
     staleTime: INCOME_STALE_TIME,
   })
 
-  // expense category stats with the previous period — pie (approxTotal) + comparison (delta)
-  const expStatsQ = useQuery({
-    queryKey: expenseCategoryKeys.statsRange(key(from), key(to), key(prevFrom), key(prevTo)),
-    queryFn: () => getExpenseCategoriesStats(from, to, prevFrom, prevTo),
-    staleTime: EXPENSE_STALE_TIME,
-  })
-
-  const expStats = expStatsQ.data ?? []
-
   const derived = useMemo(
     () => ({
       metrics: computeMetricsFromSummaries(
@@ -93,10 +81,8 @@ export function useAnalyticsData(
         incPrevQ.data,
       ),
       series: buildSeries(expCurQ.data, incCurQ.data, locale),
-      donut: groupByCategory(expStats),
-      comparison: compareCategories(expStats, COMPARISON_LIMIT),
     }),
-    [expCurQ.data, incCurQ.data, expPrevQ.data, incPrevQ.data, expStats, locale],
+    [expCurQ.data, incCurQ.data, expPrevQ.data, incPrevQ.data, locale],
   )
 
   return {
@@ -104,17 +90,7 @@ export function useAnalyticsData(
     range,
     // user's base currency — for formatting KPIs
     baseCurrency: expCurQ.data?.baseCurrency ?? incCurQ.data?.baseCurrency,
-    isLoading:
-      expCurQ.isLoading ||
-      incCurQ.isLoading ||
-      expPrevQ.isLoading ||
-      incPrevQ.isLoading ||
-      expStatsQ.isLoading,
-    isError:
-      expCurQ.isError ||
-      incCurQ.isError ||
-      expPrevQ.isError ||
-      incPrevQ.isError ||
-      expStatsQ.isError,
+    isLoading: expCurQ.isLoading || incCurQ.isLoading || expPrevQ.isLoading || incPrevQ.isLoading,
+    isError: expCurQ.isError || incCurQ.isError || expPrevQ.isError || incPrevQ.isError,
   }
 }

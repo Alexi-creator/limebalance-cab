@@ -39,7 +39,8 @@ export function transactionsFromPreset(filters: PresetFilters): Partial<Transact
     categoryId: p.categoryId,
     currency: p.currency,
     search: p.search,
-    ...periodDates(p.period, p.from, p.to),
+    // a preset with no period was saved over all dates — spelled out, or the default would apply
+    ...periodDates(p.period ?? "all", p.from, p.to),
     page: 1,
   }
 }

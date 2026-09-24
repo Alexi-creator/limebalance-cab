@@ -10,7 +10,8 @@ import {
 } from "../../lib/periods"
 
 interface Props {
-  period: PeriodValue
+  /** Absent — the default period (DEFAULT_PERIOD). */
+  period?: PeriodValue
   from?: string
   to?: string
   onChange: (update: { period: PeriodValue; from?: string; to?: string }) => void

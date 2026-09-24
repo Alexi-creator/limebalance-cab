@@ -56,12 +56,21 @@ export function CashflowChart() {
             {t("chart.cashflow_subtitle")}
           </Text>
         </Stack>
-        <SegmentedControl size="xs" value={period} onChange={setPeriod} data={periodData} />
+        <SegmentedControl
+          size="xs"
+          value={period}
+          onChange={(p) => {
+            // the old hover index points at a different date in the new period
+            setHoveredIndex(null)
+            setPeriod(p)
+          }}
+          data={periodData}
+        />
       </Group>
       <Box p="md">
         <CashflowSvg
           data={data}
-          period={period}
+          baseCurrency={expensesSummary?.baseCurrency ?? incomesSummary?.baseCurrency}
           hoveredIndex={hoveredIndex}
           onHover={setHoveredIndex}
         />

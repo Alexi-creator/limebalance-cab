@@ -22,6 +22,9 @@ const floatingLabel = {
     zIndex: 1,
     background: "var(--mantine-color-body)",
     padding: "0 4px",
+    // the body-colored patch shows on surfaces of another color (filter bars, gray page) —
+    // rounded it reads as a chip instead of a hard black square
+    borderRadius: 4,
     fontSize: 11,
     lineHeight: 1,
   },

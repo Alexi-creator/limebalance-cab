@@ -61,7 +61,8 @@
     "menu": "Meniu",
     "account": "Cont",
     "logout": "Deconectare",
-    "auth": "Autentificare"
+    "auth": "Autentificare",
+    "faq": "Ajutor și FAQ"
   },
   "settings": {
     "title": "Setări",
@@ -118,8 +119,7 @@
     "period_6m": "6 luni",
     "period_1y": "1 an",
     "income": "Venituri",
-    "expense": "Cheltuieli",
-    "day": "Zi"
+    "expense": "Cheltuieli"
   },
   "common": {
     "notifications": "Notificări",
@@ -383,15 +383,11 @@
     "savings_of_income": "{{rate}} % din venit",
     "kpi_savings_rate": "Rata de economisire",
     "savings_share": "cota din venit",
-    "donut_empty": "Fără cheltuieli în perioadă",
-    "donut_aria": "Diagrama cheltuielilor pe categorii",
-    "donut_center": "cheltuială",
-    "comparison_empty": "Fără modificări în perioadă",
     "chart_aria": "Graficul veniturilor și cheltuielilor pe perioadă",
     "income_vs_expense": "Venituri vs cheltuieli",
     "expenses_by_category": "Cheltuieli pe categorii",
-    "comparison_title": "Comparație cu perioada anterioară",
-    "comparison_subtitle": "Unde s-au schimbat cheltuielile",
+    "incomes_by_category": "Venituri pe categorii",
+    "prev_period_value": "Perioada anterioară: {{amount}}",
     "details_title": "Detalii tranzacții",
     "details_empty": "Nicio tranzacție în perioadă",
     "tour_period_title": "Alegeți o perioadă",
@@ -894,5 +890,132 @@
     "already_saved": "Filtrele curente sunt salvate ca „{{name}}”",
     "nothing_to_save": "Alege filtre pentru a le salva ca presetare",
     "error": "Modificările nu au putut fi salvate. Încearcă din nou"
+  },
+  "faq": {
+    "title": "Ajutor și FAQ",
+    "subtitle": "Cum funcționează LimeBalance, la ce folosește fiecare secțiune și cum formează împreună soldul tău",
+    "search_placeholder": "Caută în întrebări",
+    "search_empty": "Nu s-a găsit nimic — încearcă alt cuvânt",
+    "open_page": "Deschide secțiunea",
+    "sections": {
+      "start": "Primii pași",
+      "pages": "Secțiunile aplicației",
+      "balance": "Cum se adună totul în sold",
+      "common": "Întrebări frecvente"
+    },
+    "formula": {
+      "balance": "Sold",
+      "income": "Venituri",
+      "expense": "Cheltuieli",
+      "goals": "Pus deoparte în obiective",
+      "venues": "Trimis pe exchange-uri și portofele",
+      "note": "Schimburile valutare nu apar în formulă: ele doar mută bani între valutele tale și nu schimbă niciodată totalul."
+    },
+    "items": {
+      "first_steps": {
+        "q": "De unde încep?",
+        "a": "1. Alege moneda de bază în Setări — totalurile din toată aplicația sunt afișate în ea.\n2. Creează categorii de venituri și cheltuieli (de exemplu Salariu, Cumpărături, Chirie).\n3. Înregistrează tranzacțiile cu butonul „Adaugă” din antet sau prin botul Telegram.\n4. Creează obiective pentru ceea ce economisești.\n5. După câteva săptămâni, deschide Analiză ca să vezi unde se duc banii."
+      },
+      "quick_add": {
+        "q": "Cum adaug rapid o înregistrare?",
+        "a": "Butonul „Adaugă” din antet este disponibil pe orice pagină. Cu el creezi o tranzacție (venit sau cheltuială), un obiectiv, un schimb valutar sau o depunere/retragere pe un exchange sau portofel. Dacă botul Telegram este conectat, poți adăuga tranzacții și direct din chat."
+      },
+      "tours": {
+        "q": "Există un tur al interfeței?",
+        "a": "Da. Fiecare pagină are lângă titlu un buton de tur — acesta arată un scurt ghid pas cu pas al paginii. Îl poți relua oricând."
+      },
+      "page_home": {
+        "q": "Prezentare generală — ce este pe pagina principală?",
+        "a": "Soldul curent, veniturile, cheltuielile și diferența pe luna aceasta, un grafic al fluxului de numerar pe zile, ultimele tranzacții și o privire asupra obiectivelor. Este un rezumat: tot ce vezi aici provine din celelalte secțiuni."
+      },
+      "page_transactions": {
+        "q": "Tranzacții — cum lucrez cu lista?",
+        "a": "Toate veniturile și cheltuielile într-un singur tabel: sortare, căutare după descriere, filtre după tip, categorie, monedă și perioadă. Selectează rânduri pentru a șterge mai multe deodată. Filtrele sunt păstrate în bara de adrese, așa că un link sau un marcaj deschide aceeași vizualizare, iar un set de filtre poate fi salvat ca preset. Fila „Schimb” conține schimburile tale valutare."
+      },
+      "page_categories": {
+        "q": "Categorii — la ce folosesc?",
+        "a": "Fiecare tranzacție aparține unei categorii, deci ai nevoie de cel puțin o categorie înainte de prima tranzacție. Categoriile sunt de cheltuieli și de venituri, fiecare cu emoji și culoare proprii. Cardul arată totalul din toată perioada; din el poți adăuga direct o tranzacție în acea categorie."
+      },
+      "page_analytics": {
+        "q": "Analiză — ce arată?",
+        "a": "Venituri și cheltuieli pe perioade (săptămână, lună, trimestru, an sau date proprii), cât ai economisit și rata de economisire, defalcarea pe categorii și ce s-a schimbat față de perioada anterioară."
+      },
+      "page_goals": {
+        "q": "Obiective — cum funcționează economisirea?",
+        "a": "Stabilește o sumă și, opțional, un termen — LimeBalance calculează cât să pui deoparte lunar. Poți depune într-un obiectiv sau retrage din el și poți vedea istoricul contribuțiilor. Bara este roșie dacă obiectivul e în urmă sau sub 25%, galbenă când termenul se apropie și verde în rest."
+      },
+      "page_investments": {
+        "q": "Investiții — ce conține secțiunea?",
+        "a": "Un jurnal de tranzacționare cu PnL și rată de câștig, depuneri și retrageri pe exchange-uri și portofele, ordine P2P Bybit și conturi de exchange conectate. Secțiunea este disponibilă în orice plan plătit."
+      },
+      "page_settings": {
+        "q": "Setări — ce pot schimba?",
+        "a": "Numele și moneda de bază, e-mailul și parola, conectarea botului Telegram și ce notificări îți trimite botul."
+      },
+      "balance_formula": {
+        "q": "Cum se calculează soldul?",
+        "a": "Soldul reprezintă banii tăi liberi: toate veniturile minus toate cheltuielile, minus ce este pus deoparte în obiectivele active, minus ce ai trimis pe exchange-uri și portofele. Nu depinde de perioadă — este mereu tot istoricul. Ștergerea sau editarea oricărei tranzacții îl modifică imediat."
+      },
+      "balance_currencies": {
+        "q": "De ce soldul este afișat pe monede și cu „≈”?",
+        "a": "Fiecare monedă este numărată separat și nu este convertită niciodată — sumele pe monede de sub sold sunt exacte. Cifra mare le adună în moneda de bază la cursul de azi, așa că, dacă ai mai multe monede, este aproximativă și marcată cu „≈”."
+      },
+      "balance_goals": {
+        "q": "Ce se întâmplă cu banii depuși într-un obiectiv?",
+        "a": "Rămân ai tăi, dar sunt rezervați: ies din soldul liber și apar în obiectiv. Retragerea din obiectiv, închiderea sau ștergerea lui readuce banii în sold. O depunere într-un obiectiv nu este o cheltuială și nu apare în analiză."
+      },
+      "balance_exchange": {
+        "q": "De ce să înregistrez schimburile valutare?",
+        "a": "Dacă primești bani într-o monedă și cheltuiești în alta, înregistrează schimbul — altfel moneda în care cheltuiești ajunge pe minus, iar cealaltă se tot adună. Schimbul nu este nici venit, nici cheltuială, doar mută bani între valutele tale. Dacă o monedă ajunge pe minus, Prezentarea generală afișează un avertisment cu un buton pentru înregistrarea schimbului."
+      },
+      "balance_transfer": {
+        "q": "Ce este o depunere sau retragere pe un exchange?",
+        "a": "Bani pe care i-ai trimis pe un exchange sau într-un portofel ca să investești. Ies din soldul liber, dar nu sunt cheltuială: Prezentarea generală îi arată separat, „pe platforme”, la valoarea de azi. Când aduci banii înapoi, înregistrează o retragere și ei revin în sold."
+      },
+      "balance_analytics": {
+        "q": "De ce analiza nu se potrivește cu soldul?",
+        "a": "Analiza numără doar veniturile și cheltuielile din perioada aleasă. Soldul este tot istoricul și ține cont și de obiective, depunerile pe exchange-uri și schimburile valutare — care nu sunt nici venituri, nici cheltuieli."
+      },
+      "base_currency": {
+        "q": "Cum schimb moneda de bază?",
+        "a": "În Setări → General. Totalurile din toată aplicația vor fi recalculate în noua monedă la cursul curent. Tranzacțiile rămân în moneda în care au fost înregistrate."
+      },
+      "delete_category": {
+        "q": "Ce se întâmplă dacă șterg o categorie?",
+        "a": "Toate tranzacțiile din categorie sunt șterse împreună cu ea, ireversibil. Soldul și analiza sunt recalculate fără ele. Dacă vrei doar să o redenumești, editează categoria."
+      },
+      "limits": {
+        "q": "Ce limite are planul gratuit?",
+        "a": "Planul gratuit limitează numărul de categorii și de tranzacții pe lună — aplicația te avertizează când mai rămân doar câteva. Contorul de tranzacții se resetează la începutul fiecărei luni. Planurile plătite elimină limitele și deblochează secțiunea Investiții."
+      },
+      "telegram_bot": {
+        "q": "Cum conectez botul Telegram?",
+        "a": "Apasă „Conectează Telegram” în meniul lateral sau deschide Setări → Telegram. După conectare, tranzacțiile adăugate în chatul cu botul apar aici automat. În Setări poți alege și ce mesaje trimite botul, de exemplu rezumatul lunar."
+      },
+      "telegram_login": {
+        "q": "M-am autentificat cu Telegram — am nevoie de e-mail?",
+        "a": "Este recomandat. Adaugă e-mail și parolă în Setări → E-mail și parolă și confirmă adresa prin linkul din mesaj — așa nu vei pierde accesul la cont și te vei putea autentifica și fără Telegram."
+      },
+      "forgot_password": {
+        "q": "Am uitat parola",
+        "a": "Pe pagina de autentificare apasă „Ai uitat parola?” și introdu e-mailul — îți vom trimite un link pentru a seta o parolă nouă. Dacă te-ai autentificat cu Telegram sau Google, folosește pur și simplu aceeași metodă."
+      },
+      "filters_presets": {
+        "q": "Cum salvez filtrele folosite des?",
+        "a": "Pe pagina Tranzacții setează filtrele de care ai nevoie și salvează-le ca preset — apoi îl aplici cu un clic. În plus, filtrele sunt păstrate în bara de adrese: pagina se redeschide cu ele, iar linkul poate fi salvat ca marcaj."
+      },
+      "exchange_connect": {
+        "q": "Cum conectez un exchange și este sigur?",
+        "a": "Investiții → Conturi de exchange → Adaugă cont. Pe Bybit creează o cheie API cu permisiuni Read-Only — cheile cu permisiuni de tranzacționare sunt respinse. O astfel de cheie poate doar să citească istoricul: nu se poate tranzacționa sau retrage fonduri cu ea. Tranzacțiile se sincronizează automat în jurnal."
+      },
+      "p2p": {
+        "q": "Am cumpărat cripto prin P2P — cum înregistrez asta?",
+        "a": "Monedele cumpărate prin P2P sosesc fără o înregistrare de depunere. Înregistrează ordinul finalizat ca transfer din sold (în fila P2P), altfel va fi considerat profit din tranzacționare."
+      },
+      "theme_language": {
+        "q": "Cum schimb tema sau limba?",
+        "a": "Comutatoarele se află în antet. Pe telefon sunt în meniul de sub butonul hamburger."
+      }
+    }
   }
 }

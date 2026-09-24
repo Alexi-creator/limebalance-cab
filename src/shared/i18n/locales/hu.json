@@ -61,7 +61,8 @@
     "menu": "Menü",
     "account": "Fiók",
     "logout": "Kijelentkezés",
-    "auth": "Hitelesítés"
+    "auth": "Hitelesítés",
+    "faq": "Súgó és GYIK"
   },
   "settings": {
     "title": "Beállítások",
@@ -118,8 +119,7 @@
     "period_6m": "6 hó",
     "period_1y": "1 év",
     "income": "Bevételek",
-    "expense": "Kiadások",
-    "day": "Nap"
+    "expense": "Kiadások"
   },
   "common": {
     "notifications": "Értesítések",
@@ -372,15 +372,11 @@
     "savings_of_income": "a bevétel {{rate}} %-a",
     "kpi_savings_rate": "Megtakarítási ráta",
     "savings_share": "a bevétel hányada",
-    "donut_empty": "Nincs kiadás az időszakban",
-    "donut_aria": "Kiadások diagramja kategóriánként",
-    "donut_center": "kiadás",
-    "comparison_empty": "Nincs változás az időszakban",
     "chart_aria": "Bevételek és kiadások diagramja időszakonként",
     "income_vs_expense": "Bevételek vs kiadások",
     "expenses_by_category": "Kiadások kategóriánként",
-    "comparison_title": "Összehasonlítás az előző időszakkal",
-    "comparison_subtitle": "Hol változtak a kiadások",
+    "incomes_by_category": "Bevételek kategóriánként",
+    "prev_period_value": "Előző időszak: {{amount}}",
     "details_title": "Tranzakciók részletei",
     "details_empty": "Nincs tranzakció az időszakban",
     "tour_period_title": "Válasszon időszakot",
@@ -879,5 +875,132 @@
     "already_saved": "A jelenlegi szűrők „{{name}}” néven vannak mentve",
     "nothing_to_save": "Válassz szűrőket, hogy sablonként mentsd őket",
     "error": "Nem sikerült menteni a módosításokat. Próbáld újra"
+  },
+  "faq": {
+    "title": "Súgó és GYIK",
+    "subtitle": "Hogyan működik a LimeBalance, mire való az egyes részek és hogyan adják ki együtt az egyenlegedet",
+    "search_placeholder": "Keresés a kérdésekben",
+    "search_empty": "Nincs találat — próbálj más szót",
+    "open_page": "Rész megnyitása",
+    "sections": {
+      "start": "Első lépések",
+      "pages": "Az alkalmazás részei",
+      "balance": "Hogyan áll össze az egyenleg",
+      "common": "Gyakori kérdések"
+    },
+    "formula": {
+      "balance": "Egyenleg",
+      "income": "Bevételek",
+      "expense": "Kiadások",
+      "goals": "Célokra félretéve",
+      "venues": "Tőzsdékre és tárcákba küldve",
+      "note": "A valutaváltások nincsenek a képletben: csak pénzt mozgatnak a pénznemeid között, és soha nem változtatják az összeget."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Hol kezdjem?",
+        "a": "1. Válaszd ki az alap pénznemet a Beállításokban — az egész alkalmazás összesítései ebben jelennek meg.\n2. Hozz létre bevételi és kiadási kategóriákat (például Fizetés, Élelmiszer, Lakbér).\n3. Rögzítsd a tranzakciókat a fejléc „Hozzáadás” gombjával vagy a Telegram boton keresztül.\n4. Állíts be célokat, amelyekre spórolsz.\n5. Néhány hét múlva nyisd meg az Elemzést, és nézd meg, hová megy a pénz."
+      },
+      "quick_add": {
+        "q": "Hogyan adhatok hozzá gyorsan egy tételt?",
+        "a": "A fejléc „Hozzáadás” gombja minden oldalon elérhető. Ezzel létrehozhatsz tranzakciót (bevétel vagy kiadás), célt, valutaváltást, illetve befizetést/kivételt tőzsdére vagy tárcába. Ha a Telegram bot csatlakoztatva van, a tranzakciókat közvetlenül a csevegésben is hozzáadhatod."
+      },
+      "tours": {
+        "q": "Van bemutató a felülethez?",
+        "a": "Igen. Minden oldalon a cím mellett van egy bemutató gomb — rövid, lépésről lépésre haladó útmutatót mutat az oldalhoz. Bármikor újraindíthatod."
+      },
+      "page_home": {
+        "q": "Áttekintés — mi van a kezdőlapon?",
+        "a": "Az aktuális egyenleg, a havi bevétel, kiadás és különbség, napi pénzforgalmi diagram, a legutóbbi tranzakciók és a célok összefoglalója. Ez összesítés: minden, ami itt látható, a többi részből származik."
+      },
+      "page_transactions": {
+        "q": "Tranzakciók — hogyan dolgozzak a listával?",
+        "a": "Minden bevétel és kiadás egy táblázatban: rendezés, keresés a leírásban, szűrés típus, kategória, pénznem és időszak szerint. Jelölj ki sorokat, hogy egyszerre többet törölj. A szűrők a címsorban tárolódnak, így egy link vagy könyvjelző ugyanazt a nézetet nyitja meg, a szűrők egy csoportja pedig sablonként menthető. A „Váltás” lapon a valutaváltásaid láthatók."
+      },
+      "page_categories": {
+        "q": "Kategóriák — mire valók?",
+        "a": "Minden tranzakció egy kategóriához tartozik, ezért az első tranzakció előtt legalább egy kategória kell. Vannak kiadási és bevételi kategóriák, mindegyiknek saját emojija és színe van. A kártya a teljes időszak összegét mutatja; innen közvetlenül adhatsz hozzá tranzakciót az adott kategóriához."
+      },
+      "page_analytics": {
+        "q": "Elemzés — mit mutat?",
+        "a": "Bevételek és kiadások időszakonként (hét, hónap, negyedév, év vagy saját dátumok), mennyit sikerült megtakarítani és a megtakarítási ráta, kategóriánkénti bontás, valamint hogy mi változott az előző időszakhoz képest."
+      },
+      "page_goals": {
+        "q": "Célok — hogyan működik a megtakarítás?",
+        "a": "Adj meg egy összeget és igény szerint egy határidőt — a LimeBalance kiszámolja, mennyit tegyél félre havonta. Egy célba befizethetsz vagy kivehetsz belőle, és megnézheted a befizetések előzményeit. A sáv piros, ha a cél le van maradva vagy 25% alatt van, sárga, ha közeleg a határidő, egyébként zöld."
+      },
+      "page_investments": {
+        "q": "Befektetések — mi van ebben a részben?",
+        "a": "Kereskedési napló PnL-lel és nyerési aránnyal, befizetések és kivételek tőzsdékre és tárcákba, Bybit P2P megbízások és csatlakoztatott tőzsdei fiókok. A rész bármely fizetős csomagban elérhető."
+      },
+      "page_settings": {
+        "q": "Beállítások — mit módosíthatok?",
+        "a": "A neved és az alap pénznemet, az e-mailt és a jelszót, a Telegram bot összekapcsolását, valamint azt, hogy milyen értesítéseket küld a bot."
+      },
+      "balance_formula": {
+        "q": "Hogyan számolódik az egyenleg?",
+        "a": "Az egyenleg a szabad pénzed: az összes bevétel mínusz az összes kiadás, mínusz az aktív célokra félretett összeg, mínusz amit tőzsdékre és tárcákba küldtél. Nem függ az időszaktól — mindig a teljes előzmény. Bármely tranzakció törlése vagy szerkesztése azonnal megváltoztatja."
+      },
+      "balance_currencies": {
+        "q": "Miért pénznemenként és „≈” jellel jelenik meg az egyenleg?",
+        "a": "Minden pénznemet külön számolunk, és soha nem váltunk át — az egyenleg alatti pénznemenkénti összegek pontosak. A nagy szám ezeket a mai árfolyamon adja össze az alap pénznemben, ezért ha több pénznemed van, közelítő, és „≈” jelzi."
+      },
+      "balance_goals": {
+        "q": "Mi történik a célba befizetett pénzzel?",
+        "a": "A tiéd marad, de lefoglalódik: kikerül a szabad egyenlegből, és a célban jelenik meg. A célból való kivét, a cél lezárása vagy törlése visszaadja a pénzt az egyenlegbe. A célba történő befizetés nem kiadás, és nem jelenik meg az elemzésben."
+      },
+      "balance_exchange": {
+        "q": "Miért érdemes rögzíteni a valutaváltásokat?",
+        "a": "Ha egy pénznemben kapsz pénzt, de egy másikban költesz, rögzítsd a váltást — különben a költési pénznem mínuszba megy, a másik pedig halmozódik. A váltás se nem bevétel, se nem kiadás, csak pénzt mozgat a pénznemeid között. Ha egy pénznem mínuszba kerül, az Áttekintés figyelmeztetést mutat egy gombbal a váltás rögzítéséhez."
+      },
+      "balance_transfer": {
+        "q": "Mi a befizetés vagy kivét tőzsdére?",
+        "a": "Olyan pénz, amelyet befektetés céljából tőzsdére vagy tárcába küldtél. Kikerül a szabad egyenlegből, de nem kiadás: az Áttekintés külön mutatja „platformokon” a mai értéken. Amikor visszahozod a pénzt, rögzíts egy kivételt, és visszakerül az egyenlegbe."
+      },
+      "balance_analytics": {
+        "q": "Miért nem egyezik az elemzés az egyenleggel?",
+        "a": "Az elemzés csak a kiválasztott időszak bevételeit és kiadásait számolja. Az egyenleg a teljes előzmény, és figyelembe veszi a célokat, a tőzsdei befizetéseket és a valutaváltásokat is — amelyek se nem bevételek, se nem kiadások."
+      },
+      "base_currency": {
+        "q": "Hogyan változtatom meg az alap pénznemet?",
+        "a": "A Beállítások → Általános menüben. Az egész alkalmazás összesítései átszámolódnak az új pénznemre az aktuális árfolyamon. A tranzakciók abban a pénznemben maradnak, amelyben rögzítették őket."
+      },
+      "delete_category": {
+        "q": "Mi történik, ha törlök egy kategóriát?",
+        "a": "A kategória összes tranzakciója vele együtt véglegesen törlődik. Az egyenleg és az elemzés nélkülük számolódik újra. Ha csak át szeretnéd nevezni, inkább szerkeszd a kategóriát."
+      },
+      "limits": {
+        "q": "Milyen korlátai vannak az ingyenes csomagnak?",
+        "a": "Az ingyenes csomag korlátozza a kategóriák és a havi tranzakciók számát — az alkalmazás figyelmeztet, ha már csak néhány maradt. A tranzakciószámláló minden hónap elején nullázódik. A fizetős csomagok megszüntetik a korlátokat, és feloldják a Befektetések részt."
+      },
+      "telegram_bot": {
+        "q": "Hogyan csatlakoztatom a Telegram botot?",
+        "a": "Kattints a „Telegram csatlakoztatása” gombra az oldalsávban, vagy nyisd meg a Beállítások → Telegram menüt. Összekapcsolás után a bot csevegésében hozzáadott tranzakciók automatikusan megjelennek itt. A Beállításokban azt is kiválaszthatod, milyen üzeneteket küld a bot, például a havi összesítőt."
+      },
+      "telegram_login": {
+        "q": "Telegrammal jelentkeztem be — kell e-mail?",
+        "a": "Ajánlott. Adj meg e-mailt és jelszót a Beállítások → E-mail és jelszó menüben, és erősítsd meg a címet a levélben kapott linkkel — így nem veszíted el a hozzáférést a fiókodhoz, és Telegram nélkül is be tudsz lépni."
+      },
+      "forgot_password": {
+        "q": "Elfelejtettem a jelszavam",
+        "a": "A bejelentkezési oldalon kattints az „Elfelejtette a jelszavát?” linkre, és add meg az e-mail-címed — küldünk egy linket az új jelszó beállításához. Ha Telegrammal vagy Google-lel jelentkeztél be, egyszerűen használd ugyanazt a módot."
+      },
+      "filters_presets": {
+        "q": "Hogyan menthetem el a gyakran használt szűrőket?",
+        "a": "A Tranzakciók oldalon állítsd be a szükséges szűrőket, és mentsd el őket sablonként — később egy kattintással alkalmazhatod. A szűrők a címsorban is tárolódnak: az oldal újra velük nyílik meg, a linket pedig könyvjelzőbe teheted."
+      },
+      "exchange_connect": {
+        "q": "Hogyan csatlakoztatok egy tőzsdét, és biztonságos ez?",
+        "a": "Befektetések → Tőzsdei fiókok → Fiók hozzáadása. A Bybiten hozz létre Read-Only jogosultságú API-kulcsot — a kereskedési jogosultságú kulcsokat elutasítjuk. Egy ilyen kulcs csak az előzményeidet tudja olvasni: kereskedni vagy pénzt kivenni vele lehetetlen. A kötések automatikusan szinkronizálódnak a naplóba."
+      },
+      "p2p": {
+        "q": "P2P-n vettem kriptót — hogyan rögzítsem?",
+        "a": "A P2P-n vásárolt érmék befizetési bejegyzés nélkül érkeznek. Rögzítsd a teljesített megbízást átutalásként az egyenlegedből (a P2P lapon), különben kereskedési nyereségként számolódik."
+      },
+      "theme_language": {
+        "q": "Hogyan válthatok témát vagy nyelvet?",
+        "a": "A kapcsolók a fejlécben vannak. Mobilon a hamburger gomb menüjében találod őket."
+      }
+    }
   }
 }

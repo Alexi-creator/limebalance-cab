@@ -61,7 +61,8 @@
     "menu": "Menü",
     "account": "Konto",
     "logout": "Abmelden",
-    "auth": "Authentifizierung"
+    "auth": "Authentifizierung",
+    "faq": "Hilfe & FAQ"
   },
   "settings": {
     "title": "Einstellungen",
@@ -118,8 +119,7 @@
     "period_6m": "6 Mt.",
     "period_1y": "1 J.",
     "income": "Einnahmen",
-    "expense": "Ausgaben",
-    "day": "Tag"
+    "expense": "Ausgaben"
   },
   "common": {
     "notifications": "Benachrichtigungen",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % des Einkommens",
     "kpi_savings_rate": "Sparquote",
     "savings_share": "Anteil am Einkommen",
-    "donut_empty": "Keine Ausgaben im Zeitraum",
-    "donut_aria": "Diagramm der Ausgaben nach Kategorie",
-    "donut_center": "Ausgabe",
-    "comparison_empty": "Keine Änderungen im Zeitraum",
     "chart_aria": "Diagramm der Einnahmen und Ausgaben nach Zeitraum",
     "income_vs_expense": "Einnahmen vs. Ausgaben",
     "expenses_by_category": "Ausgaben nach Kategorie",
-    "comparison_title": "Vergleich mit dem Vorzeitraum",
-    "comparison_subtitle": "Wo sich die Ausgaben geändert haben",
+    "incomes_by_category": "Einnahmen nach Kategorie",
+    "prev_period_value": "Vorheriger Zeitraum: {{amount}}",
     "details_title": "Transaktionsdetails",
     "details_empty": "Keine Transaktionen im Zeitraum",
     "tour_period_title": "Zeitraum wählen",
@@ -879,5 +875,132 @@
     "already_saved": "Die aktuellen Filter sind als „{{name}}“ gespeichert",
     "nothing_to_save": "Wähle Filter aus, um sie als Vorlage zu speichern",
     "error": "Änderungen konnten nicht gespeichert werden. Bitte versuche es erneut"
+  },
+  "faq": {
+    "title": "Hilfe & FAQ",
+    "subtitle": "Wie LimeBalance funktioniert, wofür jeder Bereich da ist und wie sich alles zu deinem Kontostand zusammenfügt",
+    "search_placeholder": "Fragen durchsuchen",
+    "search_empty": "Nichts gefunden — versuche ein anderes Wort",
+    "open_page": "Bereich öffnen",
+    "sections": {
+      "start": "Erste Schritte",
+      "pages": "Bereiche der App",
+      "balance": "Wie sich alles zum Kontostand summiert",
+      "common": "Häufige Fragen"
+    },
+    "formula": {
+      "balance": "Kontostand",
+      "income": "Einnahmen",
+      "expense": "Ausgaben",
+      "goals": "In Zielen zurückgelegt",
+      "venues": "Auf Börsen und Wallets eingezahlt",
+      "note": "Währungstausche stehen nicht in der Formel: Sie verschieben nur Geld zwischen deinen Währungen und ändern die Summe nie."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Wo fange ich an?",
+        "a": "1. Wähle in den Einstellungen deine Basiswährung — in ihr werden die Summen in der ganzen App angezeigt.\n2. Lege Einnahme- und Ausgabekategorien an (z. B. Gehalt, Lebensmittel, Miete).\n3. Erfasse Transaktionen über den Button „Hinzufügen“ in der Kopfzeile oder über den Telegram-Bot.\n4. Lege Ziele an, auf die du sparst.\n5. Öffne nach ein paar Wochen die Analyse und sieh, wohin das Geld fließt."
+      },
+      "quick_add": {
+        "q": "Wie füge ich schnell einen Eintrag hinzu?",
+        "a": "Der Button „Hinzufügen“ in der Kopfzeile ist auf jeder Seite verfügbar. Damit erstellst du eine Transaktion (Einnahme oder Ausgabe), ein Ziel, einen Währungstausch oder eine Ein-/Auszahlung auf eine Börse oder Wallet. Ist der Telegram-Bot verbunden, kannst du Transaktionen auch direkt im Chat erfassen."
+      },
+      "tours": {
+        "q": "Gibt es eine Einführung in die Oberfläche?",
+        "a": "Ja. Auf jeder Seite gibt es neben dem Titel einen Tour-Button — er zeigt eine kurze Schritt-für-Schritt-Anleitung zu dieser Seite. Du kannst sie jederzeit erneut starten."
+      },
+      "page_home": {
+        "q": "Übersicht — was steht auf der Startseite?",
+        "a": "Dein aktueller Kontostand, Einnahmen, Ausgaben und die Differenz für diesen Monat, ein Cashflow-Diagramm nach Tagen, deine letzten Transaktionen und ein Überblick über deine Ziele. Es ist eine Zusammenfassung: Alles hier stammt aus den anderen Bereichen."
+      },
+      "page_transactions": {
+        "q": "Transaktionen — wie arbeite ich mit der Liste?",
+        "a": "Alle Einnahmen und Ausgaben in einer Tabelle: sortieren, nach Beschreibung suchen, nach Typ, Kategorie, Währung und Zeitraum filtern. Markiere Zeilen, um mehrere auf einmal zu löschen. Filter werden in der Adresszeile gespeichert, sodass ein Link oder Lesezeichen dieselbe Ansicht öffnet, und ein Filtersatz lässt sich als Preset speichern. Im Tab „Tausch“ stehen deine Währungstausche."
+      },
+      "page_categories": {
+        "q": "Kategorien — wozu brauche ich sie?",
+        "a": "Jede Transaktion gehört zu einer Kategorie, daher brauchst du vor der ersten Transaktion mindestens eine Kategorie. Es gibt Ausgabe- und Einnahmekategorien, jede mit eigenem Emoji und eigener Farbe. Die Karte zeigt die Summe über die gesamte Zeit; von dort kannst du direkt eine Transaktion in diese Kategorie hinzufügen."
+      },
+      "page_analytics": {
+        "q": "Analyse — was zeigt sie?",
+        "a": "Einnahmen und Ausgaben nach Zeitraum (Woche, Monat, Quartal, Jahr oder eigene Daten), wie viel du gespart hast und deine Sparquote, die Aufteilung nach Kategorien und was sich im Vergleich zum Vorzeitraum geändert hat."
+      },
+      "page_goals": {
+        "q": "Ziele — wie funktionieren Sparziele?",
+        "a": "Lege einen Betrag und optional eine Frist fest — LimeBalance berechnet, wie viel du monatlich zurücklegen solltest. Du kannst in ein Ziel einzahlen oder daraus entnehmen und die Einzahlungshistorie ansehen. Der Balken ist rot, wenn ein Ziel im Rückstand oder unter 25 % ist, gelb, wenn die Frist naht, sonst grün."
+      },
+      "page_investments": {
+        "q": "Investitionen — was gibt es in diesem Bereich?",
+        "a": "Ein Trading-Journal mit PnL und Trefferquote, Ein- und Auszahlungen auf Börsen und Wallets, Bybit-P2P-Orders und verbundene Börsenkonten. Der Bereich ist in jedem kostenpflichtigen Tarif verfügbar."
+      },
+      "page_settings": {
+        "q": "Einstellungen — was kann ich ändern?",
+        "a": "Deinen Namen und die Basiswährung, E-Mail und Passwort, die Verknüpfung mit dem Telegram-Bot und welche Benachrichtigungen der Bot dir schickt."
+      },
+      "balance_formula": {
+        "q": "Wie wird der Kontostand berechnet?",
+        "a": "Der Kontostand ist dein frei verfügbares Geld: alle Einnahmen minus alle Ausgaben, minus das, was in aktiven Zielen zurückgelegt ist, minus das, was du auf Börsen und Wallets eingezahlt hast. Er hängt nicht vom Zeitraum ab — es ist immer die gesamte Historie. Jedes Löschen oder Bearbeiten einer Transaktion ändert ihn sofort."
+      },
+      "balance_currencies": {
+        "q": "Warum wird der Kontostand nach Währungen und mit „≈“ angezeigt?",
+        "a": "Jede Währung wird separat gezählt und nie umgerechnet — die Beträge je Währung unter dem Kontostand sind exakt. Die große Zahl rechnet sie zum heutigen Kurs in deine Basiswährung zusammen; hältst du mehr als eine Währung, ist sie daher ungefähr und mit „≈“ markiert."
+      },
+      "balance_goals": {
+        "q": "Was passiert mit Geld, das ich in ein Ziel einzahle?",
+        "a": "Es bleibt deins, wird aber reserviert: Es verlässt den freien Kontostand und wird im Ziel angezeigt. Eine Entnahme, das Schließen oder Löschen des Ziels bringt das Geld zurück in den Kontostand. Eine Einzahlung in ein Ziel ist keine Ausgabe und erscheint nicht in der Analyse."
+      },
+      "balance_exchange": {
+        "q": "Warum sollte ich Währungstausche erfassen?",
+        "a": "Wenn du in einer Währung Geld bekommst und in einer anderen ausgibst, erfasse den Tausch — sonst rutscht die Ausgabewährung ins Minus, während sich die andere anhäuft. Ein Tausch ist weder Einnahme noch Ausgabe, er verschiebt nur Geld zwischen deinen Währungen. Rutscht eine Währung ins Minus, zeigt die Übersicht eine Warnung mit einem Button zum Erfassen des Tauschs."
+      },
+      "balance_transfer": {
+        "q": "Was ist eine Ein- oder Auszahlung auf eine Börse?",
+        "a": "Geld, das du zum Investieren auf eine Börse oder in eine Wallet geschickt hast. Es verlässt den freien Kontostand, ist aber keine Ausgabe: Die Übersicht zeigt es separat als „auf Plattformen“ zum heutigen Wert. Holst du das Geld zurück, erfasse eine Auszahlung, und es landet wieder im Kontostand."
+      },
+      "balance_analytics": {
+        "q": "Warum stimmt die Analyse nicht mit dem Kontostand überein?",
+        "a": "Die Analyse zählt nur Einnahmen und Ausgaben im gewählten Zeitraum. Der Kontostand umfasst die gesamte Historie und berücksichtigt zusätzlich Ziele, Einzahlungen auf Börsen und Währungstausche — die weder Einnahmen noch Ausgaben sind."
+      },
+      "base_currency": {
+        "q": "Wie ändere ich die Basiswährung?",
+        "a": "Unter Einstellungen → Allgemein. Die Summen in der ganzen App werden zum aktuellen Kurs in die neue Währung umgerechnet. Deine Transaktionen bleiben in der Währung, in der sie erfasst wurden."
+      },
+      "delete_category": {
+        "q": "Was passiert, wenn ich eine Kategorie lösche?",
+        "a": "Alle Transaktionen dieser Kategorie werden unwiderruflich mitgelöscht. Kontostand und Analyse werden ohne sie neu berechnet. Wenn du sie nur umbenennen willst, bearbeite die Kategorie stattdessen."
+      },
+      "limits": {
+        "q": "Welche Einschränkungen hat der kostenlose Tarif?",
+        "a": "Im kostenlosen Tarif sind die Anzahl der Kategorien und der Transaktionen pro Monat begrenzt — die App warnt dich, wenn nur noch wenige übrig sind. Der Transaktionszähler wird zu Beginn jedes Monats zurückgesetzt. Kostenpflichtige Tarife heben die Limits auf und schalten den Bereich Investitionen frei."
+      },
+      "telegram_bot": {
+        "q": "Wie verbinde ich den Telegram-Bot?",
+        "a": "Klicke in der Seitenleiste auf „Telegram verbinden“ oder öffne Einstellungen → Telegram. Nach der Verknüpfung erscheinen Transaktionen, die du im Chat mit dem Bot hinzufügst, automatisch hier. In den Einstellungen kannst du außerdem wählen, welche Nachrichten der Bot schickt, etwa die Monatsübersicht."
+      },
+      "telegram_login": {
+        "q": "Ich habe mich mit Telegram angemeldet — brauche ich eine E-Mail?",
+        "a": "Empfehlenswert. Füge unter Einstellungen → E-Mail & Passwort eine E-Mail und ein Passwort hinzu und bestätige die Adresse über den Link in der Mail — so verlierst du nicht den Zugang zu deinem Konto und kannst dich auch ohne Telegram anmelden."
+      },
+      "forgot_password": {
+        "q": "Ich habe mein Passwort vergessen",
+        "a": "Klicke auf der Anmeldeseite auf „Passwort vergessen?“ und gib deine E-Mail ein — wir schicken dir einen Link zum Festlegen eines neuen Passworts. Wenn du dich mit Telegram oder Google angemeldet hast, melde dich einfach auf demselben Weg an."
+      },
+      "filters_presets": {
+        "q": "Wie speichere ich häufig genutzte Filter?",
+        "a": "Stelle auf der Seite Transaktionen die gewünschten Filter ein und speichere sie als Preset — später lässt es sich mit einem Klick anwenden. Außerdem werden Filter in der Adresszeile gespeichert: Die Seite öffnet sich wieder mit ihnen, und der Link lässt sich als Lesezeichen speichern."
+      },
+      "exchange_connect": {
+        "q": "Wie verbinde ich eine Börse und ist das sicher?",
+        "a": "Investitionen → Börsenkonten → Konto hinzufügen. Erstelle auf Bybit einen API-Schlüssel mit Read-Only-Rechten — Schlüssel mit Handelsrechten werden abgelehnt. Ein solcher Schlüssel kann nur deine Historie lesen: Handeln oder Geld abheben ist damit unmöglich. Trades werden automatisch ins Journal synchronisiert."
+      },
+      "p2p": {
+        "q": "Ich habe Krypto per P2P gekauft — wie erfasse ich das?",
+        "a": "Per P2P gekaufte Coins kommen ohne Einzahlungseintrag an. Erfasse die abgeschlossene Order als Überweisung vom Kontostand (im Tab P2P), sonst wird sie als Handelsgewinn gezählt."
+      },
+      "theme_language": {
+        "q": "Wie wechsle ich Design oder Sprache?",
+        "a": "Die Schalter befinden sich in der Kopfzeile. Auf dem Smartphone findest du sie im Menü hinter dem Burger-Button."
+      }
+    }
   }
 }

@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Akun",
     "logout": "Keluar",
-    "auth": "Autentikasi"
+    "auth": "Autentikasi",
+    "faq": "Bantuan & FAQ"
   },
   "settings": {
     "title": "Pengaturan",
@@ -118,8 +119,7 @@
     "period_6m": "6 bln",
     "period_1y": "1 thn",
     "income": "Pemasukan",
-    "expense": "Pengeluaran",
-    "day": "Hari"
+    "expense": "Pengeluaran"
   },
   "common": {
     "notifications": "Notifikasi",
@@ -361,15 +361,11 @@
     "savings_of_income": "{{rate}}% dari pemasukan",
     "kpi_savings_rate": "Tingkat tabungan",
     "savings_share": "porsi dari pemasukan",
-    "donut_empty": "Tidak ada pengeluaran pada periode ini",
-    "donut_aria": "Diagram pengeluaran per kategori",
-    "donut_center": "pengeluaran",
-    "comparison_empty": "Tidak ada perubahan pada periode ini",
     "chart_aria": "Diagram pemasukan dan pengeluaran per periode",
     "income_vs_expense": "Pemasukan vs pengeluaran",
     "expenses_by_category": "Pengeluaran per kategori",
-    "comparison_title": "Perbandingan dengan periode sebelumnya",
-    "comparison_subtitle": "Di mana pengeluaran berubah",
+    "incomes_by_category": "Pemasukan per kategori",
+    "prev_period_value": "Periode sebelumnya: {{amount}}",
     "details_title": "Rincian transaksi",
     "details_empty": "Tidak ada transaksi pada periode ini",
     "tour_period_title": "Pilih periode",
@@ -864,5 +860,132 @@
     "already_saved": "Filter saat ini disimpan sebagai “{{name}}”",
     "nothing_to_save": "Pilih filter untuk menyimpannya sebagai preset",
     "error": "Gagal menyimpan perubahan. Silakan coba lagi"
+  },
+  "faq": {
+    "title": "Bantuan & FAQ",
+    "subtitle": "Cara kerja LimeBalance, fungsi tiap bagian, dan bagaimana semuanya membentuk saldo Anda",
+    "search_placeholder": "Cari pertanyaan",
+    "search_empty": "Tidak ada hasil — coba kata lain",
+    "open_page": "Buka bagian",
+    "sections": {
+      "start": "Memulai",
+      "pages": "Bagian aplikasi",
+      "balance": "Bagaimana semuanya dijumlahkan ke saldo",
+      "common": "Pertanyaan umum"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Pemasukan",
+      "expense": "Pengeluaran",
+      "goals": "Disisihkan di target",
+      "venues": "Dikirim ke exchange dan dompet",
+      "note": "Penukaran mata uang tidak ada dalam rumus: hanya memindahkan uang antar mata uang Anda dan tidak pernah mengubah total."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Mulai dari mana?",
+        "a": "1. Pilih mata uang dasar di Pengaturan — total di seluruh aplikasi ditampilkan dalam mata uang ini.\n2. Buat kategori pemasukan dan pengeluaran (misalnya Gaji, Belanja, Sewa).\n3. Catat transaksi dengan tombol «Tambah» di header atau lewat bot Telegram.\n4. Buat target untuk hal yang Anda tabung.\n5. Setelah beberapa minggu, buka Analitik untuk melihat ke mana uang pergi."
+      },
+      "quick_add": {
+        "q": "Bagaimana cara menambah catatan dengan cepat?",
+        "a": "Tombol «Tambah» di header tersedia di setiap halaman. Dengan tombol ini Anda membuat transaksi (pemasukan atau pengeluaran), target, penukaran mata uang, atau setoran/penarikan ke exchange atau dompet. Jika bot Telegram terhubung, Anda juga bisa menambah transaksi langsung di chat."
+      },
+      "tours": {
+        "q": "Apakah ada panduan antarmuka?",
+        "a": "Ya. Setiap halaman punya tombol tur di samping judulnya — menampilkan panduan singkat langkah demi langkah untuk halaman itu. Anda bisa memutarnya ulang kapan saja."
+      },
+      "page_home": {
+        "q": "Ringkasan — apa isi halaman utama?",
+        "a": "Saldo saat ini, pemasukan, pengeluaran, dan selisih bulan ini, grafik arus kas per hari, transaksi terbaru, dan cuplikan target Anda. Ini ringkasan: semua yang tampil di sini berasal dari bagian lain."
+      },
+      "page_transactions": {
+        "q": "Transaksi — bagaimana menggunakan daftarnya?",
+        "a": "Semua pemasukan dan pengeluaran dalam satu tabel: urutkan, cari berdasarkan deskripsi, filter menurut jenis, kategori, mata uang, dan periode. Pilih baris untuk menghapus beberapa sekaligus. Filter disimpan di bilah alamat, jadi tautan atau bookmark membuka tampilan yang sama, dan satu set filter bisa disimpan sebagai preset. Tab «Tukar» berisi penukaran mata uang Anda."
+      },
+      "page_categories": {
+        "q": "Kategori — untuk apa?",
+        "a": "Setiap transaksi termasuk dalam satu kategori, jadi Anda perlu minimal satu kategori sebelum transaksi pertama. Kategori dibagi menjadi pengeluaran dan pemasukan, masing-masing dengan emoji dan warna sendiri. Kartu menampilkan total sepanjang waktu; dari sana Anda bisa langsung menambah transaksi ke kategori itu."
+      },
+      "page_analytics": {
+        "q": "Analitik — apa yang ditampilkan?",
+        "a": "Pemasukan vs pengeluaran per periode (minggu, bulan, kuartal, tahun, atau tanggal khusus), berapa yang berhasil ditabung dan rasio tabungan, rincian per kategori, dan apa yang berubah dibanding periode sebelumnya."
+      },
+      "page_goals": {
+        "q": "Target — bagaimana cara kerja tabungan?",
+        "a": "Tetapkan jumlah dan, jika mau, tenggat — LimeBalance menghitung berapa yang perlu disisihkan tiap bulan. Anda bisa menyetor ke target atau menariknya dan melihat riwayat setoran. Bilah berwarna merah jika target tertinggal atau di bawah 25%, kuning saat tenggat mendekat, dan hijau selain itu."
+      },
+      "page_investments": {
+        "q": "Investasi — apa isi bagian ini?",
+        "a": "Jurnal trading dengan PnL dan win rate, setoran dan penarikan ke exchange dan dompet, order P2P Bybit, dan akun exchange yang terhubung. Bagian ini tersedia di paket berbayar mana pun."
+      },
+      "page_settings": {
+        "q": "Pengaturan — apa yang bisa saya ubah?",
+        "a": "Nama dan mata uang dasar, email dan kata sandi, tautan bot Telegram, serta notifikasi apa yang dikirim bot kepada Anda."
+      },
+      "balance_formula": {
+        "q": "Bagaimana saldo dihitung?",
+        "a": "Saldo adalah uang bebas Anda: semua pemasukan dikurangi semua pengeluaran, dikurangi yang disisihkan di target aktif, dikurangi yang Anda kirim ke exchange dan dompet. Saldo tidak bergantung pada periode — selalu seluruh riwayat. Menghapus atau mengedit transaksi apa pun langsung mengubahnya."
+      },
+      "balance_currencies": {
+        "q": "Mengapa saldo ditampilkan per mata uang dan dengan «≈»?",
+        "a": "Setiap mata uang dihitung terpisah dan tidak pernah dikonversi — angka per mata uang di bawah saldo itu tepat. Angka besar menjumlahkannya dalam mata uang dasar dengan kurs hari ini, jadi jika Anda memegang lebih dari satu mata uang, angkanya perkiraan dan ditandai «≈»."
+      },
+      "balance_goals": {
+        "q": "Apa yang terjadi pada uang yang saya setor ke target?",
+        "a": "Uang itu tetap milik Anda tetapi dicadangkan: keluar dari saldo bebas dan ditampilkan di target. Menarik dari target, menutup, atau menghapusnya mengembalikan uang ke saldo. Setoran ke target bukan pengeluaran dan tidak muncul di analitik."
+      },
+      "balance_exchange": {
+        "q": "Mengapa perlu mencatat penukaran mata uang?",
+        "a": "Jika Anda dibayar dalam satu mata uang dan berbelanja dalam mata uang lain, catat penukarannya — jika tidak, mata uang belanja akan minus sementara yang lain terus menumpuk. Penukaran bukan pemasukan atau pengeluaran, hanya memindahkan uang antar mata uang Anda. Jika ada mata uang yang minus, Ringkasan menampilkan peringatan dengan tombol untuk mencatat penukaran."
+      },
+      "balance_transfer": {
+        "q": "Apa itu setoran atau penarikan ke exchange?",
+        "a": "Uang yang Anda kirim ke exchange atau dompet untuk berinvestasi. Uang itu keluar dari saldo bebas tetapi bukan pengeluaran: Ringkasan menampilkannya terpisah sebagai «di platform» dengan nilai hari ini. Saat Anda menarik uangnya kembali, catat penarikan dan uang kembali ke saldo."
+      },
+      "balance_analytics": {
+        "q": "Mengapa analitik tidak sama dengan saldo saya?",
+        "a": "Analitik hanya menghitung pemasukan dan pengeluaran dalam periode yang dipilih. Saldo adalah seluruh riwayat dan juga memperhitungkan target, setoran ke exchange, dan penukaran mata uang — yang bukan pemasukan maupun pengeluaran."
+      },
+      "base_currency": {
+        "q": "Bagaimana cara mengganti mata uang dasar?",
+        "a": "Di Pengaturan → Umum. Total di seluruh aplikasi akan dihitung ulang ke mata uang baru dengan kurs saat ini. Transaksi Anda tetap dalam mata uang saat dicatat."
+      },
+      "delete_category": {
+        "q": "Apa yang terjadi jika saya menghapus kategori?",
+        "a": "Semua transaksi dalam kategori itu ikut terhapus dan tidak bisa dibatalkan. Saldo dan analitik dihitung ulang tanpa transaksi tersebut. Jika hanya ingin mengganti nama, edit kategorinya saja."
+      },
+      "limits": {
+        "q": "Apa batasan paket gratis?",
+        "a": "Paket gratis membatasi jumlah kategori dan transaksi per bulan — aplikasi akan memperingatkan saat tinggal sedikit. Penghitung transaksi direset setiap awal bulan. Paket berbayar menghapus batasan dan membuka bagian Investasi."
+      },
+      "telegram_bot": {
+        "q": "Bagaimana cara menghubungkan bot Telegram?",
+        "a": "Klik «Hubungkan Telegram» di menu samping atau buka Pengaturan → Telegram. Setelah terhubung, transaksi yang Anda tambahkan di chat bot akan muncul di sini secara otomatis. Di Pengaturan Anda juga bisa memilih pesan apa yang dikirim bot, misalnya ringkasan bulanan."
+      },
+      "telegram_login": {
+        "q": "Saya masuk dengan Telegram — perlukah email?",
+        "a": "Disarankan. Tambahkan email dan kata sandi di Pengaturan → Email & kata sandi lalu konfirmasi alamat lewat tautan di email — dengan begitu Anda tidak kehilangan akses akun dan bisa masuk tanpa Telegram."
+      },
+      "forgot_password": {
+        "q": "Saya lupa kata sandi",
+        "a": "Di halaman masuk, klik «Lupa kata sandi?» dan masukkan email Anda — kami akan mengirim tautan untuk membuat kata sandi baru. Jika Anda masuk dengan Telegram atau Google, cukup gunakan cara yang sama."
+      },
+      "filters_presets": {
+        "q": "Bagaimana menyimpan filter yang sering dipakai?",
+        "a": "Di halaman Transaksi, atur filter yang dibutuhkan lalu simpan sebagai preset — nanti bisa diterapkan dengan satu klik. Filter juga disimpan di bilah alamat: halaman terbuka kembali dengan filter itu dan tautannya bisa di-bookmark."
+      },
+      "exchange_connect": {
+        "q": "Bagaimana cara menghubungkan exchange, dan apakah aman?",
+        "a": "Investasi → Akun exchange → Tambah akun. Di Bybit, buat API key dengan izin Read-Only — key dengan izin trading ditolak. Key seperti itu hanya bisa membaca riwayat Anda: trading atau menarik dana dengannya tidak mungkin. Trade disinkronkan ke jurnal secara otomatis."
+      },
+      "p2p": {
+        "q": "Saya membeli kripto lewat P2P — bagaimana mencatatnya?",
+        "a": "Koin yang dibeli lewat P2P masuk tanpa catatan setoran. Catat order yang selesai sebagai transfer dari saldo Anda (di tab P2P), jika tidak akan dihitung sebagai keuntungan trading."
+      },
+      "theme_language": {
+        "q": "Bagaimana mengganti tema atau bahasa?",
+        "a": "Pengaturannya ada di header. Di ponsel, ada di menu tombol hamburger."
+      }
+    }
   }
 }

@@ -16,6 +16,7 @@ export const RouteNames = {
   Settings: "/settings",
   SettingsSecurity: "/settings/security",
   SettingsTelegram: "/settings/telegram",
+  Faq: "/faq",
 } as const
 
 export type RouteName = (typeof RouteNames)[keyof typeof RouteNames]

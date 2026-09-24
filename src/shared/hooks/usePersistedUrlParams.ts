@@ -12,18 +12,21 @@ interface Options<P> {
   /** Adjusts the restored params before they go into the URL, e.g. recomputes "this month" to
    *  today's dates. Returns the updates to write. */
   onRestore?: (params: P) => Partial<P>
+  /** Written into the URL on landing when nothing is saved yet, so the table's default state is
+   *  spelled out in the link rather than implied, e.g. the default period with its dates. */
+  defaults?: () => Partial<P>
 }
 
 /**
  * useUrlParams that remembers the table's state between visits. Every change is saved; landing
  * on the page with none of the schema's params in the URL (a menu link) brings the saved ones
- * back. A URL that already carries params — a shared link, a link to a filtered view — wins and
+ * back (or `defaults`, on a first visit). A URL that already carries params — a shared link, a link to a filtered view — wins and
  * is left as is. Only the schema's own keys are saved or checked, so other params on the page
  * don't interfere.
  */
 export function usePersistedUrlParams<T extends AnyZodObject>(
   schema: T,
-  { key, omit = [], onRestore }: Options<z.infer<T>>,
+  { key, omit = [], onRestore, defaults }: Options<z.infer<T>>,
 ): [z.infer<T>, (updates: Partial<z.infer<T>>) => void] {
   const [searchParams, setSearchParams] = useSearchParams()
   // keyed by content, not identity — callers pass `omit` as an inline array literal
@@ -39,7 +42,10 @@ export function usePersistedUrlParams<T extends AnyZodObject>(
   const [restore] = useState(() => {
     if (ownKeys.some((k) => searchParams.has(k))) return null
     const stored = readPersistedParams(key)
-    if (!stored) return null
+    if (!stored) {
+      if (!defaults) return null
+      return { from: searchParams.toString(), to: applyUrlParamUpdates(searchParams, defaults()) }
+    }
     const saved = new URLSearchParams(stored)
     let next = new URLSearchParams(searchParams)
     for (const k of ownKeys) for (const v of saved.getAll(k)) next.append(k, v)

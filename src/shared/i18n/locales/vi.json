@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Tài khoản",
     "logout": "Đăng xuất",
-    "auth": "Xác thực"
+    "auth": "Xác thực",
+    "faq": "Trợ giúp & FAQ"
   },
   "settings": {
     "title": "Cài đặt",
@@ -118,8 +119,7 @@
     "period_6m": "6 tháng",
     "period_1y": "1 năm",
     "income": "Thu nhập",
-    "expense": "Chi tiêu",
-    "day": "Ngày"
+    "expense": "Chi tiêu"
   },
   "common": {
     "notifications": "Thông báo",
@@ -361,15 +361,11 @@
     "savings_of_income": "{{rate}}% thu nhập",
     "kpi_savings_rate": "Tỷ lệ tiết kiệm",
     "savings_share": "phần của thu nhập",
-    "donut_empty": "Không có chi tiêu trong kỳ",
-    "donut_aria": "Biểu đồ chi tiêu theo danh mục",
-    "donut_center": "chi tiêu",
-    "comparison_empty": "Không có thay đổi trong kỳ",
     "chart_aria": "Biểu đồ thu nhập và chi tiêu theo kỳ",
     "income_vs_expense": "Thu nhập vs chi tiêu",
     "expenses_by_category": "Chi tiêu theo danh mục",
-    "comparison_title": "So sánh với kỳ trước",
-    "comparison_subtitle": "Nơi chi tiêu thay đổi",
+    "incomes_by_category": "Thu nhập theo danh mục",
+    "prev_period_value": "Kỳ trước: {{amount}}",
     "details_title": "Chi tiết giao dịch",
     "details_empty": "Không có giao dịch trong kỳ",
     "tour_period_title": "Chọn khoảng thời gian",
@@ -864,5 +860,132 @@
     "already_saved": "Bộ lọc hiện tại đã được lưu với tên “{{name}}”",
     "nothing_to_save": "Hãy chọn bộ lọc để lưu lại",
     "error": "Không thể lưu thay đổi. Vui lòng thử lại"
+  },
+  "faq": {
+    "title": "Trợ giúp & FAQ",
+    "subtitle": "LimeBalance hoạt động thế nào, mỗi mục dùng để làm gì và chúng cùng tạo nên số dư của bạn ra sao",
+    "search_placeholder": "Tìm câu hỏi",
+    "search_empty": "Không tìm thấy — hãy thử từ khác",
+    "open_page": "Mở mục",
+    "sections": {
+      "start": "Bắt đầu",
+      "pages": "Các mục của ứng dụng",
+      "balance": "Mọi thứ cộng vào số dư như thế nào",
+      "common": "Câu hỏi thường gặp"
+    },
+    "formula": {
+      "balance": "Số dư",
+      "income": "Thu nhập",
+      "expense": "Chi tiêu",
+      "goals": "Để dành trong mục tiêu",
+      "venues": "Đã gửi lên sàn và ví",
+      "note": "Đổi tiền không nằm trong công thức: chỉ chuyển tiền giữa các loại tiền tệ của bạn và không bao giờ thay đổi tổng."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Tôi nên bắt đầu từ đâu?",
+        "a": "1. Chọn tiền tệ cơ sở trong Cài đặt — tổng trên toàn ứng dụng được hiển thị theo tiền tệ này.\n2. Tạo danh mục thu nhập và chi tiêu (ví dụ Lương, Đi chợ, Tiền nhà).\n3. Ghi giao dịch bằng nút «Thêm» trên thanh đầu trang hoặc qua bot Telegram.\n4. Đặt mục tiêu cho những thứ bạn đang tiết kiệm.\n5. Sau vài tuần, mở Phân tích để xem tiền đi đâu."
+      },
+      "quick_add": {
+        "q": "Làm sao thêm bản ghi nhanh?",
+        "a": "Nút «Thêm» trên thanh đầu trang có ở mọi trang. Nút này tạo giao dịch (thu hoặc chi), mục tiêu, lần đổi tiền, hoặc nạp/rút lên sàn hay ví. Khi đã kết nối bot Telegram, bạn cũng có thể thêm giao dịch ngay trong chat."
+      },
+      "tours": {
+        "q": "Có hướng dẫn giao diện không?",
+        "a": "Có. Mỗi trang có nút hướng dẫn cạnh tiêu đề — hiển thị hướng dẫn ngắn từng bước cho trang đó. Bạn có thể xem lại bất cứ lúc nào."
+      },
+      "page_home": {
+        "q": "Tổng quan — trang chủ có gì?",
+        "a": "Số dư hiện tại, thu nhập, chi tiêu và chênh lệch của tháng này, biểu đồ dòng tiền theo ngày, các giao dịch gần nhất và tóm tắt mục tiêu. Đây là bản tóm tắt: mọi thứ ở đây đều lấy từ các mục khác."
+      },
+      "page_transactions": {
+        "q": "Giao dịch — dùng danh sách thế nào?",
+        "a": "Tất cả thu và chi trong một bảng: sắp xếp, tìm theo mô tả, lọc theo loại, danh mục, tiền tệ và khoảng thời gian. Chọn nhiều dòng để xóa cùng lúc. Bộ lọc được lưu trên thanh địa chỉ nên liên kết hoặc dấu trang mở cùng một chế độ xem, và bộ lọc có thể lưu thành preset. Tab «Đổi tiền» liệt kê các lần đổi tiền của bạn."
+      },
+      "page_categories": {
+        "q": "Danh mục — để làm gì?",
+        "a": "Mỗi giao dịch thuộc một danh mục, vì vậy cần ít nhất một danh mục trước giao dịch đầu tiên. Danh mục chia thành chi tiêu và thu nhập, mỗi cái có emoji và màu riêng. Thẻ hiển thị tổng từ trước đến nay; từ đó bạn có thể thêm giao dịch thẳng vào danh mục."
+      },
+      "page_analytics": {
+        "q": "Phân tích — hiển thị gì?",
+        "a": "Thu và chi theo kỳ (tuần, tháng, quý, năm hoặc ngày tùy chọn), số tiền đã tiết kiệm và tỷ lệ tiết kiệm, phân bổ theo danh mục và những gì thay đổi so với kỳ trước."
+      },
+      "page_goals": {
+        "q": "Mục tiêu — tiết kiệm hoạt động ra sao?",
+        "a": "Đặt số tiền và, nếu muốn, hạn chót — LimeBalance tính mỗi tháng cần để dành bao nhiêu. Bạn có thể nạp vào mục tiêu hoặc rút ra và xem lịch sử đóng góp. Thanh có màu đỏ nếu mục tiêu chậm tiến độ hoặc dưới 25%, vàng khi gần hạn, còn lại là xanh."
+      },
+      "page_investments": {
+        "q": "Đầu tư — mục này có gì?",
+        "a": "Nhật ký giao dịch với PnL và tỷ lệ thắng, nạp và rút lên sàn và ví, lệnh P2P Bybit và các tài khoản sàn đã kết nối. Mục này có trong mọi gói trả phí."
+      },
+      "page_settings": {
+        "q": "Cài đặt — tôi có thể đổi gì?",
+        "a": "Tên và tiền tệ cơ sở, email và mật khẩu, liên kết bot Telegram và các thông báo bot gửi cho bạn."
+      },
+      "balance_formula": {
+        "q": "Số dư được tính thế nào?",
+        "a": "Số dư là tiền rảnh của bạn: tổng thu nhập trừ tổng chi tiêu, trừ phần để dành trong các mục tiêu đang hoạt động, trừ phần đã gửi lên sàn và ví. Nó không phụ thuộc vào kỳ — luôn là toàn bộ lịch sử. Xóa hoặc sửa bất kỳ giao dịch nào sẽ thay đổi nó ngay lập tức."
+      },
+      "balance_currencies": {
+        "q": "Vì sao số dư hiển thị theo từng tiền tệ và có «≈»?",
+        "a": "Mỗi tiền tệ được tính riêng và không bao giờ quy đổi — các số theo tiền tệ dưới số dư là chính xác. Con số lớn cộng chúng lại theo tiền tệ cơ sở với tỷ giá hôm nay, nên khi bạn giữ nhiều hơn một loại tiền, nó là ước tính và được đánh dấu «≈»."
+      },
+      "balance_goals": {
+        "q": "Tiền tôi nạp vào mục tiêu sẽ ra sao?",
+        "a": "Tiền vẫn là của bạn nhưng được giữ lại: rời khỏi số dư rảnh và hiển thị trong mục tiêu. Rút khỏi mục tiêu, đóng hoặc xóa mục tiêu sẽ trả tiền về số dư. Khoản nạp vào mục tiêu không phải chi tiêu và không xuất hiện trong phân tích."
+      },
+      "balance_exchange": {
+        "q": "Vì sao nên ghi lại việc đổi tiền?",
+        "a": "Nếu bạn nhận tiền bằng một loại tiền tệ và chi bằng loại khác, hãy ghi lại lần đổi — nếu không, loại tiền bạn chi sẽ bị âm trong khi loại kia cứ tăng. Đổi tiền không phải thu hay chi, chỉ chuyển tiền giữa các loại tiền của bạn. Nếu một loại tiền bị âm, Tổng quan sẽ hiện cảnh báo kèm nút để ghi lần đổi."
+      },
+      "balance_transfer": {
+        "q": "Nạp hoặc rút lên sàn là gì?",
+        "a": "Là tiền bạn đã gửi lên sàn hoặc ví để đầu tư. Nó rời khỏi số dư rảnh nhưng không phải chi tiêu: Tổng quan hiển thị riêng là «trên các nền tảng» theo giá trị hôm nay. Khi mang tiền về, hãy ghi một lần rút và tiền sẽ quay lại số dư."
+      },
+      "balance_analytics": {
+        "q": "Vì sao phân tích không khớp với số dư?",
+        "a": "Phân tích chỉ tính thu và chi trong kỳ đã chọn. Số dư là toàn bộ lịch sử và còn tính đến mục tiêu, khoản nạp lên sàn và đổi tiền — những thứ không phải thu cũng không phải chi."
+      },
+      "base_currency": {
+        "q": "Làm sao đổi tiền tệ cơ sở?",
+        "a": "Trong Cài đặt → Chung. Tổng trên toàn ứng dụng sẽ được tính lại theo tiền tệ mới với tỷ giá hiện tại. Các giao dịch vẫn giữ tiền tệ lúc được ghi."
+      },
+      "delete_category": {
+        "q": "Nếu xóa một danh mục thì sao?",
+        "a": "Tất cả giao dịch trong danh mục đó bị xóa theo và không thể hoàn tác. Số dư và phân tích được tính lại mà không có chúng. Nếu chỉ muốn đổi tên, hãy sửa danh mục."
+      },
+      "limits": {
+        "q": "Gói miễn phí có giới hạn gì?",
+        "a": "Gói miễn phí giới hạn số danh mục và số giao dịch mỗi tháng — ứng dụng sẽ cảnh báo khi chỉ còn vài lượt. Bộ đếm giao dịch được đặt lại đầu mỗi tháng. Gói trả phí bỏ giới hạn và mở khóa mục Đầu tư."
+      },
+      "telegram_bot": {
+        "q": "Làm sao kết nối bot Telegram?",
+        "a": "Nhấn «Kết nối Telegram» ở thanh bên hoặc mở Cài đặt → Telegram. Sau khi liên kết, giao dịch bạn thêm trong chat với bot sẽ tự động xuất hiện ở đây. Trong Cài đặt bạn cũng có thể chọn bot gửi những tin nhắn nào, như tổng kết tháng."
+      },
+      "telegram_login": {
+        "q": "Tôi đăng nhập bằng Telegram — có cần email không?",
+        "a": "Nên có. Thêm email và mật khẩu trong Cài đặt → Email & mật khẩu và xác nhận địa chỉ qua liên kết trong thư — như vậy bạn không mất quyền truy cập tài khoản và có thể đăng nhập không cần Telegram."
+      },
+      "forgot_password": {
+        "q": "Tôi quên mật khẩu",
+        "a": "Trên trang đăng nhập, nhấn «Quên mật khẩu?» và nhập email — chúng tôi sẽ gửi liên kết để đặt mật khẩu mới. Nếu bạn đăng nhập bằng Telegram hoặc Google, chỉ cần dùng lại cách đó."
+      },
+      "filters_presets": {
+        "q": "Làm sao lưu bộ lọc hay dùng?",
+        "a": "Trên trang Giao dịch, đặt các bộ lọc cần thiết và lưu thành preset — sau đó áp dụng chỉ với một cú nhấp. Bộ lọc cũng được lưu trên thanh địa chỉ: trang mở lại với chúng và liên kết có thể đánh dấu trang."
+      },
+      "exchange_connect": {
+        "q": "Làm sao kết nối sàn và có an toàn không?",
+        "a": "Đầu tư → Tài khoản sàn giao dịch → Thêm tài khoản. Trên Bybit, tạo API key với quyền Read-Only — key có quyền giao dịch sẽ bị từ chối. Key như vậy chỉ đọc được lịch sử: không thể giao dịch hay rút tiền bằng nó. Giao dịch được đồng bộ vào nhật ký tự động."
+      },
+      "p2p": {
+        "q": "Tôi mua crypto qua P2P — ghi lại thế nào?",
+        "a": "Coin mua qua P2P đến mà không có bản ghi nạp tiền. Hãy ghi lệnh đã hoàn tất như một lần chuyển từ số dư (ở tab P2P), nếu không nó sẽ bị tính là lợi nhuận giao dịch."
+      },
+      "theme_language": {
+        "q": "Làm sao đổi giao diện hoặc ngôn ngữ?",
+        "a": "Các nút chuyển nằm ở thanh đầu trang. Trên điện thoại, chúng ở trong menu của nút hamburger."
+      }
+    }
   }
 }

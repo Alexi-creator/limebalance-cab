@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Konto",
     "logout": "Wyloguj się",
-    "auth": "Uwierzytelnianie"
+    "auth": "Uwierzytelnianie",
+    "faq": "Pomoc i FAQ"
   },
   "settings": {
     "title": "Ustawienia",
@@ -118,8 +119,7 @@
     "period_6m": "6 mies.",
     "period_1y": "1 rok",
     "income": "Przychody",
-    "expense": "Wydatki",
-    "day": "Dzień"
+    "expense": "Wydatki"
   },
   "common": {
     "notifications": "Powiadomienia",
@@ -383,15 +383,11 @@
     "savings_of_income": "{{rate}} % przychodu",
     "kpi_savings_rate": "Stopa oszczędności",
     "savings_share": "udział w przychodzie",
-    "donut_empty": "Brak wydatków w okresie",
-    "donut_aria": "Wykres wydatków według kategorii",
-    "donut_center": "wydatek",
-    "comparison_empty": "Brak zmian w okresie",
     "chart_aria": "Wykres przychodów i wydatków według okresu",
     "income_vs_expense": "Przychody vs wydatki",
     "expenses_by_category": "Wydatki według kategorii",
-    "comparison_title": "Porównanie z poprzednim okresem",
-    "comparison_subtitle": "Gdzie zmieniły się wydatki",
+    "incomes_by_category": "Przychody według kategorii",
+    "prev_period_value": "Poprzedni okres: {{amount}}",
     "details_title": "Szczegóły transakcji",
     "details_empty": "Brak transakcji w tym okresie",
     "tour_period_title": "Wybierz okres",
@@ -894,5 +890,132 @@
     "already_saved": "Bieżące filtry są zapisane jako „{{name}}”",
     "nothing_to_save": "Wybierz filtry, aby zapisać je jako preset",
     "error": "Nie udało się zapisać zmian. Spróbuj ponownie"
+  },
+  "faq": {
+    "title": "Pomoc i FAQ",
+    "subtitle": "Jak działa LimeBalance, do czego służy każda sekcja i jak razem składają się na Twoje saldo",
+    "search_placeholder": "Szukaj w pytaniach",
+    "search_empty": "Nic nie znaleziono — spróbuj innego słowa",
+    "open_page": "Otwórz sekcję",
+    "sections": {
+      "start": "Pierwsze kroki",
+      "pages": "Sekcje aplikacji",
+      "balance": "Jak wszystko składa się na saldo",
+      "common": "Najczęstsze pytania"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Przychody",
+      "expense": "Wydatki",
+      "goals": "Odłożone w celach",
+      "venues": "Wysłane na giełdy i do portfeli",
+      "note": "Wymian walut nie ma we wzorze: tylko przenoszą pieniądze między Twoimi walutami i nigdy nie zmieniają sumy."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Od czego zacząć?",
+        "a": "1. Wybierz walutę bazową w Ustawieniach — w niej pokazywane są sumy w całej aplikacji.\n2. Utwórz kategorie przychodów i wydatków (np. Wynagrodzenie, Zakupy, Czynsz).\n3. Zapisuj transakcje przyciskiem „Dodaj” w nagłówku lub przez bota Telegram.\n4. Ustaw cele, na które oszczędzasz.\n5. Po kilku tygodniach otwórz Analitykę, aby zobaczyć, na co idą pieniądze."
+      },
+      "quick_add": {
+        "q": "Jak szybko dodać wpis?",
+        "a": "Przycisk „Dodaj” w nagłówku jest dostępny na każdej stronie. Tworzy transakcję (przychód lub wydatek), cel, wymianę walut albo wpłatę/wypłatę na giełdę lub do portfela. Po podłączeniu bota Telegram możesz też dodawać transakcje bezpośrednio na czacie."
+      },
+      "tours": {
+        "q": "Czy jest przewodnik po interfejsie?",
+        "a": "Tak. Na każdej stronie obok tytułu jest przycisk przewodnika — pokazuje krótki samouczek krok po kroku dla tej strony. Możesz go uruchomić ponownie w dowolnej chwili."
+      },
+      "page_home": {
+        "q": "Przegląd — co jest na stronie głównej?",
+        "a": "Aktualne saldo, przychody, wydatki i różnica w tym miesiącu, wykres przepływów pieniężnych według dni, ostatnie transakcje i podgląd celów. To podsumowanie: wszystko, co tu widać, pochodzi z pozostałych sekcji."
+      },
+      "page_transactions": {
+        "q": "Transakcje — jak pracować z listą?",
+        "a": "Wszystkie przychody i wydatki w jednej tabeli: sortowanie, wyszukiwanie po opisie, filtry według typu, kategorii, waluty i okresu. Zaznacz wiersze, aby usunąć kilka naraz. Filtry są zapisywane w pasku adresu, więc link lub zakładka otwiera ten sam widok, a zestaw filtrów można zapisać jako preset. Karta „Wymiana” zawiera Twoje wymiany walut."
+      },
+      "page_categories": {
+        "q": "Kategorie — po co są potrzebne?",
+        "a": "Każda transakcja należy do kategorii, więc przed pierwszą transakcją potrzebujesz co najmniej jednej kategorii. Kategorie dzielą się na wydatkowe i przychodowe, każda ma własne emoji i kolor. Karta pokazuje sumę z całego okresu; z niej możesz od razu dodać transakcję do tej kategorii."
+      },
+      "page_analytics": {
+        "q": "Analityka — co pokazuje?",
+        "a": "Przychody i wydatki według okresów (tydzień, miesiąc, kwartał, rok lub własne daty), ile udało się zaoszczędzić i stopę oszczędności, podział na kategorie oraz co zmieniło się w porównaniu z poprzednim okresem."
+      },
+      "page_goals": {
+        "q": "Cele — jak działa oszczędzanie?",
+        "a": "Ustaw kwotę i opcjonalnie termin — LimeBalance obliczy, ile odkładać co miesiąc. Do celu można wpłacać i z niego wypłacać, jest też historia wpłat. Pasek jest czerwony, gdy cel jest opóźniony lub poniżej 25%, żółty, gdy termin się zbliża, a zielony w pozostałych przypadkach."
+      },
+      "page_investments": {
+        "q": "Inwestycje — co jest w tej sekcji?",
+        "a": "Dziennik transakcji z PnL i skutecznością, wpłaty i wypłaty na giełdy i do portfeli, zlecenia P2P z Bybit oraz podłączone konta giełdowe. Sekcja jest dostępna w każdym płatnym planie."
+      },
+      "page_settings": {
+        "q": "Ustawienia — co mogę zmienić?",
+        "a": "Imię i walutę bazową, e-mail i hasło, powiązanie z botem Telegram oraz to, jakie powiadomienia wysyła bot."
+      },
+      "balance_formula": {
+        "q": "Jak liczone jest saldo?",
+        "a": "Saldo to Twoje wolne pieniądze: wszystkie przychody minus wszystkie wydatki, minus to, co odłożono w aktywnych celach, minus to, co wysłano na giełdy i do portfeli. Nie zależy od okresu — to zawsze cała historia. Usunięcie lub edycja dowolnej transakcji od razu je zmienia."
+      },
+      "balance_currencies": {
+        "q": "Dlaczego saldo jest pokazane według walut i ze znakiem „≈”?",
+        "a": "Każda waluta liczona jest osobno i nigdy nie jest przeliczana — kwoty według walut pod saldem są dokładne. Duża liczba sumuje je w walucie bazowej po dzisiejszym kursie, więc przy więcej niż jednej walucie jest przybliżona i oznaczona „≈”."
+      },
+      "balance_goals": {
+        "q": "Co dzieje się z pieniędzmi wpłaconymi na cel?",
+        "a": "Nadal są Twoje, ale zostają zarezerwowane: wychodzą z wolnego salda i są widoczne w celu. Wypłata z celu, jego zamknięcie lub usunięcie zwraca pieniądze do salda. Wpłata na cel nie jest wydatkiem i nie trafia do analityki."
+      },
+      "balance_exchange": {
+        "q": "Po co zapisywać wymiany walut?",
+        "a": "Jeśli zarabiasz w jednej walucie, a wydajesz w innej, zapisz wymianę — inaczej waluta wydatków zejdzie na minus, a druga będzie się gromadzić. Wymiana nie jest ani przychodem, ani wydatkiem, tylko przenosi pieniądze między Twoimi walutami. Jeśli któraś waluta zejdzie na minus, Przegląd pokaże ostrzeżenie z przyciskiem do zapisania wymiany."
+      },
+      "balance_transfer": {
+        "q": "Czym jest wpłata lub wypłata na giełdę?",
+        "a": "To pieniądze wysłane na giełdę lub do portfela w celu inwestowania. Wychodzą z wolnego salda, ale nie są wydatkiem: Przegląd pokazuje je osobno jako „na platformach” według dzisiejszej wartości. Gdy odzyskasz pieniądze, zapisz wypłatę, a wrócą do salda."
+      },
+      "balance_analytics": {
+        "q": "Dlaczego analityka nie zgadza się z saldem?",
+        "a": "Analityka liczy tylko przychody i wydatki w wybranym okresie. Saldo to cała historia i uwzględnia też cele, wpłaty na giełdy oraz wymiany walut — które nie są ani przychodami, ani wydatkami."
+      },
+      "base_currency": {
+        "q": "Jak zmienić walutę bazową?",
+        "a": "W Ustawieniach → Ogólne. Sumy w całej aplikacji zostaną przeliczone na nową walutę po bieżącym kursie. Transakcje pozostają w walucie, w której zostały zapisane."
+      },
+      "delete_category": {
+        "q": "Co się stanie po usunięciu kategorii?",
+        "a": "Wszystkie transakcje z tej kategorii zostaną nieodwracalnie usunięte razem z nią. Saldo i analityka zostaną przeliczone bez nich. Jeśli chcesz tylko zmienić nazwę, edytuj kategorię zamiast ją usuwać."
+      },
+      "limits": {
+        "q": "Jakie są limity w darmowym planie?",
+        "a": "Darmowy plan ogranicza liczbę kategorii i transakcji w miesiącu — aplikacja ostrzeże, gdy zostanie tylko kilka. Licznik transakcji zeruje się na początku każdego miesiąca. Płatne plany znoszą limity i odblokowują sekcję Inwestycje."
+      },
+      "telegram_bot": {
+        "q": "Jak podłączyć bota Telegram?",
+        "a": "Kliknij „Połącz Telegram” w menu bocznym lub otwórz Ustawienia → Telegram. Po powiązaniu transakcje dodane na czacie z botem pojawią się tu automatycznie. W Ustawieniach możesz też wybrać, jakie wiadomości wysyła bot, np. podsumowanie miesiąca."
+      },
+      "telegram_login": {
+        "q": "Zalogowałem się przez Telegram — czy potrzebuję e-maila?",
+        "a": "Zalecamy to. Dodaj e-mail i hasło w Ustawieniach → E-mail i hasło i potwierdź adres linkiem z wiadomości — nie stracisz wtedy dostępu do konta i będziesz mógł logować się bez Telegrama."
+      },
+      "forgot_password": {
+        "q": "Nie pamiętam hasła",
+        "a": "Na stronie logowania kliknij „Nie pamiętasz hasła?” i podaj e-mail — wyślemy link do ustawienia nowego hasła. Jeśli logowałeś się przez Telegram lub Google, po prostu użyj tej samej metody."
+      },
+      "filters_presets": {
+        "q": "Jak zapisać często używane filtry?",
+        "a": "Na stronie Transakcje ustaw potrzebne filtry i zapisz je jako preset — potem zastosujesz go jednym kliknięciem. Filtry są też zapisywane w pasku adresu: strona otworzy się z nimi ponownie, a link można dodać do zakładek."
+      },
+      "exchange_connect": {
+        "q": "Jak podłączyć giełdę i czy to bezpieczne?",
+        "a": "Inwestycje → Konta giełdowe → Dodaj konto. Na Bybit utwórz klucz API z uprawnieniami Read-Only — klucze z uprawnieniami do handlu są odrzucane. Taki klucz może tylko czytać historię: handel ani wypłata środków za jego pomocą nie są możliwe. Transakcje synchronizują się z dziennikiem automatycznie."
+      },
+      "p2p": {
+        "q": "Kupiłem kryptowaluty przez P2P — jak to zapisać?",
+        "a": "Monety kupione przez P2P przychodzą bez zapisu o wpłacie. Zapisz zakończone zlecenie jako przelew z salda (na karcie P2P), inaczej zostanie policzone jako zysk z handlu."
+      },
+      "theme_language": {
+        "q": "Jak zmienić motyw lub język?",
+        "a": "Przełączniki znajdują się w nagłówku. Na telefonie są w menu pod przyciskiem hamburgera."
+      }
+    }
   }
 }

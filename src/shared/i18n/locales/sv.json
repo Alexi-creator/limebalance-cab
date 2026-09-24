@@ -61,7 +61,8 @@
     "menu": "Meny",
     "account": "Konto",
     "logout": "Logga ut",
-    "auth": "Autentisering"
+    "auth": "Autentisering",
+    "faq": "Hjälp & FAQ"
   },
   "settings": {
     "title": "Inställningar",
@@ -118,8 +119,7 @@
     "period_6m": "6 mån",
     "period_1y": "1 år",
     "income": "Inkomster",
-    "expense": "Utgifter",
-    "day": "Dag"
+    "expense": "Utgifter"
   },
   "common": {
     "notifications": "Aviseringar",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % av inkomsten",
     "kpi_savings_rate": "Sparkvot",
     "savings_share": "andel av inkomsten",
-    "donut_empty": "Inga utgifter under perioden",
-    "donut_aria": "Diagram över utgifter per kategori",
-    "donut_center": "utgift",
-    "comparison_empty": "Inga förändringar under perioden",
     "chart_aria": "Diagram över inkomster och utgifter per period",
     "income_vs_expense": "Inkomster mot utgifter",
     "expenses_by_category": "Utgifter per kategori",
-    "comparison_title": "Jämförelse med föregående period",
-    "comparison_subtitle": "Var utgifterna ändrades",
+    "incomes_by_category": "Inkomster per kategori",
+    "prev_period_value": "Föregående period: {{amount}}",
     "details_title": "Transaktionsdetaljer",
     "details_empty": "Inga transaktioner under perioden",
     "tour_period_title": "Välj en period",
@@ -879,5 +875,132 @@
     "already_saved": "De aktuella filtren är sparade som ”{{name}}”",
     "nothing_to_save": "Välj filter för att spara dem som förval",
     "error": "Det gick inte att spara ändringarna. Försök igen"
+  },
+  "faq": {
+    "title": "Hjälp & FAQ",
+    "subtitle": "Hur LimeBalance fungerar, vad varje del är till för och hur de tillsammans bildar ditt saldo",
+    "search_placeholder": "Sök bland frågorna",
+    "search_empty": "Inget hittades — prova ett annat ord",
+    "open_page": "Öppna avsnitt",
+    "sections": {
+      "start": "Kom igång",
+      "pages": "Appens delar",
+      "balance": "Hur allt summeras i saldot",
+      "common": "Vanliga frågor"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Inkomster",
+      "expense": "Utgifter",
+      "goals": "Undanlagt i mål",
+      "venues": "Skickat till börser och plånböcker",
+      "note": "Valutaväxlingar finns inte i formeln: de flyttar bara pengar mellan dina valutor och ändrar aldrig summan."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Var börjar jag?",
+        "a": "1. Välj din basvaluta i Inställningar — summorna i hela appen visas i den.\n2. Skapa inkomst- och utgiftskategorier (till exempel Lön, Mat, Hyra).\n3. Registrera transaktioner med knappen ”Lägg till” i sidhuvudet eller via Telegram-boten.\n4. Skapa mål för det du sparar till.\n5. Efter ett par veckor, öppna Analys för att se vart pengarna tar vägen."
+      },
+      "quick_add": {
+        "q": "Hur lägger jag snabbt till en post?",
+        "a": "Knappen ”Lägg till” i sidhuvudet finns på alla sidor. Med den skapar du en transaktion (inkomst eller utgift), ett mål, en valutaväxling eller en insättning/uttag till en börs eller plånbok. Är Telegram-boten ansluten kan du även lägga till transaktioner direkt i chatten."
+      },
+      "tours": {
+        "q": "Finns det en genomgång av gränssnittet?",
+        "a": "Ja. Varje sida har en turknapp bredvid rubriken — den visar en kort steg-för-steg-guide för sidan. Du kan starta den igen när som helst."
+      },
+      "page_home": {
+        "q": "Översikt — vad finns på startsidan?",
+        "a": "Ditt aktuella saldo, inkomster, utgifter och skillnaden för månaden, ett kassaflödesdiagram per dag, dina senaste transaktioner och en överblick över dina mål. Det är en sammanfattning: allt här kommer från de andra delarna."
+      },
+      "page_transactions": {
+        "q": "Transaktioner — hur arbetar jag med listan?",
+        "a": "Alla inkomster och utgifter i en tabell: sortera, sök på beskrivning, filtrera på typ, kategori, valuta och period. Markera rader för att ta bort flera på en gång. Filtren sparas i adressfältet, så en länk eller ett bokmärke öppnar samma vy, och en uppsättning filter kan sparas som förinställning. Fliken ”Växling” visar dina valutaväxlingar."
+      },
+      "page_categories": {
+        "q": "Kategorier — varför behövs de?",
+        "a": "Varje transaktion hör till en kategori, så du behöver minst en kategori innan den första transaktionen. Det finns utgifts- och inkomstkategorier, var och en med egen emoji och färg. Kortet visar totalen för all tid; därifrån kan du lägga till en transaktion direkt i kategorin."
+      },
+      "page_analytics": {
+        "q": "Analys — vad visar den?",
+        "a": "Inkomster mot utgifter per period (vecka, månad, kvartal, år eller egna datum), hur mycket du har sparat och din sparkvot, fördelningen per kategori och vad som ändrats jämfört med föregående period."
+      },
+      "page_goals": {
+        "q": "Mål — hur fungerar sparandet?",
+        "a": "Ange ett belopp och vid behov ett slutdatum — LimeBalance räknar ut hur mycket du ska lägga undan varje månad. Du kan sätta in i ett mål eller ta ut ur det och se insättningshistoriken. Stapeln är röd om målet ligger efter eller under 25 %, gul när slutdatumet närmar sig och annars grön."
+      },
+      "page_investments": {
+        "q": "Investeringar — vad finns här?",
+        "a": "En tradingjournal med PnL och vinstfrekvens, insättningar och uttag till börser och plånböcker, Bybit P2P-order och anslutna börskonton. Avsnittet ingår i alla betalplaner."
+      },
+      "page_settings": {
+        "q": "Inställningar — vad kan jag ändra?",
+        "a": "Ditt namn och basvaluta, e-post och lösenord, kopplingen till Telegram-boten och vilka aviseringar boten skickar."
+      },
+      "balance_formula": {
+        "q": "Hur räknas saldot ut?",
+        "a": "Saldot är dina fria pengar: alla inkomster minus alla utgifter, minus det som ligger undanlagt i aktiva mål, minus det du skickat till börser och plånböcker. Det beror inte på perioden — det är alltid hela historiken. Att ta bort eller ändra en transaktion påverkar det direkt."
+      },
+      "balance_currencies": {
+        "q": "Varför visas saldot per valuta och med ”≈”?",
+        "a": "Varje valuta räknas för sig och omvandlas aldrig — beloppen per valuta under saldot är exakta. Den stora siffran summerar dem i din basvaluta till dagens kurs, så har du mer än en valuta är den ungefärlig och markerad med ”≈”."
+      },
+      "balance_goals": {
+        "q": "Vad händer med pengar jag sätter in i ett mål?",
+        "a": "De är fortfarande dina men reserveras: de lämnar det fria saldot och visas i målet. Uttag ur målet, att stänga eller ta bort det för tillbaka pengarna till saldot. En insättning i ett mål är ingen utgift och syns inte i analysen."
+      },
+      "balance_exchange": {
+        "q": "Varför registrera valutaväxlingar?",
+        "a": "Om du får betalt i en valuta och spenderar i en annan, registrera växlingen — annars går valutan du spenderar i minus medan den andra växer. En växling är varken inkomst eller utgift, den flyttar bara pengar mellan dina valutor. Går en valuta på minus visar Översikten en varning med en knapp för att registrera växlingen."
+      },
+      "balance_transfer": {
+        "q": "Vad är en insättning eller ett uttag till en börs?",
+        "a": "Pengar du skickat till en börs eller plånbok för att investera. De lämnar det fria saldot men är ingen utgift: Översikten visar dem separat som ”på plattformar” till dagens värde. När du tar hem pengarna, registrera ett uttag så kommer de tillbaka till saldot."
+      },
+      "balance_analytics": {
+        "q": "Varför stämmer inte analysen med saldot?",
+        "a": "Analysen räknar bara inkomster och utgifter för vald period. Saldot är hela historiken och tar även hänsyn till mål, insättningar till börser och valutaväxlingar — som varken är inkomster eller utgifter."
+      },
+      "base_currency": {
+        "q": "Hur byter jag basvaluta?",
+        "a": "I Inställningar → Allmänt. Summorna i hela appen räknas om till den nya valutan till aktuell kurs. Dina transaktioner ligger kvar i den valuta de registrerades i."
+      },
+      "delete_category": {
+        "q": "Vad händer om jag tar bort en kategori?",
+        "a": "Alla transaktioner i kategorin tas bort med den, och det går inte att ångra. Saldo och analys räknas om utan dem. Vill du bara byta namn, redigera kategorin i stället."
+      },
+      "limits": {
+        "q": "Vilka begränsningar har gratisplanen?",
+        "a": "Gratisplanen begränsar antalet kategorier och transaktioner per månad — appen varnar när bara ett par återstår. Transaktionsräknaren nollställs i början av varje månad. Betalplaner tar bort begränsningarna och låser upp Investeringar."
+      },
+      "telegram_bot": {
+        "q": "Hur ansluter jag Telegram-boten?",
+        "a": "Klicka på ”Anslut Telegram” i sidomenyn eller öppna Inställningar → Telegram. Efter kopplingen dyker transaktioner du lägger till i chatten med boten upp här automatiskt. I Inställningar kan du också välja vilka meddelanden boten skickar, till exempel månadssammanfattningen."
+      },
+      "telegram_login": {
+        "q": "Jag loggade in med Telegram — behöver jag e-post?",
+        "a": "Det rekommenderas. Lägg till e-post och lösenord under Inställningar → E-post och lösenord och bekräfta adressen via länken i mejlet — då förlorar du inte åtkomsten till kontot och kan logga in utan Telegram."
+      },
+      "forgot_password": {
+        "q": "Jag har glömt mitt lösenord",
+        "a": "Klicka på ”Glömt lösenordet?” på inloggningssidan och ange din e-post — vi skickar en länk för att välja ett nytt lösenord. Om du loggade in med Telegram eller Google, använd bara samma sätt."
+      },
+      "filters_presets": {
+        "q": "Hur sparar jag filter jag använder ofta?",
+        "a": "Ställ in filtren du behöver på sidan Transaktioner och spara dem som förinställning — sedan används den med ett klick. Filtren sparas också i adressfältet: sidan öppnas igen med dem och länken kan bokmärkas."
+      },
+      "exchange_connect": {
+        "q": "Hur ansluter jag en börs och är det säkert?",
+        "a": "Investeringar → Börskonton → Lägg till konto. Skapa en API-nyckel med Read-Only-behörighet på Bybit — nycklar med handelsbehörighet avvisas. En sådan nyckel kan bara läsa din historik: att handla eller ta ut pengar med den är omöjligt. Affärer synkas automatiskt till journalen."
+      },
+      "p2p": {
+        "q": "Jag köpte krypto via P2P — hur registrerar jag det?",
+        "a": "Mynt köpta via P2P kommer in utan insättningspost. Registrera den slutförda ordern som en överföring från saldot (på fliken P2P), annars räknas den som handelsvinst."
+      },
+      "theme_language": {
+        "q": "Hur byter jag tema eller språk?",
+        "a": "Reglagen finns i sidhuvudet. På mobilen ligger de i menyn bakom hamburgerknappen."
+      }
+    }
   }
 }

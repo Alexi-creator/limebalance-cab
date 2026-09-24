@@ -7,14 +7,27 @@ export interface ChartDataset {
   income: number[]
   expense: number[]
   labels: string[]
+  /** Full date / month of each point — the hover card header. */
+  titles: string[]
 }
 
-/** Short names of the last `count` months (for stubs). */
-export function getMonthLabels(count: number, locale: Locale): string[] {
+/** Short names (`MMM`) and full titles (`LLLL yyyy`) of the last `count` months (for stubs). */
+function getStubMonths(count: number, locale: Locale): Pick<ChartDataset, "labels" | "titles"> {
   const now = new Date()
-  return Array.from({ length: count }, (_, i) =>
-    format(subMonths(now, count - 1 - i), "MMM", { locale }),
-  )
+  const months = Array.from({ length: count }, (_, i) => subMonths(now, count - 1 - i))
+  return {
+    labels: months.map((m) => format(m, "MMM", { locale })),
+    titles: months.map((m) => format(m, "LLLL yyyy", { locale })),
+  }
+}
+
+/** Hover card header: month (`YYYY-MM`) — "September 2026", day — "24 September". */
+function bucketTitle(bucket: string, monthly: boolean, locale: Locale): string {
+  if (monthly) {
+    const [year, month] = bucket.split("-").map(Number)
+    return format(new Date(year, month - 1, 1), "LLLL yyyy", { locale })
+  }
+  return format(parseISO(bucket), "d MMMM, EEEEEE", { locale })
 }
 
 /** Axis bucket label: month (`YYYY-MM`) — short month name, day — day of the month. */
@@ -57,6 +70,7 @@ export function buildBucketDataset(
     income: keys.map((k) => incMap.get(k) ?? 0),
     expense: keys.map((k) => expMap.get(k) ?? 0),
     labels: keys.map((k, i) => bucketLabel(k, monthly, locale, compact, i, keys.length)),
+    titles: keys.map((k) => bucketTitle(k, monthly, locale)),
   }
 }
 
@@ -84,5 +98,5 @@ export function selectDataset({
   }
 
   const stub = stubValues[period as keyof typeof stubValues] ?? stubValues["6m"]
-  return { ...stub, labels: getMonthLabels(stub.income.length, locale) }
+  return { ...stub, ...getStubMonths(stub.income.length, locale) }
 }

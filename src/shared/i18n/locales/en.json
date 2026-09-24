@@ -61,7 +61,8 @@
     "menu": "Menu",
     "account": "Account",
     "logout": "Sign out",
-    "auth": "Auth"
+    "auth": "Auth",
+    "faq": "Help & FAQ"
   },
   "settings": {
     "title": "Settings",
@@ -118,8 +119,7 @@
     "period_6m": "6 mo",
     "period_1y": "1 yr",
     "income": "Income",
-    "expense": "Expenses",
-    "day": "Day"
+    "expense": "Expenses"
   },
   "common": {
     "notifications": "Notifications",
@@ -396,15 +396,11 @@
     "savings_of_income": "{{rate}}% of income",
     "kpi_savings_rate": "Savings rate",
     "savings_share": "share of income",
-    "donut_empty": "No expenses for the period",
-    "donut_aria": "Expenses by category chart",
-    "donut_center": "expense",
-    "comparison_empty": "No changes for the period",
     "chart_aria": "Income and expenses by period chart",
     "income_vs_expense": "Income vs expenses",
     "expenses_by_category": "Expenses by category",
-    "comparison_title": "Comparison with previous period",
-    "comparison_subtitle": "Where spending changed",
+    "incomes_by_category": "Income by category",
+    "prev_period_value": "Previous period: {{amount}}",
     "details_title": "Transaction details",
     "details_empty": "No transactions for the period",
     "tour_period_title": "Choose a period",
@@ -878,5 +874,132 @@
     "already_saved": "Current filters are saved as “{{name}}”",
     "nothing_to_save": "Pick some filters to save them as a preset",
     "error": "Couldn't save the changes. Please try again"
+  },
+  "faq": {
+    "title": "Help & FAQ",
+    "subtitle": "How LimeBalance works, what each section is for and how they add up to your balance",
+    "search_placeholder": "Search questions",
+    "search_empty": "Nothing found — try a different word",
+    "open_page": "Open section",
+    "sections": {
+      "start": "Getting started",
+      "pages": "App sections",
+      "balance": "How it all adds up to the balance",
+      "common": "Frequently asked questions"
+    },
+    "formula": {
+      "balance": "Balance",
+      "income": "Income",
+      "expense": "Expenses",
+      "goals": "Saved in goals",
+      "venues": "Sent to exchanges and wallets",
+      "note": "Currency exchanges are not in the formula: they only move money between your currencies and never change the total."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Where do I start?",
+        "a": "1. Pick your base currency in Settings — totals across the app are shown in it.\n2. Create income and expense categories (for example Salary, Groceries, Rent).\n3. Record your transactions with the \"Add\" button in the header or via the Telegram bot.\n4. Set goals for what you're saving towards.\n5. After a couple of weeks, open Analytics to see where the money goes."
+      },
+      "quick_add": {
+        "q": "How do I add a record quickly?",
+        "a": "The \"Add\" button in the header is available on every page. It creates a transaction (income or expense), a goal, a currency exchange, or a deposit/withdrawal to an exchange or wallet. You can also add transactions from Telegram once the bot is connected."
+      },
+      "tours": {
+        "q": "Is there a walkthrough of the interface?",
+        "a": "Yes. Every page has a tour button next to its title — it shows a short step-by-step guide to that page. You can replay it any time."
+      },
+      "page_home": {
+        "q": "Overview — what is on the home page?",
+        "a": "Your current balance, income, expenses and the difference for this month, a cashflow chart by day, your latest transactions and a snapshot of your goals. It's a summary: everything shown here comes from the other sections."
+      },
+      "page_transactions": {
+        "q": "Transactions — how do I work with the list?",
+        "a": "All incomes and expenses in one table: sort, search by description, filter by type, category, currency and period. Select rows to delete several at once. Filters are kept in the address bar, so a link or bookmark opens the same view, and a set of filters can be saved as a preset. The \"Exchange\" tab lists your currency exchanges."
+      },
+      "page_categories": {
+        "q": "Categories — why do I need them?",
+        "a": "Every transaction belongs to a category, so you need at least one category before adding a transaction. Categories are split into expense and income ones, each with its own emoji and colour. The card shows the all-time total; from it you can add a transaction straight into that category."
+      },
+      "page_analytics": {
+        "q": "Analytics — what does it show?",
+        "a": "Income vs expenses by period (week, month, quarter, year or custom dates), how much you saved and your savings rate, the breakdown by category, and what changed compared to the previous period."
+      },
+      "page_goals": {
+        "q": "Goals — how do savings goals work?",
+        "a": "Set an amount and, optionally, a deadline — LimeBalance calculates how much to put aside each month. Deposit into a goal or withdraw from it, and view the contribution history. The bar is red when a goal is behind or below 25%, yellow when the deadline is close, green otherwise."
+      },
+      "page_investments": {
+        "q": "Investments — what is in this section?",
+        "a": "A trade journal with PnL and win rate, deposits and withdrawals to exchanges and wallets, Bybit P2P orders and connected exchange accounts. The section is available on any paid plan."
+      },
+      "page_settings": {
+        "q": "Settings — what can I change?",
+        "a": "Your name and base currency, email and password, the Telegram bot link and which notifications the bot sends you."
+      },
+      "balance_formula": {
+        "q": "How is the balance calculated?",
+        "a": "Balance is your free money: all income minus all expenses, minus what is set aside in active goals, minus what you sent to exchanges and wallets. It doesn't depend on the period — it's always the whole history. Deleting or editing any transaction changes it right away."
+      },
+      "balance_currencies": {
+        "q": "Why is the balance shown per currency and with \"≈\"?",
+        "a": "Each currency is counted separately and is never converted — those per-currency figures under the balance are exact. The large figure adds them up in your base currency at today's rate, so when you hold more than one currency it's approximate and marked with \"≈\"."
+      },
+      "balance_goals": {
+        "q": "What happens to money I put into a goal?",
+        "a": "It stays yours but becomes reserved: it leaves the free balance and is shown in the goal. Withdrawing from the goal, closing it or deleting it returns the money to the balance. A goal deposit is not an expense and doesn't appear in analytics."
+      },
+      "balance_exchange": {
+        "q": "Why record currency exchanges?",
+        "a": "If you get paid in one currency and spend in another, record the exchange — otherwise the currency you spend goes negative while the other keeps piling up. An exchange is neither income nor expense, it just moves money between your currencies. If a currency goes negative, the overview shows a warning with a button to record the exchange."
+      },
+      "balance_transfer": {
+        "q": "What is a deposit or withdrawal to an exchange?",
+        "a": "Money you sent to an exchange or a wallet to invest. It leaves the free balance but isn't an expense: the overview shows it separately as \"on exchanges\" at today's value. When you bring the money back, record a withdrawal and it returns to the balance."
+      },
+      "balance_analytics": {
+        "q": "Why doesn't analytics match my balance?",
+        "a": "Analytics only counts income and expenses for the selected period. The balance is the whole history and also accounts for goals, deposits to exchanges and exchanges between currencies — none of which are income or expenses."
+      },
+      "base_currency": {
+        "q": "How do I change the base currency?",
+        "a": "In Settings → General. Totals across the app will be recalculated into the new currency at the current rate. Your transactions stay in the currency they were recorded in."
+      },
+      "delete_category": {
+        "q": "What happens when I delete a category?",
+        "a": "All transactions in that category are deleted with it, and this can't be undone. The balance and analytics are recalculated without them. If you only want to rename it, edit the category instead."
+      },
+      "limits": {
+        "q": "What are the limits on the free plan?",
+        "a": "The free plan caps the number of categories and transactions per month — the app warns you when only a couple are left. The transaction counter resets at the start of each month. Paid plans remove the limits and unlock the Investments section."
+      },
+      "telegram_bot": {
+        "q": "How do I connect the Telegram bot?",
+        "a": "Click \"Connect Telegram\" in the sidebar or open Settings → Telegram. Once linked, transactions you add in the bot's chat appear here automatically. In Settings you can also choose which messages the bot sends, such as the monthly summary."
+      },
+      "telegram_login": {
+        "q": "I signed in with Telegram — do I need an email?",
+        "a": "It's recommended. Add an email and password in Settings → Email & password and confirm the address from the email — then you won't lose access to your account and can sign in without Telegram."
+      },
+      "forgot_password": {
+        "q": "I forgot my password",
+        "a": "On the sign-in page click \"Forgot your password?\" and enter your email — we'll send a link to set a new password. If you signed in with Telegram or Google, just use that method."
+      },
+      "filters_presets": {
+        "q": "How do I save frequently used filters?",
+        "a": "On the Transactions page set up the filters you need and save them as a preset — it can be applied later in one click. Filters are also kept in the address bar: the page reopens with them and the link can be bookmarked."
+      },
+      "exchange_connect": {
+        "q": "How do I connect an exchange, and is it safe?",
+        "a": "Investments → Exchange accounts → Add account. On Bybit create a Read-Only API key — keys with trading permissions are rejected. Such a key can only read your history: trading or withdrawing funds through it is impossible. Trades sync to the journal automatically."
+      },
+      "p2p": {
+        "q": "I bought crypto via P2P — how do I record it?",
+        "a": "Coins bought via P2P arrive without a deposit record. Record the completed order as a transfer from your balance (on the P2P tab), otherwise it will be counted as trading profit."
+      },
+      "theme_language": {
+        "q": "How do I switch the theme or language?",
+        "a": "Use the controls in the header. On mobile they're in the menu under the burger button."
+      }
+    }
   }
 }

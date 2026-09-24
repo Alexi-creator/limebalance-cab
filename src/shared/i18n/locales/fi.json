@@ -61,7 +61,8 @@
     "menu": "Valikko",
     "account": "Tili",
     "logout": "Kirjaudu ulos",
-    "auth": "Todennus"
+    "auth": "Todennus",
+    "faq": "Ohje ja UKK"
   },
   "settings": {
     "title": "Asetukset",
@@ -118,8 +119,7 @@
     "period_6m": "6 kk",
     "period_1y": "1 v",
     "income": "Tulot",
-    "expense": "Menot",
-    "day": "Päivä"
+    "expense": "Menot"
   },
   "common": {
     "notifications": "Ilmoitukset",
@@ -372,15 +372,11 @@
     "savings_of_income": "{{rate}} % tuloista",
     "kpi_savings_rate": "Säästöaste",
     "savings_share": "osuus tuloista",
-    "donut_empty": "Ei menoja jaksolla",
-    "donut_aria": "Kaavio menoista kategorioittain",
-    "donut_center": "meno",
-    "comparison_empty": "Ei muutoksia jaksolla",
     "chart_aria": "Kaavio tuloista ja menoista jaksoittain",
     "income_vs_expense": "Tulot vs. menot",
     "expenses_by_category": "Menot kategorioittain",
-    "comparison_title": "Vertailu edelliseen jaksoon",
-    "comparison_subtitle": "Missä menot muuttuivat",
+    "incomes_by_category": "Tulot kategorioittain",
+    "prev_period_value": "Edellinen jakso: {{amount}}",
     "details_title": "Tapahtumien tiedot",
     "details_empty": "Ei tapahtumia jaksolla",
     "tour_period_title": "Valitse ajanjakso",
@@ -879,5 +875,132 @@
     "already_saved": "Nykyiset suodattimet on tallennettu nimellä ”{{name}}”",
     "nothing_to_save": "Valitse suodattimia tallentaaksesi ne esiasetukseksi",
     "error": "Muutoksia ei voitu tallentaa. Yritä uudelleen"
+  },
+  "faq": {
+    "title": "Ohje ja UKK",
+    "subtitle": "Miten LimeBalance toimii, mihin kukin osio on tarkoitettu ja miten ne yhdessä muodostavat saldosi",
+    "search_placeholder": "Hae kysymyksistä",
+    "search_empty": "Mitään ei löytynyt — kokeile toista sanaa",
+    "open_page": "Avaa osio",
+    "sections": {
+      "start": "Aloittaminen",
+      "pages": "Sovelluksen osiot",
+      "balance": "Miten kaikki muodostaa saldon",
+      "common": "Usein kysytyt kysymykset"
+    },
+    "formula": {
+      "balance": "Saldo",
+      "income": "Tulot",
+      "expense": "Menot",
+      "goals": "Säästetty tavoitteisiin",
+      "venues": "Lähetetty pörsseihin ja lompakoihin",
+      "note": "Valuutanvaihdot eivät ole kaavassa: ne vain siirtävät rahaa valuuttojesi välillä eivätkä koskaan muuta kokonaissummaa."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Mistä aloitan?",
+        "a": "1. Valitse perusvaluutta Asetuksissa — koko sovelluksen summat näytetään siinä.\n2. Luo tulo- ja menoluokat (esimerkiksi Palkka, Ruoka, Vuokra).\n3. Kirjaa tapahtumat yläpalkin ”Lisää”-painikkeella tai Telegram-botin kautta.\n4. Luo tavoitteet asioille, joihin säästät.\n5. Avaa parin viikon päästä Analytiikka ja katso, mihin rahat menevät."
+      },
+      "quick_add": {
+        "q": "Miten lisään merkinnän nopeasti?",
+        "a": "Yläpalkin ”Lisää”-painike on käytettävissä joka sivulla. Sillä luot tapahtuman (tulo tai meno), tavoitteen, valuutanvaihdon tai talletuksen/noston pörssiin tai lompakkoon. Kun Telegram-botti on yhdistetty, voit lisätä tapahtumia myös suoraan chatissa."
+      },
+      "tours": {
+        "q": "Onko käyttöliittymästä esittelyä?",
+        "a": "On. Jokaisella sivulla on otsikon vieressä esittelypainike — se näyttää lyhyen vaiheittaisen oppaan sivusta. Voit käynnistää sen uudelleen milloin tahansa."
+      },
+      "page_home": {
+        "q": "Yleiskatsaus — mitä etusivulla on?",
+        "a": "Nykyinen saldo, kuukauden tulot, menot ja niiden erotus, päiväkohtainen kassavirtakaavio, viimeisimmät tapahtumat ja katsaus tavoitteisiin. Se on yhteenveto: kaikki tässä näkyvä tulee muista osioista."
+      },
+      "page_transactions": {
+        "q": "Tapahtumat — miten listaa käytetään?",
+        "a": "Kaikki tulot ja menot yhdessä taulukossa: lajittele, hae kuvauksesta, suodata tyypin, luokan, valuutan ja ajanjakson mukaan. Valitse rivejä poistaaksesi useita kerralla. Suodattimet tallentuvat osoiteriville, joten linkki tai kirjanmerkki avaa saman näkymän, ja suodatinyhdistelmän voi tallentaa esiasetukseksi. ”Vaihto”-välilehdellä ovat valuutanvaihtosi."
+      },
+      "page_categories": {
+        "q": "Luokat — mihin niitä tarvitaan?",
+        "a": "Jokainen tapahtuma kuuluu johonkin luokkaan, joten ennen ensimmäistä tapahtumaa tarvitset vähintään yhden luokan. Luokat jaetaan meno- ja tuloluokkiin, ja jokaisella on oma emoji ja väri. Kortti näyttää kaikkien aikojen summan; siitä voit lisätä tapahtuman suoraan kyseiseen luokkaan."
+      },
+      "page_analytics": {
+        "q": "Analytiikka — mitä se näyttää?",
+        "a": "Tulot ja menot ajanjaksoittain (viikko, kuukausi, neljännes, vuosi tai omat päivämäärät), paljonko olet säästänyt ja säästöasteesi, jakauman luokittain sekä mikä muuttui edelliseen jaksoon verrattuna."
+      },
+      "page_goals": {
+        "q": "Tavoitteet — miten säästäminen toimii?",
+        "a": "Aseta summa ja halutessasi määräaika — LimeBalance laskee, paljonko kannattaa säästää kuukaudessa. Voit tallettaa tavoitteeseen tai nostaa siitä ja katsoa talletushistorian. Palkki on punainen, jos tavoite on jäljessä tai alle 25 %, keltainen määräajan lähestyessä ja muuten vihreä."
+      },
+      "page_investments": {
+        "q": "Sijoitukset — mitä tässä osiossa on?",
+        "a": "Kaupankäyntipäiväkirja PnL:n ja osumaprosentin kanssa, talletukset ja nostot pörsseihin ja lompakoihin, Bybitin P2P-toimeksiannot sekä yhdistetyt pörssitilit. Osio on käytettävissä kaikissa maksullisissa tilauksissa."
+      },
+      "page_settings": {
+        "q": "Asetukset — mitä voin muuttaa?",
+        "a": "Nimen ja perusvaluutan, sähköpostin ja salasanan, Telegram-botin yhdistämisen sekä sen, mitä ilmoituksia botti lähettää."
+      },
+      "balance_formula": {
+        "q": "Miten saldo lasketaan?",
+        "a": "Saldo on vapaat rahasi: kaikki tulot miinus kaikki menot, miinus aktiivisiin tavoitteisiin säästetty, miinus pörsseihin ja lompakoihin lähetetty. Se ei riipu ajanjaksosta — se on aina koko historia. Minkä tahansa tapahtuman poistaminen tai muokkaaminen muuttaa sitä heti."
+      },
+      "balance_currencies": {
+        "q": "Miksi saldo näytetään valuutoittain ja ”≈”-merkillä?",
+        "a": "Jokainen valuutta lasketaan erikseen eikä sitä koskaan muunneta — saldon alla olevat valuuttakohtaiset summat ovat tarkkoja. Iso luku laskee ne yhteen perusvaluuttaasi tämän päivän kurssilla, joten jos sinulla on useampi valuutta, se on likimääräinen ja merkitty ”≈”."
+      },
+      "balance_goals": {
+        "q": "Mitä tavoitteeseen talletetuille rahoille tapahtuu?",
+        "a": "Ne ovat edelleen sinun, mutta varattuja: ne poistuvat vapaasta saldosta ja näkyvät tavoitteessa. Nosto tavoitteesta, sen sulkeminen tai poistaminen palauttaa rahat saldoon. Talletus tavoitteeseen ei ole meno eikä näy analytiikassa."
+      },
+      "balance_exchange": {
+        "q": "Miksi valuutanvaihdot kannattaa kirjata?",
+        "a": "Jos saat tuloja yhdessä valuutassa ja kulutat toisessa, kirjaa vaihto — muuten kulutusvaluutta menee miinukselle ja toinen kasautuu. Vaihto ei ole tulo eikä meno, se vain siirtää rahaa valuuttojesi välillä. Jos jokin valuutta menee miinukselle, Yleiskatsaus näyttää varoituksen ja painikkeen vaihdon kirjaamiseen."
+      },
+      "balance_transfer": {
+        "q": "Mikä on talletus tai nosto pörssiin?",
+        "a": "Rahaa, jonka lähetit pörssiin tai lompakkoon sijoittaaksesi. Se poistuu vapaasta saldosta mutta ei ole meno: Yleiskatsaus näyttää sen erikseen ”alustoilla” tämän päivän arvolla. Kun tuot rahat takaisin, kirjaa nosto, niin ne palaavat saldoon."
+      },
+      "balance_analytics": {
+        "q": "Miksi analytiikka ei täsmää saldoon?",
+        "a": "Analytiikka laskee vain valitun ajanjakson tulot ja menot. Saldo on koko historia ja ottaa lisäksi huomioon tavoitteet, talletukset pörsseihin ja valuutanvaihdot — jotka eivät ole tuloja eivätkä menoja."
+      },
+      "base_currency": {
+        "q": "Miten vaihdan perusvaluutan?",
+        "a": "Kohdassa Asetukset → Yleiset. Koko sovelluksen summat lasketaan uudelleen uuteen valuuttaan nykyisellä kurssilla. Tapahtumat pysyvät siinä valuutassa, jossa ne kirjattiin."
+      },
+      "delete_category": {
+        "q": "Mitä tapahtuu, jos poistan luokan?",
+        "a": "Kaikki luokan tapahtumat poistetaan sen mukana, eikä sitä voi perua. Saldo ja analytiikka lasketaan uudelleen ilman niitä. Jos haluat vain nimetä luokan uudelleen, muokkaa sitä."
+      },
+      "limits": {
+        "q": "Mitä rajoituksia ilmaisessa tilauksessa on?",
+        "a": "Ilmainen tilaus rajoittaa luokkien ja kuukausittaisten tapahtumien määrää — sovellus varoittaa, kun jäljellä on enää pari. Tapahtumalaskuri nollautuu jokaisen kuukauden alussa. Maksulliset tilaukset poistavat rajoitukset ja avaavat Sijoitukset-osion."
+      },
+      "telegram_bot": {
+        "q": "Miten yhdistän Telegram-botin?",
+        "a": "Napsauta sivuvalikossa ”Yhdistä Telegram” tai avaa Asetukset → Telegram. Yhdistämisen jälkeen botin chatissa lisäämäsi tapahtumat näkyvät täällä automaattisesti. Asetuksissa voit myös valita, mitä viestejä botti lähettää, esimerkiksi kuukausikoosteen."
+      },
+      "telegram_login": {
+        "q": "Kirjauduin Telegramilla — tarvitsenko sähköpostin?",
+        "a": "Se on suositeltavaa. Lisää sähköposti ja salasana kohdassa Asetukset → Sähköposti ja salasana ja vahvista osoite viestin linkistä — näin et menetä pääsyä tiliisi ja voit kirjautua ilman Telegramia."
+      },
+      "forgot_password": {
+        "q": "Unohdin salasanani",
+        "a": "Napsauta kirjautumissivulla ”Unohditko salasanasi?” ja anna sähköpostisi — lähetämme linkin uuden salasanan asettamiseen. Jos kirjauduit Telegramilla tai Googlella, käytä samaa tapaa."
+      },
+      "filters_presets": {
+        "q": "Miten tallennan usein käyttämäni suodattimet?",
+        "a": "Aseta tarvittavat suodattimet Tapahtumat-sivulla ja tallenna ne esiasetukseksi — sen voi ottaa käyttöön yhdellä napsautuksella. Suodattimet tallentuvat myös osoiteriville: sivu avautuu uudelleen niiden kanssa, ja linkin voi tallentaa kirjanmerkiksi."
+      },
+      "exchange_connect": {
+        "q": "Miten yhdistän pörssin ja onko se turvallista?",
+        "a": "Sijoitukset → Pörssitilit → Lisää tili. Luo Bybitissä API-avain Read-Only-oikeuksilla — kaupankäyntioikeuksilla varustetut avaimet hylätään. Tällainen avain voi vain lukea historiaasi: kaupankäynti tai varojen nostaminen sillä on mahdotonta. Kaupat synkronoidaan päiväkirjaan automaattisesti."
+      },
+      "p2p": {
+        "q": "Ostin kryptoa P2P:llä — miten kirjaan sen?",
+        "a": "P2P:llä ostetut kolikot saapuvat ilman talletusmerkintää. Kirjaa valmis toimeksianto siirroksi saldostasi (P2P-välilehdellä), muuten se lasketaan kaupankäyntivoitoksi."
+      },
+      "theme_language": {
+        "q": "Miten vaihdan teeman tai kielen?",
+        "a": "Säätimet ovat yläpalkissa. Mobiilissa ne löytyvät hampurilaispainikkeen valikosta."
+      }
+    }
   }
 }

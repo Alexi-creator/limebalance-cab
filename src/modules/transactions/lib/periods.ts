@@ -31,6 +31,9 @@ export type PeriodValue = PeriodPreset | "all" | "custom"
 
 export const PERIOD_VALUES = ["all", ...PERIOD_PRESETS, "custom"] as const
 
+/** What the table opens on when the URL names no period — the choice of "all" is written out. */
+export const DEFAULT_PERIOD: PeriodPreset = "this_month"
+
 const iso = (date: Date) => format(date, "yyyy-MM-dd")
 
 /**
@@ -65,13 +68,15 @@ export function presetRange(
 
 /**
  * Which option the filter should show. `period` is what the user picked, but links made before it
- * existed (and hand-edited ones) carry only `from`/`to` — those read as a custom range.
+ * existed (and hand-edited ones) carry only `from`/`to` — those read as a custom range. No period
+ * and no dates at all is the default one.
  */
 export function resolvePeriod(
-  period: PeriodValue,
+  period: PeriodValue | undefined,
   from: string | undefined,
   to: string | undefined,
 ): PeriodValue {
+  if (!period) return from || to ? "custom" : DEFAULT_PERIOD
   if (period === "all" && (from || to)) return "custom"
   return period
 }
@@ -82,7 +87,7 @@ export function resolvePeriod(
  * October — a hand-picked range keeps its own (including a link that carries only dates, see
  * resolvePeriod), and "all" clears them.
  */
-export function periodDates(period: PeriodValue, from?: string, to?: string) {
+export function periodDates(period: PeriodValue | undefined, from?: string, to?: string) {
   const resolved = resolvePeriod(period, from, to)
   if (resolved === "custom") return { period: resolved, from, to }
   if (resolved === "all") return { period: resolved, from: undefined, to: undefined }

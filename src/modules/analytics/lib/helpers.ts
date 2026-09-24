@@ -1,5 +1,6 @@
 import type { Locale } from "date-fns"
 import {
+  addDays,
   differenceInCalendarDays,
   endOfMonth,
   endOfQuarter,
@@ -17,8 +18,6 @@ import {
   subYears,
 } from "date-fns"
 import { enUS } from "date-fns/locale"
-import type { CategoryStats } from "@/modules/categories"
-import { COLOR_PALETTE, EMOJI_PALETTE } from "@/modules/categories/config"
 import type { AnalyticsPeriod } from "../config"
 import type { ExpensesSummary, IncomesSummary, SummaryGranularity } from "../model"
 
@@ -167,6 +166,8 @@ export function computeMetricsFromSummaries(
 
 export interface SeriesPoint {
   label: string
+  /** Full date / period of the bucket — the hover card header. */
+  title: string
   income: number
   expense: number
 }
@@ -189,6 +190,19 @@ function bucketLabel(
   return String(parseISO(bucket).getDate())
 }
 
+/** Hover card header: month — "September 2026", week — "1 Sep – 7 Sep", day — "24 September, We". */
+function bucketTitle(bucket: string, granularity: SummaryGranularity, locale: Locale): string {
+  if (granularity === "month") {
+    const [year, month] = bucket.split("-").map(Number)
+    return format(new Date(year, month - 1, 1), "LLLL yyyy", { locale })
+  }
+  const date = parseISO(bucket)
+  if (granularity === "week") {
+    return `${format(date, "d MMM", { locale })} – ${format(addDays(date, 6), "d MMM", { locale })}`
+  }
+  return format(date, "d MMMM, EEEEEE", { locale })
+}
+
 /**
  * Income/expense time series from summary buckets: merge by `bucket`, empty buckets
  * (`approxTotal: null`) — as 0. Amounts in the base currency (`approxTotal`).
@@ -205,73 +219,14 @@ export function buildSeries(
 
   return keys.map((k, i) => ({
     label: bucketLabel(k, granularity, i, keys.length, locale),
+    title: bucketTitle(k, granularity, locale),
     income: incMap.get(k) ?? 0,
     expense: expMap.get(k) ?? 0,
   }))
 }
 
-export interface CategorySlice {
-  id: string
-  name: string
-  icon: string
-  color: string
-  total: number
-  count: number
-  pct: number
-}
-
-/**
- * Pie slices by expense category from `/stats`: a category's total is `approxTotal`
- * (base currency). Categories without a total are dropped; we sort by descending total.
- */
-export function groupByCategory(stats: CategoryStats[]): CategorySlice[] {
-  const rows = stats
-    .map((s) => ({
-      id: s.id,
-      name: s.name,
-      emoji: s.emoji,
-      total: s.approxTotal ?? 0,
-      count: s.count,
-    }))
-    .filter((r) => r.total > 0)
-    .sort((a, b) => b.total - a.total)
-
-  const total = rows.reduce((s, r) => s + r.total, 0)
-  return rows.map((v, i) => ({
-    id: v.id,
-    name: v.name,
-    icon: v.emoji || EMOJI_PALETTE[i % EMOJI_PALETTE.length],
-    color: COLOR_PALETTE[i % COLOR_PALETTE.length],
-    total: v.total,
-    count: v.count,
-    pct: total > 0 ? Math.round((v.total / total) * 100) : 0,
-  }))
-}
-
-export interface CategoryDelta {
-  id: string
-  name: string
-  cur: number
-  prev: number
-  delta: number
-  pct?: number
-}
-
-/**
- * Expense comparison by category with the previous period from `/stats` (when passed
- * `compareFrom`/`compareTo`): `approxTotal` — current, `previousApproxTotal` — previous,
- * `deltaApproxTotal` — the difference. By descending absolute change.
- */
-export function compareCategories(stats: CategoryStats[], limit: number): CategoryDelta[] {
-  return stats
-    .map((s) => {
-      const cur = s.approxTotal ?? 0
-      const prev = s.previousApproxTotal ?? 0
-      const delta = s.deltaApproxTotal ?? cur - prev
-      return { id: s.id, name: s.name, cur, prev, delta }
-    })
-    .filter((r) => r.delta !== 0)
-    .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta))
-    .slice(0, limit)
-    .map((r) => ({ ...r, pct: r.prev > 0 ? Math.round((r.delta / r.prev) * 100) : undefined }))
+/** Share label: "<1%" for slivers so they don't read as zero, "—" when unknown. */
+export function formatPct(pct: number | null): string {
+  if (pct == null) return "—"
+  return pct > 0 && pct < 1 ? "<1%" : `${Math.round(pct)}%`
 }

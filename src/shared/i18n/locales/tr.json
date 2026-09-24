@@ -61,7 +61,8 @@
     "menu": "Menü",
     "account": "Hesap",
     "logout": "Çıkış yap",
-    "auth": "Kimlik doğrulama"
+    "auth": "Kimlik doğrulama",
+    "faq": "Yardım ve SSS"
   },
   "settings": {
     "title": "Ayarlar",
@@ -118,8 +119,7 @@
     "period_6m": "6 ay",
     "period_1y": "1 yıl",
     "income": "Gelirler",
-    "expense": "Giderler",
-    "day": "Gün"
+    "expense": "Giderler"
   },
   "common": {
     "notifications": "Bildirimler",
@@ -372,15 +372,11 @@
     "savings_of_income": "gelirin %{{rate}}'i",
     "kpi_savings_rate": "Birikim oranı",
     "savings_share": "gelir payı",
-    "donut_empty": "Bu dönemde gider yok",
-    "donut_aria": "Kategoriye göre gider grafiği",
-    "donut_center": "gider",
-    "comparison_empty": "Bu dönemde değişiklik yok",
     "chart_aria": "Döneme göre gelir ve gider grafiği",
     "income_vs_expense": "Gelir vs gider",
     "expenses_by_category": "Kategoriye göre giderler",
-    "comparison_title": "Önceki dönemle karşılaştırma",
-    "comparison_subtitle": "Giderlerin değiştiği yerler",
+    "incomes_by_category": "Kategoriye göre gelirler",
+    "prev_period_value": "Önceki dönem: {{amount}}",
     "details_title": "İşlem detayları",
     "details_empty": "Dönem için işlem yok",
     "tour_period_title": "Bir dönem seçin",
@@ -879,5 +875,132 @@
     "already_saved": "Mevcut filtreler “{{name}}” olarak kayıtlı",
     "nothing_to_save": "Hazır ayar olarak kaydetmek için filtre seçin",
     "error": "Değişiklikler kaydedilemedi. Lütfen tekrar deneyin"
+  },
+  "faq": {
+    "title": "Yardım ve SSS",
+    "subtitle": "LimeBalance nasıl çalışır, her bölüm ne işe yarar ve hepsi birlikte bakiyeni nasıl oluşturur",
+    "search_placeholder": "Sorularda ara",
+    "search_empty": "Hiçbir şey bulunamadı — başka bir kelime dene",
+    "open_page": "Bölümü aç",
+    "sections": {
+      "start": "Başlarken",
+      "pages": "Uygulama bölümleri",
+      "balance": "Her şey bakiyede nasıl toplanır",
+      "common": "Sık sorulan sorular"
+    },
+    "formula": {
+      "balance": "Bakiye",
+      "income": "Gelirler",
+      "expense": "Giderler",
+      "goals": "Hedeflere ayrılan",
+      "venues": "Borsalara ve cüzdanlara gönderilen",
+      "note": "Döviz çevirileri formülde yer almaz: yalnızca paranı para birimlerin arasında taşır ve toplamı asla değiştirmez."
+    },
+    "items": {
+      "first_steps": {
+        "q": "Nereden başlamalıyım?",
+        "a": "1. Ayarlar'da temel para birimini seç — uygulamadaki tüm toplamlar bu birimde gösterilir.\n2. Gelir ve gider kategorileri oluştur (ör. Maaş, Market, Kira).\n3. İşlemlerini üst çubuktaki «Ekle» düğmesiyle veya Telegram botu üzerinden kaydet.\n4. Biriktirdiğin şeyler için hedefler oluştur.\n5. Birkaç hafta sonra paranın nereye gittiğini görmek için Analiz'i aç."
+      },
+      "quick_add": {
+        "q": "Hızlıca nasıl kayıt eklerim?",
+        "a": "Üst çubuktaki «Ekle» düğmesi her sayfada bulunur. Bununla işlem (gelir veya gider), hedef, döviz çevirisi ya da bir borsaya veya cüzdana para yatırma/çekme oluşturursun. Telegram botu bağlıysa işlemleri doğrudan sohbetten de ekleyebilirsin."
+      },
+      "tours": {
+        "q": "Arayüz için bir tanıtım turu var mı?",
+        "a": "Evet. Her sayfada başlığın yanında bir tur düğmesi var — o sayfa için kısa, adım adım bir rehber gösterir. İstediğin zaman yeniden başlatabilirsin."
+      },
+      "page_home": {
+        "q": "Genel bakış — ana sayfada neler var?",
+        "a": "Güncel bakiyen, bu ayın geliri, gideri ve farkı, günlük nakit akışı grafiği, son işlemlerin ve hedeflerine kısa bir bakış. Bu bir özettir: burada görünen her şey diğer bölümlerden gelir."
+      },
+      "page_transactions": {
+        "q": "İşlemler — listeyle nasıl çalışırım?",
+        "a": "Tüm gelir ve giderler tek tabloda: sıralama, açıklamaya göre arama, tür, kategori, para birimi ve döneme göre filtreleme. Birden fazlasını aynı anda silmek için satırları seç. Filtreler adres çubuğunda tutulur, bu yüzden bir bağlantı veya yer imi aynı görünümü açar; bir filtre seti hazır ayar olarak kaydedilebilir. «Döviz» sekmesinde döviz çevirilerin listelenir."
+      },
+      "page_categories": {
+        "q": "Kategoriler — neden gerekli?",
+        "a": "Her işlem bir kategoriye aittir, bu yüzden ilk işlemden önce en az bir kategori gerekir. Kategoriler gider ve gelir olarak ayrılır, her birinin kendi emojisi ve rengi vardır. Kart tüm zamanların toplamını gösterir; oradan doğrudan o kategoriye işlem ekleyebilirsin."
+      },
+      "page_analytics": {
+        "q": "Analiz — neyi gösterir?",
+        "a": "Döneme göre gelir ve giderler (hafta, ay, çeyrek, yıl veya özel tarihler), ne kadar biriktirdiğin ve tasarruf oranın, kategori dağılımı ve önceki döneme göre nelerin değiştiği."
+      },
+      "page_goals": {
+        "q": "Hedefler — birikim nasıl çalışır?",
+        "a": "Bir tutar ve istersen bir son tarih belirle — LimeBalance her ay ne kadar ayırman gerektiğini hesaplar. Hedefe para yatırabilir veya çekebilir, katkı geçmişini görebilirsin. Hedef geride ya da %25'in altındaysa çubuk kırmızı, son tarih yaklaşınca sarı, diğer durumlarda yeşildir."
+      },
+      "page_investments": {
+        "q": "Yatırımlar — bu bölümde neler var?",
+        "a": "PnL ve kazanma oranı içeren bir işlem günlüğü, borsalara ve cüzdanlara para yatırma ve çekmeler, Bybit P2P emirleri ve bağlı borsa hesapları. Bölüm tüm ücretli planlarda kullanılabilir."
+      },
+      "page_settings": {
+        "q": "Ayarlar — neleri değiştirebilirim?",
+        "a": "Adını ve temel para birimini, e-posta ve şifreni, Telegram botu bağlantısını ve botun sana hangi bildirimleri gönderdiğini."
+      },
+      "balance_formula": {
+        "q": "Bakiye nasıl hesaplanır?",
+        "a": "Bakiye serbest paranı gösterir: tüm gelirler eksi tüm giderler, eksi aktif hedeflere ayrılan, eksi borsalara ve cüzdanlara gönderdiğin tutar. Döneme bağlı değildir — her zaman tüm geçmiştir. Herhangi bir işlemi silmek veya düzenlemek onu anında değiştirir."
+      },
+      "balance_currencies": {
+        "q": "Bakiye neden para birimine göre ve «≈» ile gösteriliyor?",
+        "a": "Her para birimi ayrı sayılır ve asla çevrilmez — bakiyenin altındaki para birimi bazlı tutarlar kesindir. Büyük rakam bunları bugünkü kurla temel para biriminde toplar; birden fazla para birimin varsa bu yüzden yaklaşıktır ve «≈» ile işaretlenir."
+      },
+      "balance_goals": {
+        "q": "Hedefe yatırdığım paraya ne olur?",
+        "a": "Senin olmaya devam eder ama ayrılır: serbest bakiyeden çıkar ve hedefte görünür. Hedeften çekmek, hedefi kapatmak veya silmek parayı bakiyeye geri getirir. Hedefe yapılan katkı gider değildir ve analizde görünmez."
+      },
+      "balance_exchange": {
+        "q": "Döviz çevirilerini neden kaydetmeliyim?",
+        "a": "Bir para biriminde kazanıp başka birinde harcıyorsan çeviriyi kaydet — aksi halde harcadığın para birimi eksiye düşerken diğeri birikir. Çeviri ne gelir ne giderdir, yalnızca paranı para birimlerin arasında taşır. Bir para birimi eksiye düşerse Genel bakış, çeviriyi kaydetmek için bir düğmeyle uyarı gösterir."
+      },
+      "balance_transfer": {
+        "q": "Borsaya para yatırma veya çekme nedir?",
+        "a": "Yatırım yapmak için bir borsaya veya cüzdana gönderdiğin para. Serbest bakiyeden çıkar ama gider değildir: Genel bakış onu bugünkü değeriyle «platformlarda» olarak ayrı gösterir. Parayı geri aldığında bir çekme kaydet, bakiyeye geri döner."
+      },
+      "balance_analytics": {
+        "q": "Analiz neden bakiyemle uyuşmuyor?",
+        "a": "Analiz yalnızca seçilen dönemin gelir ve giderlerini sayar. Bakiye ise tüm geçmiştir ve ayrıca hedefleri, borsalara yatırılanları ve döviz çevirilerini de hesaba katar — bunların hiçbiri gelir veya gider değildir."
+      },
+      "base_currency": {
+        "q": "Temel para birimini nasıl değiştiririm?",
+        "a": "Ayarlar → Genel bölümünde. Uygulamadaki toplamlar güncel kurla yeni para birimine yeniden hesaplanır. İşlemlerin kaydedildikleri para biriminde kalır."
+      },
+      "delete_category": {
+        "q": "Bir kategoriyi silersem ne olur?",
+        "a": "O kategorideki tüm işlemler de kalıcı olarak silinir ve bu geri alınamaz. Bakiye ve analiz onlar olmadan yeniden hesaplanır. Sadece adını değiştirmek istiyorsan kategoriyi düzenle."
+      },
+      "limits": {
+        "q": "Ücretsiz planın sınırları neler?",
+        "a": "Ücretsiz plan kategori sayısını ve aylık işlem sayısını sınırlar — yalnızca birkaç tane kaldığında uygulama seni uyarır. İşlem sayacı her ayın başında sıfırlanır. Ücretli planlar sınırları kaldırır ve Yatırımlar bölümünü açar."
+      },
+      "telegram_bot": {
+        "q": "Telegram botunu nasıl bağlarım?",
+        "a": "Kenar menüdeki «Telegram'ı bağla»ya tıkla veya Ayarlar → Telegram'ı aç. Bağlandıktan sonra botun sohbetinde eklediğin işlemler burada otomatik olarak görünür. Ayarlar'da botun hangi mesajları göndereceğini de seçebilirsin, örneğin aylık özet."
+      },
+      "telegram_login": {
+        "q": "Telegram ile giriş yaptım — e-postaya ihtiyacım var mı?",
+        "a": "Önerilir. Ayarlar → E-posta ve şifre bölümünden e-posta ve şifre ekle ve adresi gelen bağlantıyla onayla — böylece hesabına erişimini kaybetmezsin ve Telegram olmadan da giriş yapabilirsin."
+      },
+      "forgot_password": {
+        "q": "Şifremi unuttum",
+        "a": "Giriş sayfasında «Şifreni mi unuttun?»a tıkla ve e-postanı gir — yeni şifre belirlemen için bir bağlantı göndereceğiz. Telegram veya Google ile giriş yaptıysan aynı yöntemi kullan."
+      },
+      "filters_presets": {
+        "q": "Sık kullandığım filtreleri nasıl kaydederim?",
+        "a": "İşlemler sayfasında ihtiyacın olan filtreleri ayarla ve hazır ayar olarak kaydet — sonra tek tıkla uygulanır. Ayrıca filtreler adres çubuğunda tutulur: sayfa onlarla yeniden açılır ve bağlantı yer imlerine eklenebilir."
+      },
+      "exchange_connect": {
+        "q": "Bir borsayı nasıl bağlarım, güvenli mi?",
+        "a": "Yatırımlar → Borsa hesapları → Hesap ekle. Bybit'te Read-Only yetkili bir API anahtarı oluştur — işlem yetkisi olan anahtarlar reddedilir. Böyle bir anahtar yalnızca geçmişini okuyabilir: onunla işlem yapmak veya para çekmek imkânsızdır. İşlemler günlüğe otomatik senkronize edilir."
+      },
+      "p2p": {
+        "q": "P2P ile kripto aldım — bunu nasıl kaydederim?",
+        "a": "P2P ile alınan coinler para yatırma kaydı olmadan gelir. Tamamlanan emri bakiyenden transfer olarak kaydet (P2P sekmesinde), yoksa işlem kârı olarak sayılır."
+      },
+      "theme_language": {
+        "q": "Temayı veya dili nasıl değiştiririm?",
+        "a": "Anahtarlar üst çubukta. Mobilde hamburger düğmesinin menüsünde bulunur."
+      }
+    }
   }
 }

@@ -20,7 +20,7 @@ test.describe("Dashboard (authenticated)", () => {
     const nav = authedPage.getByRole("navigation")
 
     const sections: Array<{ link: string; url: RegExp; heading: string }> = [
-      { link: "Transactions", url: /\/transactions$/, heading: "Transactions" },
+      { link: "Transactions", url: /\/transactions(\?|$)/, heading: "Transactions" },
       { link: "Categories", url: /\/categories$/, heading: "Categories" },
       { link: "Analytics", url: /\/analytics$/, heading: "Analytics" },
       { link: "Goals", url: /\/goals$/, heading: "Goals" },
@@ -37,7 +37,7 @@ test.describe("Dashboard (authenticated)", () => {
   test("opens a protected route directly", async ({ authedPage }) => {
     await authedPage.goto("/transactions")
 
-    await expect(authedPage).toHaveURL(/\/transactions$/)
+    await expect(authedPage).toHaveURL(/\/transactions(\?|$)/)
     await expect(authedPage.getByRole("heading", { name: "Transactions" })).toBeVisible()
   })
 
