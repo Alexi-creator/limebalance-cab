@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "biome check . && bun run lint:boundaries",
+    "lint": "biome check . && bun run typecheck && bun run lint:boundaries",
+    "typecheck": "tsc -b",
     "format": "biome format --write .",
     "preview": "vite preview",
     "ngrok": "ngrok http 5173",

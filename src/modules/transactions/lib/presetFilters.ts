@@ -9,7 +9,11 @@ const isPeriodPreset = (period: string): period is PeriodPreset =>
  * The period part of a preset. A ready-made range is kept as its name alone, so "this month"
  * saved in September shows October in October; only a hand-picked range keeps its dates.
  */
-export function periodToPreset(period: string, from?: string, to?: string): PresetFilters {
+export function periodToPreset(
+  period: string | undefined,
+  from?: string,
+  to?: string,
+): PresetFilters {
   const resolved = resolvePeriod(period as TransactionsParams["period"], from, to)
   if (isPeriodPreset(resolved)) return { period: resolved }
   if (resolved === "custom") return canonicalizeFilters({ period: "custom", from, to })
