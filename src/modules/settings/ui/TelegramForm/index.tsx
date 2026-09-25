@@ -5,7 +5,11 @@ import { LoginButton } from "@telegram-auth/react"
 import { useTranslation } from "react-i18next"
 import { useLinkTelegram } from "@/modules/auth/api/useLinkTelegram"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
-import { TELEGRAM_BOT_URL, TELEGRAM_BOT_USERNAME } from "@/shared/config/telegram"
+import {
+  handleTelegramBotLinkClick,
+  TELEGRAM_BOT_URL,
+  TELEGRAM_BOT_USERNAME,
+} from "@/shared/config/telegram"
 import { BotNotificationsForm } from "../BotNotificationsForm"
 
 /**
@@ -41,6 +45,7 @@ export function TelegramForm() {
           href={TELEGRAM_BOT_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleTelegramBotLinkClick}
           variant="light"
           leftSection={<IconBrandTelegram size={16} />}
           rightSection={<IconExternalLink size={14} />}
@@ -82,7 +87,12 @@ export function TelegramForm() {
 
       <Text size="xs" c="dimmed">
         {t("telegram.dont_know_bot")}{" "}
-        <Anchor href={TELEGRAM_BOT_URL} target="_blank" rel="noopener noreferrer">
+        <Anchor
+          href={TELEGRAM_BOT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleTelegramBotLinkClick}
+        >
           {t("telegram.open_bot", { username: TELEGRAM_BOT_USERNAME })}
         </Anchor>
       </Text>

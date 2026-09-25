@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { useAuthStore } from "@/modules/auth/hooks/useAuthStore"
 import { RouteNames } from "@/shared/config/routeNames"
-import { TELEGRAM_BOT_URL } from "@/shared/config/telegram"
+import { handleTelegramBotLinkClick, TELEGRAM_BOT_URL } from "@/shared/config/telegram"
 import { useSidebarStore } from "@/shared/store/sidebarStore"
 
 /**
@@ -64,6 +64,10 @@ export function SidebarTelegram() {
       href={TELEGRAM_BOT_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+        close()
+        handleTelegramBotLinkClick(e)
+      }}
     >
       {content}
     </Paper>
