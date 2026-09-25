@@ -24,6 +24,7 @@ import {
   CategoryCard,
   CategoryForm,
   DeleteCategoryConfirm,
+  MergeCategoryForm,
 } from "@/modules/categories/ui"
 import { useUsage } from "@/modules/subscription/api/useUsage"
 import { isLimitBlocked } from "@/modules/subscription/lib/plan"
@@ -87,7 +88,25 @@ export function CategoriesPage() {
           {t("categories.delete_title")}
         </Text>
       ),
-      children: <DeleteCategoryConfirm category={category} isExpense={isExpense} />,
+      children: (
+        <DeleteCategoryConfirm
+          category={category}
+          isExpense={isExpense}
+          onMerge={() => openMerge(category)}
+        />
+      ),
+    })
+
+  const openMerge = (category: CategoryStats) =>
+    openModal({
+      size: "sm",
+      centered: true,
+      title: (
+        <Text fw={600} size="md">
+          {t("categories.merge_title")}
+        </Text>
+      ),
+      children: <MergeCategoryForm category={category} categories={list} isExpense={isExpense} />,
     })
 
   return (
@@ -176,6 +195,7 @@ export function CategoriesPage() {
                 isExpense={isExpense}
                 onEdit={() => openForm(c)}
                 onDelete={() => openDelete(c)}
+                onMerge={() => openMerge(c)}
                 onAdd={() => openAddTransaction(c.id)}
               />
             ))}

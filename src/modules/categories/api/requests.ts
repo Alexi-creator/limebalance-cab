@@ -107,3 +107,18 @@ export function deleteIncomeCategory(id: string) {
     method: HttpMethods.DELETE,
   })
 }
+
+const mergeResultSchema = z.object({ moved: z.coerce.number(), target: categorySchema })
+
+/**
+ * Moves every transaction of `sourceId` into `targetId` (same kind) and deletes `sourceId`.
+ * The backend also repoints saved filter presets that referenced the source.
+ */
+export function mergeCategory(isExpense: boolean, sourceId: string, targetId: string) {
+  const base = isExpense ? API_URLS.expenseCategories : API_URLS.incomeCategories
+  return request(`${base.categories}/${sourceId}/merge`, {
+    method: HttpMethods.POST,
+    body: JSON.stringify({ targetId }),
+    schema: mergeResultSchema,
+  })
+}

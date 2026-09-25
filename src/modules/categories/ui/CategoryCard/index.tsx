@@ -1,5 +1,5 @@
 import { ActionIcon, Box, Group, Paper, Progress, Stack, Text, Tooltip } from "@mantine/core"
-import { IconEdit, IconPlus, IconReceipt, IconTrash } from "@tabler/icons-react"
+import { IconArrowMerge, IconEdit, IconPlus, IconReceipt, IconTrash } from "@tabler/icons-react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
@@ -15,12 +15,22 @@ interface Props {
   isExpense: boolean
   onEdit: () => void
   onDelete: () => void
+  /** Fold this category into another one of the same kind */
+  onMerge: () => void
   /** Quickly create a transaction for this category */
   onAdd: () => void
 }
 
 /** Category card: icon, name, transaction count, total, and a bar of the share of the maximum. */
-export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd }: Props) {
+export function CategoryCard({
+  cat,
+  maxSpent,
+  isExpense,
+  onEdit,
+  onDelete,
+  onMerge,
+  onAdd,
+}: Props) {
   const { t, i18n } = useTranslation()
   const language = i18n.language
   const [hovered, setHovered] = useState(false)
@@ -54,7 +64,7 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
       onMouseLeave={() => setHovered(false)}
     >
       <Group gap={4} pos="absolute" top={8} right={8} wrap="nowrap">
-        {/* edit/delete — only on hover; adding a transaction is always visible */}
+        {/* edit/merge/delete — only on hover; adding a transaction is always visible */}
         <Group
           gap={4}
           wrap="nowrap"
@@ -74,6 +84,11 @@ export function CategoryCard({ cat, maxSpent, isExpense, onEdit, onDelete, onAdd
           <Tooltip label={t("common.change")}>
             <ActionIcon variant="subtle" size="sm" color="gray" onClick={onEdit}>
               <IconEdit size={14} />
+            </ActionIcon>
+          </Tooltip>
+          <Tooltip label={t("categories.merge_tooltip")}>
+            <ActionIcon variant="subtle" size="sm" color="gray" onClick={onMerge}>
+              <IconArrowMerge size={14} />
             </ActionIcon>
           </Tooltip>
           <Tooltip label={t("common.delete")}>
