@@ -3,36 +3,20 @@ import {
   addDays,
   differenceInCalendarDays,
   endOfMonth,
-  endOfQuarter,
   endOfYear,
   format,
   parseISO,
   startOfMonth,
-  startOfQuarter,
-  startOfWeek,
   startOfYear,
   subDays,
   subMonths,
-  subQuarters,
   subWeeks,
   subYears,
 } from "date-fns"
 import { enUS } from "date-fns/locale"
+import { DEFAULT_PERIOD, presetRange } from "@/modules/transactions/lib/periods"
 import type { AnalyticsPeriod } from "../config"
 import type { ExpensesSummary, IncomesSummary, SummaryGranularity } from "../model"
-
-const WEEK_OPTS = { weekStartsOn: 1 as const }
-
-/**
- * Time-series bucket granularity for the period (passed to `/summary`):
- * week/month — by day, quarter — by week, year — by month.
- */
-export const GRANULARITY: Record<AnalyticsPeriod, SummaryGranularity> = {
-  week: "day",
-  month: "day",
-  quarter: "week",
-  year: "month",
-}
 
 export interface AnalyticsRange {
   from: Date
@@ -41,46 +25,48 @@ export interface AnalyticsRange {
   prevTo: Date
 }
 
-/** Current and previous interval for the selected period relative to `now`. */
-export function periodToRange(period: AnalyticsPeriod, now: Date = new Date()): AnalyticsRange {
+/**
+ * Period and dates the page shows. A preset uses the dates written next to it in the URL (a
+ * shared link stays on its dates), falling back to the preset's current range; a custom range
+ * with only the start picked so far reads as that single day. No period and no dates — the
+ * default preset.
+ */
+export function resolveAnalyticsPeriod(
+  period: AnalyticsPeriod | undefined,
+  from: string | undefined,
+  to: string | undefined,
+): { period: AnalyticsPeriod; from: string; to: string } {
+  const resolved = period ?? (from || to ? "custom" : DEFAULT_PERIOD)
+  if (resolved === "custom") {
+    const start = from ?? to
+    if (start) return { period: resolved, from: start, to: to ?? start }
+    return { period: resolved, ...presetRange(DEFAULT_PERIOD) }
+  }
+  if (from && to) return { period: resolved, from, to }
+  return { period: resolved, ...presetRange(resolved) }
+}
+
+/**
+ * Current interval + the previous one it is compared with. Calendar presets compare with the
+ * previous calendar week/month/year (August for September, not "the 30 days before"); a rolling
+ * or hand-picked range — with the interval of the same length right before it.
+ */
+export function analyticsRange(period: AnalyticsPeriod, from: Date, to: Date): AnalyticsRange {
   switch (period) {
-    case "week": {
-      // current week: from Monday through today inclusive (not up to the upcoming Sunday)
-      return {
-        from: startOfWeek(now, WEEK_OPTS),
-        to: now,
-        // the previous week over the same span (Mon .. the same weekday) — for a fair comparison
-        prevFrom: startOfWeek(subWeeks(now, 1), WEEK_OPTS),
-        prevTo: subWeeks(now, 1),
-      }
+    case "this_week":
+    case "last_week":
+      return { from, to, prevFrom: subWeeks(from, 1), prevTo: subWeeks(to, 1) }
+    case "this_month":
+    case "last_month": {
+      const prev = subMonths(from, 1)
+      return { from, to, prevFrom: startOfMonth(prev), prevTo: endOfMonth(prev) }
     }
-    case "quarter": {
-      const prev = subQuarters(now, 1)
-      return {
-        from: startOfQuarter(now),
-        to: endOfQuarter(now),
-        prevFrom: startOfQuarter(prev),
-        prevTo: endOfQuarter(prev),
-      }
+    case "this_year": {
+      const prev = subYears(from, 1)
+      return { from, to, prevFrom: startOfYear(prev), prevTo: endOfYear(prev) }
     }
-    case "year": {
-      const prev = subYears(now, 1)
-      return {
-        from: startOfYear(now),
-        to: endOfYear(now),
-        prevFrom: startOfYear(prev),
-        prevTo: endOfYear(prev),
-      }
-    }
-    default: {
-      const prev = subMonths(now, 1)
-      return {
-        from: startOfMonth(now),
-        to: endOfMonth(now),
-        prevFrom: startOfMonth(prev),
-        prevTo: endOfMonth(prev),
-      }
-    }
+    default:
+      return customRange(from, to)
   }
 }
 

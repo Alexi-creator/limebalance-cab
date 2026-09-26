@@ -1,28 +1,19 @@
-import {
-  Box,
-  Grid,
-  Group,
-  Paper,
-  SegmentedControl,
-  Skeleton,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core"
-import { DatePickerInput } from "@mantine/dates"
+import { Box, Grid, Group, Paper, Skeleton, Stack, Text, Title } from "@mantine/core"
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useTranslation } from "react-i18next"
 import { useAnalyticsData } from "@/modules/analytics/api/useAnalyticsData"
-import { ANALYTICS_PERIODS, analyticsParamsSchema } from "@/modules/analytics/config"
+import { type AnalyticsPeriod, analyticsParamsSchema } from "@/modules/analytics/config"
 import { useAnalyticsTour } from "@/modules/analytics/hooks/useAnalyticsTour"
 import { useCategoryBreakdown } from "@/modules/analytics/hooks/useCategoryBreakdown"
+import { resolveAnalyticsPeriod } from "@/modules/analytics/lib/helpers"
 import {
   AnalyticsKpis,
   CategoryDonut,
   DetailedStats,
   IncomeExpenseChart,
 } from "@/modules/analytics/ui"
+import { PeriodFilter } from "@/modules/transactions/ui"
 import { useUrlParams } from "@/shared/hooks/useUrlParams"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { TourTriggerButton } from "@/shared/ui/TourTriggerButton"
@@ -32,22 +23,19 @@ export function AnalyticsPage() {
   const { t, i18n } = useTranslation()
   const { startTour } = useAnalyticsTour()
   const [params, setParams] = useUrlParams(analyticsParamsSchema)
-  const period = params.period
-  // custom datepicker range; when both dates are set, it overrides the period presets
-  const isCustom = Boolean(params.from && params.to)
+  const { period, from, to } = resolveAnalyticsPeriod(params.period, params.from, params.to)
   const locale = dateFnsLocales[i18n.language] ?? enUS
   const { metrics, series, range, baseCurrency, isLoading, isError } = useAnalyticsData(
     period,
+    from,
+    to,
     locale,
-    params.from,
-    params.to,
   )
 
   // shared by the donut and the details list: same categories, colors, hovered category
   const breakdown = useCategoryBreakdown(range)
 
   const rangeLabel = `${format(range.from, "d MMM", { locale })} – ${format(range.to, "d MMM yyyy", { locale })}`
-  const periodLabel = isCustom ? rangeLabel : t(`analytics.period_${period}`)
 
   return (
     <Stack gap="md">
@@ -60,29 +48,17 @@ export function AnalyticsPage() {
             {t("analytics.subtitle")}
           </Text>
         </Stack>
-        <Group gap="xs">
-          <Group gap="xs" data-tour="an-period">
-            <SegmentedControl
-              classNames={{ root: classes.periodControl }}
-              // with a custom range active no preset is highlighted
-              value={isCustom ? "" : period}
-              onChange={(v) =>
-                setParams({ period: v as typeof period, from: undefined, to: undefined })
-              }
-              data={ANALYTICS_PERIODS.map((p) => ({ value: p, label: t(`analytics.period_${p}`) }))}
-            />
-            <DatePickerInput
-              type="range"
+        <Group gap="xs" align="flex-end">
+          <Group gap="xs" align="flex-end" data-tour="an-period">
+            <PeriodFilter
+              period={params.period}
+              from={params.from}
+              to={params.to}
+              onChange={(next) => setParams({ ...next, period: next.period as AnalyticsPeriod })}
+              vertical={false}
               size="sm"
-              classNames={{ input: classes.periodPicker }}
-              label={t("transactions.period")}
-              placeholder={t("transactions.date_range_placeholder")}
-              valueFormat="D MMM YYYY"
-              value={[params.from ?? null, params.to ?? null]}
-              onChange={([from, to]) => setParams({ from: from ?? undefined, to: to ?? undefined })}
-              clearable
-              allowSingleDateInRange
-              w={230}
+              withAll={false}
+              inputClassName={classes.periodInput}
             />
             {/* Hidden until the export API is ready
             <Button variant="default" size="sm" leftSection={<IconDownload size={14} />} disabled>
@@ -109,11 +85,7 @@ export function AnalyticsPage() {
       ) : (
         <>
           <Box data-tour="an-kpis">
-            <AnalyticsKpis
-              metrics={metrics}
-              periodLabel={isCustom ? rangeLabel : t(`analytics.sub_${period}`)}
-              baseCurrency={baseCurrency}
-            />
+            <AnalyticsKpis metrics={metrics} periodLabel={rangeLabel} baseCurrency={baseCurrency} />
           </Box>
 
           {/* desktop: compact charts row, then the details list (with the comparison to the
@@ -124,7 +96,7 @@ export function AnalyticsPage() {
               <IncomeExpenseChart
                 series={series}
                 title={t("analytics.income_vs_expense")}
-                subtitle={isCustom ? rangeLabel : periodLabel.toLowerCase()}
+                subtitle={rangeLabel}
                 baseCurrency={baseCurrency}
               />
             </Grid.Col>

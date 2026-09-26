@@ -19,6 +19,10 @@ interface Props {
   vertical: boolean
   /** Control size — the trade journal's filter row runs on `xs`. */
   size?: MantineSize
+  /** Offer "all time" — off where the page needs a bounded range (analytics). */
+  withAll?: boolean
+  /** Extra class for both inputs — e.g. more contrast when the filter sits on the bare page. */
+  inputClassName?: string
 }
 
 /**
@@ -29,12 +33,21 @@ interface Props {
  * A preset resolves to concrete dates the moment it is chosen, so the link stays reproducible:
  * a URL shared in March still shows March after April starts.
  */
-export function PeriodFilter({ period, from, to, onChange, vertical, size }: Props) {
+export function PeriodFilter({
+  period,
+  from,
+  to,
+  onChange,
+  vertical,
+  size,
+  withAll = true,
+  inputClassName,
+}: Props) {
   const { t, i18n } = useTranslation()
   const value = resolvePeriod(period, from, to)
 
   const options = [
-    { value: "all", label: t("transactions.period_all") },
+    ...(withAll ? [{ value: "all", label: t("transactions.period_all") }] : []),
     ...PERIOD_PRESETS.map((preset) => ({
       value: preset,
       label: t(`transactions.period_${preset}`),
@@ -60,6 +73,7 @@ export function PeriodFilter({ period, from, to, onChange, vertical, size }: Pro
         value={value}
         onChange={handleSelect}
         allowDeselect={false}
+        classNames={{ input: inputClassName }}
         w={vertical ? "100%" : 170}
       />
 
@@ -81,6 +95,7 @@ export function PeriodFilter({ period, from, to, onChange, vertical, size }: Pro
           }
           clearable
           allowSingleDateInRange
+          classNames={{ input: inputClassName }}
           w={vertical ? "100%" : 240}
         />
       )}

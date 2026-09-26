@@ -11,7 +11,7 @@ import {
   subWeeks,
 } from "date-fns"
 
-/** Monday, as everywhere else in the app — see WEEK_OPTS in analytics/lib/helpers. */
+/** Monday, as everywhere else in the app (the analytics page builds on these presets too). */
 const WEEK_OPTS = { weekStartsOn: 1 as const }
 
 /** Ready-made ranges offered in the period filter, in the order they are listed. */

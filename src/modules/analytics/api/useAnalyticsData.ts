@@ -12,11 +12,9 @@ import {
 import { getExpensesSummary, getIncomesSummary } from "../api/requests"
 import type { AnalyticsPeriod } from "../config"
 import {
+  analyticsRange,
   buildSeries,
   computeMetricsFromSummaries,
-  customRange,
-  GRANULARITY,
-  periodToRange,
   rangeGranularity,
 } from "../lib/helpers"
 
@@ -28,25 +26,21 @@ const key = (d: Date) => format(d, "yyyy-MM-dd")
  * the previous period) lives in `useCategoryBreakdown`. Query keys are shared — react-query
  * deduplicates.
  *
- * `customFrom`/`customTo` (`YYYY-MM-DD`) — a custom date range from the datepicker; when both
- * are set, it overrides `period` (granularity is derived from the range length).
+ * `from`/`to` (`YYYY-MM-DD`, both inclusive) — the resolved dates of the chosen period; `period`
+ * picks what they are compared with (see `analyticsRange`). Granularity follows the range length.
  */
 export function useAnalyticsData(
   period: AnalyticsPeriod,
+  rangeFrom: string,
+  rangeTo: string,
   locale: Locale = enUS,
-  customFrom?: string,
-  customTo?: string,
 ) {
-  const isCustom = Boolean(customFrom && customTo)
   const range = useMemo(
-    () =>
-      customFrom && customTo
-        ? customRange(parseISO(customFrom), parseISO(customTo))
-        : periodToRange(period),
-    [period, customFrom, customTo],
+    () => analyticsRange(period, parseISO(rangeFrom), parseISO(rangeTo)),
+    [period, rangeFrom, rangeTo],
   )
   const { from, to, prevFrom, prevTo } = range
-  const granularity = isCustom ? rangeGranularity(from, to) : GRANULARITY[period]
+  const granularity = rangeGranularity(from, to)
 
   // current period summaries — KPIs (total) + time series (buckets)
   const expCurQ = useQuery({
