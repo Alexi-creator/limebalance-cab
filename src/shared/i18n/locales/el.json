@@ -325,6 +325,7 @@
     "add_expense": "Προσθήκη εξόδου",
     "add_income": "Προσθήκη εσόδου",
     "all_time": "Όλη η περίοδος",
+    "since": "από {{date}}",
     "summary_expense": "Συνολικά έξοδα",
     "summary_income": "Συνολικά έσοδα",
     "summary_count": "{{transactions}} σε {{categories}}",

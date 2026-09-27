@@ -325,6 +325,7 @@
     "add_expense": "Lisää meno",
     "add_income": "Lisää tulo",
     "all_time": "Koko ajalta",
+    "since": "{{date}} alkaen",
     "summary_expense": "Menot yhteensä",
     "summary_income": "Tulot yhteensä",
     "summary_count": "{{transactions}} / {{categories}}",

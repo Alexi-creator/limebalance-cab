@@ -318,6 +318,7 @@
     "add_expense": "지출 추가",
     "add_income": "수입 추가",
     "all_time": "전체 기간",
+    "since": "{{date}}부터",
     "summary_expense": "총 지출",
     "summary_income": "총 수입",
     "summary_count": "{{categories}}의 {{transactions}}",

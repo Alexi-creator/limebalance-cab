@@ -325,6 +325,7 @@
     "add_expense": "Adicionar despesa",
     "add_income": "Adicionar receita",
     "all_time": "Todo o período",
+    "since": "desde {{date}}",
     "summary_expense": "Despesas totais",
     "summary_income": "Receitas totais",
     "summary_count": "{{transactions}} em {{categories}}",

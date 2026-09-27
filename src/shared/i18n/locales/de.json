@@ -325,6 +325,7 @@
     "add_expense": "Ausgabe hinzufügen",
     "add_income": "Einnahme hinzufügen",
     "all_time": "Gesamte Zeit",
+    "since": "seit {{date}}",
     "summary_expense": "Ausgaben gesamt",
     "summary_income": "Einnahmen gesamt",
     "summary_count": "{{transactions}} in {{categories}}",

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { RouteNames } from "@/shared/config/routeNames"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
-import { baseAmount } from "../../lib/helpers"
+import { baseAmount, formatDay } from "../../lib/helpers"
 import type { DisplayCategory } from "../../model"
 
 interface Props {
@@ -136,6 +136,9 @@ export function CategoryCard({
         <Group justify="space-between" align="baseline" wrap="nowrap">
           <Text size="xs" c="dimmed">
             {t("categories.all_time")}
+            {cat.firstDate && (
+              <> · {t("categories.since", { date: formatDay(cat.firstDate, language) })}</>
+            )}
           </Text>
           <Text
             ff="monospace"

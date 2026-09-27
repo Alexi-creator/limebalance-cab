@@ -332,6 +332,7 @@
     "add_expense": "Adaugă cheltuială",
     "add_income": "Adaugă venit",
     "all_time": "Toată perioada",
+    "since": "din {{date}}",
     "summary_expense": "Cheltuieli totale",
     "summary_income": "Venituri totale",
     "summary_count": "{{transactions}} în {{categories}}",

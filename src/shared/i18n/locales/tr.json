@@ -325,6 +325,7 @@
     "add_expense": "Gider ekle",
     "add_income": "Gelir ekle",
     "all_time": "Tüm zamanlar",
+    "since": "{{date}} tarihinden beri",
     "summary_expense": "Toplam giderler",
     "summary_income": "Toplam gelirler",
     "summary_count": "{{categories}} içinde {{transactions}}",

@@ -27,6 +27,8 @@ export const categoryStatsSchema = categorySchema.extend({
   totals: z.array(categoryCurrencyTotalSchema).default([]),
   baseCurrency: z.string().nullish(),
   approxTotal: z.coerce.number().nullish(),
+  /** Earliest transaction date (`YYYY-MM-DD`) in the period — where the total starts. */
+  firstDate: z.string().nullish(),
   /**
    * Comparison with the previous period — returned only if the request includes
    * `compareFrom`/`compareTo`. `previousApproxTotal` — the category total for the previous

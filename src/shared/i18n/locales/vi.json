@@ -318,6 +318,7 @@
     "add_expense": "Thêm chi tiêu",
     "add_income": "Thêm thu nhập",
     "all_time": "Toàn bộ thời gian",
+    "since": "từ {{date}}",
     "summary_expense": "Tổng chi tiêu",
     "summary_income": "Tổng thu nhập",
     "summary_count": "{{transactions}} trong {{categories}}",

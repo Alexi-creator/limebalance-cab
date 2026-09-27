@@ -325,6 +325,7 @@
     "add_expense": "Добави разход",
     "add_income": "Добави приход",
     "all_time": "За цялото време",
+    "since": "от {{date}}",
     "summary_expense": "Общо разходи",
     "summary_income": "Общо приходи",
     "summary_count": "{{transactions}} в {{categories}}",

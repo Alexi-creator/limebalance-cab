@@ -325,6 +325,7 @@
     "add_expense": "Ajouter une dépense",
     "add_income": "Ajouter un revenu",
     "all_time": "Depuis le début",
+    "since": "depuis le {{date}}",
     "summary_expense": "Dépenses totales",
     "summary_income": "Revenus totaux",
     "summary_count": "{{transactions}} dans {{categories}}",

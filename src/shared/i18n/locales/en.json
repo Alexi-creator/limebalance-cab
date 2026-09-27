@@ -349,6 +349,7 @@
     "add_expense": "Add expense",
     "add_income": "Add income",
     "all_time": "All time",
+    "since": "since {{date}}",
     "summary_expense": "Expenses all time",
     "summary_income": "Income all time",
     "summary_count": "{{transactions}} in {{categories}}",

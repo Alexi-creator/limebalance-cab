@@ -325,6 +325,7 @@
     "add_expense": "Lägg till utgift",
     "add_income": "Lägg till inkomst",
     "all_time": "Hela tiden",
+    "since": "sedan {{date}}",
     "summary_expense": "Totala utgifter",
     "summary_income": "Totala inkomster",
     "summary_count": "{{transactions}} i {{categories}}",

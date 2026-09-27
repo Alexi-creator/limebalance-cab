@@ -332,6 +332,7 @@
     "add_expense": "Dodaj wydatek",
     "add_income": "Dodaj przychód",
     "all_time": "Cały czas",
+    "since": "od {{date}}",
     "summary_expense": "Wydatki ogółem",
     "summary_income": "Przychody ogółem",
     "summary_count": "{{transactions}} w {{categories}}",

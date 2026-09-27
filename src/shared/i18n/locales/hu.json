@@ -325,6 +325,7 @@
     "add_expense": "Kiadás hozzáadása",
     "add_income": "Bevétel hozzáadása",
     "all_time": "Teljes időszak",
+    "since": "{{date}} óta",
     "summary_expense": "Összes kiadás",
     "summary_income": "Összes bevétel",
     "summary_count": "{{transactions}} / {{categories}}",

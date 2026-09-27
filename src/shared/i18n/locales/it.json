@@ -325,6 +325,7 @@
     "add_expense": "Aggiungi uscita",
     "add_income": "Aggiungi entrata",
     "all_time": "Sempre",
+    "since": "dal {{date}}",
     "summary_expense": "Uscite totali",
     "summary_income": "Entrate totali",
     "summary_count": "{{transactions}} in {{categories}}",

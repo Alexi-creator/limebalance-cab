@@ -339,6 +339,7 @@
     "add_expense": "הוסף הוצאה",
     "add_income": "הוסף הכנסה",
     "all_time": "כל הזמן",
+    "since": "מאז {{date}}",
     "summary_expense": "סך ההוצאות",
     "summary_income": "סך ההכנסות",
     "summary_count": "{{transactions}} ב-{{categories}}",

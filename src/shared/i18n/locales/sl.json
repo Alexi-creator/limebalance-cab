@@ -339,6 +339,7 @@
     "add_expense": "Dodaj odhodek",
     "add_income": "Dodaj prihodek",
     "all_time": "Ves čas",
+    "since": "od {{date}}",
     "summary_expense": "Skupni odhodki",
     "summary_income": "Skupni prihodki",
     "summary_count": "{{transactions}} v {{categories}}",

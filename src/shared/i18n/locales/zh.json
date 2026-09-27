@@ -318,6 +318,7 @@
     "add_expense": "添加支出",
     "add_income": "添加收入",
     "all_time": "全部时间",
+    "since": "自 {{date}} 起",
     "summary_expense": "支出总计",
     "summary_income": "收入总计",
     "summary_count": "{{categories}} 中的 {{transactions}}",

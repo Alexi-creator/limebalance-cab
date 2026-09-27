@@ -332,6 +332,7 @@
     "add_expense": "Dodaj rashod",
     "add_income": "Dodaj prihod",
     "all_time": "Cijelo vrijeme",
+    "since": "od {{date}}",
     "summary_expense": "Ukupni rashodi",
     "summary_income": "Ukupni prihodi",
     "summary_count": "{{transactions}} u {{categories}}",

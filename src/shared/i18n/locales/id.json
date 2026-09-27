@@ -318,6 +318,7 @@
     "add_expense": "Tambah pengeluaran",
     "add_income": "Tambah pemasukan",
     "all_time": "Sepanjang waktu",
+    "since": "sejak {{date}}",
     "summary_expense": "Total pengeluaran",
     "summary_income": "Total pemasukan",
     "summary_count": "{{transactions}} di {{categories}}",

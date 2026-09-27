@@ -318,6 +318,7 @@
     "add_expense": "支出を追加",
     "add_income": "収入を追加",
     "all_time": "全期間",
+    "since": "{{date}}から",
     "summary_expense": "支出合計",
     "summary_income": "収入合計",
     "summary_count": "{{categories}} 内の {{transactions}}",

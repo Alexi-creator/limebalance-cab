@@ -332,6 +332,7 @@
     "add_expense": "Pievienot izdevumus",
     "add_income": "Pievienot ieņēmumus",
     "all_time": "Visu laiku",
+    "since": "kopš {{date}}",
     "summary_expense": "Kopējie izdevumi",
     "summary_income": "Kopējie ieņēmumi",
     "summary_count": "{{transactions}} / {{categories}}",

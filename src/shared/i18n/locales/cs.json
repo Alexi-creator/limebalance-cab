@@ -332,6 +332,7 @@
     "add_expense": "Přidat výdaj",
     "add_income": "Přidat příjem",
     "all_time": "Za celou dobu",
+    "since": "od {{date}}",
     "summary_expense": "Výdaje celkem",
     "summary_income": "Příjmy celkem",
     "summary_count": "{{transactions}} v {{categories}}",

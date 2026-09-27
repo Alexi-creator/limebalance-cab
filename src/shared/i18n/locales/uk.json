@@ -332,6 +332,7 @@
     "add_expense": "Додати витрату",
     "add_income": "Додати дохід",
     "all_time": "За весь час",
+    "since": "з {{date}}",
     "summary_expense": "Витрати за весь час",
     "summary_income": "Доходи за весь час",
     "summary_count": "{{transactions}} у {{categories}}",

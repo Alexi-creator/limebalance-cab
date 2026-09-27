@@ -325,6 +325,7 @@
     "add_expense": "Uitgave toevoegen",
     "add_income": "Inkomst toevoegen",
     "all_time": "Alle tijd",
+    "since": "sinds {{date}}",
     "summary_expense": "Totale uitgaven",
     "summary_income": "Totale inkomsten",
     "summary_count": "{{transactions}} in {{categories}}",

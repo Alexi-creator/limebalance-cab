@@ -325,6 +325,7 @@
     "add_expense": "Lisa kulu",
     "add_income": "Lisa tulu",
     "all_time": "Kogu aeg",
+    "since": "alates {{date}}",
     "summary_expense": "Kulud kokku",
     "summary_income": "Tulud kokku",
     "summary_count": "{{transactions}} / {{categories}}",

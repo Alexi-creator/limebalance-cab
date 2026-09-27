@@ -332,6 +332,7 @@
     "add_expense": "Pridėti išlaidas",
     "add_income": "Pridėti pajamas",
     "all_time": "Per visą laiką",
+    "since": "nuo {{date}}",
     "summary_expense": "Iš viso išlaidų",
     "summary_income": "Iš viso pajamų",
     "summary_count": "{{transactions}} / {{categories}}",

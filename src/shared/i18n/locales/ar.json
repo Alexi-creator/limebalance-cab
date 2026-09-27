@@ -353,6 +353,7 @@
     "add_expense": "إضافة مصروف",
     "add_income": "إضافة إيراد",
     "all_time": "كل الوقت",
+    "since": "منذ {{date}}",
     "summary_expense": "إجمالي المصروفات",
     "summary_income": "إجمالي الإيرادات",
     "summary_count": "{{transactions}} في {{categories}}",

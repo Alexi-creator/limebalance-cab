@@ -318,6 +318,7 @@
     "add_expense": "เพิ่มรายจ่าย",
     "add_income": "เพิ่มรายรับ",
     "all_time": "ตลอดเวลา",
+    "since": "ตั้งแต่ {{date}}",
     "summary_expense": "รายจ่ายทั้งหมด",
     "summary_income": "รายรับทั้งหมด",
     "summary_count": "{{transactions}} ใน {{categories}}",
