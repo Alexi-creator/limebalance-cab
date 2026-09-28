@@ -392,7 +392,17 @@
     "tour_kpis_title": "Numeri chiave",
     "tour_kpis_desc": "Risparmi e tasso di risparmio per il periodo selezionato.",
     "tour_charts_title": "Ripartizione e tendenze",
-    "tour_charts_desc": "Guarda dove vanno i tuoi soldi per categoria e cosa è cambiato rispetto al periodo precedente."
+    "tour_charts_desc": "Guarda dove vanno i tuoi soldi per categoria e cosa è cambiato rispetto al periodo precedente.",
+    "filter_categories": "Categorie",
+    "total": "Totale",
+    "selected_total": "Categorie selezionate: {{count}}",
+    "share_of_total": "{{pct}} del totale",
+    "filter_empty": "Nessuna operazione nelle categorie selezionate",
+    "col_operations": "Operazioni",
+    "col_share": "Quota",
+    "col_prev": "Periodo precedente",
+    "col_change": "Variazione",
+    "col_amount": "Importo"
   },
   "add_modal": {
     "title_transaction": "Nuova transazione",

@@ -32,6 +32,8 @@ interface Props {
   summary: (count: number) => string
   /** Control width — matches the sibling filter inputs. */
   w: number | string
+  /** Extra class for the trigger input — e.g. more contrast when the filter sits on the bare page. */
+  inputClassName?: string
   /** Adds a star to each option; starred ones are listed first under `label`, the rest under `restLabel`. */
   favorites?: {
     values: string[]
@@ -55,6 +57,7 @@ export function MultiSelectFilter({
   onChange,
   summary,
   w,
+  inputClassName,
   favorites,
 }: Props) {
   const { t } = useTranslation()
@@ -159,6 +162,7 @@ export function MultiSelectFilter({
               <Combobox.Chevron />
             )
           }
+          classNames={{ input: inputClassName }}
           w={w}
         >
           {value.length ? (

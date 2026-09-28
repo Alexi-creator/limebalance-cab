@@ -392,7 +392,17 @@
     "tour_kpis_title": "Avainluvut",
     "tour_kpis_desc": "Säästöt ja säästöaste valitulta ajanjaksolta.",
     "tour_charts_title": "Erittely ja trendit",
-    "tour_charts_desc": "Katso, mihin rahasi menee kategorioittain ja mikä on muuttunut edellisestä ajanjaksosta."
+    "tour_charts_desc": "Katso, mihin rahasi menee kategorioittain ja mikä on muuttunut edellisestä ajanjaksosta.",
+    "filter_categories": "Kategoriat",
+    "total": "Yhteensä",
+    "selected_total": "Valittuja kategorioita: {{count}}",
+    "share_of_total": "{{pct}} kokonaissummasta",
+    "filter_empty": "Valituissa kategorioissa ei ole tapahtumia",
+    "col_operations": "Tapahtumat",
+    "col_share": "Osuus",
+    "col_prev": "Edellinen jakso",
+    "col_change": "Muutos",
+    "col_amount": "Summa"
   },
   "add_modal": {
     "title_transaction": "Uusi tapahtuma",

@@ -414,7 +414,17 @@
     "tour_kpis_title": "נתונים עיקריים",
     "tour_kpis_desc": "חיסכון ושיעור חיסכון עבור התקופה שנבחרה.",
     "tour_charts_title": "פירוט ומגמות",
-    "tour_charts_desc": "ראו לאן הכסף שלכם הולך לפי קטגוריה ומה השתנה מאז התקופה הקודמת."
+    "tour_charts_desc": "ראו לאן הכסף שלכם הולך לפי קטגוריה ומה השתנה מאז התקופה הקודמת.",
+    "filter_categories": "קטגוריות",
+    "total": "סה״כ",
+    "selected_total": "קטגוריות שנבחרו: {{count}}",
+    "share_of_total": "{{pct}} מהסכום הכולל",
+    "filter_empty": "אין פעולות בקטגוריות שנבחרו",
+    "col_operations": "פעולות",
+    "col_share": "נתח",
+    "col_prev": "תקופה קודמת",
+    "col_change": "שינוי",
+    "col_amount": "סכום"
   },
   "add_modal": {
     "title_transaction": "עסקה חדשה",

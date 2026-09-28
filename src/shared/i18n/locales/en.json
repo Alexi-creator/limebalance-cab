@@ -416,7 +416,17 @@
     "tour_kpis_title": "Key numbers",
     "tour_kpis_desc": "Savings and savings rate for the selected period.",
     "tour_charts_title": "Breakdown and trends",
-    "tour_charts_desc": "See where your money goes by category and what changed since the previous period."
+    "tour_charts_desc": "See where your money goes by category and what changed since the previous period.",
+    "filter_categories": "Categories",
+    "total": "Total",
+    "selected_total": "Categories selected: {{count}}",
+    "share_of_total": "{{pct}} of total",
+    "filter_empty": "No operations in the selected categories",
+    "col_operations": "Operations",
+    "col_share": "Share",
+    "col_prev": "Previous period",
+    "col_change": "Change",
+    "col_amount": "Amount"
   },
   "add_modal": {
     "title_transaction": "New transaction",

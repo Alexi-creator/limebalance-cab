@@ -381,7 +381,17 @@
     "tour_kpis_title": "Angka utama",
     "tour_kpis_desc": "Tabungan dan tingkat tabungan untuk periode yang dipilih.",
     "tour_charts_title": "Rincian dan tren",
-    "tour_charts_desc": "Lihat ke mana uang Anda pergi berdasarkan kategori dan apa yang berubah sejak periode sebelumnya."
+    "tour_charts_desc": "Lihat ke mana uang Anda pergi berdasarkan kategori dan apa yang berubah sejak periode sebelumnya.",
+    "filter_categories": "Kategori",
+    "total": "Total",
+    "selected_total": "Kategori dipilih: {{count}}",
+    "share_of_total": "{{pct}} dari total",
+    "filter_empty": "Tidak ada transaksi di kategori yang dipilih",
+    "col_operations": "Transaksi",
+    "col_share": "Porsi",
+    "col_prev": "Periode sebelumnya",
+    "col_change": "Perubahan",
+    "col_amount": "Jumlah"
   },
   "add_modal": {
     "title_transaction": "Transaksi baru",

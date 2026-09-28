@@ -392,7 +392,17 @@
     "tour_kpis_title": "Wichtige Kennzahlen",
     "tour_kpis_desc": "Ersparnisse und Sparquote für den gewählten Zeitraum.",
     "tour_charts_title": "Aufschlüsselung und Trends",
-    "tour_charts_desc": "Sehen Sie, wohin Ihr Geld nach Kategorie fließt und was sich seit dem vorherigen Zeitraum geändert hat."
+    "tour_charts_desc": "Sehen Sie, wohin Ihr Geld nach Kategorie fließt und was sich seit dem vorherigen Zeitraum geändert hat.",
+    "filter_categories": "Kategorien",
+    "total": "Gesamt",
+    "selected_total": "Ausgewählte Kategorien: {{count}}",
+    "share_of_total": "{{pct}} der Gesamtsumme",
+    "filter_empty": "Keine Buchungen in den ausgewählten Kategorien",
+    "col_operations": "Buchungen",
+    "col_share": "Anteil",
+    "col_prev": "Vorperiode",
+    "col_change": "Änderung",
+    "col_amount": "Betrag"
   },
   "add_modal": {
     "title_transaction": "Neue Transaktion",

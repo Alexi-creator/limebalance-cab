@@ -392,7 +392,17 @@
     "tour_kpis_title": "Belangrijkste cijfers",
     "tour_kpis_desc": "Besparingen en spaarquote voor de geselecteerde periode.",
     "tour_charts_title": "Uitsplitsing en trends",
-    "tour_charts_desc": "Bekijk waar uw geld naartoe gaat per categorie en wat er is veranderd sinds de vorige periode."
+    "tour_charts_desc": "Bekijk waar uw geld naartoe gaat per categorie en wat er is veranderd sinds de vorige periode.",
+    "filter_categories": "Categorieën",
+    "total": "Totaal",
+    "selected_total": "Geselecteerde categorieën: {{count}}",
+    "share_of_total": "{{pct}} van het totaal",
+    "filter_empty": "Geen transacties in de geselecteerde categorieën",
+    "col_operations": "Transacties",
+    "col_share": "Aandeel",
+    "col_prev": "Vorige periode",
+    "col_change": "Verandering",
+    "col_amount": "Bedrag"
   },
   "add_modal": {
     "title_transaction": "Nieuwe transactie",

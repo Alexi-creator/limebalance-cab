@@ -392,7 +392,17 @@
     "tour_kpis_title": "Legfontosabb számok",
     "tour_kpis_desc": "Megtakarítás és megtakarítási ráta a kiválasztott időszakra.",
     "tour_charts_title": "Bontás és trendek",
-    "tour_charts_desc": "Nézze meg, hova megy a pénze kategóriák szerint, és mi változott az előző időszak óta."
+    "tour_charts_desc": "Nézze meg, hova megy a pénze kategóriák szerint, és mi változott az előző időszak óta.",
+    "filter_categories": "Kategóriák",
+    "total": "Összesen",
+    "selected_total": "Kiválasztott kategóriák: {{count}}",
+    "share_of_total": "az összeg {{pct}}-a",
+    "filter_empty": "Nincs tranzakció a kiválasztott kategóriákban",
+    "col_operations": "Tranzakciók",
+    "col_share": "Arány",
+    "col_prev": "Előző időszak",
+    "col_change": "Változás",
+    "col_amount": "Összeg"
   },
   "add_modal": {
     "title_transaction": "Új tranzakció",

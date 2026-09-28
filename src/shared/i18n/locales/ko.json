@@ -381,7 +381,17 @@
     "tour_kpis_title": "주요 수치",
     "tour_kpis_desc": "선택한 기간의 저축액과 저축률.",
     "tour_charts_title": "세부 분석 및 추세",
-    "tour_charts_desc": "카테고리별로 돈이 어디로 가는지, 이전 기간과 비교해 무엇이 변했는지 확인하세요."
+    "tour_charts_desc": "카테고리별로 돈이 어디로 가는지, 이전 기간과 비교해 무엇이 변했는지 확인하세요.",
+    "filter_categories": "카테고리",
+    "total": "합계",
+    "selected_total": "선택한 카테고리: {{count}}",
+    "share_of_total": "전체의 {{pct}}",
+    "filter_empty": "선택한 카테고리에 거래가 없습니다",
+    "col_operations": "거래",
+    "col_share": "비중",
+    "col_prev": "이전 기간",
+    "col_change": "변화",
+    "col_amount": "금액"
   },
   "add_modal": {
     "title_transaction": "새 거래",

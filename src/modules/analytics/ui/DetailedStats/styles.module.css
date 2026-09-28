@@ -1,0 +1,48 @@
+/* One grid for the column header, the category rows and the totals row, so the columns line up:
+   category · operations · share · previous period · change · amount.
+   Phones keep only category · change · amount (the share goes under the amount). */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px minmax(120px, 180px) 130px 84px 130px;
+  column-gap: var(--mantine-spacing-md);
+  align-items: center;
+}
+
+/* the column header and the totals row sit outside Accordion.Control — same insets as its label
+   (control padding + chevron + the label's own right padding) */
+.outside {
+  padding-inline: var(--mantine-spacing-md)
+    calc(var(--mantine-spacing-md) + var(--mantine-spacing-sm) + 0.9375rem);
+}
+
+.head {
+  padding-block: var(--mantine-spacing-xs);
+  border-bottom: 1px solid var(--mantine-color-default-border);
+}
+
+.foot {
+  padding-block: var(--mantine-spacing-sm);
+  border-top: 1px solid var(--mantine-color-default-border);
+}
+
+.num {
+  text-align: right;
+  justify-self: end;
+}
+
+@media (max-width: 47.99em) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) auto minmax(88px, auto);
+    column-gap: var(--mantine-spacing-sm);
+  }
+
+  .wide {
+    display: none;
+  }
+}
+
+@media (min-width: 48em) {
+  .narrow {
+    display: none;
+  }
+}

@@ -403,7 +403,17 @@
     "tour_kpis_title": "Galvenie rādītāji",
     "tour_kpis_desc": "Uzkrājumi un uzkrājumu likme izvēlētajam periodam.",
     "tour_charts_title": "Sadalījums un tendences",
-    "tour_charts_desc": "Skatiet, kur iet jūsu nauda pa kategorijām un kas mainījies kopš iepriekšējā perioda."
+    "tour_charts_desc": "Skatiet, kur iet jūsu nauda pa kategorijām un kas mainījies kopš iepriekšējā perioda.",
+    "filter_categories": "Kategorijas",
+    "total": "Kopā",
+    "selected_total": "Atlasītās kategorijas: {{count}}",
+    "share_of_total": "{{pct}} no kopsummas",
+    "filter_empty": "Atlasītajās kategorijās nav darījumu",
+    "col_operations": "Darījumi",
+    "col_share": "Daļa",
+    "col_prev": "Iepriekšējais periods",
+    "col_change": "Izmaiņas",
+    "col_amount": "Summa"
   },
   "add_modal": {
     "title_transaction": "Jauns darījums",

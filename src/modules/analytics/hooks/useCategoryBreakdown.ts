@@ -24,6 +24,8 @@ export type StatKind = "expense" | "income"
 /** A category of the period with its presentation: color, emoji fallback and share. */
 export interface BreakdownRow {
   key: string
+  /** Category id (from `/stats`); null until it loads — `/stat` identifies categories by name. */
+  id: string | null
   name: string
   emoji: string
   color: string
@@ -55,6 +57,8 @@ export function useCategoryBreakdown({ from, to, prevFrom, prevTo }: AnalyticsRa
   const [kind, setKindState] = useState<StatKind>("expense")
   const [opened, setOpened] = useState<string[]>([])
   const [activeKey, setActiveKey] = useState<string | null>(null)
+  // category filter (keys = category names); empty — all categories
+  const [selected, setSelectedState] = useState<string[]>([])
 
   const isExpense = kind === "expense"
   const { data, isLoading, isError } = useQuery<DetailedStat>({
@@ -76,6 +80,7 @@ export function useCategoryBreakdown({ from, to, prevFrom, prevTo }: AnalyticsRa
     staleTime: isExpense ? EXPENSE_STALE_TIME : INCOME_STALE_TIME,
   })
   const prevByName = new Map((stats ?? []).map((s) => [s.name, s.previousApproxTotal ?? 0]))
+  const idByName = new Map((stats ?? []).map((s) => [s.name, s.id]))
 
   // categories by descending total (base currency); without exchange rates (null) — at the end
   const sorted = [...(data?.categories ?? [])].sort((a, b) => (b.total ?? -1) - (a.total ?? -1))
@@ -85,6 +90,7 @@ export function useCategoryBreakdown({ from, to, prevFrom, prevTo }: AnalyticsRa
     const prev = stats ? (prevByName.get(c.category) ?? 0) : null
     return {
       key: c.category,
+      id: idByName.get(c.category) ?? null,
       name: c.category,
       emoji: c.emoji || EMOJI_PALETTE[i % EMOJI_PALETTE.length],
       color: COLOR_PALETTE[i % COLOR_PALETTE.length],
@@ -102,6 +108,7 @@ export function useCategoryBreakdown({ from, to, prevFrom, prevTo }: AnalyticsRa
     const i = rows.length
     rows.push({
       key: s.name,
+      id: s.id,
       name: s.name,
       emoji: s.emoji || EMOJI_PALETTE[i % EMOJI_PALETTE.length],
       color: COLOR_PALETTE[i % COLOR_PALETTE.length],
@@ -114,9 +121,28 @@ export function useCategoryBreakdown({ from, to, prevFrom, prevTo }: AnalyticsRa
   }
   const prevSum = stats?.reduce((acc, s) => acc + (s.previousApproxTotal ?? 0), 0) ?? null
 
+  // the filter only narrows what is shown; shares stay relative to the whole period
+  const isFiltered = selected.length > 0
+  const visibleRows = isFiltered ? rows.filter((r) => selected.includes(r.key)) : rows
+  const visibleTotal = isFiltered
+    ? visibleRows.reduce((acc, r) => acc + (r.total ?? 0), 0)
+    : (data?.total ?? null)
+  const visiblePrev = isFiltered
+    ? stats
+      ? visibleRows.reduce((acc, r) => acc + (r.prev ?? 0), 0)
+      : null
+    : prevSum
+
   const setKind = (v: StatKind) => {
     setKindState(v)
     setOpened([])
+    setActiveKey(null)
+    // expense and income categories are different sets
+    setSelectedState([])
+  }
+  const setSelected = (v: string[]) => {
+    setSelectedState(v)
+    setOpened((prev) => (v.length ? prev.filter((k) => v.includes(k)) : prev))
     setActiveKey(null)
   }
   const toggle = (k: string) =>
@@ -131,6 +157,21 @@ export function useCategoryBreakdown({ from, to, prevFrom, prevTo }: AnalyticsRa
     /** Period total change vs the previous period, %; null — nothing to compare to. */
     totalDeltaPct: data?.total != null ? changePct(data.total, prevSum) : null,
     prevSum,
+    /** Category filter: selected category keys; empty — all categories. */
+    selected,
+    setSelected,
+    isFiltered,
+    /** Rows passing the category filter — what the list shows and the donut highlights. */
+    visibleRows,
+    /** Ids of the filtered categories, for the API; empty when not filtered (or ids not loaded). */
+    selectedIds: isFiltered ? visibleRows.flatMap((r) => (r.id ? [r.id] : [])) : [],
+    /** Total of the visible rows (base currency); the period total when nothing is filtered. */
+    visibleTotal,
+    /** Same categories in the previous period; null — no comparison data. */
+    visiblePrev,
+    visibleDeltaPct: visibleTotal != null ? changePct(visibleTotal, visiblePrev) : null,
+    /** Share of the visible rows in the period total, 0..100. */
+    visiblePct: visibleTotal != null && sum > 0 ? (visibleTotal / sum) * 100 : null,
     baseCurrency: data?.baseCurrency,
     isLoading,
     isError,

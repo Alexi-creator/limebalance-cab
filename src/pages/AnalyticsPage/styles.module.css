@@ -9,3 +9,23 @@
   background-color: var(--mantine-color-dark-6);
   border-color: var(--mantine-primary-color-filled);
 }
+
+/* Phones: the period and category fields share a full-width row with the tour button at its end,
+   instead of stacking and leaving the button alone on a line of its own. */
+@media (max-width: 47.99em) {
+  .filters {
+    width: 100%;
+  }
+
+  .filterFields {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .filterFields > * {
+    flex: 1 1 140px;
+    min-width: 0;
+    /* biome-ignore lint/complexity/noImportantStyles: Mantine's `w` prop is an inline style */
+    width: auto !important;
+  }
+}

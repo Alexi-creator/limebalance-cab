@@ -436,7 +436,17 @@
     "tour_kpis_title": "الأرقام الرئيسية",
     "tour_kpis_desc": "المدخرات ونسبة الادخار للفترة المحددة.",
     "tour_charts_title": "التفصيل والاتجاهات",
-    "tour_charts_desc": "شاهد أين تذهب أموالك حسب الفئة وما تغيّر منذ الفترة السابقة."
+    "tour_charts_desc": "شاهد أين تذهب أموالك حسب الفئة وما تغيّر منذ الفترة السابقة.",
+    "filter_categories": "الفئات",
+    "total": "الإجمالي",
+    "selected_total": "الفئات المحددة: {{count}}",
+    "share_of_total": "{{pct}} من الإجمالي",
+    "filter_empty": "لا توجد عمليات في الفئات المحددة",
+    "col_operations": "العمليات",
+    "col_share": "الحصة",
+    "col_prev": "الفترة السابقة",
+    "col_change": "التغيّر",
+    "col_amount": "المبلغ"
   },
   "add_modal": {
     "title_transaction": "معاملة جديدة",

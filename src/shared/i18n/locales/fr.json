@@ -392,7 +392,17 @@
     "tour_kpis_title": "Chiffres clés",
     "tour_kpis_desc": "Épargne et taux d'épargne pour la période sélectionnée.",
     "tour_charts_title": "Répartition et tendances",
-    "tour_charts_desc": "Voyez où va votre argent par catégorie et ce qui a changé depuis la période précédente."
+    "tour_charts_desc": "Voyez où va votre argent par catégorie et ce qui a changé depuis la période précédente.",
+    "filter_categories": "Catégories",
+    "total": "Total",
+    "selected_total": "Catégories sélectionnées : {{count}}",
+    "share_of_total": "{{pct}} du total",
+    "filter_empty": "Aucune opération dans les catégories sélectionnées",
+    "col_operations": "Opérations",
+    "col_share": "Part",
+    "col_prev": "Période précédente",
+    "col_change": "Variation",
+    "col_amount": "Montant"
   },
   "add_modal": {
     "title_transaction": "Nouvelle transaction",

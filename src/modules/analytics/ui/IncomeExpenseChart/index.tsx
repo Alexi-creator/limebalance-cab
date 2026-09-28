@@ -22,21 +22,38 @@ interface Props {
   subtitle: string
   /** User's base currency — the series amounts come in it. */
   baseCurrency?: string
+  /** Draw only one kind — the category filter narrows a single kind, so the other one would be
+   *  compared against a subset. Omitted — income and expenses side by side. */
+  only?: "income" | "expense"
+  /** New data is on its way — the bars dim instead of the chart blinking to a skeleton. */
+  isFetching?: boolean
 }
 
-/** Paired bars of income (filled) and expenses (outlined) by period buckets. */
-export function IncomeExpenseChart({ series, title, subtitle, baseCurrency }: Props) {
+/** Paired bars of income and expenses by period buckets (or a single kind, see `only`). */
+export function IncomeExpenseChart({
+  series,
+  title,
+  subtitle,
+  baseCurrency,
+  only,
+  isFetching,
+}: Props) {
   const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
   const { ref, width } = useElementSize()
   const [hovered, setHovered] = useState<number | null>(null)
   const W = width || 720
 
-  const scale = niceScale(0, Math.max(0, ...series.flatMap((p) => [p.income, p.expense])))
+  const showIncome = only !== "expense"
+  const showExpense = only !== "income"
+  const scale = niceScale(
+    0,
+    Math.max(0, ...series.flatMap((p) => [showIncome ? p.income : 0, showExpense ? p.expense : 0])),
+  )
   const tickLabels = scale.ticks.map((v) => formatAxisValue(v, i18n.language))
   const LEFT = axisPadLeft(tickLabels, AXIS_FONT)
   const slot = (W - LEFT - RIGHT) / Math.max(series.length, 1)
-  const barW = Math.min(14, slot * 0.32)
+  const barW = only ? Math.min(20, slot * 0.5) : Math.min(14, slot * 0.32)
   const base = TOP + PLOT_H
   const slotX = (i: number) => LEFT + slot * (i + 0.5)
   // day labels come pre-thinned from the helpers; month / week labels are thinned here by width
@@ -67,21 +84,32 @@ export function IncomeExpenseChart({ series, title, subtitle, baseCurrency }: Pr
           </Text>
         </Stack>
         <Group gap="lg">
-          <Group gap={6}>
-            <Box w={10} h={10} style={{ background: INCOME_COLOR, borderRadius: 2 }} />
-            <Text size="xs">{t("common.income_plural")}</Text>
-          </Group>
-          <Group gap={6}>
-            <Box w={10} h={10} style={{ background: EXPENSE_COLOR, borderRadius: 2 }} />
-            <Text size="xs">{t("common.expense_plural")}</Text>
-          </Group>
+          {showIncome && (
+            <Group gap={6}>
+              <Box w={10} h={10} style={{ background: INCOME_COLOR, borderRadius: 2 }} />
+              <Text size="xs">{t("common.income_plural")}</Text>
+            </Group>
+          )}
+          {showExpense && (
+            <Group gap={6}>
+              <Box w={10} h={10} style={{ background: EXPENSE_COLOR, borderRadius: 2 }} />
+              <Text size="xs">{t("common.expense_plural")}</Text>
+            </Group>
+          )}
         </Group>
       </Group>
       <Box p="md">
         <Box ref={ref} style={{ position: "relative" }}>
           <svg
             viewBox={`0 0 ${W} ${H}`}
-            style={{ width: "100%", height: H, display: "block", touchAction: "pan-y" }}
+            style={{
+              width: "100%",
+              height: H,
+              display: "block",
+              touchAction: "pan-y",
+              opacity: isFetching ? 0.5 : 1,
+              transition: "opacity 150ms",
+            }}
             role="img"
             aria-label={t("analytics.chart_aria")}
             onPointerMove={pick}
@@ -130,22 +158,26 @@ export function IncomeExpenseChart({ series, title, subtitle, baseCurrency }: Pr
               return (
                 // biome-ignore lint/suspicious/noArrayIndexKey: buckets are positional and stable by index
                 <g key={i}>
-                  <rect
-                    x={cx - barW - 1}
-                    y={base - hIn}
-                    width={barW}
-                    height={hIn}
-                    rx="2"
-                    fill={INCOME_COLOR}
-                  />
-                  <rect
-                    x={cx + 1}
-                    y={base - hOut}
-                    width={barW}
-                    height={hOut}
-                    rx="2"
-                    fill={EXPENSE_COLOR}
-                  />
+                  {showIncome && (
+                    <rect
+                      x={only ? cx - barW / 2 : cx - barW - 1}
+                      y={base - hIn}
+                      width={barW}
+                      height={hIn}
+                      rx="2"
+                      fill={INCOME_COLOR}
+                    />
+                  )}
+                  {showExpense && (
+                    <rect
+                      x={only ? cx - barW / 2 : cx + 1}
+                      y={base - hOut}
+                      width={barW}
+                      height={hOut}
+                      rx="2"
+                      fill={EXPENSE_COLOR}
+                    />
+                  )}
                   {i % labelStep === 0 && (
                     <text
                       x={cx}
@@ -168,16 +200,24 @@ export function IncomeExpenseChart({ series, title, subtitle, baseCurrency }: Pr
               x={slotX(hovered)}
               containerWidth={W}
               rows={[
-                {
-                  color: INCOME_COLOR,
-                  label: t("common.income_plural"),
-                  value: money(hoveredPoint.income),
-                },
-                {
-                  color: EXPENSE_COLOR,
-                  label: t("common.expense_plural"),
-                  value: money(hoveredPoint.expense),
-                },
+                ...(showIncome
+                  ? [
+                      {
+                        color: INCOME_COLOR,
+                        label: t("common.income_plural"),
+                        value: money(hoveredPoint.income),
+                      },
+                    ]
+                  : []),
+                ...(showExpense
+                  ? [
+                      {
+                        color: EXPENSE_COLOR,
+                        label: t("common.expense_plural"),
+                        value: money(hoveredPoint.expense),
+                      },
+                    ]
+                  : []),
               ]}
             />
           )}

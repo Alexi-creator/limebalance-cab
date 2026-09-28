@@ -392,7 +392,17 @@
     "tour_kpis_title": "Nøkkeltall",
     "tour_kpis_desc": "Sparing og sparerate for den valgte perioden.",
     "tour_charts_title": "Nedbrytning og trender",
-    "tour_charts_desc": "Se hvor pengene dine går etter kategori, og hva som har endret seg siden forrige periode."
+    "tour_charts_desc": "Se hvor pengene dine går etter kategori, og hva som har endret seg siden forrige periode.",
+    "filter_categories": "Kategorier",
+    "total": "Totalt",
+    "selected_total": "Valgte kategorier: {{count}}",
+    "share_of_total": "{{pct}} av totalen",
+    "filter_empty": "Ingen transaksjoner i de valgte kategoriene",
+    "col_operations": "Transaksjoner",
+    "col_share": "Andel",
+    "col_prev": "Forrige periode",
+    "col_change": "Endring",
+    "col_amount": "Beløp"
   },
   "add_modal": {
     "title_transaction": "Ny transaksjon",

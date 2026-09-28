@@ -392,7 +392,17 @@
     "tour_kpis_title": "Nyckeltal",
     "tour_kpis_desc": "Besparingar och sparkvot för den valda perioden.",
     "tour_charts_title": "Uppdelning och trender",
-    "tour_charts_desc": "Se vart dina pengar går per kategori och vad som har förändrats sedan föregående period."
+    "tour_charts_desc": "Se vart dina pengar går per kategori och vad som har förändrats sedan föregående period.",
+    "filter_categories": "Kategorier",
+    "total": "Totalt",
+    "selected_total": "Valda kategorier: {{count}}",
+    "share_of_total": "{{pct}} av totalen",
+    "filter_empty": "Inga transaktioner i de valda kategorierna",
+    "col_operations": "Transaktioner",
+    "col_share": "Andel",
+    "col_prev": "Föregående period",
+    "col_change": "Förändring",
+    "col_amount": "Belopp"
   },
   "add_modal": {
     "title_transaction": "Ny transaktion",

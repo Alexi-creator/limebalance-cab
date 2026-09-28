@@ -392,7 +392,17 @@
     "tour_kpis_title": "Põhinäitajad",
     "tour_kpis_desc": "Säästud ja säästumäär valitud perioodi kohta.",
     "tour_charts_title": "Jaotus ja trendid",
-    "tour_charts_desc": "Vaata, kuhu sinu raha kategooriate kaupa läheb ja mis on muutunud võrreldes eelmise perioodiga."
+    "tour_charts_desc": "Vaata, kuhu sinu raha kategooriate kaupa läheb ja mis on muutunud võrreldes eelmise perioodiga.",
+    "filter_categories": "Kategooriad",
+    "total": "Kokku",
+    "selected_total": "Valitud kategooriaid: {{count}}",
+    "share_of_total": "{{pct}} kogusummast",
+    "filter_empty": "Valitud kategooriates tehinguid pole",
+    "col_operations": "Tehingud",
+    "col_share": "Osakaal",
+    "col_prev": "Eelmine periood",
+    "col_change": "Muutus",
+    "col_amount": "Summa"
   },
   "add_modal": {
     "title_transaction": "Uus tehing",

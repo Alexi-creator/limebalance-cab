@@ -392,7 +392,17 @@
     "tour_kpis_title": "Temel rakamlar",
     "tour_kpis_desc": "Seçilen dönem için birikimler ve birikim oranı.",
     "tour_charts_title": "Döküm ve eğilimler",
-    "tour_charts_desc": "Paranızın kategoriye göre nereye gittiğini ve önceki dönemden bu yana neyin değiştiğini görün."
+    "tour_charts_desc": "Paranızın kategoriye göre nereye gittiğini ve önceki dönemden bu yana neyin değiştiğini görün.",
+    "filter_categories": "Kategoriler",
+    "total": "Toplam",
+    "selected_total": "Seçilen kategoriler: {{count}}",
+    "share_of_total": "toplamın {{pct}}",
+    "filter_empty": "Seçilen kategorilerde işlem yok",
+    "col_operations": "İşlemler",
+    "col_share": "Pay",
+    "col_prev": "Önceki dönem",
+    "col_change": "Değişim",
+    "col_amount": "Tutar"
   },
   "add_modal": {
     "title_transaction": "Yeni işlem",

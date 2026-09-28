@@ -381,7 +381,17 @@
     "tour_kpis_title": "关键数据",
     "tour_kpis_desc": "所选时间段的储蓄额和储蓄率。",
     "tour_charts_title": "明细与趋势",
-    "tour_charts_desc": "按分类查看您的资金去向，以及与上一时间段相比的变化。"
+    "tour_charts_desc": "按分类查看您的资金去向，以及与上一时间段相比的变化。",
+    "filter_categories": "分类",
+    "total": "合计",
+    "selected_total": "已选分类：{{count}}",
+    "share_of_total": "占总额 {{pct}}",
+    "filter_empty": "所选分类中没有交易",
+    "col_operations": "交易数",
+    "col_share": "占比",
+    "col_prev": "上一周期",
+    "col_change": "变化",
+    "col_amount": "金额"
   },
   "add_modal": {
     "title_transaction": "新交易",

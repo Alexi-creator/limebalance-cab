@@ -414,7 +414,17 @@
     "tour_kpis_title": "Ključne številke",
     "tour_kpis_desc": "Prihranki in stopnja varčevanja za izbrano obdobje.",
     "tour_charts_title": "Razčlenitev in trendi",
-    "tour_charts_desc": "Oglejte si, kam gre vaš denar po kategorijah in kaj se je spremenilo od prejšnjega obdobja."
+    "tour_charts_desc": "Oglejte si, kam gre vaš denar po kategorijah in kaj se je spremenilo od prejšnjega obdobja.",
+    "filter_categories": "Kategorije",
+    "total": "Skupaj",
+    "selected_total": "Izbrane kategorije: {{count}}",
+    "share_of_total": "{{pct}} celote",
+    "filter_empty": "V izbranih kategorijah ni transakcij",
+    "col_operations": "Transakcije",
+    "col_share": "Delež",
+    "col_prev": "Prejšnje obdobje",
+    "col_change": "Sprememba",
+    "col_amount": "Znesek"
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",

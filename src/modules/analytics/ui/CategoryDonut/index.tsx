@@ -28,7 +28,10 @@ export function CategoryDonut({ breakdown: b, subtitle }: Props) {
   const active = b.rows.find((r) => r.key === b.activeKey)
   const money = (n: number) => formatCurrency(n, i18n.language, b.baseCurrency)
   const kindLabel = t(isExpense ? "common.expense_plural" : "common.income_plural")
-  const centerValue = money(active ? (active.total ?? 0) : b.sum)
+  // with the category filter on, the hole shows the picked categories' total
+  const centerValue = money(
+    active ? (active.total ?? 0) : b.isFiltered ? (b.visibleTotal ?? 0) : b.sum,
+  )
   let offset = 0
 
   return (
@@ -66,6 +69,10 @@ export function CategoryDonut({ breakdown: b, subtitle }: Props) {
                 const off = (offset / 100) * CIRC
                 offset += pct
                 const isActive = b.activeKey === s.key
+                // slices outside the filter stay in place (the shares are of the whole period)
+                const isDimmed = b.activeKey
+                  ? !isActive
+                  : b.isFiltered && !b.selected.includes(s.key)
                 return (
                   // biome-ignore lint/a11y/noStaticElementInteractions: slice hover/click mirrors the list rows
                   <circle
@@ -79,7 +86,7 @@ export function CategoryDonut({ breakdown: b, subtitle }: Props) {
                     strokeDasharray={`${len} ${CIRC - len}`}
                     strokeDashoffset={-off}
                     transform={`rotate(-90 ${C} ${C})`}
-                    opacity={b.activeKey && !isActive ? 0.3 : 1}
+                    opacity={isDimmed ? 0.3 : 1}
                     style={{ cursor: "pointer", transition: "opacity 120ms, stroke-width 120ms" }}
                     onMouseEnter={() => b.setActiveKey(s.key)}
                     onClick={() => b.toggle(s.key)}
@@ -105,7 +112,11 @@ export function CategoryDonut({ breakdown: b, subtitle }: Props) {
                 {centerValue}
               </Text>
               <Text size="xs" c="dimmed" lh={1.2} lineClamp={2}>
-                {active ? active.name : kindLabel.toLocaleLowerCase(i18n.language)}
+                {active
+                  ? active.name
+                  : b.isFiltered
+                    ? t("analytics.selected_total", { count: b.visibleRows.length })
+                    : kindLabel.toLocaleLowerCase(i18n.language)}
               </Text>
             </Box>
           </Box>

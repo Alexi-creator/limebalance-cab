@@ -6,6 +6,9 @@
 export const expenseSummaryKeys = {
   summary: (from: string, to: string, granularity: string) =>
     ["expenses", "summary", from, to, granularity] as const,
+  /** Summary narrowed to some categories — the chart under the analytics category filter. */
+  summaryByCategories: (from: string, to: string, granularity: string, categoryIds: string[]) =>
+    ["expenses", "summary", from, to, granularity, [...categoryIds].sort()] as const,
   /** Detailed stat for a period: the total, the per-category split and the transactions. */
   stat: (from: string, to: string) => ["expenses", "stat", from, to] as const,
 }
@@ -13,6 +16,8 @@ export const expenseSummaryKeys = {
 export const incomeSummaryKeys = {
   summary: (from: string, to: string, granularity: string) =>
     ["incomes", "summary", from, to, granularity] as const,
+  summaryByCategories: (from: string, to: string, granularity: string, categoryIds: string[]) =>
+    ["incomes", "summary", from, to, granularity, [...categoryIds].sort()] as const,
   stat: (from: string, to: string) => ["incomes", "stat", from, to] as const,
 }
 

@@ -381,7 +381,17 @@
     "tour_kpis_title": "主要な数値",
     "tour_kpis_desc": "選択した期間の貯蓄額と貯蓄率。",
     "tour_charts_title": "内訳と傾向",
-    "tour_charts_desc": "カテゴリー別のお金の流れと前期からの変化を確認できます。"
+    "tour_charts_desc": "カテゴリー別のお金の流れと前期からの変化を確認できます。",
+    "filter_categories": "カテゴリー",
+    "total": "合計",
+    "selected_total": "選択中のカテゴリー: {{count}}",
+    "share_of_total": "合計の{{pct}}",
+    "filter_empty": "選択したカテゴリーに取引はありません",
+    "col_operations": "取引数",
+    "col_share": "割合",
+    "col_prev": "前期間",
+    "col_change": "変化",
+    "col_amount": "金額"
   },
   "add_modal": {
     "title_transaction": "新しい取引",

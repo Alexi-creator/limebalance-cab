@@ -403,7 +403,17 @@
     "tour_kpis_title": "Cifre cheie",
     "tour_kpis_desc": "Economii și rata de economisire pentru perioada selectată.",
     "tour_charts_title": "Defalcare și tendințe",
-    "tour_charts_desc": "Vedeți unde se duc banii dvs. pe categorii și ce s-a schimbat față de perioada anterioară."
+    "tour_charts_desc": "Vedeți unde se duc banii dvs. pe categorii și ce s-a schimbat față de perioada anterioară.",
+    "filter_categories": "Categorii",
+    "total": "Total",
+    "selected_total": "Categorii selectate: {{count}}",
+    "share_of_total": "{{pct}} din total",
+    "filter_empty": "Nicio operațiune în categoriile selectate",
+    "col_operations": "Operațiuni",
+    "col_share": "Pondere",
+    "col_prev": "Perioada anterioară",
+    "col_change": "Variație",
+    "col_amount": "Sumă"
   },
   "add_modal": {
     "title_transaction": "Tranzacție nouă",

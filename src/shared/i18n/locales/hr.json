@@ -403,7 +403,17 @@
     "tour_kpis_title": "Ključni brojevi",
     "tour_kpis_desc": "Ušteđevina i stopa štednje za odabrano razdoblje.",
     "tour_charts_title": "Raščlamba i trendovi",
-    "tour_charts_desc": "Pogledajte kamo ide vaš novac po kategorijama i što se promijenilo od prethodnog razdoblja."
+    "tour_charts_desc": "Pogledajte kamo ide vaš novac po kategorijama i što se promijenilo od prethodnog razdoblja.",
+    "filter_categories": "Kategorije",
+    "total": "Ukupno",
+    "selected_total": "Odabrane kategorije: {{count}}",
+    "share_of_total": "{{pct}} ukupnog iznosa",
+    "filter_empty": "Nema transakcija u odabranim kategorijama",
+    "col_operations": "Transakcije",
+    "col_share": "Udio",
+    "col_prev": "Prethodno razdoblje",
+    "col_change": "Promjena",
+    "col_amount": "Iznos"
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",

@@ -403,7 +403,17 @@
     "tour_kpis_title": "Pagrindiniai skaičiai",
     "tour_kpis_desc": "Santaupos ir santaupų norma pasirinktam laikotarpiui.",
     "tour_charts_title": "Suskirstymas ir tendencijos",
-    "tour_charts_desc": "Peržiūrėkite, kur eina jūsų pinigai pagal kategoriją ir kas pasikeitė nuo ankstesnio laikotarpio."
+    "tour_charts_desc": "Peržiūrėkite, kur eina jūsų pinigai pagal kategoriją ir kas pasikeitė nuo ankstesnio laikotarpio.",
+    "filter_categories": "Kategorijos",
+    "total": "Iš viso",
+    "selected_total": "Pasirinkta kategorijų: {{count}}",
+    "share_of_total": "{{pct}} visos sumos",
+    "filter_empty": "Pasirinktose kategorijose operacijų nėra",
+    "col_operations": "Operacijos",
+    "col_share": "Dalis",
+    "col_prev": "Ankstesnis laikotarpis",
+    "col_change": "Pokytis",
+    "col_amount": "Suma"
   },
   "add_modal": {
     "title_transaction": "Nauja operacija",

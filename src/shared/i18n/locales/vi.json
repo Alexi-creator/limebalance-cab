@@ -381,7 +381,17 @@
     "tour_kpis_title": "Số liệu chính",
     "tour_kpis_desc": "Khoản tiết kiệm và tỷ lệ tiết kiệm cho khoảng thời gian đã chọn.",
     "tour_charts_title": "Phân tích chi tiết và xu hướng",
-    "tour_charts_desc": "Xem tiền của bạn đi đâu theo danh mục và những gì đã thay đổi so với kỳ trước."
+    "tour_charts_desc": "Xem tiền của bạn đi đâu theo danh mục và những gì đã thay đổi so với kỳ trước.",
+    "filter_categories": "Danh mục",
+    "total": "Tổng",
+    "selected_total": "Đã chọn danh mục: {{count}}",
+    "share_of_total": "{{pct}} tổng số",
+    "filter_empty": "Không có giao dịch trong các danh mục đã chọn",
+    "col_operations": "Giao dịch",
+    "col_share": "Tỷ trọng",
+    "col_prev": "Kỳ trước",
+    "col_change": "Thay đổi",
+    "col_amount": "Số tiền"
   },
   "add_modal": {
     "title_transaction": "Giao dịch mới",

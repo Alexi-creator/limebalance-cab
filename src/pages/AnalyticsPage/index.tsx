@@ -1,8 +1,10 @@
-import { Box, Grid, Group, Paper, Skeleton, Stack, Text, Title } from "@mantine/core"
+import { Box, Button, Grid, Group, Paper, Skeleton, Stack, Text, Title } from "@mantine/core"
+import { IconX } from "@tabler/icons-react"
 import { format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useTranslation } from "react-i18next"
 import { useAnalyticsData } from "@/modules/analytics/api/useAnalyticsData"
+import { useCategorySeries } from "@/modules/analytics/api/useCategorySeries"
 import { type AnalyticsPeriod, analyticsParamsSchema } from "@/modules/analytics/config"
 import { useAnalyticsTour } from "@/modules/analytics/hooks/useAnalyticsTour"
 import { useCategoryBreakdown } from "@/modules/analytics/hooks/useCategoryBreakdown"
@@ -13,7 +15,7 @@ import {
   DetailedStats,
   IncomeExpenseChart,
 } from "@/modules/analytics/ui"
-import { PeriodFilter } from "@/modules/transactions/ui"
+import { MultiSelectFilter, PeriodFilter } from "@/modules/transactions/ui"
 import { useUrlParams } from "@/shared/hooks/useUrlParams"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { TourTriggerButton } from "@/shared/ui/TourTriggerButton"
@@ -34,6 +36,26 @@ export function AnalyticsPage() {
 
   // shared by the donut and the details list: same categories, colors, hovered category
   const breakdown = useCategoryBreakdown(range)
+  // with categories picked, the chart shows only that kind, narrowed to them
+  const categorySeries = useCategorySeries(range, breakdown.kind, breakdown.selectedIds, locale)
+  const chartTitle = breakdown.isFiltered
+    ? `${t(breakdown.kind === "expense" ? "common.expense_plural" : "common.income_plural")} · ${t(
+        "analytics.selected_total",
+        { count: breakdown.visibleRows.length },
+      )}`
+    : t("analytics.income_vs_expense")
+
+  const categoryOptions = breakdown.rows.map((r) => ({
+    value: r.key,
+    label: `${r.emoji} ${r.name}`,
+  }))
+
+  const hasFilters = params.period != null || breakdown.isFiltered
+  // back to the default period and all categories
+  const resetFilters = () => {
+    setParams({ period: undefined, from: undefined, to: undefined })
+    breakdown.setSelected([])
+  }
 
   const rangeLabel = `${format(range.from, "d MMM", { locale })} – ${format(range.to, "d MMM yyyy", { locale })}`
 
@@ -48,8 +70,8 @@ export function AnalyticsPage() {
             {t("analytics.subtitle")}
           </Text>
         </Stack>
-        <Group gap="xs" align="flex-end">
-          <Group gap="xs" align="flex-end" data-tour="an-period">
+        <Group gap="xs" align="flex-end" wrap="nowrap" className={classes.filters}>
+          <Group gap="xs" align="flex-end" data-tour="an-period" className={classes.filterFields}>
             <PeriodFilter
               period={params.period}
               from={params.from}
@@ -60,13 +82,35 @@ export function AnalyticsPage() {
               withAll={false}
               inputClassName={classes.periodInput}
             />
+            {/* narrows the donut and the details list (current expense/income switch) to the
+                picked categories, with their combined total in the list header */}
+            <MultiSelectFilter
+              label={t("analytics.filter_categories")}
+              placeholder={t("common.all")}
+              data={categoryOptions}
+              value={breakdown.selected}
+              onChange={breakdown.setSelected}
+              summary={(count) => t("transactions.categories_selected", { count })}
+              inputClassName={classes.periodInput}
+              w={180}
+            />
+            <Button
+              variant="light"
+              color="red"
+              size="sm"
+              leftSection={<IconX size={14} />}
+              onClick={resetFilters}
+              disabled={!hasFilters}
+            >
+              {t("common.reset")}
+            </Button>
             {/* Hidden until the export API is ready
             <Button variant="default" size="sm" leftSection={<IconDownload size={14} />} disabled>
               PDF
             </Button>
             */}
           </Group>
-          <TourTriggerButton onClick={startTour} />
+          <TourTriggerButton onClick={startTour} size="input-sm" />
         </Group>
       </Group>
 
@@ -94,10 +138,14 @@ export function AnalyticsPage() {
           <Grid gap="md" data-tour="an-charts">
             <Grid.Col span={{ base: 12, md: 8 }} order={{ base: 2, md: 1 }}>
               <IncomeExpenseChart
-                series={series}
-                title={t("analytics.income_vs_expense")}
+                series={categorySeries.series ?? series}
+                title={chartTitle}
                 subtitle={rangeLabel}
                 baseCurrency={baseCurrency}
+                only={breakdown.isFiltered ? breakdown.kind : undefined}
+                isFetching={
+                  breakdown.isFiltered && (categorySeries.isFetching || !categorySeries.series)
+                }
               />
             </Grid.Col>
             <Grid.Col span={{ base: 12, md: 4 }} order={{ base: 3, md: 2 }}>

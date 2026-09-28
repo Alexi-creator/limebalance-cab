@@ -392,7 +392,17 @@
     "tour_kpis_title": "Números principais",
     "tour_kpis_desc": "Economias e taxa de economia para o período selecionado.",
     "tour_charts_title": "Detalhamento e tendências",
-    "tour_charts_desc": "Veja para onde vai o seu dinheiro por categoria e o que mudou desde o período anterior."
+    "tour_charts_desc": "Veja para onde vai o seu dinheiro por categoria e o que mudou desde o período anterior.",
+    "filter_categories": "Categorias",
+    "total": "Total",
+    "selected_total": "Categorias selecionadas: {{count}}",
+    "share_of_total": "{{pct}} do total",
+    "filter_empty": "Nenhuma operação nas categorias selecionadas",
+    "col_operations": "Operações",
+    "col_share": "Parcela",
+    "col_prev": "Período anterior",
+    "col_change": "Variação",
+    "col_amount": "Valor"
   },
   "add_modal": {
     "title_transaction": "Nova transação",

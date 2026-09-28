@@ -403,7 +403,17 @@
     "tour_kpis_title": "Kľúčové čísla",
     "tour_kpis_desc": "Úspory a miera úspor za vybrané obdobie.",
     "tour_charts_title": "Rozpis a trendy",
-    "tour_charts_desc": "Pozrite sa, kam idú vaše peniaze podľa kategórií a čo sa zmenilo od predchádzajúceho obdobia."
+    "tour_charts_desc": "Pozrite sa, kam idú vaše peniaze podľa kategórií a čo sa zmenilo od predchádzajúceho obdobia.",
+    "filter_categories": "Kategórie",
+    "total": "Spolu",
+    "selected_total": "Vybrané kategórie: {{count}}",
+    "share_of_total": "{{pct}} z celku",
+    "filter_empty": "Vo vybraných kategóriách nie sú žiadne operácie",
+    "col_operations": "Operácie",
+    "col_share": "Podiel",
+    "col_prev": "Predchádzajúce obdobie",
+    "col_change": "Zmena",
+    "col_amount": "Suma"
   },
   "add_modal": {
     "title_transaction": "Nová transakcia",

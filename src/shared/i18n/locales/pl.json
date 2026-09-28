@@ -403,7 +403,17 @@
     "tour_kpis_title": "Kluczowe liczby",
     "tour_kpis_desc": "Oszczędności i stopa oszczędności dla wybranego okresu.",
     "tour_charts_title": "Podział i trendy",
-    "tour_charts_desc": "Zobacz, dokąd trafiają Twoje pieniądze według kategorii i co zmieniło się od poprzedniego okresu."
+    "tour_charts_desc": "Zobacz, dokąd trafiają Twoje pieniądze według kategorii i co zmieniło się od poprzedniego okresu.",
+    "filter_categories": "Kategorie",
+    "total": "Razem",
+    "selected_total": "Wybrane kategorie: {{count}}",
+    "share_of_total": "{{pct}} całości",
+    "filter_empty": "Brak operacji w wybranych kategoriach",
+    "col_operations": "Operacje",
+    "col_share": "Udział",
+    "col_prev": "Poprzedni okres",
+    "col_change": "Zmiana",
+    "col_amount": "Kwota"
   },
   "add_modal": {
     "title_transaction": "Nowa transakcja",
