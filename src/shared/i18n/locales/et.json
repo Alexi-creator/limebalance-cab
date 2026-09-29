@@ -402,7 +402,10 @@
     "col_share": "Osakaal",
     "col_prev": "Eelmine periood",
     "col_change": "Muutus",
-    "col_amount": "Summa"
+    "col_amount": "Summa",
+    "compare_title": "Kuude võrdlus",
+    "compare_all_categories": "Kõik kategooriad",
+    "compare_months": "Kuud"
   },
   "add_modal": {
     "title_transaction": "Uus tehing",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "kust see tuli — hiljem tahad seda meenutada",
     "venue_new": "Lisa koht",
     "venue_new_hint": "Külmkott või API-võtmeta börs. Ühendatud börsid ilmuvad ise.",
+    "venue_show_archived": "Näita arhiivi ({{count}})",
+    "venue_hide_archived": "Peida arhiiv",
     "venue_edit": "Muuda kohta",
     "venue_name": "Nimi",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

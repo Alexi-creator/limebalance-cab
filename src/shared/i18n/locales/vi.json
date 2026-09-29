@@ -391,7 +391,10 @@
     "col_share": "Tỷ trọng",
     "col_prev": "Kỳ trước",
     "col_change": "Thay đổi",
-    "col_amount": "Số tiền"
+    "col_amount": "Số tiền",
+    "compare_title": "So sánh theo tháng",
+    "compare_all_categories": "Tất cả danh mục",
+    "compare_months": "Tháng"
   },
   "add_modal": {
     "title_transaction": "Giao dịch mới",
@@ -687,6 +690,8 @@
     "tr_external_note_in": "đến từ đâu — sau này bạn sẽ muốn nhớ lại",
     "venue_new": "Thêm một nơi",
     "venue_new_hint": "Ví lạnh hoặc sàn không có khoá API. Sàn đã kết nối sẽ tự xuất hiện.",
+    "venue_show_archived": "Hiện mục lưu trữ ({{count}})",
+    "venue_hide_archived": "Ẩn mục lưu trữ",
     "venue_edit": "Sửa nơi",
     "venue_name": "Tên",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

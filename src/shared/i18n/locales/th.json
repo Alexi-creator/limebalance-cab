@@ -391,7 +391,10 @@
     "col_share": "สัดส่วน",
     "col_prev": "ช่วงก่อนหน้า",
     "col_change": "การเปลี่ยนแปลง",
-    "col_amount": "จำนวนเงิน"
+    "col_amount": "จำนวนเงิน",
+    "compare_title": "เปรียบเทียบรายเดือน",
+    "compare_all_categories": "ทุกหมวดหมู่",
+    "compare_months": "เดือน"
   },
   "add_modal": {
     "title_transaction": "ธุรกรรมใหม่",
@@ -687,6 +690,8 @@
     "tr_external_note_in": "มาจากไหน — ภายหลังคุณจะอยากนึกออก",
     "venue_new": "เพิ่มที่เก็บ",
     "venue_new_hint": "กระเป๋าเย็นหรือเอ็กซ์เชนจ์ที่ไม่มีคีย์ API เอ็กซ์เชนจ์ที่เชื่อมไว้จะขึ้นมาเอง",
+    "venue_show_archived": "แสดงที่เก็บถาวร ({{count}})",
+    "venue_hide_archived": "ซ่อนที่เก็บถาวร",
     "venue_edit": "แก้ไขที่เก็บ",
     "venue_name": "ชื่อ",
     "venue_name_placeholder": "Ledger, Trust Wallet, สเตกกิ้ง…",

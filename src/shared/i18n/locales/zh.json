@@ -391,7 +391,10 @@
     "col_share": "占比",
     "col_prev": "上一周期",
     "col_change": "变化",
-    "col_amount": "金额"
+    "col_amount": "金额",
+    "compare_title": "按月对比",
+    "compare_all_categories": "全部分类",
+    "compare_months": "月份"
   },
   "add_modal": {
     "title_transaction": "新交易",
@@ -687,6 +690,8 @@
     "tr_external_note_in": "来自哪里 — 以后你会想记起来",
     "venue_new": "添加一个地方",
     "venue_new_hint": "冷钱包，或没有 API 密钥的交易所。已连接的交易所会自动出现。",
+    "venue_show_archived": "显示已归档 ({{count}})",
+    "venue_hide_archived": "隐藏已归档",
     "venue_edit": "编辑地方",
     "venue_name": "名称",
     "venue_name_placeholder": "Ledger、Trust Wallet、质押…",

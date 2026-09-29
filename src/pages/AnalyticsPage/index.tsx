@@ -8,12 +8,14 @@ import { useCategorySeries } from "@/modules/analytics/api/useCategorySeries"
 import { type AnalyticsPeriod, analyticsParamsSchema } from "@/modules/analytics/config"
 import { useAnalyticsTour } from "@/modules/analytics/hooks/useAnalyticsTour"
 import { useCategoryBreakdown } from "@/modules/analytics/hooks/useCategoryBreakdown"
+import { parseMonths } from "@/modules/analytics/hooks/useMonthComparison"
 import { resolveAnalyticsPeriod } from "@/modules/analytics/lib/helpers"
 import {
   AnalyticsKpis,
   CategoryDonut,
   DetailedStats,
   IncomeExpenseChart,
+  MonthComparison,
 } from "@/modules/analytics/ui"
 import { MultiSelectFilter, PeriodFilter } from "@/modules/transactions/ui"
 import { useUrlParams } from "@/shared/hooks/useUrlParams"
@@ -50,10 +52,11 @@ export function AnalyticsPage() {
     label: `${r.emoji} ${r.name}`,
   }))
 
-  const hasFilters = params.period != null || breakdown.isFiltered
+  const months = parseMonths(params.months)
+  const hasFilters = params.period != null || params.months != null || breakdown.isFiltered
   // back to the default period and all categories
   const resetFilters = () => {
-    setParams({ period: undefined, from: undefined, to: undefined })
+    setParams({ period: undefined, from: undefined, to: undefined, months: undefined })
     breakdown.setSelected([])
   }
 
@@ -153,6 +156,14 @@ export function AnalyticsPage() {
             </Grid.Col>
             <Grid.Col span={12} order={{ base: 1, md: 3 }}>
               <DetailedStats breakdown={breakdown} subtitle={rangeLabel} locale={locale} />
+            </Grid.Col>
+            <Grid.Col span={12} order={4}>
+              <MonthComparison
+                months={months}
+                onMonthsChange={(next) => setParams({ months: next.join(",") })}
+                breakdown={breakdown}
+                locale={locale}
+              />
             </Grid.Col>
           </Grid>
         </>

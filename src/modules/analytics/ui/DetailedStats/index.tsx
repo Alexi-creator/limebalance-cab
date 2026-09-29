@@ -9,7 +9,6 @@ import {
   Skeleton,
   Stack,
   Text,
-  Tooltip,
 } from "@mantine/core"
 import type { Locale } from "date-fns"
 import { format } from "date-fns"
@@ -19,37 +18,8 @@ import { useTranslation } from "react-i18next"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import type { CategoryBreakdown, StatKind } from "../../hooks/useCategoryBreakdown"
 import { formatPct } from "../../lib/helpers"
+import { DeltaBadge } from "../DeltaBadge"
 import classes from "./styles.module.css"
-
-/**
- * Change vs the previous period: "↑ 20%" colored by whether it is good news — spending more
- * is red, earning more is green. The tooltip gives the previous period's amount.
- */
-function DeltaBadge({
-  pct,
-  isExpense,
-  hint,
-}: {
-  pct: number | null
-  isExpense: boolean
-  hint: string
-}) {
-  if (pct == null || pct === 0) return null
-  const up = pct > 0
-  return (
-    <Tooltip label={hint} withArrow>
-      <Badge
-        size="sm"
-        variant="light"
-        color={up === isExpense ? "red" : "green"}
-        ff="monospace"
-        style={{ flexShrink: 0 }}
-      >
-        {up ? "↑" : "↓"} {Math.abs(pct)}%
-      </Badge>
-    </Tooltip>
-  )
-}
 
 interface Props {
   /** Shared with the category donut — same rows, colors and hovered category. */

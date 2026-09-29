@@ -402,7 +402,10 @@
     "col_share": "Arány",
     "col_prev": "Előző időszak",
     "col_change": "Változás",
-    "col_amount": "Összeg"
+    "col_amount": "Összeg",
+    "compare_title": "Havi összehasonlítás",
+    "compare_all_categories": "Minden kategória",
+    "compare_months": "Hónapok"
   },
   "add_modal": {
     "title_transaction": "Új tranzakció",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "honnan érkezett — később emlékezni akarsz rá",
     "venue_new": "Hely hozzáadása",
     "venue_new_hint": "Hideg tárca vagy API-kulcs nélküli tőzsde. A csatlakoztatott tőzsdék maguktól megjelennek.",
+    "venue_show_archived": "Archívum megjelenítése ({{count}})",
+    "venue_hide_archived": "Archívum elrejtése",
     "venue_edit": "Hely szerkesztése",
     "venue_name": "Név",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

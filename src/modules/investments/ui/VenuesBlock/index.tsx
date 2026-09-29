@@ -29,6 +29,7 @@ import type { Locale } from "date-fns"
 import { format, formatDistanceToNow } from "date-fns"
 import { enUS } from "date-fns/locale"
 import type { TFunction } from "i18next"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { dateFnsLocales } from "@/shared/i18n/languages.ts"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
@@ -82,6 +83,11 @@ export function VenuesBlock() {
   const { data, isLoading } = useVenues()
 
   const venues = data?.items ?? []
+  // Archiving is how an emptied venue is put away while its history keeps the balance right, so it
+  // leaves the grid; the toggle is the way back to it, to look at the history or unarchive.
+  const [showArchived, setShowArchived] = useState(false)
+  const archivedCount = venues.filter((v) => v.archived).length
+  const shownVenues = showArchived ? venues : venues.filter((v) => !v.archived)
   const usd = (n: number | null | undefined) =>
     n == null ? "—" : formatCurrency(n, i18n.language, "USD")
   const result = data?.resultUsd ?? 0
@@ -215,7 +221,7 @@ export function VenuesBlock() {
       </Paper>
 
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="md">
-        {venues.map((venue) => (
+        {shownVenues.map((venue) => (
           <VenueCard
             key={venue.id}
             venue={venue}
@@ -252,6 +258,21 @@ export function VenuesBlock() {
           </Stack>
         </Paper>
       </SimpleGrid>
+
+      {archivedCount > 0 && (
+        <Group justify="center">
+          <Button
+            size="xs"
+            variant="subtle"
+            color="gray"
+            onClick={() => setShowArchived((v) => !v)}
+          >
+            {showArchived
+              ? t("investments.venue_hide_archived")
+              : t("investments.venue_show_archived", { count: archivedCount })}
+          </Button>
+        </Group>
+      )}
     </Stack>
   )
 }

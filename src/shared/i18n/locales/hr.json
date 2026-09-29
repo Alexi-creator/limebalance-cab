@@ -413,7 +413,10 @@
     "col_share": "Udio",
     "col_prev": "Prethodno razdoblje",
     "col_change": "Promjena",
-    "col_amount": "Iznos"
+    "col_amount": "Iznos",
+    "compare_title": "Usporedba mjeseci",
+    "compare_all_categories": "Sve kategorije",
+    "compare_months": "Mjeseci"
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "odakle je došlo — poslije ćeš se htjeti sjetiti",
     "venue_new": "Dodaj mjesto",
     "venue_new_hint": "Hladni novčanik ili burza bez API ključa. Povezane burze pojavljuju se same.",
+    "venue_show_archived": "Prikaži arhivu ({{count}})",
+    "venue_hide_archived": "Sakrij arhivu",
     "venue_edit": "Uredi mjesto",
     "venue_name": "Naziv",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

@@ -402,7 +402,10 @@
     "col_share": "Cuota",
     "col_prev": "Periodo anterior",
     "col_change": "Cambio",
-    "col_amount": "Importe"
+    "col_amount": "Importe",
+    "compare_title": "Comparación por meses",
+    "compare_all_categories": "Todas las categorías",
+    "compare_months": "Meses"
   },
   "add_modal": {
     "title_transaction": "Nueva transacción",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "de dónde vino: querrás recordarlo más adelante",
     "venue_new": "Añadir un lugar",
     "venue_new_hint": "Una cartera fría o un exchange sin clave API. Los exchanges conectados aparecen solos.",
+    "venue_show_archived": "Mostrar archivadas ({{count}})",
+    "venue_hide_archived": "Ocultar archivadas",
     "venue_edit": "Editar lugar",
     "venue_name": "Nombre",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

@@ -413,7 +413,10 @@
     "col_share": "Pondere",
     "col_prev": "Perioada anterioară",
     "col_change": "Variație",
-    "col_amount": "Sumă"
+    "col_amount": "Sumă",
+    "compare_title": "Comparație pe luni",
+    "compare_all_categories": "Toate categoriile",
+    "compare_months": "Luni"
   },
   "add_modal": {
     "title_transaction": "Tranzacție nouă",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "de unde a venit — mai târziu vei vrea să îți amintești",
     "venue_new": "Adaugă un loc",
     "venue_new_hint": "Un portofel rece sau o bursă fără cheie API. Bursele conectate apar singure.",
+    "venue_show_archived": "Arată arhiva ({{count}})",
+    "venue_hide_archived": "Ascunde arhiva",
     "venue_edit": "Editează locul",
     "venue_name": "Nume",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

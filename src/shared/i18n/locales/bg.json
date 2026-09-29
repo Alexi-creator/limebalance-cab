@@ -402,7 +402,10 @@
     "col_share": "Дял",
     "col_prev": "Предходен период",
     "col_change": "Промяна",
-    "col_amount": "Сума"
+    "col_amount": "Сума",
+    "compare_title": "Сравнение по месеци",
+    "compare_all_categories": "Всички категории",
+    "compare_months": "Месеци"
   },
   "add_modal": {
     "title_transaction": "Нова транзакция",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "откъде е дошло — после ще искаш да си спомниш",
     "venue_new": "Добави място",
     "venue_new_hint": "Студен портфейл или борса без API ключ. Свързаните борси се появяват сами.",
+    "venue_show_archived": "Покажи архива ({{count}})",
+    "venue_hide_archived": "Скрий архива",
     "venue_edit": "Редактиране на мястото",
     "venue_name": "Име",
     "venue_name_placeholder": "Ledger, Trust Wallet, стейкинг…",

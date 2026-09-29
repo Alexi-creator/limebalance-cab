@@ -446,7 +446,10 @@
     "col_share": "الحصة",
     "col_prev": "الفترة السابقة",
     "col_change": "التغيّر",
-    "col_amount": "المبلغ"
+    "col_amount": "المبلغ",
+    "compare_title": "مقارنة الأشهر",
+    "compare_all_categories": "جميع الفئات",
+    "compare_months": "الأشهر"
   },
   "add_modal": {
     "title_transaction": "معاملة جديدة",
@@ -747,6 +750,8 @@
     "tr_external_note_in": "من أين جاءت — ستود تذكّر ذلك لاحقًا",
     "venue_new": "إضافة مكان",
     "venue_new_hint": "محفظة باردة أو منصة بلا مفتاح API. المنصات المتصلة تظهر من تلقاء نفسها.",
+    "venue_show_archived": "إظهار الأرشيف ({{count}})",
+    "venue_hide_archived": "إخفاء الأرشيف",
     "venue_edit": "تعديل المكان",
     "venue_name": "الاسم",
     "venue_name_placeholder": "Ledger، Trust Wallet، ستيكينغ…",

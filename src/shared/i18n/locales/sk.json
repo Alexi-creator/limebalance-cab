@@ -413,7 +413,10 @@
     "col_share": "Podiel",
     "col_prev": "Predchádzajúce obdobie",
     "col_change": "Zmena",
-    "col_amount": "Suma"
+    "col_amount": "Suma",
+    "compare_title": "Porovnanie mesiacov",
+    "compare_all_categories": "Všetky kategórie",
+    "compare_months": "Mesiace"
   },
   "add_modal": {
     "title_transaction": "Nová transakcia",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "odkiaľ to prišlo — neskôr si to budeš chcieť pripomenúť",
     "venue_new": "Pridať miesto",
     "venue_new_hint": "Studená peňaženka alebo burza bez API kľúča. Pripojené burzy sa objavia samy.",
+    "venue_show_archived": "Zobraziť archív ({{count}})",
+    "venue_hide_archived": "Skryť archív",
     "venue_edit": "Upraviť miesto",
     "venue_name": "Názov",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

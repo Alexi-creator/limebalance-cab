@@ -391,7 +391,10 @@
     "col_share": "Porsi",
     "col_prev": "Periode sebelumnya",
     "col_change": "Perubahan",
-    "col_amount": "Jumlah"
+    "col_amount": "Jumlah",
+    "compare_title": "Perbandingan bulan",
+    "compare_all_categories": "Semua kategori",
+    "compare_months": "Bulan"
   },
   "add_modal": {
     "title_transaction": "Transaksi baru",
@@ -687,6 +690,8 @@
     "tr_external_note_in": "dari mana asalnya — nanti kamu ingin mengingatnya",
     "venue_new": "Tambah tempat",
     "venue_new_hint": "Dompet dingin atau bursa tanpa kunci API. Bursa yang terhubung muncul sendiri.",
+    "venue_show_archived": "Tampilkan arsip ({{count}})",
+    "venue_hide_archived": "Sembunyikan arsip",
     "venue_edit": "Ubah tempat",
     "venue_name": "Nama",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

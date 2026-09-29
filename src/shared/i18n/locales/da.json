@@ -402,7 +402,10 @@
     "col_share": "Andel",
     "col_prev": "Forrige periode",
     "col_change": "Ændring",
-    "col_amount": "Beløb"
+    "col_amount": "Beløb",
+    "compare_title": "Sammenligning af måneder",
+    "compare_all_categories": "Alle kategorier",
+    "compare_months": "Måneder"
   },
   "add_modal": {
     "title_transaction": "Ny transaktion",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "hvor det kom fra — det vil du gerne huske senere",
     "venue_new": "Tilføj et sted",
     "venue_new_hint": "En cold wallet eller en børs uden API-nøgle. Forbundne børser dukker op af sig selv.",
+    "venue_show_archived": "Vis arkiv ({{count}})",
+    "venue_hide_archived": "Skjul arkiv",
     "venue_edit": "Redigér sted",
     "venue_name": "Navn",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

@@ -391,7 +391,10 @@
     "col_share": "비중",
     "col_prev": "이전 기간",
     "col_change": "변화",
-    "col_amount": "금액"
+    "col_amount": "금액",
+    "compare_title": "월별 비교",
+    "compare_all_categories": "모든 카테고리",
+    "compare_months": "월"
   },
   "add_modal": {
     "title_transaction": "새 거래",
@@ -687,6 +690,8 @@
     "tr_external_note_in": "어디서 왔는지 — 나중에 기억하고 싶어집니다",
     "venue_new": "장소 추가",
     "venue_new_hint": "콜드 월렛이나 API 키가 없는 거래소. 연결된 거래소는 저절로 나타납니다.",
+    "venue_show_archived": "보관함 보기 ({{count}})",
+    "venue_hide_archived": "보관함 숨기기",
     "venue_edit": "장소 수정",
     "venue_name": "이름",
     "venue_name_placeholder": "Ledger, Trust Wallet, 스테이킹…",

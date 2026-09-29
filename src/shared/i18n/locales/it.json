@@ -402,7 +402,10 @@
     "col_share": "Quota",
     "col_prev": "Periodo precedente",
     "col_change": "Variazione",
-    "col_amount": "Importo"
+    "col_amount": "Importo",
+    "compare_title": "Confronto per mesi",
+    "compare_all_categories": "Tutte le categorie",
+    "compare_months": "Mesi"
   },
   "add_modal": {
     "title_transaction": "Nuova transazione",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "da dove è arrivato: più avanti vorrai ricordartelo",
     "venue_new": "Aggiungi un posto",
     "venue_new_hint": "Un cold wallet o un exchange senza chiave API. Gli exchange collegati compaiono da soli.",
+    "venue_show_archived": "Mostra archiviate ({{count}})",
+    "venue_hide_archived": "Nascondi archiviate",
     "venue_edit": "Modifica posto",
     "venue_name": "Nome",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

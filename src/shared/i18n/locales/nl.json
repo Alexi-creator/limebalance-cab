@@ -402,7 +402,10 @@
     "col_share": "Aandeel",
     "col_prev": "Vorige periode",
     "col_change": "Verandering",
-    "col_amount": "Bedrag"
+    "col_amount": "Bedrag",
+    "compare_title": "Vergelijking per maand",
+    "compare_all_categories": "Alle categorieën",
+    "compare_months": "Maanden"
   },
   "add_modal": {
     "title_transaction": "Nieuwe transactie",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "waar het vandaan kwam — dat wil je later nog weten",
     "venue_new": "Plek toevoegen",
     "venue_new_hint": "Een cold wallet of een exchange zonder API-sleutel. Verbonden exchanges verschijnen vanzelf.",
+    "venue_show_archived": "Archief tonen ({{count}})",
+    "venue_hide_archived": "Archief verbergen",
     "venue_edit": "Plek bewerken",
     "venue_name": "Naam",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

@@ -402,7 +402,10 @@
     "col_share": "Μερίδιο",
     "col_prev": "Προηγούμενη περίοδος",
     "col_change": "Μεταβολή",
-    "col_amount": "Ποσό"
+    "col_amount": "Ποσό",
+    "compare_title": "Σύγκριση μηνών",
+    "compare_all_categories": "Όλες οι κατηγορίες",
+    "compare_months": "Μήνες"
   },
   "add_modal": {
     "title_transaction": "Νέα συναλλαγή",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "από πού ήρθε — θα θέλεις να το θυμάσαι αργότερα",
     "venue_new": "Πρόσθεσε μέρος",
     "venue_new_hint": "Ψυχρό πορτοφόλι ή ανταλλακτήριο χωρίς κλειδί API. Τα συνδεδεμένα εμφανίζονται μόνα τους.",
+    "venue_show_archived": "Εμφάνιση αρχείου ({{count}})",
+    "venue_hide_archived": "Απόκρυψη αρχείου",
     "venue_edit": "Επεξεργασία μέρους",
     "venue_name": "Όνομα",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

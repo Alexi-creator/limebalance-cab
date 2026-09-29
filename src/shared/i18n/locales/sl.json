@@ -424,7 +424,10 @@
     "col_share": "Delež",
     "col_prev": "Prejšnje obdobje",
     "col_change": "Sprememba",
-    "col_amount": "Znesek"
+    "col_amount": "Znesek",
+    "compare_title": "Primerjava mesecev",
+    "compare_all_categories": "Vse kategorije",
+    "compare_months": "Meseci"
   },
   "add_modal": {
     "title_transaction": "Nova transakcija",
@@ -723,6 +726,8 @@
     "tr_external_note_in": "od kod je prišlo — pozneje se boš hotel spomniti",
     "venue_new": "Dodaj mesto",
     "venue_new_hint": "Hladna denarnica ali borza brez API ključa. Povezane borze se pojavijo same.",
+    "venue_show_archived": "Pokaži arhiv ({{count}})",
+    "venue_hide_archived": "Skrij arhiv",
     "venue_edit": "Uredi mesto",
     "venue_name": "Ime",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

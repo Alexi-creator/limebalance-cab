@@ -402,7 +402,10 @@
     "col_share": "Andel",
     "col_prev": "Föregående period",
     "col_change": "Förändring",
-    "col_amount": "Belopp"
+    "col_amount": "Belopp",
+    "compare_title": "Jämförelse per månad",
+    "compare_all_categories": "Alla kategorier",
+    "compare_months": "Månader"
   },
   "add_modal": {
     "title_transaction": "Ny transaktion",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "varifrån det kom — det vill du minnas senare",
     "venue_new": "Lägg till en plats",
     "venue_new_hint": "En kall plånbok eller en börs utan API-nyckel. Anslutna börser dyker upp av sig själva.",
+    "venue_show_archived": "Visa arkiv ({{count}})",
+    "venue_hide_archived": "Dölj arkiv",
     "venue_edit": "Redigera plats",
     "venue_name": "Namn",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

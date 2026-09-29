@@ -18,6 +18,11 @@ export const analyticsParamsSchema = z.object({
   period: z.enum(ANALYTICS_PERIODS).optional().catch(undefined),
   from: z.string().optional().catch(undefined),
   to: z.string().optional().catch(undefined),
+  /** Months of the month comparison, `YYYY-MM` comma-separated; absent — the last three. */
+  months: z.string().optional().catch(undefined),
 })
+
+/** Most months the comparison shows side by side — beyond that the table stops fitting. */
+export const MAX_COMPARED_MONTHS = 6
 
 export type AnalyticsParams = z.infer<typeof analyticsParamsSchema>

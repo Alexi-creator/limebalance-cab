@@ -413,7 +413,10 @@
     "col_share": "Dalis",
     "col_prev": "Ankstesnis laikotarpis",
     "col_change": "Pokytis",
-    "col_amount": "Suma"
+    "col_amount": "Suma",
+    "compare_title": "Mėnesių palyginimas",
+    "compare_all_categories": "Visos kategorijos",
+    "compare_months": "Mėnesiai"
   },
   "add_modal": {
     "title_transaction": "Nauja operacija",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "iš kur atėjo — vėliau norėsi prisiminti",
     "venue_new": "Pridėti vietą",
     "venue_new_hint": "Šaltoji piniginė arba birža be API rakto. Prijungtos biržos atsiranda pačios.",
+    "venue_show_archived": "Rodyti archyvą ({{count}})",
+    "venue_hide_archived": "Slėpti archyvą",
     "venue_edit": "Redaguoti vietą",
     "venue_name": "Pavadinimas",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

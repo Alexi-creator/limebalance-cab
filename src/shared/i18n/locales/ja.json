@@ -391,7 +391,10 @@
     "col_share": "割合",
     "col_prev": "前期間",
     "col_change": "変化",
-    "col_amount": "金額"
+    "col_amount": "金額",
+    "compare_title": "月別比較",
+    "compare_all_categories": "すべてのカテゴリー",
+    "compare_months": "月"
   },
   "add_modal": {
     "title_transaction": "新しい取引",
@@ -687,6 +690,8 @@
     "tr_external_note_in": "どこから来たか — あとで思い出したくなります",
     "venue_new": "場所を追加",
     "venue_new_hint": "コールドウォレットや API キーのない取引所。接続済みの取引所は自動で表示されます。",
+    "venue_show_archived": "アーカイブを表示 ({{count}})",
+    "venue_hide_archived": "アーカイブを隠す",
     "venue_edit": "場所を編集",
     "venue_name": "名前",
     "venue_name_placeholder": "Ledger、Trust Wallet、ステーキング…",

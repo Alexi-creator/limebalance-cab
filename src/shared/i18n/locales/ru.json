@@ -439,7 +439,10 @@
     "col_share": "Доля",
     "col_prev": "Прошлый период",
     "col_change": "Изменение",
-    "col_amount": "Сумма"
+    "col_amount": "Сумма",
+    "compare_title": "Сравнение по месяцам",
+    "compare_all_categories": "Все категории",
+    "compare_months": "Месяцы"
   },
   "add_modal": {
     "title_transaction": "Новая операция",
@@ -736,6 +739,8 @@
     "tr_external_note_in": "откуда пришло — потом захочешь вспомнить",
     "venue_new": "Добавить место",
     "venue_new_hint": "Холодный кошелёк или биржа без API. Подключённые биржи появляются здесь сами.",
+    "venue_show_archived": "Показать архив ({{count}})",
+    "venue_hide_archived": "Скрыть архив",
     "venue_edit": "Изменить место",
     "venue_name": "Название",
     "venue_name_placeholder": "Ledger, Trust Wallet, стейкинг…",

@@ -426,7 +426,10 @@
     "col_share": "Share",
     "col_prev": "Previous period",
     "col_change": "Change",
-    "col_amount": "Amount"
+    "col_amount": "Amount",
+    "compare_title": "Month comparison",
+    "compare_all_categories": "All categories",
+    "compare_months": "Months"
   },
   "add_modal": {
     "title_transaction": "New transaction",
@@ -722,6 +725,8 @@
     "tr_external_note_in": "where it came from — you will want to know later",
     "venue_new": "Add a place",
     "venue_new_hint": "A cold wallet or an exchange with no API key. Connected exchanges appear here by themselves.",
+    "venue_show_archived": "Show archived ({{count}})",
+    "venue_hide_archived": "Hide archived",
     "venue_edit": "Edit place",
     "venue_name": "Name",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

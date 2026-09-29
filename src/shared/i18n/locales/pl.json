@@ -413,7 +413,10 @@
     "col_share": "Udział",
     "col_prev": "Poprzedni okres",
     "col_change": "Zmiana",
-    "col_amount": "Kwota"
+    "col_amount": "Kwota",
+    "compare_title": "Porównanie miesięcy",
+    "compare_all_categories": "Wszystkie kategorie",
+    "compare_months": "Miesiące"
   },
   "add_modal": {
     "title_transaction": "Nowa transakcja",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "skąd przyszło — później będziesz chciał to sobie przypomnieć",
     "venue_new": "Dodaj miejsce",
     "venue_new_hint": "Zimny portfel albo giełda bez klucza API. Podłączone giełdy pojawiają się same.",
+    "venue_show_archived": "Pokaż archiwum ({{count}})",
+    "venue_hide_archived": "Ukryj archiwum",
     "venue_edit": "Edytuj miejsce",
     "venue_name": "Nazwa",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

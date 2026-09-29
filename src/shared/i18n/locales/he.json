@@ -424,7 +424,10 @@
     "col_share": "נתח",
     "col_prev": "תקופה קודמת",
     "col_change": "שינוי",
-    "col_amount": "סכום"
+    "col_amount": "סכום",
+    "compare_title": "השוואת חודשים",
+    "compare_all_categories": "כל הקטגוריות",
+    "compare_months": "חודשים"
   },
   "add_modal": {
     "title_transaction": "עסקה חדשה",
@@ -723,6 +726,8 @@
     "tr_external_note_in": "מאיפה זה הגיע — תרצה להיזכר בזה בהמשך",
     "venue_new": "הוספת מקום",
     "venue_new_hint": "ארנק קר או בורסה בלי מפתח API. בורסות מחוברות מופיעות מעצמן.",
+    "venue_show_archived": "הצג ארכיון ({{count}})",
+    "venue_hide_archived": "הסתר ארכיון",
     "venue_edit": "עריכת מקום",
     "venue_name": "שם",
     "venue_name_placeholder": "Ledger, Trust Wallet, סטייקינג…",

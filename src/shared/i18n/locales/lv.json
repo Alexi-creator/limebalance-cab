@@ -413,7 +413,10 @@
     "col_share": "Daļa",
     "col_prev": "Iepriekšējais periods",
     "col_change": "Izmaiņas",
-    "col_amount": "Summa"
+    "col_amount": "Summa",
+    "compare_title": "Mēnešu salīdzinājums",
+    "compare_all_categories": "Visas kategorijas",
+    "compare_months": "Mēneši"
   },
   "add_modal": {
     "title_transaction": "Jauns darījums",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "no kurienes tas nāca — vēlāk gribēsi atcerēties",
     "venue_new": "Pievienot vietu",
     "venue_new_hint": "Aukstais maks vai birža bez API atslēgas. Pieslēgtās biržas parādās pašas.",
+    "venue_show_archived": "Rādīt arhīvu ({{count}})",
+    "venue_hide_archived": "Paslēpt arhīvu",
     "venue_edit": "Rediģēt vietu",
     "venue_name": "Nosaukums",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

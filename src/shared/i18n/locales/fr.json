@@ -402,7 +402,10 @@
     "col_share": "Part",
     "col_prev": "Période précédente",
     "col_change": "Variation",
-    "col_amount": "Montant"
+    "col_amount": "Montant",
+    "compare_title": "Comparaison par mois",
+    "compare_all_categories": "Toutes les catégories",
+    "compare_months": "Mois"
   },
   "add_modal": {
     "title_transaction": "Nouvelle transaction",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "d'où cela vient — vous voudrez vous en souvenir plus tard",
     "venue_new": "Ajouter un endroit",
     "venue_new_hint": "Un portefeuille froid ou une plateforme sans clé API. Les plateformes connectées apparaissent toutes seules.",
+    "venue_show_archived": "Afficher les archives ({{count}})",
+    "venue_hide_archived": "Masquer les archives",
     "venue_edit": "Modifier l'endroit",
     "venue_name": "Nom",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

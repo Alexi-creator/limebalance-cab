@@ -402,7 +402,10 @@
     "col_share": "Osuus",
     "col_prev": "Edellinen jakso",
     "col_change": "Muutos",
-    "col_amount": "Summa"
+    "col_amount": "Summa",
+    "compare_title": "Kuukausivertailu",
+    "compare_all_categories": "Kaikki kategoriat",
+    "compare_months": "Kuukaudet"
   },
   "add_modal": {
     "title_transaction": "Uusi tapahtuma",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "mistä se tuli — haluat muistaa tämän myöhemmin",
     "venue_new": "Lisää paikka",
     "venue_new_hint": "Kylmälompakko tai pörssi ilman API-avainta. Yhdistetyt pörssit ilmestyvät itsestään.",
+    "venue_show_archived": "Näytä arkisto ({{count}})",
+    "venue_hide_archived": "Piilota arkisto",
     "venue_edit": "Muokkaa paikkaa",
     "venue_name": "Nimi",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

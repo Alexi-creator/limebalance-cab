@@ -402,7 +402,10 @@
     "col_share": "Anteil",
     "col_prev": "Vorperiode",
     "col_change": "Änderung",
-    "col_amount": "Betrag"
+    "col_amount": "Betrag",
+    "compare_title": "Monatsvergleich",
+    "compare_all_categories": "Alle Kategorien",
+    "compare_months": "Monate"
   },
   "add_modal": {
     "title_transaction": "Neue Transaktion",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "woher es kam — das willst du später noch wissen",
     "venue_new": "Ort hinzufügen",
     "venue_new_hint": "Eine Cold Wallet oder eine Börse ohne API-Schlüssel. Verbundene Börsen erscheinen hier von selbst.",
+    "venue_show_archived": "Archiv anzeigen ({{count}})",
+    "venue_hide_archived": "Archiv ausblenden",
     "venue_edit": "Ort bearbeiten",
     "venue_name": "Name",
     "venue_name_placeholder": "Ledger, Trust Wallet, Staking…",

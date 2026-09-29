@@ -413,7 +413,10 @@
     "col_share": "Частка",
     "col_prev": "Попередній період",
     "col_change": "Зміна",
-    "col_amount": "Сума"
+    "col_amount": "Сума",
+    "compare_title": "Порівняння за місяцями",
+    "compare_all_categories": "Усі категорії",
+    "compare_months": "Місяці"
   },
   "add_modal": {
     "title_transaction": "Нова транзакція",
@@ -711,6 +714,8 @@
     "tr_external_note_in": "звідки прийшло — потім захочеш пригадати",
     "venue_new": "Додати місце",
     "venue_new_hint": "Холодний гаманець або біржа без API. Підключені біржі з'являються тут самі.",
+    "venue_show_archived": "Показати архів ({{count}})",
+    "venue_hide_archived": "Сховати архів",
     "venue_edit": "Змінити місце",
     "venue_name": "Назва",
     "venue_name_placeholder": "Ledger, Trust Wallet, стейкінг…",

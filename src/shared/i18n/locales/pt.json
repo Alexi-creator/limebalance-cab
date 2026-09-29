@@ -402,7 +402,10 @@
     "col_share": "Parcela",
     "col_prev": "Período anterior",
     "col_change": "Variação",
-    "col_amount": "Valor"
+    "col_amount": "Valor",
+    "compare_title": "Comparação por meses",
+    "compare_all_categories": "Todas as categorias",
+    "compare_months": "Meses"
   },
   "add_modal": {
     "title_transaction": "Nova transação",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "de onde veio — mais tarde vai querer lembrar-se",
     "venue_new": "Adicionar um lugar",
     "venue_new_hint": "Uma carteira fria ou uma exchange sem chave de API. Exchanges conectadas aparecem sozinhas.",
+    "venue_show_archived": "Mostrar arquivadas ({{count}})",
+    "venue_hide_archived": "Ocultar arquivadas",
     "venue_edit": "Editar lugar",
     "venue_name": "Nome",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",

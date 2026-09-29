@@ -402,7 +402,10 @@
     "col_share": "Pay",
     "col_prev": "Önceki dönem",
     "col_change": "Değişim",
-    "col_amount": "Tutar"
+    "col_amount": "Tutar",
+    "compare_title": "Aylık karşılaştırma",
+    "compare_all_categories": "Tüm kategoriler",
+    "compare_months": "Aylar"
   },
   "add_modal": {
     "title_transaction": "Yeni işlem",
@@ -699,6 +702,8 @@
     "tr_external_note_in": "nereden geldiği — sonra hatırlamak isteyeceksin",
     "venue_new": "Yer ekle",
     "venue_new_hint": "Soğuk cüzdan ya da API anahtarı olmayan bir borsa. Bağlı borsalar burada kendiliğinden görünür.",
+    "venue_show_archived": "Arşivi göster ({{count}})",
+    "venue_hide_archived": "Arşivi gizle",
     "venue_edit": "Yeri düzenle",
     "venue_name": "Ad",
     "venue_name_placeholder": "Ledger, Trust Wallet, staking…",
