@@ -17,7 +17,7 @@ import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import type { CategoryBreakdown, StatKind } from "../../hooks/useCategoryBreakdown"
-import { formatPct } from "../../lib/helpers"
+import { averagePer, formatPct } from "../../lib/helpers"
 import { DeltaBadge } from "../DeltaBadge"
 import classes from "./styles.module.css"
 
@@ -27,6 +27,9 @@ interface Props {
   /** Human-readable period label shown under the title. */
   subtitle: string
   locale?: Locale
+  /** Elapsed days of a period long enough to be read by months — each amount then gets its
+   *  average per month underneath. Omitted on shorter periods, where it would repeat the amount. */
+  monthlyOverDays?: number
 }
 
 /**
@@ -35,13 +38,19 @@ interface Props {
  * currency), and the underlying transactions (original currencies) on expand. Honors the page's
  * category filter: the header and the totals row sum up only the picked categories.
  */
-export function DetailedStats({ breakdown: b, subtitle, locale = enUS }: Props) {
+export function DetailedStats({ breakdown: b, subtitle, locale = enUS, monthlyOverDays }: Props) {
   const { t, i18n } = useTranslation()
   const money = (n: number, currency?: string | null) => formatCurrency(n, i18n.language, currency)
   const isExpense = b.kind === "expense"
   const prevHint = (n: number | null) =>
     t("analytics.prev_period_value", { amount: money(n ?? 0, b.baseCurrency) })
   const opsCount = b.visibleRows.reduce((acc, r) => acc + r.items.length, 0)
+  const perMonth = (total: number | null) => {
+    const avg = total && monthlyOverDays ? averagePer(total, monthlyOverDays, "month") : null
+    return avg
+      ? t("analytics.avg_per_month", { amount: money(Math.round(avg), b.baseCurrency) })
+      : null
+  }
 
   return (
     <Paper>
@@ -190,6 +199,11 @@ export function DetailedStats({ breakdown: b, subtitle, locale = enUS }: Props) 
                       <Text ff="monospace" size="sm" lh={1.3}>
                         {row.total != null ? money(row.total, b.baseCurrency) : "—"}
                       </Text>
+                      {perMonth(row.total) && (
+                        <Text ff="monospace" size="xs" c="dimmed" lh={1.3}>
+                          {perMonth(row.total)}
+                        </Text>
+                      )}
                       <Text ff="monospace" size="xs" c="dimmed" lh={1.3} className={classes.narrow}>
                         {formatPct(row.pct)}
                       </Text>
@@ -241,9 +255,16 @@ export function DetailedStats({ breakdown: b, subtitle, locale = enUS }: Props) 
                 hint={prevHint(b.visiblePrev)}
               />
             </Box>
-            <Text ff="monospace" size="sm" fw={600} className={classes.num}>
-              {b.visibleTotal != null ? money(b.visibleTotal, b.baseCurrency) : "—"}
-            </Text>
+            <Stack gap={0} align="flex-end">
+              <Text ff="monospace" size="sm" fw={600} lh={1.3}>
+                {b.visibleTotal != null ? money(b.visibleTotal, b.baseCurrency) : "—"}
+              </Text>
+              {perMonth(b.visibleTotal) && (
+                <Text ff="monospace" size="xs" c="dimmed" lh={1.3}>
+                  {perMonth(b.visibleTotal)}
+                </Text>
+              )}
+            </Stack>
           </Box>
         </>
       )}

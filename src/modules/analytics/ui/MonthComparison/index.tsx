@@ -1,7 +1,17 @@
-import { Box, Group, Paper, SegmentedControl, Skeleton, Stack, Table, Text } from "@mantine/core"
+import {
+  Box,
+  Group,
+  Paper,
+  SegmentedControl,
+  Skeleton,
+  Stack,
+  Table,
+  Text,
+  Tooltip,
+} from "@mantine/core"
 import { MonthPickerInput } from "@mantine/dates"
 import type { Locale } from "date-fns"
-import { format } from "date-fns"
+import { endOfMonth, format } from "date-fns"
 import { enUS } from "date-fns/locale"
 import { useTranslation } from "react-i18next"
 import { EXPENSE_COLOR, INCOME_COLOR } from "@/shared/config/chartColors"
@@ -28,6 +38,15 @@ function changePct(first: number | null, last: number | null): number | null {
 }
 
 /**
+ * Mean of the values at `indexes`; null — nothing to average (a missing rate counts as 0, as in
+ * the totals row).
+ */
+function averageOf(values: (number | null)[], indexes: number[]): number | null {
+  if (indexes.length === 0) return null
+  return indexes.reduce((acc, i) => acc + (values[i] ?? 0), 0) / indexes.length
+}
+
+/**
  * Category totals of a few chosen months side by side (not necessarily consecutive — "March vs
  * June vs September"), with the change from the first month to the last. Cells are tinted by
  * the amount relative to the rest of the row, so a spike reads without reading the numbers.
@@ -42,6 +61,14 @@ export function MonthComparison({ months, onMonthsChange, breakdown: b, locale =
   const monthLabel = (m: string) => format(monthDate(m), "LLL yyyy", { locale })
   const firstLabel = months.length ? monthLabel(months[0]) : ""
   const hint = (first: number | null) => `${firstLabel}: ${money(first)}`
+  // the month still running is left out of the average — half a month would drag it down
+  const now = new Date()
+  const fullMonths = months.flatMap((m, i) => (endOfMonth(monthDate(m)) < now ? [i] : []))
+  const showAverage = fullMonths.length > 1
+  const average = (values: (number | null)[]) => {
+    const avg = averageOf(values, fullMonths)
+    return avg == null ? null : Math.round(avg)
+  }
 
   // tinted by where the amount sits between the row's min and max: the peak month stands out,
   // equal months stay plain
@@ -118,7 +145,10 @@ export function MonthComparison({ months, onMonthsChange, breakdown: b, locale =
           {t(b.isFiltered ? "analytics.filter_empty" : "analytics.details_empty")}
         </Text>
       ) : (
-        <Table.ScrollContainer minWidth={180 + months.length * 120 + 100} type="native">
+        <Table.ScrollContainer
+          minWidth={180 + months.length * 120 + (showAverage ? 120 : 0) + 100}
+          type="native"
+        >
           <Table verticalSpacing="xs" horizontalSpacing="md" className={classes.table}>
             <Table.Thead>
               <Table.Tr>
@@ -128,6 +158,19 @@ export function MonthComparison({ months, onMonthsChange, breakdown: b, locale =
                     {monthLabel(m)}
                   </Table.Th>
                 ))}
+                {showAverage && (
+                  <Table.Th ta="right">
+                    {fullMonths.length < months.length ? (
+                      <Tooltip label={t("analytics.average_full_months")} multiline w={240}>
+                        <span style={{ textDecoration: "underline dotted" }}>
+                          {t("analytics.col_average")}
+                        </span>
+                      </Tooltip>
+                    ) : (
+                      t("analytics.col_average")
+                    )}
+                  </Table.Th>
+                )}
                 {months.length > 1 && <Table.Th ta="right">{t("analytics.col_change")}</Table.Th>}
               </Table.Tr>
             </Table.Thead>
@@ -164,6 +207,11 @@ export function MonthComparison({ months, onMonthsChange, breakdown: b, locale =
                         {money(v)}
                       </Table.Td>
                     ))}
+                    {showAverage && (
+                      <Table.Td ta="right" ff="monospace" c="dimmed">
+                        {money(average(row.totals))}
+                      </Table.Td>
+                    )}
                     {months.length > 1 && (
                       <Table.Td ta="right">
                         <DeltaBadge
@@ -185,6 +233,11 @@ export function MonthComparison({ months, onMonthsChange, breakdown: b, locale =
                     {money(v)}
                   </Table.Th>
                 ))}
+                {showAverage && (
+                  <Table.Th ta="right" ff="monospace">
+                    {money(average(totals))}
+                  </Table.Th>
+                )}
                 {months.length > 1 && (
                   <Table.Th ta="right">
                     <DeltaBadge

@@ -6,7 +6,8 @@ import { EXPENSE_COLOR, INCOME_COLOR } from "@/shared/config/chartColors"
 import { axisPadLeft, formatAxisValue, niceScale, xLabelStep } from "@/shared/lib/chartScale"
 import { formatCurrency } from "@/shared/lib/formatCurrency"
 import { ChartHoverCard } from "@/shared/ui/ChartHoverCard"
-import type { SeriesPoint } from "../../lib/helpers"
+import { AVERAGE_KEYS } from "../../config"
+import type { PeriodAverages, SeriesPoint } from "../../lib/helpers"
 
 /** Chart geometry; the width follows the container so text keeps its size on phones. */
 const H = 180
@@ -27,6 +28,8 @@ interface Props {
   only?: "income" | "expense"
   /** New data is on its way — the bars dim instead of the chart blinking to a skeleton. */
   isFetching?: boolean
+  /** Average per bucket of what is drawn — a dashed line per kind, the figure in the legend. */
+  averages?: PeriodAverages
 }
 
 /** Paired bars of income and expenses by period buckets (or a single kind, see `only`). */
@@ -37,6 +40,7 @@ export function IncomeExpenseChart({
   baseCurrency,
   only,
   isFetching,
+  averages,
 }: Props) {
   const { t, i18n } = useTranslation()
   const money = (n: number) => formatCurrency(n, i18n.language, baseCurrency)
@@ -46,9 +50,19 @@ export function IncomeExpenseChart({
 
   const showIncome = only !== "expense"
   const showExpense = only !== "income"
+  // an average of nothing (an empty period) is no line
+  const avgIncome = showIncome && averages?.income ? averages.income : null
+  const avgExpense = showExpense && averages?.expense ? averages.expense : null
+  const avgCaption = (n: number) =>
+    t(AVERAGE_KEYS[averages?.granularity ?? "month"], { amount: money(Math.round(n)) })
   const scale = niceScale(
     0,
-    Math.max(0, ...series.flatMap((p) => [showIncome ? p.income : 0, showExpense ? p.expense : 0])),
+    Math.max(
+      0,
+      avgIncome ?? 0,
+      avgExpense ?? 0,
+      ...series.flatMap((p) => [showIncome ? p.income : 0, showExpense ? p.expense : 0]),
+    ),
   )
   const tickLabels = scale.ticks.map((v) => formatAxisValue(v, i18n.language))
   const LEFT = axisPadLeft(tickLabels, AXIS_FONT)
@@ -88,12 +102,22 @@ export function IncomeExpenseChart({
             <Group gap={6}>
               <Box w={10} h={10} style={{ background: INCOME_COLOR, borderRadius: 2 }} />
               <Text size="xs">{t("common.income_plural")}</Text>
+              {avgIncome != null && (
+                <Text size="xs" c="dimmed">
+                  {avgCaption(avgIncome)}
+                </Text>
+              )}
             </Group>
           )}
           {showExpense && (
             <Group gap={6}>
               <Box w={10} h={10} style={{ background: EXPENSE_COLOR, borderRadius: 2 }} />
               <Text size="xs">{t("common.expense_plural")}</Text>
+              {avgExpense != null && (
+                <Text size="xs" c="dimmed">
+                  {avgCaption(avgExpense)}
+                </Text>
+              )}
             </Group>
           )}
         </Group>
@@ -193,6 +217,26 @@ export function IncomeExpenseChart({
                 </g>
               )
             })}
+            {/* averages on top of the bars, so a bar that crosses one still shows it */}
+            {[
+              { value: avgIncome, color: INCOME_COLOR },
+              { value: avgExpense, color: EXPENSE_COLOR },
+            ].map(
+              ({ value, color }) =>
+                value != null && (
+                  <line
+                    key={color}
+                    x1={LEFT}
+                    x2={W - RIGHT}
+                    y1={base - (value / scale.max) * PLOT_H}
+                    y2={base - (value / scale.max) * PLOT_H}
+                    stroke={color}
+                    strokeWidth={1.5}
+                    strokeDasharray="5 4"
+                    pointerEvents="none"
+                  />
+                ),
+            )}
           </svg>
           {hovered !== null && hoveredPoint && (
             <ChartHoverCard

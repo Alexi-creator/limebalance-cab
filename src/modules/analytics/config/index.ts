@@ -26,3 +26,10 @@ export const analyticsParamsSchema = z.object({
 export const MAX_COMPARED_MONTHS = 6
 
 export type AnalyticsParams = z.infer<typeof analyticsParamsSchema>
+
+/** "≈ {{amount}} / month"-style caption of an average, by the unit it is per. */
+export const AVERAGE_KEYS = {
+  day: "analytics.avg_per_day",
+  week: "analytics.avg_per_week",
+  month: "analytics.avg_per_month",
+} as const

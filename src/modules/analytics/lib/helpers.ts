@@ -216,3 +216,53 @@ export function formatPct(pct: number | null): string {
   if (pct == null) return "—"
   return pct > 0 && pct < 1 ? "<1%" : `${Math.round(pct)}%`
 }
+
+/** Length of one bucket in days — what an average "per bucket" is scaled to. */
+const UNIT_DAYS: Record<SummaryGranularity, number> = { day: 1, week: 7, month: 365.25 / 12 }
+
+/**
+ * Days of `[from, to]` (both inclusive) already lived — up to today, today included. A future
+ * range has none. The days after today would only dilute an average with zeros.
+ */
+export function elapsedDays(from: Date, to: Date, today = new Date()): number {
+  const end = to < today ? to : today
+  return Math.max(0, differenceInCalendarDays(end, from) + 1)
+}
+
+/**
+ * Average amount per day / week / month over the elapsed days: a daily rate scaled to the unit,
+ * so a clipped first or last bucket and the current, unfinished one don't drag it down.
+ * null — no elapsed days to average over.
+ */
+export function averagePer(
+  total: number,
+  days: number,
+  granularity: SummaryGranularity,
+): number | null {
+  if (days <= 0) return null
+  return (total / days) * UNIT_DAYS[granularity]
+}
+
+export interface PeriodAverages {
+  granularity: SummaryGranularity
+  /** null on a daily scale — income arrives in a few lumps a month, a per-day figure means
+   *  nothing — or when there is nothing to average over. */
+  income: number | null
+  expense: number | null
+}
+
+/** Income and expense averages per bucket of the range's granularity (see `averagePer`). */
+export function periodAverages(
+  income: number,
+  expense: number,
+  from: Date,
+  to: Date,
+): PeriodAverages {
+  const granularity = rangeGranularity(from, to)
+  const days = elapsedDays(from, to)
+  return {
+    granularity,
+    income: granularity === "day" ? null : averagePer(income, days, granularity),
+    expense: averagePer(expense, days, granularity),
+  }
+}

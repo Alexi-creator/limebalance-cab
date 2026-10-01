@@ -9,7 +9,12 @@ import { type AnalyticsPeriod, analyticsParamsSchema } from "@/modules/analytics
 import { useAnalyticsTour } from "@/modules/analytics/hooks/useAnalyticsTour"
 import { useCategoryBreakdown } from "@/modules/analytics/hooks/useCategoryBreakdown"
 import { parseMonths } from "@/modules/analytics/hooks/useMonthComparison"
-import { resolveAnalyticsPeriod } from "@/modules/analytics/lib/helpers"
+import {
+  elapsedDays,
+  periodAverages,
+  rangeGranularity,
+  resolveAnalyticsPeriod,
+} from "@/modules/analytics/lib/helpers"
 import {
   AnalyticsKpis,
   CategoryDonut,
@@ -46,6 +51,21 @@ export function AnalyticsPage() {
         { count: breakdown.visibleRows.length },
       )}`
     : t("analytics.income_vs_expense")
+
+  // averages per day / week / month: the KPIs over the whole period, the chart over what it draws
+  const kpiAverages = periodAverages(metrics.income, metrics.expense, range.from, range.to)
+  const chartSeries = categorySeries.series ?? series
+  const chartAverages = periodAverages(
+    chartSeries.reduce((acc, p) => acc + p.income, 0),
+    chartSeries.reduce((acc, p) => acc + p.expense, 0),
+    range.from,
+    range.to,
+  )
+  // per-category monthly averages only on a period the chart already reads by months
+  const monthlyOverDays =
+    rangeGranularity(range.from, range.to) === "month"
+      ? elapsedDays(range.from, range.to)
+      : undefined
 
   const categoryOptions = breakdown.rows.map((r) => ({
     value: r.key,
@@ -132,7 +152,12 @@ export function AnalyticsPage() {
       ) : (
         <>
           <Box data-tour="an-kpis">
-            <AnalyticsKpis metrics={metrics} periodLabel={rangeLabel} baseCurrency={baseCurrency} />
+            <AnalyticsKpis
+              metrics={metrics}
+              periodLabel={rangeLabel}
+              baseCurrency={baseCurrency}
+              averages={kpiAverages}
+            />
           </Box>
 
           {/* desktop: compact charts row, then the details list (with the comparison to the
@@ -141,10 +166,11 @@ export function AnalyticsPage() {
           <Grid gap="md" data-tour="an-charts">
             <Grid.Col span={{ base: 12, md: 8 }} order={{ base: 2, md: 1 }}>
               <IncomeExpenseChart
-                series={categorySeries.series ?? series}
+                series={chartSeries}
                 title={chartTitle}
                 subtitle={rangeLabel}
                 baseCurrency={baseCurrency}
+                averages={chartAverages}
                 only={breakdown.isFiltered ? breakdown.kind : undefined}
                 isFetching={
                   breakdown.isFiltered && (categorySeries.isFetching || !categorySeries.series)
@@ -155,7 +181,12 @@ export function AnalyticsPage() {
               <CategoryDonut breakdown={breakdown} subtitle={rangeLabel} />
             </Grid.Col>
             <Grid.Col span={12} order={{ base: 1, md: 3 }}>
-              <DetailedStats breakdown={breakdown} subtitle={rangeLabel} locale={locale} />
+              <DetailedStats
+                breakdown={breakdown}
+                subtitle={rangeLabel}
+                locale={locale}
+                monthlyOverDays={monthlyOverDays}
+              />
             </Grid.Col>
             <Grid.Col span={12} order={4}>
               <MonthComparison
